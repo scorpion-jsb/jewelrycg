@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['controller' => AppController::class], function() {
     Route::get('/', 'index')->name('index');
+    Route::get('/product/{id_product}', 'productPage')->name('product.page');
 });
 
 // Route::get('/dashboard', function () {

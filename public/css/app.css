@@ -11,3 +11,11 @@
   max-width: 100px;
   max-height: 150px;
 }
+
+.product-small-images {
+  max-height: 75px;
+}
+
+.btn-yellow {
+  background-color: yellow !important;
+}

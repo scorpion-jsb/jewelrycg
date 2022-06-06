@@ -3,15 +3,24 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
-use App\Models\ProductImage;
 use Illuminate\Http\Request;
 
 class AppController extends Controller
 {
     public function index()
     {
-        // $products = Product::factory()->count(20)->has(ProductImage::factory()->count(5), 'images')->create();
-        $products = Product::with('images')->get();
+        $products = cache()->remember('index', 60, fn() => Product::with('images')->get());
         return view('index', compact('products'));
+    }
+
+    public function productPage(int $id_product)
+    {
+        $product = cache()->remember("product-$id_product", 60*10, fn() => Product::with('images')->find($id_product));
+        if(! $product)
+        {
+            return response(status: 404);
+        }
+
+        return view('product_page', compact('product'));
     }
 }

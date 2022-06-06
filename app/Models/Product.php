@@ -47,5 +47,4 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'id_product')->orderBy('id', 'asc');
     }
-    //hasOne category..
 }

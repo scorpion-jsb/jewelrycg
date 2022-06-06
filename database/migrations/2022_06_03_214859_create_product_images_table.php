@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('product_images', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_product');
+            $table->foreignId('id_product')->onDelete('cascade');
             $table->string('path');
         });
     }
