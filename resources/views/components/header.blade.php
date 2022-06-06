@@ -6,7 +6,7 @@
             </a>
         </span>
     
-        <div class="col-12 col-md-8 mb-2 mb-md-0 row">
+        <div class="col-12 col-md-7 mb-2 mb-md-0 row">
             <form method="get" action="" class="col-10 col-md-5 mb-2 justify-content-center mb-md-0 input-group">
     
                 <div class="input-group-prepend">
@@ -22,9 +22,20 @@
             </form>
     
         </div>
+
+        <div class="col-2 text-center">
+            <a href="{{route('cart.index')}}" class="text-decoration-none">
+                <img src="{{asset('img/cart.png')}}" alt="cart" width="50" height="50" class="img-fluid bg-light">
+                @if ($cart_items = \Gloudemans\Shoppingcart\Facades\Cart::content()->count())
+                    <span class="rounded-pill pill badge bg-primary text-light">
+                        {{$cart_items}}
+                    </span>
+                @endif
+            </a>
+        </div>
     
         @auth
-            <div class="col-md-3 dropdown text-end">
+            <div class="col-md-2 dropdown text-end">
                 <a href="#" class="d-block text-decoration-none link-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ Auth::user()->name }}
                 </a>
@@ -40,7 +51,7 @@
                 </ul>
             </div>
         @else
-            <div class="col-md-3 text-end">
+            <div class="col-md-2 text-end">
                 <a href="{{ route('login') }}" class="btn btn-outline-primary me-2">Login</a>
                 <a href="{{ route('register') }}" class="btn btn-primary">Sign-up</a>
             </div>

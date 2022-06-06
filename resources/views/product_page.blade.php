@@ -15,13 +15,13 @@
                 {{$product->name}}
             </h1>
             <h4 class="text-warning">
-                ${{$product->price}}
+                ${{$product->price / 100}}
             </h4>
             <p>
                 {{$product->desc}}
             </p>
         </div>
-        <div class="col-md-2 border border-light p-2">
+        <div class="col-md-2 border p-2">
             <span class="text-warning">${{$product->price}}</span>
             <br>
             <div class="small">Details...</div>
@@ -30,8 +30,14 @@
             <div class="small">Details...</div>
             <div class="small">Details...</div>
             <div class="small">Details...</div>
-            <form action="#" method="post" class="my-3">
+            @if (session('message'))
+                <div class="text-success">
+                    {{session('message')}}
+                </div>
+            @endif
+            <form action="{{route('cart.store')}}" method="post" class="my-3">
                 @csrf
+                <input type="hidden" name="id_product" value="{{$product->id}}">
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn pill rounded-pill btn-yellow">Add to Cart</button>
                     <button type="submit" formaction="#" class="btn pill rounded-pill btn-warning">Buy Now</button>

@@ -8,7 +8,7 @@
                         <div class="text-center py-2">
                             {{$product->name}}
                             <br>
-                            <span class="text-warning">${{$product->price}}</span>
+                            <span class="text-warning">${{$product->price / 100}}</span>
                         </div>
                     </a>
                 </div>

@@ -16,11 +16,7 @@ class AppController extends Controller
     public function productPage(int $id_product)
     {
         $product = cache()->remember("product-$id_product", 60*10, fn() => Product::with('images')->find($id_product));
-        if(! $product)
-        {
-            return response(status: 404);
-        }
-
+        abort_if(! $product, 404);
         return view('product_page', compact('product'));
     }
 }

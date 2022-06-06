@@ -19,7 +19,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
-            'price' => $this->faker->randomFloat(2, 0.99, 500),
+            'price' => $this->faker->numberBetween(100, 50000),
             'desc' => $this->faker->paragraphs(3, true),
             'name' => ucfirst($this->faker->unique()->word()),
             'category' => Arr::random(Product::$category_list)
