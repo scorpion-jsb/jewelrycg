@@ -10,10 +10,10 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach (\Gloudemans\Shoppingcart\Facades\Cart::content() as $product)
+                    @foreach (Cart::content() as $product)
                         <tr>
                             <td><a href="{{route('product.page', $product->id)}}" class="link-dark">{{$product->name}}</a></td>
-                            <td>{{$product->price}}</td>
+                            <td>{{number_format($product->price, 2)}}</td>
                             <td>
                                 <form action="{{route('cart.edit.qty')}}" method="post">
                                     @csrf
@@ -41,7 +41,7 @@
                     @endforeach
                     <tr>
                         <th scope="row">Total:</th>
-                        <td colspan="2">${{\Gloudemans\Shoppingcart\Facades\Cart::total()}}</td>
+                        <td colspan="2">${{Cart::total()}}</td>
                     </tr>
                 </tbody>
             </table>

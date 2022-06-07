@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
 class Product extends Model
 {
@@ -42,6 +43,12 @@ class Product extends Model
         'name',
         'category'
     ];
+
+    public function formatPrice()
+    {
+        $this->price = number_format($this->price / 100, 2);
+        return $this;
+    }
 
     public function images()
     {

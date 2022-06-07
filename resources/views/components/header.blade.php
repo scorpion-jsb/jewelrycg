@@ -26,7 +26,15 @@
         <div class="col-2 text-center">
             <a href="{{route('cart.index')}}" class="text-decoration-none">
                 <img src="{{asset('img/cart.png')}}" alt="cart" width="50" height="50" class="img-fluid bg-light">
-                @if ($cart_items = \Gloudemans\Shoppingcart\Facades\Cart::content()->count())
+                <?php
+                    if(Cart::content()->count() == 0
+                        && auth()->check()
+                    )
+                    {
+                        Cart::merge(auth()->id());
+                    }
+                ?>
+                @if ($cart_items = Cart::content()->count())
                     <span class="rounded-pill pill badge bg-primary text-light">
                         {{$cart_items}}
                     </span>

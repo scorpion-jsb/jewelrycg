@@ -23,6 +23,6 @@ class UserSeeder extends Seeder
             'password' => $password
         ]);
 
-        User::factory()->count(100)->create();
+        User::factory()->count(100)->create(['password' => $password]);
     }
 }

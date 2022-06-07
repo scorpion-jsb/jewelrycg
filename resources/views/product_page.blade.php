@@ -15,7 +15,7 @@
                 {{$product->name}}
             </h1>
             <h4 class="text-warning">
-                ${{$product->price / 100}}
+                ${{$product->price}}
             </h4>
             <p>
                 {{$product->desc}}
