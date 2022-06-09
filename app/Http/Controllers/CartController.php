@@ -24,7 +24,7 @@ class CartController extends Controller
             1,
             $product->price / 100
         )
-        ->associate('Product');
+        ->associate(Product::class);
 
         if(auth()->check())
         {
@@ -49,13 +49,19 @@ class CartController extends Controller
 
     public function removeProduct(CartItemEditRequest $req)
     {
-        Cart::remove($req->row_id);
-        if(auth()->check())
+        try
         {
-            Cart::restore(auth()->id());
             Cart::remove($req->row_id);
-            Cart::store(auth()->id());
+            if(auth()->check())
+            {
+                Cart::restore(auth()->id());
+                Cart::remove($req->row_id);
+                Cart::store(auth()->id());
+            }
         }
-        return redirect()->route('cart.index');
+        finally
+        {
+            return redirect()->route('cart.index');
+        }
     }
 }

@@ -41,7 +41,8 @@ class Product extends Model
         'price',
         'desc',
         'name',
-        'category'
+        'category',
+        'qty'
     ];
 
     public function formatPrice()

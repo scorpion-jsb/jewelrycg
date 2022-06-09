@@ -21,7 +21,7 @@
                 {{$product->desc}}
             </p>
         </div>
-        <div class="col-md-2 border p-2">
+        <div class="col-md-2 border p-3">
             <span class="text-warning">${{$product->price}}</span>
             <br>
             <div class="small">Details...</div>
