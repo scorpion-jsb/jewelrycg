@@ -11,7 +11,6 @@
         </script>
         <script src="{{ asset('js/checkout.js') }}" defer></script>
     </x-slot>
-    {{-- <form action="{{route('checkout.store')}}" method="post"> --}}
     <form id="payment-form">
         <div class="row">
             <div class="col-md-7">
@@ -33,9 +32,8 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="border-bottom mb-3">Order Details</div>
-                        <x-cart-table checkout="true"/>
+                        <x-cart-table :checkout="true"/>
                         <div class="d-grid gap-2">
-                            @csrf 
                             <button id="submit" class="btn btn-primary">
                                 <div class="spinner hidden" id="spinner"></div>
                                 <span id="button-text">Pay now</span>
@@ -46,6 +44,5 @@
                 </div>
             </div>
         </div>
-    {{-- </form> --}}
     </form>
 </x-app-layout>

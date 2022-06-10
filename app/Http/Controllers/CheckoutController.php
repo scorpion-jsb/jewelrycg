@@ -8,7 +8,6 @@ use Error;
 use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-use Illuminate\Validation\ValidationException;
 use Stripe\Stripe;
 
 class CheckoutController extends Controller
@@ -20,8 +19,6 @@ class CheckoutController extends Controller
 
     public function store(Request $req)
     {
-
-        return $req->all();
         try
         {
             $rules = (new PlaceOrderRequest)->rules();
@@ -30,7 +27,7 @@ class CheckoutController extends Controller
             $data = $req->all();
             $user = auth()->user();
             $user->update($data);
-    
+
             $data['tracking_number'] = random_int(100000, 999999);
             $data['total_price'] = Order::getCartTotalInCents();
     
@@ -41,10 +38,10 @@ class CheckoutController extends Controller
         }
         catch(Exception|Error $e)
         {
-            return response(['status' => 'error', 'error' => $e->getMessage()], 400);
+            return response(['ok' => false, 'error' => $e->getMessage()], 401);
         }
 
-        return response(['status' => 'success'], 200);
+        return response(['ok' => true], 200);
     }
 
     public function createPaymentIntent()
@@ -72,6 +69,12 @@ class CheckoutController extends Controller
             http_response_code(500);
             return ['error' => $e->getMessage()];
         }
+    }
+
+    public function destroy()
+    {
+        // $order = auth()->user()->orders()->with('items')->orderBy('id', 'desc')->first();
+        // ...
     }
 
     public function paymentFinished()

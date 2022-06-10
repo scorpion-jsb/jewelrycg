@@ -37,19 +37,28 @@
         const state = document.getElementById('state').value
         const country = document.getElementById('country').value
         const pin_code = document.getElementById('pin_code').value
-        
+
+        const obj = {
+          _token, 
+          phone,
+          address1,
+          address2,
+          city,
+          state, 
+          country, 
+          pin_code
+        };
+
         const response = await fetch(place_order_route, {
           method: "POST",
           headers: {
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': _token
           }, 
-          body: JSON.stringify(_token, phone, address1, address2, city, state, country, pin_code)
-        }).then(res => res);
+          body: JSON.stringify(obj)
+        }).then(res => res.json());
 
-        console.log(response)
-
-        if(response.status === 'success')
+        if(response.ok)
         {
           const { error } = await stripe.confirmPayment({
             elements,
@@ -83,7 +92,7 @@
         }
         else
         {
-          showMessage('Something went wrong.')
+          showMessage('Something went wrong.\n' + response.error);
         }
 
         setLoading(false);
