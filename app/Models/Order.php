@@ -28,7 +28,7 @@ class Order extends Model
             return [
                 'id_product' => $i->id,
                 'qty' => $i->qty,
-                'price' => $i->price
+                'price' => Product::getPriceInCents($i->price)
             ];
         });
         $this->items()->createMany($cart_items->toArray());

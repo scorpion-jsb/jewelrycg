@@ -51,6 +51,12 @@ class Product extends Model
         return $this;
     }
 
+    public static function getPriceInCents(float $price)
+    {
+        $price *= 100;
+        return (int) $price;
+    }
+
     public function images()
     {
         return $this->hasMany(ProductImage::class, 'id_product')->orderBy('id', 'asc');

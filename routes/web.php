@@ -32,14 +32,15 @@ Route::group([
 });
 Route::resource('cart', CartController::class)->only(['index', 'store']);
 
-Route::group(['middleware' => ['auth', 'checkout']], function() {
-    Route::resource('checkout', CheckoutController::class)->only(['index', 'store']);
-    Route::post('/payment/intent', [CheckoutController::class, 'createPaymentIntent'])->name('checkout.payment.intent');
-    Route::get('/payment/finished', [CheckoutController::class, 'paymentFinished'])->name('checkout.payment.finished'); //
+Route::group(['middleware' => 'auth'], function() {
+    Route::group(['prefix' => 'payment', 'as' => 'checkout.', 'controller' => CheckoutController::class], function() {
+        Route::get('/finished', 'paymentFinished')->name('finished');
+        Route::delete('/cancel', 'destroy')->name('cancel');
+    });
+    Route::group(['middleware' => 'checkout'], function() {
+        Route::resource('checkout', CheckoutController::class)->only(['index', 'store']);
+        Route::post('/payment/intent', [CheckoutController::class, 'createPaymentIntent'])->name('checkout.payment.intent');
+    });
 });
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';

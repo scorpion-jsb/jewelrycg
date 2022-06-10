@@ -30,7 +30,6 @@
         e.preventDefault();
         setLoading(true);
 
-        const email = document.getElementById('email').value
         const phone = document.getElementById('phone').value
         const address1 = document.getElementById('address1').value
         const address2 = document.getElementById('address2').value
@@ -45,8 +44,10 @@
             'Content-Type': 'application/json',
             'X-CSRF-TOKEN': _token
           }, 
-          body: JSON.stringify(_token, email, phone, address1, address2, city, state, country, pin_code)
+          body: JSON.stringify(_token, phone, address1, address2, city, state, country, pin_code)
         }).then(res => res);
+
+        console.log(response)
 
         if(response.status === 'success')
         {
@@ -67,14 +68,25 @@
             showMessage(error.message);
           } else {
             showMessage("An unexpected error occurred.");
-          }
-        
-          setLoading(false);
+          }        
+
+          // await fetch(order_cancel_route, {
+          //   method: "DELETE",
+          //   headers: {
+          //     'Content-Type': 'application/json',
+          //     'X-CSRF-TOKEN': _token
+          //   }, 
+          //   body: JSON.stringify(_token)
+          // }).then(res => res);
+  
+
         }
         else
         {
           showMessage('Something went wrong.')
         }
+
+        setLoading(false);
       }
       
       // Fetches the payment intent status after payment submission

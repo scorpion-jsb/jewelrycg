@@ -6,7 +6,8 @@
             const payment_intent_route = '{{route('checkout.payment.intent')}}'
             const _token = '{{ csrf_token() }}'
             const place_order_route = '{{route('checkout.store')}}'
-            const finish_page = '{{route('checkout.payment.finished')}}'
+            const order_cancel_route = '{{route('checkout.cancel')}}'
+            const finish_page = '{{route('checkout.finished')}}'
         </script>
         <script src="{{ asset('js/checkout.js') }}" defer></script>
     </x-slot>

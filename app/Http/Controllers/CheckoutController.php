@@ -20,6 +20,8 @@ class CheckoutController extends Controller
 
     public function store(Request $req)
     {
+
+        return $req->all();
         try
         {
             $rules = (new PlaceOrderRequest)->rules();

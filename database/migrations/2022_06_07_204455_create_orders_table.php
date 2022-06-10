@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_user')->constrained('users');
+            $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
             $table->string('address1');
             $table->string('address2');
             $table->integer('total_price')->unsigned();
