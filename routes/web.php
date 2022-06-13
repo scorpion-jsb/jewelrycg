@@ -35,7 +35,7 @@ Route::resource('cart', CartController::class)->only(['index', 'store']);
 Route::group(['middleware' => 'auth'], function() {
     Route::group(['prefix' => 'payment', 'as' => 'checkout.', 'controller' => CheckoutController::class], function() {
         Route::get('/finished', 'paymentFinished')->name('finished');
-        Route::delete('/cancel', 'destroy')->name('cancel');
+        Route::delete('/cancel', 'cancel')->name('cancel');
     });
     Route::group(['middleware' => 'checkout'], function() {
         Route::resource('checkout', CheckoutController::class)->only(['index', 'store']);

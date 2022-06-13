@@ -79,15 +79,13 @@
             showMessage("An unexpected error occurred.");
           }        
 
-          // await fetch(order_cancel_route, {
-          //   method: "DELETE",
-          //   headers: {
-          //     'Content-Type': 'application/json',
-          //     'X-CSRF-TOKEN': _token
-          //   }, 
-          //   body: JSON.stringify(_token)
-          // }).then(res => res);
-  
+          await fetch(order_cancel_route, {
+            method: "DELETE",
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRF-TOKEN': _token
+            }
+          });
 
         }
         else
@@ -112,8 +110,7 @@
       
         switch (paymentIntent.status) {
           case "succeeded":
-            // window.location.replace(finish_page)
-            showMessage('sim')
+            window.location.replace(finish_page)
             break;
           case "processing":
             showMessage("Your payment is processing.");

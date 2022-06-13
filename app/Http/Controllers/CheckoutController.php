@@ -71,10 +71,17 @@ class CheckoutController extends Controller
         }
     }
 
-    public function destroy()
+    public function cancel()
     {
-        // $order = auth()->user()->orders()->with('items')->orderBy('id', 'desc')->first();
-        // ...
+        $order = auth()->user()->orders()->with('items', 'items.product:id,name,qty')->orderBy('id', 'desc')->first();
+        $order->restoreCartItems();
+        $order->restoreProductsQty();
+
+        Cart::store(auth()->id());
+
+        $order->delete();
+
+        return response(null, 204);
     }
 
     public function paymentFinished()

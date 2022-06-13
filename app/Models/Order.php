@@ -34,9 +34,26 @@ class Order extends Model
         $this->items()->createMany($cart_items->toArray());
     }
 
+    public function restoreProductsQty()
+    {
+        Cart::content()->map(fn($i, $k) => $i->model->increment('qty', $i->qty));
+    }
+
+    public function restoreCartItems()
+    {
+        $this->items->map(fn($i, $k) => Cart::add(
+                $i->id,
+                $i->product->name,
+                $i->qty,
+                $i->price / 100
+            )
+            ->associate(Product::class)
+        );
+    }
+
     public static function getCartTotalInCents()
     {
-        $total_price_float = Cart::total() * 100;
+        $total_price_float = Cart::total(2, '.', '') * 100;
         return (int) $total_price_float;
     }
 
