@@ -49,8 +49,8 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end text-small">
                     <li>
-                        <a class="dropdown-item" href="#">
-                            Profile
+                        <a class="dropdown-item" href="{{route('user.index')}}">
+                            My Info
                         </a>
                     </li>
                     <li><a class="dropdown-item" href="{{route('orders.index')}}">My Orders</a></li>

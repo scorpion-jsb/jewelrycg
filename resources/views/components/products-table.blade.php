@@ -29,7 +29,7 @@
                                 @if ($out_of_stock[$key])
                                     <div class="col-2">
                                         <span class="badge rounded-pill text-light bg-danger">
-                                            On Stock: {{ $product->model->qty }}
+                                            In Stock: {{ $product->model->qty }}
                                         </span>
                                     </div>
                                 @endif

@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -28,7 +29,7 @@ Route::group([
     'prefix' => 'cart',
     'as' => 'cart.'
 ], function() {
-    Route::middleware('auth')->post('/buy/now', 'buyNow')->name('buy.now');
+    Route::middleware('auth')->post('/buy-now', 'buyNow')->name('buy.now');
     Route::patch('/edit', 'editQty')->name('edit.qty');
     Route::patch('/remove', 'removeProduct')->name('remove.product');
 });
@@ -45,6 +46,14 @@ Route::group(['middleware' => 'auth'], function() {
     });
 
     Route::resource('orders', OrderController::class)->only(['index', 'show']);
+    
+    Route::group(['prefix' => 'user', 'as' => 'user.', 'controller' => UserController::class], function() {
+        Route::get('/', 'index')->name('index');
+        Route::get('/edit', 'edit')->name('edit');
+        Route::get('/edit/password', 'editPassword')->name('edit.password');
+        Route::patch('/edit/password', 'updatePassword')->name('update.password');
+        Route::put('/edit', 'update')->name('update');
+    });
 });
 
 require __DIR__.'/auth.php';
