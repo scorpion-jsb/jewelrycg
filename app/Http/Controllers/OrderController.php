@@ -14,7 +14,7 @@ class OrderController extends Controller
         return view('orders.index', compact('orders'));
     }
 
-    public function show($id_order)
+    public function show(int $id_order)
     {
         $order = Order::with('items', 'items.product:id,name')->find($id_order);
         $this->authorize('show', $order);
