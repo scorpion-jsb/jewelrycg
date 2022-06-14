@@ -27,7 +27,7 @@
             <a href="{{route('cart.index')}}" class="text-decoration-none">
                 <img src="{{asset('img/cart.png')}}" alt="cart" width="50" height="50" class="img-fluid bg-light">
                 <?php
-                    if(Cart::content()->count() == 0
+                    if(Cart::instance('default')->content()->count() == 0
                         && auth()->check()
                     )
                     {

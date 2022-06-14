@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CancelCheckoutRequest;
 use App\Http\Requests\PlaceOrderRequest;
+use App\Http\Requests\StorePaymentIntentRequest;
 use App\Models\Order;
 use Error;
 use Exception;
@@ -23,6 +25,7 @@ class CheckoutController extends Controller
         {
             $rules = (new PlaceOrderRequest)->rules();
             $this->validate($req, $rules);
+            Order::changeCartInstanceIfBuyNowMode($req->buy_now_mode);
 
             $data = $req->all();
             $user = auth()->user();
@@ -44,11 +47,13 @@ class CheckoutController extends Controller
         return response(['ok' => true], 200);
     }
 
-    public function createPaymentIntent()
+    public function createPaymentIntent(StorePaymentIntentRequest $req)
     {
         Stripe::setApiKey(env('STRIPE_SECRET'));
 
         header('Content-Type: application/json');
+
+        Order::changeCartInstanceIfBuyNowMode($req->buy_now_mode);
 
         try {
             // Create a PaymentIntent with amount and currency
@@ -71,9 +76,10 @@ class CheckoutController extends Controller
         }
     }
 
-    public function cancel()
+    public function cancel(CancelCheckoutRequest $req)
     {
         $order = auth()->user()->orders()->with('items', 'items.product:id,name,qty')->orderBy('id', 'desc')->first();
+        Order::changeCartInstanceIfBuyNowMode($req->buy_now_mode);
         $order->restoreCartItems();
         $order->restoreProductsQty();
 

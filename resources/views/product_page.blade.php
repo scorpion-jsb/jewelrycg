@@ -51,7 +51,7 @@
                 <input type="hidden" name="id_product" value="{{$product->id}}">
                 <div class="d-grid gap-2">
                     <button type="submit" class="btn pill rounded-pill btn-yellow" {{ $product->qty < 1 ? 'disabled' : null }}>Add to Cart</button>
-                    <button type="submit" formaction="#" class="btn pill rounded-pill btn-warning" {{ $product->qty < 1 ? 'disabled' : null }}>Buy Now</button>
+                    <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn pill rounded-pill btn-warning" {{ $product->qty < 1 ? 'disabled' : null }}>Buy Now</button>
                 </div>
             </form>
             <div class="small">Details...</div>

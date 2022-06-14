@@ -16,8 +16,11 @@
       async function initialize() {
         const { clientSecret } = await fetch(payment_intent_route, { //
           method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ _token }),
+          headers: {
+            "Content-Type": "application/json",
+            "X-CSRF-TOKEN": _token
+          },
+          body: JSON.stringify({ _token, buy_now_mode }),
         }).then((r) => r.json());
 
         elements = stripe.elements({ clientSecret });
@@ -46,7 +49,8 @@
           city,
           state, 
           country, 
-          pin_code
+          pin_code,
+          buy_now_mode
         };
 
         const response = await fetch(place_order_route, {
@@ -84,7 +88,8 @@
             headers: {
               'Content-Type': 'application/json',
               'X-CSRF-TOKEN': _token
-            }
+            },
+            body: JSON.stringify({ buy_now_mode })
           });
 
         }

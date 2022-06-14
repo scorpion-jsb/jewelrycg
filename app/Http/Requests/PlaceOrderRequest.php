@@ -36,6 +36,7 @@ class PlaceOrderRequest extends FormRequest
             'status' => 'prohibited',
             'message' => 'prohibited',
             'tracking_number' => 'prohibited',
+            'buy_now_mode' => 'required|boolean'
         ];
     }
 

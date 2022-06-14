@@ -28,6 +28,7 @@ Route::group([
     'prefix' => 'cart',
     'as' => 'cart.'
 ], function() {
+    Route::middleware('auth')->post('/buy/now', 'buyNow')->name('buy.now');
     Route::patch('/edit', 'editQty')->name('edit.qty');
     Route::patch('/remove', 'removeProduct')->name('remove.product');
 });

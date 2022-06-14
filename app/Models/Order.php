@@ -63,6 +63,18 @@ class Order extends Model
         return $this;
     }
 
+    public static function changeCartInstanceIfBuyNowMode(bool $buy_now_mode)
+    {
+        if($buy_now_mode)
+        {
+            Cart::instance('buy_now');
+        }
+        else
+        {
+            Cart::instance('default');
+        }
+    }
+
     public function items()
     {
         return $this->hasMany(OrderItem::class, 'id_order');
