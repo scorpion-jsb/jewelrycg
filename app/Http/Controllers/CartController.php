@@ -18,6 +18,10 @@ class CartController extends Controller
     public function store(StoreProductCartRequest $req)
     {
         $product = Product::findOrFail($req->id_product);
+        if($product->qty < 1)
+        {
+            return back();
+        }
 
         Cart::instance('default')->add(
             $product->id,
@@ -47,7 +51,7 @@ class CartController extends Controller
             $product->price / 100
         )
         ->associate(Product::class);
-        
+
         Cart::restore(auth()->id());
         Cart::store(auth()->id());
 
