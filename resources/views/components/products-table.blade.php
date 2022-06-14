@@ -7,12 +7,12 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($cart_items = Cart::content() as $product)
+        @foreach ($products as $product)
             <tr>
                 <td><a href="{{route('product.page', $product->id)}}" class="link-dark">{{$product->name}}</a></td>
                 <td>${{number_format($product->price, 2)}}</td>
                 <td>
-                    @if ($checkout)
+                    @if ($locale != 'cart')
                         {{$product->qty}}
                     @else
                         <form action="{{route('cart.edit.qty')}}" method="post">
@@ -40,12 +40,14 @@
                 </td>
             </tr>
         @endforeach
-        <tr>
-            <th scope="row">Total:</th>
-            <td {{ $checkout || $cart_items->count() == 0 ? 'colspan=2' : null  }}>${{Cart::total()}}</td>
-            @if (! $checkout && $cart_items->count() > 0)
-                <td align="end"><a href="{{route('checkout.index')}}" class="btn btn-outline-success">Proceed to Checkout</a></td>
-            @endif
-        </tr>
+        @if ($locale != 'orders.show')
+            <tr>
+                <th scope="row">Total:</th>
+                <td {{ $locale == 'checkout' || $products->count() == 0 ? 'colspan=2' : null  }}>${{Cart::total()}}</td>
+                @if ($locale == 'cart' && $products->count() > 0)
+                    <td align="end"><a href="{{route('checkout.index')}}" class="btn btn-outline-success">Proceed to Checkout</a></td>
+                @endif
+            </tr>
+        @endif
     </tbody>
 </table>

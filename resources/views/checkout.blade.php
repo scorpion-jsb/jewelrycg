@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <div class="border-bottom mb-3">Basic Details</div>
                         @include('includes.validation-form')
-                        <x-basic-info/>
+                        <x-user-info/>
 
                         <hr>
 
@@ -32,7 +32,7 @@
                 <div class="card">
                     <div class="card-body">
                         <div class="border-bottom mb-3">Order Details</div>
-                        <x-cart-table :checkout="true"/>
+                        <x-products-table locale="checkout"/>
                         <div class="d-grid gap-2">
                             <button id="submit" class="btn btn-primary">
                                 <div class="spinner hidden" id="spinner"></div>

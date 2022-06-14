@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\FormatPrices;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 
 class Product extends Model
 {
-    use HasFactory;
+    use HasFactory, FormatPrices;
 
     public static $category_list = [
         'Arts',
@@ -44,12 +45,6 @@ class Product extends Model
         'category',
         'qty'
     ];
-
-    public function formatPrice()
-    {
-        $this->price = number_format($this->price / 100, 2);
-        return $this;
-    }
 
     public static function getPriceInCents(float $price)
     {

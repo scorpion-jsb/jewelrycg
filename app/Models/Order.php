@@ -57,6 +57,12 @@ class Order extends Model
         return (int) $total_price_float;
     }
 
+    public function formatPrice()
+    {
+        $this->total_price = number_format($this->total_price / 100, 2);
+        return $this;
+    }
+
     public function items()
     {
         return $this->hasMany(OrderItem::class, 'id_order');

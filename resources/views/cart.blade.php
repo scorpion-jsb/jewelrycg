@@ -6,7 +6,7 @@
             </h4>
         @endif
         <div class="card-body">
-            <x-cart-table/>
+            <x-products-table/>
         </div>
     </div>        
 </x-app-layout>

@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\FormatPrices;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class OrderItem extends Model
 {
-    use HasFactory;
+    use HasFactory, FormatPrices;
 
     protected $fillable = [
         'id_order',
@@ -15,6 +16,13 @@ class OrderItem extends Model
         'qty',
         'price',
     ];
+
+    public function getSelfWithProductInfo()
+    {
+        $this->name = $this->product->name;
+        $this->id = $this->product->id;
+        return $this;
+    }
 
     public function product()
     {

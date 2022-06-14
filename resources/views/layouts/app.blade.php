@@ -18,6 +18,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         <script src="https://kit.fontawesome.com/22dad4dcbd.js" crossorigin="anonymous"></script>
+        <script src="{{asset('js/func_util.js')}}" defer></script>
         {{ $scripts ?? null }}
     </head>
     <body>

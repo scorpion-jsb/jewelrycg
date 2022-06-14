@@ -3,6 +3,7 @@
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\OrderController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -41,6 +42,8 @@ Route::group(['middleware' => 'auth'], function() {
         Route::resource('checkout', CheckoutController::class)->only(['index', 'store']);
         Route::post('/payment/intent', [CheckoutController::class, 'createPaymentIntent'])->name('checkout.payment.intent');
     });
+
+    Route::resource('orders', OrderController::class)->only(['index', 'show']);
 });
 
 require __DIR__.'/auth.php';
