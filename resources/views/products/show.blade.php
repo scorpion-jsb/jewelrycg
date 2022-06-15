@@ -1,16 +1,33 @@
 <x-app-layout :page-title="$product->name">
+    <x-slot:scripts>
+        <script>
+            const product_images = {!! $product_images_in_json !!};
+        </script>
+    </x-slot>
     <div class="row">
         <div class="col-4 card">
             <div class="card-body">
                 <a href="{{asset($product->images->first()->path)}}" target="_blank">
-                    <img id="main-image" src="{{asset($product->images->first()->path)}}" class="img-fluid d-block mx-auto border" alt="{{$product->name}}_1">
+                    <img id="main-image" src="{{asset($product->images->first()->path)}}" class="img-fluid d-block mx-auto border" alt="0">
                 </a>
-                <div class="d-flex justify-content-around">
-                    @foreach ($product->images as $key => $image)
-                        <a href="javascript:;" onclick="changeMainImage(this)" class="text-decoration-none border">
-                            <img src="{{asset($image->path)}}" class="img-fluid product-small-images" alt="{{$product->name}}_{{++$key}}">
+                <div class="d-flex justify-content-between">
+                    @if ($is_img_more_than_3 = $product->images->count() > 3)
+                        <a href="javascript:;" onclick="showImage(false)" class="text-decoration-none link-secondary d-flex">
+                            <i class="fa-solid fa-arrow-left my-auto"></i>
                         </a>
+                    @endif
+                    @foreach ($product->images as $key => $image)
+                        @if ($key < 3)
+                            <a href="javascript:;" onclick="changeMainImage(this)" class="text-decoration-none border">
+                                <img src="{{asset($image->path)}}" class="img-fluid product-small-images carousel-img" alt="{{$key}}">
+                            </a>
+                        @endif
                     @endforeach
+                    @if ($is_img_more_than_3)
+                        <a href="javascript:;" onclick="showImage(true)" class="text-decoration-none link-secondary d-flex">
+                            <i class="fa-solid fa-arrow-right my-auto"></i>
+                        </a>
+                    @endif
                 </div>
             </div>
         </div>

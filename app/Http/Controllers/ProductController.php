@@ -32,8 +32,10 @@ class ProductController extends Controller
         $product = cache()->remember("product-$id_product", 60*10, fn() => Product::with('images')->find($id_product));
         abort_if(! $product, 404);
         $product->setPriceToFloat();
-        
-        return view('products.show', compact('product'));
+
+        $product_images_in_json = $product->images->map(fn($i) => asset($i->path))->toJson();
+
+        return view('products.show', compact('product', 'product_images_in_json'));
     }
 
     public function edit($id)
