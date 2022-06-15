@@ -29,7 +29,16 @@ Route::group([
     'prefix' => 'cart',
     'as' => 'cart.'
 ], function() {
-    Route::middleware('auth')->post('/buy-now', 'buyNow')->name('buy.now');
+    Route::group(['middleware' => 'auth'], function() {
+        Route::post('/buy-now', 'buyNow')->name('buy.now');
+
+        Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function() {
+            Route::get('/', 'wishlist');
+            Route::post('/', 'wishlistStore');
+            Route::put('/', 'wishlistToCart');
+            Route::delete('/', 'removeFromWishlist');
+        });
+    });
     Route::patch('/edit', 'editQty')->name('edit.qty');
     Route::patch('/remove', 'removeProduct')->name('remove.product');
 });

@@ -54,6 +54,7 @@
                         </a>
                     </li>
                     <li><a class="dropdown-item" href="{{route('orders.index')}}">My Orders</a></li>
+                    <li><a class="dropdown-item" href="{{route('cart.wishlist')}}">My Wishlist</a></li>
                     <li><hr class="dropdown-divider"></li>
                     <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                 </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\CartItemEditRequest;
+use App\Http\Requests\RemoveFromWishlistRequest;
 use App\Http\Requests\StoreProductCartRequest;
 use App\Models\Product;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -86,5 +87,61 @@ class CartController extends Controller
         {
             return redirect()->route('cart.index');
         }
+    }
+
+    public function wishlist()
+    {
+        Cart::instance('wishlist')->restore(auth()->id());
+        Cart::instance('wishlist')->store(auth()->id());
+        return view('users.wishlist');
+    }
+
+    public function wishlistStore(StoreProductCartRequest $req)
+    {
+        $product = Product::findOrFail($req->id_product);
+
+        Cart::instance('wishlist')->add(
+            $product->id,
+            $product->name,
+            1,
+            $product->price / 100
+        )
+        ->associate(Product::class);
+
+        Cart::restore(auth()->id());
+        Cart::store(auth()->id());
+
+        return redirect()->route('product.page', $product->id)->with(['wishlist-message' => 'Successfully added to Wishlist!']);
+    }
+
+    public function removeFromWishlist(RemoveFromWishlistRequest $req)
+    {
+        Cart::instance('wishlist')->restore(auth()->id());
+        Cart::remove($req->row_id);
+        Cart::store(auth()->id());
+
+        return back();
+    }
+
+    public function wishlistToCart(RemoveFromWishlistRequest $req)
+    {
+        $product = Cart::instance('wishlist')->get($req->row_id)->model;
+
+        Cart::instance('wishlist')->restore(auth()->id());
+        Cart::remove($req->row_id);
+        Cart::store(auth()->id());
+
+        Cart::instance('default')->add(
+            $product->id,
+            $product->name,
+            1,
+            $product->price / 100
+        )
+        ->associate(Product::class);
+
+        Cart::restore(auth()->id());
+        Cart::store(auth()->id());
+
+        return redirect()->route('cart.wishlist');
     }
 }

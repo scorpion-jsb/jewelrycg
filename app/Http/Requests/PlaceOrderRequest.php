@@ -26,6 +26,7 @@ class PlaceOrderRequest extends FormRequest
         return [
             'name' => 'prohibited',
             'email' => 'prohibited',
+            'password' => 'prohibited',
             'phone' => 'required|numeric|digits_between:8,12',
             'address1' => 'required|string|max:255',
             'address2' => 'nullable|string|max:255',
