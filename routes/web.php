@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,10 +20,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::group(['controller' => AppController::class], function() {
-    Route::get('/', 'index')->name('index');
-    Route::get('/product/{id_product}', 'productPage')->name('product.page');
-});
+Route::get('/', [AppController::class, 'index'])->name('index');
+
+Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
+Route::resource('products', ProductController::class)->only('show');
 
 Route::group([
     'controller' => CartController::class,
@@ -64,5 +65,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::put('/edit', 'update')->name('update');
     });
 });
+
 
 require __DIR__.'/auth.php';

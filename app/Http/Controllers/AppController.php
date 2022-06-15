@@ -14,12 +14,4 @@ class AppController extends Controller
         $products->transform(fn($i, $k) => $i->setPriceToFloat());
         return view('index', compact('products'));
     }
-
-    public function productPage(int $id_product)
-    {
-        $product = cache()->remember("product-$id_product", 60*10, fn() => Product::with('images')->find($id_product));
-        abort_if(! $product, 404);
-        $product->setPriceToFloat();
-        return view('product_page', compact('product'));
-    }
 }

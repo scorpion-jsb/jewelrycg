@@ -43,8 +43,8 @@
         </div>
     
         @auth
-            <div class="col-md-2 dropdown text-end">
-                <a href="#" class="d-block text-decoration-none link-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="col-md-2 dropdown text-end" align="end">
+                <a href="#" class="text-decoration-none link-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end text-small">
@@ -56,6 +56,10 @@
                     <li><a class="dropdown-item" href="{{route('orders.index')}}">My Orders</a></li>
                     <li><a class="dropdown-item" href="{{route('cart.wishlist')}}">My Wishlist</a></li>
                     <li><hr class="dropdown-divider"></li>
+                    @if (auth()->user()->is_admin)
+                        <li><a class="dropdown-item" href="{{route('products.create')}}">Add New Product</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    @endif
                     <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                 </ul>
             </div>

@@ -11,3 +11,17 @@ function changeMainImage(element)
     main_img.src = img.src;
     main_img.alt = img.alt;
 }
+
+function changeToCents()
+{
+    const price_tag = document.getElementById('price');
+    price_tag.value = formatPrice(price_tag.value);
+
+    function formatPrice(price)
+    {
+        price = price.replace(',', '');
+        price = price.replace('.', '');
+
+        return price;
+    }
+}

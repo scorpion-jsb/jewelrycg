@@ -12,9 +12,7 @@ class OrderPolicy
 
     public function show(User $user, Order $order)
     {
-        return $user->id == $order->id_user;
-        
-        // return $user->id == $order->id_user
-        //     || $user->is_admin;
+        return $user->id == $order->id_user
+            || $user->is_admin;
     }
 }

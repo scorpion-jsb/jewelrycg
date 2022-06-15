@@ -2,7 +2,9 @@
     <div class="row">
         <div class="col-4 card">
             <div class="card-body">
-                <img id="main-image" src="{{asset($product->images->first()->path)}}" class="img-fluid d-block mx-auto border" alt="{{$product->name}}_1">
+                <a href="{{asset($product->images->first()->path)}}" target="_blank">
+                    <img id="main-image" src="{{asset($product->images->first()->path)}}" class="img-fluid d-block mx-auto border" alt="{{$product->name}}_1">
+                </a>
                 <div class="d-flex justify-content-around">
                     @foreach ($product->images as $key => $image)
                         <a href="javascript:;" onclick="changeMainImage(this)" class="text-decoration-none border">
