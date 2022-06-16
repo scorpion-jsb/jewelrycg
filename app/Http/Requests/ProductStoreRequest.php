@@ -13,14 +13,20 @@ class ProductStoreRequest extends FormRequest
 
     public function rules()
     {
+        $image_required = 'required';
+        if(request()->routeIs('products.update'))
+        {
+            $image_required = 'nullable';
+        }
+
         return [
             'name' => 'required|string|max:255',
             'desc' => 'required|string',
-            'price' => 'required|numeric|integer|min:0|max:65535',
+            'price' => 'required|string',
             'qty' => 'required|numeric|integer|min:0',
             'category' => 'required|string|max:24',
-            'images' => 'required|array|min:1',
-            'images.*' => 'required|mimes:jpeg,jpg,png,pdf|max:3072'
+            'images' => "$image_required|array|min:1",
+            'images.*' => "$image_required|mimes:jpeg,jpg,png,pdf|max:3072"
         ];
     }
 }

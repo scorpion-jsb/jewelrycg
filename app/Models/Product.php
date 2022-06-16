@@ -6,6 +6,7 @@ use App\Models\Traits\FormatPrices;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
@@ -50,6 +51,42 @@ class Product extends Model
     {
         $price *= 100;
         return (int) $price;
+    }
+
+    public static function stringPriceToCents(string $price)
+    {
+        $price = str_replace('.', '', $price);
+        $price = str_replace(',', '', $price);
+        return (int) $price;
+    }
+
+    public function replaceImagesIfExist(array|null $images)
+    {
+        if($images)
+        {
+            $this->images()->delete();
+            Storage::deleteDirectory($this->id);
+
+            $images = collect($images)->map(fn($i) => [
+                'path' => 'storage/'.$i->store($this->id)
+            ]);
+
+            $this->images()->createMany($images->toArray());
+        }
+    }
+
+    public function storeImages(array $images)
+    {
+        $images = collect($images)->map(fn($i, $k) => [
+            'path' => 'storage/'.$i->store($this->id)
+        ]);
+        
+        $this->images()->createMany($images->toArray());
+    }
+
+    public function deleteImagesInStorage()
+    {
+        Storage::deleteDirectory($this->id);
     }
 
     public function images()

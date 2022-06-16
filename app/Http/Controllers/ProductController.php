@@ -15,21 +15,17 @@ class ProductController extends Controller
 
     public function store(ProductStoreRequest $req)
     {
-        $product = Product::create($req->all());
-
-        $images = collect($req->images);
-        $images->transform(fn($i, $k) => [
-            'path' => 'storage/'.$i->store($product->id)
-        ]);
-        
-        $product->images()->createMany($images->toArray());
+        $data = $req->all();
+        $data['price'] = Product::stringPriceToCents($req->price);
+        $product = Product::create($data);
+        $product->storeImages($req->images);
 
         return redirect()->route('products.show', $product->id);
     }
 
     public function show(int $id_product)
     {
-        $product = cache()->remember("product-$id_product", 60*10, fn() => Product::with('images')->find($id_product));
+        $product = Product::with('images')->find($id_product);
         abort_if(! $product, 404);
         $product->setPriceToFloat();
 
@@ -38,18 +34,27 @@ class ProductController extends Controller
         return view('products.show', compact('product', 'product_images_in_json'));
     }
 
-    public function edit($id)
+    public function edit(Product $product)
     {
-        //
+        $product->setPriceToFloat();
+        return view('products.edit', compact('product'));
     }
 
-    public function update(Request $request, $id)
+    public function update(ProductStoreRequest $req, Product $product)
     {
-        //
+        $data = $req->all();
+        $data['price'] = Product::stringPriceToCents($req->price);
+        $product->update($data);
+        $product->replaceImagesIfExist($req->images);
+
+        return redirect()->route('products.show', $product->id);
     }
 
-    public function destroy($id)
+    public function destroy(Product $product)
     {
-        //
+        $product->deleteImagesInStorage();
+        $product->delete();
+
+        return redirect()->route('index');
     }
 }

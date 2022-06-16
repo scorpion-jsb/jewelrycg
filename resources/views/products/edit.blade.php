@@ -1,11 +1,11 @@
-<x-app-layout page-title="Add New Product">
-    <form action="{{route('products.store')}}" method="post" enctype="multipart/form-data">
+<x-app-layout page-title="Edit Product - {{$product->name}}">
+    <form action="{{route('products.update', $product)}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row justify-content-center">
             <div class="card col-md-6">
                 <div class="card-body row">
                     @include('includes.validation-form')
-                    <x-product-form/>
+                    <x-product-form :product="$product"/>
                 </div>
             </div>
         </div>

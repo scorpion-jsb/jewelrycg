@@ -33,9 +33,25 @@
         </div>
         <div class="col-md-6 card">
             <div class="card-body">
-                <h1>
-                    {{$product->name}}
-                </h1>
+                <div class="row">
+                    <h1 class="col-8">
+                        {{$product->name}}
+                    </h1>
+                    @auth
+                        @if (auth()->user()->is_admin)
+                            <div class="col-4 h1" align="end">
+                                <a href="{{route('products.edit', $product->id)}}" class="btn btn-outline-primary">Edit</a>
+                                <form action="{{route('products.destroy', $product)}}" method="post" class="d-inline">
+                                    @csrf
+                                    @method('delete')
+                                    <button type="submit" class="btn btn-outline-danger">
+                                        Delete
+                                    </button>
+                                </form>
+                            </div>
+                        @endif
+                    @endauth
+                </div>
                 <h4 class="text-warning">
                     ${{$product->price}}
                 </h4>
