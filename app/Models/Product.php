@@ -86,6 +86,19 @@ class Product extends Model
         return Product::getProductsAndMergeExtraProductsIfNotEnough($order_items);
     }
 
+    public static function searchWithImages(string|null $search, string $category)
+    {
+        $q = Product::with('images');
+
+        if($category != 'All')
+        {
+            $q = $q->where('category', $category);
+        }
+
+        return $q->where('name', 'like', "%$search%")
+                ->paginate(100);
+    }
+
     public static function stringPriceToCents(string $price)
     {
         $price = str_replace('.', '', $price);

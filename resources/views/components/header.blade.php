@@ -7,13 +7,13 @@
         </span>
     
         <div class="col-12 col-md-7 mb-2 mb-md-0 row">
-            <form method="get" action="" class="col-10 col-md-5 mb-2 justify-content-center mb-md-0 input-group">
+            <form method="get" action="{{route('products.search')}}" class="col-10 col-md-5 mb-2 justify-content-center mb-md-0 input-group">
     
                 <div class="input-group-prepend">
                     <select name="category" class="form-select text-small text-capitalize">
-                        <option>all</option>
+                        <option>All</option>
                         @foreach (\App\Models\Product::$category_list as $category)
-                            <option>{{$category}}</option>
+                            <option {{ request()->category == $category ? 'selected' : null }}>{{$category}}</option>
                         @endforeach
                     </select>
                 </div>

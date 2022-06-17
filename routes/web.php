@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AppController::class, 'index'])->name('index');
 
+Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
 Route::resource('products', ProductController::class)->only('show');
 

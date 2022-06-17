@@ -3,11 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductStoreRequest;
+use App\Http\Requests\SearchProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
+    public function search(SearchProductRequest $req)
+    {
+        abort_if(! in_array($req->category, array_merge(Product::$category_list, ['All'])), 404);
+        $products = Product::searchWithImages($req->q, $req->category);
+        return view('index', compact('products'));
+    }
+
     public function create()
     {
         return view('products.create');
