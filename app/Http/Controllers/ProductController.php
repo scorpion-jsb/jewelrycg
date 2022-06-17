@@ -47,6 +47,8 @@ class ProductController extends Controller
         $product->update($data);
         $product->replaceImagesIfExist($req->images);
 
+        cache()->forget('todays-deals');
+
         return redirect()->route('products.show', $product->id);
     }
 
@@ -54,6 +56,8 @@ class ProductController extends Controller
     {
         $product->deleteImagesInStorage();
         $product->delete();
+
+        cache()->forget('todays-deals');
 
         return redirect()->route('index');
     }

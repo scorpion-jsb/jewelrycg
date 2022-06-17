@@ -10,8 +10,7 @@ class AppController extends Controller
 {
     public function index()
     {
-        $products = cache()->remember('index', 60, fn() => Product::with('images')->get());
-        $products->transform(fn($i, $k) => $i->setPriceToFloat());
+        $products = cache()->remember('todays-deals', 60*60*24, fn() => Product::getTodaysDeals());
         return view('index', compact('products'));
     }
 }

@@ -6,6 +6,7 @@ use App\Models\Traits\FormatPrices;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
@@ -47,10 +48,42 @@ class Product extends Model
         'qty'
     ];
 
+    private static function getProductsAndMergeExtraProductsIfNotEnough(Collection $order_items)
+    {
+        $products = $order_items->map(fn($i) => $i->product);
+        $order_items_qty = $order_items->count();
+        if($order_items_qty < 100)
+        {
+            $diff = 100 - $order_items_qty;
+
+            $extra_products = Product::with('images')
+                                        ->whereNotIn('id', $products->pluck('id'))
+                                        ->limit($diff)
+                                        ->get();
+
+            $products = $products->merge($extra_products);
+        }
+
+        return $products;
+    }
+
     public static function getPriceInCents(float $price)
     {
         $price *= 100;
         return (int) $price;
+    }
+
+    public static function getTodaysDeals()
+    {
+        $order_items = OrderItem::select('id_product', DB::raw('sum(qty) as total'))
+                                ->where('created_at', '>=', now()->subDay())
+                                ->groupBy('id_product')
+                                ->orderBy('total', 'desc')
+                                ->with('product:id,name', 'product.images')
+                                ->limit(100)
+                                ->get();
+
+        return Product::getProductsAndMergeExtraProductsIfNotEnough($order_items);
     }
 
     public static function stringPriceToCents(string $price)
