@@ -13,7 +13,7 @@ class ProductController extends Controller
     {
         abort_if(! in_array($req->category, array_merge(Product::$category_list, ['All'])), 404);
         $products = Product::searchWithImages($req->q, $req->category);
-        return view('index', compact('products'));
+        return view('products.search', compact('products'));
     }
 
     public function create()

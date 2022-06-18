@@ -10,7 +10,7 @@ class OrderController extends Controller
     public function index()
     {
         $orders = auth()->user()->orders()->withCount('items')->orderBy('id', 'desc')->paginate(10);
-        $orders->transform(fn($i, $k) => $i->formatPrice());
+        $orders->transform(fn($i) => $i->formatPrice());
         return view('orders.index', compact('orders'));
     }
 
@@ -19,7 +19,7 @@ class OrderController extends Controller
         $order = Order::with('items', 'items.product:id,name')->find($id_order);
         $this->authorize('show', $order);
         $order->formatPrice();
-        $order->items->transform(function($i, $k) {
+        $order->items->transform(function($i) {
             $i->getSelfWithProductInfo();  
             return $i->setPriceToFloat();
         });
