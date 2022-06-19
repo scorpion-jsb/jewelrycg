@@ -18,6 +18,13 @@
             <div class="card-body">
                 <a href="{{route('user.edit.password')}}" class="btn btn-outline-dark">Change My Password</a>
                 <a href="{{route('user.edit')}}" class="btn btn-outline-success">Edit my informations</a>
+                <form action="{{route('user.delete')}}" method="post" class="d-inline">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn btn-outline-danger">
+                        Delete Account
+                    </button>
+                </form>
             </div>
         </div>
     </div>

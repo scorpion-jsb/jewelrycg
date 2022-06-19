@@ -92,6 +92,7 @@ class CheckoutController extends Controller
 
     public function paymentFinished()
     {
-        return view('payment_finished');
+        $order = auth()->user()->orders()->orderBy('id', 'desc')->first();
+        return redirect()->route('orders.show', $order->id);
     }
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AppController;
+use App\Http\Controllers\Auth\EmailVerificationNotificationController;
+use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
@@ -32,7 +34,7 @@ Route::group([
     'as' => 'cart.'
 ], function() {
     Route::group(['middleware' => 'auth'], function() {
-        Route::post('/buy-now', 'buyNow')->name('buy.now');
+        Route::middleware('verified')->post('/buy-now', 'buyNow')->name('buy.now');
 
         Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function() {
             Route::get('/', 'wishlist');
@@ -47,11 +49,17 @@ Route::group([
 Route::resource('cart', CartController::class)->only(['index', 'store']);
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::group(['prefix' => 'email/verify', 'as' => 'verification.', 'controller' => VerifyEmailController::class], function() {
+        Route::get('/', 'emailVerificationNotice')->name('notice');
+        Route::get('/{id}/{hash}', 'verificationHandler')->middleware('signed')->name('verify');
+    });
+    Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'resend'])->middleware('throttle:6,1')->name('verification.send');
+
     Route::group(['prefix' => 'payment', 'as' => 'checkout.', 'controller' => CheckoutController::class], function() {
         Route::get('/finished', 'paymentFinished')->name('finished');
         Route::delete('/cancel', 'cancel')->name('cancel');
     });
-    Route::group(['middleware' => 'checkout'], function() {
+    Route::group(['middleware' => ['checkout', 'verified']], function() {
         Route::resource('checkout', CheckoutController::class)->only(['index', 'store']);
         Route::post('/payment/intent', [CheckoutController::class, 'createPaymentIntent'])->name('checkout.payment.intent');
     });
@@ -64,6 +72,7 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/edit/password', 'editPassword')->name('edit.password');
         Route::patch('/edit/password', 'updatePassword')->name('update.password');
         Route::put('/edit', 'update')->name('update');
+        Route::delete('/delete', 'delete')->name('delete');
     });
 });
 

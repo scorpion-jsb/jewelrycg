@@ -27,4 +27,15 @@ class VerifyEmailController extends Controller
 
         return redirect()->intended(RouteServiceProvider::HOME.'?verified=1');
     }
+
+    public function emailVerificationNotice()
+    {
+        return view('auth.verify-email');
+    }
+
+    public function verificationHandler(EmailVerificationRequest $req)
+    {
+        $req->fulfill();
+        return redirect()->route('index');
+    }
 }

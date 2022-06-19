@@ -36,4 +36,10 @@ class UserController extends Controller
         ]);
         return redirect()->route('user.index')->with('message', 'Password was Successfully Changed!');
     }
+
+    public function delete()
+    {
+        auth()->user()->delete();
+        return redirect()->route('index');
+    }
 }

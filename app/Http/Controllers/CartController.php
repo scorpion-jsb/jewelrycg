@@ -120,7 +120,7 @@ class CartController extends Controller
         Cart::remove($req->row_id);
         Cart::store(auth()->id());
 
-        return redirect()->route('cart.wishlist');
+        return back();
     }
 
     public function wishlistToCart(RemoveFromWishlistRequest $req)
