@@ -19,3 +19,11 @@
 .btn-yellow {
   background-color: yellow !important;
 }
+
+.bg-danger-1 {
+  background-color: rgb(143, 11, 11);
+}
+
+.border-danger-1 {
+  border-color: rgb(143, 11, 11);
+}

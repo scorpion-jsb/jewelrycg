@@ -22,7 +22,8 @@ class ProductFactory extends Factory
             'price' => $this->faker->numberBetween(100, 50000),
             'desc' => $this->faker->paragraphs(3, true),
             'name' => ucfirst($this->faker->unique()->word()),
-            'category' => Arr::random(Product::$category_list)
+            'category' => Arr::random(Product::$category_list),
+            'qty' => $this->faker->numberBetween(1, 20)
         ];
     }
 

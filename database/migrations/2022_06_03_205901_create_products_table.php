@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('desc');
             $table->smallInteger('price')->unsigned();
+            $table->smallInteger('qty')->unsigned();
             $table->string('category', 24);
             $table->timestamps();
         });

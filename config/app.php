@@ -212,4 +212,7 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    // Stripe Key
+    'stripe_key' => env('STRIPE_KEY'),
+
 ];

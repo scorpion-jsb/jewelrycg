@@ -7,13 +7,13 @@
         </span>
     
         <div class="col-12 col-md-7 mb-2 mb-md-0 row">
-            <form method="get" action="" class="col-10 col-md-5 mb-2 justify-content-center mb-md-0 input-group">
+            <form method="get" action="{{route('products.search')}}" class="col-10 col-md-5 mb-2 justify-content-center mb-md-0 input-group">
     
                 <div class="input-group-prepend">
                     <select name="category" class="form-select text-small text-capitalize">
-                        <option>all</option>
+                        <option>All</option>
                         @foreach (\App\Models\Product::$category_list as $category)
-                            <option>{{$category}}</option>
+                            <option {{ request()->category == $category ? 'selected' : null }}>{{$category}}</option>
                         @endforeach
                     </select>
                 </div>
@@ -27,7 +27,7 @@
             <a href="{{route('cart.index')}}" class="text-decoration-none">
                 <img src="{{asset('img/cart.png')}}" alt="cart" width="50" height="50" class="img-fluid bg-light">
                 <?php
-                    if(Cart::content()->count() == 0
+                    if(Cart::instance('default')->content()->count() == 0
                         && auth()->check()
                     )
                     {
@@ -43,18 +43,23 @@
         </div>
     
         @auth
-            <div class="col-md-2 dropdown text-end">
-                <a href="#" class="d-block text-decoration-none link-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <div class="col-md-2 dropdown text-end" align="end">
+                <a href="#" class="text-decoration-none link-dark dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
                     {{ Auth::user()->name }}
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end text-small">
                     <li>
-                        <a class="dropdown-item" href="#">
-                            Profile
+                        <a class="dropdown-item" href="{{route('user.index', auth()->user()->id)}}">
+                            My Info
                         </a>
                     </li>
-                    <li><a class="dropdown-item" href="#">My Orders</a></li>
+                    <li><a class="dropdown-item" href="{{route('orders.index')}}">{{ auth()->user()->is_admin ? 'All Orders' : 'My Orders' }}</a></li>
+                    <li><a class="dropdown-item" href="{{route('cart.wishlist')}}">My Wishlist</a></li>
                     <li><hr class="dropdown-divider"></li>
+                    @if (auth()->user()->is_admin)
+                        <li><a class="dropdown-item" href="{{route('products.create')}}">Add New Product</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                    @endif
                     <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                 </ul>
             </div>
