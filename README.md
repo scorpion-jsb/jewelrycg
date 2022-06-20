@@ -1,5 +1,5 @@
 <p align="center">
-    <img src="https://user-images.githubusercontent.com/101893955/174668006-dd25f523-999f-4a4b-bf94-a3a9deb30f24.png" alt="logo">
+    <img src="https://user-images.githubusercontent.com/101893955/174668006-dd25f523-999f-4a4b-bf94-a3a9deb30f24.png" width="100" alt="logo">
 </p>
 
 <h1 align="center">Ecommerce</h1>
