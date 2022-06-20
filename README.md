@@ -9,6 +9,10 @@
     wishlist and order them.
 </p>
 
+<p align="center">
+    <img src="https://user-images.githubusercontent.com/101893955/174673806-581d216b-5c5e-4d4b-82a9-37c0a066b033.png" width="600" alt="products/show">
+</p>
+
 ## User
 
 The unregistered user can look for and add products to the cart,
