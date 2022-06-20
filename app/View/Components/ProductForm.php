@@ -2,12 +2,11 @@
 
 namespace App\View\Components;
 
-use App\Models\Product;
 use Illuminate\View\Component;
 
 class ProductForm extends Component
 {
-    public function __construct(public Product|null $product = null)
+    public function __construct(public $product = null)
     {
     }
 

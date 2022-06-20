@@ -1,4 +1,4 @@
-@if (isset($product))
+@if ($product)
     @method('put')
 @endif
 <div class="col-md-12 mb-2">

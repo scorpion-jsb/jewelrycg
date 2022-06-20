@@ -27,3 +27,7 @@
 .border-danger-1 {
   border-color: rgb(143, 11, 11);
 }
+
+#main-image {
+  max-height: 350px;
+}
