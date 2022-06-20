@@ -15,4 +15,9 @@ class OrderPolicy
         return $user->id == $order->id_user
             || $user->is_admin;
     }
+
+    public function edit(User $user)
+    {
+        return $user->is_admin;
+    }
 }

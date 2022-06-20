@@ -4,4 +4,7 @@
             <x-orders-table :orders="$orders"/>
         </div>
     </div>        
+    <div class="text-center">
+        {{$orders->links()}}
+    </div>
 </x-app-layout>

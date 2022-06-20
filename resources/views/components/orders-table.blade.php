@@ -1,6 +1,9 @@
 <table class="table">
     <thead>
         <tr>
+            @if (auth()->user()->is_admin)
+                <th scope="col">User Id</th>
+            @endif
             <th scope="col">Status</th>
             <th scope="col">Tracking Number</th>
             <th scope="col">Message</th>
@@ -12,7 +15,14 @@
     <tbody>
         @foreach ($orders as $order)
             <tr>
-                <td>{{$order->status}}</td>
+                @if (auth()->user()->is_admin)
+                    <td>
+                        <a href="{{route('user.index', $order->id_user)}}" class="link-primary">
+                            {{$order->id_user}}
+                        </a>
+                    </td>
+                @endif
+                <td class="link-info">{{$order->status}}</td>
                 <td><a href="javascript:;" onclick="copyText(this)" class="link-secondary">{{$order->tracking_number}}</a></td>
                 <td>{{$order->message}}</td>
                 <td>{{$order->items_count}}</td>

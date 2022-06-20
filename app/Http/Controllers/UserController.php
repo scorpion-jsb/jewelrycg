@@ -4,13 +4,16 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserPasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(int $id_user)
     {
-        return view('users.index');
+        $user = User::findOrFail($id_user);
+        $this->authorize('seeInfo', $user);
+        return view('users.index', compact('user'));
     }
 
     public function edit()

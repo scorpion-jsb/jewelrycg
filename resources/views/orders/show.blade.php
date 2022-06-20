@@ -5,32 +5,16 @@
                 <div class="card-body">
                     <h5>Order Info</h5>
                     <hr>
-                    <div>
-                        Address:
-                        <span class="text-secondary">{{$order->address1}}</span>
-                    </div>
-                    <div>
-                        Secondary Address:
-                        <span class="text-secondary">{{$order->address2}}</span>
-                    </div>
-                    <div>
-                        Status:
-                        <span class="link-primary">{{$order->status}}</span>
-                    </div>
-                    <div>
-                        Tracking Number:
-                        <a href="javascript:;" onclick="copyText(this)" class="link-secondary">{{$order->tracking_number}}</a>
-                    </div>
-                    @if ($order->message)
-                        <div>
-                            Message:
-                            <span class="link-secondary">{{$order->message}}</span>
-                        </div>
+                    @include('includes.validation-form')
+                    <x-order-info :order="$order" :edit="$edit"/>
+                    @if (auth()->user()->is_admin && !$edit)
+                        <form action="{{route('orders.show', $order->id)}}" method="get" class="text-center">
+                            <input type="hidden" name="edit" value="1" id="edit">
+                            <button type="submit" class="btn btn-info text-light">
+                                Edit
+                            </button>
+                        </form>
                     @endif
-                    <div>
-                        Total:
-                        <span class="link-warning">${{$order->total_price}}</span>
-                    </div>
                 </div>
             </div>
         </div>

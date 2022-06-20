@@ -49,11 +49,11 @@
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end text-small">
                     <li>
-                        <a class="dropdown-item" href="{{route('user.index')}}">
+                        <a class="dropdown-item" href="{{route('user.index', auth()->user()->id)}}">
                             My Info
                         </a>
                     </li>
-                    <li><a class="dropdown-item" href="{{route('orders.index')}}">My Orders</a></li>
+                    <li><a class="dropdown-item" href="{{route('orders.index')}}">{{ auth()->user()->is_admin ? 'All Orders' : 'My Orders' }}</a></li>
                     <li><a class="dropdown-item" href="{{route('cart.wishlist')}}">My Wishlist</a></li>
                     <li><hr class="dropdown-divider"></li>
                     @if (auth()->user()->is_admin)

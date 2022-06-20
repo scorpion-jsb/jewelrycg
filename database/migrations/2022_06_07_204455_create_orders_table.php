@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('address1');
             $table->string('address2');
             $table->integer('total_price')->unsigned();
-            $table->tinyInteger('status')->default(0);
+            $table->string('status')->default('Processing');
             $table->string('message')->nullable()->default(null);
             $table->string('tracking_number');
             $table->timestamps();

@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Requests\UpdateOrderRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -19,6 +20,51 @@ class Order extends Model
         'tracking_number',
         'total_price',
     ];
+
+    public static $status_list = [
+        'Processing',
+        'Processed',
+        'Shipped',
+        'Delivered'
+    ];
+
+    public static function getBasedOnUser()
+    {
+        if(auth()->user()->is_admin)
+        {
+            return Order::withCount('items')->orderBy('id')->paginate(10);
+        }
+        
+        return auth()->user()->orders()->withCount('items')->orderBy('id')->paginate(10);
+    }
+
+    public static function getCartTotalInCents()
+    {
+        $total_price_float = Cart::total(2, '.', '') * 100;
+        return (int) $total_price_float;
+    }
+
+    public static function changeCartInstanceIfBuyNowMode(bool $buy_now_mode)
+    {
+        if($buy_now_mode)
+        {
+            Cart::instance('buy_now');
+        }
+        else
+        {
+            Cart::instance('default');
+        }
+    }
+
+    public function adminUpdate(UpdateOrderRequest $req)
+    {
+        $data = $req->only('message');
+        if(in_array($req->status, Order::$status_list))
+        {
+            $data['status'] = $req->status;
+        }
+        $this->update($data);
+    }
 
     public function insertCartProducts()
     {
@@ -51,28 +97,10 @@ class Order extends Model
         );
     }
 
-    public static function getCartTotalInCents()
-    {
-        $total_price_float = Cart::total(2, '.', '') * 100;
-        return (int) $total_price_float;
-    }
-
     public function formatPrice()
     {
         $this->total_price = number_format($this->total_price / 100, 2);
         return $this;
-    }
-
-    public static function changeCartInstanceIfBuyNowMode(bool $buy_now_mode)
-    {
-        if($buy_now_mode)
-        {
-            Cart::instance('buy_now');
-        }
-        else
-        {
-            Cart::instance('default');
-        }
     }
 
     public function items()

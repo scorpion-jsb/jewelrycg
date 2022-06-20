@@ -64,15 +64,15 @@ Route::group(['middleware' => 'auth'], function() {
         Route::post('/payment/intent', [CheckoutController::class, 'createPaymentIntent'])->name('checkout.payment.intent');
     });
 
-    Route::resource('orders', OrderController::class)->only(['index', 'show']);
+    Route::resource('orders', OrderController::class)->only(['index', 'show', 'update']);
     
     Route::group(['prefix' => 'user', 'as' => 'user.', 'controller' => UserController::class], function() {
-        Route::get('/', 'index')->name('index');
         Route::get('/edit', 'edit')->name('edit');
         Route::get('/edit/password', 'editPassword')->name('edit.password');
         Route::patch('/edit/password', 'updatePassword')->name('update.password');
         Route::put('/edit', 'update')->name('update');
         Route::delete('/delete', 'delete')->name('delete');
+        Route::get('/{id_user}', 'index')->name('index');
     });
 });
 
