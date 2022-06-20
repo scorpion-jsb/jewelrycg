@@ -4,8 +4,10 @@
 
 <h1 align="center">Ecommerce</h1>
 
-A site where the user can look for products, add them to cart,
-wishlist and order them.
+<p align="center">
+    A site where the user can look for products, add them to cart,
+    wishlist and order them.
+</p>
 
 ## User
 
