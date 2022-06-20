@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use \App\Models\Product;
+use App\Models\ProductImage;
 use Illuminate\Support\Arr;
 
 /**
@@ -32,5 +33,15 @@ class ProductFactory extends Factory
         return $this->state([
             'id' => $this->faker->randomNumber(5, true)
         ]);
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function(Product $product) {
+            ProductImage::factory()->count(random_int(2, 7))
+                ->create([
+                    'id_product' => $product->id
+                ]);
+        });
     }
 }

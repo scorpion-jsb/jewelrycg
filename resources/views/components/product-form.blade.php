@@ -37,9 +37,9 @@
     </select>
 </div>
 <div class="col-md-12 mb-3">
-    <label for="images">{{ is_Null($product) ? 'Images' : 'Replace Images' }}:</label>
+    <label for="images">{{ $product ? 'Images' : 'Replace Images' }}:</label>
     <input type="file" name="images[]" id="images" class="form-control" multiple>
 </div>
 <div class="col-md-12 text-center">
-    <button type="submit" class="btn btn-lg btn-outline-success">{{ is_Null($product) ? 'Add' : 'Edit' }}</button>
+    <button type="submit" class="btn btn-lg btn-outline-success">{{ $product ? 'Add' : 'Edit' }}</button>
 </div>
