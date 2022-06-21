@@ -69,7 +69,7 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class="product-details-edit">
+                                <div class="product-details-edit mb-4">
                                 @auth
                                     @if (auth()->user()->is_admin)
 
@@ -86,7 +86,7 @@
                                 @endauth
                                 </div>
                                     
-                                <div class="product-details-misc">
+                                <div class="product-details-misc mb-4">
                                     {{$product->desc}}
                                 </div>
 
