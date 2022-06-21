@@ -1,7 +1,7 @@
 <x-guest-layout>
     <x-auth-card>
-        <x-slot name="logo" class="logo-text text-center fs-20 mb-4 fw-700">
-            <a href="/">
+        <x-slot>
+            <a href="/" class="logo-text text-center fs-20 mb-4 fw-700">
                 <x-application-logo />
             </a>
         </x-slot>
