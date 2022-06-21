@@ -29,9 +29,7 @@
         <x-header/>
 
         <!-- Page Content -->
-        <main class="container">
-            {{ $slot }}
-        </main>
+        {{ $slot }}
 
         <!-- Page Footer -->
         <x-footer/>
