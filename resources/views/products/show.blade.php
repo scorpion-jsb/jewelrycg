@@ -38,12 +38,12 @@
                                 <div class="product-details-title mb-3">
                                     <h1 class="mb-2 fs-30 fw-400">{{$product->name}}</h1>
                                 </div>
-                                <div class="product-details-misc">
+                                <div class="product-details-misc border-bottom pb-2 mb-4">
                                     <div class="col-6 text-left">
-                                        <ul class="list-inline social fw-600">
+                                        <ul class="list-inline social fw-600 mb-0">
                                             <li class="list-inline-item"> 
                                                 <a target="_self" href="mailto:?subject={{$product->name}}&amp;body=#" class="jssocials-share-link text-black fs-18">
-                                                    <i class="fa-solid fa-envelope"></i>
+                                                    <i class="bi bi-envelope fs-20"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item"> 
