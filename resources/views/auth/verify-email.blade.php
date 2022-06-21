@@ -21,7 +21,7 @@
                 @csrf
 
                 <div>
-                    <x-button class="btn-primary">
+                    <x-button class="btn-primary mb-2">
                         {{ __('Resend Verification Email') }}
                     </x-button>
                 </div>
@@ -30,9 +30,9 @@
             <form method="get" action="{{ route('logout') }}">
                 @csrf
 
-                <button type="submit" class="btn-primary">
+                <x-button class="btn-primary">
                     {{ __('Log Out') }}
-                </button>
+                </x-button>
             </form>
         </div>
     </x-auth-card>
