@@ -10,7 +10,7 @@
         <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <form method="get" action="{{route('products.search')}}" class="d-flex col-xl-6 col-lg-4 input-group">
+            <form method="get" action="{{route('products.search')}}" class="d-flex col-xl-6 col-lg-4">
     
                 <div class="input-group-prepend">
                     <select name="category" class="form-select text-small text-capitalize">
