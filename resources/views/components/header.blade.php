@@ -41,7 +41,6 @@
                     </ul>
                 </li>
                 <li class="nav-item dropdown menu-area">
-                    <a class="nav-link" href="/">Cart</a>
                     <a href="{{route('cart.index')}}" class="nav-link">
                         <i class="bi bi-cart2"></i>
                         <?php
