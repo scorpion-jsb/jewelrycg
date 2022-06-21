@@ -73,14 +73,14 @@
                                 @auth
                                     @if (auth()->user()->is_admin)
 
-                                            <a href="{{route('products.edit', $product->id)}}" class="btn btn-outline-primary">Edit</a>
-                                            <form action="{{route('products.destroy', $product)}}" method="post" class="d-inline">
-                                                @csrf
-                                                @method('delete')
-                                                <button type="submit" class="btn btn-outline-danger">
-                                                    Delete
-                                                </button>
-                                            </form>
+                                        <a href="{{route('products.edit', $product->id)}}" class="btn btn-outline-primary">Edit</a>
+                                        <form action="{{route('products.destroy', $product)}}" method="post" class="d-inline">
+                                            @csrf
+                                            @method('delete')
+                                            <button type="submit" class="btn btn-outline-danger">
+                                                Delete
+                                            </button>
+                                        </form>
 
                                     @endif
                                 @endauth
@@ -88,12 +88,6 @@
                                     
                                 <div class="product-details-misc">
                                     {{$product->desc}}
-
-                                    @if ($product->qty)
-                                        <span class="badge badge-lg bg-success text-light rounded-pill"><small>On Stock: {{$product->qty}}</small></span>
-                                    @else
-                                        <span class="badge badge-lg bg-danger text-light rounded-pill"><small>Out of Stock</small></span>
-                                    @endif
                                 </div>
 
                                 <div class="product-details-price">
@@ -103,7 +97,7 @@
                                     <div class="w-100">
                                         <div class="">
                                             <strong class="h2 fw-400 text-black">
-                                                {{$product->price}}
+                                                $ {{$product->price}}
                                             </strong>
                                         </div>
                                     </div>
