@@ -21,7 +21,7 @@
                     </select>
                 </div>
     
-                <input name="q" type="search" class="form-control me-2" placeholder="Search" aria-label="Search">
+                <input name="q" type="search" class="form-select me-2" placeholder="Search" aria-label="Search">
             </form>
 
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
