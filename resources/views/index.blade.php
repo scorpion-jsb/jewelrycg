@@ -2,8 +2,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-lg-12">
-                <h4 class="fs-20 text-black mb-4">The world's preferred source for {{ APP_NAME }} content</h4>
-				<h1 class="text-black font-weight-bold mb-4">Explore our vast collections of {{ APP_NAME }} models</h1>
+                <h4 class="fs-20 text-black mb-4">The world's preferred source for {{ app_name() }} content</h4>
+				<h1 class="text-black font-weight-bold mb-4">Explore our vast collections of {{ app_name() }} models</h1>
             </div>
 			<div class="col-4 col-lg-2">
                 <div class="card p-3">
