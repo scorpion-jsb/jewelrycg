@@ -69,10 +69,10 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div class"product-details-edit">
+                                <div class="product-details-edit">
                                 @auth
                                     @if (auth()->user()->is_admin)
-                                        <div class="col-4 h1" align="end">
+
                                             <a href="{{route('products.edit', $product->id)}}" class="btn btn-outline-primary">Edit</a>
                                             <form action="{{route('products.destroy', $product)}}" method="post" class="d-inline">
                                                 @csrf
@@ -81,7 +81,7 @@
                                                     Delete
                                                 </button>
                                             </form>
-                                        </div>
+
                                     @endif
                                 @endauth
                                 </div>
