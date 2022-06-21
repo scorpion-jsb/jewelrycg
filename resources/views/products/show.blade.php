@@ -90,7 +90,7 @@
                                     {{$product->desc}}
                                 </div>
 
-                                <div class="product-details-price">
+                                <div class="product-details-price mb-4">
                                     <div class="w-100">
                                         <div class="opacity-50 my-2">Price:</div>
                                     </div>
@@ -103,7 +103,7 @@
                                     </div>
                                 </div>
 
-                                <div class="product-details-misc">
+                                <div class="product-details-misc mb-4">
                                     @if (session('wishlist-message'))
                                         <h4 class="text-center text-success">
                                             {{session('wishlist-message')}}
