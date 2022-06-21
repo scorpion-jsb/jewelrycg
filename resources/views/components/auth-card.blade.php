@@ -2,7 +2,7 @@
     <div class="col-6 ml-auto mr-auto">
         <div class="logo-container">
             <!--{{ $logo }}-->
-            <div class="logo-text text-center">#JewelryCG</div>
+            <div class="logo-text text-center fs-20 mb-4 fw-700">#JewelryCG</div>
         </div>
 
         <div class="p-3 card rounded">
