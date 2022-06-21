@@ -42,27 +42,27 @@
                                     <div class="col-6 text-left">
                                         <ul class="list-inline social fw-600">
                                             <li class="list-inline-item"> 
-                                                <a target="_self" href="mailto:?subject={{$product->name}}&amp;body={{ permalink }}" class="jssocials-share-link text-black fs-18">
+                                                <a target="_self" href="mailto:?subject={{$product->name}}&amp;body=#" class="jssocials-share-link text-black fs-18">
                                                     <i class="fa-solid fa-envelope"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item"> 
-                                                <a target="_blank" href="https://twitter.com/share?url={{ permalink }}&amp;text={{$product->name}}" class="jssocials-share-link text-black fs-18">
+                                                <a target="_blank" href="https://twitter.com/share?url=#&amp;text={{$product->name}}" class="jssocials-share-link text-black fs-18">
                                                 <i class="fa-brands fa-twitter"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item"> 
-                                                <a target="_blank" href="https://facebook.com/sharer/sharer.php?u={{ permalink }}" class="jssocials-share-link text-black fs-18">
+                                                <a target="_blank" href="https://facebook.com/sharer/sharer.php?u=#" class="jssocials-share-link text-black fs-18">
                                                 <i class="fa-brands fa-facebook"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item"> 
-                                                <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url={{ permalink }}" class="jssocials-share-link text-black fs-18">
+                                                <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=#" class="jssocials-share-link text-black fs-18">
                                                 <i class="fa-brands fa-linkedin"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item"> 
-                                                <a target="_self" href="whatsapp://send?text={{ permalink }}" class="jssocials-share-link text-black fs-18">
+                                                <a target="_self" href="whatsapp://send?text=#" class="jssocials-share-link text-black fs-18">
                                                 <i class="fa-brands fa-whatsapp"></i>
                                                 </a>
                                             </li>
