@@ -48,22 +48,22 @@
                                             </li>
                                             <li class="list-inline-item"> 
                                                 <a target="_blank" href="https://twitter.com/share?url=#&amp;text={{$product->name}}" class="jssocials-share-link text-black fs-18">
-                                                <i class="fa-brands fa-twitter"></i>
+                                                <i class="bi bi-twitter fs-20"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item"> 
                                                 <a target="_blank" href="https://facebook.com/sharer/sharer.php?u=#" class="jssocials-share-link text-black fs-18">
-                                                <i class="fa-brands fa-facebook"></i>
+                                                <i class="bi bi-facebook fs-20"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item"> 
                                                 <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=#" class="jssocials-share-link text-black fs-18">
-                                                <i class="fa-brands fa-linkedin"></i>
+                                                <i class="bi bi-linkedin fs-20"></i>
                                                 </a>
                                             </li>
                                             <li class="list-inline-item"> 
                                                 <a target="_self" href="whatsapp://send?text=#" class="jssocials-share-link text-black fs-18">
-                                                <i class="fa-brands fa-whatsapp"></i>
+                                                <i class="bi bi-whatsapp fs-20"></i>
                                                 </a>
                                             </li>
                                         </ul>
