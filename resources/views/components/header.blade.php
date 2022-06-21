@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <form method="get" action="{{route('products.search')}}" class="d-flex col-xl-6 col-lg-4">
     
-                <div class="input-group-prepend">
+                <div class="mr-2">
                     <select name="category" class="form-control text-small text-capitalize">
                         <option>All</option>
                         @foreach (\App\Models\Product::$category_list as $category)
