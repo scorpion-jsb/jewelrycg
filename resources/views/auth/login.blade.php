@@ -1,6 +1,6 @@
 <x-guest-layout>
     <x-auth-card>
-        <x-slot>
+        <x-slot name="logo">
             <a href="/" class="logo-text text-center fs-20 mb-4 fw-700">
                 <x-application-logo />
             </a>
