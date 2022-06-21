@@ -319,7 +319,7 @@ a, button, input, textarea, .btn, .has-transition {
 .form-group {
     margin-bottom: 1rem;
 }
-.form-control {
+.form-control.form-select {
     padding: 0.6rem 1rem;
     font-size: 0.875rem;
     height: calc(1.3125rem + 1.2rem + 2px);
