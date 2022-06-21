@@ -21,6 +21,9 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
+        <!-- Page Heading -->
+        <x-header/>
+        
         <section class="guest container">
             {{ $slot }}
         </section>
