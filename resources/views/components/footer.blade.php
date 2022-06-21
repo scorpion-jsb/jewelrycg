@@ -26,11 +26,10 @@
                         Resources
                     </h4>
                     <ul class="list-unstyled">
-                       
-                        <li class="mb-2">
-                            <a class="opacity-50 hov-opacity-100 text-reset" href="#">title </a>
-                        </li>
-                        
+                        <li class="mb-2"><a class="opacity-50 hov-opacity-100 text-reset" href="#">Cookie Policy</a></li>
+                        <li class="mb-2"><a class="opacity-50 hov-opacity-100 text-reset" href="#">Return Policy</a></li>
+                        <li class="mb-2"><a class="opacity-50 hov-opacity-100 text-reset" href="#">Privacy Policy</a></li>
+                        <li class="mb-2"><a class="opacity-50 hov-opacity-100 text-reset" href="#">Terms & Conditions</a></li>
                     </ul>
                 </div>
             </div>
@@ -41,11 +40,10 @@
                     </h4>
                     <ul class="list-unstyled">
                         <ul class="list-unstyled">
-                    
-                        <li class="mb-2">
-                            <a class="opacity-50 hov-opacity-100 text-reset" href="#">title</a>
-                        </li>
-                      
+                            <li class="mb-2"><a class="opacity-50 hov-opacity-100 text-reset" href="#">F.A.Q.s</a></li>
+                            <li class="mb-2"><a class="opacity-50 hov-opacity-100 text-reset" href="#">Guides</a></li>
+                            <li class="mb-2"><a class="opacity-50 hov-opacity-100 text-reset" href="#">Contact Us</a></li>
+                            <li class="mb-2"><a class="opacity-50 hov-opacity-100 text-reset" href="#">Knowledge Base</a></li>
                         </ul>
                     </ul>
                 </div>
