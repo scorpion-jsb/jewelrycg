@@ -89,7 +89,7 @@
         <div class="row align-items-center">
             <div class="col-12">
                 <div class="text-left">
-                    &copy; Jewelry CG. 2022, All Rights Reserved
+                    &copy; Jewelry CG 2022. All Rights Reserved
                 </div>
             </div>
         </div>
