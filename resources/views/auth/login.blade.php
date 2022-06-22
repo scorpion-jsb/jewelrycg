@@ -6,6 +6,12 @@
             </a>
         </x-slot>
 
+        <div class="text-center pt-4">
+            <h1 class="h4 fw-600">
+                Login to your account.
+            </h1>
+        </div>
+
         <!-- Session Status -->
         <x-auth-session-status class="mb-4" :status="session('status')" />
 
