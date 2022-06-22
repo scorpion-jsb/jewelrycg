@@ -25,7 +25,7 @@
     <body>
 
         <!-- Page Heading -->
-        <x-header class="homepage"/>
+        <x-header/>
 
         <!-- Page Content -->
         {{ $slot }}
