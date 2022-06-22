@@ -6,7 +6,7 @@
             </a>
         </x-slot>
 
-        <div class="text-center pt-4">
+        <div class="text-center pt-4 pb-4">
             <h1 class="h4 fw-600">
                 Login to your account.
             </h1>
