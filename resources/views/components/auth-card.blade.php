@@ -5,7 +5,7 @@
            {{-- $logo --}}
         <!--</div>-->
 
-        <div class="p-3 card rounded">
+        <div class="px-4 py-3 py-lg-4 card rounded">
             {{ $slot }}
         </div>
     </div>
