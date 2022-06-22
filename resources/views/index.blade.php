@@ -1,7 +1,5 @@
 <x-app-layout class="homepage" page-title="Jewelry CG">
-    <header class="homepage">
-
-    </header>
+    <x-header class="homepage" />
 
     <section class="hero-content-container py-8">
         <div class="container">
