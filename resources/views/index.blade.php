@@ -1,4 +1,4 @@
-<x-app-layout>
+<x-app-layout page-title="Jewelry CG">
     <section class="hero-content-container py-8">
         <div class="container">
             <div class="row">
