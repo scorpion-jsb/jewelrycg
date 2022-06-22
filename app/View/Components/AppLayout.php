@@ -6,7 +6,7 @@ use Illuminate\View\Component;
 
 class AppLayout extends Component
 {
-    public function __construct(public string $pageTitle = 'Shopp')
+    public function __construct(public string $pageTitle = 'Jewelry CG')
     {
     }
     /**
