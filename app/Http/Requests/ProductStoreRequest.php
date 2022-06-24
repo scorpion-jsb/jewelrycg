@@ -14,7 +14,7 @@ class ProductStoreRequest extends FormRequest
     public function rules()
     {
         $image_required = 'required';
-        if(request()->routeIs('products.update'))
+        if(request()->routeIs('backend.products.update'))
         {
             $image_required = 'nullable';
         }

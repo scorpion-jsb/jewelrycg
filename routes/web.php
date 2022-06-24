@@ -8,6 +8,11 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\Backend\DashboardController;
+use App\Http\Controllers\Backend\ProductsController;
+use App\Http\Controllers\Backend\UsersController;
+use App\Http\Controllers\Backend\CategorysController;
+
 use Illuminate\Support\Facades\Route;
 
 
@@ -21,7 +26,53 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+  Route::group([
+    'prefix' => 'backend',
+    'as' => 'backend.',
+    'middleware' => 'auth'
+], function() {
 
+    //products routes
+    Route::group([ 
+        'prefix' => 'products',
+        'as' => 'products.'
+    ], function() {
+            Route::get('/', [ProductsController::class, 'index'])->name('list');
+            Route::get('/create', [ProductsController::class, 'create'])->name('create');
+            Route::get('/edit/{id}', [ProductsController::class, 'edit'])->name('edit');
+            Route::put('/update/{product}', [ProductsController::class, 'update'])->name('update');
+            Route::post('/store', [ProductsController::class, 'store'])->name('store');
+            Route::get('/get', [ProductsController::class, 'get'])->name('get');
+        });
+    
+    //users routes
+    Route::group([ 
+        'prefix' => 'users',
+        'as' => 'users.'
+    ], function() {
+            Route::get('/', [UsersController::class, 'index'])->name('list');
+            Route::get('/create', [UsersController::class, 'create'])->name('create');
+            Route::get('/edit/{id}', [UsersController::class, 'edit'])->name('edit');
+            Route::put('/update/{product}', [UsersController::class, 'update'])->name('update');
+            Route::post('/store', [UsersController::class, 'store'])->name('store');
+            Route::get('/get', [UsersController::class, 'get'])->name('get');
+        });
+
+    //categories routes
+    Route::group([ 
+        'prefix' => 'categories',
+        'as' => 'categories.'
+    ], function() {
+            Route::get('/', [CategorysController::class, 'index'])->name('list');
+            Route::get('/create', [CategorysController::class, 'create'])->name('create');
+            Route::get('/edit/{id}', [CategorysController::class, 'edit'])->name('edit');
+            Route::put('/update/{product}', [CategorysController::class, 'update'])->name('update');
+            Route::post('/store', [CategorysController::class, 'store'])->name('store');
+            Route::get('/get', [CategorysController::class, 'get'])->name('get');
+        });
+    Route::get('/', [DashboardController::class, 'index'])->name('login');
+
+});
 Route::get('/', [AppController::class, 'index'])->name('index');
 
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
@@ -75,6 +126,9 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/{id_user}', 'index')->name('index');
     });
 });
+
+
+
 
 
 require __DIR__.'/auth.php';
