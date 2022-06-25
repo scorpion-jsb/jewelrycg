@@ -1,4 +1,4 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'table', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'laravel'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'categories', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
 
 @section('content')
     <div class="content">
@@ -17,7 +17,18 @@
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label for="name">Parent:</label>
-                                        <input type="text" name="name" id="name" value="" class="form-control">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <select class="selectpicker" name="parent_id" data-live-search="true">
+                                                    @foreach ($categories as $categorie)
+                                                        <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
+                                                    @endforeach
+                                                    
+                                                  </select>
+                                            </div>
+                                        </div>
+                                        
+                                          
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label for="name">Slug:</label>
@@ -25,7 +36,7 @@
                                     </div>
                                     <div class="col-md-12 mb-2">
                                         <label for="desc">Description:</label>
-                                        <textarea name="desc" id="desc" rows="3" class="form-control">
+                                        <textarea name="category_excerpt" id="desc" rows="3" class="form-control">
                                             
                                         </textarea>
                                     </div>
@@ -50,7 +61,12 @@
             $('#desc').trumbowyg();
             $('#name').keyup(function(){
                 var slug = $(this).val()
-                $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
+                
+                if(slug.charAt(slug.length - 1) != " ")
+                {
+                    $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
+                }
+                
             })
          })
     </script> 

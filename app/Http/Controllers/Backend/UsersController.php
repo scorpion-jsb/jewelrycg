@@ -21,6 +21,21 @@ class UsersController extends Controller
     public function get()
     {
         return datatables()->of(User::query())
+        ->editColumn('is_admin', function($row) {
+            if($row->is_admin == 0)
+            {
+                return "<span class='badge badge-secondary'> Customer </span>";   
+            }
+            elseif($row->is_admin == 1)
+            {
+                return "<span class='badge badge-primary'> Admin </span>";   
+            }
+            elseif($row->is_admin == 3)
+            {
+                return "<span class='badge badge-info'> Seller </span>";   
+            }
+            
+        })
         ->addIndexColumn()
         ->addColumn('action', function($row){
 
@@ -30,7 +45,7 @@ class UsersController extends Controller
 
                 return $btn;
         })
-        ->rawColumns(['action'])
+        ->rawColumns(['action', 'is_admin'])
         ->make(true);
     }
 

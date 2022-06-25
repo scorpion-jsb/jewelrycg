@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Http\Requests\ProductStoreRequest;
+use App\Models\ProductsCategorie;
+
 
 class ProductsController extends Controller
 {
@@ -43,7 +45,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.products.create');
+        return view('backend.dashboard.products.create', [
+            'categories' => ProductsCategorie::all()
+        ]);
     }
 
     /**

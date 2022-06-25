@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
+
+
 
 class VendorsController extends Controller
 {
@@ -14,7 +19,40 @@ class VendorsController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.dashboard.sellers.list');
+    }
+
+    public function get()
+    {
+        return datatables()->of(User::query()->where('is_admin' , 3))
+        
+        ->addIndexColumn()
+        ->editColumn('is_admin', function($row) {
+            if($row->is_admin == 0)
+            {
+                return "<span class='badge badge-secondary'> Customer </span>";   
+            }
+            elseif($row->is_admin == 1)
+            {
+                return "<span class='badge badge-primary'> Admin </span>";   
+            }
+            elseif($row->is_admin == 3)
+            {
+                return "<span class='badge badge-info'> Seller </span>";   
+            }
+            
+        })
+        ->addColumn('action', function($row){
+
+                $btn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Products</a>';
+               $btn = $btn . '<a href="'.route('backend.products.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+               $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
+               
+
+                return $btn;
+        })
+        ->rawColumns(['action', 'is_admin'])
+        ->make(true);
     }
 
     /**
@@ -24,7 +62,7 @@ class VendorsController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.dashboard.sellers.create');
     }
 
     /**
@@ -35,7 +73,20 @@ class VendorsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+        ]);
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => Hash::make($request->password),
+            'is_admin' => 3
+        ]);
+
+        return redirect()->route('backend.sellers.list');
     }
 
     /**

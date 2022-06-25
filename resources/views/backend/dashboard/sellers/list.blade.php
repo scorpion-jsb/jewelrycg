@@ -1,4 +1,4 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'users', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'laravel'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'sellers', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'laravel'])
 
 @section('content')
     <div class="content">
@@ -9,12 +9,12 @@
                         <div class="card-header">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4 class="card-title">Users</h4>
-                                    <p class="card-category">Manage users</p>
+                                    <h4 class="card-title">Sellers</h4>
+                                    <p class="card-category">Manage sellers</p>
                                 </div>
                                 <div class="col-md-6">
-                                    <a href="{{ route('backend.users.create') }}" class="btn btn-info pull-right"> Add
-                                        User </a>
+                                    <a href="{{ route('backend.sellers.create') }}" class="btn btn-info pull-right"> Add
+                                        Seller </a>
                                 </div>
                             </div>
                         </div>
@@ -49,7 +49,7 @@
                 serverSide: true,
                 bAutoWidth: false,
 
-                ajax: '{{ route('backend.users.get') }}',
+                ajax: '{{ route('backend.sellers.get') }}',
                 columns: [{
                         data: 'id',
                         name: 'id'

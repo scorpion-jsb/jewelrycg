@@ -28,7 +28,7 @@ class CategorysController extends Controller
         ->addColumn('action', function($row){
 
                $btn = '<a href="'.route('products.show', $row->id).'" target="_blank" class="edit btn btn-info btn-sm">View</a>';
-               $btn = $btn.'<a href="'.route('backend.products.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+               $btn = $btn.'<a href="'.route('backend.categories.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
 
                 return $btn;
@@ -43,7 +43,9 @@ class CategorysController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.categories.create');  
+        return view('backend.dashboard.categories.create', [
+            'categories' => ProductsCategorie::all()
+        ]);  
     }
 
     /**
@@ -78,7 +80,8 @@ class CategorysController extends Controller
     public function edit($id)
     {
         return view('backend.dashboard.categories.edit',[
-            "category" => ProductsCategorie::findOrFail($id)
+            "category" => ProductsCategorie::findOrFail($id),
+            'categories' => ProductsCategorie::where('id' ,'!=' , $id)->get()
         ]);
     }
 
@@ -91,7 +94,9 @@ class CategorysController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $categorie = ProductsCategorie::findOrFail($id);
+        $categorie->update($request->input());
+        return redirect()->route('backend.categories.list');
     }
 
     /**

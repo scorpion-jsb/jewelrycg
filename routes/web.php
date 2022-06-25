@@ -12,6 +12,8 @@ use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ProductsController;
 use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\CategorysController;
+use App\Http\Controllers\Backend\VendorsController;
+
 
 use Illuminate\Support\Facades\Route;
 
@@ -70,6 +72,18 @@ use Illuminate\Support\Facades\Route;
             Route::post('/store', [CategorysController::class, 'store'])->name('store');
             Route::get('/get', [CategorysController::class, 'get'])->name('get');
         });
+
+        Route::group([ 
+            'prefix' => 'sellers',
+            'as' => 'sellers.'
+        ], function() {
+                Route::get('/', [VendorsController::class, 'index'])->name('list');
+                Route::get('/create', [VendorsController::class, 'create'])->name('create');
+                Route::get('/edit/{id}', [VendorsController::class, 'edit'])->name('edit');
+                Route::put('/update/{product}', [VendorsController::class, 'update'])->name('update');
+                Route::post('/store', [VendorsController::class, 'store'])->name('store');
+                Route::get('/get', [VendorsController::class, 'get'])->name('get');
+            });
     Route::get('/', [DashboardController::class, 'index'])->name('login');
 
 });
