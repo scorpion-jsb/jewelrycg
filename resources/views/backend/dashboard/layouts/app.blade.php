@@ -25,12 +25,14 @@
   </head>
   <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
-    @include('backend.dashboard.layouts.navbars.navbar')
-    
     @if (auth()->check() && request()->route()->getName() != "")
+        @include('backend.dashboard.layouts.navbars.navbar')
+    @endif
+    
+    @if (auth()->check() && request()->route()->getName() != "") @endif
         @include('backend.dashboard.layouts.navbars.sidebar')
         @include('backend.dashboard.pages.sidebarstyle')
-    @endif
+    
 
     <main id="content" role="main" class="main">
       <!-- Content -->
