@@ -131,7 +131,8 @@
 
     </div>
   </div>
-  <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer" data-hs-datatables-options="{
+  <div class="table-responsive datatable-custom position-relative">
+          <div id="datatable_wrapper" class="dataTables_wrapper no-footer"><div class="dt-buttons">          <button class="dt-button buttons-copy buttons-html5 d-none" tabindex="0" aria-controls="datatable" type="button"><span>Copy</span></button> <button class="dt-button buttons-excel buttons-html5 d-none" tabindex="0" aria-controls="datatable" type="button"><span>Excel</span></button> <button class="dt-button buttons-csv buttons-html5 d-none" tabindex="0" aria-controls="datatable" type="button"><span>CSV</span></button> <button class="dt-button buttons-pdf buttons-html5 d-none" tabindex="0" aria-controls="datatable" type="button"><span>PDF</span></button> <button class="dt-button buttons-print d-none" tabindex="0" aria-controls="datatable" type="button"><span>Print</span></button> </div><div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search" class="" placeholder="" aria-controls="datatable"></label></div><table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer" data-hs-datatables-options="{
                    &quot;columnDefs&quot;: [{
                       &quot;targets&quot;: [0, 7],
                       &quot;orderable&quot;: false
@@ -148,8 +149,12 @@
                    &quot;pagination&quot;: &quot;datatablePagination&quot;
                  }" role="grid" aria-describedby="datatable_info">
             <thead class="thead-light">
-              <tr role="row">
-              <th class="table-column-pe-0 sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 28.09375px;">
+              <tr role="row"><th class="table-column-pe-0 sorting_disabled" rowspan="1" colspan="1" aria-label="
+                  
+                    
+                    
+                  
+                " style="width: 28.09375px;">
                   <div class="form-check">
                     <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
                     <label class="form-check-label" for="datatableCheckAll"></label>
@@ -159,6 +164,51 @@
 
             <tbody>
               
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
+              
+
               
             <tr role="row" class="odd">
                 <td class="table-column-pe-0">
@@ -168,9 +218,9 @@
                   </div>
                 </td>
                 <td class="table-column-ps-0">
-                  <a class="d-flex align-items-center" href="#">
+                  <a class="d-flex align-items-center" href="./user-profile.html">
                     <div class="avatar avatar-circle">
-                      <img class="avatar-img" src="https://jewelrycadfiles.com/assets/img/160x160/img10.jpg" alt="Image Description">
+                      <img class="avatar-img" src="./assets/img/160x160/img10.jpg" alt="Image Description">
                     </div>
                     <div class="ms-3">
                       <span class="d-block h5 text-inherit mb-0">Amanda Harvey <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Top endorsed" aria-label="Top endorsed"></i></span>
@@ -241,7 +291,8 @@
                   </button>
                 </td>
               </tr></tbody>
-          </table>
+          </table><div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 15 of 24 entries</div></div>
+        </div>
           
           <div class="card-footer">
           <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
