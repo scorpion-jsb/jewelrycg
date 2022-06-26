@@ -2,8 +2,9 @@
 
 @section('content')
 
-    <div class="row">
-        <form action="{{ route('backend.posts.store') }}" method="post" enctype="multipart/form-data">
+    
+    <form action="{{ route('backend.posts.store') }}" method="post" enctype="multipart/form-data">
+        <div class="row">
             <div class="col-md-8">
                 @csrf
                 <div class="row justify-content-center">
@@ -61,8 +62,8 @@
                     </label>
                 </div>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
 @endsection
 
 @section('js_content')
