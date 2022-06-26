@@ -143,12 +143,8 @@
                 </a>
               </div>
 
-              <div class="nav-item">
-                <a class="nav-link " href="#" data-placement="left">
-                  <i class="bi-folder2-open nav-icon"></i>
-                  <span class="nav-link-title">Commerce Settings</span>
-                </a>
-              </div>
+              <span class="dropdown-header mt-4">{{ __("Configuration") }}</span>
+              <small class="bi-three-dots nav-subtitle-replacer"></small>
 
               <!-- Collapse -->
               <div class="nav-item">
