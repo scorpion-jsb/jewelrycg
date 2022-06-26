@@ -69,7 +69,7 @@ Tip 2: you can also add an image using data-image tag
             </div>
 
             <li class="nav-item">
-                <a class="nav-link" data-toggle="collapse" href="#blog" @if($activeButton =='laravel') aria-expanded="true" @endif>
+                <a class="nav-link" data-toggle="collapse" href="#blog" @if($activeButton =='blog') aria-expanded="true" @endif>
                     <i class="fa-solid fa-blog"></i>
                     <p>
                         {{ __('Blog') }}
@@ -83,8 +83,8 @@ Tip 2: you can also add an image using data-image tag
             </li>
             <div class="collapse @if($activeButton =='blog') show @endif" id="blog">
                 <ul class="nav" style="    border-left: 6px solid #7f6c9d; background: #584080;" >
-                    <li class="nav-item @if($activePage == 'categories') active @endif">
-                        <a class="nav-link" href="{{ route('backend.categories.list') }}">
+                    <li class="nav-item @if($activePage == 'blogcategories') active @endif">
+                        <a class="nav-link" href="{{ route('backend.blog.categories.list') }}">
                             <i class="fa-solid fa-list-ol"></i>
                             <p>{{ __("Categories") }}</p>
                         </a>
@@ -95,8 +95,8 @@ Tip 2: you can also add an image using data-image tag
                             <p>{{ __("Tags") }}</p>
                         </a>
                     </li>
-                    <li class="nav-item @if($activePage == 'products') active @endif">
-                        <a class="nav-link" href="{{ route('backend.products.list') }}">
+                    <li class="nav-item @if($activePage == 'posts') active @endif">
+                        <a class="nav-link" href="{{ route('backend.posts.list') }}">
                             <i class="fa-solid fa-align-left"></i>
                             <p>{{ __("Posts") }}</p>
                         </a>
