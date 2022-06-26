@@ -1,8 +1,7 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'All Post', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
-    <div class="content">
-        <div class="container-fluid">
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
@@ -37,8 +36,7 @@
 
 
             </div>
-        </div>
-    </div>
+
 @endsection
 
 @section('js_content')
