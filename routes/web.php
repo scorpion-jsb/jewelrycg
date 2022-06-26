@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
 
     //products routes
     Route::group([ 
-        'prefix' => 'catalogue/products',
+        'prefix' => 'products',
         'as' => 'products.'
     ], function() {
             Route::get('/', [ProductsController::class, 'index'])->name('list');
