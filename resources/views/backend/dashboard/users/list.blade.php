@@ -17,12 +17,6 @@
         </div>
         <!-- End Col -->
 
-        <div class="col-sm-auto">
-        <a class="btn btn-primary" href="./users-add-user.html">
-            <i class="bi-person-plus-fill me-1"></i> Add user
-        </a>
-        </div>
-        <!-- End Col -->
     </div>
     <!-- End Row -->
 </div>
