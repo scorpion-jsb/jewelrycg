@@ -31,6 +31,23 @@
 
                                     <th>Actions</th>
                                 </thead>
+                                <tbody>
+                                    @foreach ($categories as $categorie)
+                                    <tr>
+                                    <td>{{ $categorie->id }}</td>
+                                   
+                                    <td>{{ $categorie->name }}</td>
+                                    <td>{{ $categorie->slug }}</td>
+                                    <td>{{ $categorie->parent_id }}</td>
+                                    <td>
+                                        <a href="{{ route('backend.blog.categories.edit', $categorie->id) }}" class="btn btn-white btn-sm" 
+                                            >
+                                            <i class="bi-pencil-fill me-1"></i> Edit
+                                    </a>
+                                    </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
                             </table>
                             </div>
                         </div>

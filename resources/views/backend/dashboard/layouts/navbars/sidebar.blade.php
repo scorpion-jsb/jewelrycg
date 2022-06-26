@@ -69,7 +69,7 @@
                 <div id="navbarVerticalMenuAllPostMenu" class="nav-collapse collapse @if($activePage == 'posts') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link " href="{{ route('backend.posts.list') }}">{{ __("All Post") }}</a>
                   <a class="nav-link " href="{{ route('backend.posts.create') }}">{{ __("Add New") }}</a>
-                  <a class="nav-link " href="{{ route('backend.categories.list') }}">{{ __("Categories") }}</a>
+                  <a class="nav-link " href="{{ route('backend.blog.categories.list') }}">{{ __("Categories") }}</a>
                   <a class="nav-link " href="#">{{ __("Tags") }}</a>
                 </div>
               </div>
@@ -110,7 +110,7 @@
                   <a class="nav-link " href="{{ route('backend.products.list') }}">{{ __("All Products") }}</a>
                   <a class="nav-link " href="{{ route('backend.products.create') }}">{{ __("Add New") }}</a>
                   <a class="nav-link " href="#">{{ __("Attributes") }}</a>
-                  <a class="nav-link " href="#">{{ __("Categories") }}</a>
+                  <a class="nav-link " href="{{ route('backend.categories.list') }}">{{ __("Categories") }}</a>
                   <a class="nav-link " href="#">{{ __("Tags") }}</a>
                 </div>
               </div>

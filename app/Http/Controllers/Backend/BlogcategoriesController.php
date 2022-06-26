@@ -17,7 +17,9 @@ class BlogcategoriesController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.blog.categories.list');  
+        return view('backend.dashboard.blog.categories.list', [
+            'categories' => BlogCategorie::all()
+        ]);  
     }
 
 
