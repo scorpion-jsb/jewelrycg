@@ -128,7 +128,7 @@
     <div class="card mb-4">
         <div class="card-header card-header-content-md-between">
             <div class="mb-2 mb-md-0">
-                <h3 class="card-header-title">Featured</h3>
+                <h3 class="card-header-title">All Users</h3>
             </div>
         </div>
         <div class="table-responsive datatable-custom position-relative">
