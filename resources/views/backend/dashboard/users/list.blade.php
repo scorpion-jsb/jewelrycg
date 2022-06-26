@@ -297,30 +297,7 @@
           <div class="card-footer">
           <div class="row justify-content-center justify-content-sm-between align-items-sm-center">
             <div class="col-sm mb-2 mb-sm-0">
-              <div class="d-flex justify-content-center justify-content-sm-start align-items-center">
-                <span class="me-2">Showing:</span>
-
-                <!-- Select -->
-                <div class="tom-select-custom">
-                  <select id="datatableEntries" class="js-select form-select form-select-borderless w-auto tomselected" autocomplete="off" data-hs-tom-select-options="{
-                            &quot;searchInDropdown&quot;: false,
-                            &quot;hideSearch&quot;: true
-                          }" tabindex="-1" hidden="hidden"><option value="15" selected="true">15</option>
-                    <option value="10">10</option>
-                    
-                    <option value="20">20</option>
-                  </select><div class="ts-control js-select form-select form-select-borderless w-auto single plugin-change_listener plugin-hs_smart_position input-hidden"><div class="items ts-input full has-items"><div data-value="15" class="item">15</div></div><div class="tom-select-custom"><div class="ts-dropdown single js-select form-select form-select-borderless w-auto plugin-change_listener plugin-hs_smart_position" style="display: none;"><div role="listbox" id="datatableEntries-ts-dropdown" tabindex="-1" class="ts-dropdown-content"></div></div></div></div>
-                </div>
-                <!-- End Select -->
-
-                <span class="text-secondary me-2">of</span>
-
-                <!-- Pagination Quantity -->
-                <span id="datatableWithPaginationInfoTotalQty">24</span>
-              </div>
-            </div>
-            <!-- End Col -->
-
+              
             <div class="col-sm-auto">
               <div class="d-flex justify-content-center justify-content-sm-end">
                 <!-- Pagination -->
