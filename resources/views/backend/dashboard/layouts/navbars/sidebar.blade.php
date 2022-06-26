@@ -88,6 +88,13 @@
               </div>
               <!-- End Collapse -->
 
+              <div class="nav-item">
+                <a class="nav-link " href="#" data-placement="left">
+                  <i class="bi-folder2-open nav-icon"></i>
+                  <span class="nav-link-title">File Manager</span>
+                </a>
+              </div>
+
               <!-- Collapse -->
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesAccountMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesAccountMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesAccountMenu">
