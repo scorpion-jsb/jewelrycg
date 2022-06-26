@@ -63,7 +63,7 @@
             </div>
             <div class="col-md-4">
                 <!-- Card -->
-                <div class="card">
+                <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="card-header-title">Featured Image</h3>
                     </div>
@@ -79,7 +79,7 @@
                 <!-- End Card -->
                 
                 <!-- Card -->
-                <div class="card">
+                <div class="card mb-4">
                     <div class="card-header">
                         <h3 class="card-header-title">Publish</h3>
                         <small class="text-muted">2 days ago</small>
