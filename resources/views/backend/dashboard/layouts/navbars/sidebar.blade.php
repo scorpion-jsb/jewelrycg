@@ -233,7 +233,7 @@
               <!-- Language -->
               <div class="dropdown dropup">
                 <button type="button" class="btn btn-ghost-secondary btn-icon rounded-circle" id="selectLanguageDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
-                  <img class="avatar avatar-xss avatar-circle" src="../assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="United States Flag">
+                  <img class="avatar avatar-xss avatar-circle" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/us.svg') }}" alt="United States Flag">
                 </button>
 
                 <div class="dropdown-menu navbar-dropdown-menu-borderless" aria-labelledby="selectLanguageDropdown">
