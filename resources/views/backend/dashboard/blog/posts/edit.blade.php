@@ -18,7 +18,8 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{ route('backend.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('backend.posts.update', $post->id) }}" method="post"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row justify-content-center">
@@ -50,7 +51,15 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <select class="selectpicker" name="categorie_id" data-live-search="true">
-                                                    <option value="1" selected> l3asba </option>
+                                                    <option selected disabled>Select Categorie</option>
+                                                    @foreach ($categories as $categorie)
+                                                        <option value="{{ $categorie->id }}"
+                                                            @if($post->categorie_id == $categorie->id)
+                                                                selected
+                                                            @endif
+                                                            data-tokens="{{ $categorie->category_name }}">
+                                                            {{ $categorie->category_name }}</option>
+                                                    @endforeach
 
                                                 </select>
                                             </div>

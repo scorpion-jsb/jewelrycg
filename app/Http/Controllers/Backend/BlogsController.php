@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BlogPost;
 use App\Http\Requests\PostStoreRequest;
+use App\Models\BlogCategorie;
+
 
 
 
@@ -47,7 +49,9 @@ class BlogsController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.blog.posts.create');
+        return view('backend.dashboard.blog.posts.create',[
+            'categories' => BlogCategorie::all()
+        ]);
     }
 
     /**
@@ -86,7 +90,8 @@ class BlogsController extends Controller
     public function edit($id)
     {
         return view('backend.dashboard.blog.posts.edit', [
-            'post' => BlogPost::findOrFail($id)
+            'post' => BlogPost::findOrFail($id),
+            'categories' => BlogCategorie::all()
         ]);
     }
 

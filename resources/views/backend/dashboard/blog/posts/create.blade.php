@@ -18,8 +18,8 @@
                                                 <div class="col-sm-12 imgUp">
                                                     <div class="imagePreview"></div>
                                                     <label class="btn btn-primary">
-                                                        Upload<input type="file" name="cover_image" class="uploadFile img"
-                                                            value="Upload Photo"
+                                                        Upload<input type="file" name="cover_image"
+                                                            class="uploadFile img" value="Upload Photo"
                                                             style="width: 0px;height: 0px;overflow: hidden;">
                                                     </label>
                                                 </div><!-- col-2 -->
@@ -36,7 +36,12 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <select class="selectpicker" name="categorie_id" data-live-search="true">
-                                                    <option value="1" selected> l3asba </option> 
+                                                    <option selected disabled>Select Categorie</option>
+                                                    @foreach ($categories as $categorie)
+                                                        <option value="{{ $categorie->id }}"
+                                                            data-tokens="{{ $categorie->category_name }}">
+                                                            {{ $categorie->category_name }}</option>
+                                                    @endforeach
 
                                                 </select>
                                             </div>
@@ -85,7 +90,7 @@
         $(".imgAdd").click(function() {
             $(this).closest(".row").find('.imgAdd').before(
                 '<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>'
-                );
+            );
         });
         $(document).on("click", "i.del", function() {
             $(this).parent().remove();
@@ -95,7 +100,7 @@
                 var uploadFile = $(this);
                 var files = !!this.files ? this.files : [];
                 if (!files.length || !window.FileReader)
-            return; // no file selected, or no FileReader support
+                    return; // no file selected, or no FileReader support
 
                 if (/^image/.test(files[0].type)) { // only image file
                     var reader = new FileReader(); // instance of the FileReader
