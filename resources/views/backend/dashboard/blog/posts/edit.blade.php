@@ -14,82 +14,88 @@
             box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
         }
     </style>
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <form action="{{ route('backend.posts.update', $post->id) }}" method="post"
-                        enctype="multipart/form-data">
-                        @csrf
-                        @method('PUT')
-                        <div class="row justify-content-center">
-                            <div class="card col-md-12">
-                                <div class="card-body row">
-                                    @include('includes.validation-form')
-                                    <div class="col-md-12 mb-2">
-                                        <br>
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-sm-12 imgUp">
-                                                    <div class="imagePreviewUpdate"></div>
-                                                    <label class="btn btn-primary">
-                                                        Upload<input type="file" name="cover_image"
-                                                            class="uploadFile img" value="Upload Photo"
-                                                            style="width: 0px;height: 0px;overflow: hidden;">
-                                                    </label>
-                                                </div><!-- col-2 -->
-                                            </div><!-- row -->
-                                        </div><!-- container -->
-                                    </div>
-                                    <div class="col-md-12 mb-2">
-                                        <label for="name">Name:</label>
-                                        <input type="text" name="name" id="name" value="{{ $post->name }}"
-                                            class="form-control">
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                        <label for="name">Parent:</label>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <select class="selectpicker" name="categorie_id" data-live-search="true">
-                                                    <option selected disabled>Select Categorie</option>
-                                                    @foreach ($categories as $categorie)
-                                                        <option value="{{ $categorie->id }}"
-                                                            @if($post->categorie_id == $categorie->id)
-                                                                selected
-                                                            @endif
-                                                            data-tokens="{{ $categorie->category_name }}">
-                                                            {{ $categorie->category_name }}</option>
-                                                    @endforeach
+<form action="{{ route('backend.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
+    <div class="row">
+        <div class="col-md-8">
+                @csrf
+                @method('PUT')
+                <div class="row justify-content-center">
+                    <div class="card col-md-12">
+                        <div class="card-body row">
+                            @include('includes.validation-form')
 
-                                                </select>
-                                            </div>
-                                        </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" id="name" value="{{ $post->name }}"
+                                    class="form-control">
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="name">Parent:</label>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="form-select" name="categorie_id" data-live-search="true">
+                                            <option selected disabled>Select Categorie</option>
+                                            @foreach ($categories as $categorie)
+                                                <option value="{{ $categorie->id }}"
+                                                    @if($post->categorie_id == $categorie->id)
+                                                        selected
+                                                    @endif
+                                                    data-tokens="{{ $categorie->category_name }}">
+                                                    {{ $categorie->category_name }}</option>
+                                            @endforeach
 
-
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                        <label for="name">Slug:</label>
-                                        <input type="text" name="slug" id="slug" value="{{ $post->slug }}"
-                                            class="form-control">
-                                    </div>
-                                    <div class="col-md-12 mb-2">
-                                        <label for="desc">Post:</label>
-                                        <textarea name="post" id="desc" rows="3" class="form-control">
-                                            {{ $post->post }}
-                                        </textarea>
-                                    </div>
-
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn btn-lg btn-outline-success">Update</button>
+                                        </select>
                                     </div>
                                 </div>
+
+
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="name">Slug:</label>
+                                <input type="text" name="slug" id="slug" value="{{ $post->slug }}"
+                                    class="form-control">
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="desc">Post:</label>
+                                <textarea name="post" id="desc" rows="3" class="form-control">
+                                    {{ $post->post }}
+                                </textarea>
                             </div>
                         </div>
-                    </form>
+                    </div>
+                </div>
+        </div>
+        <div class="col-md-4">
+            <!-- Card -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-header-title">Featured Image</h3>
+                </div>
+                <div class="card-body">
+                    <div class="imagePreviewUpdate"></div>
+                    <label class="btn btn-primary">
+                        Upload<input type="file" name="cover_image"
+                            class="uploadFile img" value="Upload Photo"
+                            style="width: 0px;height: 0px;overflow: hidden;">
+                    </label>
                 </div>
             </div>
+            <!-- End Card -->
+            
+            <!-- Card -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-header-title">Publish</h3>
+                    <small class="text-muted">2 days ago</small>
+                </div>
+                <div class="card-body">
+                    <button type="submit" class="btn btn-lg btn-primary">Update</button>
+                </div>
+            </div>
+            <!-- End Card -->
         </div>
     </div>
+</form>
 @endsection
 
 @section('js_content')
