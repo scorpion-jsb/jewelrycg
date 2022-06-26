@@ -43,11 +43,11 @@
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesUsersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesUsersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesUsersMenu">
                   <i class="bi-people nav-icon"></i>
-                  <span class="nav-link-title">{{ __("Users") }}</span>
+                  <span class="nav-link-title">{{ __("Users") }} <span class="badge bg-primary rounded-pill ms-1">5</span></span>
                 </a>
 
                 <div id="navbarVerticalMenuPagesUsersMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                  <a class="nav-link " href="{{ route('backend.users.list') }}">{{ __("All Users") }} <span class="badge bg-info rounded-pill ms-1">Hot</span></a>
+                  <a class="nav-link " href="{{ route('backend.users.list') }}">{{ __("All Users") }}</a>
                   <a class="nav-link " href="#">{{ __("Customers") }}</a>
                   <a class="nav-link " href="{{ route('backend.sellers.list') }}">{{ __("Sellers") }} <span class="badge bg-primary rounded-pill ms-1">5</span></a>
                   <a class="nav-link " href="#">{{ __("Profile") }}</a>
