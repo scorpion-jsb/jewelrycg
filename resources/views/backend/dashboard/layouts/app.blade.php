@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('vendor/bootstrap-icons/font/bootstrap-icons.css') }}">
 
     <!-- CSS Front Template -->
-    <link href="{{ asset('backtheme/css/bootstrap.min.css') }}" rel="stylesheet" />
+    <!--<link href="{{ asset('backtheme/css/bootstrap.min.css') }}" rel="stylesheet" />-->
     <link rel="preload" href="{{ asset('css/backend/theme.min.css') }}" data-hs-appearance="default" as="style">
     <link rel="preload" href="{{ asset('css/backend/theme-dark.min.css') }}" data-hs-appearance="default" as="style">
 
