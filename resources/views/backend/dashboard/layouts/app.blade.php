@@ -25,14 +25,15 @@
   </head>
 <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
-
+    @include('backend.dashboard.layouts.navbars.navbar')
+    
     @if (auth()->check() && request()->route()->getName() != "")
         @include('backend.dashboard.layouts.navbars.sidebar')
         @include('backend.dashboard.pages.sidebarstyle')
     @endif
 
     <div class="@if (auth()->check() && request()->route()->getName() != "") main-panel @endif">
-        @include('backend.dashboard.layouts.navbars.navbar')
+        
         @yield('content')
         @include('backend.dashboard.layouts.footer.nav')
     </div>
