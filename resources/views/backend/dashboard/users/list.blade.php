@@ -604,9 +604,9 @@
                   </div>
                 </td>
                 <td class="table-column-ps-0">
-                  <a class="d-flex align-items-center" href="./user-profile.html">
+                  <a class="d-flex align-items-center" href="#">
                     <div class="avatar avatar-circle">
-                      <img class="avatar-img" src="./assets/img/160x160/img10.jpg" alt="Image Description">
+                      <img class="avatar-img" src="{{ asset('assets/img/160x160/img10.jpg') }}" alt="Image Description">
                     </div>
                     <div class="ms-3">
                       <span class="d-block h5 text-inherit mb-0">Amanda Harvey <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Top endorsed" aria-label="Top endorsed"></i></span>
