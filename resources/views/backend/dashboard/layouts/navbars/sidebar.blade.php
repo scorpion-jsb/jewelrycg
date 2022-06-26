@@ -49,7 +49,7 @@
 
                 <div id="navbarVerticalMenuPagesUsersMenu" class="nav-collapse collapse @if($activePage == 'users') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link " href="{{ route('backend.users.list') }}">{{ __("All Users") }}</a>
-                  <a class="nav-link " href="#">{{ __("Customers") }}</a>
+                  <a class="nav-link " href="{{ route('backend.customers.list') }}">{{ __("Customers") }}</a>
                   <a class="nav-link " href="{{ route('backend.sellers.list') }}">{{ __("Sellers") }} <span class="badge bg-primary rounded-pill ms-1">5</span></a>
                   <a class="nav-link " href="#">{{ __("Profile") }}</a>
                 </div>
