@@ -64,15 +64,6 @@
 @endsection
 
 @section('js_content')
-    <script src="{{ asset('assets/vendor/quill/dist/quill.min.js') }}"></script>
-    <script src="{{ asset('assets/js/hs.quill.js') }}"></script>
-    <script>
-    (function() {
-        // INITIALIZATION OF QUILLJS EDITOR
-        // =======================================================
-        HSCore.components.HSQuill.init('.js-quill')
-    });
-    </script>
     <script>
         $(document).ready(function() {
             $('#desc').trumbowyg();
@@ -115,3 +106,12 @@
         });
     </script>
 @endsection
+<script src="{{ asset('assets/vendor/quill/dist/quill.min.js') }}"></script>
+<script src="{{ asset('assets/js/hs.quill.js') }}"></script>
+<script>
+(function() {
+    // INITIALIZATION OF QUILLJS EDITOR
+    // =======================================================
+    HSCore.components.HSQuill.init('.js-quill')
+});
+</script>
