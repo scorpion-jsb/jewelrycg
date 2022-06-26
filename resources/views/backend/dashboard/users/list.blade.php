@@ -263,6 +263,7 @@
           </div>
           <!-- End Row -->
         </div>
+        </div>
 </div>
 <!-- End Card -->
 
