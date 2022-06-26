@@ -19,7 +19,7 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <select class="form-select" name="categorie_id" data-live-search="true">
-                                            <option selected disabled>Select Categorie</option>
+                                            <option selected disabled>Select Category</option>
                                             @foreach ($categories as $categorie)
                                                 <option value="{{ $categorie->id }}"
                                                     data-tokens="{{ $categorie->category_name }}">
