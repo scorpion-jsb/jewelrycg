@@ -68,6 +68,7 @@
                         <h3 class="card-header-title">Featured Image</h3>
                     </div>
                     <div class="card-body">
+                         <img src="..." alt="..." class="img-thumbnail">
                         <div class="imagePreview"></div>
                         <label class="btn btn-primary">
                             Upload<input type="file" name="cover_image"
