@@ -293,37 +293,7 @@
     </div>
     <!-- End Card -->
 
-    <div class="row">
-        <div class="col-md-12">
-            <div class="card strpied-tabled-with-hover">
-                <div class="card-header">
-                    <div class="row">
-                        <div class="col-md-6">
-                            <h4 class="card-title">Users</h4>
-                            <p class="card-category">Manage users</p>
-                        </div>
-                        <div class="col-md-6">
-                            <a href="{{ route('backend.users.create') }}" class="btn btn-info pull-right"> Add
-                                User </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="card-body table-full-width table-responsive">
-                    <div class="col-md-12">
-                        <table class="table table-hover table-striped">
-                            <thead>
-                                <th>ID</th>
-                                <th>Name</th>
-                                <th>Email</th>
-                                <th>Type</th>
-                                <th>Actions</th>
-                            </thead>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 @endsection
 
 @section('js_content')
