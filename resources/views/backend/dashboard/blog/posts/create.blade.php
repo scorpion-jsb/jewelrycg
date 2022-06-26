@@ -6,7 +6,7 @@
         <div class="row">
             <div class="col-md-8">
                 @csrf
-                <div class="row justify-content-center">
+                <div class="justify-content-center">
                     <div class="card col-md-12">
                         <div class="card-body row">
                             @include('includes.validation-form')
