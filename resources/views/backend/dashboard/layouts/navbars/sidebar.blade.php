@@ -55,19 +55,33 @@
               </div>
               <!-- End Collapse -->
 
+              <span class="dropdown-header mt-4">{{ __("Content") }}</span>
+              <small class="bi-three-dots nav-subtitle-replacer"></small>
+
               <!-- Collapse -->
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesUserProfileMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesUserProfileMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesUserProfileMenu">
                   <i class="bi-person nav-icon"></i>
-                  <span class="nav-link-title">User Profile <span class="badge bg-primary rounded-pill ms-1">5</span></span>
+                  <span class="nav-link-title">{{ __("Post") }}</span>
                 </a>
 
                 <div id="navbarVerticalMenuPagesUserProfileMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                  <a class="nav-link " href="../user-profile.html">Profile</a>
-                  <a class="nav-link " href="../user-profile-teams.html">Teams</a>
-                  <a class="nav-link " href="../user-profile-projects.html">Projects</a>
-                  <a class="nav-link " href="../user-profile-connections.html">Connections</a>
-                  <a class="nav-link " href="../user-profile-my-profile.html">My Profile</a>
+                  <a class="nav-link " href="{{ route('backend.posts.list') }}">{{ __("All Post") }}</a>
+                  <a class="nav-link " href="#">{{ __("Add New") }}</a>
+                </div>
+              </div>
+              <!-- End Collapse -->
+
+              <!-- Collapse -->
+              <div class="nav-item">
+                <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesUserProfileMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesUserProfileMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesUserProfileMenu">
+                  <i class="bi-person nav-icon"></i>
+                  <span class="nav-link-title">{{ __("Pages") }}</span>
+                </a>
+
+                <div id="navbarVerticalMenuPagesUserProfileMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link " href="#">{{ __("All Pages") }}</a>
+                  <a class="nav-link " href="#">{{ __("Add New") }}</a>
                 </div>
               </div>
               <!-- End Collapse -->
