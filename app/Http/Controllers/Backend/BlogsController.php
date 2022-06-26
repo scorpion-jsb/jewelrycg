@@ -4,12 +4,12 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Http\Requests\ProductStoreRequest;
-use App\Models\ProductsCategorie;
+use App\Models\BlogPost;
+use App\Http\Requests\PostStoreRequest;
 
 
-class ProductsController extends Controller
+
+class BlogsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,23 +18,25 @@ class ProductsController extends Controller
      */
     public function index()
     {
-
-        return view('backend.dashboard.products.list');
+      
+        return view('backend.dashboard.blog.posts.list');
     }
 
     public function get()
     {
-        return datatables()->of(Product::query())
+        return datatables()->of(BlogPost::query())
         ->addIndexColumn()
+        ->editColumn('cover_image', function($row) {
+            return "<img src='".$row->cover_image."'>"; 
+        })
         ->addColumn('action', function($row){
 
-               $btn = '<a href="'.route('products.show', $row->id).'" target="_blank" class="edit btn btn-info btn-sm">View</a>';
-               $btn = $btn.'<a href="'.route('backend.products.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+               $btn = '<a href="'.route('backend.posts.edit', $row->id).'"  class="edit btn btn-info btn-sm">Edit</a>';
                $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
 
                 return $btn;
         })
-        ->rawColumns(['action'])
+        ->rawColumns(['action', 'cover_image'])
         ->make(true);
     }
 
@@ -45,9 +47,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.products.create', [
-            'categories' => ProductsCategorie::all()
-        ]);
+        return view('backend.dashboard.blog.posts.create');
     }
 
     /**
@@ -56,14 +56,14 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductStoreRequest $req)
+    public function store(PostStoreRequest $request)
     {
-        $data = $req->all();
-        $data['price'] = Product::stringPriceToCents($req->price);
-        $product = Product::create($data);
-        $product->storeImages($req->images);
-
-        return redirect()->route('products.show', $product->id);
+        $blog = new BlogPost();
+        $data = $request->input();
+        $data['cover_image'] = $blog->storeImages($request->cover_image);
+        $data['tags_id'] = 1;
+        $blog->create($data);
+        return redirect()->route('backend.posts.list');
     }
 
     /**
@@ -85,11 +85,8 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
-        $product->setPriceToFloat();
-        return view('backend.dashboard.products.edit', [
-            'product' => $product,
-            'categories' => ProductsCategorie::all()
+        return view('backend.dashboard.blog.posts.edit', [
+            'post' => BlogPost::findOrFail($id)
         ]);
     }
 
@@ -100,18 +97,17 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductStoreRequest $req, $product)
+    public function update(PostStoreRequest $request, $id)
     {
-        
-        $data = $req->all();
-        $data['price'] = Product::stringPriceToCents($req->price);
-        $product = Product::findOrFail($product);
-        $product->update($data);
-        $product->replaceImagesIfExist($req->images);
-
-        cache()->forget('todays-deals');
-
-        return redirect()->route('products.show', $product->id);
+        $blog = BlogPost::findOrFail($id);
+        $data = $request->input();
+        if($request->cover_image)
+        {
+            $data['cover_image'] = $blog->storeImages($request->cover_image);
+        }
+        $data['tags_id'] = 1;
+        $blog->update($data);
+        return redirect()->route('backend.posts.list');
     }
 
     /**

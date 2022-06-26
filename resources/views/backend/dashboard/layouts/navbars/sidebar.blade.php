@@ -83,18 +83,25 @@ Tip 2: you can also add an image using data-image tag
             </li>
             <div class="collapse @if($activeButton =='blog') show @endif" id="blog">
                 <ul class="nav" style="    border-left: 6px solid #7f6c9d; background: #584080;" >
-                    <li class="nav-item @if($activePage == 'products') active @endif">
-                        <a class="nav-link" href="{{ route('backend.products.list') }}">
-                            <i class="fa-solid fa-align-left"></i>
-                            <p>{{ __("Blogs list") }}</p>
-                        </a>
-                    </li>
                     <li class="nav-item @if($activePage == 'categories') active @endif">
                         <a class="nav-link" href="{{ route('backend.categories.list') }}">
                             <i class="fa-solid fa-list-ol"></i>
                             <p>{{ __("Categories") }}</p>
                         </a>
                     </li>
+                    <li class="nav-item @if($activePage == 'categories') active @endif">
+                        <a class="nav-link" href="{{ route('backend.categories.list') }}">
+                            <i class="fa-solid fa-list-ol"></i>
+                            <p>{{ __("Tags") }}</p>
+                        </a>
+                    </li>
+                    <li class="nav-item @if($activePage == 'products') active @endif">
+                        <a class="nav-link" href="{{ route('backend.products.list') }}">
+                            <i class="fa-solid fa-align-left"></i>
+                            <p>{{ __("Posts") }}</p>
+                        </a>
+                    </li>
+                    
                 </ul>
             </div>
             <li class="nav-item @if($activePage == 'maps') active @endif">

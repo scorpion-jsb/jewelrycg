@@ -5,7 +5,7 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{route('backend.categories.update', $category->id)}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('backend.blog.categories.update', $category->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="row justify-content-center">

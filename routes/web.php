@@ -13,6 +13,10 @@ use App\Http\Controllers\Backend\ProductsController;
 use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\CategorysController;
 use App\Http\Controllers\Backend\VendorsController;
+use App\Http\Controllers\Backend\BlogsController;
+use App\Http\Controllers\Backend\BlogcategoriesController;
+
+
 
 
 use Illuminate\Support\Facades\Route;
@@ -36,7 +40,7 @@ use Illuminate\Support\Facades\Route;
 
     //products routes
     Route::group([ 
-        'prefix' => 'products',
+        'prefix' => 'catalogue/products',
         'as' => 'products.'
     ], function() {
             Route::get('/', [ProductsController::class, 'index'])->name('list');
@@ -62,7 +66,7 @@ use Illuminate\Support\Facades\Route;
 
     //categories routes
     Route::group([ 
-        'prefix' => 'categories',
+        'prefix' => 'catalogue/categories',
         'as' => 'categories.'
     ], function() {
             Route::get('/', [CategorysController::class, 'index'])->name('list');
@@ -84,6 +88,34 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/store', [VendorsController::class, 'store'])->name('store');
                 Route::get('/get', [VendorsController::class, 'get'])->name('get');
             });
+
+
+        //posts routes
+    Route::group([ 
+        'prefix' => 'blog/posts',
+        'as' => 'posts.'
+    ], function() {
+            Route::get('/', [BlogsController::class, 'index'])->name('list');
+            Route::get('/create', [BlogsController::class, 'create'])->name('create');
+            Route::get('/edit/{id}', [BlogsController::class, 'edit'])->name('edit');
+            Route::put('/update/{product}', [BlogsController::class, 'update'])->name('update');
+            Route::post('/store', [BlogsController::class, 'store'])->name('store');
+            Route::get('/get', [BlogsController::class, 'get'])->name('get');
+        });
+
+        //posts routes
+    Route::group([ 
+        'prefix' => 'blog/categories',
+        'as' => 'blog.categories.'
+    ], function() {
+            Route::get('/', [BlogcategoriesController::class, 'index'])->name('list');
+            Route::get('/create', [BlogcategoriesController::class, 'create'])->name('create');
+            Route::get('/edit/{id}', [BlogcategoriesController::class, 'edit'])->name('edit');
+            Route::put('/update/{product}', [BlogcategoriesController::class, 'update'])->name('update');
+            Route::post('/store', [BlogcategoriesController::class, 'store'])->name('store');
+            Route::get('/get', [BlogcategoriesController::class, 'get'])->name('get');
+        });
+
     Route::get('/', [DashboardController::class, 'index'])->name('login');
 
 });

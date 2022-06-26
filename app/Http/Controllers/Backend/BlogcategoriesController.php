@@ -2,14 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Product;
-use App\Http\Requests\ProductStoreRequest;
-use App\Models\ProductsCategorie;
+use App\Http\Controllers\Controller;
+use App\Models\BlogCategorie;
+use App\Http\Requests\CategorieStoreRequest;
 
 
-class ProductsController extends Controller
+class BlogcategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,18 +17,18 @@ class ProductsController extends Controller
      */
     public function index()
     {
-
-        return view('backend.dashboard.products.list');
+        return view('backend.dashboard.blog.categories.list');  
     }
+
 
     public function get()
     {
-        return datatables()->of(Product::query())
+        return datatables()->of(BlogCategorie::query())
         ->addIndexColumn()
         ->addColumn('action', function($row){
 
                $btn = '<a href="'.route('products.show', $row->id).'" target="_blank" class="edit btn btn-info btn-sm">View</a>';
-               $btn = $btn.'<a href="'.route('backend.products.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+               $btn = $btn.'<a href="'.route('backend.categories.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
 
                 return $btn;
@@ -37,7 +36,6 @@ class ProductsController extends Controller
         ->rawColumns(['action'])
         ->make(true);
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -45,9 +43,9 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.products.create', [
-            'categories' => ProductsCategorie::all()
-        ]);
+        return view('backend.dashboard.blog.categories.create', [
+            'categories' => BlogCategorie::all()
+        ]);  
     }
 
     /**
@@ -56,14 +54,10 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductStoreRequest $req)
+    public function store(CategorieStoreRequest $request)
     {
-        $data = $req->all();
-        $data['price'] = Product::stringPriceToCents($req->price);
-        $product = Product::create($data);
-        $product->storeImages($req->images);
-
-        return redirect()->route('products.show', $product->id);
+        BlogCategorie::create($request->input());
+        return redirect()->route('backend.blog.categories.list');
     }
 
     /**
@@ -85,11 +79,9 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
-        $product->setPriceToFloat();
-        return view('backend.dashboard.products.edit', [
-            'product' => $product,
-            'categories' => ProductsCategorie::all()
+        return view('backend.dashboard.blog.categories.edit',[
+            "category" => BlogCategorie::findOrFail($id),
+            'categories' => BlogCategorie::where('id' ,'!=' , $id)->get()
         ]);
     }
 
@@ -100,18 +92,11 @@ class ProductsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(ProductStoreRequest $req, $product)
+    public function update(CategorieStoreRequest $request, $id)
     {
-        
-        $data = $req->all();
-        $data['price'] = Product::stringPriceToCents($req->price);
-        $product = Product::findOrFail($product);
-        $product->update($data);
-        $product->replaceImagesIfExist($req->images);
-
-        cache()->forget('todays-deals');
-
-        return redirect()->route('products.show', $product->id);
+        $categorie = BlogCategorie::findOrFail($id);
+        $categorie->update($request->input());
+        return redirect()->route('backend.blog.categories.list');
     }
 
     /**

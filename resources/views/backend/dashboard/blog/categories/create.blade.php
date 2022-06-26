@@ -1,30 +1,29 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'table', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'categories', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
 
 @section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{route('backend.categories.update', $category->id)}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('backend.blog.categories.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
                         <div class="row justify-content-center">
                             <div class="card col-md-12">
                                 <div class="card-body row">
                                     @include('includes.validation-form')
                                     <div class="col-md-12 mb-2">
                                         <label for="name">Name:</label>
-                                        <input type="text" name="category_name" id="name" value="{{ $category->category_name }}" class="form-control">
+                                        <input type="text" name="category_name" id="name" value="" class="form-control">
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label for="name">Parent:</label>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <select class="selectpicker" name="parent_id" data-live-search="true">
-                                                    <option data-tokens="Parent">Parent</option>
                                                     @foreach ($categories as $categorie)
-                                                        <option value="{{$categorie->id}}" @if($categorie->id == $category->parent_id) selected @endif data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
+                                                        <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
                                                     @endforeach
+                                                    
                                                   </select>
                                             </div>
                                         </div>
@@ -33,17 +32,17 @@
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label for="name">Slug:</label>
-                                        <input type="text" name="slug" id="slug" value="{{ $category->slug }}" class="form-control">
+                                        <input type="text" name="slug" id="slug" value="" class="form-control">
                                     </div>
                                     <div class="col-md-12 mb-2">
                                         <label for="desc">Description:</label>
                                         <textarea name="category_excerpt" id="desc" rows="3" class="form-control">
-                                            {{ $category->category_excerpt }}
+                                            
                                         </textarea>
                                     </div>
                                     
                                     <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn btn-lg btn-outline-success">Save</button>
+                                        <button type="submit" class="btn btn-lg btn-outline-success">Add</button>
                                     </div>
                                 </div>
                             </div>
