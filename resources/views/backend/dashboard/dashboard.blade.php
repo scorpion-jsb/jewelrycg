@@ -1,7 +1,7 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'dashboard', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Dashboard', 'activeButton' => 'laravel'])
 
 @section('content')
-<main id="content" role="main" class="main">
+<main id="content" role="main" class="">
 <!-- Content -->
 <div class="content container-fluid">
     <div class="row justify-content-lg-center pt-lg-5 pt-xl-10">
