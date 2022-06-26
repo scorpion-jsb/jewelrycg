@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-md-12 mb-2">
                                 <label for="desc">Post:</label>
-                                <textarea name="post" id="desc" rows="3" class="form-control js-quill"></textarea>
+                                <textarea name="post" id="desc" rows="3" class="form-control js-quill" data-hs-quill-options='{ "placeholder": "Type your message...", "modules": { "toolbar": [ ["bold", "italic", "underline", "strike", "link", "image", "blockquote", "code", {"list": "bullet"}] ] } }'></textarea>
                             </div>
 
                             <div class="col-md-12 text-center">
