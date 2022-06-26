@@ -125,7 +125,7 @@
 <!-- End Stats -->
 
 <!-- Card -->
-<div class="card">
+<div class="card mb-4">
   <div class="card-header card-header-content-md-between">
     <div class="mb-2 mb-md-0">
 
@@ -164,52 +164,7 @@
 
             <tbody>
               
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
-
-              
+  
             <tr role="row" class="odd">
                 <td class="table-column-pe-0">
                   <div class="form-check">
@@ -220,7 +175,7 @@
                 <td class="table-column-ps-0">
                   <a class="d-flex align-items-center" href="./user-profile.html">
                     <div class="avatar avatar-circle">
-                      <img class="avatar-img" src="./assets/img/160x160/img10.jpg" alt="Image Description">
+                      <img class="avatar-img" src="{{ asset('assets/img/160x160/img10.jpg') }}" alt="Image Description">
                     </div>
                     <div class="ms-3">
                       <span class="d-block h5 text-inherit mb-0">Amanda Harvey <i class="bi-patch-check-fill text-primary" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Top endorsed" aria-label="Top endorsed"></i></span>
