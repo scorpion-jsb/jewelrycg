@@ -108,6 +108,7 @@
                 <div id="navbarVerticalMenuAllProductsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link " href="{{ route('backend.products.list') }}">{{ __("All Products") }}</a>
                   <a class="nav-link " href="{{ route('backend.products.create') }}">{{ __("Add New") }}</a>
+                  <a class="nav-link " href="#">{{ __("Attributes") }}</a>
                   <a class="nav-link " href="#">{{ __("Categories") }}</a>
                   <a class="nav-link " href="#">{{ __("Tags") }}</a>
                 </div>
@@ -127,6 +128,20 @@
                 </div>
               </div>
               <!-- End Collapse -->
+
+              <div class="nav-item">
+                <a class="nav-link " href="#" data-placement="left">
+                  <i class="bi-folder2-open nav-icon"></i>
+                  <span class="nav-link-title">Reports</span>
+                </a>
+              </div>
+
+              <div class="nav-item">
+                <a class="nav-link " href="#" data-placement="left">
+                  <i class="bi-folder2-open nav-icon"></i>
+                  <span class="nav-link-title">Settings</span>
+                </a>
+              </div>
 
               <!-- Collapse -->
               <div class="nav-item">
