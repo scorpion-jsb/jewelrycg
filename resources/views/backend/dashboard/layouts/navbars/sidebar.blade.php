@@ -27,11 +27,11 @@
             <div class="nav-item">
                 <a class="nav-link " href="/backend" data-placement="left">
                   <i class="bi-house-door nav-icon"></i>
-                  <span class="nav-link-title">Dashboard</span>
+                  <span class="nav-link-title">{{ __("Dashboard") }}</span>
                 </a>
               </div>
 
-            <span class="dropdown-header mt-4">Pages</span>
+            <span class="dropdown-header mt-4">Users</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
 
             <!-- Collapse -->
@@ -43,13 +43,14 @@
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesUsersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesUsersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesUsersMenu">
                   <i class="bi-people nav-icon"></i>
-                  <span class="nav-link-title">Users</span>
+                  <span class="nav-link-title">{{ __("Users Management") }}</span>
                 </a>
 
                 <div id="navbarVerticalMenuPagesUsersMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                  <a class="nav-link " href="../users.html">Overview</a>
-                  <a class="nav-link " href="../users-leaderboard.html">Leaderboard</a>
-                  <a class="nav-link " href="../users-add-user.html">Add User <span class="badge bg-info rounded-pill ms-1">Hot</span></a>
+                  <a class="nav-link " href="{{ route('backend.users.list') }}">{{ __("All Users") }} <span class="badge bg-info rounded-pill ms-1">Hot</span></a>
+                  <a class="nav-link " href="#">{{ __("Customers") }}</a>
+                  <a class="nav-link " href="{{ route('backend.sellers.list') }}">{{ __("Sellers") }} <span class="badge bg-primary rounded-pill ms-1">5</span></a>
+                  <a class="nav-link " href="#">{{ __("Profile") }}</a>
                 </div>
               </div>
               <!-- End Collapse -->
