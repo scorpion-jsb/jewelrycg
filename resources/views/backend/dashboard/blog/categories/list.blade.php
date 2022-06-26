@@ -36,7 +36,7 @@
                                     <tr>
                                     <td>{{ $categorie->id }}</td>
                                    
-                                    <td>{{ $categorie->name }}</td>
+                                    <td>{{ $categorie->category_name }}</td>
                                     <td>{{ $categorie->slug }}</td>
                                     <td>{{ $categorie->parent_id }}</td>
                                     <td>
