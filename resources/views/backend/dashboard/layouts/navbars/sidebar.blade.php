@@ -88,6 +88,22 @@
               </div>
               <!-- End Collapse -->
 
+              <!-- Collapse -->
+              <div class="nav-item">
+                <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllProductsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllProductsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllProductsMenu">
+                  <i class="bi-person nav-icon"></i>
+                  <span class="nav-link-title">{{ __("Products") }}</span>
+                </a>
+
+                <div id="navbarVerticalMenuAllProductsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link " href="{{ route('backend.products.list') }}">{{ __("All Products") }}</a>
+                  <a class="nav-link " href="{{ route('backend.products.create') }}">{{ __("Add New") }}</a>
+                  <a class="nav-link " href="#">{{ __("Categories") }}</a>
+                  <a class="nav-link " href="#">{{ __("Tags") }}</a>
+                </div>
+              </div>
+              <!-- End Collapse -->
+
               <div class="nav-item">
                 <a class="nav-link " href="#" data-placement="left">
                   <i class="bi-folder2-open nav-icon"></i>
