@@ -67,7 +67,9 @@
 
                 <div id="navbarVerticalMenuPagesUserProfileMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link " href="{{ route('backend.posts.list') }}">{{ __("All Post") }}</a>
-                  <a class="nav-link " href="#">{{ __("Add New") }}</a>
+                  <a class="nav-link " href="{{ route('backend.posts.create') }}">{{ __("Add New") }}</a>
+                  <a class="nav-link " href="{{ route('backend.categories.list') }}">{{ __("Categories") }}</a>
+                  <a class="nav-link " href="#">{{ __("Tags") }}</a>
                 </div>
               </div>
               <!-- End Collapse -->
