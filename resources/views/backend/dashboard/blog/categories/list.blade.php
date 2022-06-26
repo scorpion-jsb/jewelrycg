@@ -1,4 +1,4 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'blogcategories', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'blog'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'All Categories', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
     <div class="content">
