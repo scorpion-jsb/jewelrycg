@@ -239,27 +239,27 @@
                 <div class="dropdown-menu navbar-dropdown-menu-borderless" aria-labelledby="selectLanguageDropdown">
                   <span class="dropdown-header">Select language</span>
                   <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/us.svg" alt="Flag">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/us.svg') }}" alt="Flag">
                     <span class="text-truncate" title="English">English (US)</span>
                   </a>
                   <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/gb.svg" alt="Flag">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/gb.svg') }}" alt="Flag">
                     <span class="text-truncate" title="English">English (UK)</span>
                   </a>
                   <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/de.svg" alt="Flag">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/de.svg') }}" alt="Flag">
                     <span class="text-truncate" title="Deutsch">Deutsch</span>
                   </a>
                   <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/dk.svg" alt="Flag">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/dk.svg') }}" alt="Flag">
                     <span class="text-truncate" title="Dansk">Dansk</span>
                   </a>
                   <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/it.svg" alt="Flag">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/it.svg') }}" alt="Flag">
                     <span class="text-truncate" title="Italiano">Italiano</span>
                   </a>
                   <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="../assets/vendor/flag-icon-css/flags/1x1/cn.svg" alt="Flag">
+                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/cn.svg') }}" alt="Flag">
                     <span class="text-truncate" title="中文 (繁體)">中文 (繁體)</span>
                   </a>
                 </div>
