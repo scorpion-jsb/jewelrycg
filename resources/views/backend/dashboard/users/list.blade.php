@@ -21,6 +21,108 @@
     <!-- End Row -->
 </div>
 <!-- End Page Header -->
+
+<!-- Stats -->
+<div class="row">
+    <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+        <!-- Card -->
+        <div class="card h-100">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2">Total users</h6>
+
+            <div class="row align-items-center gx-2">
+            <div class="col">
+                <span class="js-counter display-4 text-dark">24</span>
+                <span class="text-body fs-5 ms-1">from 22</span>
+            </div>
+            <!-- End Col -->
+
+            <div class="col-auto">
+                <span class="badge bg-soft-success text-success p-1">
+                <i class="bi-graph-up"></i> 5.0%
+                </span>
+            </div>
+            <!-- End Col -->
+            </div>
+            <!-- End Row -->
+        </div>
+        </div>
+        <!-- End Card -->
+    </div>
+
+    <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+        <!-- Card -->
+        <div class="card h-100">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2">Active members</h6>
+
+            <div class="row align-items-center gx-2">
+            <div class="col">
+                <span class="js-counter display-4 text-dark">12</span>
+                <span class="text-body fs-5 ms-1">from 11</span>
+            </div>
+
+            <div class="col-auto">
+                <span class="badge bg-soft-success text-success p-1">
+                <i class="bi-graph-up"></i> 1.2%
+                </span>
+            </div>
+            </div>
+            <!-- End Row -->
+        </div>
+        </div>
+        <!-- End Card -->
+    </div>
+
+    <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+        <!-- Card -->
+        <div class="card h-100">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2">New/returning</h6>
+
+            <div class="row align-items-center gx-2">
+            <div class="col">
+                <span class="js-counter display-4 text-dark">56</span>
+                <span class="display-4 text-dark">%</span>
+                <span class="text-body fs-5 ms-1">from 48.7</span>
+            </div>
+
+            <div class="col-auto">
+                <span class="badge bg-soft-danger text-danger p-1">
+                <i class="bi-graph-down"></i> 2.8%
+                </span>
+            </div>
+            </div>
+            <!-- End Row -->
+        </div>
+        </div>
+        <!-- End Card -->
+    </div>
+
+    <div class="col-sm-6 col-lg-3 mb-3 mb-lg-5">
+        <!-- Card -->
+        <div class="card h-100">
+        <div class="card-body">
+            <h6 class="card-subtitle mb-2">Active members</h6>
+
+            <div class="row align-items-center gx-2">
+            <div class="col">
+                <span class="js-counter display-4 text-dark">28.6</span>
+                <span class="display-4 text-dark">%</span>
+                <span class="text-body fs-5 ms-1">from 28.6%</span>
+            </div>
+
+            <div class="col-auto">
+                <span class="badge bg-soft-secondary text-secondary p-1">0.0%</span>
+            </div>
+            </div>
+            <!-- End Row -->
+        </div>
+        </div>
+        <!-- End Card -->
+    </div>
+</div>
+<!-- End Stats -->
     <div class="content">
         <div class="container-fluid">
             <div class="row">
