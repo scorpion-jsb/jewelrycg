@@ -119,7 +119,7 @@ class UsersController extends Controller
         $user->state = $request->state;
         $user->country = $request->country;
         $user->pin_code = $request->pin_code;
-        $user->email_verified_at = ($request->email_verified_at === 1) ? date('Y-m-d H:i:s') : null;
+        $user->email_verified_at = ($request->email_verified_at == 1) ? date('Y-m-d h:i:s') : null;
         $user->is_admin = $request->is_admin;
         if($request->password)
         {
