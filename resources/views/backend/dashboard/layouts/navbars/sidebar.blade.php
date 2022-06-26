@@ -146,7 +146,7 @@
               <div class="nav-item">
                 <a class="nav-link " href="#" data-placement="left">
                   <i class="bi-folder2-open nav-icon"></i>
-                  <span class="nav-link-title">Settings</span>
+                  <span class="nav-link-title">Commerce Settings</span>
                 </a>
               </div>
 
