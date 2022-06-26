@@ -15,7 +15,10 @@ class UsersController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.users.list');
+       
+        return view('backend.dashboard.users.list', [
+            'users' => User::all()
+        ]);
     }
 
     public function get()
