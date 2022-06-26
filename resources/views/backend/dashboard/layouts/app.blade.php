@@ -25,26 +25,12 @@
   </head>
 <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 <div class="@if (auth()->check() && request()->route()->getName() != "") main-panel @endif">
-                @include('backend.dashboard.layouts.navbars.navbar')
-                @yield('content')
-                @include('backend.dashboard.layouts.footer.nav')
-            </div>
-            /*
-        <div class="wrapper @if (!auth()->check() || request()->route()->getName() == "") wrapper-full-page @endif">
+@include('backend.dashboard.layouts.navbars.navbar')
+@yield('content')
+@include('backend.dashboard.layouts.footer.nav')
+</div>
 
-            @if (auth()->check() && request()->route()->getName() != "")
-                @include('backend.dashboard.layouts.navbars.sidebar')
-                @include('backend.dashboard.pages.sidebarstyle')
-            @endif
-
-            <div class="@if (auth()->check() && request()->route()->getName() != "") main-panel @endif">
-                @include('backend.dashboard.layouts.navbars.navbar')
-                @yield('content')
-                @include('backend.dashboard.layouts.footer.nav')
-            </div>
-
-        </div>
-       */
+  
 
 
     </body>
