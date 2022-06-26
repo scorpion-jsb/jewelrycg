@@ -4,22 +4,17 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card strpied-tabled-with-hover">
-                        <div class="card-header ">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="card-title">Posts</h4>
-                                    <p class="card-category">Manage Posts</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="{{ route('backend.posts.create') }}" class="btn btn-info pull-right"> Add
-                                        Post </a>
-                                </div>
+                    <div class="card">
+                        <div class="card-header card-header-content-md-between">
+                            <div class="mb-2 mb-md-0">
+                                <h3 class="card-header-title">All Posts</h3>
+                                <small class="text-muted">Manage Posts</small>
+                                <a href="{{ route('backend.posts.create') }}" class="btn btn-info pull-right"> Add Post </a>
                             </div>
                         </div>
-                        <div class="card-body table-full-width table-responsive">
-                            <div class="col-md-12">
-                                <table class="table table-hover table-striped ">
+                        <div class="card-body table-responsive datatable-custom position-relative">
+
+                                <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
                                     <thead>
                                         <th>ID</th>
                                        
@@ -47,7 +42,7 @@
                                         @endforeach
                                     </tbody>
                                 </table>
-                            </div>
+                         
                         </div>
                     </div>
                 </div>
