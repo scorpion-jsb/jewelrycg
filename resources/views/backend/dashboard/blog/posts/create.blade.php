@@ -62,17 +62,38 @@
                 </div>
             </div>
             <div class="col-md-4">
-                <div class="col-12">
-                    <button type="submit" class="btn btn-lg btn-primary">Add</button>
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-header-title">Featured Image</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="imagePreview"></div>
+                        <label class="btn btn-primary">
+                            Upload<input type="file" name="cover_image"
+                                class="uploadFile img" value="Upload Photo"
+                                style="width: 0px;height: 0px;overflow: hidden;">
+                        </label>
+                    </div>
                 </div>
-                <div class="col-sm-12 imgUp">
-                    <div class="imagePreview"></div>
-                    <label class="btn btn-primary">
-                        Upload<input type="file" name="cover_image"
-                            class="uploadFile img" value="Upload Photo"
-                            style="width: 0px;height: 0px;overflow: hidden;">
-                    </label>
+                <!-- End Card -->
+                
+                <!-- Card -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-header-title">Publish</h3>
+                        <small class="text-muted">2 days ago</small>
+                    </div>
+                    <div class="card-body">
+                    <!--
+                        <h3 class="card-title">Special title treatment</h3>
+                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                        -->
+                        <button type="submit" class="btn btn-lg btn-primary">Add</button>
+                    </div>
                 </div>
+                <!-- End Card -->
+
             </div>
         </div>
     </form>
