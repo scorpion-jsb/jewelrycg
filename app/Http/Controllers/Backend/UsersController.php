@@ -21,6 +21,19 @@ class UsersController extends Controller
         ]);
     }
 
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function customers()
+    {
+       
+        return view('backend.dashboard.users.list', [
+            'users' => User::where('is_admin', 0)->get()
+        ]);
+    }
+
     public function get()
     {
         return datatables()->of(User::query())

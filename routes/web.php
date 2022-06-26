@@ -64,6 +64,13 @@ use Illuminate\Support\Facades\Route;
             Route::get('/get', [UsersController::class, 'get'])->name('get');
         });
 
+        Route::group([ 
+            'prefix' => 'customers',
+            'as' => 'customers.'
+        ], function() {
+                Route::get('/', [UsersController::class, 'customers'])->name('list');
+            });
+
     //categories routes
     Route::group([ 
         'prefix' => 'catalogue/categories',
