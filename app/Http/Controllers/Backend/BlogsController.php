@@ -21,7 +21,9 @@ class BlogsController extends Controller
     public function index()
     {
       
-        return view('backend.dashboard.blog.posts.list');
+        return view('backend.dashboard.blog.posts.list', [
+            'posts' => BlogPost::all()
+        ]);
     }
 
     public function get()

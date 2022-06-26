@@ -28,6 +28,24 @@
                                         <th>Category</th>
                                         <th>Actions</th>
                                     </thead>
+
+                                    <tbody>
+                                        @foreach ($posts as $post)
+                                        <tr>
+                                        <td>{{ $post->id }}</td>
+                                       
+                                        <td>{{ $post->name }}</td>
+                                        <td>{{ $post->slug }}</td>
+                                        <td>{{ $post->categorie_id }}</td>
+                                        <td>
+                                            <a href="{{ route('backend.posts.edit', $post->id) }}" class="btn btn-white btn-sm" 
+                                                >
+                                                <i class="bi-pencil-fill me-1"></i> Edit
+                                        </a>
+                                        </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
