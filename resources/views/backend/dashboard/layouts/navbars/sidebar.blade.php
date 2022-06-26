@@ -24,19 +24,12 @@
         <!-- Content -->
         <div class="navbar-vertical-content">
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
-            <!-- Collapse -->
             <div class="nav-item">
-              <a class="nav-link dropdown-toggle active" href="#navbarVerticalMenuDashboards" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuDashboards" aria-expanded="true" aria-controls="navbarVerticalMenuDashboards">
-                <i class="bi-house-door nav-icon"></i>
-                <span class="nav-link-title">Dashboards</span>
-              </a>
-
-              <div id="navbarVerticalMenuDashboards" class="nav-collapse collapse show" data-bs-parent="#navbarVerticalMenu">
-                <a class="nav-link active" href="../index.html">Default</a>
-                <a class="nav-link " href="../dashboard-alternative.html">Alternative</a>
+                <a class="nav-link " href="/backend" data-placement="left">
+                  <i class="bi-house-door nav-icon"></i>
+                  <span class="nav-link-title">Dashboard</span>
+                </a>
               </div>
-            </div>
-            <!-- End Collapse -->
 
             <span class="dropdown-header mt-4">Pages</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
