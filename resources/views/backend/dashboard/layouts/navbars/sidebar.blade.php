@@ -172,37 +172,6 @@
 
               <!-- Collapse -->
               <div class="nav-item">
-                <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesProjectsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesProjectsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesProjectsMenu">
-                  <i class="bi-stickies nav-icon"></i>
-                  <span class="nav-link-title">Projects</span>
-                </a>
-
-                <div id="navbarVerticalMenuPagesProjectsMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                  <a class="nav-link " href="../projects.html">Overview</a>
-                  <a class="nav-link " href="../projects-timeline.html">Timeline</a>
-                </div>
-              </div>
-              <!-- End Collapse -->
-
-              <!-- Collapse -->
-              <div class="nav-item">
-                <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesProjectMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesProjectMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesProjectMenu">
-                  <i class="bi-briefcase nav-icon"></i>
-                  <span class="nav-link-title">Project</span>
-                </a>
-
-                <div id="navbarVerticalMenuPagesProjectMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
-                  <a class="nav-link " href="../project.html">Overview</a>
-                  <a class="nav-link " href="../project-files.html">Files</a>
-                  <a class="nav-link " href="../project-activity.html">Activity</a>
-                  <a class="nav-link " href="../project-teams.html">Teams</a>
-                  <a class="nav-link " href="../project-settings.html">Settings</a>
-                </div>
-              </div>
-              <!-- End Collapse -->
-
-              <!-- Collapse -->
-              <div class="nav-item">
                 <a class="nav-link dropdown-toggle  collapsed" href="#" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAuthentication" aria-expanded="false" aria-controls="navbarVerticalMenuAuthentication">
                   <i class="bi-shield-lock nav-icon"></i>
                   <span class="nav-link-title">Authentication</span>
