@@ -112,6 +112,14 @@ class UsersController extends Controller
         
         $user->name = $request->name;
         $user->email = $request->email;
+        $user->phone = $request->phone;
+        $user->address1 = $request->address1;
+        $user->address2 = $request->address2;
+        $user->city = $request->city;
+        $user->state = $request->state;
+        $user->country = $request->country;
+        $user->pin_code = $request->pin_code;
+        $user->email_verified_at = ($request->email_verified_at === 1) ? date('Y-m-d H:i:s') : null;
         $user->is_admin = $request->is_admin;
         if($request->password)
         {
