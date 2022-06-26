@@ -1,75 +1,72 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'blog'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'Add Post', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-12">
-                    <form action="{{ route('backend.posts.store') }}" method="post" enctype="multipart/form-data">
-                        @csrf
-                        <div class="row justify-content-center">
-                            <div class="card col-md-12">
-                                <div class="card-body row">
-                                    @include('includes.validation-form')
-                                    <div class="col-md-12 mb-2">
-                                        <br>
-                                        <div class="container">
-                                            <div class="row">
-                                                <div class="col-sm-12 imgUp">
-                                                    <div class="imagePreview"></div>
-                                                    <label class="btn btn-primary">
-                                                        Upload<input type="file" name="cover_image"
-                                                            class="uploadFile img" value="Upload Photo"
-                                                            style="width: 0px;height: 0px;overflow: hidden;">
-                                                    </label>
-                                                </div><!-- col-2 -->
-                                            </div><!-- row -->
-                                        </div><!-- container -->
-                                    </div>
-                                    <div class="col-md-12 mb-2">
-                                        <label for="name">Name:</label>
-                                        <input type="text" name="name" id="name" value=""
-                                            class="form-control">
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                        <label for="name">Parent:</label>
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <select class="selectpicker" name="categorie_id" data-live-search="true">
-                                                    <option selected disabled>Select Categorie</option>
-                                                    @foreach ($categories as $categorie)
-                                                        <option value="{{ $categorie->id }}"
-                                                            data-tokens="{{ $categorie->category_name }}">
-                                                            {{ $categorie->category_name }}</option>
-                                                    @endforeach
 
-                                                </select>
-                                            </div>
-                                        </div>
+    <div class="row">
+        <div class="col-md-12">
+            <form action="{{ route('backend.posts.store') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="row justify-content-center">
+                    <div class="card col-md-12">
+                        <div class="card-body row">
+                            @include('includes.validation-form')
+                            <div class="col-md-12 mb-2">
+                                <br>
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col-sm-12 imgUp">
+                                            <div class="imagePreview"></div>
+                                            <label class="btn btn-primary">
+                                                Upload<input type="file" name="cover_image"
+                                                    class="uploadFile img" value="Upload Photo"
+                                                    style="width: 0px;height: 0px;overflow: hidden;">
+                                            </label>
+                                        </div><!-- col-2 -->
+                                    </div><!-- row -->
+                                </div><!-- container -->
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="name">Name:</label>
+                                <input type="text" name="name" id="name" value=""
+                                    class="form-control">
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="name">Parent:</label>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <select class="selectpicker" name="categorie_id" data-live-search="true">
+                                            <option selected disabled>Select Categorie</option>
+                                            @foreach ($categories as $categorie)
+                                                <option value="{{ $categorie->id }}"
+                                                    data-tokens="{{ $categorie->category_name }}">
+                                                    {{ $categorie->category_name }}</option>
+                                            @endforeach
 
-
-                                    </div>
-                                    <div class="col-md-6 mb-2">
-                                        <label for="name">Slug:</label>
-                                        <input type="text" name="slug" id="slug" value=""
-                                            class="form-control">
-                                    </div>
-                                    <div class="col-md-12 mb-2">
-                                        <label for="desc">Post:</label>
-                                        <textarea name="post" id="desc" rows="3" class="form-control">
-                                            
-                                        </textarea>
-                                    </div>
-
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn btn-lg btn-outline-success">Add</button>
+                                        </select>
                                     </div>
                                 </div>
+
+
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="name">Slug:</label>
+                                <input type="text" name="slug" id="slug" value=""
+                                    class="form-control">
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="desc">Post:</label>
+                                <textarea name="post" id="desc" rows="3" class="form-control">
+                                    
+                                </textarea>
+                            </div>
+
+                            <div class="col-md-12 text-center">
+                                <button type="submit" class="btn btn-lg btn-outline-success">Add</button>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     </div>
 @endsection
