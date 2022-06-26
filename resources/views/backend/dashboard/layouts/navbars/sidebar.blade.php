@@ -31,7 +31,7 @@
                 </a>
               </div>
 
-            <span class="dropdown-header mt-4">Users</span>
+            <span class="dropdown-header mt-4">{{ __("Users Management") }}</span>
             <small class="bi-three-dots nav-subtitle-replacer"></small>
 
             <!-- Collapse -->
@@ -43,7 +43,7 @@
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesUsersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesUsersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesUsersMenu">
                   <i class="bi-people nav-icon"></i>
-                  <span class="nav-link-title">{{ __("Users Management") }}</span>
+                  <span class="nav-link-title">{{ __("Users") }}</span>
                 </a>
 
                 <div id="navbarVerticalMenuPagesUsersMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
