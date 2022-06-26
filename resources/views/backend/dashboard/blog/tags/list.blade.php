@@ -46,6 +46,18 @@
                             <input type="text" name="name" id="name" value="" class="form-control">
 
                         </div>
+                        <div class="col-md-12 mb-2">
+                            <label for="name">Slug:</label>
+                            <input type="text" name="slug" id="slug" value="" class="form-control">
+
+                        </div>
+
+                        <div class="col-md-12 mb-2">
+                            <label for="name">Description:</label>
+                            <textarea type="text" name="description" id="name" class="form-control">
+                            
+                            </textarea>
+                        </div>
 
                         <div class="col-md-12 mb-2">
                             <button type="submit" class="btn btn-primary col-md-12"> Add </button>
@@ -111,8 +123,13 @@
                                         </div>
                                     </th>
                                     <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable"
-                                        rowspan="1" colspan="1" aria-label="Name: activate to sort column ascending"
-                                        style="width: 202.578125px;">Name</th>
+                                        rowspan="1" colspan="1"
+                                        aria-label="Name: activate to sort column ascending" style="width: 202.578125px;">
+                                        Name</th>
+                                    <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable"
+                                        rowspan="1" colspan="1"
+                                        aria-label="Name: activate to sort column ascending" style="width: 202.578125px;">
+                                        Slug</th>
                                     <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""
                                         style="width: 89.25px;"></th>
                                 </tr>
@@ -123,9 +140,9 @@
                                     <tr>
                                         <td> {{ $tag->id }} </td>
                                         <td> {{ $tag->name }} </td>
+                                        <td> {{ $tag->slug }} </td>
                                         <td>
-                                            <a href=""
-                                                class="btn btn-white btn-sm">
+                                            <a href="" class="btn btn-white btn-sm">
                                                 <i class="bi-pencil-fill me-1"></i> Edit
                                             </a>
                                         </td>
@@ -184,4 +201,19 @@
 
     </div>
     <!-- End Card -->
+@endsection
+
+@section('js_content')
+    <script>
+        $(document).ready(function() {
+            $('#name').keyup(function() {
+                var slug = $(this).val()
+
+                if (slug.charAt(slug.length - 1) != " ") {
+                    $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
+                }
+
+            })
+        })
+    </script>
 @endsection
