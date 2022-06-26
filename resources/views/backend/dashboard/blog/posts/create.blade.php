@@ -3,38 +3,22 @@
 @section('content')
 
     <div class="row">
-        <div class="col-md-12">
-            <form action="{{ route('backend.posts.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('backend.posts.store') }}" method="post" enctype="multipart/form-data">
+            <div class="col-md-8">
                 @csrf
                 <div class="row justify-content-center">
                     <div class="card col-md-12">
                         <div class="card-body row">
                             @include('includes.validation-form')
                             <div class="col-md-12 mb-2">
-                                <br>
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col-sm-12 imgUp">
-                                            <div class="imagePreview"></div>
-                                            <label class="btn btn-primary">
-                                                Upload<input type="file" name="cover_image"
-                                                    class="uploadFile img" value="Upload Photo"
-                                                    style="width: 0px;height: 0px;overflow: hidden;">
-                                            </label>
-                                        </div><!-- col-2 -->
-                                    </div><!-- row -->
-                                </div><!-- container -->
-                            </div>
-                            <div class="col-md-12 mb-2">
                                 <label for="name">Name:</label>
-                                <input type="text" name="name" id="name" value=""
-                                    class="form-control">
+                                <input type="text" name="name" id="name" value="" class="form-control">
                             </div>
                             <div class="col-md-6 mb-2">
-                                <label for="name">Parent:</label>
+                                <label for="name">Category:</label>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <select class="selectpicker" name="categorie_id" data-live-search="true">
+                                        <select class="form-select" name="categorie_id" data-live-search="true">
                                             <option selected disabled>Select Categorie</option>
                                             @foreach ($categories as $categorie)
                                                 <option value="{{ $categorie->id }}"
@@ -66,8 +50,18 @@
                         </div>
                     </div>
                 </div>
-            </form>
-        </div>
+            </div>
+            <div class="col-md-4">
+                <div class="col-sm-12 imgUp">
+                    <div class="imagePreview"></div>
+                    <label class="btn btn-primary">
+                        Upload<input type="file" name="cover_image"
+                            class="uploadFile img" value="Upload Photo"
+                            style="width: 0px;height: 0px;overflow: hidden;">
+                    </label>
+                </div>
+            </div>
+        </form>
     </div>
 @endsection
 
