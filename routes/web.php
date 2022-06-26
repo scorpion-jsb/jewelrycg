@@ -15,6 +15,8 @@ use App\Http\Controllers\Backend\CategorysController;
 use App\Http\Controllers\Backend\VendorsController;
 use App\Http\Controllers\Backend\BlogsController;
 use App\Http\Controllers\Backend\BlogcategoriesController;
+use App\Http\Controllers\Backend\BlogtagsController;
+
 
 
 
@@ -122,6 +124,18 @@ use Illuminate\Support\Facades\Route;
             Route::post('/store', [BlogcategoriesController::class, 'store'])->name('store');
             Route::get('/get', [BlogcategoriesController::class, 'get'])->name('get');
         });
+
+        Route::group([ 
+            'prefix' => 'blog/tags',
+            'as' => 'blog.tags.'
+        ], function() {
+                Route::get('/', [BlogtagsController::class, 'index'])->name('list');
+                Route::get('/create', [BlogtagsController::class, 'create'])->name('create');
+                Route::get('/edit/{id}', [BlogtagsController::class, 'edit'])->name('edit');
+                Route::put('/update/{product}', [BlogtagsController::class, 'update'])->name('update');
+                Route::post('/store', [BlogtagsController::class, 'store'])->name('store');
+                Route::get('/get', [BlogtagsController::class, 'get'])->name('get');
+            });
 
     Route::get('/', [DashboardController::class, 'index'])->name('login');
 

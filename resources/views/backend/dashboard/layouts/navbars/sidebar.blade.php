@@ -70,7 +70,7 @@
                   <a class="nav-link " href="{{ route('backend.posts.list') }}">{{ __("All Post") }}</a>
                   <a class="nav-link " href="{{ route('backend.posts.create') }}">{{ __("Add New") }}</a>
                   <a class="nav-link " href="{{ route('backend.blog.categories.list') }}">{{ __("Categories") }}</a>
-                  <a class="nav-link " href="#">{{ __("Tags") }}</a>
+                  <a class="nav-link " href="{{ route('backend.blog.tags.list') }}">{{ __("Tags") }}</a>
                 </div>
               </div>
               <!-- End Collapse -->
