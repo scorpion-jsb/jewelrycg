@@ -21,6 +21,7 @@
     <!--<link href="{{ asset('backtheme/css/bootstrap.min.css') }}" rel="stylesheet" />-->
     <link rel="stylesheet" href="{{ asset('assets/css/backend/theme.min.css') }}" data-hs-appearance="default" as="style">
     <link rel="preload" href="{{ asset('assets/css/backend/theme-dark.min.css') }}" data-hs-appearance="default" as="style">
+    <link rel="stylesheet" href="{{ asset('assets/vendor/quill/dist/quill.snow.css') }}">
 
   </head>
   <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
