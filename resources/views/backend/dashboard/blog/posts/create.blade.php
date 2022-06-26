@@ -56,14 +56,15 @@
                                 <!-- End Quill -->
                             </div>
 
-                            <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-lg btn-primary">Add</button>
-                            </div>
+                
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-md-4">
+                <div class="col-12">
+                    <button type="submit" class="btn btn-lg btn-primary">Add</button>
+                </div>
                 <div class="col-sm-12 imgUp">
                     <div class="imagePreview"></div>
                     <label class="btn btn-primary">
