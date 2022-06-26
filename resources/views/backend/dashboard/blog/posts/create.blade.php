@@ -105,8 +105,7 @@
             });
         });
     </script>
-@endsection
-<script src="{{ asset('assets/vendor/quill/dist/quill.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/quill/dist/quill.min.js') }}"></script>
 <script src="{{ asset('assets/js/hs.quill.js') }}"></script>
 <script>
 (function() {
@@ -115,3 +114,4 @@
     HSCore.components.HSQuill.init('.js-quill')
 });
 </script>
+@endsection
