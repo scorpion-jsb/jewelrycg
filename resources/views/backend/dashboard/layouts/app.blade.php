@@ -46,16 +46,16 @@
     <!-- ========== END SECONDARY CONTENTS ========== -->
 
     <!-- JS Global Compulsory  -->
-    <script src="../assets/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="../assets/vendor/jquery-migrate/dist/jquery-migrate.min.js"></script>
-    <script src="../assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('assets/vendor/jquery/dist/jquery.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/jquery-migrate/dist/jquery-migrate.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- JS Implementing Plugins -->
-    <script src="../assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside.min.js"></script>
-    <script src="../assets/vendor/hs-form-search/dist/hs-form-search.min.js"></script>
+    <script src="{{ asset('assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside.min.js') }}"></script>
+    <script src="{{ asset('assets/vendor/hs-form-search/dist/hs-form-search.min.js') }}"></script>
 
     <!-- JS Front -->
-    <script src="../assets/js/theme.min.js"></script>
+    <script src="{{ asset('assets/js/theme.min.js') }}"></script>
 
     <!-- JS Plugins Init. -->
     <script>
