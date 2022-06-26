@@ -19,7 +19,9 @@ class VendorsController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.sellers.list');
+        return view('backend.dashboard.users.list', [
+            'users' => User::where('is_admin', 3)->get()
+        ]);
     }
 
     public function get()
