@@ -60,12 +60,12 @@
 
               <!-- Collapse -->
               <div class="nav-item">
-                <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuPagesUserProfileMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesUserProfileMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesUserProfileMenu">
+                <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllPostMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllPostMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllPostMenu">
                   <i class="bi-person nav-icon"></i>
                   <span class="nav-link-title">{{ __("Post") }}</span>
                 </a>
 
-                <div id="navbarVerticalMenuPagesUserProfileMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
+                <div id="navbarVerticalMenuAllPostMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link " href="{{ route('backend.posts.list') }}">{{ __("All Post") }}</a>
                   <a class="nav-link " href="{{ route('backend.posts.create') }}">{{ __("Add New") }}</a>
                   <a class="nav-link " href="{{ route('backend.categories.list') }}">{{ __("Categories") }}</a>
