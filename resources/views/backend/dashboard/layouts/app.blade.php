@@ -23,7 +23,7 @@
     <link rel="preload" href="{{ asset('css/backend/theme-dark.min.css') }}" data-hs-appearance="default" as="style">
 
   </head>
-<body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
+  <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
     @include('backend.dashboard.layouts.navbars.navbar')
     
@@ -32,17 +32,16 @@
         @include('backend.dashboard.pages.sidebarstyle')
     @endif
 
-    <div class="@if (auth()->check() && request()->route()->getName() != "") main-panel @endif">
-        
+    <main id="content" role="main" class="main">
+      <!-- Content -->
+      <div class="content container-fluid">
         @yield('content')
-        @include('backend.dashboard.layouts.footer.nav')
-    </div>
+      </div>
+      @include('backend.dashboard.layouts.footer.nav')
+    </main>
 
-
-  
-
-
-    </body>
+    
+  </body>
         <!--   Core JS Files   -->
     <script src="{{ asset('backtheme/js/core/jquery.3.2.1.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('backtheme/js/core/popper.min.js') }}" type="text/javascript"></script>
