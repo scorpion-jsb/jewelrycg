@@ -88,6 +88,16 @@
               </div>
               <!-- End Collapse -->
 
+              <div class="nav-item">
+                <a class="nav-link " href="#" data-placement="left">
+                  <i class="bi-folder2-open nav-icon"></i>
+                  <span class="nav-link-title">File Manager</span>
+                </a>
+              </div>
+
+              <span class="dropdown-header mt-4">{{ __("Commerce") }}</span>
+              <small class="bi-three-dots nav-subtitle-replacer"></small>
+
               <!-- Collapse -->
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllProductsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllProductsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllProductsMenu">
@@ -104,12 +114,19 @@
               </div>
               <!-- End Collapse -->
 
+              <!-- Collapse -->
               <div class="nav-item">
-                <a class="nav-link " href="#" data-placement="left">
-                  <i class="bi-folder2-open nav-icon"></i>
-                  <span class="nav-link-title">File Manager</span>
+                <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllOrdersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllOrdersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllOrdersMenu">
+                  <i class="bi-person nav-icon"></i>
+                  <span class="nav-link-title">{{ __("Orders") }}</span>
                 </a>
+
+                <div id="navbarVerticalMenuAllOrdersMenu" class="nav-collapse collapse " data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link " href="{{ route('backend.products.list') }}">{{ __("All Orders") }}</a>
+                  <a class="nav-link " href="{{ route('backend.products.create') }}">{{ __("Pending") }} <span class="badge bg-primary rounded-pill ms-1">5</span></a>
+                </div>
               </div>
+              <!-- End Collapse -->
 
               <!-- Collapse -->
               <div class="nav-item">
