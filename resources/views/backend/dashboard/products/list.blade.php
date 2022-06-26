@@ -28,6 +28,29 @@
                                         <th>Category</th>
                                         <th>Actions</th>
                                     </thead>
+                                    <tbody>
+                                        
+                                            @foreach ($products as $product)
+                                            <tr>
+                                            <td>{{ $product->id }}</td>
+                                            <td>{{ $product->name }}</td>
+                                            <td>{{ $product->price }} $</td>
+                                            <td>{{ $product->qty }}</td>
+                                            <td>{{ $product->category }}</td>
+                                            <td>
+                                                <a target="_blank" href="{{ route('products.show', $product->id) }}" class="btn btn-white btn-sm" 
+                                                    >
+                                                    <i class="bi-eye me-1"></i> Preview
+                                                </a>
+                                                <a href="{{ route('backend.products.edit', $product->id) }}" class="btn btn-white btn-sm" 
+                                                    >
+                                                    <i class="bi-pencil-fill me-1"></i> Edit
+                                                </a>
+                                            </td>
+                                            </tr>
+                                            @endforeach
+                                        
+                                    </tbody>
                                 </table>
                             </div>
                         </div>
