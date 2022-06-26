@@ -9,7 +9,7 @@
                             <div class="mb-2 mb-md-0">
                                 <h3 class="card-header-title">All Posts</h3>
                                 <small class="text-muted">Manage Posts</small>
-                                <a href="{{ route('backend.posts.create') }}" class="btn btn-info pull-right"> Add Post </a>
+                                <a href="{{ route('backend.posts.create') }}" class="btn d-block btn-info mt-2"> Add Post </a>
                             </div>
                         </div>
                         <div class="table-responsive datatable-custom position-relative">
