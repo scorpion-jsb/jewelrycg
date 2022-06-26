@@ -12,7 +12,7 @@
                                 <a href="{{ route('backend.posts.create') }}" class="btn btn-info pull-right"> Add Post </a>
                             </div>
                         </div>
-                        <div class="card-body table-responsive datatable-custom position-relative">
+                        <div class="table-responsive datatable-custom position-relative">
 
                                 <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
                                     <thead class="thead-light">
