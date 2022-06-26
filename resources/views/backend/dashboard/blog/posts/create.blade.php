@@ -35,18 +35,15 @@
                             </div>
                             <div class="col-md-6 mb-2">
                                 <label for="name">Slug:</label>
-                                <input type="text" name="slug" id="slug" value=""
-                                    class="form-control">
+                                <input type="text" name="slug" id="slug" value="" class="form-control">
                             </div>
                             <div class="col-md-12 mb-2">
                                 <label for="desc">Post:</label>
-                                <textarea name="post" id="desc" rows="3" class="form-control">
-                                    
-                                </textarea>
+                                <textarea name="post" id="desc" rows="3" class="form-control"></textarea>
                             </div>
 
                             <div class="col-md-12 text-center">
-                                <button type="submit" class="btn btn-lg btn-outline-success">Add</button>
+                                <button type="submit" class="btn btn-lg btn-primary">Add</button>
                             </div>
                         </div>
                     </div>
