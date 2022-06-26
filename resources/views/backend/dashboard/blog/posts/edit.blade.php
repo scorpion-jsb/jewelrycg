@@ -19,8 +19,8 @@
         <div class="col-md-8">
                 @csrf
                 @method('PUT')
-                <div class="row justify-content-center">
-                    <div class="card col-md-12">
+                <div class="justify-content-center">
+                    <div class="card col-md-12 mb-4">
                         <div class="card-body row">
                             @include('includes.validation-form')
 
