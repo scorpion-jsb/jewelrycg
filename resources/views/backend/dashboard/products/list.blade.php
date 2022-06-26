@@ -1,8 +1,7 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'products', 'title' => 'All Products', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
 
 @section('content')
-    <div class="content">
-        <div class="container-fluid">
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
@@ -37,8 +36,10 @@
 
 
             </div>
-        </div>
-    </div>
+@foreach($products as $product)
+{{ $product->name }}
+@endforeach
+
 @endsection
 
 @section('js_content')
