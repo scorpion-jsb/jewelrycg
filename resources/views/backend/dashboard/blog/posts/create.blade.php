@@ -1,7 +1,7 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'Add Post', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
-
+ <link rel="stylesheet" href="{{ asset('assets/vendor/quill/dist/quill.snow.css') }}">
     
     <form action="{{ route('backend.posts.store') }}" method="post" enctype="multipart/form-data">
         <div class="row">
@@ -39,7 +39,7 @@
                             </div>
                             <div class="col-md-12 mb-2">
                                 <label for="desc">Post:</label>
-                                <textarea name="post" id="desc" rows="3" class="form-control"></textarea>
+                                <textarea name="post" id="desc" rows="3" class="form-control js-quill"></textarea>
                             </div>
 
                             <div class="col-md-12 text-center">
@@ -64,6 +64,15 @@
 @endsection
 
 @section('js_content')
+    <script src="{{ asset('assets/vendor/quill/dist/quill.min.js') }}"></script>
+    <script src="{{ asset('assets/js/hs.quill.js') }}"></script>
+    <script>
+    (function() {
+        // INITIALIZATION OF QUILLJS EDITOR
+        // =======================================================
+        HSCore.components.HSQuill.init('.js-quill')
+    });
+    </script>
     <script>
         $(document).ready(function() {
             $('#desc').trumbowyg();
