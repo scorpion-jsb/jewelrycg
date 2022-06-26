@@ -169,6 +169,7 @@
       <div class="navbar-nav-wrap-content-end">
         <!-- Navbar -->
         <ul class="navbar-nav">
+
           <li class="nav-item d-none d-sm-inline-block">
             <!-- Notification -->
             <div class="dropdown">
@@ -573,6 +574,14 @@
               </div>
             </div>
             <!-- End Notification -->
+          </li>
+
+          <li class="nav-item d-none d-sm-inline-block">
+            <!-- Activity -->
+            <button class="btn btn-ghost-secondary btn-icon rounded-circle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasActivityStream" aria-controls="offcanvasActivityStream">
+              <i class="bi-x-diamond"></i>
+            </button>
+            <!-- Activity -->
           </li>
 
           <li class="nav-item">
