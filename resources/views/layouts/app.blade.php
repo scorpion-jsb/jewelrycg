@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{$pageTitle}}</title>
-        <link rel="shortcut icon" type="image/png" href="{{ asset('img/favicon.png') }}"/>
+        <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}"/>
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,300,700" rel="stylesheet" type="text/css">
