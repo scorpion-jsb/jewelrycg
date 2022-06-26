@@ -132,6 +132,13 @@
               <div class="nav-item">
                 <a class="nav-link " href="#" data-placement="left">
                   <i class="bi-folder2-open nav-icon"></i>
+                  <span class="nav-link-title">Coupons</span>
+                </a>
+              </div>
+
+              <div class="nav-item">
+                <a class="nav-link " href="#" data-placement="left">
+                  <i class="bi-folder2-open nav-icon"></i>
                   <span class="nav-link-title">Reports</span>
                 </a>
               </div>
