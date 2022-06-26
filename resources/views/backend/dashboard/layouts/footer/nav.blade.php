@@ -1,22 +1,36 @@
 <!-- Footer -->
-<div class="modal-footer d-block text-center py-sm-5">
-    <small class="text-cap text-muted">Trusted by the world's best teams</small>
-
-    <div class="w-85 mx-auto">
-        <div class="row justify-content-between">
-            <div class="col">
-                <img class="img-fluid" src="../assets/svg/brands/gitlab-gray.svg" alt="Image Description">
-            </div>
-            <div class="col">
-                <img class="img-fluid" src="../assets/svg/brands/fitbit-gray.svg" alt="Image Description">
-            </div>
-            <div class="col">
-                <img class="img-fluid" src="../assets/svg/brands/flow-xo-gray.svg" alt="Image Description">
-            </div>
-            <div class="col">
-                <img class="img-fluid" src="../assets/svg/brands/layar-gray.svg" alt="Image Description">
-            </div>
+<div class="footer">
+      <div class="row justify-content-between align-items-center">
+        <div class="col">
+          <p class="fs-6 mb-0">© Front. <span class="d-none d-sm-inline-block">2022 Htmlstream.</span></p>
         </div>
+        <!-- End Col -->
+
+        <div class="col-auto">
+          <div class="d-flex justify-content-end">
+            <!-- List Separator -->
+            <ul class="list-inline list-separator">
+              <li class="list-inline-item">
+                <a class="list-separator-link" href="#">FAQ</a>
+              </li>
+
+              <li class="list-inline-item">
+                <a class="list-separator-link" href="#">License</a>
+              </li>
+
+              <li class="list-inline-item">
+                <!-- Keyboard Shortcuts Toggle -->
+                <button class="btn btn-ghost-secondary btn btn-icon btn-ghost-secondary rounded-circle" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasKeyboardShortcuts" aria-controls="offcanvasKeyboardShortcuts">
+                  <i class="bi-command"></i>
+                </button>
+                <!-- End Keyboard Shortcuts Toggle -->
+              </li>
+            </ul>
+            <!-- End List Separator -->
+          </div>
+        </div>
+        <!-- End Col -->
+      </div>
+      <!-- End Row -->
     </div>
-</div>
 <!-- End Footer -->
