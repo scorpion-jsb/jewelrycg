@@ -19,8 +19,8 @@
 
     <!-- CSS Front Template -->
     <!--<link href="{{ asset('backtheme/css/bootstrap.min.css') }}" rel="stylesheet" />-->
-    <link rel="preload" href="{{ asset('css/backend/theme.min.css') }}" data-hs-appearance="default" as="style">
-    <link rel="preload" href="{{ asset('css/backend/theme-dark.min.css') }}" data-hs-appearance="default" as="style">
+    <link rel="stylesheet" href="{{ asset('css/backend/theme.min.css') }}" data-hs-appearance="default" as="style">
+    <link rel="stylesheet" href="{{ asset('css/backend/theme-dark.min.css') }}" data-hs-appearance="default" as="style">
 
   </head>
 <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
