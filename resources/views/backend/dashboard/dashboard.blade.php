@@ -1,6 +1,283 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'dashboard', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Dashboard', 'activeButton' => 'laravel'])
 
 @section('content')
+<main id="content" role="main" class="main">
+<!-- Content -->
+<div class="content container-fluid">
+    <div class="row justify-content-lg-center pt-lg-5 pt-xl-10">
+    <div class="col-lg-9 col-xl-8">
+        <!-- Title -->
+        <div class="text-center mb-7">
+        <h1 class="display-4">Layouts</h1>
+        <p>Customize your overview page layout. Choose the one that best fits your needs.</p>
+        </div>
+        <!-- End Title -->
+
+        <span class="divider-center">Demo layouts</span>
+
+        <div class="row my-5 mb-lg-7">
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/demo-layouts-default-classic.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/demo-layouts-default-classic.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/demo-layouts-default-classic.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Default <span>(Classic)</span></h5>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/demo-layouts-nav-tabs.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/demo-layouts-nav-tabs.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/demo-layouts-nav-tabs.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Nav Tabs</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+        </div>
+        <!-- End Row -->
+
+        <span class="divider-center">Header</span>
+
+        <div class="row my-5 mb-lg-7">
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/header-default-container.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/header-default-container.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/header-default-container.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Default</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/header-double-line-container.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/header-double-line-container.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/header-double-line-container.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Double line</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+        </div>
+        <!-- End Row -->
+
+        <span class="divider-center">Sidebar</span>
+
+        <div class="row my-5 mb-lg-7">
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/sidebar-default-classic.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/sidebar-default-classic.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/sidebar-default-classic.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Default <span class="text-body">(Classic)</span></h5>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/sidebar-compact.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/sidebar-compact.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/sidebar-compact.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Compact</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/sidebar-mini.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/sidebar-mini.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/sidebar-mini.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Mini</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+        </div>
+        <!-- End Row -->
+
+        <span class="divider-center">Sidebar Combinations</span>
+
+        <div class="row my-5 mb-lg-7">
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/sidebar-combinations-mini-plus-one-cols.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/sidebar-combinations-mini-plus-one-cols.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/sidebar-combinations-mini-plus-one-cols.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Mini + one columns</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/sidebar-combinations-two-cols.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/sidebar-combinations-two-cols.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/sidebar-combinations-two-cols.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Two columns</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/sidebar-combinations-two-plus-mini-cols.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/sidebar-combinations-two-plus-mini-cols.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/sidebar-combinations-two-plus-mini-cols.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Two + mini columns</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/sidebar-combinations-two-cols-between.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/sidebar-combinations-two-cols-between.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/sidebar-combinations-two-cols-between.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Two columns between</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+        </div>
+        <!-- End Row -->
+
+        <span class="divider-center">Sidebar Detached</span>
+
+        <div class="row my-5 mb-lg-7">
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/sidebar-detached-container.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/sidebar-detached-container.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/sidebar-detached-container.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Container</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/sidebar-detached-overlay-container.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/sidebar-detached-overlay-container.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/sidebar-detached-overlay-container.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Overlay</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+        </div>
+        <!-- End Row -->
+
+        <span class="divider-center">Content Combinations</span>
+
+        <div class="row my-5 mb-lg-7">
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/content-combinations-content-centered.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/content-combinations-content-centered.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/content-combinations-content-centered.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Medium content centered</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/content-combinations-overlay.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/content-combinations-overlay.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/content-combinations-overlay.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Overlay</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+
+        <div class="col-sm-6 col-lg-4 mb-3 mb-lg-5">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/content-combinations-container-overlay.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/content-combinations-container-overlay.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/content-combinations-container-overlay.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Container Overlay</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+        </div>
+        <!-- End Row -->
+
+        <span class="divider-center">Footer</span>
+
+        <div class="row mt-5">
+        <div class="col-sm-6 col-lg-4">
+            <!-- Card -->
+            <a class="d-block card-transition mb-3" href="../layouts/footer-default-container.html">
+            <img class="img-fluid w-100" src="../assets/svg/layouts/footer-default-container.svg" alt="Image Description" data-hs-theme-appearance="default">
+            <img class="img-fluid w-100" src="../assets/svg/layouts-light/footer-default-container.svg" alt="Image Description" data-hs-theme-appearance="dark">
+            </a>
+
+            <div class="text-center">
+            <h5 class="mb-0">Default</h5>
+            </div>
+            <!-- End Card -->
+        </div>
+        </div>
+        <!-- End Row -->
+    </div>
+    </div>
+    <!-- End Row -->
+</div>
+<!-- End Content -->
+</main>
+<!-- ========== END MAIN CONTENT ========== -->
+@endsection
+
+@section('content')
     <div class="content">
         <div class="container-fluid">
             <div class="row">
