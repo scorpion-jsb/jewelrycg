@@ -1,7 +1,24 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'All Post', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
+<div class="page-header">
+    <div class="row align-items-end">
+        <div class="col-sm mb-2 mb-sm-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-no-gutter">
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Users</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                </ol>
+            </nav>
 
+            <h1 class="page-header-title">All Posts</h1>
+        </div>
+        <!-- End Col -->
+
+    </div>
+    <!-- End Row -->
+</div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
