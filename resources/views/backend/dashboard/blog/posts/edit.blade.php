@@ -56,6 +56,18 @@
                                     class="form-control">
                             </div>
                             <div class="col-md-12 mb-2">
+                                <label for="name">Tags:</label>
+                                <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
+                                    @foreach ($tags as $tag)
+                                        <option
+                                        @if($post->tags->contains('id_tag',$tag->id))
+                                            selected
+                                        @endif
+                                         value='{{ $tag->id }}'> {{ $tag->name }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-2">
                                 <label for="desc">Post:</label>
                                 <textarea name="post" id="desc" rows="3" class="form-control">
                                     {{ $post->post }}
@@ -138,6 +150,13 @@
                 }
 
             });
+            $('.select2').select2({
+            
+            tags: true,
+            maximumSelectionLength: 100,
+            tokenSeparators: [','],
+            placeholder: "Select or type keywords",
+            })
         });
     </script>
 @endsection

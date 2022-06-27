@@ -8,8 +8,7 @@ use App\Models\BlogPost;
 use App\Models\BlogTags;
 use App\Http\Requests\PostStoreRequest;
 use App\Models\BlogCategorie;
-
-
+use App\Models\BlogPostTag;
 
 
 class BlogsController extends Controller
@@ -58,6 +57,20 @@ class BlogsController extends Controller
         ]);
     }
 
+    private function generateSlug($string)
+    {
+        return str_replace(' ', '-', $string);
+    }
+
+    private function registerNewTag($tag)
+    {
+        $blogtag = BlogTags::create([
+            'name' => $tag,
+            'slug' => $this->generateSlug($tag),
+        ]);
+        return $blogtag->id;
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -66,11 +79,23 @@ class BlogsController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
+
+        $tags = $request->input('tags');
         $blog = new BlogPost();
         $data = $request->input();
         $data['cover_image'] = $blog->storeImages($request->cover_image);
         $data['tags_id'] = 1;
-        $blog->create($data);
+
+        $post_id = $blog->create($data)->id;
+        foreach( $tags as $tag )
+        {
+            $id_tag = (!is_numeric($tag)) ? $this->registerNewTag($tag) : $tag;
+            BlogPostTag::create([
+                'id_tag' => $id_tag,
+                'id_post' => $post_id
+             ]);
+
+        }
         return redirect()->route('backend.posts.list');
     }
 
@@ -94,8 +119,9 @@ class BlogsController extends Controller
     public function edit($id)
     {
         return view('backend.dashboard.blog.posts.edit', [
-            'post' => BlogPost::findOrFail($id),
-            'categories' => BlogCategorie::all()
+            'post' => BlogPost::whereId($id)->with('tags')->firstOrFail(),
+            'categories' => BlogCategorie::all(),
+            'tags' => BlogTags::all()
         ]);
     }
 
@@ -108,6 +134,7 @@ class BlogsController extends Controller
      */
     public function update(PostStoreRequest $request, $id)
     {
+        $tags = $request->input('tags');
         $blog = BlogPost::findOrFail($id);
         $data = $request->input();
         if($request->cover_image)
@@ -116,6 +143,15 @@ class BlogsController extends Controller
         }
         $data['tags_id'] = 1;
         $blog->update($data);
+        BlogPostTag::where('id_post', $blog->id)->delete();
+        foreach( $tags as $tag )
+        {
+            $id_tag = (!is_numeric($tag)) ? $this->registerNewTag($tag) : $tag;
+            BlogPostTag::create([
+                'id_tag' => $id_tag,
+                'id_post' => $blog->id
+             ]);
+        }
         return redirect()->route('backend.posts.list');
     }
 

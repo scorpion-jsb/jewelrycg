@@ -21,15 +21,13 @@ class BlogPost extends Model
 
     public function storeImages($images)
     {
-        
-        
         $image = Storage::disk('public')->put('blog/post', $images); 
         $path = Storage::disk('public')->url('blog/post', $images);
-        
         return $path;
+    }
 
-
-        
-        
+    public function tags()
+    {
+        return $this->hasMany(BlogPostTag::class, 'id_post' , 'id');
     }
 }
