@@ -11,13 +11,9 @@
                                 <div class="col-md-6">
                                     <h4 class="card-title">Blog Categories</h4>
                                     <p class="card-category">Manage Blog Categories</p>
+                                    <a href="{{ route('backend.blog.categories.create') }}" class="btn d-block btn-info mt-2">Add Blog Categories</a>
                                 </div>
 
-                                <div class="col-md-6">
-                                    <a href="{{ route('backend.blog.categories.create') }}" class="btn btn-info pull-right">
-                                        Add Blog
-                                        Categorie </a>
-                                </div>
                             </div>
                         </div>
                         <div class="card-body table-full-width table-responsive">
