@@ -1,7 +1,24 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'Add Post', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
-    
+<div class="page-header">
+    <div class="row align-items-end">
+        <div class="col-sm mb-2 mb-sm-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-no-gutter">
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Users</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                </ol>
+            </nav>
+
+            <h1 class="page-header-title">Add new post</h1>
+        </div>
+        <!-- End Col -->
+
+    </div>
+    <!-- End Row -->
+</div>    
     <form action="{{ route('backend.posts.store') }}" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-8">
@@ -89,7 +106,7 @@
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="card-header-title">Publish</h3>
+                        <h3 class="card-header-title">Status</h3>
                         <small class="text-muted">2 days ago</small>
                     </div>
                     <div class="card-body">
@@ -97,7 +114,7 @@
                         <h3 class="card-title">Special title treatment</h3>
                         <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
                         -->
-                        <button type="submit" class="btn btn-lg btn-primary">Add</button>
+                        <button type="submit" class="btn btn-lg btn-primary">Publish</button>
                     </div>
                 </div>
                 <!-- End Card -->
