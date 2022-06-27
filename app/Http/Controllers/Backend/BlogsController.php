@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\BlogPost;
+use App\Models\BlogTags;
 use App\Http\Requests\PostStoreRequest;
 use App\Models\BlogCategorie;
 
@@ -52,7 +53,8 @@ class BlogsController extends Controller
     public function create()
     {
         return view('backend.dashboard.blog.posts.create',[
-            'categories' => BlogCategorie::all()
+            'categories' => BlogCategorie::all(),
+            'tags' => BlogTags::all()
         ]);
     }
 

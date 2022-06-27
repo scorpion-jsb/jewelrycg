@@ -37,6 +37,14 @@
                                 <input type="text" name="slug" id="slug" value="" class="form-control">
                             </div>
                             <div class="col-md-12 mb-2">
+                                <label for="name">Tags:</label>
+                                <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
+                                    @foreach ($tags as $tag)
+                                        <option value='{{ $tag->id }}'> {{ $tag->name }} </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="col-md-12 mb-2">
                                 <label for="desc">Post:</label>
                                 <textarea name="post" id="desc" rows="6" class="form-control"></textarea>
                                 <!-- Quill -->
@@ -139,6 +147,14 @@
                 }
 
             });
+
+            $('.select2').select2({
+            
+            tags: true,
+            maximumSelectionLength: 10,
+            tokenSeparators: [',', ' '],
+            placeholder: "Select or type keywords",
+            })
         });
     </script>
     <script src="{{ asset('assets/vendor/quill/dist/quill.min.js') }}"></script>

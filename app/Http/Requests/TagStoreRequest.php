@@ -24,8 +24,10 @@ class TagStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|unique:blog_tags',
-            'slug' => 'required|string|unique:blog_tags',
+            'name' => 'required|string',
+            'slug' => 'required|string',
+            'description' => 'nullable',
+
         ];
     }
 }

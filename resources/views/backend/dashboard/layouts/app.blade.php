@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/backend/theme.min.css') }}" data-hs-appearance="default" as="style">
     <link rel="preload" href="{{ asset('assets/css/backend/theme-dark.min.css') }}" data-hs-appearance="default" as="style">
     <link rel="stylesheet" href="{{ asset('assets/vendor/quill/dist/quill.snow.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.0/ui/trumbowyg.css" />
 
   </head>
   <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
@@ -57,6 +59,9 @@
 
     <!-- JS Front -->
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.0/trumbowyg.min.js"></script>
+
 
     <!-- JS Plugins Init. -->
     <script>

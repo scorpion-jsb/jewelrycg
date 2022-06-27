@@ -62,7 +62,9 @@ class BlogtagsController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('backend.dashboard.blog.tags.edit', [
+            'tag' => BlogTags::findOrFail($id)
+        ]);
     }
 
     /**
@@ -72,9 +74,11 @@ class BlogtagsController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TagStoreRequest $request, $id)
     {
-        //
+        $tag = BlogTags::findOrFail($id);
+        $tag->update($request->input());
+        return redirect()->route('backend.blog.tags.list');
     }
 
     /**
