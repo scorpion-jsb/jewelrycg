@@ -24,7 +24,6 @@
                     <div class="card">
                         <div class="card-header card-header-content-md-between">
                             <div class="mb-2 mb-md-0">
-                                <h3 class="card-header-title">All Posts</h3>
                                 <small class="text-muted">Manage Posts</small>
                                 <a href="{{ route('backend.posts.create') }}" class="btn d-block btn-info mt-2"> Add Post </a>
                             </div>
