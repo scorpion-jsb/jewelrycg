@@ -1,6 +1,24 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'All Categories', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
+<div class="page-header">
+    <div class="row align-items-end">
+        <div class="col-sm mb-2 mb-sm-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-no-gutter">
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Users</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                </ol>
+            </nav>
+
+            <h1 class="page-header-title">All Categories</h1>
+        </div>
+        <!-- End Col -->
+
+    </div>
+    <!-- End Row -->
+</div>    
     <div class="content">
         <div class="container-fluid">
             <div class="row">
@@ -9,8 +27,7 @@
                         <div class="card-header ">
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4 class="card-title">Blog Categories</h4>
-                                    <p class="card-category">Manage Blog Categories</p>
+                                    <h4 class="card-title">Manage Blog Categories</h4>
                                     <a href="{{ route('backend.blog.categories.create') }}" class="btn btn-info mt-2">Add Blog Category</a>
                                 </div>
 
