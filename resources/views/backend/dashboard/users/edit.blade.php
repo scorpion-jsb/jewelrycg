@@ -1,6 +1,15 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'users', 'title' => 'Edit User', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
 
 @section('content')
+    <!-- Page Header -->
+    <div class="page-header">
+        <div class="row align-items-end">
+            <h1 class="page-header-title">Edit User</h1>
+        </div>
+        <!-- End Row -->
+    </div>
+    <!-- End Page Header -->
+
     <div class="row">
                 <div class="col-md-12">
                     <div class="row justify-content-center">
