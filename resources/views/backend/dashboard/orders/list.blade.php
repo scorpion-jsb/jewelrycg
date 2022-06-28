@@ -22,18 +22,18 @@
         <table class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
             <thead class="thead-light">
                 <tr role="row">
-                    <th class="table-column-pe-0 sorting_disabled" rowspan="1" colspan="1" aria-label="" style="width: 24px;">
+                    <th class="table-column-pe-0 sorting_disabled" rowspan="1" colspan="1" aria-label="">
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
                             <label class="form-check-label" for="datatableCheckAll"></label>
                         </div>
                     </th>
-                    <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Order: activate to sort column ascending" style="width: 70px;">Order</th>
+                    <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Order: activate to sort column ascending">Order</th>
                     <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Payment status: activate to sort column ascending">Order Total</th>
-                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending" style="width: 161px;">Date</th>
-                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending" style="width: 130px;">Customer</th>
-                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Fulfillment status: activate to sort column ascending" style="width: 150px;">Fulfillment status</th>
-                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending" style="width: 119px;">Actions</th>
+                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Date: activate to sort column ascending">Date</th>
+                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Customer: activate to sort column ascending">Customer</th>
+                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Fulfillment status: activate to sort column ascending">Fulfillment status</th>
+                    <th class="sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1" aria-label="Actions: activate to sort column ascending">Actions</th>
                 </tr>
             </thead>
             <tbody>
