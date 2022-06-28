@@ -1,8 +1,13 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'categories', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
 
 @section('content')
-    <div class="content">
-        <div class="container-fluid">
+<div class="page-header">
+    <div class="row align-items-end">
+        <h1 class="page-header-title">Create Category</h1>
+    </div>
+    <!-- End Row -->
+</div>  
+
             <div class="row">
                 <div class="col-md-12">
                     <form action="{{route('backend.categories.store')}}" method="post" enctype="multipart/form-data">
@@ -50,8 +55,7 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
+
     @endsection
 
     @section('js_content')
