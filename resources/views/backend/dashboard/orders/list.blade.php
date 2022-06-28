@@ -34,7 +34,10 @@
                         <td>${{$order->total_price}}</td>
                         <td>
                             <div class="d-flex justify-content-center">
-                                <a href="{{route('orders.show', $order->id)}}" class="btn btn-primary">Details</a>
+                                <a href="{{ route('orders.show', $order->id) }}" class="btn btn-white btn-sm" 
+                                    >
+                                    <i class="bi-list"></i> Details
+                            </a>
                             </div>
                         </td>
                     </tr>
