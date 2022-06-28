@@ -63,22 +63,6 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <!-- Card -->
-            <div class="card mb-3 mb-lg-5">
-                <!-- Header -->
-                <div class="card-header">
-                <h4 class="card-header-title">Status</h4>
-                </div>
-                <!-- End Header -->
-
-                <!-- Body -->
-                <div class="card-body">
-                    <div class="mb-4">
-                        <button type="submit" class="btn btn-lg btn-primary">Add Product</button>
-                    </div>
-                </div>
-            </div>
-            <!-- End Card -->
             
             <!-- Card -->
             <div class="card mb-3 mb-lg-5">
@@ -130,6 +114,22 @@
             </div>
             <!-- End Card -->
 
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
+                <h4 class="card-header-title">Status</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="mb-4">
+                        <button type="submit" class="btn btn-lg btn-primary">Add Product</button>
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
         </div>
     </div>
 </form>
