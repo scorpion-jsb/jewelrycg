@@ -19,8 +19,7 @@
     </div>
     <!-- End Row -->
 </div>    
-    <div class="content">
-        <div class="container-fluid">
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
@@ -69,8 +68,7 @@
 
 
             </div>
-        </div>
-    </div>
+  
 @endsection
 
 @section('js_content')
