@@ -68,6 +68,23 @@
             <div class="card mb-3 mb-lg-5">
                 <!-- Header -->
                 <div class="card-header">
+                <h4 class="card-header-title">Status</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="mb-4">
+                        <button type="submit" class="btn btn-lg btn-primary">Add Product</button>
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
+            
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
                 <h4 class="card-header-title">Pricing</h4>
                 </div>
                 <!-- End Header -->
@@ -86,42 +103,12 @@
             <div class="card mb-3 mb-lg-5">
                 <!-- Header -->
                 <div class="card-header">
-                <h4 class="card-header-title">Options</h4>
-                </div>
-                <!-- End Header -->
-
-                <!-- Body -->
-                <div class="card-body">
-                    <div class="mb-4">
-                        <label for="priceNameLabel" class="form-label">Digital?</label>
-                        <input type="text" name="price" id="price" class="form-control" placeholder="80.00...">
-                    </div>
-                    <div class="mb-4">
-                        <label for="priceNameLabel" class="form-label">Virtual?</label>
-                        <input type="text" name="price" id="price" class="form-control" placeholder="80.00...">
-                    </div>
-                </div>
-            </div>
-            <!-- End Card -->
-
-            <!-- Card -->
-            <div class="card mb-3 mb-lg-5">
-                <!-- Header -->
-                <div class="card-header">
                 <h4 class="card-header-title">Organization</h4>
                 </div>
                 <!-- End Header -->
 
                 <!-- Body -->
                 <div class="card-body">
-                    <label class="row form-check form-switch" for="availabilitySwitch1">
-                        <span class="col-8 col-sm-9 ms-0">
-                            <span class="text-dark">Availability</span>
-                        </span>
-                        <span class="col-4 col-sm-3 text-end">
-                            <input type="checkbox" class="form-check-input" id="availabilitySwitch1">
-                        </span>
-                    </label>
                     <div class="mb-4">
                         <label for="category">Category:</label>
                         <div class="col-md-12">
