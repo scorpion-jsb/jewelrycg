@@ -19,9 +19,7 @@
                                 </div>
 
                                 <div class="col-md-6">
-                                    <a href="{{ route('backend.categories.create') }}" class="btn btn-info pull-right">
-                                        Add
-                                        Categorie </a>
+                                    <a href="{{ route('backend.categories.create') }}" class="btn btn-info pull-right">Add Category</a>
                                 </div>
                             </div>
                         </div>
