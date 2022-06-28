@@ -127,7 +127,7 @@
                                 <td>{{ $user->country }}</td>
                                 <td>
                                   @if($user->email_verified_at == null)
-                                  <span class="legend-indicator bg-warning"></span>Unerified
+                                  <span class="legend-indicator bg-warning"></span>Unverified
 
                                   @else
                                     <span class="legend-indicator bg-success"></span>Verified
