@@ -13,13 +13,10 @@
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="mb-2 mb-md-0">
                                     <h4 class="card-title">Products</h4>
                                     <p class="card-category">Manage products</p>
-                                </div>
-                                <div class="col-md-6">
-                                    <a href="{{ route('backend.products.create') }}" class="btn btn-info pull-right"> Add
-                                        Product </a>
+                                    <a href="{{ route('backend.products.create') }}" class="btn d-block btn-info mt-2"> Add Product </a>
                                 </div>
                             </div>
                         </div>
