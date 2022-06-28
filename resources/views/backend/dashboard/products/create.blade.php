@@ -59,11 +59,6 @@
                             for="images">Images</label>
                         <input type="file" name="images[]" id="images" class="form-control" multiple>
                     </div>
-                    <div class="col-md-12 text-center">
-                        <button type="submit"
-                            class="btn btn-lg btn-outline-success">Add</button>
-                    </div>
-
                 </div>
             </div>
         </div>
@@ -113,6 +108,23 @@
                                 <option value='{{ $tag->id }}'> {{ $tag->name }} </option>
                             @endforeach
                         </select>
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
+                <h4 class="card-header-title">Status</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="mb-4">
+                        <button type="submit" class="btn btn-lg btn-outline-success">Add</button>
                     </div>
                 </div>
             </div>
