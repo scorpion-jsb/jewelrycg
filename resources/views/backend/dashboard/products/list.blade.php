@@ -20,9 +20,9 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="card-body table-full-width table-responsive">
+                        <div class="table-responsive datatable-custom">
                             <div class="col-md-12">
-                                <table class="table table-hover table-striped ">
+                                <table class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
                                     <thead>
                                         <th class="table-column-pe-0 sorting_disabled" aria-label="">
                                             <div class="form-check">
