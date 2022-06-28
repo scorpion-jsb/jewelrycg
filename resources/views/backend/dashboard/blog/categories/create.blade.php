@@ -1,6 +1,13 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'blogcategories', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
+<div class="page-header">
+    <div class="row align-items-end">
+        <h1 class="page-header-title">Create Category</h1>
+    </div>
+    <!-- End Row -->
+</div>   
+
     <div class="content">
         <div class="container-fluid">
             <div class="row">
