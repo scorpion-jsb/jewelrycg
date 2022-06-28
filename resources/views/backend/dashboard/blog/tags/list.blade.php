@@ -1,4 +1,4 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'users', 'title' => 'All Users', 'navName' => 'Table List', 'activeButton' => 'laravel'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'All Users', 'navName' => 'Table List', 'activeButton' => 'laravel'])
 
 @section('content')
     <!-- Page Header -->
