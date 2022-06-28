@@ -1,9 +1,29 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'products', 'title' => 'Add Product', 'navName' => 'addproduct', 'activeButton' => 'catalogue'])
 
 @section('content')
+
 <div class="page-header">
-    <div class="row align-items-end">
-        <h1 class="page-header-title">Add Product</h1>
+    <div class="row align-items-center">
+        <div class="col-sm mb-2 mb-sm-0">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb breadcrumb-no-gutter">
+                    <li class="breadcrumb-item"><a class="breadcrumb-link" href="#">Products</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+                </ol>
+            </nav>
+
+            <h1 class="page-header-title">Add Product</h1>
+
+            <div class="mt-2">
+                <a class="text-body me-3" href="javascript:;">
+                    <i class="bi-clipboard me-1"></i> Duplicate
+                </a>
+                <a class="text-body" href="javascript:;">
+                    <i class="bi-eye me-1"></i> Preview
+                </a>
+            </div>
+        </div>
+        <!-- End Col -->
     </div>
     <!-- End Row -->
 </div>
