@@ -168,7 +168,7 @@
             
             tags: true,
             maximumSelectionLength: 10,
-            tokenSeparators: [',', ' '],
+            tokenSeparators: [','],
             placeholder: "Select or type keywords",
             })
         });
