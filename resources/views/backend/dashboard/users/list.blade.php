@@ -7,9 +7,8 @@
             <div class="col-sm mb-2 mb-sm-0">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-no-gutter">
-                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Users</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                        <li class="breadcrumb-item">Users</li>
+                        <li class="breadcrumb-item active" aria-current="page">Users List</li>
                     </ol>
                 </nav>
 
@@ -127,7 +126,7 @@
                                 <td>{{ $user->country }}</td>
                                 <td>
                                   @if($user->email_verified_at == null)
-                                  <span class="legend-indicator bg-warning"></span>Unerified
+                                  <span class="legend-indicator bg-warning"></span>Unverified
 
                                   @else
                                     <span class="legend-indicator bg-success"></span>Verified
