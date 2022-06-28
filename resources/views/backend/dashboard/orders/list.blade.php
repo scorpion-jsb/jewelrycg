@@ -1,6 +1,13 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'orders', 'title' => 'All Orders', 'navName' => 'orderslist', 'activeButton' => 'catalogue'])
 
 @section('content')
+<div class="page-header">
+    <div class="row align-items-end">
+        <h1 class="page-header-title">All Orders</h1>
+    </div>
+    <!-- End Row -->
+</div>  
+
 <div class="card">
     <div class="card-body">
         <table class="table">
