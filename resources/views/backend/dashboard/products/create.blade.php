@@ -148,6 +148,40 @@
             <div class="card mb-3 mb-lg-5">
                 <!-- Header -->
                 <div class="card-header">
+                <h4 class="card-header-title">Thumbnail</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="mb-4">
+                        <!-- Avatar -->
+                        <label class="avatar avatar-xl avatar-circle avatar-uploader me-5" for="avatarUploader">
+                          <img id="avatarImg" class="avatar-img" src="./assets/img/160x160/img1.jpg" alt="Image Description">
+
+                          <input type="file" class="js-file-attach avatar-uploader-input" id="avatarUploader" data-hs-file-attach-options='{
+                                    "textTarget": "#avatarImg",
+                                    "mode": "image",
+                                    "targetAttr": "src",
+                                    "resetTarget": ".js-file-attach-reset-img",
+                                    "resetImg": "./assets/img/160x160/img1.jpg",
+                                    "allowTypes": [".png", ".jpeg", ".jpg"]
+                                 }'>
+
+                          <span class="avatar-uploader-trigger">
+                            <i class="bi-pencil avatar-uploader-icon shadow-sm"></i>
+                          </span>
+                        </label>
+                        <!-- End Avatar -->
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
                 <h4 class="card-header-title">Status</h4>
                 </div>
                 <!-- End Header -->
