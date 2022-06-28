@@ -1,6 +1,12 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'blog'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'Edit Post', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
+<div class="page-header">
+    <div class="row align-items-end">
+        <h1 class="page-header-title">Edit Post</h1>
+    </div>
+    <!-- End Row -->
+</div>    
     <style>
         .imagePreviewUpdate {
             width: 100%;
