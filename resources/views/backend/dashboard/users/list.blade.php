@@ -7,9 +7,8 @@
             <div class="col-sm mb-2 mb-sm-0">
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb breadcrumb-no-gutter">
-                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Users</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Overview</li>
+                        <li class="breadcrumb-item">Users</li>
+                        <li class="breadcrumb-item active" aria-current="page">Users List</li>
                     </ol>
                 </nav>
 
