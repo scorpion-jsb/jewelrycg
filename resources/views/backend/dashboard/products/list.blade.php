@@ -11,7 +11,7 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
-                        <div class="card-header ">
+                        <div class="card-header card-header-content-md-between">
                             <div class="row">
                                 <div class="mb-2 mb-md-0">
                                     <h4 class="card-title">Products</h4>
