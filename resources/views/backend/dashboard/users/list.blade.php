@@ -4,10 +4,7 @@
     <!-- Page Header -->
     <div class="page-header">
         <div class="row align-items-end">
-            <div class="col-sm mb-2 mb-sm-0">
-                <h1 class="page-header-title">Users</h1>
-            </div>
-            <!-- End Col -->
+            <h1 class="page-header-title">Users</h1>
         </div>
         <!-- End Row -->
     </div>
