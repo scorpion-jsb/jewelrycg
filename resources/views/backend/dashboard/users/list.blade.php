@@ -85,10 +85,24 @@
                                   Seller
                                 @endif</td>
                                 <td>
-                                    <a href="{{ route('backend.users.edit', $user->id) }}" class="btn btn-white btn-sm" 
-                                        >
-                                        <i class="bi-pencil-fill me-1"></i> Edit
-                                </a>
+                                    <div class="btn-group" role="group">
+                                        <a class="btn btn-white btn-sm" href="{{ route('orders.show', $order->id) }}"> <i class="bi-eye"></i> View </a>
+                                        <!-- Button Group -->
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                            <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
+                                                <span class="dropdown-header">Options</span>
+                                                <a href="{{ route('backend.users.edit', $user->id) }}" class="js-export-print dropdown-item">
+                                                    <i class="bi-pencil-fill me-1"></i> Edit User
+                                                </a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="javascript:;"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
+                                            </div>
+                                        </div>
+                                        <!-- End Unfold -->
+                                    </div>
+                                    <!-- End Button -->
+                                    
                                 </td>
                             </tr>
                         @endforeach
