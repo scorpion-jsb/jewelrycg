@@ -1,6 +1,12 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'Edit Blog Category', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
+<div class="page-header">
+    <div class="row align-items-end">
+        <h1 class="page-header-title">Edit Blog Category</h1>
+    </div>
+    <!-- End Row -->
+</div>    
     <div class="content">
         <div class="container-fluid">
             <div class="row">
