@@ -27,6 +27,7 @@
                                                             <div class="col-md-12 mb-2">
                                                                 <label for="desc">Description:</label>
                                                                 <textarea name="desc" value='{{ $product->desc }}' id="desc" rows="3" class="form-control">
+                                                                    {{ $product->desc }}
                                                                 </textarea>
                                                             </div>
                                                             <div class="col-md-6 mb-2">
