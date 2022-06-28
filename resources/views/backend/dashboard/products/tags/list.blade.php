@@ -1,28 +1,12 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'users', 'title' => 'All Users', 'navName' => 'Table List', 'activeButton' => 'laravel'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'users', 'title' => 'All Users', 'navName' => 'productstags', 'activeButton' => 'laravel'])
 
 @section('content')
-    <!-- Page Header -->
-    <div class="page-header">
-        <div class="row align-items-end">
-            <div class="col-sm mb-2 mb-sm-0">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-no-gutter">
-                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Pages</a></li>
-                        <li class="breadcrumb-item"><a class="breadcrumb-link" href="javascript:;">Users</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Overview</li>
-                    </ol>
-                </nav>
-
-                <h1 class="page-header-title">Blogs</h1>
-            </div>
-            <!-- End Col -->
-
-        </div>
-        <!-- End Row -->
+<div class="page-header">
+    <div class="row align-items-end">
+        <h1 class="page-header-title">All Product Tags</h1>
     </div>
-    <!-- End Page Header -->
-
-
+    <!-- End Row -->
+</div>
 
     <!-- Card -->
     <div class="row">
