@@ -95,7 +95,7 @@ class ProductsController extends Controller
              ]);
 
         }
-        return redirect()->route('products.show', $product->id);
+        return redirect()->route('backend.products.edit', $product->id);
     }
 
     /**
@@ -153,7 +153,7 @@ class ProductsController extends Controller
         }
         cache()->forget('todays-deals');
 
-        return redirect()->route('products.show', $product->id);
+        return redirect()->route('backend.products.edit', $product->id);
     }
 
     /**
