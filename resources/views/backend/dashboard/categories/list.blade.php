@@ -11,15 +11,12 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
-                        <div class="card-header ">
+                        <div class="card-header card-header-content-md-between">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="mb-2 mb-md-0">
                                     <h4 class="card-title">Categories</h4>
                                     <p class="card-category">Manage Categories</p>
-                                </div>
-
-                                <div class="col-md-6">
-                                    <a href="{{ route('backend.categories.create') }}" class="btn btn-info pull-right">Add Category</a>
+                                    <a href="{{ route('backend.categories.create') }}" class="btn d-block btn-info mt-2">Add Category</a>
                                 </div>
                             </div>
                         </div>
