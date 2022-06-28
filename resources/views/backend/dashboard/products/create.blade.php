@@ -48,10 +48,7 @@
                         <label for="desc">Description:</label>
                         <textarea name="desc" id="desc" rows="3" class="form-control"></textarea>
                     </div>
-                    <div class="col-md-6 mb-2">
-                        <label for="price">Price:</label>
-                        <input type="text" name="price" id="price" class="form-control" placeholder="80.00...">
-                    </div>
+
                     <div class="col-md-6 mb-2">
                         <label for="qty">Quantity in Stock:</label>
                         <input type="number" name="qty" id="qty" class="form-control" min="0">
@@ -99,6 +96,10 @@
 
                 <!-- Body -->
                 <div class="card-body">
+                    <div class="mb-4">
+                        <label for="priceNameLabel" class="form-label">Price</label>
+                        <input type="text" name="price" id="price" class="form-control" placeholder="80.00...">
+                    </div>
                 </div>
             </div>
             <!-- End Card -->
