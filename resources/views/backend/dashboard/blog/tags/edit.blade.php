@@ -8,8 +8,6 @@
     <!-- End Row -->
 </div>  
 
-    <div class="content">
-        <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
                     <form action="{{route('backend.blog.tags.update', $tag->id)}}" method="post" enctype="multipart/form-data">
@@ -43,8 +41,7 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
+
     @endsection
 
     @section('js_content')
