@@ -1,8 +1,14 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'categories', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'categories', 'title' => 'Edit Product Tag', 'navName' => 'productstags', 'activeButton' => 'catalogue'])
 
 @section('content')
-    <div class="content">
-        <div class="container-fluid">
+
+<div class="page-header">
+    <div class="row align-items-end">
+        <h1 class="page-header-title">Edit Product Tag</h1>
+    </div>
+    <!-- End Row -->
+</div>
+
             <div class="row">
                 <div class="col-md-12">
                     <form action="{{route('backend.product.tags.update', $tag->id)}}" method="post" enctype="multipart/form-data">
@@ -36,8 +42,7 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
+
     @endsection
 
     @section('js_content')
