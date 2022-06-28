@@ -47,8 +47,8 @@
                   <span class="nav-link-title">{{ __("Users") }} <span class="badge bg-primary rounded-pill ms-1">5</span></span>
                 </a>
 
-                <div id="navbarVerticalMenuPagesUsersMenu" class="nav-collapse collapse @if($activePage == 'users') show active @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
-                  <a class="nav-link @if($navName == 'userslist1') active @endif" href="{{ route('backend.users.list') }}">{{ __("All Users") }}</a>
+                <div id="navbarVerticalMenuPagesUsersMenu" class="nav-collapse collapse @if($activePage == 'users') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link " href="{{ route('backend.users.list') }}">{{ __("All Users") }}</a>
                   <a class="nav-link " href="{{ route('backend.customers.list') }}">{{ __("Customers") }}</a>
                   <a class="nav-link " href="{{ route('backend.sellers.list') }}">{{ __("Sellers") }} <span class="badge bg-primary rounded-pill ms-1">5</span></a>
                   <a class="nav-link " href="#">{{ __("Profile") }}</a>
@@ -66,7 +66,7 @@
                   <span class="nav-link-title">{{ __("Post") }}</span>
                 </a>
 
-                <div id="navbarVerticalMenuAllPostMenu" class="nav-collapse collapse @if($activePage == 'posts') show active @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                <div id="navbarVerticalMenuAllPostMenu" class="nav-collapse collapse @if($activePage == 'posts') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link @if($navName == 'allpost') active @endif" href="{{ route('backend.posts.list') }}">{{ __("All Post") }}</a>
                   <a class="nav-link @if($navName == 'addpost') active @endif" href="{{ route('backend.posts.create') }}">{{ __("Add New") }}</a>
                   <a class="nav-link @if($navName == 'blogcategories') active @endif" href="{{ route('backend.blog.categories.list') }}">{{ __("Categories") }}</a>
@@ -82,7 +82,7 @@
                   <span class="nav-link-title">{{ __("Pages") }}</span>
                 </a>
 
-                <div id="navbarVerticalMenuAllPagesMenu" class="nav-collapse collapse @if($activePage == 'pages') show active @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                <div id="navbarVerticalMenuAllPagesMenu" class="nav-collapse collapse @if($activePage == 'pages') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link " href="#">{{ __("All Pages") }}</a>
                   <a class="nav-link " href="#">{{ __("Add New") }}</a>
                 </div>
@@ -106,7 +106,7 @@
                   <span class="nav-link-title">{{ __("Products") }}</span>
                 </a>
 
-                <div id="navbarVerticalMenuAllProductsMenu" class="nav-collapse collapse @if($activePage == 'products') show active @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                <div id="navbarVerticalMenuAllProductsMenu" class="nav-collapse collapse @if($activePage == 'products') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link " href="{{ route('backend.products.list') }}">{{ __("All Products") }}</a>
                   <a class="nav-link " href="{{ route('backend.products.create') }}">{{ __("Add New") }}</a>
                   <a class="nav-link " href="#">{{ __("Attributes") }}</a>
@@ -123,7 +123,7 @@
                   <span class="nav-link-title">{{ __("Orders") }}</span>
                 </a>
 
-                <div id="navbarVerticalMenuAllOrdersMenu" class="nav-collapse collapse @if($activePage == 'orders') show active @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                <div id="navbarVerticalMenuAllOrdersMenu" class="nav-collapse collapse @if($activePage == 'orders') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link @if($navName == 'orderslist') active @endif" href="{{ route('backend.orders.list') }}">{{ __("All Orders") }}</a>
                   <a class="nav-link " href="{{ route('backend.orders.pending') }}">{{ __("Pending") }} <span class="badge bg-primary rounded-pill ms-1">5</span></a>
                 </div>
