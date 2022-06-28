@@ -5,17 +5,9 @@
     <div class="page-header">
         <div class="row align-items-end">
             <div class="col-sm mb-2 mb-sm-0">
-                <nav aria-label="breadcrumb">
-                    <ol class="breadcrumb breadcrumb-no-gutter">
-                        <li class="breadcrumb-item">Users</li>
-                        <li class="breadcrumb-item active" aria-current="page">Users List</li>
-                    </ol>
-                </nav>
-
                 <h1 class="page-header-title">Users</h1>
             </div>
             <!-- End Col -->
-
         </div>
         <!-- End Row -->
     </div>
