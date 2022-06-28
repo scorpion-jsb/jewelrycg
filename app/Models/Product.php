@@ -139,4 +139,9 @@ class Product extends Model
     {
         return $this->hasMany(ProductImage::class, 'id_product')->orderBy('id', 'asc');
     }
+
+    public function tags()
+    {
+        return $this->hasMany(ProductTagsRelationship::class, 'id_product' , 'id');
+    }
 }

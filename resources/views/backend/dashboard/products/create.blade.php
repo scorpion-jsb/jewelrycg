@@ -27,16 +27,24 @@
                                 <label for="qty">Quantity in Stock:</label>
                                 <input type="number" name="qty" id="qty" class="form-control" min="0">
                             </div>
-                            <div class="col-md-12 mb-2">
+                            <div class="col-md-6 mb-2">
                                 <label for="category">Category:</label>
                                 <div class="col-md-12">
-                                    <select class="selectpicker" name="category" data-live-search="true">
+                                    <select style="width:100%" class="selectpicker" name="category" data-live-search="true">
                                         @foreach ($categories as $categorie)
                                             <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
                                         @endforeach
                                         
                                         </select>
                                 </div>
+                            </div>
+                            <div class="col-md-6 mb-2">
+                                <label for="name">Tags:</label>
+                                <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
+                                    @foreach ($tags as $tag)
+                                        <option value='{{ $tag->id }}'> {{ $tag->name }} </option>
+                                    @endforeach
+                                </select>
                             </div>
                             <div class="col-md-12 mb-3">
                                 <label
@@ -55,4 +63,16 @@
         </div>
     </div>
 
+@endsection
+
+@section('js_content')
+    <script>
+        $('.select2').select2({
+            
+            tags: true,
+            maximumSelectionLength: 10,
+            tokenSeparators: [','],
+            placeholder: "Select or type keywords",
+            })
+    </script>
 @endsection

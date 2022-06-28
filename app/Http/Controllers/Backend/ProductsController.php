@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use Illuminate\Http\Request; 
 use App\Models\Product;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\ProductsCategorie;
+use App\Models\ProductTag;
+use App\Models\ProductTagsRelationship;
+
+
 
 
 class ProductsController extends Controller
@@ -47,8 +51,23 @@ class ProductsController extends Controller
     public function create()
     {
         return view('backend.dashboard.products.create', [
-            'categories' => ProductsCategorie::all()
+            'categories' => ProductsCategorie::all(),
+            'tags' => ProductTag::all()
         ]);
+    }
+
+    private function generateSlug($string)
+    {
+        return str_replace(' ', '-', $string);
+    }
+
+    private function registerNewTag($tag)
+    {
+        $blogtag = ProductTag::create([
+            'name' => $tag,
+            'slug' => $this->generateSlug($tag),
+        ]);
+        return $blogtag->id;
     }
 
     /**
@@ -59,11 +78,23 @@ class ProductsController extends Controller
      */
     public function store(ProductStoreRequest $req)
     {
+        $tags = $req->input('tags');
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
         $product = Product::create($data);
+        
         $product->storeImages($req->images);
+        $id_product = $product->id;
+        
+        foreach( $tags as $tag )
+        {
+            $id_tag = (!is_numeric($tag)) ? $this->registerNewTag($tag) : $tag;
+            ProductTagsRelationship::create([
+                'id_tag' => $id_tag,
+                'id_product' => $id_product
+             ]);
 
+        }
         return redirect()->route('products.show', $product->id);
     }
 
@@ -86,11 +117,12 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::whereId($id)->with('tags')->firstOrFail();
         $product->setPriceToFloat();
         return view('backend.dashboard.products.edit', [
             'product' => $product,
-            'categories' => ProductsCategorie::all()
+            'categories' => ProductsCategorie::all(),
+            'tags' => ProductTag::all(),
         ]);
     }
 
@@ -103,13 +135,22 @@ class ProductsController extends Controller
      */
     public function update(ProductStoreRequest $req, $product)
     {
-        
+        $tags = $req->input('tags');
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
         $product = Product::findOrFail($product);
         $product->update($data);
         $product->replaceImagesIfExist($req->images);
+        ProductTagsRelationship::where('id_product', $product->id)->delete();
+        foreach( $tags as $tag )
+        {
+            $id_tag = (!is_numeric($tag)) ? $this->registerNewTag($tag) : $tag;
+            ProductTagsRelationship::create([
+                'id_tag' => $id_tag,
+                'id_product' => $product->id
+             ]);
 
+        }
         cache()->forget('todays-deals');
 
         return redirect()->route('products.show', $product->id);

@@ -111,7 +111,7 @@
                   <a class="nav-link " href="{{ route('backend.products.create') }}">{{ __("Add New") }}</a>
                   <a class="nav-link " href="#">{{ __("Attributes") }}</a>
                   <a class="nav-link " href="{{ route('backend.categories.list') }}">{{ __("Categories") }}</a>
-                  <a class="nav-link " href="#">{{ __("Tags") }}</a>
+                  <a class="nav-link " href="{{ route('backend.product.tags.list') }}">{{ __("Tags") }}</a>
                 </div>
               </div>
               <!-- End Collapse -->
