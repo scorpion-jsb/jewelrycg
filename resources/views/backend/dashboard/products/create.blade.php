@@ -46,8 +46,7 @@
                     </div>
                     <div class="mb-4">
                         <label for="desc">Description:</label>
-                        <textarea name="desc" id="desc" rows="3" class="form-control">
-                        </textarea>
+                        <textarea name="desc" id="desc" rows="3" class="form-control"></textarea>
                     </div>
                     <div class="col-md-6 mb-2">
                         <label for="price">Price:</label>
