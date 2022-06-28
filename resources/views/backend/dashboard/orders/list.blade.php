@@ -10,7 +10,7 @@
                         <th scope="col">User Id</th>
                     @endif
                     <th scope="col">Status</th>
-                    <th scope="col">Tracking Number</th>
+                    <th scope="col">Order Number</th>
                     <th scope="col">Message</th>
                     <th scope="col">Products</th>
                     <th scope="col">Total</th>
