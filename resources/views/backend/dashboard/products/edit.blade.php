@@ -43,52 +43,23 @@
                     <div class="card col-md-12">
                         <div class="card-body row">
                             @include('includes.validation-form')
-                            <div class="col-md-12 mb-2">
+                            <div class="mb-4">
                                 <label for="name">Name:</label>
                                 <input type="text" value='{{ $product->name }}' name="name" id="name" class="form-control">
                             </div>
-                            <div class="col-md-12 mb-2">
+                            <div class="mb-4">
                                 <label for="desc">Description:</label>
                                 <textarea name="desc" value='{{ $product->desc }}' id="desc" rows="3" class="form-control">
                                     {{ $product->desc }}
                                 </textarea>
                             </div>
-                            <div class="col-md-6 mb-2">
-                                <label for="price">Price:</label>
-                                <input type="text" value='{{ $product->price }}' name="price" id="price" class="form-control" placeholder="80.00...">
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <label for="qty">Quantity in Stock:</label>
-                                <input type="number" value='{{ $product->qty }}' name="qty" id="qty" class="form-control" min="0">
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <label for="category">Category:</label>
-                                <div class="col-md-12">
-                                    <select style="width:100%" class="selectpicker" name="category" data-live-search="true">
-                                        @foreach ($categories as $categorie)
-                                            <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
-                                        @endforeach
-                                        
-                                        </select>
-                                </div>
-                            </div>
-                            <div class="col-md-6 mb-2">
-                                <label for="name">Tags:</label>
-                                <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
-                                    @foreach ($tags as $tag)
-                                        <option @if ($product->tags->contains('id_tag', $tag->id)) selected @endif value='{{ $tag->id }}'> {{ $tag->name }} </option>
-                                    @endforeach
-                                </select>
-                            </div>
+     
                             <div class="col-md-12 mb-3">
                                 <label
                                     for="images">Images</label>
                                 <input type="file" name="images[]" id="images" class="form-control" multiple>
                             </div>
-                            <div class="col-md-12 text-center">
-                                <button type="submit"
-                                    class="btn btn-lg btn-outline-success">Update</button>
-                            </div>
+
 
                         </div>
                     </div>
@@ -127,6 +98,78 @@
             </div>
             <!-- End Card -->
             
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
+                <h4 class="card-header-title">Pricing + Stock</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="mb-4">
+                        <label for="priceNameLabel" class="form-label">Price</label>
+                        <input type="text" value='{{ $product->price }}' name="price" id="price" class="form-control" placeholder="80.00...">
+                    </div>
+                    <div class="mb-4">
+                        <label for="qty">Quantity in Stock:</label>
+                        <input type="number" value='{{ $product->qty }}' name="qty" id="qty" class="form-control" min="0">
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
+                <h4 class="card-header-title">Organization</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="mb-4">
+                        <label for="category">Category:</label>
+                        <div class="col-md-12">
+                            <select style="width:100%" class="selectpicker" name="category" data-live-search="true">
+                            @foreach ($categories as $categorie)
+                                <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
+                            @endforeach
+                            
+                            </select>
+                        </div>
+                    </div>
+                    <div class="mb-4">
+                        <label for="name">Tags:</label>
+                        <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
+                            @foreach ($tags as $tag)
+                                <option @if ($product->tags->contains('id_tag', $tag->id)) selected @endif value='{{ $tag->id }}'> {{ $tag->name }} </option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
+                <h4 class="card-header-title">Status</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="mb-4">
+                        <button type="submit" class="btn btn-lg btn-outline-success">Update Product</button>
+                    </div>
+                </div>
+            </div>
+            <!-- End Card -->
+
         </div>
     </div>
 </form>
