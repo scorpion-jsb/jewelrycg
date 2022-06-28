@@ -30,6 +30,12 @@
             <tbody>
                 @foreach ($orders as $order)
                     <tr>
+                        <td class="table-column-pe-0">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="ordersCheck1">
+                                <label class="form-check-label" for="ordersCheck1"></label>
+                            </div>
+                        </td>
                         <td><a href="javascript:;" onclick="copyText(this)" class="link-secondary">{{$order->tracking_number}}</a></td>
                         <td>${{$order->total_price}}</td>
                         <td>{{$order->created_at}}</td>
@@ -71,6 +77,7 @@
                                 </div>
                                 <!-- End Unfold -->
                             </div>
+                            <!-- End Button -->
                         </td>
                     </tr>
                 @endforeach
