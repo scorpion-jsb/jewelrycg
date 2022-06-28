@@ -23,15 +23,15 @@
                         <div class="table-responsive datatable-custom">
                             <div class="col-md-12">
                                 <table class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
-                                    <thead>
+                                    <thead class="thead-light">
                                         <th class="table-column-pe-0 sorting_disabled" aria-label="">
                                             <div class="form-check">
                                                 <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
                                                 <label class="form-check-label" for="datatableCheckAll"></label>
                                             </div>
                                         </th>
-                                        <th>ID</th>
-                                        <th>Name</th>
+                                        <th class="sorting">ID</th>
+                                        <th >Name</th>
                                         <th>Price</th>
                                         <th>Quantity</th>
                                         <th>Category</th>
