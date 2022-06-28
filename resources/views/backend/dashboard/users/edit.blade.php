@@ -1,9 +1,7 @@
 @extends('backend.dashboard.layouts.app', ['activePage' => 'users', 'title' => 'Edit User', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
 
 @section('content')
-    <div class="content">
-        <div class="container-fluid">
-            <div class="row">
+    <div class="row">
                 <div class="col-md-12">
                     <div class="row justify-content-center">
                         <div class="card col-md-12">
@@ -135,6 +133,5 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+
 @endsection
