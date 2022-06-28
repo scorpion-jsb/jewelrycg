@@ -28,7 +28,7 @@
                             <label class="form-check-label" for="datatableCheckAll"></label>
                         </div>
                     </th>
-                    <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" aria-label="Order: activate to sort column ascending">Order</th>
+                    <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Order: activate to sort column ascending">Order</th>
                     <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Payment status: activate to sort column ascending">Order Total</th>
                     <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Date: activate to sort column ascending">Date</th>
                     <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Customer: activate to sort column ascending">Customer</th>
