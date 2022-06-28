@@ -9,6 +9,15 @@
 </div>  
 
 <div class="card">
+    <div class="card-header card-header-content-md-between">
+        <div class="row">
+            <div class="mb-2 mb-md-0">
+                <h4 class="card-title">Orders</h4>
+                <p class="card-category">Manage orders</p>
+            
+            </div>
+        </div>
+    </div>
     <div class="table-responsive datatable-custom">
         <table class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
             <thead class="thead-light">
