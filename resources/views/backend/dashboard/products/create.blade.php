@@ -49,11 +49,6 @@
                         <label for="desc">Description</label>
                         <textarea name="desc" id="desc" rows="3" class="form-control"></textarea>
                     </div>
-
-                    <div class="col-md-6 mb-2">
-                        <label for="qty">Quantity in Stock:</label>
-                        <input type="number" name="qty" id="qty" class="form-control" min="0">
-                    </div>
                     
                     <div class="col-md-12 mb-3">
                         <label
@@ -99,7 +94,7 @@
             <div class="card mb-3 mb-lg-5">
                 <!-- Header -->
                 <div class="card-header">
-                <h4 class="card-header-title">Pricing</h4>
+                <h4 class="card-header-title">Pricing + Stock</h4>
                 </div>
                 <!-- End Header -->
 
@@ -108,6 +103,10 @@
                     <div class="mb-4">
                         <label for="priceNameLabel" class="form-label">Price</label>
                         <input type="text" name="price" id="price" class="form-control" placeholder="80.00...">
+                    </div>
+                    <div class="mb-4">
+                        <label for="qty">Quantity in Stock:</label>
+                        <input type="number" name="qty" id="qty" class="form-control" min="0">
                     </div>
                 </div>
             </div>
