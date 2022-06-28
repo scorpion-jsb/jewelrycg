@@ -45,7 +45,7 @@
                                 <label class="form-check-label" for="ordersCheck1"></label>
                             </div>
                         </td>
-                        <td><a href="javascript:;" onclick="copyText(this)" class="link-secondary">{{$order->tracking_number}}</a></td>
+                        <td><a href="javascript:;" onclick="copyText(this)" class="link-primary">#{{$order->tracking_number}}</a></td>
                         <td>${{$order->total_price}}</td>
                         <td>{{$order->created_at}}</td>
                         <td>
