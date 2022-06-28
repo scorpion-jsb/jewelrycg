@@ -124,7 +124,7 @@
                 <!-- Body -->
                 <div class="card-body">
                     <div class="mb-4">
-                        <button type="submit" class="btn btn-lg btn-outline-success">Add</button>
+                        <button type="submit" class="btn btn-lg btn-primary">Add Product</button>
                     </div>
                 </div>
             </div>
