@@ -18,7 +18,7 @@
                 <a class="text-body me-3" href="javascript:;">
                     <i class="bi-clipboard me-1"></i> Duplicate
                 </a>
-                <a class="text-body" href="{{ route('products.show', $product->id) }}">
+                <a class="text-body" href="#">
                     <i class="bi-eye me-1"></i> Preview
                 </a>
             </div>
