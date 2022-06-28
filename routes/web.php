@@ -17,6 +17,8 @@ use App\Http\Controllers\Backend\BlogsController;
 use App\Http\Controllers\Backend\BlogcategoriesController;
 use App\Http\Controllers\Backend\BlogtagsController;
 use App\Http\Controllers\Backend\ProducttagsController;
+use App\Http\Controllers\Backend\OrderController as BackendOrderController;
+
 
 
 
@@ -149,6 +151,18 @@ use Illuminate\Support\Facades\Route;
                     Route::post('/store', [ProducttagsController::class, 'store'])->name('store');
                     Route::get('/get', [ProducttagsController::class, 'get'])->name('get');
                 });
+
+                Route::group([ 
+                    'prefix' => 'orders',
+                    'as' => 'orders.'
+                ], function() {
+                        Route::get('/', [BackendOrderController::class, 'index'])->name('list');
+                        Route::get('/create', [BackendOrderController::class, 'create'])->name('create');
+                        Route::get('/edit/{id}', [BackendOrderController::class, 'edit'])->name('edit');
+                        Route::put('/update/{product}', [BackendOrderController::class, 'update'])->name('update');
+                        Route::post('/store', [BackendOrderController::class, 'store'])->name('store');
+                        Route::get('/get', [BackendOrderController::class, 'get'])->name('get');
+                    });
 
     Route::get('/', [DashboardController::class, 'index'])->name('login');
 
