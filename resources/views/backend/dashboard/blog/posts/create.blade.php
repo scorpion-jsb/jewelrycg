@@ -35,8 +35,7 @@
                                 <label for="name">Category:</label>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <select class="form-select" name="categorie_id" data-live-search="true">
-                                            <option selected disabled>Select Category</option>
+                                        <select multiple class="form-select selectpicker" name="categories[]" data-live-search="true" data-container="body">
                                             @foreach ($categories as $categorie)
                                                 <option value="{{ $categorie->id }}"
                                                     data-tokens="{{ $categorie->category_name }}">

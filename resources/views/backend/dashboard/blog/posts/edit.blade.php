@@ -14,9 +14,9 @@
             box-shadow: 0px -3px 6px 2px rgba(0, 0, 0, 0.2);
         }
     </style>
-<form action="{{ route('backend.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
-    <div class="row">
-        <div class="col-md-8">
+    <form action="{{ route('backend.posts.update', $post->id) }}" method="post" enctype="multipart/form-data">
+        <div class="row">
+            <div class="col-md-8">
                 @csrf
                 @method('PUT')
                 <div class="justify-content-center">
@@ -30,16 +30,14 @@
                                     class="form-control">
                             </div>
                             <div class="col-md-6 mb-2">
-                                <label for="name">Parent:</label>
+                                <label for="name">Categorie:</label>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <select class="form-select" name="categorie_id" data-live-search="true">
-                                            <option selected disabled>Select Categorie</option>
+                                        <select multiple class="form-select selectpicker" name="categories[]"
+                                            data-live-search="true" data-container="body">
                                             @foreach ($categories as $categorie)
                                                 <option value="{{ $categorie->id }}"
-                                                    @if($post->categorie_id == $categorie->id)
-                                                        selected
-                                                    @endif
+                                                    @if ($post->categories->contains('id_category', $categorie->id)) selected @endif
                                                     data-tokens="{{ $categorie->category_name }}">
                                                     {{ $categorie->category_name }}</option>
                                             @endforeach
@@ -57,13 +55,11 @@
                             </div>
                             <div class="col-md-12 mb-2">
                                 <label for="name">Tags:</label>
-                                <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
+                                <select name="tags[]" id="tags" value="" class="form-control select2"
+                                    multiple="multiple" style="width: 100%;">
                                     @foreach ($tags as $tag)
-                                        <option
-                                        @if($post->tags->contains('id_tag',$tag->id))
-                                            selected
-                                        @endif
-                                         value='{{ $tag->id }}'> {{ $tag->name }} </option>
+                                        <option @if ($post->tags->contains('id_tag', $tag->id)) selected @endif
+                                            value='{{ $tag->id }}'> {{ $tag->name }} </option>
                                     @endforeach
                                 </select>
                             </div>
@@ -76,38 +72,37 @@
                         </div>
                     </div>
                 </div>
-        </div>
-        <div class="col-md-4">
-            <!-- Card -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h3 class="card-header-title">Featured Image</h3>
-                </div>
-                <div class="card-body">
-                    <div class="imagePreviewUpdate"></div>
-                    <label class="btn btn-primary">
-                        Upload<input type="file" name="cover_image"
-                            class="uploadFile img" value="Upload Photo"
-                            style="width: 0px;height: 0px;overflow: hidden;">
-                    </label>
-                </div>
             </div>
-            <!-- End Card -->
-            
-            <!-- Card -->
-            <div class="card mb-4">
-                <div class="card-header">
-                    <h3 class="card-header-title">Publish</h3>
-                    <small class="text-muted">2 days ago</small>
+            <div class="col-md-4">
+                <!-- Card -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="card-header-title">Featured Image</h3>
+                    </div>
+                    <div class="card-body">
+                        <div class="imagePreviewUpdate"></div>
+                        <label class="btn btn-primary">
+                            Upload<input type="file" name="cover_image" class="uploadFile img" value="Upload Photo"
+                                style="width: 0px;height: 0px;overflow: hidden;">
+                        </label>
+                    </div>
                 </div>
-                <div class="card-body">
-                    <button type="submit" class="btn btn-lg btn-primary">Update</button>
+                <!-- End Card -->
+
+                <!-- Card -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="card-header-title">Publish</h3>
+                        <small class="text-muted">2 days ago</small>
+                    </div>
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-lg btn-primary">Update</button>
+                    </div>
                 </div>
+                <!-- End Card -->
             </div>
-            <!-- End Card -->
         </div>
-    </div>
-</form>
+    </form>
 @endsection
 
 @section('js_content')
@@ -151,11 +146,11 @@
 
             });
             $('.select2').select2({
-            
-            tags: true,
-            maximumSelectionLength: 100,
-            tokenSeparators: [','],
-            placeholder: "Select or type keywords",
+
+                tags: true,
+                maximumSelectionLength: 100,
+                tokenSeparators: [','],
+                placeholder: "Select or type keywords",
             })
         });
     </script>

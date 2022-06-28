@@ -30,4 +30,9 @@ class BlogPost extends Model
     {
         return $this->hasMany(BlogPostTag::class, 'id_post' , 'id');
     }
+
+    public function categories()
+    {
+        return $this->hasMany(BlogPostCategorie::class, 'id_post' , 'id');
+    }
 }

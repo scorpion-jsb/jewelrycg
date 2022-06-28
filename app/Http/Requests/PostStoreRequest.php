@@ -32,7 +32,7 @@ class PostStoreRequest extends FormRequest
         return [
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
-            'categorie_id' => 'required',
+            'categories' => 'required|array',
             'post' => 'required',
             'tags' => 'required|array',
             'cover_image' => "$image_required",

@@ -9,6 +9,7 @@ use App\Models\BlogTags;
 use App\Http\Requests\PostStoreRequest;
 use App\Models\BlogCategorie;
 use App\Models\BlogPostTag;
+use App\Models\BlogPostCategorie;
 
 
 class BlogsController extends Controller
@@ -81,10 +82,11 @@ class BlogsController extends Controller
     {
 
         $tags = $request->input('tags');
+        $categories = $request->input('categories');
         $blog = new BlogPost();
         $data = $request->input();
         $data['cover_image'] = $blog->storeImages($request->cover_image);
-        $data['tags_id'] = 1;
+      
 
         $post_id = $blog->create($data)->id;
         foreach( $tags as $tag )
@@ -95,6 +97,14 @@ class BlogsController extends Controller
                 'id_post' => $post_id
              ]);
 
+        }
+
+        foreach( $categories as $categorie )
+        {
+            BlogPostCategorie::create([
+                'id_category' => $categorie,
+                'id_post' => $post_id
+             ]);
         }
         return redirect()->route('backend.posts.list');
     }
@@ -119,7 +129,7 @@ class BlogsController extends Controller
     public function edit($id)
     {
         return view('backend.dashboard.blog.posts.edit', [
-            'post' => BlogPost::whereId($id)->with('tags')->firstOrFail(),
+            'post' => BlogPost::whereId($id)->with(['tags', 'categories'])->firstOrFail(),
             'categories' => BlogCategorie::all(),
             'tags' => BlogTags::all()
         ]);
@@ -135,21 +145,34 @@ class BlogsController extends Controller
     public function update(PostStoreRequest $request, $id)
     {
         $tags = $request->input('tags');
+        $categories = $request->input('categories');
+        
         $blog = BlogPost::findOrFail($id);
         $data = $request->input();
         if($request->cover_image)
         {
             $data['cover_image'] = $blog->storeImages($request->cover_image);
         }
-        $data['tags_id'] = 1;
+
         $blog->update($data);
+
         BlogPostTag::where('id_post', $blog->id)->delete();
+        BlogPostCategorie::where('id_post', $blog->id)->delete();
+
         foreach( $tags as $tag )
         {
             $id_tag = (!is_numeric($tag)) ? $this->registerNewTag($tag) : $tag;
             BlogPostTag::create([
                 'id_tag' => $id_tag,
                 'id_post' => $blog->id
+             ]);
+        }
+
+        foreach( $categories as $categorie )
+        {
+            BlogPostCategorie::create([
+                'id_category' => $categorie,
+                'id_post' => $post_id
              ]);
         }
         return redirect()->route('backend.posts.list');
