@@ -44,11 +44,11 @@
                         <div class="card-body row">
                             @include('includes.validation-form')
                             <div class="mb-4">
-                                <label for="name">Name:</label>
+                                <label for="name">Name</label>
                                 <input type="text" value='{{ $product->name }}' name="name" id="name" class="form-control">
                             </div>
                             <div class="mb-4">
-                                <label for="desc">Description:</label>
+                                <label for="desc">Description</label>
                                 <textarea name="desc" value='{{ $product->desc }}' id="desc" rows="3" class="form-control">{{ $product->desc }}</textarea>
                             </div>
      
@@ -111,7 +111,7 @@
                         <input type="text" value='{{ $product->price }}' name="price" id="price" class="form-control" placeholder="80.00...">
                     </div>
                     <div class="mb-4">
-                        <label for="qty">Quantity in Stock:</label>
+                        <label for="qty">Quantity in Stock</label>
                         <input type="number" value='{{ $product->qty }}' name="qty" id="qty" class="form-control" min="0">
                     </div>
                 </div>
@@ -129,7 +129,7 @@
                 <!-- Body -->
                 <div class="card-body">
                     <div class="mb-4">
-                        <label for="category">Category:</label>
+                        <label for="category">Category</label>
                         <div class="col-md-12">
                             <select style="width:100%" class="selectpicker" name="category" data-live-search="true">
                             @foreach ($categories as $categorie)
@@ -140,7 +140,7 @@
                         </div>
                     </div>
                     <div class="mb-4">
-                        <label for="name">Tags:</label>
+                        <label for="name">Tags</label>
                         <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
                             @foreach ($tags as $tag)
                                 <option @if ($product->tags->contains('id_tag', $tag->id)) selected @endif value='{{ $tag->id }}'> {{ $tag->name }} </option>
