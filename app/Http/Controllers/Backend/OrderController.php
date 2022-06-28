@@ -21,6 +21,18 @@ class OrderController extends Controller
     }
 
     /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function pending()
+    {
+        $orders = Order::getPendingBasedOnUser();
+        $orders->transform(fn($i) => $i->formatPrice());
+        return view('backend.dashboard.orders.list', compact('orders'));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

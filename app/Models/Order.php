@@ -38,6 +38,16 @@ class Order extends Model
         return auth()->user()->orders()->withCount('items')->orderBy('id')->paginate(10);
     }
 
+    public static function getPendingBasedOnUser()
+    {
+        if(auth()->user()->is_admin)
+        {
+            return Order::where('status', 'Processing')->withCount('items')->orderBy('id')->paginate(10);
+        }
+        
+        return auth()->user()->orders()->where('status', 'Processing')->withCount('items')->orderBy('id')->paginate(10);
+    }
+
     public static function getCartTotalInCents()
     {
         $total_price_float = Cart::total(2, '.', '') * 100;
