@@ -1,6 +1,12 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'products', 'title' => 'All Products', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'products', 'title' => 'All Products', 'navName' => 'allproducts', 'activeButton' => 'catalogue'])
 
 @section('content')
+<div class="page-header">
+    <div class="row align-items-end">
+        <h1 class="page-header-title">All Products</h1>
+    </div>
+    <!-- End Row -->
+</div>  
 
             <div class="row">
                 <div class="col-md-12">
