@@ -75,7 +75,7 @@
                 <!-- Body -->
                 <div class="card-body">
                     <div class="mb-4">
-                        <label class="row form-check form-switch" for="availabilitySwitch1">
+                        <label class="row form-check form-switch mb-2" for="availabilitySwitch1">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Digital</span>
                             </span>
@@ -83,7 +83,7 @@
                                 <input type="checkbox" class="form-check-input" id="availabilitySwitch1">
                             </span>
                         </label>
-                        <label class="row form-check form-switch" for="availabilitySwitch1">
+                        <label class="row form-check form-switch mb-2" for="availabilitySwitch1">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Virtual</span>
                             </span>
