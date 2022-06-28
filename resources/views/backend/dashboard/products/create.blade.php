@@ -44,8 +44,9 @@
                         <label for="productNameLabel" class="form-label">Name </label>
                         <input type="text" name="name" id="name" class="form-control">
                     </div>
+                    
                     <div class="mb-4">
-                        <label for="desc">Description:</label>
+                        <label for="desc">Description</label>
                         <textarea name="desc" id="desc" rows="3" class="form-control"></textarea>
                     </div>
 
