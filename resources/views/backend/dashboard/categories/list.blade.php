@@ -1,8 +1,13 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'categories', 'title' => 'Light Bootstrap Dashboard Laravel by Creative Tim & UPDIVISION', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
+@extends('backend.dashboard.layouts.app', ['activePage' => 'categories', 'title' => 'Product Categories', 'navName' => 'productscategories', 'activeButton' => 'catalogue'])
 
 @section('content')
-    <div class="content">
-        <div class="container-fluid">
+<div class="page-header">
+    <div class="row align-items-end">
+        <h1 class="page-header-title">Product Categories</h1>
+    </div>
+    <!-- End Row -->
+</div>  
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
@@ -39,8 +44,7 @@
 
 
             </div>
-        </div>
-    </div>
+
 @endsection
 
 @section('js_content')
