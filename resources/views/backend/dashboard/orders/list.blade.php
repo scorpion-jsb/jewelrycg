@@ -9,7 +9,7 @@
 </div>  
 
 <div class="card">
-    <div class="card-body">
+    <div class="table-responsive datatable-custom">
         <table class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
             <thead class="thead-light">
                 <tr role="row">
