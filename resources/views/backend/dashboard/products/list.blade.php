@@ -24,6 +24,12 @@
                             <div class="col-md-12">
                                 <table class="table table-hover table-striped ">
                                     <thead>
+                                        <th class="table-column-pe-0 sorting_disabled" aria-label="">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
+                                                <label class="form-check-label" for="datatableCheckAll"></label>
+                                            </div>
+                                        </th>
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Price</th>
@@ -35,6 +41,12 @@
                                         
                                             @foreach ($products as $product)
                                             <tr>
+                                            <td class="table-column-pe-0">
+                                                <div class="form-check">
+                                                    <input type="checkbox" class="form-check-input" id="ordersCheck1">
+                                                    <label class="form-check-label" for="ordersCheck1"></label>
+                                                </div>
+                                            </td>
                                             <td>{{ $product->id }}</td>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price }} $</td>
