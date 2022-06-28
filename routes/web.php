@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\VendorsController;
 use App\Http\Controllers\Backend\BlogsController;
 use App\Http\Controllers\Backend\BlogcategoriesController;
 use App\Http\Controllers\Backend\BlogtagsController;
+use App\Http\Controllers\Backend\ProducttagsController;
 
 
 
@@ -136,6 +137,18 @@ use Illuminate\Support\Facades\Route;
                 Route::post('/store', [BlogtagsController::class, 'store'])->name('store');
                 Route::get('/get', [BlogtagsController::class, 'get'])->name('get');
             });
+
+            Route::group([ 
+                'prefix' => 'products/tags',
+                'as' => 'product.tags.'
+            ], function() {
+                    Route::get('/', [ProducttagsController::class, 'index'])->name('list');
+                    Route::get('/create', [ProducttagsController::class, 'create'])->name('create');
+                    Route::get('/edit/{id}', [ProducttagsController::class, 'edit'])->name('edit');
+                    Route::put('/update/{product}', [ProducttagsController::class, 'update'])->name('update');
+                    Route::post('/store', [ProducttagsController::class, 'store'])->name('store');
+                    Route::get('/get', [ProducttagsController::class, 'get'])->name('get');
+                });
 
     Route::get('/', [DashboardController::class, 'index'])->name('login');
 
