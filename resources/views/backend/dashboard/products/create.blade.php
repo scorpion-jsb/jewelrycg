@@ -116,7 +116,7 @@
             <div class="card mb-3 mb-lg-5">
                 <!-- Header -->
                 <div class="card-header">
-                <h4 class="card-header-title">Organization</h4>
+                    <h4 class="card-header-title">Organization</h4>
                 </div>
                 <!-- End Header -->
 
@@ -124,7 +124,6 @@
                 <div class="card-body">
                     <div class="mb-4">
                         <label for="category">Category:</label>
-                        <div class="col-md-12">
                             <select style="width:100%" class="selectpicker" name="category" data-live-search="true">
                             <option disabled selected>Select category</option>
                             @foreach ($categories as $categorie)
