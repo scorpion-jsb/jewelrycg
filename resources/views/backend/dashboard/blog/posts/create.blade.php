@@ -86,6 +86,7 @@
 
               <div class="col-auto">
                 <div class="d-flex gap-3">
+                  <button type="button" class="btn btn-ghost-light">Save Draft</button>
                   <button type="submit" class="btn btn-primary">Publish</button>
                 </div>
               </div>
