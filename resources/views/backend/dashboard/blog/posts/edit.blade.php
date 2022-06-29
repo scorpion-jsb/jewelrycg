@@ -103,6 +103,9 @@
                     </div>
                     <div class="card-body">
                         {{ $post->created_at }}
+                        <br />
+                        <br />
+                        Author: 
                     </div>
                 </div>
                 <!-- End Card -->
