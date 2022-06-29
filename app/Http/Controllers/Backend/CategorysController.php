@@ -17,7 +17,9 @@ class CategorysController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.categories.list');  
+        return view('backend.dashboard.categories.list', [
+            'categories' => ProductsCategorie::all()
+        ]);  
     }
 
 
