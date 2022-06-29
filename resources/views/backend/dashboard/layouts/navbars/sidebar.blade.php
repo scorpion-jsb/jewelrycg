@@ -6,6 +6,7 @@
 
         <a class="navbar-brand" href="/backend" aria-label="Front">
           <img class="navbar-brand-logo" src="{{ asset('assets/svg/logos/logo.svg') }}" alt="Logo" data-hs-theme-appearance="default">
+          <img class="navbar-brand-logo" src="{{ asset('assets/svg/logos-light/logo.svg') }}" alt="Logo" data-hs-theme-appearance="dark">
         </a>
 
         <!-- End Logo -->
