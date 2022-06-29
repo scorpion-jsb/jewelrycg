@@ -31,7 +31,6 @@ class PostStoreRequest extends FormRequest
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'categories' => 'required|array',
-            'post' => 'required',
             'cover_image' => "$image_required",
             'cover_image.*' => "$image_required|mimes:jpeg,jpg,png,pdf|max:3072"
         ];
