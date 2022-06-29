@@ -209,7 +209,7 @@
 
               <div class="col-auto">
                 <div class="d-flex gap-3">
-                  <button type="submit" class="btn btn-primary">Add Product</button>
+                  <button type="submit" class="btn btn-primary">Create Product</button>
                 </div>
               </div>
               <!-- End Col -->
