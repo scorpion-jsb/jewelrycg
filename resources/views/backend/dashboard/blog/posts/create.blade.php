@@ -19,7 +19,7 @@
                                 <label for="name">Name:</label>
                                 <input type="text" name="name" id="name" value="" class="form-control">
                             </div>
-                            <div class="col-md-6 mb-2">
+                            <div class="col-md-12 mb-2">
                                 <label for="name">Slug:</label>
                                 <input type="text" name="slug" id="slug" value="" class="form-control">
                             </div>
