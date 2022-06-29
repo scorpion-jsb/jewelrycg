@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-icons/font/bootstrap-icons.css') }}">
 
     <!-- CSS Front Template -->
-    <link rel="preload" href="{{ asset('assets/css/backend/theme.min.css') }}" data-hs-appearance="default" as="style">
+    <link rel="stylesheet" href="{{ asset('assets/css/backend/theme.min.css') }}" data-hs-appearance="default" as="style">
     <link rel="preload" href="{{ asset('assets/css/backend/theme-dark.min.css') }}" data-hs-appearance="dark" as="style">
     <link rel="stylesheet" href="{{ asset('assets/vendor/quill/dist/quill.snow.css') }}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.0/ui/trumbowyg.css" />
