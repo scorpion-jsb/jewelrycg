@@ -29,8 +29,13 @@
 
                                 <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
                                     <thead class="thead-light">
+                                        <th class="table-column-pe-0 sorting_disabled" aria-label="">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
+                                                <label class="form-check-label" for="datatableCheckAll"></label>
+                                            </div>
+                                        </th>
                                         <th>ID</th>
-                                       
                                         <th>Name</th>
                                         <th>Slug</th>
                                         <th>Categories</th>
@@ -40,6 +45,12 @@
                                     <tbody>
                                         @foreach ($posts as $post)
                                         <tr>
+                                        <td class="table-column-pe-0">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="ordersCheck1">
+                                                <label class="form-check-label" for="ordersCheck1"></label>
+                                            </div>
+                                        </td>
                                         <td>{{ $post->id }}</td>
                                        
                                         <td>{{ $post->name }}</td>
