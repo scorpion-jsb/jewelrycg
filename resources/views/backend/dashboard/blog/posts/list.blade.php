@@ -2,18 +2,27 @@
 
 @section('content')
 <div class="page-header">
-    <div class="row align-items-end">
-        <h1 class="page-header-title">All Posts</h1>
+    <div class="row align-items-center mb-3">
+        <div class="col-sm mb-2 mb-sm-0">
+            <h1 class="page-header-title">Post <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
+        </div>
+        <!-- End Col -->
+
+        <div class="col-sm-auto">
+            <a class="btn btn-primary" href="{{ route('backend.posts.create') }}">Create post</a>
+        </div>
+        <!-- End Col -->
     </div>
     <!-- End Row -->
 </div>
+
+
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
                         <div class="card-header card-header-content-md-between">
                             <div class="mb-2 mb-md-0">
                                 <h4 class="card-title">Manage Posts</h4>
-                                <a href="{{ route('backend.posts.create') }}" class="btn d-block btn-info mt-2"> Add Post </a>
                             </div>
                         </div>
                         <div class="table-responsive datatable-custom position-relative">
