@@ -84,9 +84,9 @@
                                             <label class="form-check-label" for="datatableCheckAll"></label>
                                         </div>
                                     </th>
-                                    <th class="sorting_disabled"aria-label="">ID</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Name</th>
-                                    <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Slug</th>
+                                    <th class="sorting" aria-label="">ID</th>
+                                    <th class="sorting_disabled" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Name</th>
+                                    <th class="sorting_disabled" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Slug</th>
                                     <th class="sorting_disabled"aria-label="">Actions</th>
                                 </tr>
                             </thead>
