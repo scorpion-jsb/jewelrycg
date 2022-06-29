@@ -90,7 +90,7 @@
           <div class="card-body">
             <div class="row justify-content-center justify-content-sm-between">
               <div class="col">
-                <button type="button" class="btn btn-ghost-danger">Delete</button>
+                <button type="button" class="btn btn-ghost-danger">Cancel</button>
               </div>
               <!-- End Col -->
 
