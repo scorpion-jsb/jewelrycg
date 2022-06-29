@@ -18,7 +18,6 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-icons/font/bootstrap-icons.css') }}">
 
     <!-- CSS Front Template -->
-    <!--<link href="{{ asset('backtheme/css/bootstrap.min.css') }}" rel="stylesheet" />-->
     <link rel="stylesheet" href="{{ asset('assets/css/backend/theme.min.css') }}" data-hs-appearance="default" as="style">
     <link rel="preload" href="{{ asset('assets/css/backend/theme-dark.min.css') }}" data-hs-appearance="dark" as="style">
     <link rel="stylesheet" href="{{ asset('assets/vendor/quill/dist/quill.snow.css') }}">
