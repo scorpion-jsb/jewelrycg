@@ -70,22 +70,6 @@
                     </div>
                 </div>
                 <!-- End Card -->
-                
-                <!-- Card -->
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h3 class="card-header-title">Status</h3>
-                        <small class="text-muted">2 days ago</small>
-                    </div>
-                    <div class="card-body">
-                    <!--
-                        <h3 class="card-title">Special title treatment</h3>
-                        <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                        -->
-                        
-                    </div>
-                </div>
-                <!-- End Card -->
 
             </div>
         </div>
