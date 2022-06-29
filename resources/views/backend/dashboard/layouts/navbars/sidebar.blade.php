@@ -59,7 +59,7 @@
               <!-- Collapse -->
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllPostMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllPostMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllPostMenu">
-                  <i class="bi-stickies nav-icon"></i>
+                  <i class="bi bi-pin-angle-fill"></i>
                   <span class="nav-link-title">{{ __("Post") }}</span>
                 </a>
 
@@ -75,7 +75,7 @@
               <!-- Collapse -->
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllPagesMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllPagesMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllPagesMenu">
-                  <i class="bi-person nav-icon"></i>
+                  <i class="bi-stickies nav-icon"></i>
                   <span class="nav-link-title">{{ __("Pages") }}</span>
                 </a>
 
@@ -99,7 +99,7 @@
               <!-- Collapse -->
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllProductsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllProductsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllProductsMenu">
-                  <i class="bi-person nav-icon"></i>
+                  <i class="bi-basket nav-icon"></i>
                   <span class="nav-link-title">{{ __("Products") }}</span>
                 </a>
 
@@ -116,7 +116,7 @@
               <!-- Collapse -->
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllOrdersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllOrdersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllOrdersMenu">
-                  <i class="bi-person nav-icon"></i>
+                  <i class="bi bi-receipt"></i>
                   <span class="nav-link-title">{{ __("Orders") }}</span>
                 </a>
 
