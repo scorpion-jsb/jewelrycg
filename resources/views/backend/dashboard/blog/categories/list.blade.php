@@ -2,21 +2,25 @@
 
 @section('content')
 <div class="page-header">
-    <div class="row align-items-end">
-        <h1 class="page-header-title">All Categories</h1>
+    <div class="row align-items-center mb-3">
+        <div class="col-sm mb-2 mb-sm-0">
+            <h1 class="page-header-title">Categories <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
+        </div>
+        <!-- End Col -->
+
+        <div class="col-sm-auto">
+            <a class="btn btn-primary" href="{{ route('backend.blog.categories.create') }}">Create category</a>
+        </div>
+        <!-- End Col -->
     </div>
     <!-- End Row -->
-</div>    
+</div>  
 
             <div class="row">
                 <div class="col-md-12">
                     <div class="card strpied-tabled-with-hover">
                         <div class="card-header ">
                             <div class="row">
-                                <div class="col-md-6">
-                                    <h4 class="card-title">Manage Blog Categories</h4>
-                                    <a href="{{ route('backend.blog.categories.create') }}" class="btn btn-info mt-2">Add Blog Category</a>
-                                </div>
 
                             </div>
                         </div>
