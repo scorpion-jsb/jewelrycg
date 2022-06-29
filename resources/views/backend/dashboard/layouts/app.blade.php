@@ -29,15 +29,10 @@
   </head>
   <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
-    @if (auth()->check() && request()->route()->getName() != "")
-        @include('backend.dashboard.layouts.navbars.navbar')
-    @endif
+    @include('backend.dashboard.layouts.navbars.navbar')
+    @include('backend.dashboard.layouts.navbars.sidebar')
+    @include('backend.dashboard.pages.sidebarstyle')
     
-    @if (auth()->check() && request()->route()->getName() != "") @endif
-        @include('backend.dashboard.layouts.navbars.sidebar')
-        @include('backend.dashboard.pages.sidebarstyle')
-    
-
     <main id="content" role="main" class="main">
       <!-- Content -->
       <div class="content container-fluid">
@@ -57,6 +52,7 @@
     <!-- JS Implementing Plugins -->
     <script src="{{ asset('assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/hs-form-search/dist/hs-form-search.min.js') }}"></script>
+    <script src="{{ asset('assets/js/hs.theme-appearance.js') }}"></script>
 
     <!-- JS Front -->
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
