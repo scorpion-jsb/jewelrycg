@@ -204,14 +204,13 @@
           <div class="card-body">
             <div class="row justify-content-center justify-content-sm-between">
               <div class="col">
-                <button type="button" class="btn btn-ghost-danger">Delete</button>
+                <button type="button" class="btn btn-ghost-danger">Cancel</button>
               </div>
               <!-- End Col -->
 
               <div class="col-auto">
                 <div class="d-flex gap-3">
-                  <button type="button" class="btn btn-ghost-light">Discard</button>
-                  <button type="button" class="btn btn-primary">Save</button>
+                  <button type="submit" class="btn btn-primary">Add Product</button>
                 </div>
               </div>
               <!-- End Col -->
