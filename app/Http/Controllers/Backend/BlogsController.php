@@ -176,7 +176,7 @@ class BlogsController extends Controller
         {
             BlogPostCategorie::create([
                 'id_category' => $categorie,
-                'id_post' => $post_id
+                'id_post' =>  $blog->id
              ]);
         }
         return redirect()->route('backend.posts.list');
