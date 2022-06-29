@@ -23,7 +23,7 @@ class BlogsController extends Controller
     {
       
         return view('backend.dashboard.blog.posts.list', [
-            'posts' => BlogPost::all()
+            'posts' => BlogPost::with('categories')->get()
         ]);
     }
 

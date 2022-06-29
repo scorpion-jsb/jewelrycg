@@ -24,7 +24,7 @@
                                        
                                         <th>Name</th>
                                         <th>Slug</th>
-                                        <th>Category</th>
+                                        <th>Categories</th>
                                         <th>Actions</th>
                                     </thead>
 
@@ -35,7 +35,11 @@
                                        
                                         <td>{{ $post->name }}</td>
                                         <td>{{ $post->slug }}</td>
-                                        <td>{{ $post->categorie_id }}</td>
+                                        <td>
+                                            @foreach($post->categories as $category_info)
+                                                <p><span class="badge btn-info"> {{$category_info->category->category_name}} </span>  </p>
+                                            @endforeach
+                                        </td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a class="btn btn-white btn-sm" target="_blank" href="#"> <i class="bi-eye"></i> Preview </a>
