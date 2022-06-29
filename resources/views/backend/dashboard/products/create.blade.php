@@ -125,12 +125,13 @@
                     <div class="mb-4">
                         <label for="category">Category:</label>
                         <div class="col-md-12">
-                            <select style="width:100%" class="form-select" name="category" data-live-search="true">
-                                @foreach ($categories as $categorie)
-                                    <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
-                                @endforeach
+                            <select style="width:100%" class="selectpicker" name="category" data-live-search="true">
+                            <option disabled selected>Select category</option>
+                            @foreach ($categories as $categorie)
+                                <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
+                            @endforeach
+                            
                             </select>
-                        </div>
                     </div>
                     <div class="mb-4">
                         <label for="name">Tags:</label>

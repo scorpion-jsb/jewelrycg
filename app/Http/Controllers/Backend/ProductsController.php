@@ -78,7 +78,7 @@ class ProductsController extends Controller
      */
     public function store(ProductStoreRequest $req)
     {
-        $tags = $req->input('tags');
+        $tags = (array)$req->input('tags');
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
         $product = Product::create($data);

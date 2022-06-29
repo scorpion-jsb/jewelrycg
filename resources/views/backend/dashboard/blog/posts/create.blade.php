@@ -22,7 +22,7 @@
                             <div class="col-md-6 mb-2">
                                 <label for="category">Category:</label>
                                     <div class="col-md-12">
-                                        <select style="width:100%" class="form-select selectpicker" name="categories[]" data-live-search="true" data-container="body">
+                                        <select style="width:100%" class="selectpicker" name="categories[]" data-live-search="true" data-container="body">
                                             @foreach ($categories as $categorie)
                                                 <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
                                             @endforeach
