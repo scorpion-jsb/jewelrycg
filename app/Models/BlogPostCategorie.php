@@ -9,6 +9,8 @@ class BlogPostCategorie extends Model
 {
     use HasFactory;
 
+    protected $table = 'blog_categories_relationships';
+
     protected $fillable = [
         'id_post',
         'id_category'
