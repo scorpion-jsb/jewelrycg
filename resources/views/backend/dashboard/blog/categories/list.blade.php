@@ -20,11 +20,17 @@
 
                             </div>
                         </div>
-                        <div class="card-body table-full-width table-responsive">
+                        <div class="table-full-width table-responsive">
                             <div class="col-md-12">
                             <table class="table table-hover table-striped ">
                                 <thead>
-                                    <th>ID</th>
+                                    <th class="table-column-pe-0 sorting_disabled" aria-label="">
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
+                                            <label class="form-check-label" for="datatableCheckAll"></label>
+                                        </div>
+                                    </th>
+                                    <th class="sorting">ID</th>
                                     <th>Name</th>
                                     <th>Slug</th>
                                     <th>Parent</th>
@@ -34,6 +40,12 @@
                                 <tbody>
                                     @foreach ($categories as $categorie)
                                     <tr>
+                                    <td class="table-column-pe-0">
+                                        <div class="form-check">
+                                            <input type="checkbox" class="form-check-input" id="ordersCheck1">
+                                            <label class="form-check-label" for="ordersCheck1"></label>
+                                        </div>
+                                    </td>
                                     <td>{{ $categorie->id }}</td>
                                    
                                     <td>{{ $categorie->category_name }}</td>
