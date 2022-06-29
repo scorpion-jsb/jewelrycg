@@ -35,40 +35,12 @@
                                 <input type="text" name="name" id="name" value="{{ $post->name }}"
                                     class="form-control">
                             </div>
-                            <div class="col-md-6 mb-2">
-                                <label for="name">Categorie:</label>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <select multiple class="form-select selectpicker" name="categories[]"
-                                            data-live-search="true" data-container="body">
-                                            @foreach ($categories as $categorie)
-                                                <option value="{{ $categorie->id }}"
-                                                    @if ($post->categories->contains('id_category', $categorie->id)) selected @endif
-                                                    data-tokens="{{ $categorie->category_name }}">
-                                                    {{ $categorie->category_name }}</option>
-                                            @endforeach
-
-                                        </select>
-                                    </div>
-                                </div>
-
-
-                            </div>
-                            <div class="col-md-6 mb-2">
+                            <div class="col-md-12 mb-2">
                                 <label for="name">Slug:</label>
                                 <input type="text" name="slug" id="slug" value="{{ $post->slug }}"
                                     class="form-control">
                             </div>
-                            <div class="col-md-12 mb-2">
-                                <label for="name">Tags:</label>
-                                <select name="tags[]" id="tags" value="" class="form-control select2"
-                                    multiple="multiple" style="width: 100%;">
-                                    @foreach ($tags as $tag)
-                                        <option @if ($post->tags->contains('id_tag', $tag->id)) selected @endif
-                                            value='{{ $tag->id }}'> {{ $tag->name }} </option>
-                                    @endforeach
-                                </select>
-                            </div>
+
                             <div class="col-md-12 mb-2">
                                 <label for="desc">Post:</label>
                                 <textarea name="post" id="desc" rows="3" class="form-control">
@@ -80,6 +52,56 @@
                 </div>
             </div>
             <div class="col-md-4">
+                <!-- Card -->
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <h3 class="card-header-title">Status</h3>
+                        <small class="text-muted">Published: 2 days ago</small>
+                    </div>
+                    <div class="card-body">
+                        {{ $post->created_at }}
+                        <br />
+                        <br />
+                        Author: 
+                    </div>
+                </div>
+                <!-- End Card -->
+
+                <!-- Card -->
+                <div class="card mb-3 mb-lg-5">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">Organization</h4>
+                    </div>
+                    <!-- End Header -->
+
+                    <!-- Body -->
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="category">Category:</label>
+                                <select multiple class="form-select selectpicker" name="categories[]" data-live-search="true" data-container="body">
+                                @foreach ($categories as $categorie)
+                                    <option value="{{ $categorie->id }}"
+                                        @if ($post->categories->contains('id_category', $categorie->id)) selected @endif
+                                        data-tokens="{{ $categorie->category_name }}">
+                                        {{ $categorie->category_name }}</option>
+                                @endforeach
+
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="name">Tags:</label>
+                            <select name="tags[]" id="tags" value="" class="form-control select2" multiple="multiple" style="width: 100%;">
+                                @foreach ($tags as $tag)
+                                    <option @if ($post->tags->contains('id_tag', $tag->id)) selected @endif
+                                        value='{{ $tag->id }}'> {{ $tag->name }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Card -->
+
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
@@ -95,20 +117,7 @@
                 </div>
                 <!-- End Card -->
 
-                <!-- Card -->
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h3 class="card-header-title">Status</h3>
-                        <small class="text-muted">Published: 2 days ago</small>
-                    </div>
-                    <div class="card-body">
-                        {{ $post->created_at }}
-                        <br />
-                        <br />
-                        Author: 
-                    </div>
-                </div>
-                <!-- End Card -->
+                
             </div>
         </div>
 
