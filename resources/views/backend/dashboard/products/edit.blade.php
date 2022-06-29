@@ -183,25 +183,33 @@
             </div>
             <!-- End Card -->
 
-            <!-- Card -->
-            <div class="card mb-3 mb-lg-5">
-                <!-- Header -->
-                <div class="card-header">
-                <h4 class="card-header-title">Status</h4>
-                </div>
-                <!-- End Header -->
-
-                <!-- Body -->
-                <div class="card-body">
-                    <div class="mb-4">
-                        <button type="submit" class="btn btn-lg btn-primary">Update Product</button>
-                    </div>
-                </div>
-            </div>
-            <!-- End Card -->
-
         </div>
     </div>
+
+    <div class="position-fixed start-50 bottom-0 translate-middle-x w-100 zi-99 mb-3" style="max-width: 40rem;">
+        <!-- Card -->
+        <div class="card card-sm bg-dark border-dark mx-2">
+            <div class="card-body">
+            <div class="row justify-content-center justify-content-sm-between">
+                <div class="col">
+                <button type="button" class="btn btn-ghost-danger">Delete</button>
+                </div>
+                <!-- End Col -->
+
+                <div class="col-auto">
+                <div class="d-flex gap-3">
+                    <button type="button" class="btn btn-ghost-light">Unpublish</button>
+                    <button type="submit" class="btn btn-primary">Update Product</button>
+                </div>
+                </div>
+                <!-- End Col -->
+            </div>
+            <!-- End Row -->
+            </div>
+        </div>
+        <!-- End Card -->
+    </div>
+
 </form>
 
 
