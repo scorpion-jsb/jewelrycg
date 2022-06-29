@@ -67,6 +67,21 @@
         <div class="col-lg-4">
 
             <!-- Card -->
+            <div class="card mb-4">
+                <div class="card-header">
+                    <h3 class="card-header-title">Status</h3>
+                    <small class="text-muted">Published: 2 days ago</small>
+                </div>
+                <div class="card-body">
+                    {{ $product->created_at }}
+                    <br />
+                    <br />
+                    Seller: 
+                </div>
+            </div>
+            <!-- End Card -->
+
+            <!-- Card -->
             <div class="card mb-3 mb-lg-5">
                 <!-- Header -->
                 <div class="card-header">
