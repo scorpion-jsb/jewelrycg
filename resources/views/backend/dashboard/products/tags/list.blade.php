@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-header">
     <div class="row align-items-end">
-        <h1 class="page-header-title">All Product Tags</h1>
+        <h1 class="page-header-title">Product Tags <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
     </div>
     <!-- End Row -->
 </div>
