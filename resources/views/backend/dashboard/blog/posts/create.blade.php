@@ -3,7 +3,7 @@
 @section('content')
 <div class="page-header">
     <div class="row align-items-end">
-        <h1 class="page-header-title">Add new post</h1>
+        <h1 class="page-header-title">Create post</h1>
     </div>
     <!-- End Row -->
 </div>    
