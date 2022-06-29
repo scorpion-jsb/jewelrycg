@@ -95,13 +95,7 @@
                             <thead class="thead-light">
                                 <tr role="row">
                                     <th class="table-column-pe-0 sorting_disabled" rowspan="1" colspan="1"
-                                        aria-label="
-                      
-                        
-                        
-                      
-                    "
-                                        style="width: 28.09375px;">
+                                        aria-label="" style="width: 28.09375px;">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
                                                 id="datatableCheckAll">
@@ -124,6 +118,12 @@
                             <tbody>
                                 @foreach ($tags as $tag)
                                     <tr>
+                                        <td class="table-column-pe-0">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="ordersCheck1">
+                                                <label class="form-check-label" for="ordersCheck1"></label>
+                                            </div>
+                                        </td>
                                         <td> {{ $tag->id }} </td>
                                         <td> {{ $tag->name }} </td>
                                         <td> {{ $tag->slug }} </td>
