@@ -59,7 +59,7 @@
               <!-- Collapse -->
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllPostMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllPostMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllPostMenu">
-                  <i class="bi bi-pin-angle-fill"></i>
+                  <i class="bi bi-pin-angle-fill nav-icon"></i>
                   <span class="nav-link-title">{{ __("Post") }}</span>
                 </a>
 
@@ -116,7 +116,7 @@
               <!-- Collapse -->
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllOrdersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllOrdersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllOrdersMenu">
-                  <i class="bi bi-receipt"></i>
+                  <i class="bi bi-receipt nav-icon"></i>
                   <span class="nav-link-title">{{ __("Orders") }}</span>
                 </a>
 
