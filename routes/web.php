@@ -218,6 +218,8 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 
+//Blog Section
+Route::get('/blog', 'BlogController@all_blog')->name('blog');
 
 
 
