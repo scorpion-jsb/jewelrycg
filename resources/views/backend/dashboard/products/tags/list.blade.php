@@ -72,34 +72,10 @@
                         <div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search"
                                     class="" placeholder="" aria-controls="datatable"></label></div>
                         <table id="datatable"
-                            class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer"
-                            data-hs-datatables-options="{
-                       &quot;columnDefs&quot;: [{
-                          &quot;targets&quot;: [0, 7],
-                          &quot;orderable&quot;: false
-                        }],
-                       &quot;order&quot;: [],
-                       &quot;info&quot;: {
-                         &quot;totalQty&quot;: &quot;#datatableWithPaginationInfoTotalQty&quot;
-                       },
-                       &quot;search&quot;: &quot;#datatableSearch&quot;,
-                       &quot;entries&quot;: &quot;#datatableEntries&quot;,
-                       &quot;pageLength&quot;: 15,
-                       &quot;isResponsive&quot;: false,
-                       &quot;isShowPaging&quot;: false,
-                       &quot;pagination&quot;: &quot;datatablePagination&quot;
-                     }"
-                            role="grid" aria-describedby="datatable_info">
+                            class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer" role="grid" aria-describedby="datatable_info">
                             <thead class="thead-light">
                                 <tr role="row">
-                                    <th class="table-column-pe-0 sorting_disabled" rowspan="1" colspan="1"
-                                        aria-label="
-                      
-                        
-                        
-                      
-                    "
-                                        style="width: 28.09375px;">
+                                    <th class="table-column-pe-0 sorting_disabled" rowspan="1" colspan="1" aria-label="">
                                         <div class="form-check">
                                             <input class="form-check-input" type="checkbox" value=""
                                                 id="datatableCheckAll">
@@ -108,11 +84,11 @@
                                     </th>
                                     <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable"
                                         rowspan="1" colspan="1"
-                                        aria-label="Name: activate to sort column ascending" style="width: 202.578125px;">
+                                        aria-label="Name: activate to sort column ascending">
                                         Name</th>
                                     <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable"
                                         rowspan="1" colspan="1"
-                                        aria-label="Name: activate to sort column ascending" style="width: 202.578125px;">
+                                        aria-label="Name: activate to sort column ascending">
                                         Slug</th>
                                     <th class="sorting_disabled" rowspan="1" colspan="1" aria-label=""
                                         style="width: 89.25px;"></th>
@@ -122,6 +98,12 @@
                             <tbody>
                                 @foreach ($tags as $tag)
                                     <tr>
+                                        <td class="table-column-pe-0">
+                                            <div class="form-check">
+                                                <input type="checkbox" class="form-check-input" id="ordersCheck1">
+                                                <label class="form-check-label" for="ordersCheck1"></label>
+                                            </div>
+                                        </td>
                                         <td> {{ $tag->id }} </td>
                                         <td> {{ $tag->name }} </td>
                                         <td> {{ $tag->slug }} </td>
