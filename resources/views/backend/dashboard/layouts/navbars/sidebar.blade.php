@@ -179,11 +179,11 @@
                     <i class="bi-moon-stars me-2"></i>
                     <span class="text-truncate" title="Auto (system default)">Auto (system default)</span>
                   </a>
-                  <a class="dropdown-item" href="#" data-icon="bi-brightness-high" data-value="default">
+                  <a class="dropdown-item active" href="#" data-icon="bi-brightness-high" data-value="default">
                     <i class="bi-brightness-high me-2"></i>
                     <span class="text-truncate" title="Default (light mode)">Default (light mode)</span>
                   </a>
-                  <a class="dropdown-item active" href="#" data-icon="bi-moon" data-value="dark">
+                  <a class="dropdown-item" href="#" data-icon="bi-moon" data-value="dark">
                     <i class="bi-moon me-2"></i>
                     <span class="text-truncate" title="Dark">Dark</span>
                   </a>
