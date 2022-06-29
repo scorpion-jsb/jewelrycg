@@ -113,28 +113,28 @@
         </div>
 
         <div class="position-fixed start-50 bottom-0 translate-middle-x w-100 zi-99 mb-3" style="max-width: 40rem;">
-        <!-- Card -->
-        <div class="card card-sm bg-dark border-dark mx-2">
-          <div class="card-body">
-            <div class="row justify-content-center justify-content-sm-between">
-              <div class="col">
-                <button type="button" class="btn btn-ghost-danger">Delete</button>
-              </div>
-              <!-- End Col -->
+            <!-- Card -->
+            <div class="card card-sm bg-dark border-dark mx-2">
+                <div class="card-body">
+                <div class="row justify-content-center justify-content-sm-between">
+                    <div class="col">
+                    <button type="button" class="btn btn-ghost-danger">Delete</button>
+                    </div>
+                    <!-- End Col -->
 
-              <div class="col-auto">
-                <div class="d-flex gap-3">
-                    <button type="button" class="btn btn-ghost-light">Unpublished</button>
-                  <button type="submit" class="btn btn-primary">Update</button>
+                    <div class="col-auto">
+                    <div class="d-flex gap-3">
+                        <button type="button" class="btn btn-ghost-light">Unpublish</button>
+                        <button type="submit" class="btn btn-primary">Update</button>
+                    </div>
+                    </div>
+                    <!-- End Col -->
                 </div>
-              </div>
-              <!-- End Col -->
+                <!-- End Row -->
+                </div>
             </div>
-            <!-- End Row -->
-          </div>
+            <!-- End Card -->
         </div>
-        <!-- End Card -->
-      </div>
     </form>
 @endsection
 
