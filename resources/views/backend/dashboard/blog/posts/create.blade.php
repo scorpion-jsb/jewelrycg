@@ -20,28 +20,8 @@
                                 <input type="text" name="name" id="name" value="" class="form-control">
                             </div>
                             <div class="col-md-6 mb-2">
-                                <label for="category">Category:</label>
-                                    <div class="col-md-12">
-                                        <select style="width:100%" class="selectpicker" name="categories[]" data-live-search="true" data-container="body">
-                                            @foreach ($categories as $categorie)
-                                                <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-
-
-                            </div>
-                            <div class="col-md-6 mb-2">
                                 <label for="name">Slug:</label>
                                 <input type="text" name="slug" id="slug" value="" class="form-control">
-                            </div>
-                            <div class="col-md-12 mb-2">
-                                <label for="name">Tags:</label>
-                                <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
-                                    @foreach ($tags as $tag)
-                                        <option value='{{ $tag->id }}'> {{ $tag->name }} </option>
-                                    @endforeach
-                                </select>
                             </div>
                             <div class="col-md-12 mb-2">
                                 <label for="desc">Post:</label>
@@ -55,6 +35,36 @@
                 </div>
             </div>
             <div class="col-md-4">
+                <!-- Card -->
+                <div class="card mb-3 mb-lg-5">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">Organization</h4>
+                    </div>
+                    <!-- End Header -->
+
+                    <!-- Body -->
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="category">Category:</label>
+                                <select style="width:100%" class="selectpicker" name="categories[]" data-live-search="true" data-container="body">
+                                    @foreach ($categories as $categorie)
+                                        <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
+                                    @endforeach
+                                </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="name">Tags:</label>
+                            <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
+                                @foreach ($tags as $tag)
+                                    <option value='{{ $tag->id }}'> {{ $tag->name }} </option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Card -->
+
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
