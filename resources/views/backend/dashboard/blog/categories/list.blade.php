@@ -4,7 +4,7 @@
 <div class="page-header">
     <div class="row align-items-center mb-3">
         <div class="col-sm mb-2 mb-sm-0">
-            <h1 class="page-header-title">Categories <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
+            <h1 class="page-header-title">Blog Categories <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
         </div>
         <!-- End Col -->
 
