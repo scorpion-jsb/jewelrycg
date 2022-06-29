@@ -68,7 +68,7 @@
 
                 <div id="navbarVerticalMenuAllPostMenu" class="nav-collapse collapse @if($activePage == 'posts') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link @if($navName == 'allpost') active @endif" href="{{ route('backend.posts.list') }}">{{ __("All Post") }}</a>
-                  <a class="nav-link @if($navName == 'addpost') active @endif" href="{{ route('backend.posts.create') }}">{{ __("Add New") }}</a>
+                  <a class="nav-link @if($navName == 'addpost') active @endif" href="{{ route('backend.posts.create') }}">{{ __("Create Post") }}</a>
                   <a class="nav-link @if($navName == 'blogcategories') active @endif" href="{{ route('backend.blog.categories.list') }}">{{ __("Categories") }}</a>
                   <a class="nav-link @if($navName == 'blogtags') active @endif" href="{{ route('backend.blog.tags.list') }}">{{ __("Tags") }}</a>
                 </div>
