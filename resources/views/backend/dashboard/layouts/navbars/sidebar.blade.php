@@ -171,7 +171,7 @@
               <!-- Style Switcher -->
               <div class="dropdown dropup">
                 <button type="button" class="btn btn-ghost-secondary btn-icon rounded-circle" id="selectThemeDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
-
+                <i class="bi-brightness-high"></i>
                 </button>
 
                 <div class="dropdown-menu navbar-dropdown-menu navbar-dropdown-menu-borderless" aria-labelledby="selectThemeDropdown">
