@@ -81,11 +81,15 @@ class BlogsController extends Controller
     public function store(PostStoreRequest $request)
     {
 
-        $tags = $request->input('tags');
-        $categories = $request->input('categories');
+        $tags = (array)$request->input('tags');
+        $categories = (array)$request->input('categories');
         $blog = new BlogPost();
         $data = $request->input();
-        $data['cover_image'] = $blog->storeImages($request->cover_image);
+        if($request->cover_image)
+        {
+            $data['cover_image'] = $blog->storeImages($request->cover_image);
+        }
+        
       
 
         $post_id = $blog->create($data)->id;
@@ -144,8 +148,8 @@ class BlogsController extends Controller
      */
     public function update(PostStoreRequest $request, $id)
     {
-        $tags = $request->input('tags');
-        $categories = $request->input('categories');
+        $tags = (array)$request->input('tags');
+        $categories = (array)$request->input('categories');
         
         $blog = BlogPost::findOrFail($id);
         $data = $request->input();

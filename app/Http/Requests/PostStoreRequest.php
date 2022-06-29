@@ -23,18 +23,15 @@ class PostStoreRequest extends FormRequest
      */
     public function rules()
     {
-        $image_required = 'required';
-        if(request()->routeIs('backend.posts.update'))
-        {
+      
             $image_required = 'nullable';
-        }
+      
 
         return [
             'name' => 'required|string|max:255',
             'slug' => 'required|string|max:255',
             'categories' => 'required|array',
             'post' => 'required',
-            'tags' => 'required|array',
             'cover_image' => "$image_required",
             'cover_image.*' => "$image_required|mimes:jpeg,jpg,png,pdf|max:3072"
         ];
