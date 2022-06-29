@@ -190,41 +190,6 @@
               <!-- End Style Switcher -->
             </li>
 
-            <li class="navbar-vertical-footer-list-item">
-              <!-- Other Links -->
-              <div class="dropdown dropup">
-                <button type="button" class="btn btn-ghost-secondary btn-icon rounded-circle" id="otherLinksDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
-                  <i class="bi-info-circle"></i>
-                </button>
-
-                <div class="dropdown-menu navbar-dropdown-menu-borderless" aria-labelledby="otherLinksDropdown">
-                  <span class="dropdown-header">Help</span>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-journals dropdown-item-icon"></i>
-                    <span class="text-truncate" title="Resources &amp; tutorials">Resources &amp; tutorials</span>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-command dropdown-item-icon"></i>
-                    <span class="text-truncate" title="Keyboard shortcuts">Keyboard shortcuts</span>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-alt dropdown-item-icon"></i>
-                    <span class="text-truncate" title="Connect other apps">Connect other apps</span>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-gift dropdown-item-icon"></i>
-                    <span class="text-truncate" title="What's new?">What's new?</span>
-                  </a>
-                  <div class="dropdown-divider"></div>
-                  <span class="dropdown-header">Contacts</span>
-                  <a class="dropdown-item" href="#">
-                    <i class="bi-chat-left-dots dropdown-item-icon"></i>
-                    <span class="text-truncate" title="Contact support">Contact support</span>
-                  </a>
-                </div>
-              </div>
-              <!-- End Other Links -->
-            </li>
 
             <li class="navbar-vertical-footer-list-item">
               <!-- Language -->
