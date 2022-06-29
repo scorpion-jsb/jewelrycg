@@ -27,9 +27,7 @@
                                     </div>
                                     <div class="col-md-12 mb-2">
                                         <label for="desc">Description:</label>
-                                        <textarea name="description" value="{{ $tag->description }}" id="desc" rows="3" class="form-control">
-                                            {{ $tag->description }}
-                                        </textarea>
+                                        <textarea name="description" value="{{ $tag->description }}" id="desc" rows="3" class="form-control">{{ $tag->description }}</textarea>
                                     </div>
                                     
                                     <div class="col-md-12 text-center">
