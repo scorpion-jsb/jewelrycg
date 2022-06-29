@@ -20,10 +20,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header card-header-content-md-between">
-                            <div class="mb-2 mb-md-0">
-                                <h4 class="card-title">Manage Posts</h4>
-                            </div>
+                        <div class="card-header">
+                            
                         </div>
                         <div class="table-responsive datatable-custom position-relative">
 
