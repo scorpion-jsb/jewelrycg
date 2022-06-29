@@ -114,6 +114,22 @@
                         <label for="qty">Quantity in Stock</label>
                         <input type="number" value='{{ $product->qty }}' name="qty" id="qty" class="form-control" min="0">
                     </div>
+                    <label class="row form-check form-switch mb-4" for="availabilitySwitch1">
+                        <span class="col-8 col-sm-9 ms-0">
+                            <span class="text-dark">Backorder</span>
+                        </span>
+                        <span class="col-4 col-sm-3 text-end">
+                            <input type="checkbox" class="form-check-input" id="availabilitySwitch1">
+                        </span>
+                    </label>
+                    <label class="row form-check form-switch mb-4" for="availabilitySwitch1">
+                        <span class="col-8 col-sm-9 ms-0">
+                            <span class="text-dark">Made to Order</span>
+                        </span>
+                        <span class="col-4 col-sm-3 text-end">
+                            <input type="checkbox" class="form-check-input" id="availabilitySwitch1">
+                        </span>
+                    </label>
                 </div>
             </div>
             <!-- End Card -->
