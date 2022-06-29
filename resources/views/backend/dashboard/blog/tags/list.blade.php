@@ -42,9 +42,7 @@
 
                         <div class="col-md-12 mb-2">
                             <label for="name">Description:</label>
-                            <textarea type="text" name="description" id="name" class="form-control">
-                            
-                            </textarea>
+                            <textarea type="text" name="description" id="name" class="form-control"></textarea>
                         </div>
 
                         <div class="col-md-12 mb-2">
