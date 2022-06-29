@@ -59,7 +59,7 @@
               <!-- Collapse -->
               <div class="nav-item">
                 <a class="nav-link dropdown-toggle " href="#navbarVerticalMenuAllPostMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllPostMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllPostMenu">
-                  <i class="bi-person nav-icon"></i>
+                  <i class="bi-stickies nav-icon"></i>
                   <span class="nav-link-title">{{ __("Post") }}</span>
                 </a>
 
