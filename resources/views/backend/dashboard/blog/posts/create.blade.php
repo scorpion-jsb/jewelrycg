@@ -47,11 +47,11 @@
                     <div class="card-body">
                         <div class="mb-4">
                             <label for="category">Category:</label>
-                                <select style="width:100%" class="selectpicker" name="categories[]" data-live-search="true" data-container="body">
-                                    @foreach ($categories as $categorie)
-                                        <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
-                                    @endforeach
-                                </select>
+                            <select style="width:100%" class="selectpicker" name="categories[]" data-live-search="true" data-container="body">
+                                @foreach ($categories as $categorie)
+                                    <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                         <div class="mb-4">
                             <label for="name">Tags:</label>
