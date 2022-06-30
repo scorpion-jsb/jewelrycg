@@ -25,7 +25,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <select class="selectpicker" name="parent_id" data-live-search="true">
-                                                    <option selected disabled>Select category</option>
+                                                    <option selected disabled>None</option>
 
                                                     @foreach ($categories as $categorie)
                                                         <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
