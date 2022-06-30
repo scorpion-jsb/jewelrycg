@@ -142,7 +142,7 @@ use Illuminate\Support\Facades\Route;
 
             Route::group([ 
                 'prefix' => 'products/tags',
-                'as' => 'product.tags.'
+                'as' => 'products.tags.'
             ], function() {
                     Route::get('/', [ProducttagsController::class, 'index'])->name('list');
                     Route::get('/create', [ProducttagsController::class, 'create'])->name('create');
