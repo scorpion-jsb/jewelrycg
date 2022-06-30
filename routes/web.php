@@ -78,8 +78,8 @@ use Illuminate\Support\Facades\Route;
 
     //categories routes
     Route::group([ 
-        'prefix' => 'catalogue/categories',
-        'as' => 'categories.'
+        'prefix' => 'products/categories',
+        'as' => 'products.categories.'
     ], function() {
             Route::get('/', [CategorysController::class, 'index'])->name('list');
             Route::get('/create', [CategorysController::class, 'create'])->name('create');

@@ -17,7 +17,7 @@ class ProducttagsController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.products.tags.list', [
+        return view('backend.products.tags.list', [
             'tags' => ProductTag::all()
         ]);
     }
@@ -63,7 +63,7 @@ class ProducttagsController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.dashboard.products.tags.edit', [
+        return view('backend.products.tags.edit', [
             'tag' => ProductTag::findOrFail($id)
         ]);
     }

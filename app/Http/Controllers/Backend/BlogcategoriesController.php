@@ -17,7 +17,7 @@ class BlogcategoriesController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.blog.categories.list', [
+        return view('backend.blog.categories.list', [
             'categories' => BlogCategorie::all()
         ]);  
     }
@@ -45,7 +45,7 @@ class BlogcategoriesController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.blog.categories.create', [
+        return view('backend.blog.categories.create', [
             'categories' => BlogCategorie::all()
         ]);  
     }
@@ -81,7 +81,7 @@ class BlogcategoriesController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.dashboard.blog.categories.edit',[
+        return view('backend.blog.categories.edit',[
             "category" => BlogCategorie::findOrFail($id),
             'categories' => BlogCategorie::where('id' ,'!=' , $id)->get()
         ]);

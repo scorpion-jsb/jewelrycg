@@ -17,7 +17,7 @@ class CategorysController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.categories.list', [
+        return view('backend.products.categories.list', [
             'categories' => ProductsCategorie::all()
         ]);  
     }
@@ -45,7 +45,7 @@ class CategorysController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.categories.create', [
+        return view('backend.products.categories.create', [
             'categories' => ProductsCategorie::all()
         ]);  
     }
@@ -59,7 +59,7 @@ class CategorysController extends Controller
     public function store(CategorieStoreRequest $request)
     {
         ProductsCategorie::create($request->input());
-        return redirect()->route('backend.categories.list');
+        return redirect()->route('backend.products.categories.list');
     }
 
     /**
@@ -81,7 +81,7 @@ class CategorysController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.dashboard.categories.edit',[
+        return view('backend.products.categories.edit',[
             "category" => ProductsCategorie::findOrFail($id),
             'categories' => ProductsCategorie::where('id' ,'!=' , $id)->get()
         ]);
@@ -98,7 +98,7 @@ class CategorysController extends Controller
     {
         $categorie = ProductsCategorie::findOrFail($id);
         $categorie->update($request->input());
-        return redirect()->route('backend.categories.list');
+        return redirect()->route('backend.products.categories.list');
     }
 
     /**

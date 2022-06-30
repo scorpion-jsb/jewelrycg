@@ -16,7 +16,7 @@ class BlogtagsController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.blog.tags.list', [
+        return view('backend.blog.tags.list', [
             'tags' => BlogTags::all()
         ]);
     }
@@ -62,7 +62,7 @@ class BlogtagsController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.dashboard.blog.tags.edit', [
+        return view('backend.blog.tags.edit', [
             'tag' => BlogTags::findOrFail($id)
         ]);
     }

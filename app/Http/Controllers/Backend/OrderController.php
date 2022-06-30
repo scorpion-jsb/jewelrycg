@@ -17,7 +17,7 @@ class OrderController extends Controller
     {
         $orders = Order::getBasedOnUser();
         $orders->transform(fn($i) => $i->formatPrice());
-        return view('backend.dashboard.orders.list', compact('orders'));
+        return view('backend.orders.list', compact('orders'));
     }
 
     /**
@@ -29,7 +29,7 @@ class OrderController extends Controller
     {
         $orders = Order::getPendingBasedOnUser();
         $orders->transform(fn($i) => $i->formatPrice());
-        return view('backend.dashboard.orders.list', compact('orders'));
+        return view('backend.orders.list', compact('orders'));
     }
 
     /**
