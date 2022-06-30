@@ -17,6 +17,8 @@ use App\Http\Controllers\Backend\BlogsController;
 use App\Http\Controllers\Backend\BlogcategoriesController;
 use App\Http\Controllers\Backend\BlogtagsController;
 use App\Http\Controllers\Backend\ProducttagsController;
+use App\Http\Controllers\Backend\AttributesController;
+
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 
 
@@ -87,6 +89,19 @@ use Illuminate\Support\Facades\Route;
             Route::put('/update/{product}', [CategorysController::class, 'update'])->name('update');
             Route::post('/store', [CategorysController::class, 'store'])->name('store');
             Route::get('/get', [CategorysController::class, 'get'])->name('get');
+        });
+
+        //attributes routes
+    Route::group([ 
+        'prefix' => 'products/attributes',
+        'as' => 'products.attributes.'
+    ], function() {
+            Route::get('/', [AttributesController::class, 'index'])->name('list');
+            Route::get('/create', [AttributesController::class, 'create'])->name('create');
+            Route::get('/edit/{id}', [AttributesController::class, 'edit'])->name('edit');
+            Route::put('/update/{product}', [AttributesController::class, 'update'])->name('update');
+            Route::post('/store', [AttributesController::class, 'store'])->name('store');
+            Route::get('/get', [AttributesController::class, 'get'])->name('get');
         });
 
         Route::group([ 
