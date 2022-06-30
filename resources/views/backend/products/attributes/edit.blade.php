@@ -26,9 +26,10 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <select class="selectpicker col-md-12" name="type" data-live-search="true">
-                                                    <option value="1" @if($attribute->type == 1) selected @endif data-tokens="">Text</option>
+                                                    <option value="" disabled >Select Type</option>
+                                                    <option value="1" @if($attribute->type == 1) selected @endif data-tokens="">Select</option>
                                                     <option value="2" @if($attribute->type == 2) selected @endif data-tokens="">Color</option>
-                                                    <option value="3" @if($attribute->type == 3) selected @endif data-tokens="">Select</option>
+                                                    <option value="3" @if($attribute->type == 3) selected @endif data-tokens="">Image</option>
                                                   </select>
                                             </div>
                                         </div>
@@ -57,14 +58,6 @@
                     $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
                 }
                 
-            })
-
-            $('.select2').select2({
-            data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
-            tags: true,
-            maximumSelectionLength: 10,
-            tokenSeparators: [',', ' '],
-            placeholder: "Select or type keywords",
             })
          })
     </script> 
