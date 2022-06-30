@@ -39,10 +39,9 @@
                             <div class="row">
                                 <div class="col-md-12">
                                     <select class="selectpicker col-md-12" name="type" data-live-search="true">
-                                        <option value="" disabled >Select Type</option>
-                                        <option value="1" data-tokens="">Select</option>
-                                        <option value="2" data-tokens="">Color</option>
-                                        <option value="3" data-tokens="">Image</option>
+                                        <option value="" data-tokens="">Select</option>
+                                        <option value="1" data-tokens="">Color</option>
+                                        <option value="2" data-tokens="">Image</option>
                                       </select>
                                 </div>
                             </div>
@@ -109,11 +108,11 @@
                                         <td> {{ $attribute->name }} </td>
                                         <td>
                                             @if ($attribute->type == 1)
-                                                Text
-                                            @elseif($attribute->type == 2)
                                                 Color
+                                            @elseif($attribute->type == 2)
+                                                Image
                                             @else
-                                                Select
+                                                Text
                                             @endif 
                                         </td>
                                         <td>
