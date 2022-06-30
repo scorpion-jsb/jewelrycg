@@ -123,7 +123,7 @@
                                             <!-- End Button -->
                                         </td>
 
-                                    </tr>
+                                    </tr> 
                                 @endforeach
 
                             </tbody>
