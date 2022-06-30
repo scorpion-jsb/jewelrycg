@@ -40,7 +40,7 @@ use Illuminate\Support\Facades\Route;
   Route::group([
     'prefix' => 'backend',
     'as' => 'backend.',
-    'middleware' => 'auth'
+    'middleware' => ['auth', 'admin']
 ], function() {
 
     //products routes
