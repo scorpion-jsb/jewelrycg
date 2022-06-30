@@ -1,4 +1,4 @@
-@extends('backend.dashboard.layouts.app', ['activePage' => 'posts', 'title' => 'Edit Blog Category', 'navName' => 'Table List', 'activeButton' => 'blog'])
+@extends('backend.layouts.app', ['activePage' => 'posts', 'title' => 'Edit Blog Category', 'navName' => 'Table List', 'activeButton' => 'blog'])
 
 @section('content')
 <div class="page-header">
