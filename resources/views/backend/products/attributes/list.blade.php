@@ -1,4 +1,4 @@
-@extends('backend.layouts.app', ['activePage' => 'attributes', 'title' => 'Blog Tags', 'navName' => 'blogtags', 'activeButton' => 'laravel'])
+@extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'Products Attributes', 'navName' => 'attributes', 'activeButton' => 'products'])
 
 @section('content')
     <!-- Page Header -->
