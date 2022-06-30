@@ -11,7 +11,7 @@
     @endif
     
     <div class="row">
-        <!--x-user-info-main :user="$user"/-->
+        <x-user-info-main :user="1"/>
     </div>
     
     @can('edit', $user)
