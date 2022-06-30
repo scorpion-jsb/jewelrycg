@@ -16,7 +16,7 @@ class UsersController extends Controller
     public function index()
     {
        
-        return view('backend.dashboard.users.list', [
+        return view('backend.users.list', [
             'users' => User::all()
         ]);
     }
@@ -29,7 +29,7 @@ class UsersController extends Controller
     public function customers()
     {
        
-        return view('backend.dashboard.users.list', [
+        return view('backend.users.list', [
             'users' => User::where('is_admin', 0)->get()
         ]);
     }
@@ -105,7 +105,7 @@ class UsersController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.dashboard.users.edit', [
+        return view('backend.users.edit', [
             'user' => User::findOrFail($id)
         ]);
     }
