@@ -22,7 +22,7 @@ class BlogsController extends Controller
     public function index()
     {
       
-        return view('backend.dashboard.blog.posts.list', [
+        return view('backend.blog.posts.list', [
             'posts' => BlogPost::with('categories')->get()
         ]);
     }
@@ -52,7 +52,7 @@ class BlogsController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.blog.posts.create',[
+        return view('backend.blog.posts.create',[
             'categories' => BlogCategorie::all(),
             'tags' => BlogTags::all()
         ]);
@@ -132,7 +132,7 @@ class BlogsController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.dashboard.blog.posts.edit', [
+        return view('backend.blog.posts.edit', [
             'post' => BlogPost::whereId($id)->with(['tags', 'categories'])->firstOrFail(),
             'categories' => BlogCategorie::all(),
             'tags' => BlogTags::all()
