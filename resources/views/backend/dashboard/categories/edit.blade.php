@@ -26,7 +26,7 @@
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <select class="selectpicker" name="parent_id" data-live-search="true">
-                                                    <option data-tokens="Parent">Parent</option>
+                                                    <option value="">Parent</option>
                                                     @foreach ($categories as $categorie)
                                                         <option value="{{$categorie->id}}" @if($categorie->id == $category->parent_id) selected @endif data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
                                                     @endforeach
