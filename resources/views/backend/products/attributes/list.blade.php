@@ -90,7 +90,7 @@
                                     </th>
                                     <th class="sorting" aria-label="">ID</th>
                                     <th class="sorting_disabled" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Name</th>
-                                    <th class="sorting_disabled" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Slug</th>
+                                    <th class="sorting_disabled" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Type</th>
                                     <th class="sorting_disabled"aria-label="">Actions</th>
                                 </tr>
                             </thead>
