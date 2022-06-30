@@ -9,7 +9,7 @@
         <!-- End Col -->
 
         <div class="col-sm-auto">
-            <a class="btn btn-primary" href="{{ route('backend.categories.create') }}">Create category</a>
+            <a class="btn btn-primary" href="{{ route('backend.products.categories.create') }}">Create category</a>
         </div>
         <!-- End Col -->
     </div>
