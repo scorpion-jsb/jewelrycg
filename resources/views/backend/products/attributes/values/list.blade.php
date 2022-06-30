@@ -18,15 +18,15 @@
             <div class="card mb-4">
                 <div class="card-header card-header-content-md-between">
                     <div class="mb-2 mb-md-0">
-                        <h3 class="card-header-title">Add Attribute</h3>
+                        <h3 class="card-header-title">Add Value</h3>
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('backend.products.attributes.store') }}" method="POST">
+                    <form action="{{ route('backend.products.attributes.values.store', $attribute->id) }}" method="POST">
                         @csrf
                         @if ($errors->has('name'))
                             <div class="col-md-12 mb-2">
-                                <span class="badge btn-danger col-md-12"> Tag name is required </span>
+                                <span class="badge btn-danger col-md-12"> value name is required </span>
                             </div>
                         @endif
                         <div class="col-md-12 mb-2">
@@ -35,22 +35,19 @@
 
                         </div>
                         <div class="col-md-12 mb-2">
-                            <label for="name">Type:</label>
-                            <div class="row">
-                                <div class="col-md-12">
-                                    <select class="selectpicker col-md-12" name="type" data-live-search="true">
-                                        <option value="0" data-tokens="">Select</option>
-                                        <option value="1" data-tokens="">Color</option>
-                                        <option value="2" data-tokens="">Image</option>
-                                      </select>
-                                </div>
-                            </div>
-
+                            <label for="name">Value:</label>
+                                   
+                                    @if($attribute->type == 1)
+                                    <input type="color" name="value" id="name" value="" class="form-control">
+                                        
+                                    @elseif($attribute->type == 2)
+                                    <input type="file" name="value" id="name" value="" class="form-control">
+                                    @else($attribute->type == 0)
+                                    <input type="text" name="value" id="name" value="" class="form-control">
+                                    @endif
                         </div>
-
-
                         <div class="col-md-12 mb-2">
-                            <button type="submit" class="btn btn-primary col-md-12"> Add </button>
+                            <button type="submit" class="btn btn-primary col-md-12"> Add to {{ $attribute->name }} </button>
                         </div>
                     </form>
                 </div>
@@ -61,7 +58,7 @@
             <div class="card mb-4">
                 <div class="card-header card-header-content-md-between">
                     <div class="mb-2 mb-md-0">
-                        <h3 class="card-header-title">Attributes</h3>
+                        <h3 class="card-header-title">Values of attribute {{ $attribute->name }}</h3>
                     </div>
                 </div>
                 <div class="table-responsive datatable-custom position-relative">
@@ -97,7 +94,8 @@
                             </thead>
 
                             <tbody>
-                                @foreach ($attributes as $attribute)
+                                
+                                @foreach ($values as $value)
                                     <tr>
                                         <td class="table-column-pe-0">
                                             <div class="form-check">
@@ -105,16 +103,16 @@
                                                 <label class="form-check-label" for="ordersCheck1"></label>
                                             </div>
                                         </td>
-                                        <td> {{ $attribute->id }} </td>
-                                        <td> {{ $attribute->name }} </td>
-                                        <td> {{ $attribute->slug }} </td>
+                                        <td> {{ $value->id }} </td>
+                                        <td> {{ $value->name }} </td>
+                                        <td> {{ $value->slug }} </td>
                                         <td>
                                             @if ($attribute->type == 1)
-                                                Color
+                                                <span class="dot" style="background:{{$value->value}}"></span>
                                             @elseif($attribute->type == 2)
-                                                Image
+                                            {{ $value->name }}
                                             @else
-                                                Text
+                                            {{ $value->name }}
                                             @endif 
                                         </td>
                                         <td>
@@ -139,7 +137,6 @@
 
                                     </tr>
                                 @endforeach
-
 
                             </tbody>
                         </table>

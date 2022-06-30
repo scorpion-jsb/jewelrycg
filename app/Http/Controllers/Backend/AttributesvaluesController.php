@@ -4,6 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Attribute;
+use App\Models\AttributeValue;
+use App\Http\Requests\StoreAttributeValuesRequest;
+
+
 
 class AttributesvaluesController extends Controller
 {
@@ -12,9 +17,12 @@ class AttributesvaluesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id_attribute)
     {
-        //
+        return view('backend.products.attributes.values.list',[
+            'attribute' => Attribute::findOrFail($id_attribute),
+            'values' => AttributeValue::where('attribute_id', $id_attribute)->get()
+        ]);
     }
 
     /**
@@ -33,9 +41,15 @@ class AttributesvaluesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreAttributeValuesRequest $request, $id_attribute)
     {
-        //
+        $data = $request->input();
+        
+        $data['slug'] = str_replace(" ","-", strtolower($request->name));
+        $data['attribute_id'] = $id_attribute;
+        AttributeValue::create($data);
+        return redirect()->route('backend.products.attributes.values.list', $id_attribute);
+
     }
 
     /**

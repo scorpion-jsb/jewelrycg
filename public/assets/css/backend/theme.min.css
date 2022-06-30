@@ -33690,3 +33690,11 @@ a:hover .text-inherit {
 .leaflet-popup {
     margin-bottom: 2.5rem
 }
+
+.dot {
+  height: 25px;
+  width: 25px;
+  background-color: #bbb;
+  border-radius: 50%;
+  display: inline-block;
+}
