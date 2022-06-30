@@ -28,16 +28,16 @@
   </head>
   <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
 
-    @include('backend.dashboard.layouts.navbars.navbar')
-    @include('backend.dashboard.layouts.navbars.sidebar')
-    @include('backend.dashboard.pages.sidebarstyle')
+    @include('backend.layouts.navbars.navbar')
+    @include('backend.layouts.navbars.sidebar')
+    @include('backend.pages.sidebarstyle')
     
     <main id="content" role="main" class="main">
       <!-- Content -->
       <div class="content container-fluid">
         @yield('content')
       </div>
-      @include('backend.dashboard.layouts.footer.nav')
+      @include('backend.layouts.footer.nav')
     </main>
 
     @stack('js')
