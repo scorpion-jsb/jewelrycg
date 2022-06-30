@@ -83,6 +83,7 @@
                             <label for="email">Country:</label>
                             <input type="text" name="country" value='{{ $user->country }}' id="email"
                                 class="form-control">
+                                
                         </div>
 
                         <!-- Zipcode -->
