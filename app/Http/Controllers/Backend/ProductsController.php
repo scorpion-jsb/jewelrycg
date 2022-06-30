@@ -22,7 +22,7 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.products.list', [
+        return view('backend.products.list', [
             'products' => Product::all()
         ]);
     }
@@ -50,7 +50,7 @@ class ProductsController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.products.create', [
+        return view('backend.products.create', [
             'categories' => ProductsCategorie::all(),
             'tags' => ProductTag::all()
         ]);
@@ -119,7 +119,7 @@ class ProductsController extends Controller
     {
         $product = Product::whereId($id)->with('tags')->firstOrFail();
         $product->setPriceToFloat();
-        return view('backend.dashboard.products.edit', [
+        return view('backend.products.edit', [
             'product' => $product,
             'categories' => ProductsCategorie::all(),
             'tags' => ProductTag::all(),
