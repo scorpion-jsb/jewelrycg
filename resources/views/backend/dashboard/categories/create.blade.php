@@ -21,7 +21,7 @@
                                         <input type="text" name="category_name" id="name" value="" class="form-control">
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                        <label for="name">Parent:</label>
+                                        <label value="">None</label>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <select class="selectpicker" name="parent_id" data-live-search="true">
