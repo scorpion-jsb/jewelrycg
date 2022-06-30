@@ -94,7 +94,7 @@
                 processing: true,
                 serverSide: true,
                 bAutoWidth: false,
-                ajax: '{{ route('backend.categories.get') }}',
+                ajax: '{{ route('backend.products.categories.get') }}',
                 columns: [{
                         data: 'id',
                         name: 'id'
