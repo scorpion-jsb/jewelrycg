@@ -41,7 +41,9 @@ class AttributesController extends Controller
      */
     public function store(StoreAttributeRequest $request)
     {
-        Attribute::Create($request->input());
+        $data = $request->input();
+        $data['slug'] = str_replace(" ","-", $request->name);
+        Attribute::Create($data);
         return redirect()->route('backend.products.attributes.list');
         
     }
@@ -79,9 +81,10 @@ class AttributesController extends Controller
      */
     public function update(StoreAttributeRequest $request, $id)
     {
-        
+        $data = $request->input();
+        $data['slug'] = str_replace(" ","-", $request->name);
         $attribute = Attribute::findOrFail($id);
-        $attribute->update($request->input());
+        $attribute->update($data);
         return redirect()->route('backend.products.attributes.list');
     }
 
