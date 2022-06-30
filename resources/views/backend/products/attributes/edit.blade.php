@@ -27,8 +27,8 @@
                                             <div class="col-md-12">
                                                 <select class="selectpicker col-md-12" name="type" data-live-search="true">
                                                     <option value=""  data-tokens="">Select</option>
-                                                    <option value="2" @if($attribute->type == 1) selected @endif data-tokens="">Color</option>
-                                                    <option value="3" @if($attribute->type == 2) selected @endif data-tokens="">Image</option>
+                                                    <option value="1" @if($attribute->type == 1) selected @endif data-tokens="">Color</option>
+                                                    <option value="2" @if($attribute->type == 2) selected @endif data-tokens="">Image</option>
                                                   </select>
                                             </div>
                                         </div>

@@ -82,6 +82,7 @@ class AttributesController extends Controller
         
         $attribute = Attribute::findOrFail($id);
         $attribute->update($request->input());
+        dd($attribute);
         return redirect()->route('backend.products.attributes.list');
     }
 
