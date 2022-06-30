@@ -19,7 +19,7 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.dashboard', [
+        return view('backend.dashboard', [
             'title' => $this->pageTitle,
             'activePage' => "dashboard",
             'activeButton' => 'laravel'
