@@ -17,11 +17,11 @@
                                 <div class="card-body row">
                                     @include('includes.validation-form')
                                     <div class="col-md-12 mb-2">
-                                        <label for="name">Name:</label>
+                                        <label for="name">Name</label>
                                         <input type="text" name="category_name" id="name" value="" class="form-control">
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                        <label value="">None</label>
+                                        <label for="name">Parent</label>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <select class="selectpicker" name="parent_id" data-live-search="true">
