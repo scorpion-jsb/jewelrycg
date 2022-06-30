@@ -19,7 +19,7 @@ class VendorsController extends Controller
      */
     public function index()
     {
-        return view('backend.dashboard.users.list', [
+        return view('backend.users.list', [
             'users' => User::where('is_admin', 3)->get()
         ]);
     }
@@ -64,7 +64,7 @@ class VendorsController extends Controller
      */
     public function create()
     {
-        return view('backend.dashboard.sellers.create');
+        return view('backend.sellers.create');
     }
 
     /**
@@ -110,7 +110,7 @@ class VendorsController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.dashboard.sellers.edit',[
+        return view('backend.sellers.edit',[
             'seller' => User::findOrFail($id)
         ]);
         
