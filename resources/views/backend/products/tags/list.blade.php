@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('backend.product.tags.store') }}" method="POST">
+                    <form action="{{ route('backend.products.tags.store') }}" method="POST">
                         @csrf
                         @if ($errors->has('name'))
                             <div class="col-md-12 mb-2">
