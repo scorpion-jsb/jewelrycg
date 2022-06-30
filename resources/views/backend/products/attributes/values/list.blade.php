@@ -4,7 +4,7 @@
     <!-- Page Header -->
     <div class="page-header">
         <div class="row align-items-end">
-            <h1 class="page-header-title"> Attribute Values for {{ $attribute->name }}<span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
+            <h1 class="page-header-title"> Attribute Values for {{ $attribute->name }}</h1>
         </div>
         <!-- End Row -->
     </div>
@@ -63,17 +63,6 @@
                 </div>
                 <div class="table-responsive datatable-custom position-relative">
                     <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
-                        <div class="dt-buttons"> <button class="dt-button buttons-copy buttons-html5 d-none" tabindex="0"
-                                aria-controls="datatable" type="button"><span>Copy</span></button> <button
-                                class="dt-button buttons-excel buttons-html5 d-none" tabindex="0"
-                                aria-controls="datatable" type="button"><span>Excel</span></button> <button
-                                class="dt-button buttons-csv buttons-html5 d-none" tabindex="0" aria-controls="datatable"
-                                type="button"><span>CSV</span></button> <button
-                                class="dt-button buttons-pdf buttons-html5 d-none" tabindex="0" aria-controls="datatable"
-                                type="button"><span>PDF</span></button> <button class="dt-button buttons-print d-none"
-                                tabindex="0" aria-controls="datatable" type="button"><span>Print</span></button> </div>
-                        <div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                    class="" placeholder="" aria-controls="datatable"></label></div>
                         <table id="datatable"
                             class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer" role="grid" aria-describedby="datatable_info">
                             <thead class="thead-light">
@@ -117,8 +106,20 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a class="btn btn-white btn-sm" href="{{ route('backend.products.attributes.edit', $attribute->id) }}"> <i class="bi-list"></i> Edit </a>
-                                        
+                                                <a class="btn btn-white btn-sm" href="{{ route('backend.products.attributes.values.list', $attribute->id) }}"> <i class="bi-list"></i> Values </a>
+                                                <!-- Button Group -->
+                                                <div class="btn-group">
+                                                    <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                                    <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
+                                                        <span class="dropdown-header">Options</span>
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="{{ route('backend.products.attributes.edit', $attribute->id) }}"> <i class="bi-eye dropdown-item-icon"></i> Edit </a>
+                                                        
+                                                        <div class="dropdown-divider"></div>
+                                                        <a class="dropdown-item" href="javascript:;"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
+                                                    </div>
+                                                </div>
+                                                <!-- End Unfold -->
                                             </div>
                                             <!-- End Button -->
                                         </td>
