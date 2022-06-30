@@ -135,7 +135,7 @@ class ProductsController extends Controller
      */
     public function update(ProductStoreRequest $req, $product)
     {
-        $tags = $req->input('tags');
+        $tags = (array)$req->input('tags');
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
         $product = Product::findOrFail($product);

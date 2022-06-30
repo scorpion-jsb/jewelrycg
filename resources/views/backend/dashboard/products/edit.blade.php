@@ -37,8 +37,6 @@
     @include('includes.validation-form')
     <div class="row">
         <div class="col-lg-8 mb-3 mb-lg-0">
-            <form action="{{ route('backend.products.store') }}" method="post" enctype="multipart/form-data">
-                @csrf
                 <div class="row justify-content-center">
                     <div class="card col-md-12">
                         <div class="card-body row">
@@ -62,7 +60,7 @@
                         </div>
                     </div>
                 </div>
-            </form>
+            
         </div>
         <div class="col-lg-4">
 
