@@ -10,7 +10,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{route('backend.categories.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('backend.products.categories.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
                         <div class="row justify-content-center">
                             <div class="card col-md-12">
