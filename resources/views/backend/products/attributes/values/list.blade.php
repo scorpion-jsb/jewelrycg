@@ -106,16 +106,12 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a class="btn btn-white btn-sm" href="{{ route('backend.products.attributes.values.list', $attribute->id) }}"> <i class="bi-list"></i> Values </a>
+                                                <a class="btn btn-white btn-sm" href="#"> <i class="bi-list"></i> Edit </a>
                                                 <!-- Button Group -->
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                                     <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
-                                                        <span class="dropdown-header">Options</span>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="{{ route('backend.products.attributes.edit', $attribute->id) }}"> <i class="bi-eye dropdown-item-icon"></i> Edit </a>
-                                                        
-                                                        <div class="dropdown-divider"></div>
+
                                                         <a class="dropdown-item" href="javascript:;"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
                                                     </div>
                                                 </div>
