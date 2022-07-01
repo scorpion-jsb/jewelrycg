@@ -9,6 +9,9 @@
                             <div class="mb-2 opacity-50 article-single-category">
                                 <i>
                                     Published in 
+                                    @foreach($post->categories as $category_info)
+                                    <a href="#" >{{$category_info->category->category_name}}</a>, 
+                                    @endforeach
                             
                                 </i>
                             </div>
