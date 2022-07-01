@@ -28,9 +28,9 @@ class BlogController extends Controller
             'tags' => BlogTags::all()
         ]);
     }
-    public function categoryList()
+    public function categoryAll()
     {
-        return view('blog.category.list', [
+        return view('blog.category.all', [
             'categories' => BlogCategorie::all()
         ]);  
 
