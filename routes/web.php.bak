@@ -27,11 +27,6 @@ use App\Http\Controllers\Backend\UploadController;
 
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 
-
-
-
-
-
 use Illuminate\Support\Facades\Route;
 
 
