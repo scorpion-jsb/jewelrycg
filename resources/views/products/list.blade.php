@@ -13,7 +13,7 @@
         <div class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-4 row-cols-md-4 row-cols-2">
             @foreach ($products as $product)
             <div class="col">
-                <a class="card hov-shadow-sm mt-1 mb-2 has-transition bg-white p-2" href="/products/{{ {{ $product->slug }} }}">
+                <a class="card hov-shadow-sm mt-1 mb-2 has-transition bg-white p-2" href="/products/{{ $product->slug }}">
                     <div class="w-100 mb-2 pb-3 border-bottom">
 
                         <img class="rounded-sm w-100" src="{{ asset('assets/img/placeholder.jpg') }}" alt="{{ $product->name }}">
