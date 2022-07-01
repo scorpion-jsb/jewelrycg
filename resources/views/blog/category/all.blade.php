@@ -1,4 +1,4 @@
-<x-app-layout page-title="Blog">
+<x-app-layout page-title="All Categories">
     <section class="p-6">
         <div class="container text-center">
             <div class="row">
@@ -12,7 +12,7 @@
                             
                         </li>
                         <li class="text-dark fw-600 breadcrumb-item">
-                            <a class="text-reset" href="/blog/category/list">"Category List"</a>
+                            <a class="text-reset" href="/blog/category/all">"All Categories"</a>
                         </li>
                     </ul>
                 </div>
