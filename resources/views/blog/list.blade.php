@@ -28,7 +28,7 @@
                 <div class="col mb-3">
                     <div class="blog-post-list-container">
                         <a href="/{{ $post->slug }}" class="text-reset d-block">
-                            <img src="{{-- featured_image --}}" alt="{{ $post->name }}" class="img-blog-cropped lazyloaded">
+                            <img src="{{ asset('assets/img/placeholder-rect.jpg') }}" alt="{{ $post->name }}" class="img-blog-cropped lazyloaded">
                         </a>
                         <div class="p-2 pt-3">
                             <h2 class="fs-18 fw-600 mb-1">
