@@ -1,4 +1,4 @@
-<x-app-layout :page-title="$product->name">
+<x-app-layout :page-title="">
 <div class="page-header">
     <div class="row align-items-center mb-3">
         <div class="col-sm mb-2 mb-sm-0">
