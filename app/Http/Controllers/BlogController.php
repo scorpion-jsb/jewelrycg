@@ -28,24 +28,12 @@ class BlogController extends Controller
             'tags' => BlogTags::all()
         ]);
     }
-
-/*
-    public function index() {
-        $categories = BlogCategory::groupBy('slug')->get();
-        $blogs = Blog::where('status', 1)->orderBy('created_at', 'desc')->paginate(12);
-        return view("blog.listing", compact('blogs','categories'));
-    }
-    
-    public function category($slug)
+    public function category_index()
     {
-        $category = BlogCategory::where('slug', $slug)->first();
-        $blogs = Blog::where('status', 1)->where('category_id',$category->id)->orderBy('created_at', 'desc')->paginate(12);
-        return view("blog.category", compact('blogs','category'));
+        return view('blog.category.list', [
+            'categories' => BlogCategorie::all()
+        ]);  
+
     }
-    public function blog_details($slug) {
-        $blog = Blog::where('slug', $slug)->first();
-        return view("blog.details", compact('blog'));
-    }
-    */
 
 }
