@@ -10,11 +10,20 @@ use App\Blog;
 class BlogController extends Controller
 {
 
+    public function index()
+    {
+      
+        return view('blog.list', [
+            'posts' => BlogPost::with('categories')->get()
+        ]);
+    }
+/*
     public function index() {
         $categories = BlogCategory::groupBy('slug')->get();
         $blogs = Blog::where('status', 1)->orderBy('created_at', 'desc')->paginate(12);
         return view("blog.listing", compact('blogs','categories'));
     }
+    
     public function category($slug)
     {
         $category = BlogCategory::where('slug', $slug)->first();
@@ -25,5 +34,6 @@ class BlogController extends Controller
         $blog = Blog::where('slug', $slug)->first();
         return view("blog.details", compact('blog'));
     }
+    */
 
 }
