@@ -68,10 +68,6 @@
                         <li><a class="dropdown-item" href="{{route('orders.index')}}">{{ auth()->user()->is_admin ? 'All Orders' : 'My Orders' }}</a></li>
                         <li><a class="dropdown-item" href="{{route('cart.wishlist')}}">My Wishlist</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        @if (auth()->user()->is_admin)
-                            <li><a class="dropdown-item" href="{{route('products.create')}}">Add New Product</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                        @endif
                         <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                     </ul>
                 </li>
