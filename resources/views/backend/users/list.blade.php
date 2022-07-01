@@ -130,34 +130,42 @@
 	</div>
 </div>
 <!-- End Card --> 
-@endsection 
-@section('js_content') <script>
-	$(function() {
-		$('.table').DataTable({
-			processing: true,
-			serverSide: true,
-			bAutoWidth: false,
-			ajax: '{{ route('
-			backend.users.get ') }}',
-			columns: [{
-				data: 'id',
-				name: 'id'
-			}, {
-				data: 'name',
-				name: 'name'
-			}, {
-				data: 'email',
-				name: 'email'
-			}, {
-				data: 'is_admin',
-				name: 'is_admin'
-			}, {
-				data: 'action',
-				name: 'action',
-				orderable: false,
-				searchable: false
-			}, ]
-		});
-	});
-</script> 
+@endsection
+
+@section('js_content')
+    <script>
+        $(function() {
+
+            $('.table').DataTable({
+                processing: true,
+                serverSide: true,
+                bAutoWidth: false,
+
+                ajax: '{{ route('backend.users.get') }}',
+                columns: [{
+                        data: 'id',
+                        name: 'id'
+                    },
+                    {
+                        data: 'name',
+                        name: 'name'
+                    },
+                    {
+                        data: 'email',
+                        name: 'email'
+                    },
+                    {
+                        data: 'is_admin',
+                        name: 'is_admin'
+                    },
+                    {
+                        data: 'action',
+                        name: 'action',
+                        orderable: false,
+                        searchable: false
+                    },
+                ]
+            });
+        });
+    </script>
 @endsection
