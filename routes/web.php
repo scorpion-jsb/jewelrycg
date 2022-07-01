@@ -1,5 +1,6 @@
 <?php
 
+// Frontend
 use App\Http\Controllers\AppController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\VerifyEmailController;
@@ -8,6 +9,9 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\BlogController;
+
+// Backend
 use App\Http\Controllers\Backend\DashboardController;
 use App\Http\Controllers\Backend\ProductsController;
 use App\Http\Controllers\Backend\UsersController;
