@@ -5,7 +5,7 @@
                 <div class="col-xl-11 mx-auto">
                     <div class="blog-post-single-container">
                         <div class="border-bottom mb-2">
-                            <h1 class="text-black fw-700 article-single-title">{{-- title --}}</h1>
+                            <h1 class="text-black fw-700 article-single-title">{{ $post->name }}</h1>
                             <div class="mb-2 opacity-50 article-single-category">
                                 <i>
                                     Published
@@ -14,7 +14,7 @@
                             </div>
                         </div>
                         <div class="mb-4 article-single-post overflow-hidden">
-                            {{-- content | widont --}}
+                            {{ $post->post }}
                         </div>
                     </div>
                 </div>
