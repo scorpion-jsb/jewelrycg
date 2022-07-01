@@ -1,90 +1,62 @@
 <x-app-layout page-title="3D Models">
-<div class="page-header">
-    <div class="row align-items-center mb-3">
-        <div class="col-sm mb-2 mb-sm-0">
-            <h1 class="page-header-title">Products <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
-        </div>
-        <!-- End Col -->
-
-        <div class="col-sm-auto">
-            <a class="btn btn-primary" href="{{ route('backend.products.create') }}">Create product</a>
-        </div>
-        <!-- End Col -->
+<section class="py-8 border-b border-gray-200">
+    <div class="max-w-5xl mx-auto">
+        <h2 class="text-center text-4xl font-semibold mb-2">Buy Professional 3D models</h2>
     </div>
-    <!-- End Row -->
-</div>
+</section>
+<main class="py-6">
+    <div class="container">
+        {{-- if no_results --}}
+            <!--<p>Aw snap! There's no products that match your filters.</p>-->
+        {{-- /if --}}
 
+        <div class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-4 row-cols-md-4 row-cols-2">
+            @foreach ($products as $product)
+            <div class="col">
+                <a class="card hov-shadow-sm mt-1 mb-2 has-transition bg-white p-2" href="/products/{{ {{ $product->slug }} }}">
+                    <div class="w-100 mb-2 pb-3 border-bottom">
 
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="card strpied-tabled-with-hover">
-                        <div class="card-header card-header-content-md-between">
-                            <div class="row">
-                                
+                        <img class="rounded-sm w-100" src="{{ asset('assets/img/placeholder.jpg') }}" alt="{{ $product->name }}">
+
+                        {{-- else --}}
+                        <!--
+                            <div class="h-[325px] w-full bg-gray-100 rounded-sm flex items-center justify-center">
+                                <p class="text-gray-600 font-medium text-center">
+                                    If this product had an image, it would go here.
+                                </p>
                             </div>
-                        </div>
-                        <div class="table-responsive datatable-custom">
-                            <div class="col-md-12">
-                                <table class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
-                                    <thead class="thead-light">
-                                        <th class="table-column-pe-0 sorting_disabled" aria-label="">
-                                            <div class="form-check">
-                                                <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
-                                                <label class="form-check-label" for="datatableCheckAll"></label>
-                                            </div>
-                                        </th>
-                                        <th class="sorting">ID</th>
-                                        <th >Name</th>
-                                        <th>Price</th>
-                                        <th>Quantity</th>
-                                        <th>Category</th>
-                                        <th>Actions</th>
-                                    </thead>
-                                    <tbody>
-                                        
-                                            @foreach ($products as $product)
-                                            <tr>
-                                            <td class="table-column-pe-0">
-                                                <div class="form-check">
-                                                    <input type="checkbox" class="form-check-input" id="ordersCheck1">
-                                                    <label class="form-check-label" for="ordersCheck1"></label>
-                                                </div>
-                                            </td>
-                                            <td>{{ $product->id }}</td>
-                                            <td>{{ $product->name }}</td>
-                                            <td>{{ $product->price }} $</td>
-                                            <td>{{ $product->qty }}</td>
-                                            <td>{{ $product->category }}</td>
-                                            <td>
-                                                <div class="btn-group" role="group">
-                                                    <a class="btn btn-white btn-sm" target="_blank" href="{{ route('products.show', $product->id) }}"> <i class="bi-eye"></i> View </a>
-                                                    <!-- Button Group -->
-                                                    <div class="btn-group">
-                                                        <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                                                        <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
-                                                            <span class="dropdown-header">Options</span>
-                                                            <a href="{{ route('backend.products.edit', $product->id) }}" class="js-export-print dropdown-item">
-                                                                <i class="bi-pencil-fill me-1"></i> Edit Product
-                                                            </a>
-                                                            <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="javascript:;"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
-                                                        </div>
-                                                    </div>
-                                                    <!-- End Unfold -->
-                                                </div>
-                                                <!-- End Button -->
-                                            </td>
-                                            </tr>
-                                            @endforeach
-                                        
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
+                            -->
+                        {{-- /if --}}
                     </div>
+                    <div class="text-left px-2">
+                        <div class="fs-15">
+                            <span class="fw-700 text-primary">
+                                {{ $product->price }}
+                            </span>
+                        </div>
+                        <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px text-black">
+                            {{ $product->name }}
+                        </h3>
+                    </div>
+                </a>
+            </div>
+            @endforeach
+        </div>
+
+     
+        <div class="mt-16 mb-6 border-t mx-auto py-8">
+            <div class="flex items-center justify-between">
+                <div>
+                    <a class="bg-green-100 hover:opacity-75 text-gray-700 font-semibold rounded-lg px-4 py-2" href="{{-- prev_page --}}">← Previous</a>
                 </div>
 
-
+                <p class="font-medium">Page 1 of 26</p>
+                <div>
+                    <a class="bg-green-100 hover:opacity-75 text-gray-700 font-semibold rounded-lg px-4 py-2" href="{{-- next_page --}}">→ Next</a>
+                </div>
             </div>
-
+        </div>
+    </div>
+</main>
+                                        
 </x-app-layout>
