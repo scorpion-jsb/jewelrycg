@@ -490,46 +490,6 @@
 
                 <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item" href="#">
-                  <div class="d-flex align-items-center">
-                    <div class="flex-shrink-0">
-                      <div class="avatar avatar-sm avatar-dark avatar-circle">
-                        <span class="avatar-initials">HS</span>
-                      </div>
-                    </div>
-                    <div class="flex-grow-1 ms-2">
-                      <h5 class="mb-0">Htmlstream <span class="badge bg-primary rounded-pill text-uppercase ms-1">PRO</span></h5>
-                      <span class="card-text">hs.example.com</span>
-                    </div>
-                  </div>
-                </a>
-
-                <div class="dropdown-divider"></div>
-
-                <!-- Dropdown -->
-                <div class="dropdown">
-                  <a class="navbar-dropdown-submenu-item dropdown-item dropdown-toggle" href="javascript:;" id="navSubmenuPagesAccountDropdown2" data-bs-toggle="dropdown" aria-expanded="false">Customization</a>
-
-                  <div class="dropdown-menu dropdown-menu-end navbar-dropdown-menu navbar-dropdown-menu-borderless navbar-dropdown-sub-menu" aria-labelledby="navSubmenuPagesAccountDropdown2">
-                    <a class="dropdown-item" href="#">
-                      Invite people
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      Analytics
-                      <i class="bi-box-arrow-in-up-right"></i>
-                    </a>
-                    <a class="dropdown-item" href="#">
-                      Customize Front
-                      <i class="bi-box-arrow-in-up-right"></i>
-                    </a>
-                  </div>
-                </div>
-                <!-- End Dropdown -->
-
-                <a class="dropdown-item" href="#">Manage team</a>
-
-                <div class="dropdown-divider"></div>
-
                 <a class="dropdown-item" href="#">Sign out</a>
               </div>
             </div>
