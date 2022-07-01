@@ -53,7 +53,7 @@ use Illuminate\Support\Facades\Route;
         'as' => 'filemanager.'
     ], function() {
             Route::get('/', [UploadController::class, 'index'])->name('list');
-            Route::get('/create', [UploadController::class, 'create'])->name('create');
+            Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
             Route::get('/edit/{id}', [UploadController::class, 'edit'])->name('edit');
             Route::put('/update/{product}', [UploadController::class, 'update'])->name('update');
             Route::post('/store', [UploadController::class, 'store'])->name('store');

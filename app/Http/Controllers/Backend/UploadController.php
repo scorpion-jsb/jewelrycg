@@ -127,19 +127,19 @@ class UploadController extends Controller
                 $hash = Str::random(40);
                 $extension = $request->file('file')->getClientOriginalExtension();
 
-                $path = $request->file('file')->storeAs(
-                    'uploads/all', $hash . '.' . $extension
-                );
+                
                 
                 $size = $request->file('file')->getSize();
-
+                $path = $request->file('file')->move(
+                    public_path('uploads/all'), $hash . '.' . $extension
+                );
                 // Return MIME type ala mimetype extension
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
-
+                
                 // Get the MIME type of the file
-                $file_mime = finfo_file($finfo, base_path('public/').$path);
+                $file_mime = finfo_file($finfo,$path);
 
-                if($type[$extension] == 'image' && get_setting('disable_image_optimization') != 1){
+                if($type[$extension] == 'image'){
                     try {
                         $img = Image::make($request->file('file')->getRealPath())->encode();
                         $height = $img->height();
@@ -178,12 +178,12 @@ class UploadController extends Controller
 
                 $upload->extension = $extension;
                 $upload->file_name = $path;
-                $upload->user_id = Auth::user()->id;
+                $upload->id_user = Auth::user()->id;
                 $upload->type = $type[$upload->extension];
                 $upload->file_size = $size;
                 $upload->save();
             }
-            return '{}';
+            return redirect()->route('backend.filemanager.list');
         }
     }
 
