@@ -88,6 +88,38 @@
             </div>
 
             <x-products-display :products="$products"/>
+            <div class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-4 row-cols-md-4 row-cols-2">
+                @foreach ($products as $product)
+                <div class="col">
+                    <a class="card hov-shadow-sm mt-1 mb-2 has-transition bg-white p-2" href="{{route('products.show', $product->id)}}">
+                        <div class="w-100 mb-2 pb-3 border-bottom">
+
+                            <img class="rounded-sm w-100" src="{{ asset('assets/img/placeholder.jpg') }}" alt="{{ $product->name }}">
+
+                            {{-- else --}}
+                            <!--
+                                <div class="h-[325px] w-full bg-gray-100 rounded-sm flex items-center justify-center">
+                                    <p class="text-gray-600 font-medium text-center">
+                                        If this product had an image, it would go here.
+                                    </p>
+                                </div>
+                                -->
+                            {{-- /if --}}
+                        </div>
+                        <div class="text-left px-2">
+                            <div class="fs-15">
+                                <span class="fw-700 text-primary">
+                                    {{ $product->price }}
+                                </span>
+                            </div>
+                            <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px text-black">
+                                {{ $product->name }}
+                            </h3>
+                        </div>
+                    </a>
+                </div>
+                @endforeach
+            </div>
         </div>
     </section>
 </x-app-layout>
