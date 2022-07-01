@@ -177,7 +177,7 @@ class UploadController extends Controller
                 }
 
                 $upload->extension = $extension;
-                $upload->file_name = $path;
+                $upload->file_name = $hash . '.' . $extension;
                 $upload->id_user = Auth::user()->id;
                 $upload->type = $type[$upload->extension];
                 $upload->file_size = $size;
