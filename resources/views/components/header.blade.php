@@ -34,9 +34,9 @@
                 <li class="nav-item dropdown">
                     <a class="nav-link active dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Learn</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">Blog</a></li>
-                        <li><a class="dropdown-item" href="#">Categories</a></li>
-                        <li><a class="dropdown-item" href="#">Tags</a></li>
+                        <li><a class="dropdown-item" href="/blog/">Blog</a></li>
+                        <li><a class="dropdown-item" href="/blog/category/list/all">Categories</a></li>
+                        <li><a class="dropdown-item" href="/blog/tag/list/all">Tags</a></li>
                         <li><a class="dropdown-item" href="#">Comments</a></li>
                     </ul>
                 </li>
