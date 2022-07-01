@@ -63,7 +63,7 @@
     <!-- Tab Content -->
     <div class="tab-content" id="connectionsTabContent">
     
-      <di class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
+      <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
         <!-- Folders -->
         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
             @foreach($all_uploads as $file)
@@ -71,7 +71,7 @@
             <!-- Card -->
             <div class="card card-sm card-hover-shadow card-header-borderless h-100 text-center">
               <div class="card-header card-header-content-between border-0">
-                <span class="small">25kb</span>
+                <span class="small">{{$file->file_size}}kb</span>
 
                 <!-- Dropdown -->
                 <div class="dropdown">
