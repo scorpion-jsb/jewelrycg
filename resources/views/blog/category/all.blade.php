@@ -24,6 +24,7 @@
             <div class="col-xl-11 mx-auto">
                 @foreach ($categories as $categorie)
                 <a href="/blog/category/{{ $categorie->slug }}">{{ $categorie->category_name }}</a>
+                <br><br>
                 @endforeach
             </div>
         </div>
