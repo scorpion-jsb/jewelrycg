@@ -19,21 +19,6 @@
         </div>
     </div>
 </section>
-
-<div class="page-header">
-    <div class="row align-items-center mb-3">
-        <div class="col-sm mb-2 mb-sm-0">
-            <h1 class="page-header-title">Post <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
-        </div>
-        <!-- End Col -->
-
-        <div class="col-sm-auto">
-            <a class="btn btn-primary" href="{{ route('backend.posts.create') }}">Create post</a>
-        </div>
-        <!-- End Col -->
-    </div>
-    <!-- End Row -->
-</div>
 <section class="bg-white pb-4">
     <div class="container">
         <div class="col-xl-11 mx-auto">
