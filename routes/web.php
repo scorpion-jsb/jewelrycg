@@ -183,7 +183,7 @@ Route::get('/', [AppController::class, 'index'])->name('index');
 // Blog
 Route::get('/blog', [BlogController::class, 'index'])->name('index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('show');
-Route::get('/blog/categories', [BlogController::class, 'category_index'])->name('list');
+Route::get('/blog/categories', [BlogController::class, 'categoryIndex'])->name('list');
 
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
