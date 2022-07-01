@@ -185,6 +185,8 @@ Route::get('/blog', [BlogController::class, 'index'])->name('index');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('show');
 Route::get('/blog/category/list/all', [BlogController::class, 'categoryAll'])->name('categoryAll');
 Route::get('/blog/category/{category}', [BlogController::class, 'categoryPost'])->name('categoryPost');
+Route::get('/blog/tag/list/all', [BlogController::class, 'tagAll'])->name('tagAll');
+Route::get('/blog/tag/{tag}', [BlogController::class, 'tagPost'])->name('tagPost');
 
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
