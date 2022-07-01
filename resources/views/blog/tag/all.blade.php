@@ -22,7 +22,7 @@
     <section class="bg-white pb-4">
         <div class="container">
             <div class="col-xl-11 mx-auto">
-                @foreach ($tags as $tags)
+                @foreach ($tags as $tag)
                 <a href="/blog/category/{{ $categorie->slug }}">{{ $tag->tag_name }}</a>
                 <br><br>
                 @endforeach
