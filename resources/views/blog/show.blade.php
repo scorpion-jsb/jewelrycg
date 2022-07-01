@@ -1,4 +1,5 @@
-<x-app-layout page-title="{{ $post->name }}">
+<--x-app-layout page-title="{{ $post->name }}"-->
+<x-app-layout page-title="Blog Post">
     <section class="bg-white py-8">
         <div class="container">
             <div class="row">
