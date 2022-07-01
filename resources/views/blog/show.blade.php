@@ -8,8 +8,8 @@
                             <h1 class="text-black fw-700 article-single-title">{{ $post->name }}</h1>
                             <div class="mb-2 opacity-50 article-single-category">
                                 <i>
-                                    Published
-                                    
+                                    Published in 
+                            
                                 </i>
                             </div>
                         </div>
