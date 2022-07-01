@@ -181,8 +181,8 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 Route::get('/', [AppController::class, 'index'])->name('index');
 
 // Blog
-Route::get('/blog', [BlogController::class, 'index'])->name('index');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('show');
+Route::get('/blog', [BlogController::class, 'index'])->name('blog');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog_post_url');
 Route::get('/blog/category/list/all', [BlogController::class, 'categoryAll'])->name('categoryAll');
 Route::get('/blog/category/{category}', [BlogController::class, 'categoryPost'])->name('categoryPost');
 Route::get('/blog/tag/list/all', [BlogController::class, 'tagAll'])->name('tagAll');
@@ -196,7 +196,7 @@ Route::middleware(['auth', 'admin'])->resource('products', ProductController::cl
 Route::resource('products', ProductController::class)->only('show');
 
 // Products Shop Page
-Route::get('/3d-models', [ProductController::class, 'products_index'])->name('products_index');
+Route::get('/3d-models', [ProductController::class, 'products_index'])->name('shop_index');
 
 // Cart
 Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' => 'cart.'], function ()
