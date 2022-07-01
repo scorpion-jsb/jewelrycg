@@ -46,9 +46,11 @@ Route::group(['prefix' => 'blog/posts', 'as' => 'posts.'], function ()
 });
 
 //Route::get('/blog', 'BlogController@all_blog')->name('blog');
+/*
 Route::get('/blog', 'BlogController@all_blog')->name('blog');
 Route::get('/blog/category/{slug}', 'BlogController@category')->name('blog.category.all');
 Route::get('/blog/{slug}', 'BlogController@blog_details')->name('blog.details');
+*/
 
 // Backend
 Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth', 'admin']], function ()
