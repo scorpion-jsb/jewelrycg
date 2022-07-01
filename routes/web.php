@@ -182,7 +182,7 @@ Route::get('/', [AppController::class, 'index'])->name('index');
 
 // Blog
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
-Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog_post_url');
+Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.post.url');
 Route::get('/blog/category/list/all', [BlogController::class, 'categoryAll'])->name('categoryAll');
 Route::get('/blog/category/{category}', [BlogController::class, 'categoryPost'])->name('categoryPost');
 Route::get('/blog/tag/list/all', [BlogController::class, 'tagAll'])->name('tagAll');
