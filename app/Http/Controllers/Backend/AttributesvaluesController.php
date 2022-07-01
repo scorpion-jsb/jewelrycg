@@ -69,9 +69,12 @@ class AttributesvaluesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($id_attribute,$id)
     {
-        //
+        return view('backend.products.attributes.values.edit',[
+            'attribute' => Attribute::findOrFail($id_attribute),
+            'value' => AttributeValue::findOrFail($id)
+        ]);
     }
 
     /**
@@ -81,9 +84,14 @@ class AttributesvaluesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreAttributeValuesRequest $request,$id_attribute, $id)
     {
-        //
+        
+        $data = $request->input();
+        $data['slug'] = str_replace(" ","-", strtolower($request->name));
+        $values = AttributeValue::findOrFail($id);
+        $values->update($data);
+        return redirect()->route('backend.products.attributes.values.list', $id_attribute);
     }
 
     /**

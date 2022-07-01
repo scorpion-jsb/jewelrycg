@@ -112,7 +112,7 @@ use Illuminate\Support\Facades\Route;
                 Route::get('/', [AttributesvaluesController::class, 'index'])->name('list');
                 Route::get('/create', [AttributesvaluesController::class, 'create'])->name('create');
                 Route::get('/edit/{id}', [AttributesvaluesController::class, 'edit'])->name('edit');
-                Route::put('/update/{product}', [AttributesvaluesController::class, 'update'])->name('update');
+                Route::put('/update/{id}', [AttributesvaluesController::class, 'update'])->name('update');
                 Route::post('/store', [AttributesvaluesController::class, 'store'])->name('store');
                 Route::get('/get', [AttributesvaluesController::class, 'get'])->name('get');
             });
