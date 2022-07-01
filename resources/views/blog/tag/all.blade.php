@@ -3,7 +3,7 @@
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h1 class="fw-600 h4">All Categories</h1>
+                    <h1 class="fw-600 h4">All Tags</h1>
                 </div>
                 <div class="col-lg-12">
                     <ul class="breadcrumb bg-transparent p-0 justify-content-center">
@@ -12,7 +12,7 @@
                             
                         </li>
                         <li class="text-dark fw-600 breadcrumb-item">
-                            <a class="text-reset" href="/blog/category/all">"All Categories"</a>
+                            <a class="text-reset" href="/blog/tag/all">"All Tags"</a>
                         </li>
                     </ul>
                 </div>
