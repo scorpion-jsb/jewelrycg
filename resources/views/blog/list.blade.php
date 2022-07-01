@@ -27,18 +27,18 @@
 
                     <div class="col mb-3">
                         <div class="blog-post-list-container">
-                            <a href="/blog/{{ $post->slug }}" class="text-reset d-block">
+                            <a href="{{ route('blog.post.url') }}" class="text-reset d-block">
                                 <img src="{{ asset('assets/img/placeholder-rect.jpg') }}" alt="{{ $post->name }}" class="img-blog-cropped border lazyloaded">
                             </a>
                             <div class="p-2 pt-3">
                                 <h2 class="fs-18 fw-600 mb-1">
-                                    <a href="/blog/{{ $post->slug }}" class="text-reset article-list-title">
+                                    <a href="{{ route('blog.post.url') }}" class="text-reset article-list-title">
                                         {{ $post->name }}
                                     </a>
                                 </h2>
                                 @foreach($post->categories as $category_info)
                                     <div class="mb-2 opacity-50 article-list-category">
-                                        <a href="/blog/{{ $post->slug }}" >{{$category_info->category->category_name}}</a>
+                                        <a href="/blog/{{ $category_info->category->slug }}" >{{$category_info->category->category_name}}</a>
                                     </div>
                                 @endforeach
                                 <p class="opacity-70 mb-4 article-list-excerpt">{{-- excerpt --}}</p>
