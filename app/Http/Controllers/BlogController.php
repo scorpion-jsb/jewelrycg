@@ -39,6 +39,11 @@ class BlogController extends Controller
     {
         return view('blog.category.all', [
             'categories' => BlogCategorie::all()
+        ]);
+        return view('blog.category.show', [
+            'post' => BlogPost::where('slug', $slug)->first(),
+            'categories' => BlogCategorie::all(),
+            'tags' => BlogTags::all()
         ]);  
 
     }
