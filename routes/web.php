@@ -19,6 +19,7 @@ use App\Http\Controllers\Backend\BlogtagsController;
 use App\Http\Controllers\Backend\ProducttagsController;
 use App\Http\Controllers\Backend\AttributesController;
 use App\Http\Controllers\Backend\AttributesvaluesController;
+use App\Http\Controllers\Backend\UploadController;
 
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 
@@ -45,6 +46,20 @@ use Illuminate\Support\Facades\Route;
     'as' => 'backend.',
     'middleware' => ['auth', 'admin']
 ], function() {
+
+    //uploads
+    Route::group([ 
+        'prefix' => 'filemanager',
+        'as' => 'filemanager.'
+    ], function() {
+            Route::get('/', [UploadController::class, 'index'])->name('list');
+            Route::get('/create', [UploadController::class, 'create'])->name('create');
+            Route::get('/edit/{id}', [UploadController::class, 'edit'])->name('edit');
+            Route::put('/update/{product}', [UploadController::class, 'update'])->name('update');
+            Route::post('/store', [UploadController::class, 'store'])->name('store');
+            Route::get('/get', [UploadController::class, 'get'])->name('get');
+        });
+    
 
     //products routes
     Route::group([ 

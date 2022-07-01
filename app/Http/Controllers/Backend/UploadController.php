@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use App\Upload;
@@ -17,7 +18,7 @@ class UploadController extends Controller
     public function index(Request $request){
 
 
-        $all_uploads = (auth()->user()->user_type == 'seller') ? Upload::where('user_id',auth()->user()->id) : Upload::query();
+        $all_uploads = (auth()->user()->is_admin == 3) ? Upload::where('user_id',auth()->user()->id) : Upload::query();
         $search = null;
         $sort_by = null;
 
@@ -47,16 +48,16 @@ class UploadController extends Controller
 
         $all_uploads = $all_uploads->paginate(60)->appends(request()->query());
 
-
+        
         return (auth()->user()->user_type == 'seller')
             ? view('frontend.user.seller.uploads.index', compact('all_uploads', 'search', 'sort_by'))
-            : view('backend.uploaded_files.index', compact('all_uploads', 'search', 'sort_by'));
+            : view('backend.filemanager.index', compact('all_uploads', 'search', 'sort_by'));
     }
 
     public function create(){
         return (auth()->user()->user_type == 'seller')
             ? view('frontend.user.seller.uploads.create')
-            : view('backend.uploaded_files.create');
+            : view('backend.filemanager.create');
     }
 
 
@@ -186,7 +187,7 @@ class UploadController extends Controller
         }
     }
 
-    public function get_uploaded_files(Request $request)
+    public function get_filemanager(Request $request)
     {
         $uploads = Upload::where('user_id', Auth::user()->id);
         if ($request->search != null) {
@@ -268,7 +269,7 @@ class UploadController extends Controller
 
         return (auth()->user()->user_type == 'seller')
             ? view('frontend.user.seller.uploads.info',compact('file'))
-            : view('backend.uploaded_files.info',compact('file'));
+            : view('backend.filemanager.info',compact('file'));
     }
 
 }

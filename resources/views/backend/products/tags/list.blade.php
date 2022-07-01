@@ -102,7 +102,7 @@
                                         <td> {{ $tag->name }} </td>
                                         <td> {{ $tag->slug }} </td>
                                         <td>
-                                            <a href="{{ route('backend.product.tags.edit', $tag->id) }}" class="btn btn-white btn-sm">
+                                            <a href="{{ route('backend.products.tags.edit', $tag->id) }}" class="btn btn-white btn-sm">
                                                 <i class="bi-pencil-fill me-1"></i> Edit
                                             </a>
                                         </td>
