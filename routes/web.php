@@ -188,10 +188,14 @@ Route::get('/blog/category/{category}', [BlogController::class, 'categoryPost'])
 Route::get('/blog/tag/list/all', [BlogController::class, 'tagAll'])->name('tagAll');
 Route::get('/blog/tag/{tag}', [BlogController::class, 'tagPost'])->name('tagPost');
 
+// Search
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+
+// Products
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
 Route::resource('products', ProductController::class)->only('show');
 
+// Cart
 Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' => 'cart.'], function ()
 {
 	Route::group(['middleware' => 'auth'], function ()
