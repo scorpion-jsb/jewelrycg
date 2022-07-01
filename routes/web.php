@@ -45,6 +45,12 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+//Blog Section
+Route::get('/blog', 'BlogController@all_blog')->name('blog');
+Route::get('/blog/category/{slug}', 'BlogController@category')->name('blog.category.all');
+Route::get('/blog/{slug}', 'BlogController@blog_details')->name('blog.details');
+
   Route::group([
     'prefix' => 'backend',
     'as' => 'backend.',
@@ -263,11 +269,6 @@ Route::group(['middleware' => 'auth'], function() {
         Route::get('/{id_user}', 'index')->name('index');
     });
 });
-
-//Blog Section
-Route::get('/blog', 'BlogController@all_blog')->name('blog');
-Route::get('/blog/category/{slug}', 'BlogController@category')->name('blog.category.all');
-Route::get('/blog/{slug}', 'BlogController@blog_details')->name('blog.details');
 
 
 require __DIR__.'/auth.php';
