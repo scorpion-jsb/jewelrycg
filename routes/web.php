@@ -181,7 +181,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 Route::get('/', [AppController::class, 'index'])->name('index');
 
 // Blog
-Route::get('/', [BlogController::class, 'index'])->name('index');
+Route::get('/blog', [BlogController::class, 'index'])->name('index');
 
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
