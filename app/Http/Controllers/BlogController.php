@@ -35,5 +35,26 @@ class BlogController extends Controller
         ]);  
 
     }
+    public function categoryPost($category)
+    {
+        return view('blog.category.all', [
+            'categories' => BlogCategorie::all()
+        ]);  
+
+    }
+    public function tagAll()
+    {
+        return view('blog.category.all', [
+            'categories' => BlogCategorie::all()
+        ]);  
+
+    }
+    public function tagPost($tag)
+    {
+        return view('blog.category.all', [
+            'categories' => BlogCategorie::all()
+        ]);  
+
+    }
 
 }
