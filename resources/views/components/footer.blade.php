@@ -2,7 +2,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-xl-4 text-left">
-                <a href="https://districtgurus.com" class="text-black fs-16 fw-700 d-block"> 
+                <a href="{{ route('index') }}" class="text-black fs-24 fw-700 d-block"> 
                     <!--<img class="footer-logo" src="https://districtgurus.com/public/uploads/all/SC008HOLHmfOeB8E3SxNDONHI7nad1YJcmSl0ds9.png" data-src="https://districtgurus.com/public/uploads/all/SC008HOLHmfOeB8E3SxNDONHI7nad1YJcmSl0ds9.png" alt="District Gurus" height="20"> -->
                     #JewelryCG
                 </a>
