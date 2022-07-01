@@ -10,7 +10,7 @@ use App\Blog;
 class BlogController extends Controller
 {
 
-    public function all_blog() {
+    public function index() {
         $categories = BlogCategory::groupBy('slug')->get();
         $blogs = Blog::where('status', 1)->orderBy('created_at', 'desc')->paginate(12);
         return view("blog.listing", compact('blogs','categories'));
