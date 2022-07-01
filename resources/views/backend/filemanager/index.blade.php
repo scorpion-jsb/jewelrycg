@@ -112,7 +112,7 @@
               </div>
 
               <div class="card-body">
-                <img class="avatar avatar-4x3" src="{{ url('uploads/all')}}/{{ $file->file_name}}" alt="Image Description">
+                <img class="avatar-xxl" src="{{ url('uploads/all')}}/{{ $file->file_name}}" alt="Image Description">
               </div>
 
               <div class="card-body">
