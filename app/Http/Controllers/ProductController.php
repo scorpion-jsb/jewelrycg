@@ -31,6 +31,13 @@ class ProductController extends Controller
         return redirect()->route('products.show', $product->id);
     }
 */
+    public function index()
+    {
+        return view('products.list', [
+            'products' => Product::all()
+        ]);
+    }
+
     public function show(int $id_product)
     {
         $product = Product::with('images')->find($id_product);
