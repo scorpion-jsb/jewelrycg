@@ -49,7 +49,7 @@ class BlogController extends Controller
     }
     public function tagAll()
     {
-        return view('blog.tags.all', [
+        return view('blog.tag.all', [
             'tags' => BlogTags::all()
         ]);  
 
