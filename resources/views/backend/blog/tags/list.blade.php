@@ -30,18 +30,18 @@
                             </div>
                         @endif
                         <div class="col-md-12 mb-2">
-                            <label for="name">Tag name:</label>
+                            <label for="name" class="w-100 mb-2">Tag name:</label>
                             <input type="text" name="name" id="name" value="" class="form-control">
 
                         </div>
                         <div class="col-md-12 mb-2">
-                            <label for="name">Slug:</label>
+                            <label for="name" class="w-100 mb-2">Slug:</label>
                             <input type="text" name="slug" id="slug" value="" class="form-control">
 
                         </div>
 
                         <div class="col-md-12 mb-2">
-                            <label for="name">Description:</label>
+                            <label for="name" class="w-100 mb-2">Description:</label>
                             <textarea type="text" name="description" id="name" class="form-control"></textarea>
                         </div>
 
@@ -62,19 +62,7 @@
                 </div>
                 <div class="table-responsive datatable-custom position-relative">
                     <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
-                        <div class="dt-buttons"> <button class="dt-button buttons-copy buttons-html5 d-none" tabindex="0"
-                                aria-controls="datatable" type="button"><span>Copy</span></button> <button
-                                class="dt-button buttons-excel buttons-html5 d-none" tabindex="0"
-                                aria-controls="datatable" type="button"><span>Excel</span></button> <button
-                                class="dt-button buttons-csv buttons-html5 d-none" tabindex="0" aria-controls="datatable"
-                                type="button"><span>CSV</span></button> <button
-                                class="dt-button buttons-pdf buttons-html5 d-none" tabindex="0" aria-controls="datatable"
-                                type="button"><span>PDF</span></button> <button class="dt-button buttons-print d-none"
-                                tabindex="0" aria-controls="datatable" type="button"><span>Print</span></button> </div>
-                        <div id="datatable_filter" class="dataTables_filter"><label>Search:<input type="search"
-                                    class="" placeholder="" aria-controls="datatable"></label></div>
-                        <table id="datatable"
-                            class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer" role="grid" aria-describedby="datatable_info">
+                        <table id="datatable" class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer" role="grid" aria-describedby="datatable_info">
                             <thead class="thead-light">
                                 <tr role="row">
                                     <th class="table-column-pe-0 sorting_disabled" aria-label="">
