@@ -1,4 +1,4 @@
-<x-app-layout page-title="All Categories">
+<x-app-layout page-title="All Tagss">
     <section class="p-6">
         <div class="container text-center">
             <div class="row">
@@ -23,7 +23,7 @@
         <div class="container">
             <div class="col-xl-11 mx-auto">
                 @foreach ($tags as $tag)
-                <a href="/blog/category/{{ $categorie->slug }}">{{ $tag->tag_name }}</a>
+                <a href="/blog/category/{{ $tag->slug }}">{{ $tag->tag_name }}</a>
                 <br><br>
                 @endforeach
             </div>
