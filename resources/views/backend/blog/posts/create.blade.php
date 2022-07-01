@@ -16,15 +16,15 @@
                         <div class="card-body row">
                             @include('includes.validation-form')
                             <div class="col-md-12 mb-2">
-                                <label for="name">Name:</label>
+                                <label for="name" class="w-100 mb-2">Name:</label>
                                 <input type="text" name="name" id="name" value="" class="form-control">
                             </div>
                             <div class="col-md-12 mb-2">
-                                <label for="name">Slug:</label>
+                                <label for="name" class="w-100 mb-2">Slug:</label>
                                 <input type="text" name="slug" id="slug" value="" class="form-control">
                             </div>
                             <div class="col-md-12 mb-2">
-                                <label for="desc">Post:</label>
+                                <label for="desc" class="w-100 mb-2">Post:</label>
                                 <textarea name="post" id="desc" rows="6" class="form-control"></textarea>
 
                             </div>
@@ -46,7 +46,7 @@
                     <!-- Body -->
                     <div class="card-body">
                         <div class="mb-4">
-                            <label for="category">Category:</label>
+                            <label for="category" class="w-100 mb-2">Category:</label>
                             <select style="width:100%" class="selectpicker" name="categories[]" data-live-search="true" data-container="body">
                                 @foreach ($categories as $categorie)
                                     <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
@@ -54,7 +54,7 @@
                             </select>
                         </div>
                         <div class="mb-4">
-                            <label for="name">Tags:</label>
+                            <label for="name" class="w-100 mb-2">Tags:</label>
                             <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
                                 @foreach ($tags as $tag)
                                     <option value='{{ $tag->id }}'> {{ $tag->name }} </option>
