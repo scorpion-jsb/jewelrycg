@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\ProductStoreRequest;
+//use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\SearchProductRequest;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -15,7 +15,7 @@ class ProductController extends Controller
         $products = Product::searchWithImages($req->q, $req->category);
         return view('products.search', compact('products'));
     }
-
+/*
     public function create()
     {
         return view('products.create');
@@ -30,7 +30,7 @@ class ProductController extends Controller
 
         return redirect()->route('products.show', $product->id);
     }
-
+*/
     public function show(int $id_product)
     {
         $product = Product::with('images')->find($id_product);
@@ -41,7 +41,7 @@ class ProductController extends Controller
 
         return view('products.show', compact('product', 'product_images_in_json'));
     }
-
+/*
     public function edit(Product $product)
     {
         $product->setPriceToFloat();
@@ -69,4 +69,5 @@ class ProductController extends Controller
 
         return redirect()->route('index');
     }
+    */
 }
