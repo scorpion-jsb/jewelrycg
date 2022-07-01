@@ -8,7 +8,7 @@
             </div>
             <div class="text-left px-2">
                 <div class="fs-15">
-                    <div class="fw-700 text-primary">$ {{$product->price}} </div>
+                    <div class="fw-700 text-primary">${{$product->price}} </div>
                 </div>
                 <h3 class="fw-600 fs-13 text-truncate-2 lh-1-4 mb-0 h-35px text-black">
                     {{$product->name}}
