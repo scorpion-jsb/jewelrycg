@@ -39,18 +39,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-//Blog Section
-Route::group(['prefix' => 'blog/posts', 'as' => 'posts.'], function ()
-{
-	Route::get('/', [BlogsController::class, 'index'])->name('list');
-});
-
-//Route::get('/blog', 'BlogController@all_blog')->name('blog');
-/*
-Route::get('/blog', 'BlogController@all_blog')->name('blog');
-Route::get('/blog/category/{slug}', 'BlogController@category')->name('blog.category.all');
-Route::get('/blog/{slug}', 'BlogController@blog_details')->name('blog.details');
-*/
 
 // Backend
 Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth', 'admin']], function ()
@@ -189,7 +177,11 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 });
 // End Backend
 
+// Homepage
 Route::get('/', [AppController::class, 'index'])->name('index');
+
+// Blog
+Route::get('/', [BlogController::class, 'index'])->name('index');
 
 Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
