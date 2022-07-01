@@ -40,6 +40,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 //Blog Section
+Route::group(['prefix' => 'blog/posts', 'as' => 'posts.'], function ()
+{
+	Route::get('/', [BlogsController::class, 'index'])->name('list');
+});
+
+//Route::get('/blog', 'BlogController@all_blog')->name('blog');
 Route::get('/blog', 'BlogController@all_blog')->name('blog');
 Route::get('/blog/category/{slug}', 'BlogController@category')->name('blog.category.all');
 Route::get('/blog/{slug}', 'BlogController@blog_details')->name('blog.details');
