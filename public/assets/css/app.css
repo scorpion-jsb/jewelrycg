@@ -53,6 +53,11 @@ button.navbar-toggler {
     padding: 0;
     color: #000000 !important;
 }
+.navbar-collapse.collapse.show {
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    margin-top: 10px;
+}
 /* Hero */
 .hero-content-container {
     background: #f1f6ff;
