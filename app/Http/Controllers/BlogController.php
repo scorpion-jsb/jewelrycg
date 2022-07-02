@@ -23,7 +23,7 @@ class BlogController extends Controller
     public function show($slug)
     {
         return view('blog.show', [
-            'post' => BlogPost::where('slug', $slug)->first(),
+            'post' => BlogPost::where('slug', $slug)->firstOrFail(),
             'categories' => BlogCategorie::all(),
             'tags' => BlogTags::all()
         ]);
@@ -41,7 +41,7 @@ class BlogController extends Controller
             'categories' => BlogCategorie::all()
         ]);
         return view('blog.category.show', [
-            'post' => BlogPost::where('slug', $slug)->first(),
+            'post' => BlogPost::where('slug', $slug)->firstOrFail(),
             'categories' => BlogCategorie::all(),
             'tags' => BlogTags::all()
         ]);  
