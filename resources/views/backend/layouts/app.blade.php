@@ -60,6 +60,24 @@
 
     <!-- JS Plugins Init. -->
     <script>
+      jQuery(document).ready(function(){
+            jQuery('#getFileManager').click(function(e){
+               e.preventDefault();
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
+               jQuery.ajax({
+                  url: "{{ route('backend.filemanager.get_filemanager') }}",
+                  method: 'get',
+                  dataType: 'HTML',
+                  success: function(result){
+                     $('#ajaxCalls').html(result);
+                     $('#CallFilesModal').modal('show')
+                  }});
+               });
+            });
     (function() {
       // INITIALIZATION OF NAVBAR VERTICAL ASIDE
       // =======================================================
@@ -113,6 +131,8 @@
           setActiveStyle()
         })
       })()
+
+      
     </script>
 
     <!-- End Style Switcher JS -->

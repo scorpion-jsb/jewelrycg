@@ -9,6 +9,7 @@ use App\Http\Requests\ProductStoreRequest;
 use App\Models\ProductsCategorie;
 use App\Models\ProductTag;
 use App\Models\ProductTagsRelationship;
+use App\Http\Controllers\Backend\UploadController;
 
 
 

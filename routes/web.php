@@ -49,7 +49,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 	{
 		Route::get('/', [UploadController::class, 'index'])->name('list');
 		Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
-		Route::get('/edit/{id}', [UploadController::class, 'edit'])->name('edit');
+		Route::get('/get_filemanager', [UploadController::class, 'get_filemanager'])->name('get_filemanager');
 		Route::put('/update/{product}', [UploadController::class, 'update'])->name('update');
 		Route::post('/store', [UploadController::class, 'store'])->name('store');
 		Route::get('/get', [UploadController::class, 'get'])->name('get');

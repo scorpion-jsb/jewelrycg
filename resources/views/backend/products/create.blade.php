@@ -173,18 +173,12 @@
                     <div class="mb-4">
                         <!-- Avatar -->
                         <label class="avatar avatar-xl avatar-circle avatar-uploader me-5" for="avatarUploader">
-                          <img id="avatarImg" class="avatar-img" src="./assets/img/160x160/img1.jpg" alt="Image Description">
+                          <div id="preview">
+                          </div>
 
-                          <input type="file" class="js-file-attach avatar-uploader-input" id="avatarUploader" data-hs-file-attach-options='{
-                                    "textTarget": "#avatarImg",
-                                    "mode": "image",
-                                    "targetAttr": "src",
-                                    "resetTarget": ".js-file-attach-reset-img",
-                                    "resetImg": "./assets/img/160x160/img1.jpg",
-                                    "allowTypes": [".png", ".jpeg", ".jpg"]
-                                 }'>
+                          
 
-                          <span class="avatar-uploader-trigger">
+                          <span class="avatar-uploader-trigger" id="getFileManager">
                             <i class="bi-pencil avatar-uploader-icon shadow-sm"></i>
                           </span>
                         </label>
@@ -221,6 +215,8 @@
       </div>
 </form>
 
+<div id='ajaxCalls'>
+</div>
 
 @endsection
 

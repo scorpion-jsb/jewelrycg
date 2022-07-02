@@ -18,7 +18,7 @@ class UploadController extends Controller
     public function index(Request $request){
 
 
-        $all_uploads = (auth()->user()->is_admin == 3) ? Upload::where('user_id',auth()->user()->id) : Upload::query();
+        $all_uploads = (auth()->user()->is_admin == 3) ? Upload::where('id_user',auth()->user()->id) : Upload::query();
         $search = null;
         $sort_by = null;
 
@@ -189,7 +189,7 @@ class UploadController extends Controller
 
     public function get_filemanager(Request $request)
     {
-        $uploads = Upload::where('user_id', Auth::user()->id);
+        $uploads = Upload::where('id_user', Auth::user()->id);
         if ($request->search != null) {
             $uploads->where('file_original_name', 'like', '%'.$request->search.'%');
         }
@@ -212,14 +212,16 @@ class UploadController extends Controller
                     break;
             }
         }
-        return $uploads->paginate(60)->appends(request()->query());
+        return (string) view('backend.filemanager.partials.modals.call-manager', [
+            'files' =>  $uploads->paginate(60)->appends(request()->query())
+        ]);
     }
 
     public function destroy(Request $request,$id)
     {
         $upload = Upload::findOrFail($id);
 
-        if(auth()->user()->user_type == 'seller' && $upload->user_id != auth()->user()->id){
+        if(auth()->user()->user_type == 'seller' && $upload->id_user != auth()->user()->id){
             flash(translate("You don't have permission for deleting this!"))->error();
             return back();
         }
