@@ -13,7 +13,7 @@ class BlogPost extends Model
     protected $fillable = [
         "name",
         "slug",
-        "cover_image",
+        "author_id",
         "post",
         "tags_id",
         "categorie_id",
@@ -41,6 +41,12 @@ class BlogPost extends Model
         return $this->belongsTo(Upload::class, 'cover_image' , 'id')->withDefault([
             'file_name' => "none.png",
             'id' => null
+        ]);
+    }
+    public function postauthor()
+    {
+        return $this->belongsTo(User::class, 'author_id' , 'id')->withDefault([
+            'name' => "Undefined",
         ]);
     }
 }

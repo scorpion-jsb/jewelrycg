@@ -23,7 +23,7 @@ class BlogsController extends Controller
     {
       
         return view('backend.blog.posts.list', [
-            'posts' => BlogPost::with('categories')->get()
+            'posts' => BlogPost::with(['categories', 'postauthor'])->get()
         ]);
     }
 

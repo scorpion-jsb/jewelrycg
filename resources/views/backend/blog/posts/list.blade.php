@@ -36,6 +36,7 @@
                                         <th>ID</th>
                                         <th>Name</th>
                                         <th>Slug</th>
+                                        <th>Author</th>
                                         <th>Categories</th>
                                         <th>Actions</th>
                                     </thead>
@@ -53,6 +54,7 @@
                                        
                                         <td>{{ $post->name }}</td>
                                         <td>{{ $post->slug }}</td>
+                                        <td>{{ $post->postauthor->name }}</td>
                                         <td>
                                             @foreach($post->categories as $category_info)
                                                 <p><span class="badge btn-info"> {{$category_info->category->category_name}} </span>  </p>
