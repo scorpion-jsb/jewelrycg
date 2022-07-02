@@ -115,7 +115,7 @@
                             Upload
                            
                         </label>
-                        <input type="hidden" value="{{ $post->uploads->id}}" id="fileManagerId" name="cover_image">
+                        <input type="hidden" value="{{ $post->uploads->id}}" id="fileManagerId" name="thumbnail">
                     </div>
                 </div>
                 <!-- End Card -->

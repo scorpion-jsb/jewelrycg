@@ -78,7 +78,7 @@
                             Upload
                            
                         </label>
-                        <input type="hidden" id="fileManagerId" name="cover_image">
+                        <input type="hidden" id="fileManagerId" name="thumbnail">
                     </div>
                 </div>
                 <!-- End Card -->
