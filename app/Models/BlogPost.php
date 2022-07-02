@@ -39,7 +39,7 @@ class BlogPost extends Model
 
     public function uploads()
     {
-        return $this->belongsTo(Upload::class, 'cover_image' , 'id')->withDefault([
+        return $this->belongsTo(Upload::class, 'thumbnail' , 'id')->withDefault([
             'file_name' => "none.png",
             'id' => null
         ]);
