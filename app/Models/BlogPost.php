@@ -35,4 +35,9 @@ class BlogPost extends Model
     {
         return $this->hasMany(BlogPostCategorie::class, 'id_post' , 'id');
     }
+
+    public function uploads()
+    {
+        return $this->belongsTo(Upload::class, 'cover_image' , 'id');
+    }
 }

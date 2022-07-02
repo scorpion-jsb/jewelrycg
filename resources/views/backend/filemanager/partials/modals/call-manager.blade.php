@@ -14,12 +14,11 @@
                       <!-- Folders -->
                       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                           @foreach($files as $file)
-                          <div class="col mb-3 mb-lg-5">
+                          <div class="col mb-3 mb-lg-5" onclick="return selectFileFromManager({{$file->id}}, '{{ url('uploads/all')}}/{{ $file->file_name}}')">
                           <!-- Card -->
                           <div class="card card-sm card-hover-shadow card-header-borderless h-100 text-center">
                             <div class="card-header card-header-content-between border-0">
                               <span class="small">{{$file->file_size}}kb</span>
-              
                               <!-- Dropdown -->
                               <div class="dropdown">
                                 <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm card-dropdown-btn rounded-circle" id="filesGridDropdown1" data-bs-toggle="dropdown" aria-expanded="false">

@@ -108,11 +108,14 @@
                         <h3 class="card-header-title">Featured Image</h3>
                     </div>
                     <div class="card-body">
-                        <div class="imagePreviewUpdate"></div>
-                        <label class="btn btn-primary">
-                            Upload<input type="file" name="cover_image" class="uploadFile img" value="Upload Photo"
-                                style="width: 0px;height: 0px;overflow: hidden;">
+                        <div class="imagePreview img-thumbnail h-400px">
+                            <img id="fileManagerPreview" src="{{ url('uploads/all')}}/{{ $post->uploads->file_name}}" style="width: 100%">
+                        </div>
+                        <label class="btn btn-primary" id="getFileManager">
+                            Upload
+                           
                         </label>
+                        <input type="hidden" value="{{ $post->uploads->id}}" id="fileManagerId" name="cover_image">
                     </div>
                 </div>
                 <!-- End Card -->
@@ -145,6 +148,8 @@
             <!-- End Card -->
         </div>
     </form>
+    <div id='ajaxCalls'>
+    </div>
 @endsection
 
 @section('js_content')

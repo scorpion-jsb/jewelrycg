@@ -85,12 +85,6 @@ class BlogsController extends Controller
         $categories = (array)$request->input('categories');
         $blog = new BlogPost();
         $data = $request->input();
-        if($request->cover_image)
-        {
-            $data['cover_image'] = $blog->storeImages($request->cover_image);
-        }
-        
-      
 
         $post_id = $blog->create($data)->id;
         foreach( $tags as $tag )
@@ -133,7 +127,7 @@ class BlogsController extends Controller
     public function edit($id)
     {
         return view('backend.blog.posts.edit', [
-            'post' => BlogPost::whereId($id)->with(['tags', 'categories'])->firstOrFail(),
+            'post' => BlogPost::whereId($id)->with(['tags', 'categories', 'uploads'])->firstOrFail(),
             'categories' => BlogCategorie::all(),
             'tags' => BlogTags::all()
         ]);
@@ -153,10 +147,6 @@ class BlogsController extends Controller
         
         $blog = BlogPost::findOrFail($id);
         $data = $request->input();
-        if($request->cover_image)
-        {
-            $data['cover_image'] = $blog->storeImages($request->cover_image);
-        }
 
         $blog->update($data);
 

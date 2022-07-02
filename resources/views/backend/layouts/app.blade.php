@@ -60,6 +60,14 @@
 
     <!-- JS Plugins Init. -->
     <script>
+     function selectFileFromManager(id, preview)
+      {
+        $('#fileManagerPreview').attr('src', preview);
+        $('#fileManagerId').val(id);
+        $('#CallFilesModal').modal('hide')
+        return false;
+
+      }
       jQuery(document).ready(function(){
             jQuery('#getFileManager').click(function(e){
                e.preventDefault();
