@@ -40,11 +40,17 @@
                                         {{ $post->name }}
                                     </a>
                                 </h2>
-                                @foreach($post->categories as $category_info)
+                                <div class="mb-2 opacity-50 article-list-category">
+                                <p> Author: {{ $post->postauthor->name}} </p>
+                                </div>
+                                
                                     <div class="mb-2 opacity-50 article-list-category">
-                                        <a href="/blog/{{ $category_info->category->slug }}" >{{$category_info->category->category_name}}</a>
+                                        Published in: 
+                                        @foreach($post->categories as $key => $category_info)
+                                            @if($key>0) , @endif<a href="/blog/{{ $category_info->category->slug }}" >{{$category_info->category->category_name}}</a>
+                                        @endforeach
                                     </div>
-                                @endforeach
+                               
                                 <p class="opacity-70 mb-4 article-list-excerpt">{{-- excerpt --}}</p>
                             </div>
                         </div>
