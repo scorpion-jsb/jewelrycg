@@ -23,13 +23,8 @@ class PostStoreRequest extends FormRequest
      */
     public function rules()
     {
-      
-            $image_required = 'nullable';
-      
-
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
             'categories' => 'required|array',
         ];
     }

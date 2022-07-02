@@ -156,14 +156,6 @@
     <script>
         $(document).ready(function() {
             $('#desc').trumbowyg();
-            $('#name').keyup(function() {
-                var slug = $(this).val()
-
-                if (slug.charAt(slug.length - 1) != " ") {
-                    $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
-                }
-
-            })
         })
         $(".imgAdd").click(function() {
             $(this).closest(".row").find('.imgAdd').before(

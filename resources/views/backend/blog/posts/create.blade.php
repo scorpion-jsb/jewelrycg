@@ -20,10 +20,6 @@
                                 <input type="text" name="name" id="name" value="" class="form-control">
                             </div>
                             <div class="col-md-12 mb-2">
-                                <label for="name" class="w-100 mb-2">Slug:</label>
-                                <input type="text" name="slug" id="slug" value="" class="form-control">
-                            </div>
-                            <div class="col-md-12 mb-2">
                                 <label for="desc" class="w-100 mb-2">Post:</label>
                                 <textarea name="post" id="desc" rows="6" class="form-control"></textarea>
 
@@ -119,14 +115,6 @@
     <script>
         $(document).ready(function() {
             $('#desc').trumbowyg();
-            $('#name').keyup(function() {
-                var slug = $(this).val()
-
-                if (slug.charAt(slug.length - 1) != " ") {
-                    $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
-                }
-
-            })
         })
         $(".imgAdd").click(function() {
             $(this).closest(".row").find('.imgAdd').before(

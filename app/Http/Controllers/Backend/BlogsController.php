@@ -71,7 +71,32 @@ class BlogsController extends Controller
         ]);
         return $blogtag->id;
     }
+    public static function slugify($text, string $divider = '-')
+    {
+    // replace non letter or digits by divider
+    $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
 
+    // transliterate
+    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+    // remove unwanted characters
+    $text = preg_replace('~[^-\w]+~', '', $text);
+
+    // trim
+    $text = trim($text, $divider);
+
+    // remove duplicate divider
+    $text = preg_replace('~-+~', $divider, $text);
+
+    // lowercase
+    $text = strtolower($text);
+
+    if (empty($text)) {
+        return 'n-a';
+    }
+
+    return $text;
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -80,13 +105,14 @@ class BlogsController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
-
+        $slug_count = BlogPost::whereName($request->name)->count();
+        $suffix = ($slug_count == 0) ? '' : '-'.(string)$slug_count+1;
         $tags = (array)$request->input('tags');
         $categories = (array)$request->input('categories');
         $blog = new BlogPost();
         $data = $request->input();
         $data['author_id'] = Auth::id();
-
+        $data['slug'] = $this->slugify($request->name).$suffix;
         $post_id = $blog->create($data)->id;
         foreach( $tags as $tag )
         {
@@ -143,13 +169,19 @@ class BlogsController extends Controller
      */
     public function update(PostStoreRequest $request, $id)
     {
+        $slug_count = BlogPost::whereName($request->name)->count();
+        $suffix = ($slug_count == 0) ? '' : '-'.(string)$slug_count+1;
+
         $tags = (array)$request->input('tags');
         $categories = (array)$request->input('categories');
         
         $blog = BlogPost::findOrFail($id);
         $data = $request->input();
         $data['author_id'] = Auth::id();
-        
+        if($request->slug == "")
+        {
+            $data['slug'] = $this->slugify($request->name).$suffix;
+        }
         $blog->update($data);
 
         BlogPostTag::where('id_post', $blog->id)->delete();
