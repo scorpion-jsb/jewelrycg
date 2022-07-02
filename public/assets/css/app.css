@@ -46,6 +46,7 @@ header a.nav-link {
     font-size: 16px;
     padding-left: 10px !important;
     padding-right: 10px !important;
+    margin-left: 10px;
     color: #000000;
 }
 button.navbar-toggler {
