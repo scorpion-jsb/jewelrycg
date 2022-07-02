@@ -10,7 +10,7 @@ use App\Http\Requests\PostStoreRequest;
 use App\Models\BlogCategorie;
 use App\Models\BlogPostTag;
 use App\Models\BlogPostCategorie;
-
+use Auth;
 
 class BlogsController extends Controller
 {
@@ -85,6 +85,7 @@ class BlogsController extends Controller
         $categories = (array)$request->input('categories');
         $blog = new BlogPost();
         $data = $request->input();
+        $data['author_id'] = Auth::id();
 
         $post_id = $blog->create($data)->id;
         foreach( $tags as $tag )
@@ -147,6 +148,7 @@ class BlogsController extends Controller
         
         $blog = BlogPost::findOrFail($id);
         $data = $request->input();
+        $data['author_id'] = Auth::id();
 
         $blog->update($data);
 
