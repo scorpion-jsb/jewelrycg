@@ -170,20 +170,14 @@
 
                 <!-- Body -->
                 <div class="card-body">
-                    <div class="mb-4">
-                        <!-- Avatar -->
-                        <label class="avatar avatar-xl avatar-circle avatar-uploader me-5" for="avatarUploader">
-                          <div id="preview">
-                          </div>
-
-                          
-
-                          <span class="avatar-uploader-trigger" id="getFileManager">
-                            <i class="bi-pencil avatar-uploader-icon shadow-sm"></i>
-                          </span>
-                        </label>
-                        <!-- End Avatar -->
+                    <div class="imagePreview img-thumbnail h-400px">
+                        <img id="fileManagerPreview" src="" style="width: 100%">
                     </div>
+                    <label class="btn btn-primary" id="getFileManager">
+                        Upload
+                       
+                    </label>
+                    <input type="hidden" id="fileManagerId" name="product_thumbnail">
                 </div>
             </div>
             <!-- End Card -->

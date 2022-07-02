@@ -181,6 +181,28 @@
             </div>
             <!-- End Card -->
 
+            <!-- Card -->
+            <div class="card mb-3 mb-lg-5">
+                <!-- Header -->
+                <div class="card-header">
+                <h4 class="card-header-title">Thumbnail</h4>
+                </div>
+                <!-- End Header -->
+
+                <!-- Body -->
+                <div class="card-body">
+                    <div class="imagePreview img-thumbnail h-400px">
+                        <img id="fileManagerPreview" src="{{ url('uploads/all')}}/{{ $product->uploads->file_name}}" style="width: 100%">
+                    </div>
+                    <label class="btn btn-primary" id="getFileManager">
+                        Upload
+                       
+                    </label>
+                    <input type="hidden" id="fileManagerId" name="product_thumbnail">
+                </div>
+            </div>
+            <!-- End Card -->
+
         </div>
     </div>
 
@@ -210,6 +232,8 @@
 
 </form>
 
+<div id='ajaxCalls'>
+</div>
 
     @endsection
     @section('js_content')

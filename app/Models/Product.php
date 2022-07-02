@@ -45,7 +45,8 @@ class Product extends Model
         'desc',
         'name',
         'category',
-        'qty'
+        'qty',
+        'product_thumbnail'
     ];
 
     private static function getProductsAndMergeExtraProductsIfNotEnough(Collection $order_items)
@@ -143,5 +144,13 @@ class Product extends Model
     public function tags()
     {
         return $this->hasMany(ProductTagsRelationship::class, 'id_product' , 'id');
+    }
+
+    public function uploads()
+    {
+        return $this->belongsTo(Upload::class, 'product_thumbnail' , 'id')->withDefault([
+            'file_name' => "none.png",
+            'id' => null
+        ]);
     }
 }
