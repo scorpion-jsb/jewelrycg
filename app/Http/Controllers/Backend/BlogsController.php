@@ -149,7 +149,7 @@ class BlogsController extends Controller
         $blog = BlogPost::findOrFail($id);
         $data = $request->input();
         $data['author_id'] = Auth::id();
-
+        
         $blog->update($data);
 
         BlogPostTag::where('id_post', $blog->id)->delete();

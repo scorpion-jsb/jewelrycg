@@ -17,6 +17,7 @@ class BlogPost extends Model
         "post",
         "tags_id",
         "categorie_id",
+        "thumbnail"
     ];
 
     public function storeImages($images)
