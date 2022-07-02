@@ -106,4 +106,6 @@ button.navbar-toggler {
     margin-left: auto;
     padding-left: 1.25rem;
     content: '';
+    border: 0;
+    vertical-align: -2px;
 }
