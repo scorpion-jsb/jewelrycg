@@ -17,7 +17,7 @@
                             </div>
                         </div>
                         <div class="mb-4 article-single-post overflow-hidden">
-                            {{ $post->post }}
+                            {!! $post->post !!}
                         </div>
                     </div>
                 </div>
