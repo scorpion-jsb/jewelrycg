@@ -28,7 +28,11 @@
                     <div class="col mb-3">
                         <div class="blog-post-list-container">
                             <a href="{{ route('blog.post.url', ['slug'=>$post->slug]) }}" class="text-reset d-block">
-                                <img src="{{ asset('uploads/all/') }}/{{$post->uploads->file_name}}" alt="{{ $post->name }}" class="img-blog-cropped border lazyloaded">
+                                @if($post->uploads->file_name == 'none.png')
+                                    <img src="{{ asset('assets/img/placeholder-rect.jpg') }}" alt="{{ $post->name }}" class="img-blog-cropped border lazyloaded">
+                                @else
+                                    <img src="{{ asset('uploads/all') }}/{{$post->uploads->file_name}}" alt="{{ $post->name }}" class="img-blog-cropped border lazyloaded">
+                                @endif
                             </a>
                             <div class="p-2 pt-3">
                                 <h2 class="fs-18 fw-600 mb-1">
