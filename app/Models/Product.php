@@ -46,6 +46,7 @@ class Product extends Model
         'name',
         'category',
         'qty',
+        'product_images',
         'product_thumbnail'
     ];
 

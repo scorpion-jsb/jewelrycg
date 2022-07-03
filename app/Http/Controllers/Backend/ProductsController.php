@@ -84,7 +84,7 @@ class ProductsController extends Controller
         $data['price'] = Product::stringPriceToCents($req->price);
         $product = Product::create($data);
         
-        $product->storeImages($req->images);
+        
         $id_product = $product->id;
         
         foreach( $tags as $tag )

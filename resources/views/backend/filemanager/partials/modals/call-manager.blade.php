@@ -5,7 +5,6 @@
                 <h5 class="modal-title" id="uploadFilesModalLabel">Select File</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
-
             <!-- Body -->
             <div class="modal-body">
                 <div class="tab-content" id="connectionsTabContent">
@@ -14,17 +13,34 @@
                       <!-- Folders -->
                       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                           @foreach($files as $file)
-                          <div class="col mb-3 mb-lg-5" onclick="return selectFileFromManager({{$file->id}}, '{{ url('uploads/all')}}/{{ $file->file_name}}')">
+                          <div class="col mb-3 mb-lg-5"  onclick="
+                          @if(!$is_product)
+                            return selectFileFromManager({{$file->id}}, '{{ url('uploads/all')}}/{{ $file->file_name}}')
+                          @else
+                          return selectFileFromManagerMultiple({{$file->id}}, '{{ url('uploads/all')}}/{{ $file->file_name}}')
+                            
+                          @endif
+                          ">
                           <!-- Card -->
-                          <div class="card card-sm card-hover-shadow card-header-borderless h-100 text-center">
+                          <div  id="file-{{$file->id}}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center 
+                            @if(isset($selected) && in_array($file->id, $selected))
+                              selected
+                            @endif
+                            ">
                             <div class="card-header card-header-content-between border-0">
                               <span class="small">{{$file->file_size}}kb</span>
                               <!-- Dropdown -->
                               <div class="dropdown">
-                                <button type="button" class="btn btn-ghost-secondary btn-icon btn-sm card-dropdown-btn rounded-circle" id="filesGridDropdown1" data-bs-toggle="dropdown" aria-expanded="false">
-                                  <i class="bi-three-dots-vertical"></i>
+                                @if($is_product)
+                                <button type="button" 
+                                @if(isset($selected) && !in_array($file->id, $selected))
+                                style="display: none"
+                                @endif
+                                 class="btn btn-ghost-secondary bg-info text-white btn-icon btn-sm card-dropdown-btn check-this rounded-circle">
+                                  <i class="bi-check"></i>
                                 </button>
-              
+                                
+                                @endif
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
                                   <span class="dropdown-header">Settings</span>
               

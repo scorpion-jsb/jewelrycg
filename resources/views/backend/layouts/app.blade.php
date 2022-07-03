@@ -66,8 +66,36 @@
         $('#fileManagerId').val(id);
         $('#CallFilesModal').modal('hide')
         return false;
-
       }
+      
+      function productImageDiv(id, preview)
+      {
+        var div= '<div id="fileappend-'+id+'" class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">'+
+                      '<div class="card card-sm">'+
+                        '<img class="card-img-top" src="'+preview+'" alt="Image Description">'+
+    
+                        '<div class="card-body">'+
+                          '<div class="row col-divider text-center">'+
+                            '<div class="col">'+
+                              '<a class="text-body" href="./assets/img/1920x1080/img3.jpg" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-fslightbox="gallery" data-bs-original-title="View">'+
+                                '<i class="bi-eye"></i>'+
+                              '</a>'+
+                            '</div>'+
+                            
+    
+                            '<div class="col">'+
+                              '<a onclick="removepreviewappended('+id+')" class="text-danger" href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete">'+
+                                '<i class="bi-trash"></i>'+
+                              '</a>'+
+                            '</div>'+
+                          '</div>'+
+
+                        '</div>'+
+                        '</div>'+
+                      '</div>';
+        return div;
+      }
+      
       jQuery(document).ready(function(){
             jQuery('#getFileManager').click(function(e){
                e.preventDefault();
@@ -79,6 +107,27 @@
                jQuery.ajax({
                   url: "{{ route('backend.filemanager.get_filemanager') }}",
                   method: 'get',
+                  dataType: 'HTML',
+                  success: function(result){
+                     $('#ajaxCalls').html(result);
+                     $('#CallFilesModal').modal('show')
+                  }});
+               });
+
+               jQuery('#getFileManagerForProducts').click(function(e){
+               e.preventDefault();
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
+               jQuery.ajax({
+                  url: "{{ route('backend.filemanager.get_filemanager') }}",
+                  method: 'get',
+                  data: {
+                    'is_product': true,
+                    'seleted' : $('#all_checks').val()
+                  },
                   dataType: 'HTML',
                   success: function(result){
                      $('#ajaxCalls').html(result);

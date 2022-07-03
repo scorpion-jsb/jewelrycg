@@ -212,8 +212,20 @@ class UploadController extends Controller
                     break;
             }
         }
+        if($request->selected)
+        {
+            $selections = explode(",", $request->seleted);
+        }
+        else
+        {
+            $selections = [];
+
+        }
+        $product = $request->is_product ? true : false;
         return (string) view('backend.filemanager.partials.modals.call-manager', [
-            'files' =>  $uploads->paginate(60)->appends(request()->query())
+            'files' =>  $uploads->paginate(60)->appends(request()->query()),
+            'is_product' => $product,
+            'selected' => explode(",", $request->seleted)
         ]);
     }
 
