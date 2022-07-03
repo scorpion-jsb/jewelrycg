@@ -18,7 +18,7 @@ class BlogcategoriesController extends Controller
     public function index()
     {
         return view('backend.blog.categories.list', [
-            'categories' => BlogCategorie::all()
+            'categories' => BlogCategorie::orderBy('id', 'DESC')->get()
         ]);  
     }
 

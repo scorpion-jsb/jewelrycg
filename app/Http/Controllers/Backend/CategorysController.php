@@ -18,7 +18,7 @@ class CategorysController extends Controller
     public function index()
     {
         return view('backend.products.categories.list', [
-            'categories' => ProductsCategorie::all()
+            'categories' => ProductsCategorie::orderBy('id', 'DESC')->get()
         ]);  
     }
 

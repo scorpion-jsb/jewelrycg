@@ -17,7 +17,7 @@ class BlogtagsController extends Controller
     public function index()
     {
         return view('backend.blog.tags.list', [
-            'tags' => BlogTags::all()
+            'tags' => BlogTags::orderBy('id', 'DESC')->get()
         ]);
     }
 

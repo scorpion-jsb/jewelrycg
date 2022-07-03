@@ -20,7 +20,7 @@ class VendorsController extends Controller
     public function index()
     {
         return view('backend.users.list', [
-            'users' => User::where('is_admin', 3)->get()
+            'users' => User::where('is_admin', 3)->orderBy('id', 'DESC')->get()
         ]);
     }
 

@@ -17,7 +17,7 @@ class UsersController extends Controller
     {
        
         return view('backend.users.list', [
-            'users' => User::all()
+            'users' => User::orderBy('id', 'DESC')->get()
         ]);
     }
 
