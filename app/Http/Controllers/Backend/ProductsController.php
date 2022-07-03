@@ -88,6 +88,10 @@ class ProductsController extends Controller
         $data['is_virual'] = $req->is_virual ? 1 : 0;
         $data['is_backorder'] = $req->is_backorder ? 1 : 0;
         $data['is_madetoorder'] = $req->is_madetoorder ? 1 : 0;
+     
+            $data['slug'] = str_replace(" ","-", strtolower($req->name));
+        
+        
         $product = Product::create($data);
         $id_product = $product->id;
         
@@ -141,6 +145,8 @@ class ProductsController extends Controller
      */
     public function update(ProductStoreRequest $req, $product)
     {
+        $counter = Product::where('slug', $req->slug)->count();
+        $sep = ($counter==0) ? '' : '-'.$counter+1;
         $tags = (array)$req->input('tags');
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
@@ -148,6 +154,10 @@ class ProductsController extends Controller
         $data['is_virual'] = ($req->is_virual & $req->is_virual == 1) ? 1 : 0;
         $data['is_backorder'] = ($req->is_backorder & $req->is_backorder == 1) ? 1 : 0;
         $data['is_madetoorder'] = ($req->is_madetoorder & $req->is_madetoorder == 1) ? 1 : 0;
+        if($req->slug == "")
+        {
+            $data['slug'] = str_replace(" ","-", strtolower($req->name)).$sep;
+        }
         $product = Product::findOrFail($product);
         $product->update($data);
         $product->replaceImagesIfExist($req->images);

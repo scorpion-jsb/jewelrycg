@@ -48,6 +48,11 @@
                                     class="form-control">
                             </div>
                             <div class="mb-4">
+                                <label for="name">Slug</label>
+                                <input type="text" value='{{ $product->slug }}' name="slug" id="slug"
+                                    class="form-control">
+                            </div>
+                            <div class="mb-4">
                                 <label for="desc">Description</label>
                                 <textarea name="desc" value='{{ $product->desc }}' id="desc" rows="3" class="form-control">{{ $product->desc }}</textarea>
                             </div>
