@@ -56,7 +56,8 @@
                                 <label for="images">Images</label>
                                 <label class="btn btn-primary" id="getFileManagerForProducts">
                                     Upload
-                                    <input type="hidden" id="all_checks" value="{{ $product->product_images }}" name="product_images">
+                                    <input type="hidden" id="all_checks" value="{{ $product->product_images }}"
+                                        name="product_images">
                                 </label>
                             </div>
 
@@ -94,7 +95,25 @@
                         <div class="card-body">
                             <!-- Gallery -->
                             <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-3">
-                                
+                                @foreach ($uploads as $upload)
+                                    <div id="fileappend-{{$upload->id}}" class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
+                                        <div class="card card-sm"><img class="card-img-top"
+                                                src="{{ url('uploads/all')}}/{{ $upload->file_name}}"
+                                                alt="Image Description">
+                                            <div class="card-body">
+                                                <div class="row col-divider text-center">
+                                                    <div class="col"><a class="text-body"
+                                                            href="./assets/img/1920x1080/img3.jpg" data-bs-toggle="tooltip"
+                                                            data-bs-placement="top" title="" data-fslightbox="gallery"
+                                                            data-bs-original-title="View"><i class="bi-eye"></i></a></div>
+                                                    <div class="col"><a onclick="removepreviewappended({{$upload->id}})"
+                                                            class="text-danger" href="javascript:;"><i class="bi-trash"></i></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
                             </div>
                             <!-- End Gallery -->
 
@@ -211,7 +230,8 @@
                                     <option disabled>Select category</option>
                                     @foreach ($categories as $categorie)
                                         <option value="{{ $categorie->id }}"
-                                            data-tokens="{{ $categorie->category_name }}">{{ $categorie->category_name }}
+                                            data-tokens="{{ $categorie->category_name }}">
+                                            {{ $categorie->category_name }}
                                         </option>
                                     @endforeach
 
@@ -244,7 +264,8 @@
                     <div class="card-body">
                         <div class="imagePreview img-thumbnail h-400px">
                             <img id="fileManagerPreview"
-                                src="{{ url('uploads/all') }}/{{ $product->uploads->file_name }}" style="width: 100%">
+                                src="{{ url('uploads/all') }}/{{ $product->uploads->file_name }}"
+                                style="width: 100%">
                         </div>
                         <label class="btn btn-primary" id="getFileManager">
                             Upload
@@ -290,6 +311,7 @@
 @section('js_content')
     <script>
         var createChecks = $('#all_checks').val().split(",");
+
         function removepreviewappended(id) {
             createChecks = jQuery.grep(createChecks, function(value) {
                 return value != id;

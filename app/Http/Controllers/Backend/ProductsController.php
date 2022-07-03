@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\ProductsCategorie;
 use App\Models\ProductTag;
+use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
 use App\Http\Controllers\Backend\UploadController;
 
@@ -92,7 +93,7 @@ class ProductsController extends Controller
             $id_tag = (!is_numeric($tag)) ? $this->registerNewTag($tag) : $tag;
             ProductTagsRelationship::create([
                 'id_tag' => $id_tag,
-                'id_product' => $id_product
+                'id_product' => $id_product,
              ]);
 
         }
@@ -124,6 +125,7 @@ class ProductsController extends Controller
             'product' => $product,
             'categories' => ProductsCategorie::all(),
             'tags' => ProductTag::all(),
+            'uploads' => Upload::whereIn('id', explode(',',$product->product_images))->get()
         ]);
     }
 
