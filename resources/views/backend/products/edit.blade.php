@@ -174,6 +174,14 @@
                                 <input type="checkbox" value="1" @if($product->is_virtual == 1) checked @endif class="form-check-input" id="availabilitySwitch1">
                             </span>
                         </label>
+                        <label class="row form-check form-switch mb-4" for="availabilitySwitch1">
+                            <span class="col-8 col-sm-9 ms-0">
+                                <span class="text-dark">Status</span>
+                            </span>
+                            <span class="col-4 col-sm-3 text-end">
+                                <input type="checkbox" class="form-check-input" name="status" value="1" @if($product->status == 1) checked @endif id="availabilitySwitch1">
+                            </span>
+                        </label>
                     </div>
                 </div>
                 <!-- End Card -->

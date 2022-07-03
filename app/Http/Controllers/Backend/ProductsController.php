@@ -88,6 +88,7 @@ class ProductsController extends Controller
         $data['is_virual'] = $req->is_virual ? 1 : 0;
         $data['is_backorder'] = $req->is_backorder ? 1 : 0;
         $data['is_madetoorder'] = $req->is_madetoorder ? 1 : 0;
+        $data['status'] = ($req->status & $req->status == 1) ? 1 : 0;
      
             $data['slug'] = str_replace(" ","-", strtolower($req->name));
         
@@ -154,6 +155,7 @@ class ProductsController extends Controller
         $data['is_virual'] = ($req->is_virual & $req->is_virual == 1) ? 1 : 0;
         $data['is_backorder'] = ($req->is_backorder & $req->is_backorder == 1) ? 1 : 0;
         $data['is_madetoorder'] = ($req->is_madetoorder & $req->is_madetoorder == 1) ? 1 : 0;
+        $data['status'] = ($req->status & $req->status == 1) ? 1 : 0;
         if($req->slug == "")
         {
             $data['slug'] = str_replace(" ","-", strtolower($req->name)).$sep;

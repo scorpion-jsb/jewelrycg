@@ -130,6 +130,14 @@
                                 <input type="checkbox" value="1" name="is_virual" class="form-check-input" id="availabilitySwitch2">
                             </span>
                         </label>
+                        <label class="row form-check form-switch mb-4" for="availabilitySwitch2">
+                            <span class="col-8 col-sm-9 ms-0">
+                                <span class="text-dark">Status</span>
+                            </span>
+                            <span class="col-4 col-sm-3 text-end">
+                                <input type="checkbox" value="1" name="status" class="form-check-input" id="availabilitySwitch2">
+                            </span>
+                        </label>
                     </div>
                 </div>
                 <!-- End Card -->
