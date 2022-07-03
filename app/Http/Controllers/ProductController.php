@@ -33,13 +33,14 @@ class ProductController extends Controller
 */
     public function products_index()
     {
+        /*
         $product = Product::all();
         $product->setPriceToFloat();
         return view('products.list', compact('product'));
-        /*
+*/
         return view('products.list', [
             'products' => Product::all()
-        ]);*/
+        ]);
 
     }
 
