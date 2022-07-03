@@ -4,7 +4,11 @@
     <div class="col">
         <a class="card hov-shadow-sm mt-1 mb-2 has-transition bg-white p-2" href="{{route('products.show', $product->id)}}">
             <div class="w-100 mb-2 pb-3 border-bottom">
-                <img class="rounded-sm w-100" src="{{asset($product->images->first()->path)}}" alt="{{$product->name}}">
+                @if($product->uploads->file_name == 'none.png')
+                    <img src="{{ asset('assets/img/placeholder-rect.jpg') }}" alt="{{ $product->name }}" class="rounded-sm w-100 lazyloaded">
+                @else
+                    <img src="{{ asset('uploads/all') }}/{{$product->uploads->file_name}}" alt="{{ $product->name }}" class="rounded-sm w-100 lazyloaded">
+                @endif
             </div>
             <div class="text-left px-2">
                 <div class="fs-15">

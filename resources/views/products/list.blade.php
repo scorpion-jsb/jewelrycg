@@ -15,18 +15,11 @@
             <div class="col">
                 <a class="card hov-shadow-sm mt-1 mb-2 has-transition bg-white p-2" href="{{route('products.show', $product->id)}}">
                     <div class="w-100 mb-2 pb-3 border-bottom">
-
-                        <img class="rounded-sm w-100" src="{{ asset('assets/img/placeholder.jpg') }}" alt="{{ $product->name }}">
-
-                        {{-- else --}}
-                        <!--
-                            <div class="h-[325px] w-full bg-gray-100 rounded-sm flex items-center justify-center">
-                                <p class="text-gray-600 font-medium text-center">
-                                    If this product had an image, it would go here.
-                                </p>
-                            </div>
-                            -->
-                        {{-- /if --}}
+                        @if($product->uploads->file_name == 'none.png')
+                            <img src="{{ asset('assets/img/placeholder-rect.jpg') }}" alt="{{ $product->name }}" class="rounded-sm w-100 lazyloaded">
+                        @else
+                            <img src="{{ asset('uploads/all') }}/{{$product->uploads->file_name}}" alt="{{ $product->name }}" class="rounded-sm w-100 lazyloaded">
+                        @endif
                     </div>
                     <div class="text-left px-2">
                         <div class="fs-15">
