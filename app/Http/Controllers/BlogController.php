@@ -17,7 +17,7 @@ class BlogController extends Controller
     {
       
         return view('blog.list', [
-            'posts' => BlogPost::with(['categories', 'uploads', 'postauthor'])->get()
+            'posts' => BlogPost::with(['categories', 'uploads', 'postauthor'])->orderBy('id', 'DESC')->get()
         ]);
     }
     public function show($slug)
