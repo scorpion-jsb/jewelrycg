@@ -78,14 +78,17 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(ProductStoreRequest $req)
+    public function store(Request $req)
     {
+        
         $tags = (array)$req->input('tags');
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
+        $data['is_digital'] = $req->is_digital ? 1 : 0;
+        $data['is_virual'] = $req->is_virual ? 1 : 0;
+        $data['is_backorder'] = $req->is_backorder ? 1 : 0;
+        $data['is_madetoorder'] = $req->is_madetoorder ? 1 : 0;
         $product = Product::create($data);
-        
-        
         $id_product = $product->id;
         
         foreach( $tags as $tag )
@@ -141,6 +144,10 @@ class ProductsController extends Controller
         $tags = (array)$req->input('tags');
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
+        $data['is_digital'] = ($req->is_digital & $req->is_digital == 1)? 1 : 0;
+        $data['is_virual'] = ($req->is_virual & $req->is_virual == 1) ? 1 : 0;
+        $data['is_backorder'] = ($req->is_backorder & $req->is_backorder == 1) ? 1 : 0;
+        $data['is_madetoorder'] = ($req->is_madetoorder & $req->is_madetoorder == 1) ? 1 : 0;
         $product = Product::findOrFail($product);
         $product->update($data);
         $product->replaceImagesIfExist($req->images);

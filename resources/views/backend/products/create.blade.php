@@ -119,15 +119,15 @@
                                 <span class="text-dark">Digital</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" class="form-check-input" id="availabilitySwitch1">
+                                <input type="checkbox" class="form-check-input" value="1" name="is_digital" id="availabilitySwitch1">
                             </span>
                         </label>
-                        <label class="row form-check form-switch mb-4" for="availabilitySwitch1">
+                        <label class="row form-check form-switch mb-4" for="availabilitySwitch2">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Virtual</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" class="form-check-input" id="availabilitySwitch1">
+                                <input type="checkbox" value="1" name="is_virual" class="form-check-input" id="availabilitySwitch2">
                             </span>
                         </label>
                     </div>
@@ -158,7 +158,7 @@
                                 <span class="text-dark">Backorder</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" class="form-check-input" id="availabilitySwitch1">
+                                <input type="checkbox" name="is_backorder" value="1" class="form-check-input" id="availabilitySwitch1">
                             </span>
                         </label>
                         <label class="row form-check form-switch mb-4" for="availabilitySwitch1">
@@ -166,7 +166,7 @@
                                 <span class="text-dark">Made to Order</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" class="form-check-input" id="availabilitySwitch1">
+                                <input type="checkbox" name="is_madetoorder" value="1" class="form-check-input" id="availabilitySwitch1">
                             </span>
                         </label>
                     </div>
