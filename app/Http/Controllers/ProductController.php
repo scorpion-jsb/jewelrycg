@@ -39,7 +39,7 @@ class ProductController extends Controller
         return view('products.list', compact('product'));
 */
         return view('products.list', [
-            'products' => Product::all()
+            'products' => Product::orderBy('id', 'DESC')->get()
         ]);
 
     }
