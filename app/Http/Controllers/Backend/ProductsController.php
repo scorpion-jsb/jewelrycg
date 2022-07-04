@@ -29,6 +29,13 @@ class ProductsController extends Controller
         ]);
     }
 
+    public function trash()
+    {
+        return view('backend.products.trash', [
+            'products' => Product::onlyTrashed()->orderBy('id', 'DESC')->get()
+        ]);
+    }
+
     public function get()
     {
         return datatables()->of(Product::query())
@@ -189,5 +196,11 @@ class ProductsController extends Controller
         $product = Product::findOrFail($id);
         $product->delete();
         return redirect()->route('backend.products.list');
+    }
+
+    public function recover($id)
+    {
+        Product::withTrashed()->find($id)->restore();
+        return redirect()->route('backend.products.trash');
     }
 }

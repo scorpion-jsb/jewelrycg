@@ -59,6 +59,8 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 	Route::group(['prefix' => 'products', 'as' => 'products.'], function ()
 	{
 		Route::get('/', [ProductsController::class, 'index'])->name('list');
+		Route::get('/trash', [ProductsController::class, 'trash'])->name('trash');
+		Route::get('/trash/recover/{id}', [ProductsController::class, 'recover'])->name('recover');
 		Route::get('/create', [ProductsController::class, 'create'])->name('create');
 		Route::get('/edit/{id}', [ProductsController::class, 'edit'])->name('edit');
 		Route::put('/update/{product}', [ProductsController::class, 'update'])->name('update');

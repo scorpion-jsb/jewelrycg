@@ -109,6 +109,7 @@
                   <a class="nav-link @if($navName == 'attributes') active @endif " href="{{route('backend.products.attributes.list')}}">{{ __("Attributes") }}</a>
                   <a class="nav-link @if($navName == 'productscategories') active @endif" href="{{ route('backend.products.categories.list') }}">{{ __("Categories") }}</a>
                   <a class="nav-link @if($navName == 'productstags') active @endif" href="{{ route('backend.products.tags.list') }}">{{ __("Tags") }}</a>
+                  <a class="nav-link @if($navName == 'productstrash') active @endif" href="{{ route('backend.products.trash') }}">{{ __("Trash") }}</a>
                 </div>
               </div>
               <!-- End Collapse -->
