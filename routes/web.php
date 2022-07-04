@@ -63,6 +63,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/edit/{id}', [ProductsController::class, 'edit'])->name('edit');
 		Route::put('/update/{product}', [ProductsController::class, 'update'])->name('update');
 		Route::post('/store', [ProductsController::class, 'store'])->name('store');
+		Route::get('/delete/{id}', [ProductsController::class, 'destroy'])->name('delete');
 		Route::get('/get', [ProductsController::class, 'get'])->name('get');
 	});
 
@@ -132,6 +133,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/edit/{id}', [BlogsController::class, 'edit'])->name('edit');
 		Route::put('/update/{product}', [BlogsController::class, 'update'])->name('update');
 		Route::post('/store', [BlogsController::class, 'store'])->name('store');
+		Route::get('/delete/{id}', [BlogsController::class, 'destroy'])->name('delete');
 		Route::get('/get', [BlogsController::class, 'get'])->name('get');
 	});
 

@@ -72,7 +72,7 @@
                                                             <i class="bi-pencil-fill me-1"></i> Edit Post
                                                         </a>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="javascript:;"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
+                                                        <a class="dropdown-item" onclick="return confirm('Are you sure you want to delete this post?')" href="{{route('backend.posts.delete', $post->id)}}"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
                                                     </div>
                                                 </div>
                                                 <!-- End Unfold -->

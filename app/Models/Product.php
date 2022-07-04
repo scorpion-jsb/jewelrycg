@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Models\Traits\FormatPrices;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
@@ -11,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 
 class Product extends Model
 {
-    use HasFactory, FormatPrices;
+    use HasFactory, FormatPrices, SoftDeletes;
 
     public static $category_list = [
         'Arts',

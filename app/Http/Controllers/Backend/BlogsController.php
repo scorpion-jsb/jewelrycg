@@ -214,6 +214,8 @@ class BlogsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        BlogPost::whereId($id)->delete();
+        return redirect()->route('backend.posts.list');
+
     }
 }

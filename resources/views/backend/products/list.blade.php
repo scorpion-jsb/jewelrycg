@@ -69,7 +69,7 @@
                                                                 <i class="bi-pencil-fill me-1"></i> Edit Product
                                                             </a>
                                                             <div class="dropdown-divider"></div>
-                                                            <a class="dropdown-item" href="javascript:;"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
+                                                            <a onclick="return confirm('Are you sure you want to delete this product?')" class="dropdown-item" href="{{ route("backend.products.delete", $product->id) }}"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
                                                         </div>
                                                     </div>
                                                     <!-- End Unfold -->
