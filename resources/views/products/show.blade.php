@@ -13,14 +13,14 @@
                         <div class="bg-white d-block">
                             <div class="product-gallery bg-white mb-4">
                                     <div class="model-box border h-400px p-2">
-                                        <model-viewer class="model-full-hw" alt="This is CAD Preview" src="https://jewelrycg.com/assets/Mini-Angled-Cross-diamond.glb" ar-scale="auto" poster="assets/img/placeholder.jpg" loading="lazy" ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="0" camera-controls auto-rotate></model-viewer>
+                                        <img class="model-full-hw" alt="This is CAD Preview" src="{{asset('uploads/all/')}}/{{$product->uploads->file_name}}" ar-scale="auto" poster="assets/img/placeholder.jpg" loading="lazy" ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="0" camera-controls auto-rotate>
                                     </div>
                             </div>
                             <div class="product-gallery-thumb row mb-2">
-                            @foreach ($product->images as $key => $image)
+                            @foreach ($uploads as $key => $image)
                                 @if ($key < 3)
                                     <div class="carousel-box c-pointer col-6 col-lg-6 mb-3">
-                                        <img src="{{asset($image->path)}}" class="mw-100 mx-auto border" alt="{{$key}}">
+                                        <img src="{{asset('uploads/all/')}}/{{$image->file_name}}" class="mw-100 mx-auto border" alt="{{$key}}">
                                     </div>
                                 @endif
                             @endforeach

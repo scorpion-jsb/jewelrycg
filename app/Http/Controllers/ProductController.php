@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 //use App\Http\Requests\ProductStoreRequest;
 use App\Http\Requests\SearchProductRequest;
 use App\Models\Product;
+use App\Models\Upload;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
@@ -49,10 +50,10 @@ class ProductController extends Controller
         $product = Product::with('images')->whereSlug($slug)->firstOrFail();
         abort_if(! $product, 404);
         $product->setPriceToFloat();
-
+        $uploads = Upload::whereIn('id', explode(',',$product->product_images))->get(); 
         $product_images_in_json = $product->images->map(fn($i) => asset($i->path))->toJson();
 
-        return view('products.show', compact('product', 'product_images_in_json'));
+        return view('products.show', compact('product', 'product_images_in_json', 'uploads'));
     }
 /*
     public function edit(Product $product)
