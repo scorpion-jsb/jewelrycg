@@ -44,9 +44,9 @@ class ProductController extends Controller
 
     }
 
-    public function show(int $id_product)
+    public function show($slug)
     {
-        $product = Product::with('images')->find($id_product);
+        $product = Product::with('images')->whereSlug($slug)->firstOrFail();
         abort_if(! $product, 404);
         $product->setPriceToFloat();
 
