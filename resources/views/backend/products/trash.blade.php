@@ -1,4 +1,4 @@
-@extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'All Products', 'navName' => 'allproducts', 'activeButton' => 'catalogue'])
+@extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'All Products', 'navName' => 'productstrash', 'activeButton' => 'catalogue'])
 
 @section('content')
 <div class="page-header">
@@ -59,7 +59,7 @@
                                             <td>{{ $product->category }}</td>
                                             <td>
                                                 
-                                                    <a class="btn btn-white btn-sm" href="{{ route('backend.products.recover', $product->id) }}"> <i class="bi-load"></i> Recover </a>
+                                                    <a class="btn btn-white btn-sm" href="{{ route('backend.products.recover', $product->id) }}"> <i class="bi-load"></i> Restore </a>
                                                    
                                             </td>
                                             </tr>

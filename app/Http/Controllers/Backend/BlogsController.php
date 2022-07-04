@@ -27,6 +27,13 @@ class BlogsController extends Controller
         ]);
     }
 
+    public function trash()
+    {
+        return view('backend.blog.posts.trash', [
+            'posts' => BlogPost::onlyTrashed()->orderBy('id', 'DESC')->get()
+        ]);
+    }
+
     public function get()
     {
         return datatables()->of(BlogPost::query())
@@ -217,5 +224,11 @@ class BlogsController extends Controller
         BlogPost::whereId($id)->delete();
         return redirect()->route('backend.posts.list');
 
+    }
+
+    public function recover($id)
+    {
+        BlogPost::withTrashed()->find($id)->restore();
+        return redirect()->route('backend.posts.trash');
     }
 }

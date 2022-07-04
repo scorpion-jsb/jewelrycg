@@ -68,6 +68,7 @@
                   <a class="nav-link @if($navName == 'addpost') active @endif" href="{{ route('backend.posts.create') }}">{{ __("Create Post") }}</a>
                   <a class="nav-link @if($navName == 'blogcategories') active @endif" href="{{ route('backend.blog.categories.list') }}">{{ __("Categories") }}</a>
                   <a class="nav-link @if($navName == 'blogtags') active @endif" href="{{ route('backend.blog.tags.list') }}">{{ __("Tags") }}</a>
+                  <a class="nav-link @if($navName == 'blogtrash') active @endif" href="{{ route('backend.posts.trash') }}">{{ __("Trash") }}</a>
                 </div>
               </div>
               <!-- End Collapse -->

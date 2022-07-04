@@ -131,6 +131,8 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 	Route::group(['prefix' => 'blog/posts', 'as' => 'posts.'], function ()
 	{
 		Route::get('/', [BlogsController::class, 'index'])->name('list');
+		Route::get('/trash', [BlogsController::class, 'trash'])->name('trash');
+		Route::get('/trash/recover/{id}', [BlogsController::class, 'recover'])->name('recover');
 		Route::get('/create', [BlogsController::class, 'create'])->name('create');
 		Route::get('/edit/{id}', [BlogsController::class, 'edit'])->name('edit');
 		Route::put('/update/{product}', [BlogsController::class, 'update'])->name('update');
