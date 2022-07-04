@@ -15,11 +15,6 @@
                                     <div class="model-box border h-400px p-2">
                                         <model-viewer class="model-full-hw" alt="This is CAD Preview" src="https://jewelrycg.com/assets/Mini-Angled-Cross-diamond.glb" ar-scale="auto" poster="assets/img/placeholder.jpg" loading="lazy" ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="0" camera-controls auto-rotate></model-viewer>
                                     </div>
-                                    <!--
-                                    <a href="{{asset($product->images->first()->path)}}" target="_blank">
-                                        <img id="main-image" src="{{asset($product->images->first()->path)}}" class="img-fluid d-block mx-auto border" alt="0">
-                                    </a>
-                                    -->
                             </div>
                             <div class="product-gallery-thumb row mb-2">
                             @foreach ($product->images as $key => $image)
