@@ -19,7 +19,7 @@
         @foreach ($order_items as $order_item)
             <tr>
                 <td>
-                    <a href="{{route('products.show', $order_item->slug)}}">
+                    <a href="{{route('products.show', $order_item->id)}}">
                         {{$order_item->name}}
                     </a>
                 </td>

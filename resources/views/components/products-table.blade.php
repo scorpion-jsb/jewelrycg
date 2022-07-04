@@ -11,7 +11,7 @@
     <tbody>
         @foreach ($products as $key => $product)
             <tr>
-                <td><a href="{{route('products.show', $product->slug)}}" class="link-dark">{{$product->name}}</a></td>
+                <td><a href="{{route('products.show', $product->id)}}" class="link-dark">{{$product->name}}</a></td>
                 <td>
                     <div class="row justify-content-between">
                         ${{number_format($product->price, 2)}}
