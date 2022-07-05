@@ -274,7 +274,7 @@
                     <!-- Body -->
                     <div class="card-body">
                         <p>
-                        @if ($product->product_thumbnail != null)
+                        @if ($product->product_3dpreview != null)
                             <span class="badge btn-success"> With 3d model</span>
                         @else
                             <span class="badge btn-danger"> Without 3d model </span>
@@ -284,7 +284,7 @@
                             Upload
 
                         </label>
-                        <input type="hidden" id="fileManagerModelId" value="{{ $product->product_thumbnail }}" name="product_3dpreview">
+                        <input type="hidden" id="fileManagerModelId" value="{{ $product->product_3dpreview }}" name="product_3dpreview">
                     </div>
                 </div>
                 <!-- Card -->
