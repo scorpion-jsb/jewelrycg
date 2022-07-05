@@ -104,6 +104,14 @@
       }
       
       jQuery(document).ready(function(){
+        $(document).on("click",".modal-body li a",function()
+    {
+        tab = $(this).attr("href");
+        $(".modal-body .tab-content div").each(function(){
+            $(this).removeClass("active");
+        });
+        $(".modal-body .tab-content "+tab).addClass("active");
+    });
             jQuery('#getFileManager').click(function(e){
                e.preventDefault();
                $.ajaxSetup({

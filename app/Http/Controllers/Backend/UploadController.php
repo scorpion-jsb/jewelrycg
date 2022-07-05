@@ -187,6 +187,135 @@ class UploadController extends Controller
         }
     }
 
+    public function ajaxupload(Request $request){
+        $type = array(
+            "jpg"=>"image",
+            "jpeg"=>"image",
+            "png"=>"image",
+            "svg"=>"image",
+            "webp"=>"image",
+            "gif"=>"image",
+            "mp4"=>"video",
+            "mpg"=>"video",
+            "mpeg"=>"video",
+            "webm"=>"video",
+            "ogg"=>"video",
+            "avi"=>"video",
+            "mov"=>"video",
+            "flv"=>"video",
+            "swf"=>"video",
+            "mkv"=>"video",
+            "wmv"=>"video",
+            "wma"=>"audio",
+            "aac"=>"audio",
+            "wav"=>"audio",
+            "mp3"=>"audio",
+            "zip"=>"archive",
+            "rar"=>"archive",
+            "7z"=>"archive",
+            "doc"=>"document",
+            "txt"=>"document",
+            "docx"=>"document",
+            "pdf"=>"document",
+            "csv"=>"document",
+            "xml"=>"document",
+            "ods"=>"document",
+            "xlr"=>"document",
+            "xls"=>"document",
+            "xlsx"=>"document",
+            "glb" => "cad",
+            "gltf" => "cad",
+            "usdz" => "cad",
+            "3dm" => "Rhinoceros",
+            "stl" => "Stereolithography"
+        );
+
+        if($request->hasFile('file')){
+            $upload = new Upload;
+            $extension = strtolower($request->file('file')->getClientOriginalExtension());
+
+            if(isset($type[$extension])){
+                $upload->file_original_name = null;
+                $arr = explode('.', $request->file('file')->getClientOriginalName());
+                for($i=0; $i < count($arr)-1; $i++){
+                    if($i == 0){
+                        $upload->file_original_name .= $arr[$i];
+                    }
+                    else{
+                        $upload->file_original_name .= ".".$arr[$i];
+                    }
+                }
+
+                //$path = $request->file('aiz_file')->store('uploads/all', 'local');
+                $hash = Str::random(40);
+                $extension = $request->file('file')->getClientOriginalExtension();
+
+                
+                
+                $size = $request->file('file')->getSize();
+                $path = $request->file('file')->move(
+                    public_path('uploads/all'), $hash . '.' . $extension
+                );
+                // Return MIME type ala mimetype extension
+                $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                
+                // Get the MIME type of the file
+                $file_mime = finfo_file($finfo,$path);
+
+                if($type[$extension] == 'image'){
+                    try {
+                        $img = Image::make($request->file('file')->getRealPath())->encode();
+                        $height = $img->height();
+                        $width = $img->width();
+                        if($width > $height && $width > 1500){
+                            $img->resize(1500, null, function ($constraint) {
+                                $constraint->aspectRatio();
+                            });
+                        }elseif ($height > 1500) {
+                            $img->resize(null, 800, function ($constraint) {
+                                $constraint->aspectRatio();
+                            });
+                        }
+                        $img->save(base_path('public/').$path);
+                        clearstatcache();
+                        $size = $img->filesize();
+
+                    } catch (\Exception $e) {
+                        //dd($e);
+                    }
+                }
+
+                if (env('FILESYSTEM_DRIVER') == 's3') {
+                    Storage::disk('s3')->put(
+                        $path,
+                        file_get_contents(base_path('public/').$path),
+                        [
+                            'visibility' => 'public',
+                            'ContentType' =>  $extension == 'svg' ? 'image/svg+xml' : $file_mime
+                        ]
+                    );
+                    if($arr[0] != 'updates') {
+                        unlink(base_path('public/').$path);
+                    }
+                }
+
+                $upload->extension = $extension;
+                $upload->file_name = $hash . '.' . $extension;
+                $upload->id_user = Auth::user()->id;
+                $upload->type = $type[$upload->extension];
+                $upload->file_size = $size;
+                $upload->save();
+            }
+            $product = $request->is_product ? true : false;
+            $model = $request->is_model ? true : false;
+            return view('backend.filemanager.singlefile', [
+                "file" => $upload,
+                "is_product" => $product,
+                "is_model" => $model
+            ]);
+        }
+    }
+
     public function get_filemanager(Request $request)
     {
         $uploads = Upload::where('id_user', Auth::user()->id);
