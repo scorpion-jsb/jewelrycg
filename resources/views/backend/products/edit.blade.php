@@ -264,7 +264,29 @@
                     </div>
                 </div>
                 <!-- End Card -->
+                <div class="card mb-3 mb-lg-5">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">3D Model</h4>
+                    </div>
+                    <!-- End Header -->
 
+                    <!-- Body -->
+                    <div class="card-body">
+                        <p>
+                        @if ($product->product_thumbnail != null)
+                            <span class="badge btn-success"> With 3d model</span>
+                        @else
+                            <span class="badge btn-danger"> Without 3d model </span>
+                        @endif
+                        </p>
+                        <label class="btn btn-primary" id="getFileManagerModel">
+                            Upload
+
+                        </label>
+                        <input type="hidden" id="fileManagerModelId" value="{{ $product->product_thumbnail }}" name="product_3dpreview">
+                    </div>
+                </div>
                 <!-- Card -->
                 <div class="card mb-3 mb-lg-5">
                     <!-- Header -->
@@ -284,7 +306,7 @@
                             Upload
 
                         </label>
-                        <input type="hidden" id="fileManagerId" name="product_thumbnail">
+                        <input type="hidden" id="fileManagerId" value={{$product->product_thumbnail}} name="product_thumbnail">
                     </div>
                 </div>
                 <!-- End Card -->
