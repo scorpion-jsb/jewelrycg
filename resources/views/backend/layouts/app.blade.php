@@ -20,7 +20,7 @@
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="{{ asset('assets/css/backend/theme.min.css') }}" data-hs-appearance="default" as="style">
     <link rel="preload" href="{{ asset('assets/css/backend/theme-dark.min.css') }}" data-hs-appearance="dark" as="style">
-    <link rel="preload" href="{{ asset('assets/css/backend/custom.css') }}" data-hs-appearance="dark" as="style">
+    <link rel="stylesheet" href="{{ asset('assets/css/backend/custom.css') }}" as="style">
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.0/ui/trumbowyg.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css" />
