@@ -55,7 +55,7 @@ class Product extends Model
         'product_thumbnail',
         'slug',
         'status',
-
+        'product_3dpreview',
     ];
 
     private static function getProductsAndMergeExtraProductsIfNotEnough(Collection $order_items)

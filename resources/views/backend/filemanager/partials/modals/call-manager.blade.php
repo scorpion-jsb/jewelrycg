@@ -14,11 +14,12 @@
                       <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
                           @foreach($files as $file)
                           <div class="col mb-3 mb-lg-5"  onclick="
-                          @if(!$is_product)
-                            return selectFileFromManager({{$file->id}}, '{{ url('uploads/all')}}/{{ $file->file_name}}')
+                          @if($is_product)
+                            return selectFileFromManagerMultiple({{$file->id}}, '{{ url('uploads/all')}}/{{ $file->file_name}}')
+                          @elseif($is_model)
+                            return selectFileFromManagerModel({{$file->id}});
                           @else
-                          return selectFileFromManagerMultiple({{$file->id}}, '{{ url('uploads/all')}}/{{ $file->file_name}}')
-                            
+                            return selectFileFromManager({{$file->id}}, '{{ url('uploads/all')}}/{{ $file->file_name}}')
                           @endif
                           ">
                           <!-- Card -->

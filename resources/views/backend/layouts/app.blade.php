@@ -67,6 +67,12 @@
         $('#CallFilesModal').modal('hide')
         return false;
       }
+
+      function selectFileFromManagerModel(id)
+      {
+        $('#fileManagerModelId').val(id);
+        $('#CallFilesModal').modal('hide')
+      }
       
       function productImageDiv(id, preview)
       {
@@ -107,6 +113,26 @@
                jQuery.ajax({
                   url: "{{ route('backend.filemanager.get_filemanager') }}",
                   method: 'get',
+                  dataType: 'HTML',
+                  success: function(result){
+                     $('#ajaxCalls').html(result);
+                     $('#CallFilesModal').modal('show')
+                  }});
+               });
+
+               jQuery('#getFileManagerModel').click(function(e){
+               e.preventDefault();
+               $.ajaxSetup({
+                  headers: {
+                      'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                  }
+              });
+               jQuery.ajax({
+                  url: "{{ route('backend.filemanager.get_filemanager') }}",
+                  method: 'get',
+                  data: {
+                    'is_model': true
+                  },
                   dataType: 'HTML',
                   success: function(result){
                      $('#ajaxCalls').html(result);

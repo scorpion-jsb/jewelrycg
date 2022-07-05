@@ -214,7 +214,24 @@
                     </div>
                 </div>
                 <!-- End Card -->
+                <!-- Card -->
+                <div class="card mb-3 mb-lg-5">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">3D Model</h4>
+                    </div>
+                    <!-- End Header -->
 
+                    <!-- Body -->
+                    <div class="card-body">
+                        <label class="btn btn-primary" id="getFileManagerModel">
+                            Upload
+
+                        </label>
+                        <input type="hidden" id="fileManagerModelId" name="product_3dpreview">
+                    </div>
+                </div>
+                <!-- End Card -->
                 <!-- Card -->
                 <div class="card mb-3 mb-lg-5">
                     <!-- Header -->

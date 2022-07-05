@@ -222,9 +222,11 @@ class UploadController extends Controller
 
         }
         $product = $request->is_product ? true : false;
+        $model = $request->is_model ? true : false;
         return (string) view('backend.filemanager.partials.modals.call-manager', [
             'files' =>  $uploads->paginate(60)->appends(request()->query()),
             'is_product' => $product,
+            'is_model' => $model,
             'selected' => explode(",", $request->seleted)
         ]);
     }

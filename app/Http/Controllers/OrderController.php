@@ -17,7 +17,7 @@ class OrderController extends Controller
     public function show(int $id_order)
     {
         $edit = (bool) request()->query('edit', 0);
-        $order = Order::with('items', 'items.product:id,name')->find($id_order);
+        $order = Order::with('items', 'items.product:id,name,slug')->find($id_order);
         $this->authorize('show', $order);
         $order->formatPrice();
         $order->items->transform(function($i) {
