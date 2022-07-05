@@ -27,7 +27,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
 
   </head>
-  <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl   footer-offset">
+  <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl footer-offset">
 
     @include('backend.layouts.navbars.navbar')
     @include('backend.layouts.navbars.sidebar')
