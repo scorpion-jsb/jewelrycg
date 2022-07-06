@@ -64,22 +64,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="product-details-edit mb-4">
-                            @auth
-                                @if (auth()->user()->is_admin)
-
-                                    <a href="{{route('products.edit', $product->id)}}" class="btn btn-outline-primary">Edit</a>
-                                    <form action="{{route('products.destroy', $product)}}" method="post" class="d-inline">
-                                        @csrf
-                                        @method('delete')
-                                        <button type="submit" class="btn btn-outline-danger">
-                                            Delete
-                                        </button>
-                                    </form>
-
-                                @endif
-                            @endauth
-                            </div>
                                 
                             <div class="product-details-misc mb-4">
                                 {{$product->desc}}
