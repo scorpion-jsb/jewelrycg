@@ -39,8 +39,12 @@ class ProductController extends Controller
         $product->setPriceToFloat();
         return view('products.list', compact('product'));
 */
+        $products = Product::orderBy('id', 'DESC')->get();
+        $products->each(function($product){
+            $product->setPriceToFloat();
+        });
         return view('products.list', [
-            'products' => Product::orderBy('id', 'DESC')->get()
+            'products' => $products
         ]);
 
     }
