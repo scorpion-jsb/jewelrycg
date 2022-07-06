@@ -58,7 +58,13 @@ return selectFileFromManager({{ $file->id }}, '{{ url('uploads/all') }}/{{ $file
 
         <div class="card-body">
             <img class="avatar-xxl"
-                src="{{ url('uploads/all') }}/{{ $file->file_name }}"
+                src="
+                @if($file->extension == 'glb')
+                    {{ url('assets/svg/brands/google-docs-icon.svg') }}
+                @else
+                    {{ url('uploads/all') }}/{{ $file->file_name }}
+                @endif
+                "
                 alt="Image Description">
         </div>
 
