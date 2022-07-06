@@ -155,6 +155,11 @@ class Product extends Model
         return $this->hasMany(ProductTagsRelationship::class, 'id_product' , 'id');
     }
 
+    public function product_category()
+    {
+        return $this->belongsTo(ProductsCategorie::class, 'category' , 'id');
+    }
+
     public function uploads()
     {
         return $this->belongsTo(Upload::class, 'product_thumbnail' , 'id')->withDefault([

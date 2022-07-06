@@ -56,7 +56,7 @@
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price }} $</td>
                                             <td>{{ $product->qty }}</td>
-                                            <td>{{ $product->category }}</td>
+                                            <td>{{ $product->product_category->category_name }}</td>
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <a class="btn btn-white btn-sm" target="_blank" href="{{ route('products.show', $product->slug) }}"> <i class="bi-eye"></i> View </a>
