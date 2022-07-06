@@ -311,7 +311,7 @@ class UploadController extends Controller
             
             $product = $request->is_product == 1 ? true : false;
             $model = $request->is_model == 1 ? true : false;
-            $uploads = Upload::where('id_user', Auth::user()->id);
+            $uploads = Upload::orderBy('id', 'DESC')->where('id_user', Auth::user()->id);
             return view('backend.filemanager.partials.components.list', [
                 'files' =>  $uploads->paginate(60)->appends(request()->query()),
                 'is_product' => $product,
@@ -323,7 +323,7 @@ class UploadController extends Controller
 
     public function get_filemanager(Request $request)
     {
-        $uploads = Upload::where('id_user', Auth::user()->id);
+        $uploads = Upload::orderBy('id', 'DESC')->where('id_user', Auth::user()->id);
         if ($request->search != null) {
             $uploads->where('file_original_name', 'like', '%'.$request->search.'%');
         }
