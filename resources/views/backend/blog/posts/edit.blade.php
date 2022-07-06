@@ -77,6 +77,18 @@
 
                     <!-- Body -->
                     <div class="card-body">
+                        <label class="row form-check form-switch mb-4" for="">
+                            <span class="col-4 col-sm-3 ms-0">
+                                <span class="text-dark">Status</span>
+                            </span>
+                            <span class="col-4 col-sm-3">
+                            <select class="selectpicker" name="status" style="width: 100%">
+                                <option value="1" @if($post->status == 1) selected @endif selected>Published</option>
+                                <option value="2" @if($post->status == 2) selected @endif>Draft</option>
+                                <option value="3" @if($post->status == 3) selected @endif>Pending Review</option>
+                            </select>
+                            </span>
+                        </label>
                         <div class="mb-4">
                             <label for="category">Category:</label>
                                 <select multiple class="form-select selectpicker" name="categories[]" data-live-search="true" data-container="body">
