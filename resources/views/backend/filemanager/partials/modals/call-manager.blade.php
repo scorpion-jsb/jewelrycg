@@ -87,7 +87,7 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <h5 class="card-title">{{ $file->file_original_name }}</h5>
+                                            <h5 class="card-title">{{ $file->file_original_name }}.{{ $file->extension }}</h5>
                                             <p class="small">Updated {{ $file->created_at->diffForHumans() }}</p>
                                         </div>
 
