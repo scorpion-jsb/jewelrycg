@@ -130,12 +130,16 @@
                                 <input type="checkbox" value="1" name="is_virual" class="form-check-input" id="availabilitySwitch2">
                             </span>
                         </label>
-                        <label class="row form-check form-switch mb-4" for="availabilitySwitch2">
-                            <span class="col-8 col-sm-9 ms-0">
+                        <label class="row form-check form-switch mb-4" for="">
+                            <span class="col-4 col-sm-3 ms-0">
                                 <span class="text-dark">Status</span>
                             </span>
-                            <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" value="1" name="status" class="form-check-input" id="availabilitySwitch2">
+                            <span class="col-4 col-sm-3">
+                            <select class="selectpicker" name="status" style="width: 100%">
+                                <option value="1" selected>Published</option>
+                                <option value="2" >Draft</option>
+                                <option value="3" >Pending Review</option>
+                            </select>
                             </span>
                         </label>
                     </div>
