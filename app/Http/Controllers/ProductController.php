@@ -47,7 +47,7 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        $product = Product::with('images')->whereSlug($slug)->firstOrFail();
+        $product = Product::with(['images' , 'modelpreview'])->whereSlug($slug)->firstOrFail();
         abort_if(! $product, 404);
         $product->setPriceToFloat();
         $uploads = Upload::whereIn('id', explode(',',$product->product_images))->get(); 

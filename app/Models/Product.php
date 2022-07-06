@@ -162,4 +162,12 @@ class Product extends Model
             'id' => null
         ]);
     }
+
+    public function modelpreview()
+    {
+        return $this->belongsTo(Upload::class, 'product_3dpreview' , 'id')->withDefault([
+            'file_name' => "none.png",
+            'id' => null
+        ]);
+    }
 }
