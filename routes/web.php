@@ -52,6 +52,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/get_filemanager', [UploadController::class, 'get_filemanager'])->name('get_filemanager');
 		Route::put('/update/{product}', [UploadController::class, 'update'])->name('update');
 		Route::post('/store', [UploadController::class, 'store'])->name('store');
+		Route::post('/ajaxupload', [UploadController::class, 'ajaxupload'])->name('ajaxupload');
 		Route::get('/get', [UploadController::class, 'get'])->name('get');
 	});
 

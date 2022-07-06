@@ -9,11 +9,11 @@
             <div class="modal-body">
                 <ul class="nav nav-tabs" id="myTab" role="tablist">
                     <li class="nav-item waves-effect waves-light">
-                        <a class="nav-link" id="home-tab" data-toggle="tab" href="#media" role="tab"
+                        <a class="nav-link" id="media-tab" data-toggle="tab" href="#media" role="tab"
                             aria-controls="media" aria-selected="false">Media</a>
                     </li>
                     <li class="nav-item waves-effect waves-light">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#upload" role="tab"
+                        <a class="nav-link" id="upload-tab" data-toggle="tab" href="#upload" role="tab"
                             aria-controls="upload" aria-selected="false">Upload</a>
                     </li>
                 </ul>
@@ -21,7 +21,7 @@
 
                     <div class="tab-pane fade show active" id="media" role="tabpanel" aria-labelledby="media-tab">
                         <!-- Folders -->
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="modelmanagerAppend">
                             @foreach ($files as $file)
                                 <div class="col mb-3 mb-lg-5"
                                     onclick="
@@ -111,11 +111,15 @@
 
                                 <p class="mb-2">or</p>
 
-                                <span class="btn btn-white btn-sm" id="browse">Browse files</span>
+                                <span class="btn btn-white btn-sm" id="browse"
+                                    onclick='return uploadPrepareAjax(@if ($is_model) 1 @else 0 @endif ,@if ($is_product) 1 @else 0 @endif)'>Browse
+                                    files</span>
                                 <input type="file" id='prepare_images' name="file" multiple
                                     style="display: none">
                             </div>
                         </div>
+                        <span class="btn btn-success btn-sm" id="browse"
+                            onclick='return uploadAjax(@if ($is_model) 1 @else 0 @endif ,@if ($is_product) 1 @else 0 @endif , @if(isset($selected)) " " @else " " @endif)'>Upload</span>
                         <!-- End Dropzone -->
                     </div>
                 </div>

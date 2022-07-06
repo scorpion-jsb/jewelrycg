@@ -231,10 +231,12 @@ class UploadController extends Controller
         );
 
         if($request->hasFile('file')){
+          
             $upload = new Upload;
             $extension = strtolower($request->file('file')->getClientOriginalExtension());
 
             if(isset($type[$extension])){
+                
                 $upload->file_original_name = null;
                 $arr = explode('.', $request->file('file')->getClientOriginalName());
                 for($i=0; $i < count($arr)-1; $i++){
@@ -306,12 +308,15 @@ class UploadController extends Controller
                 $upload->file_size = $size;
                 $upload->save();
             }
-            $product = $request->is_product ? true : false;
-            $model = $request->is_model ? true : false;
-            return view('backend.filemanager.singlefile', [
-                "file" => $upload,
-                "is_product" => $product,
-                "is_model" => $model
+            
+            $product = $request->is_product == 1 ? true : false;
+            $model = $request->is_model == 1 ? true : false;
+            $uploads = Upload::where('id_user', Auth::user()->id);
+            return view('backend.filemanager.partials.components.list', [
+                'files' =>  $uploads->paginate(60)->appends(request()->query()),
+                'is_product' => $product,
+                'is_model' => $model,
+                'selected' => explode(",", $request->seleted)
             ]);
         }
     }
