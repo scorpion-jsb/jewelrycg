@@ -39,8 +39,10 @@ class ProductController extends Controller
         $product->setPriceToFloat();
         return view('products.list', compact('product'));
 */
+    $product = Product::orderBy('id', 'DESC')->get();
+    $product->setPriceToFloat();
         return view('products.list', [
-            'products' => Product::orderBy('id', 'DESC')->get()
+            'products' => $product
         ]);
 
     }
