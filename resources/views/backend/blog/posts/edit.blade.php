@@ -123,7 +123,8 @@
                         <div class="imagePreview img-thumbnail h-400px">
                             <img id="fileManagerPreview" src="{{ url('uploads/all')}}/{{ $post->uploads->file_name}}" style="width: 100%">
                         </div>
-                        <label class="text-primary mt-1" id="getFileManager">Select featured image</label>
+                        <label class="text-primary mt-2" id="getFileManager">Select featured image</label>
+                        <a href="" class="text-primary mt-2" id="getFileManager">Select featured image</a>
                         <input type="hidden" value="{{ $post->uploads->id}}" id="fileManagerId" name="thumbnail">
                     </div>
                 </div>
