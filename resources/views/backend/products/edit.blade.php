@@ -279,15 +279,12 @@
                     <div class="card-body">
                         <p>
                         @if ($product->product_3dpreview != null)
-                            <span class="badge btn-success"> With 3d model</span>
+                            <span class="badge btn-success"> 3d model attached</span>
                         @else
-                            <span class="badge btn-danger"> Without 3d model </span>
+                            <span class="badge btn-danger"> No 3d model attached</span>
                         @endif
                         </p>
-                        <label class="btn btn-primary" id="getFileManagerModel">
-                            Upload
-
-                        </label>
+                        <label class="text-primary mt-2" id="getFileManagerModel">Select 3d model</label>
                         <input type="hidden" id="fileManagerModelId" value="{{ $product->product_3dpreview }}" name="product_3dpreview">
                     </div>
                 </div>
@@ -306,10 +303,7 @@
                                 src="{{ url('uploads/all') }}/{{ $product->uploads->file_name }}"
                                 style="width: 100%">
                         </div>
-                        <label class="btn btn-primary" id="getFileManager">
-                            Upload
-
-                        </label>
+                        <label class="btn btn-primary" id="getFileManager">Select Thumbnail</label>
                         <input type="hidden" id="fileManagerId" value={{$product->product_thumbnail}} name="product_thumbnail">
                     </div>
                 </div>
