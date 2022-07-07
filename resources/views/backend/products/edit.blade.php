@@ -64,25 +64,12 @@
                         <div class="card-header card-header-content-between">
                             <h4 class="card-header-title">Media</h4>
 
-                            <!-- Dropdown -->
-                            <div class="dropdown">
-                                <label class="btn text-primary p-0" id="getFileManagerForProducts">
-                                    Select product gallery images
-                                    <input type="hidden" id="all_checks" value="{{ $product->product_images }}" name="product_images">
-                                </label>
-
-                                <div class="dropdown-menu dropdown-menu-end mt-1" style="">
-                                    <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"
-                                        data-bs-target="#addImageFromURLModal">
-                                        <i class="bi-link dropdown-item-icon"></i> Add image from URL
-                                    </a>
-                                    <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"
-                                        data-bs-target="#embedVideoModal">
-                                        <i class="bi-youtube dropdown-item-icon"></i> Embed video
-                                    </a>
-                                </div>
-                            </div>
-                            <!-- End Dropdown -->
+                            <!-- Gallery link -->
+                            <label class="btn text-primary p-0" id="getFileManagerForProducts">
+                                Select product gallery images
+                                <input type="hidden" id="all_checks" value="{{ $product->product_images }}" name="product_images">
+                            </label>
+                           <!-- End Gallery link -->
                         </div>
                         <!-- End Header -->
 
