@@ -51,9 +51,8 @@
                         </div>
 
                         <div class="col-md-12 mb-3">
-                            <label for="images">Images</label>
                             <label class="btn btn-primary" id="getFileManagerForProducts">
-                                Upload
+                                Select product gallery images
                                 <input type="hidden" id="all_checks" value="" name="product_images">
                             </label>
                         </div>
@@ -64,25 +63,12 @@
                     <div class="card-header card-header-content-between">
                         <h4 class="card-header-title">Media</h4>
 
-                        <!-- Dropdown -->
-                        <div class="dropdown">
-                            <button type="button" class="btn btn-ghost-secondary btn-sm" id="mediaDropdown"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Add media from URL <i class="bi-chevron-down"></i>
-                            </button>
-
-                            <div class="dropdown-menu dropdown-menu-end mt-1" style="">
-                                <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"
-                                    data-bs-target="#addImageFromURLModal">
-                                    <i class="bi-link dropdown-item-icon"></i> Add image from URL
-                                </a>
-                                <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"
-                                    data-bs-target="#embedVideoModal">
-                                    <i class="bi-youtube dropdown-item-icon"></i> Embed video
-                                </a>
-                            </div>
-                        </div>
-                        <!-- End Dropdown -->
+                        <!-- Gallery link -->
+                        <label class="btn text-primary p-0" id="getFileManagerForProducts">
+                            Select product gallery images
+                            <input type="hidden" id="all_checks" value="" name="product_images">
+                        </label>
+                        <!-- Gallery link -->
                     </div>
                     <!-- End Header -->
 
