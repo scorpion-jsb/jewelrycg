@@ -284,7 +284,7 @@
                             <span class="badge btn-danger"> No 3d model attached</span>
                         @endif
                         </p>
-                        <label class="text-primary mt-2" id="getFileManagerModel">Select 3d model</label>
+                        <label class="btn text-primary mt-2 p-0" id="getFileManagerModel">Select 3d model</label>
                         <input type="hidden" id="fileManagerModelId" value="{{ $product->product_3dpreview }}" name="product_3dpreview">
                     </div>
                 </div>
@@ -303,7 +303,7 @@
                                 src="{{ url('uploads/all') }}/{{ $product->uploads->file_name }}"
                                 style="width: 100%">
                         </div>
-                        <label class="btn btn-primary" id="getFileManager">Select Thumbnail</label>
+                        <label class="btn text-primary mt-2 p-0" id="getFileManager">Select Thumbnail</label>
                         <input type="hidden" id="fileManagerId" value={{$product->product_thumbnail}} name="product_thumbnail">
                     </div>
                 </div>
