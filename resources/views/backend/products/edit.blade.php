@@ -57,16 +57,6 @@
                                 <textarea name="desc" value='{{ $product->desc }}' id="desc" rows="3" class="form-control">{{ $product->desc }}</textarea>
                             </div>
 
-                            <div class="col-md-12 mb-3">
-                                <label for="images">Images</label>
-                                <label class="btn btn-primary" id="getFileManagerForProducts">
-                                    Upload
-                                    <input type="hidden" id="all_checks" value="{{ $product->product_images }}"
-                                        name="product_images">
-                                </label>
-                            </div>
-
-
                         </div>
                     </div>
                     <div class="card mb-3 mb-lg-5 mt-3">
@@ -76,10 +66,10 @@
 
                             <!-- Dropdown -->
                             <div class="dropdown">
-                                <button type="button" class="btn btn-ghost-secondary btn-sm" id="mediaDropdown"
-                                    data-bs-toggle="dropdown" aria-expanded="false">
-                                    Add media from URL <i class="bi-chevron-down"></i>
-                                </button>
+                                <label class="btn text-primary p-0" id="getFileManagerForProducts">
+                                    Select product gallery images
+                                    <input type="hidden" id="all_checks" value="{{ $product->product_images }}" name="product_images">
+                                </label>
 
                                 <div class="dropdown-menu dropdown-menu-end mt-1" style="">
                                     <a class="dropdown-item" href="javascript:;" data-bs-toggle="modal"
