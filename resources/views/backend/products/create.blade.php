@@ -228,10 +228,7 @@
 
                     <!-- Body -->
                     <div class="card-body">
-                        <label class="btn btn-primary" id="getFileManagerModel">
-                            Upload
-
-                        </label>
+                        <label class="btn text-primary mt-2 p-0" id="getFileManagerModel">Select 3d model</label>
                         <input type="hidden" id="fileManagerModelId" name="product_3dpreview">
                     </div>
                 </div>
@@ -249,10 +246,7 @@
                         <div class="imagePreview img-thumbnail h-400px">
                             <img id="fileManagerPreview" src="" style="width: 100%">
                         </div>
-                        <label class="btn btn-primary" id="getFileManager">
-                            Upload
-
-                        </label>
+                        <label class="btn text-primary mt-2 p-0" id="getFileManager">Select thumbnail</label>
                         <input type="hidden" id="fileManagerId" name="product_thumbnail">
                     </div>
                 </div>
