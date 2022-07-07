@@ -49,13 +49,6 @@
                             <label for="desc">Description</label>
                             <textarea name="desc" id="desc" rows="3" class="form-control"></textarea>
                         </div>
-
-                        <div class="col-md-12 mb-3">
-                            <label class="btn btn-primary" id="getFileManagerForProducts">
-                                Select product gallery images
-                                <input type="hidden" id="all_checks" value="" name="product_images">
-                            </label>
-                        </div>
                     </div>
                 </div>
                 <div class="card mb-3 mb-lg-5">
