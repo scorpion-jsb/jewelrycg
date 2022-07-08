@@ -106,6 +106,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::put('/update/{product}', [AttributesController::class, 'update'])->name('update');
 		Route::post('/store', [AttributesController::class, 'store'])->name('store');
 		Route::get('/get', [AttributesController::class, 'get'])->name('get');
+		Route::post('/get/values', [AttributesController::class, 'getvalues'])->name('getvalues');
 	});
 
 	Route::group(['prefix' => 'products/attributes/{id_attribute}/values', 'as' => 'products.attributes.values.'], function ()

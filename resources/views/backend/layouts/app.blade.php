@@ -66,6 +66,10 @@
 
     <!-- JS Plugins Init. -->
     <script>
+
+        function deletevarient(id){
+            $('#variantproduct-'+id).remove();
+        }
         function selectFileFromManager(id, preview) {
             $('#fileManagerPreview').attr('src', preview);
             $('#fileManagerId').val(id);
@@ -202,6 +206,21 @@
                     });
                 });
             });
+            $('#variant').on('change', function(){
+             
+                    jQuery.ajax({
+                        url: "{{ route('backend.products.attributes.getvalues') }}",
+                        method: 'post',
+                        data: {
+                            'id_attribute': $(this).val(),
+                            "_token": "{{ csrf_token() }}"
+                        },
+                        dataType: 'HTML',
+                        success: function(result) {
+                            $('#variantsbody').html(result)
+                        }
+                    });
+            })
             (function() {
                 // INITIALIZATION OF NAVBAR VERTICAL ASIDE
                 // =======================================================

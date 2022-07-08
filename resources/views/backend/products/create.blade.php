@@ -79,6 +79,23 @@
                     </div>
                     <!-- Body -->
                 </div>
+                <div class="js-add-field card mb-3 mb-lg-5">
+                    <!-- Header -->
+                    <div class="card-header card-header-content-sm-between">
+                        <h4 class="card-header-title mb-2 mb-sm-0">Variants</h4>
+                        <select style="width:100%" class="selectpicker" name="variant" id="variant" data-live-search="true">
+                            <option disabled selected>Select variants</option>
+                            @foreach ($attributes as $attribute)
+                                <option value="{{ $attribute->id }}" data-tokens="{{ $attribute->name }}">
+                                    {{ $attribute->name }}</option>
+                            @endforeach
+
+                        </select>
+                    </div>
+                    <div class="card-body" id="variantsbody">
+                        
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-4">

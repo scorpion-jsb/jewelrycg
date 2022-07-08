@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\ProductsCategorie;
 use App\Models\ProductTag;
+use App\Models\Attribute;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
 use App\Http\Controllers\Backend\UploadController;
@@ -60,6 +61,7 @@ class ProductsController extends Controller
     public function create()
     {
         return view('backend.products.create', [
+            'attributes' => Attribute::orderBy('id', 'DESC')->get(),
             'categories' => ProductsCategorie::all(),
             'tags' => ProductTag::all()
         ]);
@@ -139,6 +141,7 @@ class ProductsController extends Controller
         return view('backend.products.edit', [
             'product' => $product,
             'categories' => ProductsCategorie::all(),
+            'attributes' => Attribute::orderBy('id', 'DESC')->get(),
             'tags' => ProductTag::all(),
             'uploads' => Upload::whereIn('id', explode(',',$product->product_images))->get()
         ]);

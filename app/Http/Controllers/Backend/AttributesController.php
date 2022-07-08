@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Attribute;
+use App\Models\AttributeValue;
 use App\Http\Requests\StoreAttributeRequest;
 
 
@@ -20,6 +21,16 @@ class AttributesController extends Controller
     {
         return view('backend.products.attributes.list',[
             'attributes' => Attribute::orderBy('id', 'DESC')->get()
+        ]);
+    }
+
+    public function getvalues(Request $request)
+    {
+        $type = Attribute::find($request->id_attribute)->type;
+        $values = AttributeValue::where('attribute_id', $request->id_attribute)->get();
+        return view('backend.products.ajax.values', [
+            'values' => $values,
+            'type' => $type
         ]);
     }
 
@@ -68,7 +79,7 @@ class AttributesController extends Controller
     public function edit($id)
     {
         return view('backend.products.attributes.edit',[
-            'attribute' => Attribute::findOrFail($id)
+            'attribute' => Attribute::findOrFail($id),
         ]);
     }
 
