@@ -92,6 +92,30 @@
 
                         </select>
                     </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="name">Attributes:</label>
+                            <select name="attrbites[]" id="attributes" value="" class="form-control select2"
+                                multiple="multiple" style="width: 100%;">
+                                @foreach ($attributes as $attribute)
+                                <option value="{{ $attribute->id }}" data-tokens="{{ $attribute->name }}">
+                                    {{ $attribute->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="name">Attributes values:</label>
+                            <select name="values[]" id="product_attribute_values" value="" class="form-control select2"
+                                multiple="multiple" style="width: 100%;">
+                               
+                            </select>
+                        </div>
+                        <div class="mb-4 text-right">
+                            <a class="btn btn-info btn-sm pull-right" id="generatevariants">
+                                Generate variants
+                            </a>
+                        </div>
+                    </div>
                     <div class="card-body" id="variantsbody">
                         
                     </div>

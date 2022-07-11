@@ -34,6 +34,66 @@ class AttributesController extends Controller
         ]);
     }
 
+    public function ajaxcall(Request $request)
+    {
+        
+        $attributes = Attribute::whereIn('id', $request->input('attributes'))->with(['values'])->get();
+        return view('backend.products.attributes.values.ajax', [
+            'attributes' => $attributes
+        ]);
+    }
+
+    private function make_combinations($arrays, $i = 0) {
+        if (!isset($arrays[$i])) {
+            return array();
+        }
+        if ($i == count($arrays) - 1) {
+            return $arrays[$i];
+        }
+        
+        // get combinations from subsequent arrays
+        $tmp = self::make_combinations($arrays, $i + 1);
+        
+        $result = array();
+    
+        // concat each array from tmp with each element from $arrays[$i]
+        foreach ($arrays[$i] as $v) {
+            foreach ($tmp as $t) {
+                
+                $result[] = is_array($t) ? 
+                    array_merge(array($v), $t) :
+                    array($v, $t);
+            }
+        }
+    
+        return $result;
+    }
+    public function combinations(Request $request)
+    {
+        $prepare_arrays = [];
+        $values = AttributeValue::whereIn('id', $request->input('values'))->get();
+        $groupped_values = $values->groupBy('attribute_id')->toArray();
+        $table = [];
+        $i = 0;
+        foreach ($groupped_values as $value)
+        {
+            $table[$i] = [];
+  
+            foreach ($value as $data)
+            {
+                array_push($table[$i], $data['attribute_id']."-".$data['id']."-".$data['name']);
+            }
+            $i++;
+            
+        }
+
+        $combined = $this->make_combinations($table);
+        return view('backend.products.ajax.values', [
+            'variants' => $combined,
+        ]);
+       
+    }
+
     /**
      * Show the form for creating a new resource.
      *

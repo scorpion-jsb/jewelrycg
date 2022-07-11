@@ -89,7 +89,7 @@ class ProductsController extends Controller
      */
     public function store(Request $req)
     {
-        
+        dd($req->variant);
         $tags = (array)$req->input('tags');
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);

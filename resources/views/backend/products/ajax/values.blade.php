@@ -15,21 +15,26 @@
     </thead>
 
     <tbody id="addVariantsContainer">
-        @forelse($values as $value)
-            <tr role="row" class="odd" id="variantproduct-{{$value->id}}">
+        @forelse($variants as $k => $variant)
+            @php
+                $current_name = "";
+                $variants_ids = [];
+                foreach ($variant as $key => $parameters) {
+                    $params = explode('-', $parameters);
+                    $sep = ($key == 0) ? '' : ' - ';
+                    $current_name .= $sep.$params[2]; 
+                    array_push($variants_ids, $params[1]);
+                }   
+                
+            @endphp
+            <tr role="row" class="odd" id="variantproduct-{{$k}}">
                 <th class="table-column-ps-0">
-                    @if ($type == 1)
-                        <span class="dot" style="background:{{ $value->value }}"></span>
-                    @elseif($type == 2)
-                        {{ $value->name }}
-                    @else
-                        {{ $value->name }}
-                    @endif
+                    {{$current_name}}
                 </th>
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="min-width: 7rem;">
                         <div class="input-group-prepend input-group-text">USD</div>
-                        <input type="text" class="form-control">
+                        <input type="text" class="form-control" name="variant[{{$k}}][price]">
                     </div>
                 </th>
                 <th class="table-column-ps-0">
@@ -38,7 +43,7 @@
                         <div class="js-quantity-counter-input row align-items-center">
                             <div class="col">
                                 <input class="js-result form-control form-control-quantity-counter" type="text"
-                                    value="1">
+                                    value="1" name="variant[{{$k}}][quantity]">
                             </div>
                             <!-- End Col -->
 
@@ -68,7 +73,7 @@
                 </th>
                 <th class="table-column-ps-0">
                     <div class="btn-group" role="group" aria-label="Edit group">
-                        <a class="btn btn-white pull-right" href="javascript:;" onclick="deletevarient({{ $value->id }})">
+                        <a class="btn btn-white pull-right" href="javascript:;" onclick="deletevarient({{ $k }})">
                             <i class="bi-trash"></i>
                         </a>
                     </div>

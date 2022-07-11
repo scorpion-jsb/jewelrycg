@@ -105,6 +105,8 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/edit/{id}', [AttributesController::class, 'edit'])->name('edit');
 		Route::put('/update/{product}', [AttributesController::class, 'update'])->name('update');
 		Route::post('/store', [AttributesController::class, 'store'])->name('store');
+		Route::post('/get_for_variants', [AttributesController::class, 'ajaxcall'])->name('ajaxcall');
+		Route::post('/get_combinations', [AttributesController::class, 'combinations'])->name('combinations');
 		Route::get('/get', [AttributesController::class, 'get'])->name('get');
 		Route::post('/get/values', [AttributesController::class, 'getvalues'])->name('getvalues');
 	});

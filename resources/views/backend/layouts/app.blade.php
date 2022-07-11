@@ -145,6 +145,37 @@
                     });
                     $(".modal-body .tab-content " + tab).addClass("active");
                 });
+
+                $('#attributes').on('change', function(){
+                    var attributes = $(this).val()
+                    $.ajax({
+                    type: 'POST',
+                    url: "{{ route('backend.products.attributes.ajaxcall') }}",
+                    data: {
+                        "_token"    : "{{ csrf_token() }}",
+                        "attributes": attributes
+                    },
+                    success: (data) => {
+                       $('#product_attribute_values').html(data);
+                    }
+                    }) 
+                    
+                })
+
+                $('#generatevariants').on('click', function(){
+                    var values_selected = $('#product_attribute_values').val()
+                    $.ajax({
+                    type: 'POST',
+                    url: "{{ route('backend.products.attributes.combinations') }}",
+                    data: {
+                        "_token"    : "{{ csrf_token() }}",
+                        "values": values_selected
+                    },
+                    success: function(result) {
+                        $('#variantsbody').html(result)
+                    }
+                })
+            })
                 jQuery('#getFileManager').click(function(e) {
                     e.preventDefault();
                     $.ajaxSetup({
