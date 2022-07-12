@@ -19,11 +19,11 @@
     <link rel="stylesheet" href="{{ asset('assets/vendor/bootstrap-icons/font/bootstrap-icons.css') }}">
 
     <!-- CSS Front Template -->
-    <link rel="stylesheet" href="{{ asset('assets/css/backend/theme.min.css') }}" data-hs-appearance="default"
-        as="style">
-    <link rel="preload" href="{{ asset('assets/css/backend/theme-dark.min.css') }}" data-hs-appearance="dark"
-        as="style">
+    <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}" data-hs-appearance="default"as="style">
+
+    <link rel="stylesheet" href="{{ asset('assets/css/backend/theme.min.css') }}" data-hs-appearance="default"as="style">
     <link rel="stylesheet" href="{{ asset('assets/css/backend/custom.css') }}" as="style">
+
     <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.0/ui/trumbowyg.css" />
     <link rel="stylesheet"
@@ -269,46 +269,6 @@
             })()
     </script>
 
-    <!-- Style Switcher JS -->
-
-    <script>
-        (function() {
-            // STYLE SWITCHER
-            // =======================================================
-            const $dropdownBtn = document.getElementById('selectThemeDropdown') // Dropdowon trigger
-            const $variants = document.querySelectorAll(
-                `[aria-labelledby="selectThemeDropdown"] [data-icon]`) // All items of the dropdown
-
-            // Function to set active style in the dorpdown menu and set icon for dropdown trigger
-            const setActiveStyle = function() {
-                $variants.forEach($item => {
-                    if ($item.getAttribute('data-value') === HSThemeAppearance.getOriginalAppearance()) {
-                        $dropdownBtn.innerHTML = `<i class="${$item.getAttribute('data-icon')}" />`
-                        return $item.classList.add('active')
-                    }
-
-                    $item.classList.remove('active')
-                })
-            }
-
-            // Add a click event to all items of the dropdown to set the style
-            $variants.forEach(function($item) {
-                $item.addEventListener('click', function() {
-                    HSThemeAppearance.setAppearance($item.getAttribute('data-value'))
-                })
-            })
-
-            // Call the setActiveStyle on load page
-            setActiveStyle()
-
-            // Add event listener on change style to call the setActiveStyle function
-            window.addEventListener('on-hs-appearance-change', function() {
-                setActiveStyle()
-            })
-        })()
-    </script>
-
-    <!-- End Style Switcher JS -->
     @yield('js_content')
 </body>
 
