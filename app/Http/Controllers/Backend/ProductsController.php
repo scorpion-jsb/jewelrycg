@@ -91,19 +91,22 @@ class ProductsController extends Controller
     public function store(ProductStoreRequest $req)
     {
         $tags = (array)$req->input('tags');
+        $variants = (array)$req->input('variant');
+        $attributes = implode(",",(array)$req->input('attributes'));
+        $values = implode(",",(array)$req->input('values'));
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
         $data['is_digital'] = $req->is_digital ? 1 : 0;
         $data['is_virual'] = $req->is_virual ? 1 : 0;
         $data['is_backorder'] = $req->is_backorder ? 1 : 0;
         $data['is_madetoorder'] = $req->is_madetoorder ? 1 : 0;
-        $data['product_attributes'] = implode(",",$req->input('attributes'));
-        $data['product_attribute_values'] = implode(",",$req->input('values'));
+        $data['product_attributes'] = $attributes;
+        $data['product_attribute_values'] = $values;
         $data['slug'] = str_replace(" ","-", strtolower($req->name));
         $product = Product::create($data);
         $id_product = $product->id;
 
-        foreach($req->input('variant') as $variant)
+        foreach($variants as $variant)
         {
             $variant_data = $variant;
             $variant_data['product_id'] = $id_product;
@@ -167,14 +170,17 @@ class ProductsController extends Controller
         $counter = Product::where('slug', $req->slug)->count();
         $sep = ($counter==0) ? '' : '-'.$counter+1;
         $tags = (array)$req->input('tags');
+        $variants = (array)$req->input('variant');
+        $attributes = implode(",",(array)$req->input('attributes'));
+        $values = implode(",",(array)$req->input('values'));
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
         $data['is_digital'] = ($req->is_digital & $req->is_digital == 1)? 1 : 0;
         $data['is_virual'] = ($req->is_virual & $req->is_virual == 1) ? 1 : 0;
         $data['is_backorder'] = ($req->is_backorder & $req->is_backorder == 1) ? 1 : 0;
         $data['is_madetoorder'] = ($req->is_madetoorder & $req->is_madetoorder == 1) ? 1 : 0;
-        $data['product_attributes'] = implode(",",$req->input('attributes'));
-        $data['product_attribute_values'] = implode(",",$req->input('values'));
+        $data['product_attributes'] = $attributes;
+        $data['product_attribute_values'] = $values;
         if($req->slug == "")
         {
             $data['slug'] = str_replace(" ","-", strtolower($req->name)).$sep;
@@ -185,7 +191,7 @@ class ProductsController extends Controller
         ProductTagsRelationship::where('id_product', $product->id)->delete();
         ProductVariant::where('product_id', $product->id)->delete();
 
-        foreach($req->input('variant') as $variant)
+        foreach($variants as $variant)
         {
             $variant_data = $variant;
             $variant_data['product_id'] = $product->id;
