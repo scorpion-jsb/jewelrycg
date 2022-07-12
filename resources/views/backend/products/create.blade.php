@@ -83,19 +83,11 @@
                     <!-- Header -->
                     <div class="card-header card-header-content-sm-between">
                         <h4 class="card-header-title mb-2 mb-sm-0">Variants</h4>
-                        <select style="width:100%" class="selectpicker" name="variant" id="variant" data-live-search="true">
-                            <option disabled selected>Select variants</option>
-                            @foreach ($attributes as $attribute)
-                                <option value="{{ $attribute->id }}" data-tokens="{{ $attribute->name }}">
-                                    {{ $attribute->name }}</option>
-                            @endforeach
-
-                        </select>
                     </div>
                     <div class="card-body">
                         <div class="mb-4">
                             <label for="name">Attributes:</label>
-                            <select name="attrbites[]" id="attributes" value="" class="form-control select2"
+                            <select name="attributes[]" id="attributes" value="" class="form-control select2"
                                 multiple="multiple" style="width: 100%;">
                                 @foreach ($attributes as $attribute)
                                 <option value="{{ $attribute->id }}" data-tokens="{{ $attribute->name }}">
@@ -116,7 +108,7 @@
                             </a>
                         </div>
                     </div>
-                    <div class="card-body" id="variantsbody">
+                    <div class="card-body" id="variantsbody" style="overflow-x: scroll ">
                         
                     </div>
                 </div>

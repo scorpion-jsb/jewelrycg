@@ -59,6 +59,7 @@
 
                         </div>
                     </div>
+                    
                     <div class="card mb-3 mb-lg-5 mt-3">
                         <!-- Header -->
                         <div class="card-header card-header-content-between">
@@ -105,9 +106,55 @@
                         </div>
                         <!-- Body -->
                     </div>
+                    <div class="js-add-field card mb-3 mb-lg-5">
+                        <!-- Header -->
+                        <div class="card-header card-header-content-sm-between">
+                            <h4 class="card-header-title mb-2 mb-sm-0">Variants</h4>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <label for="name">Attributes:</label>
+                                @php
+                                    $attributes_selected = explode(',', $product->product_attributes)    
+                                @endphp
+                                <select name="attributes[]" id="attributes" value="" class="form-control select2"
+                                    multiple="multiple" style="width: 100%;">
+                                    @foreach ($attributes as $attribute)
+                                    <option value="{{ $attribute->id }}" @if(in_array($attribute->id, $attributes_selected)) selected @endif data-tokens="{{ $attribute->name }}">
+                                        {{ $attribute->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                            <div class="mb-4">
+                                <label for="name">Attributes values:</label>
+                                @php
+                                    $values_selected = explode(',', $product->product_attribute_values)    
+                                @endphp
+                                <select name="values[]" id="product_attribute_values" value="" class="form-control select2"
+                                    multiple="multiple" style="width: 100%;">
+                                    
+                                   @include('backend.products.attributes.values.ajax',[
+                                    'attributes' => $selected_values,
+                                    'values_selected' => $values_selected
+                                   ])
+                                </select>
+                            </div>
+                            <div class="mb-4 text-right">
+                                <a class="btn btn-info btn-sm pull-right" id="generatevariants">
+                                    Generate variants
+                                </a>
+                            </div>
+                        </div>
+                        <div class="card-body" id="variantsbody" style="overflow-x: scroll ">
+                            @include('backend.products.ajax.values',[
+                                    'variants' => $product->variants,
+                                   ])
+                        </div>
+                    </div>
                 </div>
 
             </div>
+            
             <div class="col-lg-4">
 
                 <!-- Card -->

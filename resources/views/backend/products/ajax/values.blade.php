@@ -4,46 +4,72 @@
     <thead class="thead-light">
         <tr role="row">
             <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                aria-label="Color: activate to sort column ascending" style="width: 96px;">Value</th>
+                aria-label="Color: activate to sort column ascending">Value</th>
             <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                aria-label="Price: activate to sort column ascending" style="width: 112px;">Price</th>
+                aria-label="Price: activate to sort column ascending">Price</th>
             <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                aria-label="Quantity: activate to sort column ascending" style="width: 144px;">Quantity</th>
-            <th class="table-column-ps-0 sorting_disabled" rowspan="1" colspan="1" aria-label=""
-                style="width: 128.422px;"></th>
+                aria-label="Price: activate to sort column ascending">Sku</th>
+            <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                aria-label="Quantity: activate to sort column ascending">Quantity</th>
+            <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                aria-label="Quantity: activate to sort column ascending">Photo</th>
+            <th class="table-column-ps-0 sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
         </tr>
     </thead>
 
     <tbody id="addVariantsContainer">
         @forelse($variants as $k => $variant)
-            @php
-                $current_name = "";
-                $variants_ids = [];
-                foreach ($variant as $key => $parameters) {
-                    $params = explode('-', $parameters);
-                    $sep = ($key == 0) ? '' : ' - ';
-                    $current_name .= $sep.$params[2]; 
-                    array_push($variants_ids, $params[1]);
-                }   
-                
-            @endphp
-            <tr role="row" class="odd" id="variantproduct-{{$k}}">
+            @if (!isset($variant->id))
+                @php
+                    $current_name = '';
+                    $attributes_ids = '';
+                    $variants_ids = '';
+                    foreach ($variant as $key => $parameters) {
+                        $params = explode('-', $parameters);
+                        $sep = $key == 0 ? '' : ' - ';
+                        $sep2 = $key == 0 ? '' : ',';
+                        $current_name .= $sep . $params[2];
+                        $variants_ids .= $sep2 . $params[1];
+                        $attributes_ids .= $sep2 . $params[0];
+                    }
+                    
+                @endphp
+            @endif
+            <tr role="row" class="odd" id="variantproduct-{{ $k }}">
                 <th class="table-column-ps-0">
-                    {{$current_name}}
+                    @if (isset($variant->name))
+                        {{ $variant->name }}
+                    @else
+                        {{ $current_name }}
+                    @endif
+                    <input type="hidden" name='variant[{{ $k }}][name]'
+                        @if (isset($variant->name)) value="{{ $variant->name }}"
+                    @else
+                        value="{{ $current_name }}" @endif>
                 </th>
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="min-width: 7rem;">
                         <div class="input-group-prepend input-group-text">USD</div>
-                        <input type="text" class="form-control" name="variant[{{$k}}][price]">
+                        <input type="text" class="form-control" name="variant[{{ $k }}][price]"
+                            @if (isset($variant->price)) value='{{ $variant->price }}' @endif>
                     </div>
                 </th>
+                <th class="table-column-ps-0">
+                    <div class="input-group input-group-merge" style="width: 11rem;">
+                        <div class="input-group-prepend input-group-text">SKU</div>
+                        <input type="text" class="form-control" name="variant[{{ $k }}][sku]"
+                            @if (isset($variant->sku)) value='{{ $variant->sku }}' @endif>
+                    </div>
+                </th>
+
                 <th class="table-column-ps-0">
                     <!-- Quantity -->
                     <div class="quantity-counter">
                         <div class="js-quantity-counter-input row align-items-center">
                             <div class="col">
                                 <input class="js-result form-control form-control-quantity-counter" type="text"
-                                    value="1" name="variant[{{$k}}][quantity]">
+                                    name="variant[{{ $k }}][quantity]"
+                                    @if (isset($variant->quantity)) value='{{ $variant->quantity }}' @else value="1"  @endif>
                             </div>
                             <!-- End Col -->
 
@@ -72,8 +98,14 @@
                     <!-- End Quantity -->
                 </th>
                 <th class="table-column-ps-0">
+                    <a href='javascript:;'> select </a>
+                    <input type="hidden" name="variant[{{ $k }}][image]"
+                        id="variant-{{ $k }}-image">
+                </th>
+                <th class="table-column-ps-0">
                     <div class="btn-group" role="group" aria-label="Edit group">
-                        <a class="btn btn-white pull-right" href="javascript:;" onclick="deletevarient({{ $k }})">
+                        <a class="btn btn-white pull-right" href="javascript:;"
+                            onclick="deletevarient({{ $k }})">
                             <i class="bi-trash"></i>
                         </a>
                     </div>

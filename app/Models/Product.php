@@ -56,6 +56,9 @@ class Product extends Model
         'slug',
         'status',
         'product_3dpreview',
+        'product_attributes',
+        'product_attribute_values',
+
     ];
 
     private static function getProductsAndMergeExtraProductsIfNotEnough(Collection $order_items)
@@ -167,6 +170,12 @@ class Product extends Model
             'id' => null
         ]);
     }
+
+    public function variants()
+    {
+        return $this->hasMany(ProductVariant::class, 'product_id' , 'id');
+    }
+
 
     public function modelpreview()
     {

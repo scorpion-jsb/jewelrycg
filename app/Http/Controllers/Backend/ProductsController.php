@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\ProductsCategorie;
 use App\Models\ProductTag;
+use App\Models\ProductVariant;
 use App\Models\Attribute;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
@@ -87,7 +88,7 @@ class ProductsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(ProductStoreRequest $req)
     {
         $tags = (array)$req->input('tags');
         $data = $req->all();
@@ -96,13 +97,18 @@ class ProductsController extends Controller
         $data['is_virual'] = $req->is_virual ? 1 : 0;
         $data['is_backorder'] = $req->is_backorder ? 1 : 0;
         $data['is_madetoorder'] = $req->is_madetoorder ? 1 : 0;
-        
-     
-            $data['slug'] = str_replace(" ","-", strtolower($req->name));
-        
-        
+        $data['product_attributes'] = implode(",",$req->input('attributes'));
+        $data['product_attribute_values'] = implode(",",$req->input('values'));
+        $data['slug'] = str_replace(" ","-", strtolower($req->name));
         $product = Product::create($data);
         $id_product = $product->id;
+
+        foreach($req->input('variant') as $variant)
+        {
+            $variant_data = $variant;
+            $variant_data['product_id'] = $id_product;
+            ProductVariant::create($variant_data);
+        }
         
         foreach( $tags as $tag )
         {
@@ -135,14 +141,17 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::whereId($id)->with('tags')->firstOrFail();
+        $product = Product::whereId($id)->with(['tags', 'variants'])->firstOrFail();
         $product->setPriceToFloat();
+        $selected_attributes = explode(',', $product->product_attributes);
+        $prepare_values  = Attribute::whereIn('id', $selected_attributes)->with(['values'])->get();
         return view('backend.products.edit', [
             'product' => $product,
             'categories' => ProductsCategorie::all(),
             'attributes' => Attribute::orderBy('id', 'DESC')->get(),
             'tags' => ProductTag::all(),
-            'uploads' => Upload::whereIn('id', explode(',',$product->product_images))->get()
+            'uploads' => Upload::whereIn('id', explode(',',$product->product_images))->get(),
+            'selected_values' => $prepare_values
         ]);
     }
 
@@ -164,7 +173,8 @@ class ProductsController extends Controller
         $data['is_virual'] = ($req->is_virual & $req->is_virual == 1) ? 1 : 0;
         $data['is_backorder'] = ($req->is_backorder & $req->is_backorder == 1) ? 1 : 0;
         $data['is_madetoorder'] = ($req->is_madetoorder & $req->is_madetoorder == 1) ? 1 : 0;
-        
+        $data['product_attributes'] = implode(",",$req->input('attributes'));
+        $data['product_attribute_values'] = implode(",",$req->input('values'));
         if($req->slug == "")
         {
             $data['slug'] = str_replace(" ","-", strtolower($req->name)).$sep;
@@ -173,6 +183,15 @@ class ProductsController extends Controller
         $product->update($data);
         $product->replaceImagesIfExist($req->images);
         ProductTagsRelationship::where('id_product', $product->id)->delete();
+        ProductVariant::where('product_id', $product->id)->delete();
+
+        foreach($req->input('variant') as $variant)
+        {
+            $variant_data = $variant;
+            $variant_data['product_id'] = $product->id;
+            ProductVariant::create($variant_data);
+        }
+        
         foreach( $tags as $tag )
         {
             $id_tag = (!is_numeric($tag)) ? $this->registerNewTag($tag) : $tag;
