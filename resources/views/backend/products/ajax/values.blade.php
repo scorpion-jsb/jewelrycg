@@ -21,10 +21,12 @@
         @forelse($variants as $k => $variant)
             @if (!isset($variant->id))
                 @php
+                
                     $current_name = '';
                     $attributes_ids = '';
                     $variants_ids = '';
-                    foreach ($variant as $key => $parameters) {
+                    
+                    foreach ((array)$variant as $key => $parameters) {
                         $params = explode('-', $parameters);
                         $sep = $key == 0 ? '' : ' - ';
                         $sep2 = $key == 0 ? '' : ',';
