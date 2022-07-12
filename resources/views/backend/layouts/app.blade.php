@@ -34,18 +34,17 @@
 </head>
 
 <body class="has-navbar-vertical-aside navbar-vertical-aside-show-xl footer-offset">
-
-    @include('backend.layouts.navbars.navbar')
+@include('backend.layouts.navbars.navbar')
+<div class="row">
     @include('backend.layouts.navbars.sidebar')
-
-    <main id="content" role="main" class="main">
+    <main id="content" class="col-9">
         <!-- Content -->
         <div class="content container-fluid">
             @yield('content')
         </div>
         @include('backend.layouts.footer.nav')
     </main>
-
+</div>
     @stack('js')
     <!-- ========== END SECONDARY CONTENTS ========== -->
 
