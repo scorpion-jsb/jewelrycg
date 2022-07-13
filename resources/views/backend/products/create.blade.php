@@ -143,8 +143,8 @@
                             </span>
                         </label>
                         <label class="row form-check form-switch mb-4" for="">
-                            <div class="col-12">
-                                <span class="text-dark">Status</span>
+                            <div class="col-12 mb-2">
+                                <span class="text-dark" cla>Status</span>
                             </div>
                             <div class="col-12">
                                 <select class="selectpicker w-100" name="status">
