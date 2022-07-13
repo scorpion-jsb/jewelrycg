@@ -315,3 +315,6 @@ blockquote {
 small {
     font-size: 0.875em;
 }
+.form-switch {
+    padding-left: 0;
+}
