@@ -1,1 +1,108 @@
-
+.navbar-vertical-container {
+    position: relative;
+    height: 100%;
+    min-height: 100%;
+}
+.nav {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+.card-navbar-nav {
+    width: 100%;
+    padding: 1.5rem 0.5rem;
+}
+.nav-vertical {
+    -ms-flex-direction: column;
+    flex-direction: column;
+}
+.nav-vertical.nav-pills {
+    width: 100%;
+}
+.nav-pills .nav-item {
+    margin: 0.25rem 0.25rem;
+}
+.nav-vertical.nav-pills .nav-item {
+    margin: 0;
+}
+.nav-vertical.nav .nav-item:not(:last-child) {
+    margin-right: 0;
+}
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #132144;
+    transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
+}
+.nav-pills .nav-link {
+    background: 0 0;
+    border: 0;
+    border-radius: 0.5rem;
+}
+.nav-pills .nav-link {
+    padding: 1rem 1rem;
+}
+.nav-vertical.nav .nav-link {
+    display: -ms-flexbox;
+    display: flex;
+    white-space: nowrap;
+}
+.nav-vertical.nav-pills .nav-link {
+    padding: 0.5rem 0.875rem !important;
+    margin-bottom: 0.25rem;
+}
+.nav-vertical.nav-pills .nav-link {
+    background-color: transparent;
+}
+.nav-icon {
+    opacity: .7;
+    -ms-flex: 0 0 1.9375rem;
+    flex: 0 0 1.9375rem;
+}
+.dropdown-header {
+    display: block;
+    margin-bottom: 0;
+    color: #8c98a4;
+    white-space: nowrap;
+    text-transform: uppercase;
+    letter-spacing: .03125rem;
+    font-size: .65625rem;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+}
+.dropdown-toggle {
+    position: relative;
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    overflow: hidden;
+}
+.nav-link.dropdown-toggle {
+    -ms-flex-align: center;
+    align-items: center;
+}
+.nav-vertical.nav-pills .nav-link.dropdown-toggle {
+    display: -ms-flexbox;
+    display: flex;
+    width: 100%;
+}
+.dropdown-toggle::after {
+    display: inline-block;
+    width: 1rem;
+    height: 1rem;
+    background-image: url(data:image/svg+xml,%3csvg width='24' height='24' viewBox='0 0 24 24' fill='%23677788' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.72,15.78a.75.75,0,0,1-.53.22h-.38a.77.77,0,0,1-.53-.22L6.15,10.64a.5.5,0,0,1,0-.71l.71-.71a.49.49,0,0,1,.7,0L12,13.67l4.44-4.45a.5.5,0,0,1,.71,0l.7.71a.5.5,0,0,1,0,.71Z'/%3e%3c/svg%3e);
+    background-repeat: no-repeat;
+    background-position: right center;
+    background-size: 1rem 1rem;
+    content: '';
+    transition: .3s;
+}
+.dropdown-toggle:not(.dropdown-toggle-empty)::after {
+    padding-left: 1.25rem;
+    margin-left: auto;
+}
