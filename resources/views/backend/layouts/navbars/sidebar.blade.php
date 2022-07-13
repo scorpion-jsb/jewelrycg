@@ -14,7 +14,6 @@
               </div>
 
             <span class="dropdown-header mt-4">{{ __("Users Management") }}</span>
-            <small class="bi-three-dots nav-subtitle-replacer"></small>
 
             <!-- Collapse -->
             <div class="navbar-nav nav-compact">
@@ -38,7 +37,6 @@
               <!-- End Collapse -->
 
               <span class="dropdown-header mt-4">{{ __("Content") }}</span>
-              <small class="bi-three-dots nav-subtitle-replacer"></small>
 
               <!-- Collapse -->
               <div class="nav-item">
@@ -79,7 +77,6 @@
               </div>
 
               <span class="dropdown-header mt-4">{{ __("Commerce") }}</span>
-              <small class="bi-three-dots nav-subtitle-replacer"></small>
 
               <!-- Collapse -->
               <div class="nav-item">
@@ -128,7 +125,6 @@
               </div>
 
               <span class="dropdown-header mt-4">{{ __("Configuration") }}</span>
-              <small class="bi-three-dots nav-subtitle-replacer"></small>
 
               <div class="nav-item">
                 <a class="nav-link " href="#" data-placement="left">
