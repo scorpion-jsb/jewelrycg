@@ -1,6 +1,6 @@
 <!-- ========== HEADER ========== -->
 <header class="navbar navbar-expand-lg py-2">
-    <nav class="container-fluid">
+    <nav class="container">
         <a class="navbar-brand col-auto" href="https://jewelrycadfiles.com">
             #JewelryCG
         </a>
