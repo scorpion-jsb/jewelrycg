@@ -36,18 +36,16 @@
 
 <body>
     @include('backend.layouts.navbars.navbar')
-    <div class="content-wrap">
-        <div class="container-fuid">
-            <div class="row">
-                @include('backend.layouts.navbars.sidebar')
-                <main id="content" class="col-10">
-                    <!-- Content -->
-                    <div class="content">
-                        @yield('content')
-                    </div>
-                    @include('backend.layouts.footer.nav')
-                </main>
-            </div>
+    <div class="content-wrap overflow-hidden">
+        <div class="row">
+            @include('backend.layouts.navbars.sidebar')
+            <main id="content" class="col-10">
+                <!-- Content -->
+                <div class="content">
+                    @yield('content')
+                </div>
+                @include('backend.layouts.footer.nav')
+            </main>
         </div>
     </div>
     @stack('js')
