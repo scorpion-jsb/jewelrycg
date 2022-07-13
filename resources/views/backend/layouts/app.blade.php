@@ -36,7 +36,7 @@
 
 <body>
     @include('backend.layouts.navbars.navbar')
-    <div class="content-wrap overflow-hidden">
+    <div class="content-wrap">
         <div class="row">
             @include('backend.layouts.navbars.sidebar')
             <main id="content" class="col-10">
