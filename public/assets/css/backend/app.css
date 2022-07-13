@@ -70,13 +70,6 @@
     -ms-flex: 0 0 1.9375rem;
     flex: 0 0 1.9375rem;
 }
-.navbar-vertical.navbar .nav-subtitle-replacer {
-    display: none;
-    color: #8c98a4;
-    text-align: center;
-    font-size: 1.3125rem;
-    padding: .5rem 0;
-}
 .dropdown-header {
     display: block;
     margin-bottom: 0;
@@ -181,7 +174,13 @@
     padding-left: 1.25rem;
     margin-left: auto;
 }
-
+.navbar-vertical.navbar .nav-subtitle-replacer {
+    display: none;
+    color: #8c98a4;
+    text-align: center;
+    font-size: 1.3125rem;
+    padding: .5rem 0;
+}
 .card-subtitle {
     display: block;
     text-transform: uppercase;
