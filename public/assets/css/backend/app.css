@@ -11,7 +11,10 @@ header {
     background: #1d2327;
     color: #f0f0f1;
 }
-header a { #f0f0f1 }
+header a { 
+    color: #f0f0f1; 
+}
+
 .navbar-brand {
     padding-top: 0;
     padding-bottom: 0;
