@@ -11,7 +11,7 @@
     color: #ffffff;
 }
 header {
-    background: #1d2327;
+    background: #000000;
     color: #f0f0f1;
 }
 header .nav-link { 
@@ -29,7 +29,7 @@ main#content {
 
 /* SIDEBAR */
 .sidebar {
-    background: #1d2327;
+    background: #000000;
 }
 
 .sidebar .navbar-vertical-container {
@@ -115,7 +115,7 @@ main#content {
     letter-spacing: .03125rem;
     font-size: .65625rem;
     font-weight: 600;
-    padding: 0px 0px 15px 0px;
+    padding: 15px 0px 5px 0px;
 }
 .sidebar .dropdown-toggle {
     position: relative;
@@ -224,7 +224,7 @@ main#content {
     margin-bottom: 0.25rem;
 }
 .sidebar .nav-link-main {
-    padding: 0px 0px 15px 0px !important;
+    padding: 20px 0px 0px 0px !important;
 }
 
 /* FOOTER */
