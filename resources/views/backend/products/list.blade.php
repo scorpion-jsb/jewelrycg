@@ -54,15 +54,12 @@
                                             <td>{{ $product->product_category->category_name }}</td>
                                             <td>
                                                 <div class="btn-group" role="group">
-                                                    <a class="btn btn-dark btn-sm" target="_blank" href="{{ route('products.show', $product->slug) }}"> <i class="bi-eye"></i> View </a>
+                                                    <a class="btn btn-dark btn-sm" target="_blank" href="{{ route('backend.products.edit', $product->id) }}"> <i class="bi-pencil"></i> Edit </a>
                                                     <!-- Button Group -->
                                                     <div class="btn-group">
                                                         <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                                         <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
                                                             <span class="dropdown-header">Options</span>
-                                                            <a href="{{ route('backend.products.edit', $product->id) }}" class="js-export-print dropdown-item">
-                                                                <i class="bi-pencil-fill me-1"></i> Edit Product
-                                                            </a>
                                                             <div class="dropdown-divider"></div>
                                                             <a onclick="return confirm('Are you sure you want to delete this product?')" class="dropdown-item" href="{{ route("backend.products.delete", $product->id) }}"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
                                                         </div>
