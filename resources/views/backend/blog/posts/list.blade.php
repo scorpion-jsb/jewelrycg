@@ -19,10 +19,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            
-                        </div>
+                    <div class="card rounded-0">
                         <div class="table-responsive datatable-custom position-relative">
 
                                 <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
@@ -35,7 +32,7 @@
                                         </th>
                                         <th>ID</th>
                                         <th>Name</th>
-                                        <th>Slug</th>
+                                        <!--<th>Slug</th>-->
                                         <th>Author</th>
                                         <th>Categories</th>
                                         <th>Actions</th>
@@ -51,9 +48,8 @@
                                             </div>
                                         </td>
                                         <td>{{ $post->id }}</td>
-                                       
                                         <td>{{ $post->name }}</td>
-                                        <td>{{ $post->slug }}</td>
+                                        <!--<td>{{ $post->slug }}</td>-->
                                         <td>{{ $post->postauthor->name }}</td>
                                         <td>
                                             @foreach($post->categories as $category_info)
