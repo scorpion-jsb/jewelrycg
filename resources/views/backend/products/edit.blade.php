@@ -195,7 +195,7 @@
                                 <input type="checkbox" value="1" @if($product->is_virtual == 1) checked @endif class="form-check-input" id="availabilitySwitch1">
                             </span>
                         </label>
-                        <label class="row form-switch mb-4" for="">
+                        <label class="row form-switch" for="">
                             <span class="col-12 mb-2">
                                 <span class="text-dark">Status</span>
                             </span>
@@ -262,9 +262,9 @@
                     <!-- Body -->
                     <div class="card-body">
                         <div class="mb-4">
-                            <label for="category">Category</label>
-                            <div class="col-md-12">
-                                <select style="width:100%" class="selectpicker" name="category" data-live-search="true">
+                            <label for="category" class="mb-2">Category</label>
+                            <div class="col-12">
+                                <select class="selectpicke w-100" name="category" data-live-search="true">
                                     <option disabled>Select category</option>
                                     @foreach ($categories as $categorie)
                                         <option value="{{ $categorie->id }}"
@@ -277,7 +277,7 @@
                             </div>
                         </div>
                         <div class="mb-4">
-                            <label for="name">Tags</label>
+                            <label for="name" class="mb-2">Tags</label>
                             <select name="tags[]" id="tags" value="" class="form-control select2"
                                 multiple="multiple" style="width: 100%;">
                                 @foreach ($tags as $tag)
