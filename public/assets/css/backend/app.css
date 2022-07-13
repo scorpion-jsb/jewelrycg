@@ -15,14 +15,15 @@ header .nav-link {
 }
 
 /* CONTENT */
-main#content {
-    background: #ffffff;
+.content {
+    width: calc(100vw - 184px);
 }
 
 /* SIDEBAR */
 .sidebar {
     background: #000000;
     min-height: calc(100vh);
+    min-width: 160px;
 }
 
 .sidebar .navbar-vertical-container {
