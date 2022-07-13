@@ -38,7 +38,7 @@
     @include('backend.layouts.navbars.navbar')
     <div class="row">
         @include('backend.layouts.navbars.sidebar')
-        <main id="content" class="col-9">
+        <main id="content" class="col-10">
             <!-- Content -->
             <div class="content container-fluid">
                 @yield('content')
