@@ -42,7 +42,7 @@
                 @include('backend.layouts.navbars.sidebar')
                 <div class="col-10">
                     <!-- Content -->
-                    <div class="content">
+                    <div class="content py-3">
                         @yield('content')
                     </div>
                     @include('backend.layouts.footer.nav')
