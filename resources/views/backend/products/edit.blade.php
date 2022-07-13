@@ -170,7 +170,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">Options</h4>
@@ -212,7 +212,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">Pricing + Stock</h4>
@@ -252,7 +252,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">Organization</h4>
@@ -289,7 +289,7 @@
                     </div>
                 </div>
                 <!-- End Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">3D Model</h4>
@@ -310,7 +310,7 @@
                     </div>
                 </div>
                 <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">Thumbnail</h4>
