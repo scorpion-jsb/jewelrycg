@@ -46,6 +46,13 @@
 .nav-pills .nav-link {
     padding: 1rem 1rem;
 }
+.nav-pills .nav-link:hover {
+    color: #132144;
+    background-color: rgba(189, 197, 209, .2);
+}
+.nav-vertical.nav-pills .nav-item .nav-link:hover, .nav-vertical.nav-pills .nav-item .nav-link[aria-expanded]:hover {
+    color: #132144;
+}
 .nav-vertical.nav .nav-link {
     display: -ms-flexbox;
     display: flex;
@@ -63,6 +70,7 @@
     -ms-flex: 0 0 1.9375rem;
     flex: 0 0 1.9375rem;
 }
+
 .dropdown-header {
     display: block;
     margin-bottom: 0;
