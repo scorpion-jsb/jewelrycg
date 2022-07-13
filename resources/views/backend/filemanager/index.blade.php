@@ -65,7 +65,7 @@
     
       <div class="tab-pane fade show active" id="grid" role="tabpanel" aria-labelledby="grid-tab">
         <!-- Folders -->
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-6">
+        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4">
             @foreach($all_uploads as $file)
             <div class="col mb-3 mb-lg-5">
             <!-- Card -->
