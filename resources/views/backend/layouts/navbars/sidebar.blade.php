@@ -146,71 +146,9 @@
         <!-- Footer -->
         <div class="navbar-vertical-footer">
           <ul class="navbar-vertical-footer-list">
-            <li class="navbar-vertical-footer-list-item">
-              <!-- Style Switcher -->
-              <div class="dropdown dropup">
-                <button type="button" class="btn btn-ghost-secondary btn-icon rounded-circle" id="selectThemeDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
-                <i class="bi-brightness-high"></i>
-                </button>
+            
 
-                <div class="dropdown-menu navbar-dropdown-menu navbar-dropdown-menu-borderless" aria-labelledby="selectThemeDropdown">
-                  <a class="dropdown-item" href="#" data-icon="bi-moon-stars" data-value="auto">
-                    <i class="bi-moon-stars me-2"></i>
-                    <span class="text-truncate" title="Auto (system default)">Auto (system default)</span>
-                  </a>
-                  <a class="dropdown-item active" href="#" data-icon="bi-brightness-high" data-value="default">
-                    <i class="bi-brightness-high me-2"></i>
-                    <span class="text-truncate" title="Default (light mode)">Default (light mode)</span>
-                  </a>
-                  <a class="dropdown-item" href="#" data-icon="bi-moon" data-value="dark">
-                    <i class="bi-moon me-2"></i>
-                    <span class="text-truncate" title="Dark">Dark</span>
-                  </a>
-                </div>
-              </div>
-
-              <!-- End Style Switcher -->
-            </li>
-
-
-            <li class="navbar-vertical-footer-list-item">
-              <!-- Language -->
-              <div class="dropdown dropup">
-                <button type="button" class="btn btn-ghost-secondary btn-icon rounded-circle" id="selectLanguageDropdown" data-bs-toggle="dropdown" aria-expanded="false" data-bs-dropdown-animation>
-                  <img class="avatar avatar-xss avatar-circle" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/us.svg') }}" alt="United States Flag">
-                </button>
-
-                <div class="dropdown-menu navbar-dropdown-menu-borderless" aria-labelledby="selectLanguageDropdown">
-                  <span class="dropdown-header">Select language</span>
-                  <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/us.svg') }}" alt="Flag">
-                    <span class="text-truncate" title="English">English (US)</span>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/gb.svg') }}" alt="Flag">
-                    <span class="text-truncate" title="English">English (UK)</span>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/de.svg') }}" alt="Flag">
-                    <span class="text-truncate" title="Deutsch">Deutsch</span>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/dk.svg') }}" alt="Flag">
-                    <span class="text-truncate" title="Dansk">Dansk</span>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/it.svg') }}" alt="Flag">
-                    <span class="text-truncate" title="Italiano">Italiano</span>
-                  </a>
-                  <a class="dropdown-item" href="#">
-                    <img class="avatar avatar-xss avatar-circle me-2" src="{{ asset('assets/vendor/flag-icon-css/flags/1x1/cn.svg') }}" alt="Flag">
-                    <span class="text-truncate" title="中文 (繁體)">中文 (繁體)</span>
-                  </a>
-                </div>
-              </div>
-
-              <!-- End Language -->
-            </li>
+            
           </ul>
         </div>
         <!-- End Footer -->
