@@ -117,7 +117,7 @@
             <div class="col-lg-4">
 
                 <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">Options</h4>
@@ -126,7 +126,7 @@
 
                     <!-- Body -->
                     <div class="card-body">
-                        <label class="row form-check form-switch mb-4" for="availabilitySwitch1">
+                        <label class="row form-switch mb-4" for="availabilitySwitch1">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Digital</span>
                             </span>
@@ -134,7 +134,7 @@
                                 <input type="checkbox" class="form-check-input" value="1" name="is_digital" id="availabilitySwitch1">
                             </span>
                         </label>
-                        <label class="row form-check form-switch mb-4" for="availabilitySwitch2">
+                        <label class="row form-switch mb-4" for="availabilitySwitch2">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Virtual</span>
                             </span>
@@ -159,7 +159,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">Pricing + Stock</h4>
@@ -177,7 +177,7 @@
                             <label for="qty">Quantity in Stock:</label>
                             <input type="number" name="qty" id="qty" class="form-control" min="0">
                         </div>
-                        <label class="row form-check form-switch mb-4" for="availabilitySwitch1">
+                        <label class="row form-switch mb-4" for="availabilitySwitch1">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Backorder</span>
                             </span>
@@ -185,7 +185,7 @@
                                 <input type="checkbox" name="is_backorder" value="1" class="form-check-input" id="availabilitySwitch1">
                             </span>
                         </label>
-                        <label class="row form-check form-switch mb-4" for="availabilitySwitch1">
+                        <label class="row form-switch mb-4" for="availabilitySwitch1">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Made to Order</span>
                             </span>
@@ -198,7 +198,7 @@
                 <!-- End Card -->
 
                 <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">Organization</h4>
@@ -231,7 +231,7 @@
                 </div>
                 <!-- End Card -->
                 <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">3D Model</h4>
@@ -246,7 +246,7 @@
                 </div>
                 <!-- End Card -->
                 <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">Thumbnail</h4>
@@ -255,7 +255,7 @@
 
                     <!-- Body -->
                     <div class="card-body">
-                        <div class="imagePreview img-thumbnail h-400px">
+                        <div class="imagePreview img-thumbnail p-2">
                             <img id="fileManagerPreview" src="" style="width: 100%">
                         </div>
                         <label class="btn text-primary mt-2 p-0" id="getFileManager">Select thumbnail</label>
