@@ -1,15 +1,3 @@
-/* MISC */
-.container {
-    max-width: 1660px;
-}
-.avatar-xxl {
-    height: 100px;
-}
-.modal-content {
-    max-height: calc(100vh - 125px);
-    overflow: auto;
-}
-
 /*HEADER*/
 .navbar-brand {
     color: #ffffff;
@@ -220,14 +208,6 @@ main#content {
     font-size: 1.3125rem;
     padding: .5rem 0;
 }
-.sidebar .card-subtitle {
-    display: block;
-    text-transform: uppercase;
-    color: #8c98a4;
-    font-size: .71094rem;
-    margin-top: -0.125rem;
-    margin-bottom: 0.25rem;
-}
 .sidebar .nav-link-main {
     padding: 20px 0px 0px 0px !important;
 }
@@ -241,4 +221,24 @@ main#content {
 .btn-white {
     background-color: #fff;
     border-color: rgba(231,234,243,.7);
+}
+
+/* MISC */
+.container {
+    max-width: 1660px;
+}
+.avatar-xxl {
+    height: 100px;
+}
+.modal-content {
+    max-height: calc(100vh - 125px);
+    overflow: auto;
+}
+.card-subtitle {
+    display: block;
+    text-transform: uppercase;
+    color: #8c98a4;
+    font-size: .71094rem;
+    margin-top: -0.125rem;
+    margin-bottom: 0.25rem;
 }
