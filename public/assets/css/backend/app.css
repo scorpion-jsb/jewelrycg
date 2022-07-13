@@ -196,3 +196,7 @@
     margin-top: -0.125rem;
     margin-bottom: 0.25rem;
 }
+
+.footer {
+    position: relative !important;
+}
