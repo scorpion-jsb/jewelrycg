@@ -23,11 +23,6 @@
     <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}" data-hs-appearance="default"as="style">
     <link rel="stylesheet" href="{{ asset('assets/css/backend/app.css') }}" data-hs-appearance="default"as="style">
 
-    <!--
-    <link rel="stylesheet" href="{{ asset('assets/css/backend/theme.min.css') }}" data-hs-appearance="default"as="style">
-    <link rel="stylesheet" href="{{ asset('assets/css/backend/custom.css') }}" as="style">
-    -->
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Trumbowyg/2.1.0/ui/trumbowyg.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/css/bootstrap-select.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />
@@ -255,21 +250,6 @@
                         }
                     });
             })
-            (function() {
-                // INITIALIZATION OF NAVBAR VERTICAL ASIDE
-                // =======================================================
-                new HSSideNav('.js-navbar-vertical-aside').init()
-
-
-                // INITIALIZATION OF FORM SEARCH
-                // =======================================================
-                new HSFormSearch('.js-form-search')
-
-
-                // INITIALIZATION OF BOOTSTRAP DROPDOWN
-                // =======================================================
-                HSBsDropdown.init()
-            })()
     </script>
 
     @yield('js_content')
