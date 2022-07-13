@@ -55,7 +55,7 @@ main#content {
 }
 .sidebar .card-navbar-nav {
     width: 100%;
-    padding: 1.5rem 0.5rem;
+    /*padding: 1.5rem 0.5rem;*/
 }
 .sidebar .nav-vertical {
     -ms-flex-direction: column;
@@ -98,7 +98,7 @@ main#content {
     white-space: nowrap;
 }
 .sidebar .nav-vertical.nav-pills .nav-link {
-    padding: 0.5rem 0.875rem !important;
+    padding: 5px 0px 5px 0px !important;
     margin-bottom: 0.25rem;
 }
 .sidebar .nav-vertical.nav-pills .nav-link {
@@ -175,6 +175,9 @@ main#content {
 .sidebar .nav-vertical.nav-pills .nav-collapse {
     position: relative;
     padding-left: 1.9375rem;
+}
+.sidebar .nav-vertical.nav-pills .nav-collapse .nav-link {
+    padding: 0px 10px;
 }
 .sidebar .nav-vertical.nav-pills .nav-collapse::before {
     position: absolute;
