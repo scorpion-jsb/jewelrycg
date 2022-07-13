@@ -146,13 +146,13 @@
                             <div class="col-12">
                                 <span class="text-dark">Status</span>
                             </div>
-                            <span class="col-12">
+                            <div class="col-12">
                                 <select class="selectpicker w-100" name="status">
                                     <option value="1" selected>Published</option>
                                     <option value="2" >Draft</option>
                                     <option value="3" >Pending Review</option>
                                 </select>
-                            </span>
+                            </div>
                         </label>
                     </div>
                 </div>
@@ -207,8 +207,8 @@
                     <!-- Body -->
                     <div class="card-body">
                         <div class="mb-4">
-                            <label for="category">Category:</label>
-                            <select style="width:100%" class="selectpicker" name="category" data-live-search="true">
+                            <label for="category" class="mb-2">Category:</label>
+                            <select class="selectpicker w-100" name="category" data-live-search="true">
                                 <option disabled selected>Select category</option>
                                 @foreach ($categories as $categorie)
                                     <option value="{{ $categorie->id }}" data-tokens="{{ $categorie->category_name }}">
