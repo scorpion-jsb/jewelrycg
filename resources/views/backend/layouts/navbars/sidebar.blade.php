@@ -1,5 +1,5 @@
 <!-- Navbar Vertical -->
-  <aside class="sidebar col-3">
+  <aside class="sidebar col-2">
     <div class="navbar-vertical-container">
       <div class="navbar-vertical-footer-offset">
 
