@@ -5,6 +5,10 @@
 .avatar-xxl {
     height: 100px;
 }
+.modal-content {
+    max-height: calc(100vh - 125px);
+    overflow: auto;
+}
 
 /*HEADER*/
 .navbar-brand {
