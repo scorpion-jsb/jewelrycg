@@ -24,10 +24,10 @@ header .nav-link {
 
 /* SIDEBAR */
 .sidebar {
-    background: #1d2327;
+    background: #FFFFFF;
 }
 .sidebar .nav-link {
-    color: #f0f0f1;
+    color: #1d2327;
 }
 
 /* CONTENT */
@@ -77,7 +77,7 @@ main#content {
 .sidebar .nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    color: #f0f0f1;
+    color: #1d2327;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
 }
 .sidebar .nav-pills .nav-link {
@@ -87,11 +87,11 @@ main#content {
     padding: 1rem 1rem;
 }
 .sidebar .nav-pills .nav-link:hover {
-    color: #FFFFFF;
+    color: #1d2327;
     background-color: rgba(189, 197, 209, .2);
 }
 .sidebar .nav-vertical.nav-pills .nav-item .nav-link:hover, .sidebar .nav-vertical.nav-pills .nav-item .nav-link[aria-expanded]:hover {
-    color: #FFFFFF;
+    color: #1d2327;
 }
 .sidebar .nav-vertical.nav .nav-link {
     display: -ms-flexbox;
