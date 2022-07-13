@@ -95,7 +95,7 @@ main#content {
     white-space: nowrap;
 }
 .sidebar .nav-vertical.nav-pills .nav-link {
-    padding: 8px 0px 8px 10px !important;
+    padding: 8px 0px 8px 10px;
     margin-bottom: 0.25rem;
 }
 .sidebar .nav-vertical.nav-pills .nav-link {
@@ -223,7 +223,9 @@ main#content {
     margin-top: -0.125rem;
     margin-bottom: 0.25rem;
 }
-
+.sidebar .nav-link-main {
+    padding: 8px 0px 8px 0px !important;
+}
 
 /* FOOTER */
 .footer {
