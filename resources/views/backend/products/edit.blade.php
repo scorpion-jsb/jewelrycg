@@ -1,7 +1,7 @@
 @extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'Edit Product', 'navName' => 'Table List', 'activeButton' => 'catalogue'])
 
 @section('content')
-    <div class="page-header">
+    <div class="page-header mb-4">
         <div class="row align-items-center">
             <div class="col-sm mb-2 mb-sm-0">
                 <nav aria-label="breadcrumb">
@@ -319,7 +319,7 @@
 
                     <!-- Body -->
                     <div class="card-body">
-                        <div class="imagePreview img-thumbnail h-400px">
+                        <div class="imagePreview img-thumbnail p-2">
                             <img id="fileManagerPreview"
                                 src="{{ url('uploads/all') }}/{{ $product->uploads->file_name }}"
                                 style="width: 100%">
