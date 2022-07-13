@@ -147,8 +147,8 @@
         </div>
     </div>
 
-    </div>
-    </div>
+
+
     <!-- End Card -->
 @endsection
 
