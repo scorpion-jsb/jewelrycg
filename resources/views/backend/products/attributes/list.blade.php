@@ -48,19 +48,14 @@
 		</div>
 	</div>
 	<div class="col-lg-8">
-		<div class="card mb-4">
-			<div class="card-header card-header-content-md-between">
-				<div class="mb-2 mb-md-0">
-					<h3 class="card-header-title">Attributes</h3>
-				</div>
-			</div>
+		<div class="card rounded-0 mb-4">
 			<div class="table-responsive datatable-custom position-relative">
 				<div id="datatable_wrapper" class="dataTables_wrapper no-footer">
 					<table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer" role="grid" aria-describedby="datatable_info">
 						<thead class="thead-light">
 							<tr role="row">
-								<th class="table-column-pe-0 sorting_disabled" aria-label="">
-									<div class="form-check">
+								<th class="sorting_disabled" aria-label="">
+									<div class="form-checkbox">
 										<input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
 										<label class="form-check-label" for="datatableCheckAll"></label>
 									</div>
