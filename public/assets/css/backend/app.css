@@ -1,3 +1,11 @@
+/* MISC */
+.container {
+    max-width: 1440px;
+}
+.avatar-xxl {
+    height: 100px;
+}
+
 /*HEADER*/
 header {
     background: #1d2327;
@@ -217,8 +225,3 @@ header a { #f0f0f1 }
     position: relative !important;
 }
 
-
-/* MISC */
-.avatar-xxl {
-    height: 100px;
-}
