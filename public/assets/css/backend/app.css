@@ -1,3 +1,10 @@
+/*HEADER*/
+.navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+/*NAVBAR*/
 .navbar-vertical-container {
     position: relative;
     height: 100%;
