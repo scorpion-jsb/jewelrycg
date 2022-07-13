@@ -218,7 +218,9 @@ main#content {
 }
 
 /* BUTTONS */
-
+.btn {
+    border: 0;
+}
 
 /* MISC */
 .container {
