@@ -1,7 +1,7 @@
 @extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'Add Product', 'navName' => 'addproduct', 'activeButton' => 'catalogue'])
 
 @section('content')
-    <div class="page-header">
+    <div class="page-header mb-4">
         <div class="row align-items-center">
             <div class="col-sm mb-2 mb-sm-0">
                 <nav aria-label="breadcrumb">
