@@ -4,7 +4,7 @@
 <div class="page-header">
     <div class="row align-items-center mb-3">
         <div class="col-sm mb-2 mb-sm-0">
-            <h1 class="page-header-title">Post <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
+            <h1 class="page-header-title">Trash <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
         </div>
         <!-- End Col -->
 
@@ -19,13 +19,9 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card">
-                        <div class="card-header">
-                            
-                        </div>
+                    <div class="card rounded-0">
                         <div class="table-responsive datatable-custom position-relative">
-
-                                <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
+                                <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer">
                                     <thead class="thead-light">
                                         <th class="table-column-pe-0 sorting_disabled" aria-label="">
                                             <div class="form-check">
