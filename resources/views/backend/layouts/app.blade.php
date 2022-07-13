@@ -37,7 +37,7 @@
                 @include('backend.layouts.navbars.sidebar')
                 <div class="col-10">
                     <!-- Content -->
-                    <div class="content py-3">
+                    <div class="content py-3 overflow-hidden">
                         @yield('content')
                     </div>
                     @include('backend.layouts.footer.nav')
