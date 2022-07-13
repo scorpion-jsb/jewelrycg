@@ -148,7 +148,7 @@
 		</div>
 	</div>
 </div>
-</div>
+
 <!-- End Card --> 
 @endsection 
 @section('js_content') 
