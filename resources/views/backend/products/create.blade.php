@@ -218,7 +218,7 @@
                             </select>
                         </div>
                         <div class="mb-4">
-                            <label for="name">Tags:</label>
+                            <label for="name" class="mb-2">Tags:</label>
                             <select name="tags[]" id="tags" value="" class="form-control select2"
                                 multiple="multiple" style="width: 100%;">
                                 @foreach ($tags as $tag)
