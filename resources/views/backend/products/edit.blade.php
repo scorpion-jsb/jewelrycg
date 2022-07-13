@@ -264,7 +264,7 @@
                         <div class="mb-4">
                             <label for="category" class="mb-2">Category</label>
                             <div class="col-12">
-                                <select class="selectpicke w-100" name="category" data-live-search="true">
+                                <select class="selectpicker w-100" name="category" data-live-search="true">
                                     <option disabled>Select category</option>
                                     @foreach ($categories as $categorie)
                                         <option value="{{ $categorie->id }}"
