@@ -187,6 +187,7 @@ main#content {
     background-color: rgba(231,234,243,.7);
 }
 .sidebar .nav-pills .show>.nav-link {
+    color: #1d2327;
     background-color: transparent;
 }
 .sidebar .nav-pills .nav-link.active {
