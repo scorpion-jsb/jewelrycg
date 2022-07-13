@@ -24,8 +24,8 @@
 
                                 <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
                                     <thead class="thead-light">
-                                        <th class="table-column-pe-0 sorting_disabled" aria-label="">
-                                            <div class="form-check">
+                                        <th class="sorting_disabled" aria-label="">
+                                            <div class="form-checkbox">
                                                 <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
                                                 <label class="form-check-label" for="datatableCheckAll"></label>
                                             </div>
