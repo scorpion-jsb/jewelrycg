@@ -4,7 +4,7 @@
  <!-- Content -->
  <div class="content @@layoutBuilder.header.containerMode">
     <!-- Page Header -->
-    <div class="page-header">
+    <div class="page-header mb-4">
       <div class="row align-items-end">
         <div class="col-sm mb-2 mb-sm-0">
           <nav aria-label="breadcrumb">
@@ -15,7 +15,7 @@
             </ol>
           </nav>
 
-          <h1 class="page-header-title">Files</h1>
+          <h1 class="page-header-title mb-0">Files</h1>
         </div>
         <!-- End Col -->
 
