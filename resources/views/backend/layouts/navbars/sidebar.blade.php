@@ -1,5 +1,5 @@
 <!-- Navbar Vertical -->
-  <aside class="js-navbar-vertical-aside navbar navbar-vertical-aside navbar-vertical navbar-vertical-fixed navbar-expand-xl navbar-bordered bg-white  ">
+  <aside class="sidebar col-3">
     <div class="navbar-vertical-container">
       <div class="navbar-vertical-footer-offset">
         <!-- Logo -->
