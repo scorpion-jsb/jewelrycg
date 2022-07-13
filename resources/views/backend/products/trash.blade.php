@@ -49,7 +49,7 @@
                                             <td>{{ $product->category }}</td>
                                             <td>
                                                 
-                                                    <a class="btn btn-trash btn-sm" href="{{ route('backend.products.recover', $product->id) }}"> <i class="bi-load"></i> Restore </a>
+                                                    <a class="btn btn-dark btn-sm" href="{{ route('backend.products.recover', $product->id) }}"> <i class="bi-load"></i> Restore </a>
                                                    
                                             </td>
                                             </tr>
