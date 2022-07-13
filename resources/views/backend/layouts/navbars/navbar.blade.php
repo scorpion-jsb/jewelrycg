@@ -1,5 +1,5 @@
 <!-- ========== HEADER ========== -->
-  <header id="header" class="navbar navbar-expand-lg navbar-fixed navbar-height navbar-container navbar-bordered bg-white">
+  <header id="header" class="navbar navbar-fixed navbar-bordered bg-white">
     <div class="navbar-nav-wrap">
       <!-- Logo -->
       <a class="navbar-brand" href="/backend" aria-label="Front">
