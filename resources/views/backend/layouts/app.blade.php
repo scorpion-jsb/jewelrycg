@@ -21,6 +21,7 @@
 
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}" data-hs-appearance="default"as="style">
+    <link rel="stylesheet" href="{{ asset('assets/css/backend/app.css') }}" data-hs-appearance="default"as="style">
 
     <link rel="stylesheet" href="{{ asset('assets/css/backend/theme.min.css') }}" data-hs-appearance="default"as="style">
     <link rel="stylesheet" href="{{ asset('assets/css/backend/custom.css') }}" as="style">
