@@ -237,3 +237,8 @@ main#content {
     position: relative !important;
 }
 
+/* BUTTONS */
+.btn-white {
+    background-color: #fff;
+    border-color: rgba(231,234,243,.7);
+}
