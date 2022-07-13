@@ -55,9 +55,7 @@
     <script src="{{ asset('assets/vendor/bootstrap/dist/js/bootstrap.bundle.min.js') }}"></script>
 
     <!-- JS Implementing Plugins -->
-    <script src="{{ asset('assets/vendor/hs-navbar-vertical-aside/dist/hs-navbar-vertical-aside.min.js') }}"></script>
     <script src="{{ asset('assets/vendor/hs-form-search/dist/hs-form-search.min.js') }}"></script>
-    <script src="{{ asset('assets/js/hs.theme-appearance.js') }}"></script>
 
     <!-- JS Front -->
     <script src="{{ asset('assets/js/theme.min.js') }}"></script>
