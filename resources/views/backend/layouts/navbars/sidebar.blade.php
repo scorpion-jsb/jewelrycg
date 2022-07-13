@@ -13,7 +13,7 @@
                 </a>
               </div>
 
-            <span class="dropdown-header mt-4">{{ __("Users Management") }}</span>
+            <span class="dropdown-header">{{ __("Users Management") }}</span>
 
             <!-- Collapse -->
             <div class="navbar-nav nav-compact">
