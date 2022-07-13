@@ -1,3 +1,6 @@
+body {
+    background: #1d2327;
+}
 /* MISC */
 .container {
     max-width: 1440px;
@@ -28,6 +31,11 @@ header .nav-link {
 }
 .sidebar .nav-link {
     color: #f0f0f1;
+}
+
+/* CONTENT */
+main#content {
+    background: #ffffff;
 }
 
 /*NAVBAR*/
