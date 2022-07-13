@@ -204,3 +204,9 @@
 .footer {
     position: relative !important;
 }
+
+
+/* MISC */
+.avatar-xxl {
+    height: 100px;
+}
