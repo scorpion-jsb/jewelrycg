@@ -1,7 +1,20 @@
 /*HEADER*/
+header {
+    background: #1d2327;
+    color: #f0f0f1;
+}
+header a { #f0f0f1 }
 .navbar-brand {
     padding-top: 0;
     padding-bottom: 0;
+}
+
+/* SIDEBAR */
+.sidebar {
+    background: #1d2327;
+}
+.sidebar .nav-link {
+    color: #f0f0f1;
 }
 
 /*NAVBAR*/
@@ -46,7 +59,7 @@
 .nav-link {
     display: block;
     padding: 0.5rem 1rem;
-    color: #132144;
+    color: #f0f0f1;
     transition: color .15s ease-in-out, background-color .15s ease-in-out, border-color .15s ease-in-out;
 }
 .nav-pills .nav-link {
@@ -198,13 +211,7 @@
     margin-bottom: 0.25rem;
 }
 
-/* SIDEBAR */
-.sidebar {
-    background: #000;
-}
-.sidebar .nav-link {
-    color: #FFFFFF;
-}
+
 /* FOOTER */
 .footer {
     position: relative !important;
