@@ -7,7 +7,7 @@
         <div class="navbar-vertical-content">
           <div id="navbarVerticalMenu" class="nav nav-pills nav-vertical card-navbar-nav">
             <div class="nav-item">
-                <a class="nav-link-main " href="/backend" data-placement="left">
+                <a class="nav-link nav-link-main " href="/backend" data-placement="left">
                   <i class="bi-house-door nav-icon"></i>
                   <span class="nav-link-title">{{ __("Dashboard") }}</span>
                 </a>
@@ -22,7 +22,7 @@
             <div id="navbarVerticalMenuPagesMenu">
               <!-- Collapse -->
               <div class="nav-item">
-                <a class="nav-link-main dropdown-toggle " href="#navbarVerticalMenuPagesUsersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesUsersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesUsersMenu">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuPagesUsersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuPagesUsersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuPagesUsersMenu">
                   <i class="bi-people nav-icon"></i>
                   <span class="nav-link-title">{{ __("Users") }} <span class="badge bg-primary rounded-pill ms-1">5</span></span>
                 </a>
@@ -40,7 +40,7 @@
 
               <!-- Collapse -->
               <div class="nav-item">
-                <a class="nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllPostMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllPostMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllPostMenu">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllPostMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllPostMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllPostMenu">
                   <i class="bi bi-pin-angle-fill nav-icon"></i>
                   <span class="nav-link-title">{{ __("Post") }}</span>
                 </a>
@@ -57,7 +57,7 @@
 
               <!-- Collapse -->
               <div class="nav-item">
-                <a class="nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllPagesMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllPagesMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllPagesMenu">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllPagesMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllPagesMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllPagesMenu">
                   <i class="bi-stickies nav-icon"></i>
                   <span class="nav-link-title">{{ __("Pages") }}</span>
                 </a>
@@ -70,7 +70,7 @@
               <!-- End Collapse -->
 
               <div class="nav-item">
-                <a class="nav-link-main " href="{{ route('backend.filemanager.list')}}" data-placement="left">
+                <a class="nav-link nav-link-main " href="{{ route('backend.filemanager.list')}}" data-placement="left">
                   <i class="bi-folder2-open nav-icon"></i>
                   <span class="nav-link-title">File Manager</span>
                 </a>
@@ -80,7 +80,7 @@
 
               <!-- Collapse -->
               <div class="nav-item">
-                <a class="nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllProductsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllProductsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllProductsMenu">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllProductsMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllProductsMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllProductsMenu">
                   <i class="bi-basket nav-icon"></i>
                   <span class="nav-link-title">{{ __("Products") }}</span>
                 </a>
@@ -98,7 +98,7 @@
 
               <!-- Collapse -->
               <div class="nav-item">
-                <a class="nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllOrdersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllOrdersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllOrdersMenu">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllOrdersMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllOrdersMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllOrdersMenu">
                   <i class="bi bi-receipt nav-icon"></i>
                   <span class="nav-link-title">{{ __("Orders") }}</span>
                 </a>
@@ -111,14 +111,14 @@
               <!-- End Collapse -->
 
               <div class="nav-item">
-                <a class="nav-link-main " href="#" data-placement="left">
+                <a class="nav-link nav-link-main " href="#" data-placement="left">
                   <i class="bi-folder2-open nav-icon"></i>
                   <span class="nav-link-title">Coupons</span>
                 </a>
               </div>
 
               <div class="nav-item">
-                <a class="nav-link-main " href="#" data-placement="left">
+                <a class="nav-link nav-link-main " href="#" data-placement="left">
                   <i class="bi-folder2-open nav-icon"></i>
                   <span class="nav-link-title">Reports</span>
                 </a>
@@ -127,14 +127,14 @@
               <span class="dropdown-header mt-4">{{ __("Configuration") }}</span>
 
               <div class="nav-item">
-                <a class="nav-link-main " href="#" data-placement="left">
+                <a class="nav-link nav-link-main " href="#" data-placement="left">
                   <i class="bi-key nav-icon"></i>
                   <span class="nav-link-title">General</span>
                 </a>
               </div>
 
               <div class="nav-item">
-                <a class="nav-link-main " href="#" data-placement="left">
+                <a class="nav-link nav-link-main " href="#" data-placement="left">
                   <i class="bi-key nav-icon"></i>
                   <span class="nav-link-title">API Keys</span>
                 </a>
