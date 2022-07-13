@@ -36,15 +36,19 @@
 
 <body>
     @include('backend.layouts.navbars.navbar')
-    <div class="row">
-        @include('backend.layouts.navbars.sidebar')
-        <main id="content" class="col-10">
-            <!-- Content -->
-            <div class="content container-fluid">
-                @yield('content')
+    <div class="content-wrap">
+        <div class="row">
+            <div class="container">
+                @include('backend.layouts.navbars.sidebar')
+                <main id="content" class="col-10">
+                    <!-- Content -->
+                    <div class="content">
+                        @yield('content')
+                    </div>
+                    @include('backend.layouts.footer.nav')
+                </main>
             </div>
-            @include('backend.layouts.footer.nav')
-        </main>
+        </div>
     </div>
     @stack('js')
     <!-- ========== END SECONDARY CONTENTS ========== -->
