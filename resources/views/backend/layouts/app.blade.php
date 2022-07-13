@@ -37,15 +37,17 @@
 <body>
     @include('backend.layouts.navbars.navbar')
     <div class="content-wrap">
-        <div class="row">
-            @include('backend.layouts.navbars.sidebar')
-            <main id="content" class="col-10">
-                <!-- Content -->
-                <div class="content">
-                    @yield('content')
-                </div>
-                @include('backend.layouts.footer.nav')
-            </main>
+        <div class="container">
+            <div class="row">
+                @include('backend.layouts.navbars.sidebar')
+                <main id="content" class="col-10">
+                    <!-- Content -->
+                    <div class="content">
+                        @yield('content')
+                    </div>
+                    @include('backend.layouts.footer.nav')
+                </main>
+            </div>
         </div>
     </div>
     @stack('js')
