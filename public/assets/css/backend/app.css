@@ -31,9 +31,6 @@ main#content {
 .sidebar {
     background: #1d2327;
 }
-.sidebar .nav-link {
-    color: #f0f0f1;
-}
 
 .sidebar .navbar-vertical-container {
     position: relative;
@@ -98,7 +95,7 @@ main#content {
     white-space: nowrap;
 }
 .sidebar .nav-vertical.nav-pills .nav-link {
-    padding: 5px 0px 5px 0px !important;
+    padding: 8px 0px 8px 10px !important;
     margin-bottom: 0.25rem;
 }
 .sidebar .nav-vertical.nav-pills .nav-link {
@@ -175,9 +172,6 @@ main#content {
 .sidebar .nav-vertical.nav-pills .nav-collapse {
     position: relative;
     padding-left: 1.9375rem;
-}
-.sidebar .nav-vertical.nav-pills .nav-collapse .nav-link {
-    padding: 0px 10px;
 }
 .sidebar .nav-vertical.nav-pills .nav-collapse::before {
     position: absolute;
