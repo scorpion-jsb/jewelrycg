@@ -153,7 +153,11 @@
     content: '';
     background-color: rgba(231,234,243,.7);
 }
-.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+.nav-pills .nav-link.active {
+    color: #132144;
+    background-color: rgba(189,197,209,.2);
+}
+.nav-vertical.nav-pills .nav-collapse .nav-item .nav-link[aria-expanded]:hover, .nav-vertical.nav-pills .nav-collapse .nav-link:hover {
     color: #132144;
     background-color: rgba(189,197,209,.2);
 }
