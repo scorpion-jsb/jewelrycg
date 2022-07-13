@@ -99,6 +99,23 @@
     display: flex;
     width: 100%;
 }
+.navbar-vertical-aside .nav-link.dropdown-toggle::before {
+    position: absolute;
+    top: 50%;
+    left: .6125rem;
+    content: '';
+    width: 5px;
+    height: 5px;
+    background-color: #bdc5d1;
+    opacity: 0;
+    border-radius: 50%;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    transition: opacity .3s;
+}
+.navbar-vertical-aside .nav-pills .nav-link.dropdown-toggle::before {
+    left: 2.5px;
+}
 .dropdown-toggle::after {
     display: inline-block;
     width: 1rem;
