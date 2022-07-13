@@ -79,7 +79,7 @@
                         <h3 class="card-header-title">Featured Image</h3>
                     </div>
                     <div class="card-body">
-                        <div class="imagePreview img-thumbnail h-400px">
+                        <div class="imagePreview pt-2 img-thumbnail">
                             <img id="fileManagerPreview" src="" style="width: 100%">
                         </div>
                         <label class="btn text-primary mt-2 p-0" id="getFileManager">Select featured image</label>
