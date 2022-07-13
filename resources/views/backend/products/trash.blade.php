@@ -7,11 +7,6 @@
             <h1 class="page-header-title">Deleted Products <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
         </div>
         <!-- End Col -->
-
-        <div class="col-sm-auto">
-            <a class="btn btn-primary" href="{{ route('backend.products.create') }}">Create product</a>
-        </div>
-        <!-- End Col -->
     </div>
     <!-- End Row -->
 </div>
