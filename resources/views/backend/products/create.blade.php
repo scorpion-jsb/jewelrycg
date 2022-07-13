@@ -170,8 +170,7 @@
                     <div class="card-body">
                         <div class="mb-4">
                             <label for="priceNameLabel" class="form-label">Price</label>
-                            <input type="text" name="price" id="price" class="form-control"
-                                placeholder="80.00...">
+                            <input type="text" name="price" id="price" class="form-control" placeholder="0.00">
                         </div>
                         <div class="mb-4">
                             <label for="qty">Quantity in Stock:</label>
