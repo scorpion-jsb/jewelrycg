@@ -34,6 +34,7 @@ main#content {
 /* SIDEBAR */
 .sidebar {
     background: #000000;
+    min-height: calc(100vh);
 }
 
 .sidebar .navbar-vertical-container {
