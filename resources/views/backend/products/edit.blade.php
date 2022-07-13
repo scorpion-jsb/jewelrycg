@@ -196,11 +196,11 @@
                             </span>
                         </label>
                         <label class="row form-switch mb-4" for="">
-                            <span class="col-4 col-sm-3 ms-0">
+                            <span class="col-12 mb-2">
                                 <span class="text-dark">Status</span>
                             </span>
-                            <span class="col-4 col-sm-3">
-                            <select class="selectpicker" name="status" style="width: 100%">
+                            <span class="col-12">
+                            <select class="selectpicker w-100" name="status">
                                 <option value="1" @if($product->status == 1) selected @endif>Published</option>
                                 <option value="2" @if($product->status == 2) selected @endif>Draft</option>
                                 <option value="3" @if($product->status == 3) selected @endif>Pending Review</option>
