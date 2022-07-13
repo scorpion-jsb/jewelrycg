@@ -205,7 +205,9 @@
 .sidebar {
     background: #000;
 }
-
+.sidebar .nav-link {
+    color: #FFFFFF;
+}
 /* FOOTER */
 .footer {
     position: relative !important;
