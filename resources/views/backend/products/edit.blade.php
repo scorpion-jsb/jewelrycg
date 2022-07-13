@@ -38,121 +38,118 @@
         @include('includes.validation-form')
         <div class="row">
             <div class="col-lg-8 mb-3 mb-lg-0">
-                <div class="row justify-content-center">
-                    <div class="card col-md-12">
-                        <div class="card-body row">
-                            @include('includes.validation-form')
-                            <div class="mb-4">
-                                <label for="name">Name</label>
-                                <input type="text" value='{{ $product->name }}' name="name" id="name"
-                                    class="form-control">
-                            </div>
-                            <div class="mb-4">
-                                <label for="name">Slug</label>
-                                <input type="text" value='{{ $product->slug }}' name="slug" id="slug"
-                                    class="form-control">
-                            </div>
-                            <div class="mb-4">
-                                <label for="desc">Description</label>
-                                <textarea name="desc" value='{{ $product->desc }}' id="desc" rows="3" class="form-control">{{ $product->desc }}</textarea>
-                            </div>
-
+                <div class="card col-md-12">
+                    <div class="card-body row">
+                        @include('includes.validation-form')
+                        <div class="mb-4">
+                            <label for="name">Name</label>
+                            <input type="text" value='{{ $product->name }}' name="name" id="name"
+                                class="form-control">
                         </div>
+                        <div class="mb-4">
+                            <label for="name">Slug</label>
+                            <input type="text" value='{{ $product->slug }}' name="slug" id="slug"
+                                class="form-control">
+                        </div>
+                        <div class="mb-4">
+                            <label for="desc">Description</label>
+                            <textarea name="desc" value='{{ $product->desc }}' id="desc" rows="3" class="form-control">{{ $product->desc }}</textarea>
+                        </div>
+
                     </div>
-                    
-                    <div class="card mb-3 mb-lg-5 mt-3">
-                        <!-- Header -->
-                        <div class="card-header card-header-content-between">
-                            <h4 class="card-header-title">Media</h4>
+                </div>
+                
+                <div class="card mb-3 mb-lg-5 mt-3">
+                    <!-- Header -->
+                    <div class="card-header card-header-content-between">
+                        <h4 class="card-header-title">Media</h4>
 
-                            <!-- Gallery link -->
-                            <label class="btn text-primary p-0" id="getFileManagerForProducts">
-                                Select product gallery images
-                                <input type="hidden" id="all_checks" value="{{ $product->product_images }}" name="product_images">
-                            </label>
-                           <!-- End Gallery link -->
-                        </div>
-                        <!-- End Header -->
+                        <!-- Gallery link -->
+                        <label class="btn text-primary p-0" id="getFileManagerForProducts">
+                            Select product gallery images
+                            <input type="hidden" id="all_checks" value="{{ $product->product_images }}" name="product_images">
+                        </label>
+                        <!-- End Gallery link -->
+                    </div>
+                    <!-- End Header -->
 
-                        <!-- Body -->
-                        <div class="card-body">
-                            <!-- Gallery -->
-                            <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-3">
-                                @foreach ($uploads as $upload)
-                                    <div id="fileappend-{{$upload->id}}" class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
-                                        <div class="card card-sm"><img class="card-img-top"
-                                                src="{{ url('uploads/all')}}/{{ $upload->file_name}}"
-                                                alt="Image Description">
-                                            <div class="card-body">
-                                                <div class="row col-divider text-center">
-                                                    <div class="col"><a class="text-body"
-                                                            href="./assets/img/1920x1080/img3.jpg" data-bs-toggle="tooltip"
-                                                            data-bs-placement="top" title="" data-fslightbox="gallery"
-                                                            data-bs-original-title="View"><i class="bi-eye"></i></a></div>
-                                                    <div class="col"><a onclick="removepreviewappended({{$upload->id}})"
-                                                            class="text-danger" href="javascript:;"><i class="bi-trash"></i></a>
-                                                    </div>
+                    <!-- Body -->
+                    <div class="card-body">
+                        <!-- Gallery -->
+                        <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-3">
+                            @foreach ($uploads as $upload)
+                                <div id="fileappend-{{$upload->id}}" class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
+                                    <div class="card card-sm"><img class="card-img-top"
+                                            src="{{ url('uploads/all')}}/{{ $upload->file_name}}"
+                                            alt="Image Description">
+                                        <div class="card-body">
+                                            <div class="row col-divider text-center">
+                                                <div class="col"><a class="text-body"
+                                                        href="./assets/img/1920x1080/img3.jpg" data-bs-toggle="tooltip"
+                                                        data-bs-placement="top" title="" data-fslightbox="gallery"
+                                                        data-bs-original-title="View"><i class="bi-eye"></i></a></div>
+                                                <div class="col"><a onclick="removepreviewappended({{$upload->id}})"
+                                                        class="text-danger" href="javascript:;"><i class="bi-trash"></i></a>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                @endforeach
-                            </div>
-                            <!-- End Gallery -->
-
-                            <!-- Dropzone -->
-
-                            <!-- End Dropzone -->
+                                </div>
+                            @endforeach
                         </div>
-                        <!-- Body -->
+                        <!-- End Gallery -->
+
+                        <!-- Dropzone -->
+
+                        <!-- End Dropzone -->
                     </div>
-                    <div class="js-add-field card mb-3 mb-lg-5">
-                        <!-- Header -->
-                        <div class="card-header card-header-content-sm-between">
-                            <h4 class="card-header-title mb-2 mb-sm-0">Variants</h4>
+                    <!-- Body -->
+                </div>
+                <div class="js-add-field card mb-3 mb-lg-5">
+                    <!-- Header -->
+                    <div class="card-header card-header-content-sm-between">
+                        <h4 class="card-header-title mb-2 mb-sm-0">Variants</h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="mb-4">
+                            <label for="name">Attributes:</label>
+                            @php
+                                $attributes_selected = explode(',', $product->product_attributes)    
+                            @endphp
+                            <select name="attributes[]" id="attributes" value="" class="form-control select2"
+                                multiple="multiple" style="width: 100%;">
+                                @foreach ($attributes as $attribute)
+                                <option value="{{ $attribute->id }}" @if(in_array($attribute->id, $attributes_selected)) selected @endif data-tokens="{{ $attribute->name }}">
+                                    {{ $attribute->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
-                        <div class="card-body">
-                            <div class="mb-4">
-                                <label for="name">Attributes:</label>
-                                @php
-                                    $attributes_selected = explode(',', $product->product_attributes)    
-                                @endphp
-                                <select name="attributes[]" id="attributes" value="" class="form-control select2"
-                                    multiple="multiple" style="width: 100%;">
-                                    @foreach ($attributes as $attribute)
-                                    <option value="{{ $attribute->id }}" @if(in_array($attribute->id, $attributes_selected)) selected @endif data-tokens="{{ $attribute->name }}">
-                                        {{ $attribute->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                            <div class="mb-4">
-                                <label for="name">Attributes values:</label>
-                                @php
-                                    $values_selected = explode(',', $product->product_attribute_values)    
-                                @endphp
-                                <select name="values[]" id="product_attribute_values" value="" class="form-control select2"
-                                    multiple="multiple" style="width: 100%;">
-                                    
-                                   @include('backend.products.attributes.values.ajax',[
-                                    'attributes' => $selected_values,
-                                    'values_selected' => $values_selected
-                                   ])
-                                </select>
-                            </div>
-                            <div class="mb-4 text-right">
-                                <a class="btn btn-info btn-sm pull-right" id="generatevariants">
-                                    Generate variants
-                                </a>
-                            </div>
+                        <div class="mb-4">
+                            <label for="name">Attributes values:</label>
+                            @php
+                                $values_selected = explode(',', $product->product_attribute_values)    
+                            @endphp
+                            <select name="values[]" id="product_attribute_values" value="" class="form-control select2"
+                                multiple="multiple" style="width: 100%;">
+                                
+                                @include('backend.products.attributes.values.ajax',[
+                                'attributes' => $selected_values,
+                                'values_selected' => $values_selected
+                                ])
+                            </select>
                         </div>
-                        <div class="card-body" id="variantsbody" style="overflow-x: scroll ">
-                            @include('backend.products.ajax.values',[
-                                    'variants' => $product->variants,
-                                   ])
+                        <div class="mb-4 text-right">
+                            <a class="btn btn-info btn-sm pull-right" id="generatevariants">
+                                Generate variants
+                            </a>
                         </div>
+                    </div>
+                    <div class="card-body" id="variantsbody" style="overflow-x: scroll ">
+                        @include('backend.products.ajax.values',[
+                                'variants' => $product->variants,
+                                ])
                     </div>
                 </div>
-
             </div>
             
             <div class="col-lg-4">
