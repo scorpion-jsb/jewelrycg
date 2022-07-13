@@ -18,18 +18,13 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <div class="card strpied-tabled-with-hover">
-                        <div class="card-header ">
-                            <div class="row">
-
-                            </div>
-                        </div>
+                    <div class="card strpied-tabled-with-hover rounded-0">
                         <div class="table-full-width table-responsive">
                             <div class="col-md-12">
-                            <table class="table table-hover table-striped ">
+                            <table class="table table-hover table-striped">
                                 <thead>
-                                    <th class="table-column-pe-0 sorting_disabled" aria-label="">
-                                        <div class="form-check">
+                                    <th class="sorting_disabled" aria-label="">
+                                        <div class="form-checkbox">
                                             <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
                                             <label class="form-check-label" for="datatableCheckAll"></label>
                                         </div>
