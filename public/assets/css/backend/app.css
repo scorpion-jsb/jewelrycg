@@ -153,6 +153,10 @@
     content: '';
     background-color: rgba(231,234,243,.7);
 }
+.nav-pills .show>.nav-link {
+    color: #132144;
+    background-color: transparent;
+}
 .nav-pills .nav-link.active {
     color: #132144;
     background-color: rgba(189,197,209,.2);
