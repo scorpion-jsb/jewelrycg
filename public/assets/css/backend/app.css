@@ -8,14 +8,13 @@
 
 /*HEADER*/
 .navbar-brand {
-    padding-top: 0;
-    padding-bottom: 0;
+    color: #ffffff;
 }
 header {
     background: #1d2327;
     color: #f0f0f1;
 }
-header a { 
+header .nav-link { 
     color: #f0f0f1; 
 }
 
