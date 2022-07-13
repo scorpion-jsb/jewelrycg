@@ -120,7 +120,7 @@
                         <h3 class="card-header-title">Featured Image</h3>
                     </div>
                     <div class="card-body">
-                        <div class="imagePreview img-thumbnail pt-2">
+                        <div class="imagePreview img-thumbnail p-2">
                             <img id="fileManagerPreview" src="{{ url('uploads/all')}}/{{ $post->uploads->file_name}}" style="width: 100%">
                         </div>
                         <label class="btn text-primary mt-2 p-0" id="getFileManager">Select featured image</label>
