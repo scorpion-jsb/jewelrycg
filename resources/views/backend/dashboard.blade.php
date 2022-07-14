@@ -262,6 +262,7 @@
         </div>
       </div>
       <!-- End Stats -->
+      </div>
 @endsection
 
 @push('js')
