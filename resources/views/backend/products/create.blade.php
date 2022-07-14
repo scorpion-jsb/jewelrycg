@@ -8,7 +8,7 @@
                     <ol class="breadcrumb breadcrumb-no-gutter">
                         <li class="breadcrumb-item"><a class="breadcrumb-link"
                                 href="{{ route('backend.products.list') }}">Products</a></li>
-                        <li class="breadcrumb-item active" aria-current="page">Add Product</li>
+                        <li class="breadcrumb-item active" aria-current="page">Create Product</li>
                     </ol>
                 </nav>
 
