@@ -35,7 +35,11 @@ header .nav-link {
     min-height: calc(100vh);
     min-width: 160px;
 }
-
+@media (min-width: 992px) {
+    .sidebar.collapse {
+        display: block;
+    }
+}
 .sidebar .navbar-vertical-container {
     position: relative;
     height: 100%;
