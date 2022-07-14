@@ -260,9 +260,7 @@
           </a>
           <!-- End Card -->
         </div>
-      </div>
-      <!-- End Stats -->
-      </div>
+
 @endsection
 
 @push('js')
