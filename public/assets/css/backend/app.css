@@ -244,6 +244,9 @@ header .nav-link {
 .container {
     max-width: 1660px;
 }
+.avatar-img {
+    height: 50px;
+}
 .avatar-xxl {
     height: 100px;
 }
