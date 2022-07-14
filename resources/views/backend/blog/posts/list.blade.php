@@ -58,10 +58,10 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a class="btn btn-white btn-sm" target="_blank" href="#"> <i class="bi-eye"></i> View </a>
+                                                <a class="btn btn-dark btn-sm" target="_blank" href="#"> <i class="bi-eye"></i> View </a>
                                                 <!-- Button Group -->
                                                 <div class="btn-group">
-                                                    <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                                    <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                                     <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
                                                         <span class="dropdown-header">Options</span>
                                                         <a href="{{ route('backend.posts.edit', $post->id) }}" class="js-export-print dropdown-item">
