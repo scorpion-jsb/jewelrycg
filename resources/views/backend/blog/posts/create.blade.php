@@ -42,8 +42,8 @@
                     <!-- Body -->
                     <div class="card-body">
                         <div class="mb-4 col-12">
-                            <label class="row form-check form-switch mb-2" for="">Status</label>
                             <div class="col-12">
+                                <label class="mb-2" for="">Status</label>
                                 <select class="selectpicker w-100" name="status">
                                     <option value="1" selected>Published</option>
                                     <option value="2" >Draft</option>
