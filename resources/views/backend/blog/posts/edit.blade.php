@@ -88,8 +88,8 @@
                         </div>
                         
                         <div class="col-12 mb-4">
-                            <label for="category" class="mb-2">Category:</label>
-                            <select multiple class="selectpicker w-100" name="categories[]" data-live-search="true" data-container="body">
+                            <label for="category" class="mb-2 w-100">Category:</label>
+                            <select multiple class="selectpicker" name="categories[]" data-live-search="true" data-container="body">
                             @foreach ($categories as $categorie)
                                 <option value="{{ $categorie->id }}"
                                     @if ($post->categories->contains('id_category', $categorie->id)) selected @endif
