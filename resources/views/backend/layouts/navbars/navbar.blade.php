@@ -1,7 +1,7 @@
 <!-- ========== HEADER ========== -->
 <header class="navbar navbar-expand-lg py-3">
     <nav class="container">
-        <a class="navbar-brand col-auto" href="https://jewelrycadfiles.com">
+        <a class="navbar-brand col-auto" href="https://jewelrycadfiles.com/backend">
             #JewelryCG
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
