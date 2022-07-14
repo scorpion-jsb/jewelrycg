@@ -341,3 +341,7 @@ small {
 .form-switch {
     padding-left: 0;
 }
+#datatable_info {
+    padding: 10px;
+    text-align: center;
+}
