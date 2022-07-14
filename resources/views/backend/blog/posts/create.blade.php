@@ -42,9 +42,9 @@
                     <!-- Body -->
                     <div class="card-body">
                         <label class="row form-check form-switch mb-4" for="">
-                            <span class="col-12 mb-2">
+                            <div class="col-12 mb-2">
                                 <span class="text-dark">Status</span>
-                            </span>
+                            </div>
                             <div class="col-12">
                                 <select class="selectpicker w-100" name="status">
                                     <option value="1" selected>Published</option>
@@ -53,9 +53,9 @@
                                 </select>
                             </div>
                         </label>
-                        <div class="mb-4">
+                        <div class="mb-4 col-12">
                             <label for="category" class="w-100 mb-2">Category:</label>
-                            <select style="width:100%" class="selectpicker" name="categories[]" data-live-search="true" data-container="body">
+                            <select class="selectpicker w-100" name="categories[]" data-live-search="true" data-container="body">
                                 @foreach ($categories as $categorie)
                                     <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
                                 @endforeach
