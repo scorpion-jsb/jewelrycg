@@ -1,7 +1,7 @@
 @extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'Product Categories', 'navName' => 'productscategories', 'activeButton' => 'catalogue'])
 
 @section('content')
-<div class="page-header">
+<div class="page-header mb-4">
     <div class="row align-items-center mb-3">
         <div class="col-sm mb-2 mb-sm-0">
             <h1 class="page-header-title">Product Categories <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
