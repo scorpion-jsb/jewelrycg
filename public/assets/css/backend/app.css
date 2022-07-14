@@ -35,6 +35,9 @@ header .nav-link {
     min-height: calc(100vh);
     min-width: 160px;
 }
+.sidebar.collapse.show {
+    border-top: 1px solid #1a1a1a;
+}
 @media (min-width: 992px) {
     .sidebar.collapse {
         display: block;
