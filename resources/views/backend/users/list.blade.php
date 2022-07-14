@@ -8,7 +8,7 @@
 </div>
 <!-- End Page Header -->
 <!-- Card -->
-<div class="card mb-4">
+<div class="card rounded-0 mb-4">
 	<div class="card-header card-header-content-md-between">
 		<div class="mb-2 mb-md-0">
 			<h3 class="card-header-title">All Users</h3>
@@ -65,12 +65,12 @@
 						<td>@if( $user->is_admin == 0 ) Customer @elseif( $user->is_admin == 1 ) Admin @else Seller @endif</td>
 						<td>
 							<div class="btn-group" role="group">
-								<a class="btn btn-white btn-sm" href="#">
+								<a class="btn btn-dark btn-sm" href="#">
 									<i class="bi-eye p-1"></i> View 
                                 </a>
 								<!-- Button Group -->
 								<div class="btn-group">
-									<button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+									<button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
 									<div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
 										<span class="dropdown-header">Options</span>
 										<a href="{{ route('backend.users.edit', $user->id) }}" class="js-export-print dropdown-item">
