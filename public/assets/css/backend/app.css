@@ -16,10 +16,10 @@ header .nav-link {
 
 /* CONTENT */
 .content-wrap {
-    max-width: calc(100vw);
+    //max-width: calc(100vw);
 }
 .content {
-    /*width: calc(100vw - 184px);*/
+    width: calc(100vw - 184px);
 }
 
 /* SIDEBAR */
