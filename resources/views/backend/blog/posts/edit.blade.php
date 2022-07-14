@@ -80,27 +80,26 @@
                         
                         <div class="col-12 mb-4">
                         <label class="mb-2" for="">Status</label>
-                            <select class="selectpicker" name="status" style="width: 100%">
+                            <select class="selectpicker w-100" name="status">
                                 <option value="1" @if($post->status == 1) selected @endif selected>Published</option>
                                 <option value="2" @if($post->status == 2) selected @endif>Draft</option>
                                 <option value="3" @if($post->status == 3) selected @endif>Pending Review</option>
                             </select>
                         </div>
                         
-                        <div class="mb-4">
-                            <label for="category">Category:</label>
-                                <select multiple class="form-select selectpicker" name="categories[]" data-live-search="true" data-container="body">
-                                @foreach ($categories as $categorie)
-                                    <option value="{{ $categorie->id }}"
-                                        @if ($post->categories->contains('id_category', $categorie->id)) selected @endif
-                                        data-tokens="{{ $categorie->category_name }}">
-                                        {{ $categorie->category_name }}</option>
-                                @endforeach
-
+                        <div class="col-12 mb-4">
+                            <label for="category" class="mb-2">Category:</label>
+                            <select multiple class="selectpicker w-100" name="categories[]" data-live-search="true" data-container="body">
+                            @foreach ($categories as $categorie)
+                                <option value="{{ $categorie->id }}"
+                                    @if ($post->categories->contains('id_category', $categorie->id)) selected @endif
+                                    data-tokens="{{ $categorie->category_name }}">
+                                    {{ $categorie->category_name }}</option>
+                            @endforeach
                             </select>
                         </div>
                         <div class="mb-4">
-                            <label for="name">Tags:</label>
+                            <label for="name" class="mb-2">Tags:</label>
                             <select name="tags[]" id="tags" value="" class="form-control select2" multiple="multiple" style="width: 100%;">
                                 @foreach ($tags as $tag)
                                     <option @if ($post->tags->contains('id_tag', $tag->id)) selected @endif
