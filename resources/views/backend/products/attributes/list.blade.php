@@ -1,6 +1,6 @@
 @extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'Products Attributes', 'navName' => 'attributes', 'activeButton' => 'products']) @section('content')
 <!-- Page Header -->
-<div class="page-header">
+<div class="page-header mb-4">
 	<div class="row align-items-end">
 		<h1 class="page-header-title">Product Attributes <span class="badge bg-soft-dark text-dark ms-2">72,031</span>
 		</h1>
