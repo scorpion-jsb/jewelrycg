@@ -41,10 +41,8 @@
 
                     <!-- Body -->
                     <div class="card-body">
-                        <label class="row form-check form-switch mb-4" for="">
-                            <div class="col-12 mb-2">
-                                <span class="text-dark">Status</span>
-                            </div>
+                        <div class="mb-4 col-12">
+                            <label class="row form-check form-switch mb-2" for="">Status</label>
                             <div class="col-12">
                                 <select class="selectpicker w-100" name="status">
                                     <option value="1" selected>Published</option>
@@ -52,14 +50,17 @@
                                     <option value="3" >Pending Review</option>
                                 </select>
                             </div>
-                        </label>
+                        </div>
+                        
                         <div class="mb-4 col-12">
-                            <label for="category" class="w-100 mb-2">Category:</label>
-                            <select class="selectpicker w-100" name="categories[]" data-live-search="true" data-container="body">
-                                @foreach ($categories as $categorie)
-                                    <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
-                                @endforeach
-                            </select>
+                            <label for="category" class="w-100 mb-2">Category</label>
+                            <div class="col-12">
+                                <select class="selectpicker w-100" name="categories[]" data-live-search="true" data-container="body">
+                                    @foreach ($categories as $categorie)
+                                        <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
                         </div>
                         <div class="mb-4">
                             <label for="name" class="w-100 mb-2">Tags:</label>
