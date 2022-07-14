@@ -52,7 +52,7 @@
                                             @endforeach
                                         </td>
                                         <td>
-                                                <a class="btn btn-white btn-sm" href="{{ route('backend.posts.recover', $post->id)}}"> <i class="bi-restore"></i> Restore </a>
+                                                <a class="btn btn-dark btn-sm" href="{{ route('backend.posts.recover', $post->id)}}"> <i class="bi-restore"></i> Restore </a>
                                               
                                         </td>
                                         </tr>
