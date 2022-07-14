@@ -42,16 +42,16 @@
                     <!-- Body -->
                     <div class="card-body">
                         <label class="row form-check form-switch mb-4" for="">
-                            <span class="col-4 col-sm-3 ms-0">
+                            <span class="col-12 mb-2">
                                 <span class="text-dark">Status</span>
                             </span>
-                            <span class="col-4 col-sm-3">
-                            <select class="selectpicker" name="status" style="width: 100%">
-                                <option value="1" selected>Published</option>
-                                <option value="2" >Draft</option>
-                                <option value="3" >Pending Review</option>
-                            </select>
-                            </span>
+                            <div class="col-12">
+                                <select class="selectpicker w-100" name="status">
+                                    <option value="1" selected>Published</option>
+                                    <option value="2" >Draft</option>
+                                    <option value="3" >Pending Review</option>
+                                </select>
+                            </div>
                         </label>
                         <div class="mb-4">
                             <label for="category" class="w-100 mb-2">Category:</label>
