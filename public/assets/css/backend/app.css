@@ -6,6 +6,9 @@ header {
     background: #000000;
     color: #f0f0f1;
 }
+header .nav-icon {
+    color: #FFFFFF;
+}
 header .nav-link { 
     color: #f0f0f1; 
 }
