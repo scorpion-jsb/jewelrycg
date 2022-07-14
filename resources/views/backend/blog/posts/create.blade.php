@@ -32,7 +32,7 @@
             </div>
             <div class="col-md-4">
                 <!-- Card -->
-                <div class="card mb-3 mb-lg-5">
+                <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
                         <h4 class="card-header-title">Organization</h4>
