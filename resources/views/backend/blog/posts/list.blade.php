@@ -5,8 +5,8 @@
     <div class="row align-items-center mb-3">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb breadcrumb-no-gutter">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="https://jewelrycadfiles.com/backend/products">Products</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Create Product</li>
+                <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ route('backend.posts.list') }}">Posts</a></li>
+                <li class="breadcrumb-item active" aria-current="page">All Post</li>
             </ol>
         </nav>
         <div class="col-sm mb-2 mb-sm-0">
