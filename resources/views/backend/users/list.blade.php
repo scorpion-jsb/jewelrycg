@@ -14,11 +14,8 @@
 </div>
 <!-- End Page Header -->
 <!-- Card -->
-<div class="card rounded-0 mb-4">
-	<div class="card-header card-header-content-md-between">
-		<h3 class="card-header-title mb-0">All Users</h3>
-	</div>
-	<div class="table-responsive datatable-custom position-relative card-body">
+<div class="mb-4">
+	<div class="table-responsive datatable-custom position-relative">
 		<div id="datatable_wrapper" class="border dataTables_wrapper no-footer">
 			<table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer" role="grid" aria-describedby="datatable_info">
 				<thead class="thead-light">
