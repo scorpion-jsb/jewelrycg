@@ -11,22 +11,20 @@
         <div class="row">
             <div class="col-md-8">
                 @csrf
-                <div class="justify-content-center">
-                    <div class="card col-md-12 mb-4">
-                        <div class="card-body row">
-                            @include('includes.validation-form')
-                            <div class="col-md-12 mb-2">
-                                <label for="name" class="w-100 mb-2">Name:</label>
-                                <input type="text" name="name" id="name" value="" class="form-control">
-                            </div>
-                            <div class="col-md-12 mb-2">
-                                <label for="desc" class="w-100 mb-2">Post:</label>
-                                <textarea name="post" id="desc" rows="6" class="form-control"></textarea>
-
-                            </div>
-
-                
+                <div class="card col-md-12 mb-4">
+                    <div class="card-body row">
+                        @include('includes.validation-form')
+                        <div class="col-md-12 mb-2">
+                            <label for="name" class="w-100 mb-2">Name:</label>
+                            <input type="text" name="name" id="name" value="" class="form-control">
                         </div>
+                        <div class="col-md-12 mb-2">
+                            <label for="desc" class="w-100 mb-2">Post:</label>
+                            <textarea name="post" id="desc" rows="6" class="form-control"></textarea>
+
+                        </div>
+
+            
                     </div>
                 </div>
             </div>
