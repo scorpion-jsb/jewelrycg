@@ -345,3 +345,6 @@ small {
     padding: 10px;
     text-align: center;
 }
+.fs-5 {
+font-size: .875rem!important;
+}
