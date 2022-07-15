@@ -1,7 +1,15 @@
 @extends('backend.layouts.app', ['activePage' => 'posts', 'title' => 'All Post', 'navName' => 'allpost', 'activeButton' => 'blog'])
 
 @section('content')
-<div class="page-header">
+
+<!-- Page Header -->
+<div class="page-header mb-4">
+    <nav aria-label="breadcrumb">
+		<ol class="breadcrumb breadcrumb-no-gutter">
+			<li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ route('backend.users.list') }}">Users</a></li>
+			<li class="breadcrumb-item active" aria-current="page">All Users</li>
+		</ol>
+	</nav>
     <div class="row align-items-center mb-3">
         <div class="col-sm mb-2 mb-sm-0">
             <h1 class="page-header-title">Post <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
@@ -15,7 +23,7 @@
     </div>
     <!-- End Row -->
 </div>
-
+<!-- End Page Header -->
 
             <div class="row">
                 <div class="col-md-12">
