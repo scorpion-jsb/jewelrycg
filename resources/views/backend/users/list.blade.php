@@ -3,8 +3,8 @@
 <div class="page-header mb-4">
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb breadcrumb-no-gutter">
-			<li class="breadcrumb-item"><a class="breadcrumb-link" href="https://jewelrycadfiles.com/backend/products">Products</a></li>
-			<li class="breadcrumb-item active" aria-current="page">Create Product</li>
+			<li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ route('backend.users.list') }}">Users</a></li>
+			<li class="breadcrumb-item active" aria-current="page">All Users</li>
 		</ol>
 	</nav>
 	<div class="row align-items-end">
