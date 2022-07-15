@@ -33,7 +33,7 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Organization</h4>
+                        <h4 class="card-header-title mb-0">Organization</h4>
                     </div>
                     <!-- End Header -->
 
@@ -75,7 +75,7 @@
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="card-header-title">Featured Image</h3>
+                        <h3 class="card-header-title mb-0">Featured Image</h3>
                     </div>
                     <div class="card-body">
                         <div class="imagePreview pt-2 img-thumbnail">
