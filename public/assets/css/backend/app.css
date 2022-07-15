@@ -349,6 +349,7 @@ small {
 font-size: .875rem!important;
 }
 .form-check {
+    padding-left: 1em;
     margin-bottom: 0;
 }
 .form-check .form-check-input {
