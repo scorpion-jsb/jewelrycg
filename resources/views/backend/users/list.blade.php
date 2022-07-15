@@ -10,12 +10,10 @@
 <!-- Card -->
 <div class="card rounded-0 mb-4">
 	<div class="card-header card-header-content-md-between">
-		<div class="mb-2 mb-md-0">
-			<h3 class="card-header-title">All Users</h3>
-		</div>
+		<h3 class="card-header-title mb-0">All Users</h3>
 	</div>
-	<div class="table-responsive datatable-custom position-relative">
-		<div id="datatable_wrapper" class="dataTables_wrapper no-footer">
+	<div class="table-responsive datatable-custom position-relative card-body">
+		<div id="datatable_wrapper" class="border dataTables_wrapper no-footer">
 			<table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer" role="grid" aria-describedby="datatable_info">
 				<thead class="thead-light">
 					<tr role="row">
