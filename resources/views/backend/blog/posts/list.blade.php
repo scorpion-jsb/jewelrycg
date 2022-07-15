@@ -3,12 +3,6 @@
 @section('content')
 <div class="page-header">
     <div class="row align-items-center mb-3">
-        <nav aria-label="breadcrumb">
-            <ol class="breadcrumb breadcrumb-no-gutter">
-                <li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ route('backend.posts.list') }}">Posts</a></li>
-                <li class="breadcrumb-item active" aria-current="page">All Post</li>
-            </ol>
-        </nav>
         <div class="col-sm mb-2 mb-sm-0">
             <h1 class="page-header-title">Post <span class="badge bg-soft-dark text-dark ms-2">72,031</span></h1>
         </div>
