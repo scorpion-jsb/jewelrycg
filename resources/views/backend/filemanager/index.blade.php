@@ -111,7 +111,7 @@
                 <!-- End Dropdown -->
               </div>
 
-              <div class="card-body">
+              <div class="card-body p-2">
                 <img class="avatar-xxl" src="
                 @if($file->extension == 'glb')
                     {{ url('assets/svg/brands/google-docs-icon.svg') }}
@@ -121,7 +121,7 @@
                 " alt="Image Description">
               </div>
 
-              <div class="card-body">
+              <div class="card-body p-2">
                 <h5 class="card-title fs-13">{{ $file->file_original_name}}.{{$file->extension}}</h5>
                 <p class="small">Updated {{ $file->created_at->diffForHumans()}}</p>
               </div>
