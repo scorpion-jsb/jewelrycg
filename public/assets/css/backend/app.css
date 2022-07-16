@@ -355,3 +355,7 @@ font-size: .875rem!important;
 .form-check .form-check-input {
     margin-left: 0;
 }
+span.badge.bg-primary.rounded-pill {
+    padding: 3px 7px;
+    line-height: 13px;
+}
