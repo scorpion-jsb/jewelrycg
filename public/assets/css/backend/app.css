@@ -355,3 +355,6 @@ font-size: .875rem!important;
 .form-check .form-check-input {
     margin-left: 0;
 }
+.table>:not(caption)>*>* {
+    padding: 10px 20px;
+}
