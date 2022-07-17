@@ -39,13 +39,13 @@
             @endif
             <tr role="row" class="odd" id="variantproduct-{{ $k }}">
                 <th class="table-column-ps-0">
-                    @if (isset($variant->name))
-                        {{ $variant->name }}
+                    @if (isset($variant->variant_name))
+                        {{ $variant->variant_name }}
                     @else
                         {{ $current_name }}
                     @endif
                     <input type="hidden" name='variant[{{ $k }}][name]'
-                        @if (isset($variant->name)) value="{{ $variant->name }}"
+                        @if (isset($variant->variant_name)) value="{{ $variant->variant_name }}"
                     @else
                         value="{{ $current_name }}" @endif>
                 </th>
@@ -53,14 +53,14 @@
                     <div class="input-group input-group-merge" style="min-width: 7rem;">
                         <div class="input-group-prepend input-group-text">USD</div>
                         <input type="text" class="form-control" name="variant[{{ $k }}][price]"
-                            @if (isset($variant->price)) value='{{ $variant->price }}' @endif>
+                            @if (isset($variant->variant_price)) value='{{ $variant->variant_price }}' @endif>
                     </div>
                 </th>
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="width: 11rem;">
                         <div class="input-group-prepend input-group-text">SKU</div>
                         <input type="text" class="form-control" name="variant[{{ $k }}][sku]"
-                            @if (isset($variant->sku)) value='{{ $variant->sku }}' @endif>
+                            @if (isset($variant->variant_sku)) value='{{ $variant->variant_sku }}' @endif>
                     </div>
                 </th>
 
@@ -71,7 +71,7 @@
                             <div class="col">
                                 <input class="js-result form-control form-control-quantity-counter" type="text"
                                     name="variant[{{ $k }}][quantity]"
-                                    @if (isset($variant->quantity)) value='{{ $variant->quantity }}' @else value="1"  @endif>
+                                    @if (isset($variant->variant_quantity)) value='{{ $variant->variant_quantity }}' @else value="1"  @endif>
                             </div>
                             <!-- End Col -->
 
