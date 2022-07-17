@@ -42,7 +42,7 @@
                         @include('includes.validation-form')
                         <div class="mb-4">
                             <label for="productNameLabel" class="form-label">Name </label>
-                            <input type="text" name="name" id="name" class="form-control">
+                            <input type="text" name="variant_name" id="name" class="form-control">
                         </div>
 
                         <div class="mb-4">

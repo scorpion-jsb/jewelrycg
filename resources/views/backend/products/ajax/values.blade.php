@@ -44,7 +44,7 @@
                     @else
                         {{ $current_name }}
                     @endif
-                    <input type="hidden" name='variant[{{ $k }}][name]'
+                    <input type="hidden" name='variant[{{ $k }}][variant_name]'
                         @if (isset($variant->name)) value="{{ $variant->name }}"
                     @else
                         value="{{ $current_name }}" @endif>
@@ -52,14 +52,14 @@
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="min-width: 7rem;">
                         <div class="input-group-prepend input-group-text">USD</div>
-                        <input type="text" class="form-control" name="variant[{{ $k }}][price]"
+                        <input type="text" class="form-control" name="variant[{{ $k }}][variant_price]"
                             @if (isset($variant->price)) value='{{ $variant->price }}' @endif>
                     </div>
                 </th>
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="width: 11rem;">
                         <div class="input-group-prepend input-group-text">SKU</div>
-                        <input type="text" class="form-control" name="variant[{{ $k }}][sku]"
+                        <input type="text" class="form-control" name="variant[{{ $k }}][variant_sku]"
                             @if (isset($variant->sku)) value='{{ $variant->sku }}' @endif>
                     </div>
                 </th>
@@ -70,7 +70,7 @@
                         <div class="js-quantity-counter-input row align-items-center">
                             <div class="col">
                                 <input class="js-result form-control form-control-quantity-counter" type="text"
-                                    name="variant[{{ $k }}][quantity]"
+                                    name="variant[{{ $k }}][variant_quantity]"
                                     @if (isset($variant->quantity)) value='{{ $variant->quantity }}' @else value="1"  @endif>
                             </div>
                             <!-- End Col -->
@@ -101,7 +101,7 @@
                 </th>
                 <th class="table-column-ps-0">
                     <a href='javascript:;'> select </a>
-                    <input type="hidden" name="variant[{{ $k }}][image]"
+                    <input type="hidden" name="variant[{{ $k }}][variant_image]"
                         id="variant-{{ $k }}-image">
                 </th>
                 <th class="table-column-ps-0">

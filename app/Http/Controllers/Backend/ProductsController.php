@@ -108,19 +108,8 @@ class ProductsController extends Controller
 
         foreach($variants as $variant)
         {
-            // $variant_data = $variant;
-            // $variant_data['product_id'] = $id_product;
-
-            $variant_data = [];
+            $variant_data = $variant;
             $variant_data['product_id'] = $id_product;
-            $variant_data['variant_price'] = $variants['price'];
-            $variant_data['variant_name'] = $variants['name'];
-            $variant_data['variant_sku'] = $variants['sku'];
-            $variant_data['variant_quantity'] = 0;
-            $variant_data['variant_thumbnail'] = $variants['image'];
-            $variant_data['digital_download_assets'] = $variants['digital_download_assets'];
-            $variant_data['digital_download_assets_count'] = 0;
-            $variant_data['digital_download_assets_limit'] = 0;
             
             ProductsVariant::create($variant_data);
         }
