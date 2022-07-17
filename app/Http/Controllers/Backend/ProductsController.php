@@ -195,7 +195,7 @@ class ProductsController extends Controller
         {
             $variant_data = $variant;
             $variant_data['product_id'] = $product->id;
-            ProducstVariant::create($variant_data);
+            ProductsVariant::create($variant_data);
         }
         
         foreach( $tags as $tag )
