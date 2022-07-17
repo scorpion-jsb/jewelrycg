@@ -8,7 +8,7 @@ use App\Models\Product;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\ProductsCategorie;
 use App\Models\ProductTag;
-use App\Models\ProductVariant;
+use App\Models\ProductsVariant;
 use App\Models\Attribute;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
@@ -110,7 +110,7 @@ class ProductsController extends Controller
         {
             $variant_data = $variant;
             $variant_data['product_id'] = $id_product;
-            ProductVariant::create($variant_data);
+            ProductsVariant::create($variant_data);
         }
         
         foreach( $tags as $tag )
@@ -189,13 +189,13 @@ class ProductsController extends Controller
         $product->update($data);
         $product->replaceImagesIfExist($req->images);
         ProductTagsRelationship::where('id_product', $product->id)->delete();
-        ProductVariant::where('product_id', $product->id)->delete();
+        ProductsVariant::where('product_id', $product->id)->delete();
 
         foreach($variants as $variant)
         {
             $variant_data = $variant;
             $variant_data['product_id'] = $product->id;
-            ProductVariant::create($variant_data);
+            ProducstVariant::create($variant_data);
         }
         
         foreach( $tags as $tag )
