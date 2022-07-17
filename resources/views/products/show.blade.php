@@ -105,7 +105,7 @@
                                         @else
                                             <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
                                                 @csrf
-                                                <input type="hidden" name="id_product" value="{{$product->id}}">
+                                                <input type="hidden" name="id_product" value="{{$product->slug}}">
                                                 <button type="submit" class="badge badge-lg bg-primary border border-primary text-light rounded-pill">
                                                     <i class="fa-regular fa-heart"></i>
                                                     <small>Add To Wishlist</small>
@@ -140,7 +140,7 @@
                             @endif
                             <form action="{{route('cart.store')}}" method="post" class="my-3">
                                 @csrf
-                                <input type="hidden" name="id_product" value="{{$product->id}}">
+                                <input type="hidden" name="id_product" value="{{$product->slug}}">
                                 <button type="submit" class="btn btn-primary shadow-md" {{ $product->qty < 1 ? 'disabled' : null }}>Add to Cart</button>
                                 <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->qty < 1 ? 'disabled' : null }}>Buy Now</button>
                             </form>        
