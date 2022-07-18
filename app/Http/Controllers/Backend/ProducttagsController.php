@@ -41,7 +41,7 @@ class ProducttagsController extends Controller
     public function store(TagStoreRequest $request)
     {
         ProductTag::create($request->input());
-        return redirect()->route('backend.product.tags.list');
+        return redirect()->route('backend.products.tags.list');
     }
 
     /**
@@ -79,7 +79,7 @@ class ProducttagsController extends Controller
     {
         $tag = ProductTag::findOrFail($id);
         $tag->update($request->input());
-        return redirect()->route('backend.product.tags.list');
+        return redirect()->route('backend.products.tags.list');
     }
 
     /**
@@ -90,6 +90,8 @@ class ProducttagsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = ProductTag::findOrFail($id);
+        $product->delete();
+        return redirect()->route('backend.products.tags.list');
     }
 }

@@ -95,6 +95,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/create', [CategorysController::class, 'create'])->name('create');
 		Route::get('/edit/{id}', [CategorysController::class, 'edit'])->name('edit');
 		Route::put('/update/{product}', [CategorysController::class, 'update'])->name('update');
+		Route::get('/delete/{id}', [CategorysController::class, 'destroy'])->name('delete');
 		Route::post('/store', [CategorysController::class, 'store'])->name('store');
 		Route::get('/get', [CategorysController::class, 'get'])->name('get');
 	});
@@ -153,6 +154,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/', [BlogcategoriesController::class, 'index'])->name('list');
 		Route::get('/create', [BlogcategoriesController::class, 'create'])->name('create');
 		Route::get('/edit/{id}', [BlogcategoriesController::class, 'edit'])->name('edit');
+		Route::get('/delete/{id}', [BlogcategoriesController::class, 'destroy'])->name('delete');
 		Route::put('/update/{product}', [BlogcategoriesController::class, 'update'])->name('update');
 		Route::post('/store', [BlogcategoriesController::class, 'store'])->name('store');
 		Route::get('/get', [BlogcategoriesController::class, 'get'])->name('get');
@@ -163,6 +165,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/', [BlogtagsController::class, 'index'])->name('list');
 		Route::get('/create', [BlogtagsController::class, 'create'])->name('create');
 		Route::get('/edit/{id}', [BlogtagsController::class, 'edit'])->name('edit');
+		Route::get('/delete/{id}', [BlogtagsController::class, 'destroy'])->name('delete');
 		Route::put('/update/{product}', [BlogtagsController::class, 'update'])->name('update');
 		Route::post('/store', [BlogtagsController::class, 'store'])->name('store');
 		Route::get('/get', [BlogtagsController::class, 'get'])->name('get');
@@ -173,6 +176,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/', [ProducttagsController::class, 'index'])->name('list');
 		Route::get('/create', [ProducttagsController::class, 'create'])->name('create');
 		Route::get('/edit/{id}', [ProducttagsController::class, 'edit'])->name('edit');
+		Route::get('/delete/{id}', [ProducttagsController::class, 'destroy'])->name('delete');
 		Route::put('/update/{product}', [ProducttagsController::class, 'update'])->name('update');
 		Route::post('/store', [ProducttagsController::class, 'store'])->name('store');
 		Route::get('/get', [ProducttagsController::class, 'get'])->name('get');

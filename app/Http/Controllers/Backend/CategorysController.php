@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\ProductsCategorie;
 use App\Http\Requests\CategorieStoreRequest;
+use App\Models\Product;
 
 
 class CategorysController extends Controller
@@ -18,7 +19,7 @@ class CategorysController extends Controller
     public function index()
     {
         return view('backend.products.categories.list', [
-            'categories' => ProductsCategorie::orderBy('id', 'DESC')->get()
+            'categories' => ProductsCategorie::all()
         ]);  
     }
 
@@ -109,6 +110,15 @@ class CategorysController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $firstId = ProductsCategorie::first()->id;
+
+        if ($firstId != $id) {
+            $product = ProductsCategorie::findOrFail($id);
+            $product->delete();
+            
+            Product::where('category', $id)->update(['category' => $firstId]);
+        }
+
+        return redirect()->route('backend.products.categories.list');
     }
 }

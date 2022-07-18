@@ -89,6 +89,8 @@ class BlogtagsController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = BlogTags::findOrFail($id);
+        $product->delete();
+        return redirect()->route('backend.blog.tags.list');
     }
 }
