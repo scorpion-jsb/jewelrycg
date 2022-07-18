@@ -8,11 +8,12 @@ use App\Models\Product;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\ProductsCategorie;
 use App\Models\ProductTag;
-use App\Models\ProductsVariant;
+use App\Models\ProductVariant;
 use App\Models\Attribute;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
 use App\Http\Controllers\Backend\UploadController;
+
 
 
 
@@ -91,7 +92,6 @@ class ProductsController extends Controller
     {
         $tags = (array)$req->input('tags');
         $variants = (array)$req->input('variant');
-
         $attributes = implode(",",(array)$req->input('attributes'));
         $values = implode(",",(array)$req->input('values'));
         $data = $req->all();
@@ -122,6 +122,7 @@ class ProductsController extends Controller
                 'id_tag' => $id_tag,
                 'id_product' => $id_product,
              ]);
+
         }
         return redirect()->route('backend.products.edit', $product->id);
     }
@@ -191,13 +192,13 @@ class ProductsController extends Controller
         $product->update($data);
         $product->replaceImagesIfExist($req->images);
         ProductTagsRelationship::where('id_product', $product->id)->delete();
-        ProductsVariant::where('product_id', $product->id)->delete();
+        ProductVariant::where('product_id', $product->id)->delete();
 
         foreach($variants as $variant)
         {
             $variant_data = $variant;
             $variant_data['product_id'] = $product->id;
-            ProductsVariant::create($variant_data);
+            ProductVariant::create($variant_data);
         }
         
         foreach( $tags as $tag )
