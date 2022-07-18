@@ -269,7 +269,7 @@ aria-hidden="true">
         });
 
         jQuery.ajax({
-            url: "http://localhost:8000/backend/filemanager/files",
+            url: "{{ url('backend/filemanager/files') }}",
             method: 'get',
             success: function(files) {
                 $('#file_container').html('');
