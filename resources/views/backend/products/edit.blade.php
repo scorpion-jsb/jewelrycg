@@ -146,7 +146,7 @@
                     </div>
                     <div class="card-body" id="variantsbody" style="overflow-x: scroll ">
                         @include('backend.products.ajax.values',[
-                                'variants' => $product->variants,
+                                'variants' => $variants,
                                 'isDigital' => $product->is_digital
                                 ])
                     </div>
