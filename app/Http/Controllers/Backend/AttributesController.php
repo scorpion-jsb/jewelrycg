@@ -90,6 +90,7 @@ class AttributesController extends Controller
         $combined = $this->make_combinations($table);
         return view('backend.products.ajax.values', [
             'variants' => $combined,
+            'isDigital' => $request->isDigital
         ]);
        
     }

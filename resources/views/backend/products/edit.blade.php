@@ -147,6 +147,7 @@
                     <div class="card-body" id="variantsbody" style="overflow-x: scroll ">
                         @include('backend.products.ajax.values',[
                                 'variants' => $product->variants,
+                                'isDigital' => $product->is_digital
                                 ])
                     </div>
                 </div>
@@ -187,12 +188,12 @@
                                 <input type="checkbox" class="form-check-input" name="is_digital" value="1" @if($product->is_digital == 1) checked @endif id="availabilitySwitch1">
                             </span>
                         </label>
-                        <label class="row form-switch mb-4" for="availabilitySwitch1">
+                        <label class="row form-switch mb-4" for="availabilitySwitch2">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Virtual</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" value="1" @if($product->is_virtual == 1) checked @endif class="form-check-input" id="availabilitySwitch1">
+                                <input type="checkbox" value="1" @if($product->is_virtual == 1) checked @endif class="form-check-input" id="availabilitySwitch2">
                             </span>
                         </label>
                         <label class="row form-switch" for="">
@@ -231,20 +232,20 @@
                             <input type="number" value='{{ $product->qty }}' name="qty" id="qty"
                                 class="form-control" min="0">
                         </div>
-                        <label class="row form-switch mb-4" for="availabilitySwitch1">
+                        <label class="row form-switch mb-4" for="availabilitySwitch3">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Backorder</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" name="is_backorder" value="1" @if($product->is_backorder == 1) checked @endif class="form-check-input" id="availabilitySwitch1">
+                                <input type="checkbox" name="is_backorder" value="1" @if($product->is_backorder == 1) checked @endif class="form-check-input" id="availabilitySwitch3">
                             </span>
                         </label>
-                        <label class="row form-switch mb-4" for="availabilitySwitch1">
+                        <label class="row form-switch mb-4" for="availabilitySwitch4">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Made to Order</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" name="is_madetoorder" value="1" @if($product->is_madetoorder == 1) checked @endif class="form-check-input" id="availabilitySwitch1">
+                                <input type="checkbox" name="is_madetoorder" value="1" @if($product->is_madetoorder == 1) checked @endif class="form-check-input" id="availabilitySwitch4">
                             </span>
                         </label>
                     </div>
@@ -396,5 +397,25 @@
                 placeholder: "Select or type keywords",
             })
         });
+
+        // check the digital setting turn on
+        $('#availabilitySwitch1').click(function () {
+            if ($('#variantsbody').html() != '') {
+                var values_selected = $('#product_attribute_values').val()
+                $.ajax({
+                    type: 'POST',
+                    url: "{{ route('backend.products.attributes.combinations') }}",
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        "values": values_selected,
+                        'isDigital': $('#availabilitySwitch1').prop('checked') * 1
+                    },
+                    success: function(result) {
+                        $('#variantsbody').html(result)
+                    }
+                })
+            }
+            // getVariants($('#availabilitySwitch1').prop('checked') * 1);
+        })
     </script>
 @endsection

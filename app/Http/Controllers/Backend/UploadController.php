@@ -322,7 +322,7 @@ class UploadController extends Controller
     }
 
     public function getUploadedFile(Request $request) {
-        $uploads = Upload::orderBy('id', 'DESC')->where('type', 'image')->where('id_user', Auth::user()->id);
+        $uploads = Upload::orderBy('id', 'DESC')->where('id_user', Auth::user()->id);
 
         if ($request->search != null) {
             $uploads->where('file_original_name', 'like', '%'.$request->search.'%');

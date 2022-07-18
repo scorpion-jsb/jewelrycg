@@ -13,8 +13,10 @@
                 aria-label="Quantity: activate to sort column ascending">Quantity</th>
             <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                 aria-label="Quantity: activate to sort column ascending">Photo</th>
-            <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                aria-label="Quantity: activate to sort column ascending">Digital</th>
+            @if ($isDigital)
+                <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+                    aria-label="Quantity: activate to sort column ascending">Digital</th>
+            @endif
             <th class="table-column-ps-0 sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
         </tr>
     </thead>
@@ -116,6 +118,7 @@
                         @endphp
                     </div>
                 </th>
+                @if ($isDigital)
                 <th class="table-column-ps-0" style="text-align: center;">
                     <a href='javascript:;' onclick="assetSelect({{ $k }})" > upload </a><br/><br/>
                     <input type="hidden" name="variant[{{ $k }}][digital_download_assets]"
@@ -123,19 +126,20 @@
                         <div id="selected_{{ $k }}_asset" class="selected-asset">
                             @php                        
                                 if (isset($variant->digital_download_assets)) {
-                                    echo "<a style='padding: 8px;border: 1px solid grey;margin-top: 8px;'>*</a>";
+                                    echo '<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="width: 60px;"><br/>' . $variant->asset->file_original_name . '.' . $variant->asset->extension;
                                 }
                             @endphp
                         </div>
                     </th>
-                <th class="table-column-ps-0">
+                @endif
+                {{-- <th class="table-column-ps-0">
                     <div class="btn-group" role="group" aria-label="Edit group">
                         <a class="btn btn-white pull-right" href="javascript:;"
                             onclick="deletevarient({{ $k }})">
                             <i class="bi-trash"></i>
                         </a>
                     </div>
-                </th>
+                </th> --}}
             </tr>
         @empty
             <tr>
@@ -167,7 +171,7 @@
                 </ul>
                 <div class="tab-content" id="TabContent">
                     <div class="tab-pane fade show active" id="media" role="tabpanel" aria-labelledby="media-tab">
-                        <div class="row" id="file_container">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="file_container">
                         </div>
                     </div>
                     <div class="tab-pane fade show" id="upload" role="tabpanel" aria-labelledby="upload-tab">
@@ -198,7 +202,7 @@
     </div>
 </div>
 
-<div class="modal fade" id="proudct_asset_modal" tabindex="-1" aria-labelledby="uploadFilesModalLabel"
+<div class="modal fade" id="product_asset_modal" tabindex="-1" aria-labelledby="uploadFilesModalLabel"
 aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
@@ -208,30 +212,49 @@ aria-hidden="true">
             </div>
             <!-- Body -->
             <div class="modal-body">
-                <!-- Dropzone -->
-                <div id="attachFilesNewProjectLabel" class="js-dropzone dz-dropzone dz-dropzone-card">
-                    <div class="dz-message">
-                        <img class="avatar avatar-xl avatar-4x3 mb-3"
-                            src="{{ asset('assets/img/icons') }}/oc-browse.svg" alt="Image Description"
-                            data-hs-theme-appearance="default">
-                        <h5>Drag and drop your file here</h5>
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                    <li class="nav-item waves-effect waves-light">
+                        <a class="nav-link" id="media-tab" data-toggle="tab" href="#media" role="tab"
+                            aria-controls="media" aria-selected="false">Media</a>
+                    </li>
+                    <li class="nav-item waves-effect waves-light">
+                        <a class="nav-link" id="upload-tab" data-toggle="tab" href="#upload" role="tab"
+                            aria-controls="upload" aria-selected="false">Upload</a>
+                    </li>
+                </ul>
+                <div class="tab-content" id="TabContent">
+                    <div class="tab-pane fade show active" id="media" role="tabpanel" aria-labelledby="media-tab">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="file_asset_container">
+                        </div>
+                    </div>
+                    <div class="tab-pane fade show" id="upload" role="tabpanel" aria-labelledby="upload-tab">
+                        <!-- Dropzone -->
+                        <div id="attachFilesNewProjectLabel" class="js-dropzone dz-dropzone dz-dropzone-card">
+                            <div class="dz-message">
+                                <img class="avatar avatar-xl avatar-4x3 mb-3"
+                                    src="{{ asset('assets/img/icons') }}/oc-browse.svg" alt="Image Description"
+                                    data-hs-theme-appearance="default">
+                                <h5>Drag and drop your file here</h5>
 
-                        <p class="mb-2">or</p>
+                                <p class="mb-2">or</p>
 
-                        <span class="btn btn-white btn-sm" id="browse"
-                            onclick='return uploadPrepareAjax(0,1 )'>Browse
-                            files</span>
-                        <input type="file" id='prepare_images' name="file" multiple
-                            style="display: none">
+                                <span class="btn btn-white btn-sm" id="browse"
+                                    onclick='return uploadPrepareAjax(0,1 )'>Browse
+                                    files</span>
+                                <input type="file" id='prepare_images' name="file" multiple
+                                    style="display: none">
+                            </div>
+                        </div>
+                        <span class="btn btn-success btn-sm" id="browse"
+                            onclick='return uploadAsset()'>Upload</span>
+                        <!-- End Dropzone -->
                     </div>
                 </div>
-                <span class="btn btn-success btn-sm" id="browse"
-                    onclick='uploadAsset()'>Upload</span>
-                <!-- End Dropzone -->
             </div>
         </div>
     </div>
 </div>
+
 
 <script>
     var selectedId = 0;
@@ -249,6 +272,7 @@ aria-hidden="true">
             url: "http://localhost:8000/backend/filemanager/files",
             method: 'get',
             success: function(files) {
+                $('#file_container').html('');
                 files = files.files;
                 var assets = "{{ asset('/uploads/all') }}";
                 $('#file_container').html('');
@@ -256,24 +280,79 @@ aria-hidden="true">
                 var selectedValue = $(`#variant-${selectedId}-thumbnail`).val();
 
                 for (var i = 0; i < files.length; i++) {
-
+                    console.log(files[i].type)
                     var content = ``;
 
-                    if (selectedValue == files[i].id) {
-                        content = `<div class='col-md-4'>
-                            <label>
-                                <img src='${assets}/${files[i].file_name}' style='width:100%;height:200px;' class='thumbnail'/>
-                                <input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' checked data-file-id='${files[i].id}'/>
-                            </label>
-                        </div>`;
-                    } else {
-                        content = `<div class='col-md-4'>
-                            <label>
-                                <img src='${assets}/${files[i].file_name}' style='width:100%;height:200px;' class='thumbnail'/>
-                                <input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}' />
-                            </label>
-                        </div>`;
-                    }
+                    // if (selectedValue == files[i].id) {
+                    //     content = `<div class='col-md-4'>
+                    //         <label>
+                    //             <img src='${assets}/${files[i].file_name}' style='width:100%;height:200px;' class='thumbnail'/>
+                    //             <input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' checked data-file-id='${files[i].id}'/>
+                    //         </label>
+                    //     </div>`;
+                    // } else {
+                    //     content = `<div class='col-md-4'>
+                    //         <label>
+                    //             <img src='${assets}/${files[i].file_name}' style='width:100%;height:200px;' class='thumbnail'/>
+                    //             <input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}' />
+                    //         </label>
+                    //     </div>`;
+                    // }
+
+                    content = `<div class="col mb-3 mb-lg-5">
+                        <div id="file${files[i].id}"
+    class="card card-sm card-hover-shadow card-header-borderless h-100 text-center 
+${selectedValue == files[i].id ? 'selected' : ""}
+">
+    <div class="card-header card-header-content-between border-0">
+        <span class="small">${files[i].file_size}kb</span>
+        <!-- Dropdown -->
+        <div class="dropdown">
+            <div class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
+                <span class="dropdown-header">Settings</span>
+
+                <a class="dropdown-item" href="#">
+                    <i class="bi-share dropdown-item-icon"></i> Share file
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="bi-folder-plus dropdown-item-icon"></i> Move to
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="bi-star dropdown-item-icon"></i> Add to stared
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="bi-pencil dropdown-item-icon"></i> Rename
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="bi-download dropdown-item-icon"></i> Download
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" href="#">
+                    <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="bi-trash dropdown-item-icon"></i> Delete
+                </a>
+            </div>
+        </div>
+        <!-- End Dropdown -->
+    </div>
+ <div class="card-body">`
+    +
+    (files[i].type == 'image' ? 
+            `<img class="avatar-xxl"
+            src="{{ url('uploads/all') }}/${files[i].file_name}"
+            alt="Image Description">` : 
+            `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`)
+    + 
+    `</div><div class="card-body">
+        <h5 class="card-title"><label><input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
+        <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
+    </div>
+</div></div>`
 
                     $('#file_container').append(content);
                 }
@@ -299,24 +378,137 @@ aria-hidden="true">
 
     function assetSelect(i) {
         selectedId = i;
-        $('#proudct_asset_modal').modal('show');
-    }
+
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            }
+        });
+
+
+        jQuery.ajax({
+            url: "http://localhost:8000/backend/filemanager/files",
+            method: 'get',
+            success: function(files) {
+                files = files.files;
+                var assets = "{{ asset('/uploads/all') }}";
+                $('#file_container').html('');
+
+                var selectedValue = $(`#variant-${selectedId}-thumbnail`).val();
+                $('#file_asset_container').html('');
+
+                for (var i = 0; i < files.length; i++) {
+                    console.log(files[i].type)
+                    var content = ``;
+
+                    // if (selectedValue == files[i].id) {
+                    //     content = `<div class='col-md-4'>
+                    //         <label>
+                    //             <img src='${assets}/${files[i].file_name}' style='width:100%;height:200px;' class='thumbnail'/>
+                    //             <input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' checked data-file-id='${files[i].id}'/>
+                    //         </label>
+                    //     </div>`;
+                    // } else {
+                    //     content = `<div class='col-md-4'>
+                    //         <label>
+                    //             <img src='${assets}/${files[i].file_name}' style='width:100%;height:200px;' class='thumbnail'/>
+                    //             <input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}' />
+                    //         </label>
+                    //     </div>`;
+                    // }
+
+                    content = `<div class="col mb-3 mb-lg-5">
+                        <div id="file${files[i].id}"
+        class="card card-sm card-hover-shadow card-header-borderless h-100 text-center 
+        ${selectedValue == files[i].id ? 'selected' : ""}
+        ">
+        <div class="card-header card-header-content-between border-0">
+        <span class="small">${files[i].file_size}kb</span>
+        <!-- Dropdown -->
+        <div class="dropdown">
+            <div class="dropdown-menu dropdown-menu-end"
+                aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
+                <span class="dropdown-header">Settings</span>
+
+                <a class="dropdown-item" href="#">
+                    <i class="bi-share dropdown-item-icon"></i> Share file
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="bi-folder-plus dropdown-item-icon"></i> Move to
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="bi-star dropdown-item-icon"></i> Add to stared
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="bi-pencil dropdown-item-icon"></i> Rename
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="bi-download dropdown-item-icon"></i> Download
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <a class="dropdown-item" href="#">
+                    <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
+                </a>
+                <a class="dropdown-item" href="#">
+                    <i class="bi-trash dropdown-item-icon"></i> Delete
+                </a>
+            </div>
+        </div>
+        <!-- End Dropdown -->
+        </div>
+        <div class="card-body">`
+        +
+        (files[i].type == 'image' ? 
+            `<img class="avatar-xxl"
+            src="{{ url('uploads/all') }}/${files[i].file_name}"
+            alt="Image Description">` : 
+            `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`)
+        + 
+        `</div><div class="card-body">
+        <h5 class="card-title"><label><input type='radio' id='product_assets' name='product_assets' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
+        <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
+        </div>
+        </div></div>`
+
+                    $('#file_asset_container').append(content);
+                }
+
+                $('#product_asset_modal').modal('show');
+            }
+        });
+
+        $('#file_asset_container').on('click', '#product_assets', function() {
+            var assets = "{{ asset('/uploads/all') }}";
+
+            // $(`#selected_${selectedId}_image`).html(`<img src='${assets}/${$(this).val()}' style='width: 150px;height: 100px;'/>`);
+            $(`#selected_${selectedId}_asset`).html('<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="width: 60px;"><br/>' + $(this).parent().text());
+            $(`#variant-${selectedId}-assets`).val($(this).attr('data-file-id'));
+        });
+}
 
     function uploadAsset() {
 
         uploadAjax(0, 1, " ");
-
         setTimeout(() => {
-            $.ajax({
-                url: "{{ url('backend/filemanager/getUploadedAssetsId') }}",
-                method: 'get',
-                success: function (data) {
-
-                    $(`#variant-${selectedId}-assets`).val(data);
-                    $(`#selected_${selectedId}_asset`).html("<a style='padding: 8px;border: 1px solid grey;'>*</a>");
-                    $('#proudct_asset_modal').modal('hide');
-                }
-            })
+            assetSelect(selectedId);
+            // $(`#variant-${selectedId}-assets`).val(data);
+            // $(`#selected_${selectedId}_asset`).html("<a style='padding: 8px;border: 1px solid grey;'>*</a>");
+            // $('#product_asset_modal').modal('hide');
         }, 500);
+
+        // setTimeout(() => {
+        //     $.ajax({
+        //         url: "{{ url('backend/filemanager/getUploadedAssetsId') }}",
+        //         method: 'get',
+        //         success: function (data) {
+
+        //             $(`#variant-${selectedId}-assets`).val(data);
+        //             $(`#selected_${selectedId}_asset`).html("<a style='padding: 8px;border: 1px solid grey;'>*</a>");
+        //             $('#product_asset_modal').modal('hide');
+        //         }
+        //     })
+        // }, 500);
     }
 </script>
