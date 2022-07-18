@@ -19,14 +19,17 @@
 
     <tbody id="addVariantsContainer">
         @forelse($variants as $k => $variant)
+            @php
+                
+                $current_name = '';
+                $attributes_ids = '';
+                $variants_ids = '';
+
+            @endphp
             @if (!isset($variant->id))
                 @php
-                
-                    $current_name = '';
-                    $attributes_ids = '';
-                    $variants_ids = '';
                     
-                    foreach ((array)$variant as $key => $parameters) {
+                    foreach ((array) $variant as $key => $parameters) {
                         $params = explode('-', $parameters);
                         $sep = $key == 0 ? '' : ' - ';
                         $sep2 = $key == 0 ? '' : ',';
@@ -39,28 +42,28 @@
             @endif
             <tr role="row" class="odd" id="variantproduct-{{ $k }}">
                 <th class="table-column-ps-0">
-                    @if (isset($variant->name))
-                        {{ $variant->name }}
+                    @if (isset($variant->variant_name))
+                        {{ $variant->variant_name }}
                     @else
                         {{-- $current_name --}}
                     @endif
-                    <input type="hidden" name='variant[{{ $k }}][name]'
-                        @if (isset($variant->name)) value="{{ $variant->name }}"
+                    <input type="hidden" name='variant[{{ $k }}][variant_name]'
+                        @if (isset($variant->variant_name)) value="{{ $variant->variant_name }}"
                     @else
                         value="{{-- $current_name --}}" @endif>
                 </th>
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="min-width: 7rem;">
                         <div class="input-group-prepend input-group-text">USD</div>
-                        <input type="text" class="form-control" name="variant[{{ $k }}][price]"
-                            @if (isset($variant->price)) value='{{ $variant->price }}' @endif>
+                        <input type="text" class="form-control" name="variant[{{ $k }}][variant_price]"
+                            @if (isset($variant->variant_price)) value='{{ $variant->variant_price }}' @endif>
                     </div>
                 </th>
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="width: 11rem;">
                         <div class="input-group-prepend input-group-text">SKU</div>
-                        <input type="text" class="form-control" name="variant[{{ $k }}][sku]"
-                            @if (isset($variant->sku)) value='{{ $variant->sku }}' @endif>
+                        <input type="text" class="form-control" name="variant[{{ $k }}][variant_sku]"
+                            @if (isset($variant->variant_sku)) value='{{ $variant->variant_sku }}' @endif>
                     </div>
                 </th>
 
@@ -70,8 +73,8 @@
                         <div class="js-quantity-counter-input row align-items-center">
                             <div class="col">
                                 <input class="js-result form-control form-control-quantity-counter" type="text"
-                                    name="variant[{{ $k }}][quantity]"
-                                    @if (isset($variant->quantity)) value='{{ $variant->quantity }}' @else value="1"  @endif>
+                                    name="variant[{{ $k }}][variant_quantity]"
+                                    @if (isset($variant->variant_quantity)) value='{{ $variant->variant_quantity }}' @else value="1" @endif>
                             </div>
                             <!-- End Col -->
 
@@ -101,7 +104,7 @@
                 </th>
                 <th class="table-column-ps-0">
                     <a href='javascript:;'> select </a>
-                    <input type="hidden" name="variant[{{ $k }}][image]"
+                    <input type="hidden" name="variant[{{ $k }}][variant_image]"
                         id="variant-{{ $k }}-image">
                 </th>
                 <th class="table-column-ps-0">
