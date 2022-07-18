@@ -51,7 +51,7 @@
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price }} $</td>
                                             <td>{{ $product->qty }}</td>
-                                            <td>{{ $product->product_category->category_name }}</td>
+                                            <td>{{ $product->product_category ? $product->product_category->category_name : "" }}</td>
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <a class="btn btn-dark btn-sm" href="{{ route('backend.products.edit', $product->id) }}"> <i class="bi-pencil"></i> Edit </a>

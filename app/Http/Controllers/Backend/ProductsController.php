@@ -106,6 +106,7 @@ class ProductsController extends Controller
         $product = Product::create($data);
         $id_product = $product->id;
 
+
         foreach($variants as $variant)
         {
             $variant_data = $variant;
@@ -181,6 +182,7 @@ class ProductsController extends Controller
         $data['is_madetoorder'] = ($req->is_madetoorder & $req->is_madetoorder == 1) ? 1 : 0;
         $data['product_attributes'] = $attributes;
         $data['product_attribute_values'] = $values;
+
         if($req->slug == "")
         {
             $data['slug'] = str_replace(" ","-", strtolower($req->name)).$sep;
