@@ -81,7 +81,7 @@ class AttributesController extends Controller
   
             foreach ($value as $data)
             {
-                array_push($table[$i], $data['attribute_id']."-".$data['id']."-".$data['name']);
+                array_push($table[$i], $data['attribute_id']."-".$data['id']."-".$data['variant_name']);
             }
             $i++;
             
