@@ -32,7 +32,7 @@
 <body>
     @include('backend.layouts.navbars.navbar')
     <div class="content-wrap">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row">
                 @include('backend.layouts.navbars.sidebar')
                 <div class="col-lg-auto col-sm-12">
