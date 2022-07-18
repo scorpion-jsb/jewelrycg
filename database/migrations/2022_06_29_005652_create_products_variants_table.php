@@ -20,9 +20,13 @@ return new class extends Migration
             $table->string("variant_attribute_value");
             $table->float("variant_price");
             $table->string("variant_sku")->nullable();
+            $table->text("variant_thumbnail")->nullable();
+            $table->text("variant_name")->nullable();
             $table->integer("variant_quantity")->nullable();
-            $table->text("variant_images")->nullable();
             $table->text("variant_assets")->nullable();
+            $table->text("digital_download_assets")->nullable();
+            $table->integer("digital_download_assets_count")->nullable();
+            $table->integer("digital_download_assets_limit")->nullable();
             $table->timestamps();
         });
     }
