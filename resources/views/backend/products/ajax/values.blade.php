@@ -24,7 +24,6 @@
     <tbody id="addVariantsContainer">
         @forelse($variants as $k => $variant)
             @php
-                
                 $current_name = '';
                 $attributes_ids = '';
                 $variants_ids = '';

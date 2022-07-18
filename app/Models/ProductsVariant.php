@@ -40,4 +40,16 @@ class ProductsVariant extends Model
         ]);
     }
 
+    public function setPriceToFloat()
+    {
+        $this->variant_price = number_format($this->variant_price / 100, 2);
+        return $this;        
+    }
+
+    public static function stringPriceToCents(string $variant_price)
+    {
+        $variant_price = str_replace('.', '', $variant_price);
+        $variant_price = str_replace(',', '', $variant_price);
+        return (int) $variant_price;
+    }
 }

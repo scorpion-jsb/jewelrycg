@@ -16,12 +16,12 @@ return new class extends Migration
         Schema::table('products', function (Blueprint $table) {
             $table->integer("status")->nullable();
             $table->string("sku")->nullable();
-            $table->float("price_discount")->nullable();
+            $table->integer("price_discount")->nullable();
             $table->string("price_discount_type")->nullable();
             $table->dateTime("price_discount_start")->nullable();
             $table->dateTime("price_discount_end")->nullable();
             $table->string("shipping_type")->nullable();
-            $table->float("shipping_cost")->nullable();
+            $table->integer("shipping_cost")->nullable();
             $table->integer("is_digital")->nullable();
             $table->integer("is_virtual")->nullable();
             $table->integer("is_backorder")->nullable();

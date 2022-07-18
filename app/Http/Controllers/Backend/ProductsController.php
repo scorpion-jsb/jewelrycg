@@ -111,6 +111,7 @@ class ProductsController extends Controller
         {
             $variant_data = $variant;
             $variant_data['product_id'] = $id_product;
+            $variant_data['variant_price'] = Product::stringPriceToCents($variant_data['variant_price']);
             
             ProductsVariant::create($variant_data);
         }
@@ -148,10 +149,18 @@ class ProductsController extends Controller
     {
         $product = Product::whereId($id)->with(['tags', 'variants', 'variants.uploads'])->firstOrFail();
         $product->setPriceToFloat();
+
+        $variants = ProductsVariant::where('product_id', $id)->get();
+
+        $variants->each(function($product){
+            $product->setPriceToFloat();
+        });
+
         $selected_attributes = explode(',', $product->product_attributes);
         $prepare_values  = Attribute::whereIn('id', $selected_attributes)->with(['values'])->get();
         return view('backend.products.edit', [
             'product' => $product,
+            'variants' => $variants,
             'categories' => ProductsCategorie::all(),
             'attributes' => Attribute::orderBy('id', 'DESC')->get(),
             'tags' => ProductTag::all(),
@@ -198,6 +207,8 @@ class ProductsController extends Controller
         {
             $variant_data = $variant;
             $variant_data['product_id'] = $product->id;
+            $variant_data['variant_price'] = Product::stringPriceToCents($variant_data['variant_price']);
+
             ProductsVariant::create($variant_data);
         }
         
