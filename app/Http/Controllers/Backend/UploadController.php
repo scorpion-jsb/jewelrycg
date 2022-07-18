@@ -321,6 +321,22 @@ class UploadController extends Controller
         }
     }
 
+    public function getUploadedFile(Request $request) {
+        $uploads = Upload::orderBy('id', 'DESC')->where('type', 'image')->where('id_user', Auth::user()->id);
+
+        if ($request->search != null) {
+            $uploads->where('file_original_name', 'like', '%'.$request->search.'%');
+        }
+
+        return [
+            'files' =>  $uploads->get()
+        ];
+    }
+
+    public function getUploadedAssetsId(Request $request) {
+        return Upload::where('type', '!=', 'image')->where('id_user', Auth::user()->id)->orderBy('id', 'DESC')->first()->id;
+    }
+
     public function get_filemanager(Request $request)
     {
         $uploads = Upload::orderBy('id', 'DESC')->where('id_user', Auth::user()->id);
