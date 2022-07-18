@@ -100,7 +100,7 @@
                                                     <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
                                                         <span class="dropdown-header">Options</span>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" href="javascript:;"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
+                                                        <a class="dropdown-item" onclick="return confirm('Are you sure you want to delete this product?')" href="{{ route("backend.blog.tags.delete", $tag->id) }}"><i class="bi-trash dropdown-item-icon"></i> Delete </a>
                                                     </div>
                                                 </div>
                                                 <!-- End Unfold -->

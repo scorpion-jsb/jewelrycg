@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\BlogPost;
+use App\Models\BlogPostCategorie;
 use App\Models\BlogCategorie;
 use App\Http\Requests\CategorieStoreRequest;
 
@@ -109,6 +111,15 @@ class BlogcategoriesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $firstId = BlogCategorie::first()->id;
+
+        if ($firstId != $id) {
+            $product = BlogCategorie::findOrFail($id);
+            $product->delete();
+            
+            BlogPostCategorie::where('id_category', $id)->update(['id_category' => $firstId]);
+        }
+
+        return redirect()->route('backend.blog.categories.list');
     }
 }
