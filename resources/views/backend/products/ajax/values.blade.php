@@ -45,12 +45,12 @@
                     @if (isset($variant->variant_name))
                         {{ $variant->variant_name }}
                     @else
-                        {{-- $current_name --}}
+                        {{ $current_name }}
                     @endif
                     <input type="hidden" name="variant[{{ $k }}][name]"
                         @if (isset($variant->variant_name)) value="{{ $variant->variant_name }}"
                     @else
-                        value="{{-- $current_name --}}" @endif>
+                        value="{{ $current_name }}" @endif>
                 </th>
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="min-width: 7rem;">
