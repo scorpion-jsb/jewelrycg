@@ -146,7 +146,7 @@ class ProductsController extends Controller
      */
     public function edit($id)
     {
-        $product = Product::whereId($id)->with(['tags', 'variants'])->firstOrFail();
+        $product = Product::whereId($id)->with(['tags', 'variants', 'variants.uploads'])->firstOrFail();
         $product->setPriceToFloat();
         $selected_attributes = explode(',', $product->product_attributes);
         $prepare_values  = Attribute::whereIn('id', $selected_attributes)->with(['values'])->get();

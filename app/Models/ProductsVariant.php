@@ -16,8 +16,18 @@ class ProductsVariant extends Model
         'variant_sku',
         'variant_quantity',
         'variant_thumbnail',
+        'variant_assets',
         'digital_download_assets',
         'digital_download_assets_count',
         'digital_download_assets_limit',
     ];
+
+    public function uploads()
+    {
+        return $this->hasOne(Upload::class, 'id', 'variant_thumbnail')->withDefault([
+            'file_name' => "none.png",
+            'id' => null
+        ]);
+    }
+
 }

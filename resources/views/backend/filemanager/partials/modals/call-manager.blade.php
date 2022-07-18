@@ -81,9 +81,13 @@
                                         </div>
 
                                         <div class="card-body">
-                                            <img class="avatar-xxl"
+                                            @if ($file->type != 'image')
+                                                <img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">
+                                            @else
+                                                <img class="avatar-xxl"
                                                 src="{{ url('uploads/all') }}/{{ $file->file_name }}"
                                                 alt="Image Description">
+                                            @endif
                                         </div>
 
                                         <div class="card-body">
