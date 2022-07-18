@@ -30,4 +30,14 @@ class ProductsVariant extends Model
         ]);
     }
 
+    public function asset()
+    {
+        return $this->hasOne(Upload::class, 'id', 'digital_download_assets')->withDefault([
+            'file_name' => "none",
+            'file_original_name' => 'none',
+            'id' => null,
+            'extension' => ''
+        ]);
+    }
+
 }
