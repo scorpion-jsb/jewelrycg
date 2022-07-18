@@ -104,7 +104,7 @@
                 </th>
                 <th class="table-column-ps-0">
                     <a href='javascript:;'> select </a>
-                    <input type="hidden" name="variant[{{ $k }}][variant_image]"
+                    <input type="hidden" name="variant[{{ $k }}][variant_thumbnail]"
                         id="variant-{{ $k }}-image">
                 </th>
                 <th class="table-column-ps-0">
