@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\UploadController;
 
 
 
+
 class ProductsController extends Controller
 {
     /**
@@ -91,7 +92,6 @@ class ProductsController extends Controller
     {
         $tags = (array)$req->input('tags');
         $variants = (array)$req->input('variant');
-
         $attributes = implode(",",(array)$req->input('attributes'));
         $values = implode(",",(array)$req->input('values'));
         $data = $req->all();
@@ -123,6 +123,7 @@ class ProductsController extends Controller
                 'id_tag' => $id_tag,
                 'id_product' => $id_product,
              ]);
+
         }
         return redirect()->route('backend.products.edit', $product->id);
     }

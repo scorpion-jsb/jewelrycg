@@ -61,10 +61,10 @@
                         <h3 class="card-header-title">{{ $attribute->name }}</h3>
                     </div>
                 </div>
-                <div class="table-responsive datatable-custom position-relative">
+                <div class="datatable-custom position-relative">
                     <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
                         <table id="datatable"
-                            class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer" role="grid" aria-describedby="datatable_info">
+                            class="table table-lg table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer table-responsive" role="grid" aria-describedby="datatable_info">
                             <thead class="thead-light">
                                 <tr role="row">
                                     <th class="table-column-pe-0 sorting_disabled" aria-label="">

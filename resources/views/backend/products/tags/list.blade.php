@@ -58,9 +58,9 @@
                         <h3 class="card-header-title">Product Tags</h3>
                     </div>
                 </div>
-                <div class="table-responsive datatable-custom position-relative">
+                <div class="datatable-custom position-relative">
                     <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
-                        <table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer">
+                        <table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer table-responsive">
                             <thead class="thead-light">
                                 <tr role="row">
                                     <th class="sorting_disabled" rowspan="1" colspan="1" aria-label="">

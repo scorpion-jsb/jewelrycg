@@ -1,4 +1,5 @@
 <x-app-layout :page-title="$product->name">
+    
     <section class="product_detail_single pt-4 pb-3">
         <div class="container">
             <div class="product-container">

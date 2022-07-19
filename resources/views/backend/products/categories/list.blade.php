@@ -20,9 +20,9 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card rounded-0">
-                        <div class="table-full-width table-responsive">
+                        <div class="table-full-width">
                             <div class="col-md-12">
-                            <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer">
+                            <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover table-responsive no-footer">
                                 <thead>
                                     <th class="sorting_disabled" aria-label="">
                                         <div class="form-checkbox">

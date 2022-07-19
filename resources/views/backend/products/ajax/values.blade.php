@@ -50,7 +50,7 @@
                     @else
                         {{ $current_name }}
                     @endif
-                    <input type="hidden" name='variant[{{ $k }}][variant_name]'
+                    <input type="hidden" name="variant[{{ $k }}][variant_name]"
                         @if (isset($variant->variant_name)) value="{{ $variant->variant_name }}"
                     @else
                         value="{{ $current_name }}" @endif>
