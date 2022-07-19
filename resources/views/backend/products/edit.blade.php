@@ -53,7 +53,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="desc">Description</label>
-                            <textarea name="description" value='{{ $product->description }}' id="desc" rows="3" class="form-control">{{ $product->description }}</textarea>
+                            <textarea name="description" value='{{ $product->description }}' id="description" rows="3" class="form-control">{{ $product->description }}</textarea>
                         </div>
 
                     </div>
@@ -228,8 +228,8 @@
                                 class="form-control" placeholder="80.00...">
                         </div>
                         <div class="mb-4">
-                            <label for="qty">Quantity in Stock</label>
-                            <input type="number" value='{{ $product->quantity }}' name="quantity" id="qty"
+                            <label for="quantity">Quantity in Stock</label>
+                            <input type="number" value='{{ $product->quantity }}' name="quantity" id="quantity"
                                 class="form-control" min="0">
                         </div>
                         <label class="row form-switch mb-4" for="availabilitySwitch3">
