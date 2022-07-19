@@ -25,7 +25,7 @@ class CartItemEditRequest extends FormRequest
     {
         return [
             'row_id' => 'required|string',
-            'qty' => 'required|integer|min:1|max:100'
+            'quantity' => 'required|integer|min:1|max:100'
         ];
     }
 }
