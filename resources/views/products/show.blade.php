@@ -137,8 +137,8 @@
                             <form action="{{route('cart.store')}}" method="post" class="my-3">
                                 @csrf
                                 <input type="hidden" name="id_product" value="{{$product->id}}">
-                                <button type="submit" class="btn btn-primary shadow-md" {{ $product->qty < 1 ? 'disabled' : null }}>Add to Cart</button>
-                                <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->qty < 1 ? 'disabled' : null }}>Buy Now</button>
+                                <button type="submit" class="btn btn-primary shadow-md" {{ $product->quantity < 1 ? 'disabled' : null }}>Add to Cart</button>
+                                <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->quantity < 1 ? 'disabled' : null }}>Buy Now</button>
                             </form>        
 
                         </div><!--End .bg-white product card-->
