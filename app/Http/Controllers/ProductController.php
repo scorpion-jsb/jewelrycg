@@ -51,11 +51,12 @@ class ProductController extends Controller
 
     public function show($slug)
     {
+        //$product = Product::with(['images' , 'modelpreview'])->whereSlug($slug)->firstOrFail();
         $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
         abort_if(! $product, 404);
         $product->setPriceToFloat();
         $uploads = Upload::whereIn('id', explode(',',$product->product_images))->get(); 
-        $product_images_in_json = $product->images->map(fn($i) => asset($i->path))->toJson();
+        //$product_images_in_json = $product->images->map(fn($i) => asset($i->path))->toJson();
 
         return view('products.show', compact('product', 'product_images_in_json', 'uploads'));
     }
