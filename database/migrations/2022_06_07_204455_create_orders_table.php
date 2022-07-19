@@ -16,11 +16,11 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_user')->constrained('users')->onDelete('cascade');
-            $table->integer('address_shipping');
-            $table->integer('address_billing');
+            $table->string('address_shipping');
+            $table->string('address_billing');
             $table->integer('total_price')->unsigned();
             $table->string('status')->default('Processing');
-            $table->string('message')->nullable();
+            $table->string('message')->nullable()->default(null);
             $table->string('tracking_number');
             $table->timestamps();
         });
