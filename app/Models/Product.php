@@ -49,6 +49,7 @@ class Product extends Model
         'is_virtual',
         'is_madetoorder',
         'is_backorder',
+        'is_trackingquantity',
         'category',
         'quantity',
         'product_images',
@@ -58,7 +59,6 @@ class Product extends Model
         'product_3dpreview',
         'product_attributes',
         'product_attribute_values',
-
     ];
 
     /*

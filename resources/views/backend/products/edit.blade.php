@@ -228,12 +228,12 @@
                                 class="form-control" placeholder="80.00...">
                         </div>
                         <div class="mb-4">
-                            <label class="row form-switch mb-4" for="availabilitySwitch4">
+                            <label class="row form-switch mb-4" for="availabilitySwitch5">
                                 <span class="col-8 col-sm-9 ms-0">
                                     <span class="text-dark">Track Quantity</span>
                                 </span>
                                 <span class="col-4 col-sm-3 text-end">
-                                    <input type="checkbox" name="is_madetoorder" value="1" @if($product->is_madetoorder == 1) checked @endif class="form-check-input" id="availabilitySwitch4">
+                                    <input type="checkbox" name="is_trackingquantity" value="1" @if($product->is_trackingquantity == 1) checked @endif class="form-check-input" id="availabilitySwitch5">
                                 </span>
                             </label>
                         </div>
