@@ -100,6 +100,7 @@ class ProductsController extends Controller
         $data['is_virual'] = $req->is_virual ? 1 : 0;
         $data['is_backorder'] = $req->is_backorder ? 1 : 0;
         $data['is_madetoorder'] = $req->is_madetoorder ? 1 : 0;
+        $data['is_trackingquantity'] = $req->is_trackingquantity ? 1 : 0;
         $data['product_attributes'] = $attributes;
         $data['product_attribute_values'] = $values;
         $data['slug'] = str_replace(" ","-", strtolower($req->name));
@@ -190,6 +191,7 @@ class ProductsController extends Controller
         $data['is_virual'] = ($req->is_virual & $req->is_virual == 1) ? 1 : 0;
         $data['is_backorder'] = ($req->is_backorder & $req->is_backorder == 1) ? 1 : 0;
         $data['is_madetoorder'] = ($req->is_madetoorder & $req->is_madetoorder == 1) ? 1 : 0;
+        $data['is_trackingquantity'] = $req->is_trackingquantity ? 1 : 0;
         $data['product_attributes'] = $attributes;
         $data['product_attribute_values'] = $values;
 

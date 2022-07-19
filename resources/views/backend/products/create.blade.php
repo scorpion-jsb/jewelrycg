@@ -172,6 +172,14 @@
                             <label for="priceNameLabel" class="form-label">Price</label>
                             <input type="text" name="price" id="price" class="form-control" placeholder="0.00">
                         </div>
+                        <label class="row form-switch mb-4" for="availabilitySwitch5">
+                            <span class="col-8 col-sm-9 ms-0">
+                                <span class="text-dark">Track Quantity</span>
+                            </span>
+                            <span class="col-4 col-sm-3 text-end">
+                                <input type="checkbox" name="is_trackingquantity" value="1" class="form-check-input" id="availabilitySwitch5">
+                            </span>
+                        </label>
                         <div class="mb-4">
                             <label for="qty">Quantity in Stock:</label>
                             <input type="number" name="quantity" id="quantity" class="form-control" min="0">
