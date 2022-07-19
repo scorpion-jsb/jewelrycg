@@ -228,6 +228,16 @@
                                 class="form-control" placeholder="80.00...">
                         </div>
                         <div class="mb-4">
+                            <label class="row form-switch mb-4" for="availabilitySwitch4">
+                                <span class="col-8 col-sm-9 ms-0">
+                                    <span class="text-dark">Made to Order</span>
+                                </span>
+                                <span class="col-4 col-sm-3 text-end">
+                                    <input type="checkbox" name="is_madetoorder" value="1" @if($product->is_madetoorder == 1) checked @endif class="form-check-input" id="availabilitySwitch4">
+                                </span>
+                            </label>
+                        </div>
+                        <div class="mb-4">
                             <label for="quantity">Quantity in Stock</label>
                             <input type="number" value='{{ $product->quantity }}' name="quantity" id="quantity"
                                 class="form-control" min="0">
