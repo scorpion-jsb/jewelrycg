@@ -284,7 +284,7 @@ aria-hidden="true">
 
 
                     content = `<div class="col mb-3 mb-lg-5">
-                        <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id ? 'selected' : ""} ">
+                        <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id ? 'selected' : ''} ">
                             <div class="card-header card-header-content-between border-0">
                                 <span class="small">${files[i].file_size}kb</span>
                                 <!-- Dropdown -->
@@ -383,7 +383,7 @@ aria-hidden="true">
                     var content = ``;
 
                     content = `<div class="col mb-3 mb-lg-5">
-                    <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id 'selected' : ""} ">
+                    <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id ?'selected' : ""} ">
                     <div class="card-header card-header-content-between border-0">
                     <span class="small">${files[i].file_size}kb</span>
                     <!-- Dropdown -->
