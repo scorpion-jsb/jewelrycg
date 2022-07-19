@@ -136,21 +136,24 @@
                             @endif
                             <form action="{{route('cart.store')}}" method="post" class="my-3">
                                 @csrf
-                                <div class="border-bottom" >
-                                    <div style="margin-bottom: 16px;">
-                                        <label for="" class="">Bracelet Size: &nbsp;</label>
-                                        <div class="btn-group" data-toggle="buttons">
-                                            @foreach ($variants as $variant)
-                                                <label class="btn btn-default btn-sm" style="border: 1px solid grey">
-                                                    <input type="radio" name="variants" class="sm" > {{ $variant->variant_name }}
-                                                </label>                                              
-                                            @endforeach
-                                      </div>
-                                    {{-- </div class style="padding-bottom: 16px;"> --}}
-                                </div>
+
+                                @if (count($variants) > 0)
+                                    <div class="border-bottom" >
+                                        <div style="margin-bottom: 16px;">
+                                            <label for="" class="">Bracelet Size: &nbsp;</label>
+                                            <div class="btn-group" data-toggle="buttons">
+                                                @foreach ($variants as $variant)
+                                                    <label class="btn btn-default btn-sm" style="border: 1px solid grey">
+                                                        <input type="radio" name="variants" class="sm" > {{ $variant->variant_name }}
+                                                    </label>                                              
+                                                @endforeach
+                                        </div>
+                                        {{-- </div class style="padding-bottom: 16px;"> --}}
+                                    </div>
+                                @endif
                                 <input type="hidden" name="id_product" value="{{$product->id}}">
                                 <button type="submit" class="btn btn-primary shadow-md" {{ $product->is_trackingquantity == 1 && $product->quantity < 1 ? 'disabled' : null }}>Add to Cart</button>
-                                <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->quantity < 1 ? 'disabled' : null }}>Buy Now</button>
+                                <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->is_trackingquantity == 1 &&  $product->quantity < 1 ? 'disabled' : null }}>Buy Now</button>
                             </form>        
 
                         </div><!--End .bg-white product card-->
