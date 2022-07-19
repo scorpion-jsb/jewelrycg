@@ -15,9 +15,9 @@
 <!-- End Page Header -->
 <!-- Card -->
 <div class="mb-4">
-	<div class="table-responsive datatable-custom position-relative mb-4">
+	<div class="datatable-custom position-relative mb-4">
 		<div id="datatable_wrapper" class="border dataTables_wrapper no-footer">
-			<table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer" role="grid" aria-describedby="datatable_info">
+			<table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover table-responsive no-footer" role="grid" aria-describedby="datatable_info">
 				<thead class="thead-light">
 					<tr role="row">
 						<th class="table-column-pe-0 sorting_disabled" rowspan="1" colspan="1" aria-label="">
