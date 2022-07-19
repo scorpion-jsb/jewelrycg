@@ -87,7 +87,7 @@ class Product extends Model
         $price *= 100;
         return (int) $price;
     }
-
+ /*
     public static function getTodaysDeals()
     {
         $order_items = OrderItem::select('id_product', DB::raw('sum(quantity) as total'))
