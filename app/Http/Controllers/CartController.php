@@ -59,7 +59,7 @@ class CartController extends Controller
         return view('checkout', ['buy_now_mode' => 1]); 
     }
 
-    public function editQty(quantityartItemEditRequest $req)
+    public function editQuantity(quantityartItemEditRequest $req)
     {
         Cart::instance('default')->update($req->row_id, $req->quantity
         quantity);
