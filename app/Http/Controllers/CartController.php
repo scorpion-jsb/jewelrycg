@@ -38,7 +38,7 @@ class CartController extends Controller
             Cart::store(auth()->id());
         }
 
-        return redirect()->route('products.show', $product->id)->with(['message' => 'Successfully added to Cart!']);
+        return redirect()->route('products.show', $product->slug)->with(['message' => 'Successfully added to Cart!']);
     }
 
     public function buyNow(StoreProductCartRequest $req)
@@ -111,7 +111,7 @@ class CartController extends Controller
         Cart::restore(auth()->id());
         Cart::store(auth()->id());
 
-        return redirect()->route('products.show', $product->id)->with(['wishlist-message' => 'Successfully added to Wishlist!']);
+        return redirect()->route('products.show', $product->slug)->with(['wishlist-message' => 'Successfully added to Wishlist!']);
     }
 
     public function removeFromWishlist(RemoveFromWishlistRequest $req)
