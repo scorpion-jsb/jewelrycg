@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('address_billing');
             $table->integer('total_price')->unsigned();
             $table->string('status')->default('Processing');
-            $table->string('message')->nullable()->default(null);
+            $table->string('message')->nullable();
             $table->string('tracking_number');
             $table->timestamps();
         });

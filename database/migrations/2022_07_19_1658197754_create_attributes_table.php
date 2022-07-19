@@ -13,7 +13,7 @@ class CreateAttributesTable extends Migration
         $table->id();
 		$table->string('name');
 		$table->integer('type',);
-		$table->string('slug')->nullable()->default('NULL');
+		$table->string('slug')->nullable();
 		$table->timestamps();
 
         });

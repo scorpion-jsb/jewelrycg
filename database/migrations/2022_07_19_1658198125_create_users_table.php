@@ -21,9 +21,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('phone')->nullable()->default(null);
-            $table->string('address_shipping')->nullable()->default(null);
-            $table->string('address_billing')->nullable()->default(null);
+            $table->string('phone')->nullable();
+            $table->string('address_shipping')->nullable();
+            $table->string('address_billing')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

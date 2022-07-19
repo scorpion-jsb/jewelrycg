@@ -10,8 +10,8 @@ class CreateBlogPostsTable extends Migration
     {
         Schema::create('blog_posts', function (Blueprint $table) {
             $table->id();
-            $table->integer('status',)->nullable()->default('NULL');
-            $table->integer('author_id',)->nullable()->default('NULL');
+            $table->integer('status',)->nullable();
+            $table->integer('author_id',)->nullable();
             $table->string('name');
             $table->string('slug');
             $table->text('post_excerpt');

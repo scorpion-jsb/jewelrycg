@@ -14,7 +14,7 @@ class CreateAttributeValuesTable extends Migration
 		$table->integer('attribute_id',);
 		$table->string('name');
 		$table->string('value');
-		$table->string('slug')->nullable()->default('NULL');
+		$table->string('slug')->nullable();
 		$table->timestamps();
 
         });
