@@ -25,7 +25,7 @@
                     <x-input id="first_name" class="block mt-1 w-full" type="text" name="first_name" :value="old('first_name')" required autofocus />
                 </div>
                 <div class="col-6">
-                    <x-label for="last_name" :value="__('Last N=name')" />
+                    <x-label for="last_name" :value="__('Last Name')" />
                     <x-input id="last_name" class="block mt-1 w-full" type="text" name="last_name" :value="old('last_name')" required autofocus />
                 </div>
             </div>
