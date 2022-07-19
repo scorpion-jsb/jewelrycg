@@ -1,9 +1,4 @@
 <x-app-layout :page-title="$product->name">
-    <x-slot:scripts>
-        <script>
-            const product_images = {!! $product_images_in_json !!};
-        </script>
-    </x-slot>
     <section class="product_detail_single pt-4 pb-3">
         <div class="container">
             <div class="product-container">
@@ -68,7 +63,7 @@
                             </div>
                                 
                             <div class="product-details-misc mb-4">
-                                {{$product->desc}}
+                                {{$product->description}}
                             </div>
 
                             <div class="product-details-price mb-4">
@@ -113,7 +108,7 @@
                                             </form>
                                         @endif
                                     @endauth
-                                    @if ($product->qty)
+                                    @if ($product->quantity)
                                         <span class="badge badge-lg bg-success text-light rounded-pill"><small>On Stock: {{$product->qty}}</small></span>
                                     @else
                                         <span class="badge badge-lg bg-danger text-light rounded-pill"><small>Out of Stock</small></span>

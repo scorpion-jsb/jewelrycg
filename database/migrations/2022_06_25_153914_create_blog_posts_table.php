@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
+            $table->text('post_excerpt');
             $table->integer('thumbnail')->nullable();
             $table->text('post');
             $table->integer('tags_id');

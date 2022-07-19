@@ -47,7 +47,7 @@
 
                         <div class="mb-4">
                             <label for="desc">Description</label>
-                            <textarea name="desc" id="desc" rows="3" class="form-control"></textarea>
+                            <textarea name="description" id="desc" rows="3" class="form-control"></textarea>
                         </div>
                     </div>
                 </div>
@@ -174,7 +174,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="qty">Quantity in Stock:</label>
-                            <input type="number" name="qty" id="qty" class="form-control" min="0">
+                            <input type="number" name="quantity" id="qty" class="form-control" min="0">
                         </div>
                         <label class="row form-switch mb-4" for="availabilitySwitch3">
                             <span class="col-8 col-sm-9 ms-0">
