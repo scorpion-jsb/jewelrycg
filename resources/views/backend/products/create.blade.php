@@ -360,7 +360,7 @@
             var isTrackQuantity = $('#availabilitySwitch5').prop('checked');
 
             if (!isTrackQuantity) {
-                $('#quantity').val(0);
+                // $('#quantity').val(0);
                 $('#quantity').attr('disabled', 'true');
             } else {
                 $('#quantity').removeAttr('disabled');
