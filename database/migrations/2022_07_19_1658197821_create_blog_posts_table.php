@@ -14,10 +14,10 @@ class CreateBlogPostsTable extends Migration
             $table->integer('author_id',)->nullable();
             $table->string('name');
             $table->string('slug');
-            $table->text('post_excerpt');
+            $table->text('post_excerpt')->nullable();
             $table->integer('thumbnail')->nullable();
-            $table->text('post');
-            $table->integer('tags_id');
+            $table->text('post')->nullable();
+            $table->integer('tags_id')->nullable();
             $table->integer('categorie_id');
             $table->timestamps();
             $table->softDeletes();
