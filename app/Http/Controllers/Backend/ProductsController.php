@@ -199,7 +199,7 @@ class ProductsController extends Controller
         }
         $product = Product::findOrFail($product);
         $product->update($data);
-        $product->replaceImagesIfExist($req->images);
+        //$product->replaceImagesIfExist($req->images);
         ProductTagsRelationship::where('id_product', $product->id)->delete();
         ProductsVariant::where('product_id', $product->id)->delete();
 
