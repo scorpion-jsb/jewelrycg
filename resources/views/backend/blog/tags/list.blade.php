@@ -60,9 +60,9 @@
                         <h3 class="card-header-title">Tags</h3>
                     </div>
                 </div>
-                <div class="table-responsive datatable-custom position-relative">
+                <div class="datatable-custom position-relative">
                     <div id="datatable_wrapper" class="dataTables_wrapper no-footer">
-                        <table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer" role="grid" aria-describedby="datatable_info">
+                        <table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover table-responsive no-footer" role="grid" aria-describedby="datatable_info">
                             <thead class="thead-light">
                                 <tr role="row">
                                     <th class="table-column-pe-0 sorting_disabled" aria-label="">
