@@ -230,7 +230,7 @@
                         <div class="mb-4">
                             <label class="row form-switch mb-4" for="availabilitySwitch4">
                                 <span class="col-8 col-sm-9 ms-0">
-                                    <span class="text-dark">Made to Order</span>
+                                    <span class="text-dark">Track Quantity</span>
                                 </span>
                                 <span class="col-4 col-sm-3 text-end">
                                     <input type="checkbox" name="is_madetoorder" value="1" @if($product->is_madetoorder == 1) checked @endif class="form-check-input" id="availabilitySwitch4">
