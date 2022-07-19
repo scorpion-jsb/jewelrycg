@@ -110,7 +110,7 @@
                                         @endif
                                     @endauth
                                     @if ($product->quantity)
-                                        <span class="badge badge-lg bg-success text-light rounded-pill"><small>On Stock: {{$product->qty}}</small></span>
+                                        <span class="badge badge-lg bg-success text-light rounded-pill"><small>On Stock: {{$product->quantity}}</small></span>
                                     @else
                                         <span class="badge badge-lg bg-danger text-light rounded-pill"><small>Out of Stock</small></span>
                                     @endif
