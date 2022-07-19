@@ -80,19 +80,19 @@ class Order extends Model
     {
         $cart_items = Cart::content();
         $cart_items = $cart_items->map(function($i, $k) {
-            $i->model->decrement('qty', $i->qty);
+            $i->model->decrement('quantity', $i->quantity);
             return [
                 'id_product' => $i->id,
-                'qty' => $i->qty,
+                'quantity' => $i->quantity,
                 'price' => Product::getPriceInCents($i->price)
             ];
         });
         $this->items()->createMany($cart_items->toArray());
     }
 
-    public function restoreProductsQty()
+    public function restoreProductsQuantity()
     {
-        Cart::content()->map(fn($i, $k) => $i->model->increment('qty', $i->qty));
+        Cart::content()->map(fn($i, $k) => $i->model->increment('quantity', $i->quantity));
     }
 
     public function restoreCartItems()
@@ -100,7 +100,7 @@ class Order extends Model
         $this->items->map(fn($i, $k) => Cart::add(
                 $i->id,
                 $i->product->name,
-                $i->qty,
+                $i->quantity,
                 $i->price / 100
             )
             ->associate(Product::class)
