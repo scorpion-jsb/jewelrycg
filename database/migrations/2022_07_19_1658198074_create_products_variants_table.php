@@ -16,12 +16,10 @@ return new class extends Migration
         Schema::create('products_variants', function (Blueprint $table) {
             $table->id();
             $table->integer("product_id");
-            $table->integer("variant_attribute_id");
-            $table->string("variant_attribute_value");
+            $table->text("variant_name")->nullable();
             $table->float("variant_price");
             $table->string("variant_sku")->nullable();
             $table->text("variant_thumbnail")->nullable();
-            $table->text("variant_name")->nullable();
             $table->integer("variant_quantity")->nullable();
             $table->text("variant_assets")->nullable();
             $table->text("digital_download_assets")->nullable();
