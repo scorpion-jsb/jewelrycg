@@ -61,8 +61,7 @@ class CartController extends Controller
 
     public function editQuantity(quantityartItemEditRequest $req)
     {
-        Cart::instance('default')->update($req->row_id, $req->quantity
-        quantity);
+        Cart::instance('default')->update($req->row_id, $req->quantity);
         if(auth()->check())
         {
             Cart::restore(auth()->id());
