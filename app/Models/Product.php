@@ -50,7 +50,7 @@ class Product extends Model
         'is_madetoorder',
         'is_backorder',
         'category',
-        'qty',
+        'quantity',
         'product_images',
         'product_thumbnail',
         'slug',
@@ -64,10 +64,10 @@ class Product extends Model
     private static function getProductsAndMergeExtraProductsIfNotEnough(Collection $order_items)
     {
         $products = $order_items->map(fn($i) => $i->product);
-        $order_items_qty = $order_items->count();
-        if($order_items_qty < 100)
+        $order_items_quantity = $order_items->count();
+        if($order_items_quantity < 100)
         {
-            $diff = 100 - $order_items_qty;
+            $diff = 100 - $order_items_quantity;
 
             $extra_products = Product::with('images')
                                         ->whereNotIn('id', $products->pluck('id'))
@@ -88,7 +88,7 @@ class Product extends Model
 
     public static function getTodaysDeals()
     {
-        $order_items = OrderItem::select('id_product', DB::raw('sum(qty) as total'))
+        $order_items = OrderItem::select('id_product', DB::raw('sum(quantity) as total'))
                                 ->where('created_at', '>=', now()->subDay())
                                 ->groupBy('id_product')
                                 ->orderBy('total', 'desc')
