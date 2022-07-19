@@ -87,7 +87,7 @@ class Product extends Model
         $price *= 100;
         return (int) $price;
     }
- /*
+
     public static function getTodaysDeals()
     {
         $order_items = OrderItem::select('id_product', DB::raw('sum(quantity) as total'))
@@ -101,7 +101,7 @@ class Product extends Model
         return Product::getProductsAndMergeExtraProductsIfNotEnough($order_items);
     }
 
-   
+    /*
     public static function searchWithImages(string|null $search, string $category)
     {
         $q = Product::with('images');
