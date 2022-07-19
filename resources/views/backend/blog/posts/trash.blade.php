@@ -15,8 +15,8 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card rounded-0">
-                        <div class="table-responsive datatable-custom position-relative">
-                                <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer">
+                        <div class="datatable-custom position-relative">
+                                <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover no-footer table-responsive">
                                     <thead class="thead-light">
                                         <th class="table-column-pe-0 sorting_disabled" aria-label="">
                                             <div class="form-check">
