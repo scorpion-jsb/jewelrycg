@@ -282,76 +282,58 @@ aria-hidden="true">
                     console.log(files[i].type)
                     var content = ``;
 
-                    // if (selectedValue == files[i].id) {
-                    //     content = `<div class='col-md-4'>
-                    //         <label>
-                    //             <img src='${assets}/${files[i].file_name}' style='width:100%;height:200px;' class='thumbnail'/>
-                    //             <input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' checked data-file-id='${files[i].id}'/>
-                    //         </label>
-                    //     </div>`;
-                    // } else {
-                    //     content = `<div class='col-md-4'>
-                    //         <label>
-                    //             <img src='${assets}/${files[i].file_name}' style='width:100%;height:200px;' class='thumbnail'/>
-                    //             <input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}' />
-                    //         </label>
-                    //     </div>`;
-                    // }
 
                     content = `<div class="col mb-3 mb-lg-5">
-                        <div id="file${files[i].id}"
-    class="card card-sm card-hover-shadow card-header-borderless h-100 text-center 
-${selectedValue == files[i].id ? 'selected' : ""}
-">
-    <div class="card-header card-header-content-between border-0">
-        <span class="small">${files[i].file_size}kb</span>
-        <!-- Dropdown -->
-        <div class="dropdown">
-            <div class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
-                <span class="dropdown-header">Settings</span>
+                        <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id ? 'selected' : ""} ">
+                            <div class="card-header card-header-content-between border-0">
+                                <span class="small">${files[i].file_size}kb</span>
+                                <!-- Dropdown -->
+                                <div class="dropdown">
+                                    <div class="dropdown-menu dropdown-menu-end"
+                                        aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
+                                        <span class="dropdown-header">Settings</span>
 
-                <a class="dropdown-item" href="#">
-                    <i class="bi-share dropdown-item-icon"></i> Share file
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="bi-folder-plus dropdown-item-icon"></i> Move to
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="bi-star dropdown-item-icon"></i> Add to stared
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="bi-pencil dropdown-item-icon"></i> Rename
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="bi-download dropdown-item-icon"></i> Download
-                </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bi-share dropdown-item-icon"></i> Share file
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bi-folder-plus dropdown-item-icon"></i> Move to
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bi-star dropdown-item-icon"></i> Add to stared
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bi-pencil dropdown-item-icon"></i> Rename
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bi-download dropdown-item-icon"></i> Download
+                                        </a>
 
-                <div class="dropdown-divider"></div>
+                                        <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item" href="#">
-                    <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="bi-trash dropdown-item-icon"></i> Delete
-                </a>
-            </div>
-        </div>
-        <!-- End Dropdown -->
-    </div>
- <div class="card-body">`
-    +
-    (files[i].type == 'image' ? 
-            `<img class="avatar-xxl"
-            src="{{ url('uploads/all') }}/${files[i].file_name}"
-            alt="Image Description">` : 
-            `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`)
-    + 
-    `</div><div class="card-body">
-        <h5 class="card-title"><label><input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
-        <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
-    </div>
-</div></div>`
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
+                                        </a>
+                                        <a class="dropdown-item" href="#">
+                                            <i class="bi-trash dropdown-item-icon"></i> Delete
+                                        </a>
+                                    </div>
+                                </div>
+                                <!-- End Dropdown -->
+                            </div>
+                        <div class="card-body">`
+                            +
+                            (files[i].type == 'image' ? 
+                                    `<img class="avatar-xxl"
+                                    src="{{ url('uploads/all') }}/${files[i].file_name}"
+                                    alt="Image Description">` : 
+                                    `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`)
+                            + 
+                            `</div><div class="card-body">
+                                <h5 class="card-title"><label><input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
+                                <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
+                            </div>
+                        </div></div>`
 
                     $('#file_container').append(content);
                 }
@@ -400,76 +382,57 @@ ${selectedValue == files[i].id ? 'selected' : ""}
                     console.log(files[i].type)
                     var content = ``;
 
-                    // if (selectedValue == files[i].id) {
-                    //     content = `<div class='col-md-4'>
-                    //         <label>
-                    //             <img src='${assets}/${files[i].file_name}' style='width:100%;height:200px;' class='thumbnail'/>
-                    //             <input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' checked data-file-id='${files[i].id}'/>
-                    //         </label>
-                    //     </div>`;
-                    // } else {
-                    //     content = `<div class='col-md-4'>
-                    //         <label>
-                    //             <img src='${assets}/${files[i].file_name}' style='width:100%;height:200px;' class='thumbnail'/>
-                    //             <input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}' />
-                    //         </label>
-                    //     </div>`;
-                    // }
-
                     content = `<div class="col mb-3 mb-lg-5">
-                        <div id="file${files[i].id}"
-        class="card card-sm card-hover-shadow card-header-borderless h-100 text-center 
-        ${selectedValue == files[i].id ? 'selected' : ""}
-        ">
-        <div class="card-header card-header-content-between border-0">
-        <span class="small">${files[i].file_size}kb</span>
-        <!-- Dropdown -->
-        <div class="dropdown">
-            <div class="dropdown-menu dropdown-menu-end"
-                aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
-                <span class="dropdown-header">Settings</span>
+                    <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id 'selected' : ""} ">
+                    <div class="card-header card-header-content-between border-0">
+                    <span class="small">${files[i].file_size}kb</span>
+                    <!-- Dropdown -->
+                    <div class="dropdown">
+                        <div class="dropdown-menu dropdown-menu-end"
+                            aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
+                            <span class="dropdown-header">Settings</span>
 
-                <a class="dropdown-item" href="#">
-                    <i class="bi-share dropdown-item-icon"></i> Share file
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="bi-folder-plus dropdown-item-icon"></i> Move to
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="bi-star dropdown-item-icon"></i> Add to stared
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="bi-pencil dropdown-item-icon"></i> Rename
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="bi-download dropdown-item-icon"></i> Download
-                </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi-share dropdown-item-icon"></i> Share file
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi-folder-plus dropdown-item-icon"></i> Move to
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi-star dropdown-item-icon"></i> Add to stared
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi-pencil dropdown-item-icon"></i> Rename
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi-download dropdown-item-icon"></i> Download
+                            </a>
 
-                <div class="dropdown-divider"></div>
+                            <div class="dropdown-divider"></div>
 
-                <a class="dropdown-item" href="#">
-                    <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
-                </a>
-                <a class="dropdown-item" href="#">
-                    <i class="bi-trash dropdown-item-icon"></i> Delete
-                </a>
-            </div>
-        </div>
-        <!-- End Dropdown -->
-        </div>
-        <div class="card-body">`
-        +
-        (files[i].type == 'image' ? 
-            `<img class="avatar-xxl"
-            src="{{ url('uploads/all') }}/${files[i].file_name}"
-            alt="Image Description">` : 
-            `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`)
-        + 
-        `</div><div class="card-body">
-        <h5 class="card-title"><label><input type='radio' id='product_assets' name='product_assets' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
-        <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
-        </div>
-        </div></div>`
+                            <a class="dropdown-item" href="#">
+                                <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
+                            </a>
+                            <a class="dropdown-item" href="#">
+                                <i class="bi-trash dropdown-item-icon"></i> Delete
+                            </a>
+                        </div>
+                    </div>
+                    <!-- End Dropdown -->
+                    </div>
+                    <div class="card-body">`
+                    +
+                    (files[i].type == 'image' ? 
+                        `<img class="avatar-xxl"
+                        src="{{ url('uploads/all') }}/${files[i].file_name}"
+                        alt="Image Description">` : 
+                        `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`)
+                    + 
+                    `</div><div class="card-body">
+                    <h5 class="card-title"><label><input type='radio' id='product_assets' name='product_assets' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
+                    <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
+                    </div>
+                    </div></div>`;
 
                     $('#file_asset_container').append(content);
                 }
@@ -481,7 +444,6 @@ ${selectedValue == files[i].id ? 'selected' : ""}
         $('#file_asset_container').on('click', '#product_assets', function() {
             var assets = "{{ asset('/uploads/all') }}";
 
-            // $(`#selected_${selectedId}_image`).html(`<img src='${assets}/${$(this).val()}' style='width: 150px;height: 100px;'/>`);
             $(`#selected_${selectedId}_asset`).html('<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="width: 60px;"><br/>' + $(this).parent().text());
             $(`#variant-${selectedId}-assets`).val($(this).attr('data-file-id'));
         });
@@ -492,22 +454,6 @@ ${selectedValue == files[i].id ? 'selected' : ""}
         uploadAjax(0, 1, " ");
         setTimeout(() => {
             assetSelect(selectedId);
-            // $(`#variant-${selectedId}-assets`).val(data);
-            // $(`#selected_${selectedId}_asset`).html("<a style='padding: 8px;border: 1px solid grey;'>*</a>");
-            // $('#product_asset_modal').modal('hide');
         }, 500);
-
-        // setTimeout(() => {
-        //     $.ajax({
-        //         url: "{{ url('backend/filemanager/getUploadedAssetsId') }}",
-        //         method: 'get',
-        //         success: function (data) {
-
-        //             $(`#variant-${selectedId}-assets`).val(data);
-        //             $(`#selected_${selectedId}_asset`).html("<a style='padding: 8px;border: 1px solid grey;'>*</a>");
-        //             $('#product_asset_modal').modal('hide');
-        //         }
-        //     })
-        // }, 500);
     }
 </script>
