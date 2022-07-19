@@ -239,7 +239,7 @@
                         </div>
                         <div class="mb-4">
                             <label for="quantity">Quantity in Stock</label>
-                            <input type="number" value='{{ $product->quantity }}' name="quantity" id="quantity"
+                            <input type="number" value='{{ $product->quantity }}' name="quantity" id="quantity" @if($product->is_trackingquantity == 0) disabled @endif
                                 class="form-control" min="0">
                         </div>
                         <label class="row form-switch mb-4" for="availabilitySwitch3">
@@ -427,5 +427,16 @@
             }
             // getVariants($('#availabilitySwitch1').prop('checked') * 1);
         })
+
+        $('#availabilitySwitch5').click(function () {
+            var isTrackQuantity = $('#availabilitySwitch5').prop('checked');
+
+            if (!isTrackQuantity) {
+                $('#quantity').attr('disabled', 'true');
+            } else {
+                $('#quantity').removeAttr('disabled');
+            }
+        })
+
     </script>
 @endsection
