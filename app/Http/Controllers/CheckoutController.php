@@ -78,7 +78,7 @@ class CheckoutController extends Controller
 
     public function cancel(CancelCheckoutRequest $req)
     {
-        $order = auth()->user()->orders()->with('items', 'items.product:id,name,qty')->orderBy('id', 'desc')->first();
+        $order = auth()->user()->orders()->with('items', 'items.product:id,name,quantity')->orderBy('id', 'desc')->first();
         Order::changeCartInstanceIfBuyNowMode($req->buy_now_mode);
         $order->restoreCartItems();
         $order->restoreProductsQty();

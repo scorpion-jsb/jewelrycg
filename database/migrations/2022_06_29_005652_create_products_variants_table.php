@@ -27,6 +27,12 @@ return new class extends Migration
             $table->text("digital_download_assets")->nullable();
             $table->integer("digital_download_assets_count")->nullable();
             $table->integer("digital_download_assets_limit")->nullable();
+            $table->integer("price_discount")->nullable();
+            $table->float("price_discount_type")->nullable();
+            $table->dateTime("price_discount_start")->nullable();
+            $table->dateTime("price_discount_end")->nullable();
+            $table->float("shipping_type")->nullable();
+            $table->int("shipping_cost")->nullable();
             $table->timestamps();
         });
     }

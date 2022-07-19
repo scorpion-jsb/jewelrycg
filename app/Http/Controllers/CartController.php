@@ -19,7 +19,7 @@ class CartController extends Controller
     public function store(StoreProductCartRequest $req)
     {
         $product = Product::findOrFail($req->id_product);
-        if($product->qty < 1)
+        if($product->quantity < 1)
         {
             return back();
         }
@@ -59,13 +59,15 @@ class CartController extends Controller
         return view('checkout', ['buy_now_mode' => 1]); 
     }
 
-    public function editQty(CartItemEditRequest $req)
+    public function editQty(quantityartItemEditRequest $req)
     {
-        Cart::instance('default')->update($req->row_id, $req->qty);
+        Cart::instance('default')->update($req->row_id, $req->quantity
+        quantity);
         if(auth()->check())
         {
             Cart::restore(auth()->id());
-            Cart::update($req->row_id, $req->qty);
+            Cart::update($req->row_id, $req->quantity
+            quantity);
             Cart::store(auth()->id());
         }
         return redirect()->route('cart.index');

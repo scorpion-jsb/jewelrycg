@@ -13,10 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_images', function (Blueprint $table) {
+        Schema::create('user_searches', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('id_product')->constrained('products')->onDelete('cascade');
-            $table->string('path');
+            $table->integer('user_id');
+            $table->string('query');
+            $table->integer('count');
+            $table->timestamps();
         });
     }
 
@@ -27,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_images');
+        Schema::dropIfExists('user_searches');
     }
 };

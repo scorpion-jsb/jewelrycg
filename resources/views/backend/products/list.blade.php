@@ -50,7 +50,7 @@
                                             <td>{{ $product->id }}</td>
                                             <td>{{ $product->name }}</td>
                                             <td>{{ $product->price }} $</td>
-                                            <td>{{ $product->qty }}</td>
+                                            <td>{{ $product->quantity }}</td>
                                             <td>{{ $product->product_category ? $product->product_category->category_name : "" }}</td>
                                             <td>
                                                 <div class="btn-group" role="group">
