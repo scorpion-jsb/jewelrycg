@@ -24,7 +24,7 @@ class ProductFactory extends Factory
             'desc' => $this->faker->paragraphs(3, true),
             'name' => ucfirst($this->faker->unique()->word()),
             'category' => Arr::random(Product::$category_list),
-            'qty' => $this->faker->numberBetween(1, 20)
+            'quantity' => $this->faker->numberBetween(1, 20)
         ];
     }
 
