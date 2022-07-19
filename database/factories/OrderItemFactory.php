@@ -21,7 +21,7 @@ class OrderItemFactory extends Factory
         return [
             'id_order' => Order::factory(),
             'id_product' => Product::factory(),
-            'qty' => $this->faker->numberBetween(1, 5),
+            'quantity' => $this->faker->numberBetween(1, 5),
             'price' => $this->faker->numberBetween(100, 50000),
         ];
     }
