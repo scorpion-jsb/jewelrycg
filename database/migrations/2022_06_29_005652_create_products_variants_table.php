@@ -32,7 +32,7 @@ return new class extends Migration
             $table->dateTime("price_discount_start")->nullable();
             $table->dateTime("price_discount_end")->nullable();
             $table->float("shipping_type")->nullable();
-            $table->int("shipping_cost")->nullable();
+            $table->integer("shipping_cost")->nullable();
             $table->timestamps();
         });
     }
