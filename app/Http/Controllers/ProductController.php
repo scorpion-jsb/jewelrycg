@@ -58,7 +58,8 @@ class ProductController extends Controller
         $uploads = Upload::whereIn('id', explode(',',$product->product_images))->get(); 
         //$product_images_in_json = $product->images->map(fn($i) => asset($i->path))->toJson();
 
-        return view('products.show', compact('product', 'product_images_in_json', 'uploads'));
+        //return view('products.show', compact('product', 'product_images_in_json', 'uploads'));
+        return view('products.show', compact('product', 'uploads'));
     }
 /*
     public function edit(Product $product)
