@@ -20,10 +20,6 @@ class User extends Authenticatable implements MustVerifyEmail
         'phone',
         'address_shipping',
         'address_billing',
-        'city',
-        'state',
-        'country',
-        'pin_code',
         'is_admin',
     ];
 

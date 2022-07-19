@@ -43,7 +43,7 @@ class Product extends Model
 
     protected $fillable = [
         'price',
-        'desc',
+        'description',
         'name',
         'is_digital',
         'is_virtual',
@@ -61,6 +61,7 @@ class Product extends Model
 
     ];
 
+    /*
     private static function getProductsAndMergeExtraProductsIfNotEnough(Collection $order_items)
     {
         $products = $order_items->map(fn($i) => $i->product);
@@ -79,19 +80,20 @@ class Product extends Model
 
         return $products;
     }
+    */
 
     public static function getPriceInCents(float $price)
     {
         $price *= 100;
         return (int) $price;
     }
-
+ /*
     public static function getTodaysDeals()
     {
         $order_items = OrderItem::select('id_product', DB::raw('sum(quantity) as total'))
                                 ->where('created_at', '>=', now()->subDay())
                                 ->groupBy('id_product')
-                                ->orderBy('total', 'desc')
+                                ->orderBy('total', 'description')
                                 ->with('product:id,name', 'product.images')
                                 ->limit(100)
                                 ->get();
@@ -99,6 +101,7 @@ class Product extends Model
         return Product::getProductsAndMergeExtraProductsIfNotEnough($order_items);
     }
 
+    /*
     public static function searchWithImages(string|null $search, string $category)
     {
         $q = Product::with('images');
@@ -111,6 +114,7 @@ class Product extends Model
         return $q->where('name', 'like', "%$search%")
                 ->paginate(100);
     }
+    */
 
     public static function stringPriceToCents(string $price)
     {
@@ -119,6 +123,7 @@ class Product extends Model
         return (int) $price;
     }
 
+    /*
     public function replaceImagesIfExist(array|null $images)
     {
         if($images)
@@ -147,11 +152,12 @@ class Product extends Model
     {
         Storage::deleteDirectory($this->id);
     }
-
+    
     public function images()
     {
         return $this->hasMany(ProductImage::class, 'id_product')->orderBy('id', 'asc');
     }
+    */
 
     public function tags()
     {
