@@ -1,17 +1,18 @@
 <x-app-layout page-title="Cart">
-    <x-slot:scripts>
-        <script src="https://js.stripe.com/v3/"></script>
-        <script defer>
-            const stripe_key = '{{config('app.stripe_key')}}';
-            const payment_intent_route = '{{route('checkout.payment.intent')}}';
-            const _token = '{{ csrf_token() }}';
-            const place_order_route = '{{route('checkout.store')}}';
-            const order_cancel_route = '{{route('checkout.cancel')}}';
-            const finish_page = '{{route('checkout.finished')}}';
-            const buy_now_mode = '{{ $buy_now_mode ?? 0 }}';
-        </script>
-        <script src="{{ asset('js/checkout.js') }}" defer></script>
-    </x-slot>
+<x-slot:scripts>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script defer>
+        const stripe_key = '{{config('app.stripe_key')}}';
+        const payment_intent_route = '{{route('checkout.payment.intent')}}';
+        const _token = '{{ csrf_token() }}';
+        const place_order_route = '{{route('checkout.store')}}';
+        const order_cancel_route = '{{route('checkout.cancel')}}';
+        const finish_page = '{{route('checkout.finished')}}';
+        const buy_now_mode = '{{ $buy_now_mode ?? 0 }}';
+    </script>
+    <script src="{{ asset('js/checkout.js') }}" defer></script>
+</x-slot>
+<div class="container">
     <form id="payment-form">
         <div class="row">
             <div class="col-md-7">
@@ -46,4 +47,5 @@
             </div>
         </div>
     </form>
+</div>
 </x-app-layout>
