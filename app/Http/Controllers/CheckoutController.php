@@ -81,7 +81,7 @@ class CheckoutController extends Controller
         $order = auth()->user()->orders()->with('items', 'items.product:id,name,quantity')->orderBy('id', 'desc')->first();
         Order::changeCartInstanceIfBuyNowMode($req->buy_now_mode);
         $order->restoreCartItems();
-        $order->restoreProductsQty();
+        $order->restoreProductsQuantity();
 
         Cart::store(auth()->id());
 
