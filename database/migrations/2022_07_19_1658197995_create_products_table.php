@@ -29,6 +29,7 @@ class CreateProductsTable extends Migration
 		$table->integer('shipping_cost',)->nullable();
 		$table->integer('is_digital',)->nullable();
 		$table->integer('is_virtual',)->nullable();
+		$table->integer('is_trackingquantity',)->nullable();
 		$table->integer('is_backorder',)->nullable();
 		$table->integer('is_madetoorder',)->nullable();
 		$table->string('product_thumbnail')->nullable();
