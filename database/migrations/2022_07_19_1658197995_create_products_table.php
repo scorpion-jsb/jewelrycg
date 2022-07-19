@@ -12,7 +12,7 @@ class CreateProductsTable extends Migration
 
 		$table->id();
 		$table->string('name');
-		$table->text('description');
+		$table->text('description')->nullable();
 		$table->smallInteger('price',);
 		$table->smallInteger('quantity',)->nullable();
 		$table->string('category',24);
@@ -32,9 +32,9 @@ class CreateProductsTable extends Migration
 		$table->integer('is_backorder',)->nullable();
 		$table->integer('is_madetoorder',)->nullable();
 		$table->string('product_thumbnail')->nullable();
-		$table->text('product_images');
-		$table->text('product_3dpreview');
-		$table->text('digital_download_assets');
+		$table->text('product_images')->nullable();
+		$table->text('product_3dpreview')->nullable();
+		$table->text('digital_download_assets')->nullable();
 		$table->integer('digital_download_assets_count',)->nullable();
 		$table->integer('digital_download_assets_limit',)->nullable();
 		$table->string('product_attributes')->nullable();
