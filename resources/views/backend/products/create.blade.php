@@ -182,7 +182,7 @@
                         </label>
                         <div class="mb-4">
                             <label for="qty">Quantity in Stock:</label>
-                            <input type="number" name="quantity" id="quantity" class="form-control" min="0">
+                            <input type="number" name="quantity" id="quantity" class="form-control" disabled min="0" value="0">
                         </div>
                         <label class="row form-switch mb-4" for="availabilitySwitch3">
                             <span class="col-8 col-sm-9 ms-0">
@@ -354,6 +354,16 @@
             }
             // getVariants($('#availabilitySwitch1').prop('checked') * 1);
 
+        })
+
+        $('#availabilitySwitch5').click(function () {
+            var isTrackQuantity = $('#availabilitySwitch5').prop('checked');
+
+            if (!isTrackQuantity) {
+                $('#quantity').attr('disabled', 'true');
+            } else {
+                $('#quantity').removeAttr('disabled');
+            }
         })
     </script>
 @endsection
