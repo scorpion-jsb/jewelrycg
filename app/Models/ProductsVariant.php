@@ -16,6 +16,7 @@ class ProductsVariant extends Model
         'variant_sku',
         'variant_thumbnail',
         'variant_assets',
+        'variant_attribute_value',
         'digital_download_assets',
         'digital_download_assets_count',
         'digital_download_assets_limit',

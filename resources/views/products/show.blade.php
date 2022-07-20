@@ -139,19 +139,20 @@
                                     {{session('message')}}
                                 </div>
                             @endif
-                            <form action="{{route('cart.store')}}" method="post" class="my-3">
+                            <form action="{{route('cart.store')}}" method="post" class="my-3" name="cart_star_form">
                                 @csrf
 
+                                <input type="hidden" name="variant_attribute_value" id="variant_attribute_value" value="0">
                                 @if (count($variants) > 0)
                                     <div class="border-bottom variant-group" >
                                         @foreach ($product->attribute() as $attribute)
-                                            <div lass="form-group" style="margin-bottom: 8px">
+                                            <div class="form-group" style="margin-bottom: 8px">
                                                 <label for="" class="control-label col-md-2">{{ $attribute->name }}</label>
                                                 <div class="col-md-10">
                                                     <div class="btn-group" data-toggle="buttons" id="variants_group">
                                                         @foreach ($product->attributeValue($attribute->id) as $attributeValue)
                                                             <label class="btn btn-default btn-sm" style="border: 1px solid grey">
-                                                                <input type="radio" id="attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}"  class="sm attribute-radio attribute{{ $attribute->id }}" value="{{ $attributeValue->name }}" > {{ $attributeValue->name }}
+                                                                <input type="radio" id="attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}"  class="sm attribute-radio attribute{{ $attribute->id }}" value="{{ $attributeValue->id }}" > {{ $attributeValue->name }}
                                                             </label>
                                                         @endforeach
                                                     </div>
@@ -215,7 +216,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            
                             </div>
                         </div><!--End showGold-->
                     </div><!--End col-6 -->
@@ -225,5 +225,36 @@
     </section>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    <script>
+
+        var variants = [];
+
+        @foreach ($variants as $variant)
+            var ids = '{{ $variant->variant_attribute_value }}';
+            ids = ids.split(',');
+
+            variants.push({id: ids.sort().join(','), price: '{{ $variant->variant_price }}'})
+        @endforeach
+        console.log(variants)
+        $('.attribute-radio').click(function () {
+            var variant_attribute_value = [];
+
+            $('.variant-group').find('div.form-group').each(function (i, div) {
+                var name = $(div).find('input').attr('name')
+                var value = document.cart_star_form[name].value
+
+                if (value)
+                    variant_attribute_value.push(value)
+            })
+
+            variants.forEach(function (variant) {
+                if (variant.id == variant_attribute_value.sort().join(',')) {
+                    $('#variant_attribute_value').val(variant.id)
+                    $('#product_price').text('$' + variant.price / 100)
+                }
+            })
+        })
+
+    </script>
+
 </x-app-layout>

@@ -24,7 +24,7 @@
                 </td>
                 <td>
                     <div class="row justify-content-between">
-                        @php
+                        $@php
                             if (count($product->options)) {
                                 echo number_format($product->options->price, 2);
                             } else {
