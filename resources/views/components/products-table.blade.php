@@ -11,10 +11,26 @@
     <tbody>
         @foreach ($products as $key => $product)
             <tr>
-                <td><a href="{{route('products.show', $product->slug)}}" class="link-dark">{{$product->name}}</a></td>
+                <td>
+                    <a href="{{route('products.show', $product->slug)}}" class="link-dark">
+                        @php
+                            if (count($product->options)) {
+                                echo $product->name . ' - ' . $product->options->name;
+                            } else {
+                                echo $product->name;                                
+                            }
+                        @endphp
+                    </a>
+                </td>
                 <td>
                     <div class="row justify-content-between">
-                        ${{number_format($product->price, 2)}}
+                        @php
+                            if (count($product->options)) {
+                                echo number_format($product->options->price, 2);
+                            } else {
+                                echo number_format($product->price, 2);                                
+                            }
+                        @endphp
                         @if ($locale == 'wishlist')
                             <div class="col-8" align="end">
                                 <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
@@ -71,7 +87,7 @@
                                 </div>
                             </form>    
                         @else
-                            {{$product->qty}}
+                            {{$product->quantity}}
                         @endif
                     </td>
                 @endif                
