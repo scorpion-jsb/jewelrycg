@@ -19,9 +19,10 @@ class CartController extends Controller
 
     public function store(StoreProductCartRequest $req)
     {
+
         $product = Product::findOrFail($req->id_product);
 
-        if($product->quantity < 1)
+        if($product->quantity < 1 && $product->is_trackingquantity)
         {
             return back();
         }
