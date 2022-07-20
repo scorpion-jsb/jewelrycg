@@ -22,6 +22,7 @@
     </thead>
 
     <tbody id="addVariantsContainer">
+
         @forelse($variants as $k => $variant)
             @php
                 $current_name = '';
@@ -40,9 +41,9 @@
                         $variants_ids .= $sep2 . $params[1];
                         $attributes_ids .= $sep2 . $params[0];
                     }
-                    
                 @endphp
             @endif
+
             <tr role="row" class="odd" id="variantproduct-{{ $k }}">
                 <th class="table-column-ps-0">
                     @if (isset($variant->variant_name))

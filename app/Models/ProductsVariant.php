@@ -14,7 +14,6 @@ class ProductsVariant extends Model
         'variant_name',
         'variant_price',
         'variant_sku',
-        'variant_quantity',
         'variant_thumbnail',
         'variant_assets',
         'digital_download_assets',
