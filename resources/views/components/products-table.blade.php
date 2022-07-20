@@ -57,19 +57,19 @@
                 @if ($locale != 'wishlist')
                     <td>
                         @if ($locale == 'cart')
-                            <form action="{{route('cart.edit.qty')}}" method="post">
+                            <form action="{{url('/cart/edit')}}" method="post">
                                 <div class="row justify-content-between">
                                     <div class="col-2">
                                         <input type="number"
-                                            value="{{$product->quantity}}"
-                                            placeholder="{{$product->quantity}}"
-                                            name="qty"
+                                            value="{{$product->qty}}"
+                                            placeholder="{{$product->qty}}"
+                                            name="quantity"
                                             min="1"
                                             max="100"
                                             class="form-control"
                                         >
                                     </div>
-                                    <?php $out_of_stock[$key] = $product->quantity > $product->model->quantity ?>
+                                    <?php $out_of_stock[$key] = $product->qty > $product->model->quantity ?>
                                     @if ($out_of_stock[$key])
                                         <div class="col-2">
                                             <span class="badge rounded-pill text-light bg-danger">
@@ -78,11 +78,10 @@
                                         </div>
                                     @endif
                                     @csrf
-                                    @method('patch')
                                     <input type="hidden" name="row_id" value="{{$product->rowId}}">
                                     <span class="col-7" align="end">
                                         <button type="submit" class="btn btn-primary" title="Edit quantity"><i class="bi bi-pencil"></i></button>
-                                        <a href="{{url('cart/remove') . '/' . $product->rowId}}" type="submit" class="btn btn-danger" title="Remove from chart"><i class="bi bi-x-lg"></i></a>
+                                        <a href="{{url('cart/remove') . '/' . $product->rowId}}" class="btn btn-danger" title="Remove from chart"><i class="bi bi-x-lg"></i></a>
                                     </span>        
                                 </div>
                             </form>    

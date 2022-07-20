@@ -230,7 +230,7 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 			Route::delete('/', 'removeFromWishlist');
 		});
 	});
-	Route::patch('/edit', 'editQty')->name('edit.qty');
+	Route::post('/edit', 'editQty')->name('edit.qty');
 	Route::get('/remove/{id}', 'removeProduct')->name('remove.product');
 });
 Route::resource('cart', CartController::class)->only(['index', 'store']);
