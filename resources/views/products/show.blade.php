@@ -108,10 +108,12 @@
                                             </form>
                                         @endif
                                     @endauth
-                                    @if ($product->quantity)
-                                        <span class="badge badge-lg bg-success text-light rounded-pill"><small>On Stock: {{$product->quantity}}</small></span>
-                                    @else
-                                        <span class="badge badge-lg bg-danger text-light rounded-pill"><small>Out of Stock</small></span>
+                                    @if ($product->is_trackingquantity)
+                                        @if ($product->quantity)
+                                            <span class="badge badge-lg bg-success text-light rounded-pill"><small>On Stock: {{$product->quantity}}</small></span>
+                                        @else
+                                            <span class="badge badge-lg bg-danger text-light rounded-pill"><small>Out of Stock</small></span>
+                                        @endif
                                     @endif
                                 </h4>
                             </div>
