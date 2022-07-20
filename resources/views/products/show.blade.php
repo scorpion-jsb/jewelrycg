@@ -73,7 +73,7 @@
                                 </div>
                                 <div class="w-100">
                                     <div class="">
-                                        <strong class="h2 fw-400 text-black">
+                                        <strong class="h2 fw-400 text-black" id="product_price">
                                             $ {{$product->price}}
                                         </strong>
                                     </div>
@@ -141,11 +141,17 @@
                                     <div class="border-bottom" >
                                         <div style="margin-bottom: 16px;">
                                             <label for="" class="">Bracelet Size: &nbsp;</label>
-                                            <div class="btn-group" data-toggle="buttons">
+                                            <div class="btn-group" data-toggle="buttons" id="variants_group">
+                                                @php
+                                                    $nIndex = 0;
+                                                @endphp
                                                 @foreach ($variants as $variant)
                                                     <label class="btn btn-default btn-sm" style="border: 1px solid grey">
-                                                        <input type="radio" name="variants" class="sm" > {{ $variant->variant_name }}
-                                                    </label>                                              
+                                                        <input type="radio" name="variant"  class="sm variants_checkbox" value="{{ $variant->id }}" price="{{ $variant->variant_price }}"> {{ $variant->variant_name }}
+                                                    </label>
+                                                    @php
+                                                        $nIndex++;
+                                                    @endphp
                                                 @endforeach
                                         </div>
                                         {{-- </div class style="padding-bottom: 16px;"> --}}
@@ -214,5 +220,24 @@
         </div>
     </section>
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    <script>
+        $('.variants_checkbox').click(function () {
+            var min = 999999, max = 0;
+            
+            $('#variants_group').find('label').each(function (index, variant) {
+                var price = $(variant).find('input').attr('price');
+
+                min = Math.min(price, min)
+                max = Math.max(price, max)
+            })
+
+            if (min != max) {
+                $('#product_price').text(`$ ${min} ~ $ ${max}`);
+            } else {
+                $('#product_price').text(`$ ${min}`);
+            }
+        });
+    </script>
 
 </x-app-layout>
