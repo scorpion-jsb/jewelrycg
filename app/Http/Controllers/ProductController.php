@@ -32,12 +32,17 @@ class ProductController extends Controller
     public function show($slug)
     {
         $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
+
         abort_if(! $product, 404);
+
         $product->setPriceToFloat();
         $uploads = Upload::whereIn('id', explode(',',$product->product_images))->get(); 
         $variants = ProductsVariant::where('product_id', $product->id)->get();
 
-        return view('products.show', compact('product', 'uploads', 'variants'));
+        $maxPrice = ProductsVariant::where('product_id', $product->id)->max('variant_price') / 100;
+        $minPrice = ProductsVariant::where('product_id', $product->id)->min('variant_price') / 100;
+
+        return view('products.show', compact('product', 'uploads', 'variants', 'maxPrice', 'minPrice'));
     }
 
 }

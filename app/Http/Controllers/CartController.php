@@ -27,9 +27,8 @@ class CartController extends Controller
             return back();
         }
 
-        if ($req->variant) {
-
-            $variant = ProductsVariant::find($req->variant);
+        if ($req->variant_attribute_value) {
+            $variant = ProductsVariant::where('variant_attribute_value', $req->variant_attribute_value)->first();
 
             Cart::instance('default')->add(
                 $product->id,

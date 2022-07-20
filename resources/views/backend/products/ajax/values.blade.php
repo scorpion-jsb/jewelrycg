@@ -40,10 +40,12 @@
                         $variants_ids .= $sep2 . $params[1];
                         $attributes_ids .= $sep2 . $params[0];
                     }
-                    
                 @endphp
             @endif
+
             <tr role="row" class="odd" id="variantproduct-{{ $k }}">
+                <input type="hidden" name="variant[{{ $k }}][variant_attribute_value]" @if (isset($variant->variant_attribute_value)) value="{{ $variant->variant_attribute_value }}" @else value="{{ $variants_ids }}" @endif>
+
                 <th class="table-column-ps-0">
                     @if (isset($variant->variant_name))
                         {{ $variant->variant_name }}

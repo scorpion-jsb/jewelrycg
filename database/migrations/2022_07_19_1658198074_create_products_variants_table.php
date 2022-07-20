@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer("product_id");
             $table->text("variant_name")->nullable();
+            $table->string("variant_attribute_value")->nullable();
             $table->float("variant_price");
             $table->string("variant_sku")->nullable();
             $table->text("variant_thumbnail")->nullable();

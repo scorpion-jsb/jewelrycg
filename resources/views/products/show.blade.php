@@ -73,7 +73,11 @@
                                 <div class="w-100">
                                     <div class="">
                                         <strong class="h2 fw-400 text-black" id="product_price">
-                                            $ {{$product->price}}
+                                            @if (count($variants))
+                                                ${{ $minPrice }} ~ ${{ $maxPrice }}
+                                            @else
+                                                ${{ $product->price }}                                            
+                                            @endif
                                         </strong>
                                     </div>
                                 </div>
@@ -135,29 +139,29 @@
                                     {{session('message')}}
                                 </div>
                             @endif
-                            <form action="{{route('cart.store')}}" method="post" class="my-3">
+                            <form action="{{route('cart.store')}}" method="post" class="my-3" name="cart_star_form">
                                 @csrf
 
+                                <input type="hidden" name="variant_attribute_value" id="variant_attribute_value" value="0">
                                 @if (count($variants) > 0)
-                                    <div class="border-bottom" >
-                                        <div style="margin-bottom: 16px;">
-                                            <label for="" class="">Bracelet Size: &nbsp;</label>
-                                            <div class="btn-group" data-toggle="buttons" id="variants_group">
-                                                @php
-                                                    $nIndex = 0;
-                                                @endphp
-                                                @foreach ($variants as $variant)
-                                                    <label class="btn btn-default btn-sm" style="border: 1px solid grey">
-                                                        <input type="radio" name="variant"  class="sm variants_checkbox" value="{{ $variant->id }}" price="{{ $variant->variant_price }}"> {{ $variant->variant_name }}
-                                                    </label>
-                                                    @php
-                                                        $nIndex++;
-                                                    @endphp
-                                                @endforeach
-                                        </div>
-                                        {{-- </div class style="padding-bottom: 16px;"> --}}
+                                    <div class="border-bottom variant-group" >
+                                        @foreach ($product->attribute() as $attribute)
+                                            <div class="form-group" style="margin-bottom: 8px">
+                                                <label for="" class="control-label col-md-2">{{ $attribute->name }}</label>
+                                                <div class="col-md-10">
+                                                    <div class="btn-group" data-toggle="buttons" id="variants_group">
+                                                        @foreach ($product->attributeValue($attribute->id) as $attributeValue)
+                                                            <label class="btn btn-default btn-sm" style="border: 1px solid grey">
+                                                                <input type="radio" id="attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}"  class="sm attribute-radio attribute{{ $attribute->id }}" value="{{ $attributeValue->id }}" > {{ $attributeValue->name }}
+                                                            </label>
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
                                     </div>
                                 @endif
+
                                 <input type="hidden" name="id_product" value="{{$product->id}}">
                                 <button type="submit" class="btn btn-primary shadow-md" {{ $product->is_trackingquantity == 1 && $product->quantity < 1 ? 'disabled' : null }}>Add to Cart</button>
                                 <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->is_trackingquantity == 1 &&  $product->quantity < 1 ? 'disabled' : null }}>Buy Now</button>
@@ -212,7 +216,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            
                             </div>
                         </div><!--End showGold-->
                     </div><!--End col-6 -->
@@ -223,28 +226,35 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    <script>
-        @if (count($variants) > 0)
-            $(function () {
-                var min = 999999, max = 0;
-                
-                $('#variants_group').find('label').each(function (index, variant) {
-                    var price = $(variant).find('input').attr('price');
 
-                    min = Math.min(price, min)
-                    max = Math.max(price, max)
-                })
+        var variants = [];
 
-                if (min != max) {
-                    $('#product_price').text(`$ ${min / 100} ~ $ ${max / 100}`);
-                } else {
-                    $('#product_price').text(`$ ${min / 100}`);
+        @foreach ($variants as $variant)
+            var ids = '{{ $variant->variant_attribute_value }}';
+            ids = ids.split(',');
+
+            variants.push({id: ids.sort().join(','), price: '{{ $variant->variant_price }}'})
+        @endforeach
+        console.log(variants)
+        $('.attribute-radio').click(function () {
+            var variant_attribute_value = [];
+
+            $('.variant-group').find('div.form-group').each(function (i, div) {
+                var name = $(div).find('input').attr('name')
+                var value = document.cart_star_form[name].value
+
+                if (value)
+                    variant_attribute_value.push(value)
+            })
+
+            variants.forEach(function (variant) {
+                if (variant.id == variant_attribute_value.sort().join(',')) {
+                    $('#variant_attribute_value').val(variant.id)
+                    $('#product_price').text('$' + variant.price / 100)
                 }
-            });
-        @endif
-
-        $('.variants_checkbox').click(function () {
-            $('#product_price').text('$ ' + $(this).attr('price') / 100);
+            })
         })
+
     </script>
 
 </x-app-layout>

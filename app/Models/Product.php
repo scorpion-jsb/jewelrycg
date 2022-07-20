@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use App\Models\Attribute;
+use App\Models\AttributeValue;
 
 class Product extends Model
 {
@@ -182,12 +184,30 @@ class Product extends Model
         return $this->hasMany(ProductsVariant::class, 'product_id' , 'id');
     }
 
-
     public function modelpreview()
     {
         return $this->belongsTo(Upload::class, 'product_3dpreview' , 'id')->withDefault([
             'file_name' => "none.png",
             'id' => null
         ]);
+    }
+
+    public function attribute() {
+        $attributesIds = explode(',', $this->product_attributes);
+        $attributes = Attribute::whereIn('id', $attributesIds)->get();
+
+        return $attributes;
+    }
+
+    public function attributeValue($attributeId = 0) {
+        $attributesValueIds = explode(',', $this->product_attribute_values);
+
+        $model = AttributeValue::whereIn('id', $attributesValueIds);
+        if ($attributeId != 0)
+            $model = $model->where('attribute_id', $attributeId);
+        
+        $attributesValues = $model->get();
+
+        return $attributesValues;
     }
 }

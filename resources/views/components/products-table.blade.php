@@ -24,7 +24,7 @@
                 </td>
                 <td>
                     <div class="row justify-content-between">
-                        @php
+                        $@php
                             if (count($product->options)) {
                                 echo number_format($product->options->price, 2);
                             } else {
@@ -61,19 +61,19 @@
                                 <div class="row justify-content-between">
                                     <div class="col-2">
                                         <input type="number"
-                                            value="{{$product->qty}}"
-                                            placeholder="{{$product->qty}}"
+                                            value="{{$product->quantity}}"
+                                            placeholder="{{$product->quantity}}"
                                             name="qty"
                                             min="1"
                                             max="100"
                                             class="form-control"
                                         >
                                     </div>
-                                    <?php $out_of_stock[$key] = $product->qty > $product->model->qty ?>
+                                    <?php $out_of_stock[$key] = $product->quantity > $product->model->quantity ?>
                                     @if ($out_of_stock[$key])
                                         <div class="col-2">
                                             <span class="badge rounded-pill text-light bg-danger">
-                                                In Stock: {{ $product->model->qty }}
+                                                In Stock: {{ $product->model->quantity }}
                                             </span>
                                         </div>
                                     @endif
