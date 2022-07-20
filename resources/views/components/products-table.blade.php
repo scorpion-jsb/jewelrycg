@@ -81,7 +81,7 @@
                                     @method('patch')    
                                     <input type="hidden" name="row_id" value="{{$product->rowId}}">
                                     <span class="col-7" align="end">
-                                        <button type="submit" class="btn btn-primary" title="Edit quantity"><i class="bi bi-pencil-square"></i></button>
+                                        <button type="submit" class="btn btn-primary" title="Edit quantity"><i class="bi bi-pencil"></i></button>
                                         <button formaction="{{route('cart.remove.product')}}" type="submit" class="btn btn-danger" title="Remove from chart"><i class="bi bi-x-lg"></i></button>
                                     </span>        
                                 </div>
