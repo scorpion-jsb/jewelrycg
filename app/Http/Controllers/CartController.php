@@ -89,15 +89,15 @@ class CartController extends Controller
         return redirect()->route('cart.index');
     }
 
-    public function removeProduct(CartItemEditRequest $req)
+    public function removeProduct($product_id)
     {
         try
         {
-            Cart::instance('default')->remove($req->row_id);
+            Cart::instance('default')->remove($product_id);
             if(auth()->check())
             {
                 Cart::restore(auth()->id());
-                Cart::remove($req->row_id);
+                Cart::remove($product_id);
                 Cart::store(auth()->id());
             }
         }
