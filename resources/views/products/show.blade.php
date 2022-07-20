@@ -1,5 +1,4 @@
 <x-app-layout :page-title="$product->name">
-    
     <section class="product_detail_single pt-4 pb-3">
         <div class="container">
             <div class="product-container">
@@ -222,22 +221,24 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    <script>
-        $(function () {
-            var min = 999999, max = 0;
-            
-            $('#variants_group').find('label').each(function (index, variant) {
-                var price = $(variant).find('input').attr('price');
+        @if (count($variants) > 0)
+            $(function () {
+                var min = 999999, max = 0;
+                
+                $('#variants_group').find('label').each(function (index, variant) {
+                    var price = $(variant).find('input').attr('price');
 
-                min = Math.min(price, min)
-                max = Math.max(price, max)
-            })
+                    min = Math.min(price, min)
+                    max = Math.max(price, max)
+                })
 
-            if (min != max) {
-                $('#product_price').text(`$ ${min / 100} ~ $ ${max / 100}`);
-            } else {
-                $('#product_price').text(`$ ${min / 100}`);
-            }
-        });
+                if (min != max) {
+                    $('#product_price').text(`$ ${min / 100} ~ $ ${max / 100}`);
+                } else {
+                    $('#product_price').text(`$ ${min / 100}`);
+                }
+            });
+        @endif
 
         $('.variants_checkbox').click(function () {
             $('#product_price').text('$ ' + $(this).attr('price') / 100);
