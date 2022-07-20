@@ -1,3 +1,10 @@
+<style>
+    #total_td>div {
+        font-weight: bold;
+        font-size: medium;
+    }
+</style>
+
 <table class="table">
     <thead>
         <tr>
@@ -5,46 +12,48 @@
             <th scope="col">Price</th>
             @if ($locale != 'wishlist')
                 <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
             @endif
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach ($products as $key => $product)
-            <tr>
+            <tr id="{{ $product->rowId }}">
                 <td>
-                    <a href="{{route('products.show', $product->slug)}}" class="link-dark">
+                    <a href="{{ route('products.show', $product->slug) }}" class="link-dark">
                         @php
                             if (count($product->options)) {
                                 echo $product->name . ' - ' . $product->options->name;
                             } else {
-                                echo $product->name;                                
+                                echo $product->name;
                             }
                         @endphp
                     </a>
                 </td>
                 <td>
-                    <div class="row justify-content-between">
+                    <div class=" justify-content-between">
                         $@php
                             if (count($product->options)) {
                                 echo number_format($product->options->price, 2);
                             } else {
-                                echo number_format($product->price, 2);                                
+                                echo number_format($product->price, 2);
                             }
                         @endphp
                         @if ($locale == 'wishlist')
                             <div class="col-8" align="end">
-                                <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
+                                <form action="{{ route('cart.wishlist') }}" method="post" class="d-inline">
                                     @csrf
                                     @method('put')
-                                    <input type="hidden" name="row_id" value="{{$product->rowId}}">
+                                    <input type="hidden" name="row_id" value="{{ $product->rowId }}">
                                     <button type="submit" class="btn btn-primary" title="Add to Cart">
                                         <i class="fa-solid fa-cart-arrow-down"></i>
                                     </button>
                                 </form>
-                                <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
+                                <form action="{{ route('cart.wishlist') }}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
-                                    <input type="hidden" name="row_id" value="{{$product->rowId}}">
+                                    <input type="hidden" name="row_id" value="{{ $product->rowId }}">
                                     <button type="submit" class="btn btn-danger" title="Remove from Wishlist">
                                         <i class="bi bi-x-lg"></i>
                                     </button>
@@ -57,55 +66,114 @@
                 @if ($locale != 'wishlist')
                     <td>
                         @if ($locale == 'cart')
-                            <form action="{{url('/cart/edit')}}" method="post">
-                                <div class="row justify-content-between">
-                                    <div class="col-2">
-                                        <input type="number"
-                                            value="{{$product->qty}}"
-                                            placeholder="{{$product->qty}}"
-                                            name="quantity"
-                                            min="1"
-                                            max="100"
-                                            class="form-control"
-                                        >
-                                    </div>
-                                    <?php $out_of_stock[$key] = $product->qty > $product->model->quantity ?>
-                                    @if ($out_of_stock[$key])
-                                        <div class="col-2">
-                                            <span class="badge rounded-pill text-light bg-danger">
-                                                In Stock: {{ $product->model->quantity }}
-                                            </span>
-                                        </div>
-                                    @endif
-                                    @csrf
-                                    <input type="hidden" name="row_id" value="{{$product->rowId}}">
-                                    <span class="col-7" align="end">
-                                        <button type="submit" class="btn btn-primary" title="Edit quantity"><i class="bi bi-pencil"></i></button>
-                                        <a href="{{url('cart/remove') . '/' . $product->rowId}}" class="btn btn-danger" title="Remove from chart"><i class="bi bi-x-lg"></i></a>
-                                    </span>        
+                            <div class=" justify-content-between">
+                                <div class="col-6">
+                                    <input type="number" value="{{ $product->qty }}"
+                                        placeholder="{{ $product->qty }}" name="quantity" min="1"
+                                        max="100" class="form-control quantity" id="{{ $product->rowId }}">
                                 </div>
-                            </form>    
+                                <?php $out_of_stock[$key] = $product->qty > $product->model->quantity; ?>
+                                @if ($out_of_stock[$key])
+                                    <div class="col-2">
+                                        <span class="badge rounded-pill text-light bg-danger">
+                                            In Stock: {{ $product->model->quantity }}
+                                        </span>
+                                    </div>
+                                @endif
+                                @csrf
+                            </div>
                         @else
-                            {{$product->quantity}}
+                            {{ $product->quantity }}
                         @endif
                     </td>
-                @endif                
+                    <td>
+                        <div class="justify-content-between total-price">
+                            $@php
+                                $price = 0;
+                                if (count($product->options)) {
+                                    $price = number_format($product->options->price, 2);
+                                } else {
+                                    $price = number_format($product->price, 2);
+                                }
+
+                                echo $product->qty * $price;
+                            @endphp
+                        </div>
+                    </td>
+                    <td>
+                        <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger"
+                            title="Remove from chart"><i class="bi bi-x-lg"></i></a>
+
+                    </td>
+                @endif
+
+
             </tr>
         @endforeach
         @if ($locale != 'orders.show')
-            <tr>
+            <tr id="total">
                 <th scope="row">Total:</th>
-                <td {{ in_array($locale, ['checkout', 'wishlist']) || $products->count() == 0 ? 'colspan=2' : null  }}>
-                    <div class="row">
-                        ${{Cart::total()}}
+                <td></td>
+                <td></td>
+                <td id="total_td"
+                    {{ in_array($locale, ['checkout', 'wishlist']) || $products->count() == 0 ? 'colspan=2' : null }}>
+                    <div class="">
+                        ${{ Cart::total() }}
                     </div>
                 </td>
                 @if ($locale == 'cart' && $products->count() > 0)
-                    <td align="end">
-                        <a href="{{route('checkout.index')}}" class="btn btn-success {{ isset($out_of_stock) && in_array(true, $out_of_stock) ? 'disabled' : null }}">Proceed to Checkout</a>
+                    <td>
+                        <a href="{{ route('checkout.index') }}"
+                            class="btn btn-success {{ isset($out_of_stock) && in_array(true, $out_of_stock) ? 'disabled' : null }}">Proceed
+                            to Checkout</a>
                     </td>
                 @endif
             </tr>
         @endif
     </tbody>
 </table>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+    integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+<script>
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': "{{ csrf_token() }}"
+        }
+    });
+
+    $('.quantity').change(function() {
+        var price = $(this).parents('td').prev().text().split('$')[1]
+        var quantity = $(this).val()
+
+        var total = price * quantity
+
+        $(this).parents('td').next().find('div').text('$' + (Math.round(total * 100) / 100).toFixed(2));
+
+        var rowId = $(this).attr('id');
+
+        $.ajax({
+            method: 'post',
+            url: "{{ route('cart.edit.qty') }}",
+            data: {
+                row_id: rowId,
+                quantity: quantity
+            },
+            success: function(data) {
+                total = 0;
+                $('tbody').find('tr').each(function() {
+                    if ($(this).attr('id') != 'total') {
+                        var price = $(this).find('div').text().split('$')[1];
+                        var quantity = $(this).find('input').val()
+
+                        total += price * quantity;
+                    }
+                })
+
+                $('#total_td').find('div').text('$' + (Math.round(total * 100) / 100).toFixed(2));
+
+            }
+        })
+
+    })
+</script>

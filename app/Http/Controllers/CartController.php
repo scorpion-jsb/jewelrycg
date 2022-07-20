@@ -86,7 +86,9 @@ class CartController extends Controller
             Cart::update($req->row_id, $req->quantity);
             Cart::store(auth()->id());
         }
-        return redirect()->route('cart.index');
+        // return redirect()->route('cart.index');
+
+        return true;
     }
 
     public function removeProduct($product_id)
