@@ -222,7 +222,7 @@
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    <script>
-        $('.variants_checkbox').click(function () {
+        $(function () {
             var min = 999999, max = 0;
             
             $('#variants_group').find('label').each(function (index, variant) {
@@ -233,11 +233,15 @@
             })
 
             if (min != max) {
-                $('#product_price').text(`$ ${min} ~ $ ${max}`);
+                $('#product_price').text(`$ ${min / 100} ~ $ ${max / 100}`);
             } else {
-                $('#product_price').text(`$ ${min}`);
+                $('#product_price').text(`$ ${min / 100}`);
             }
         });
+
+        $('.variants_checkbox').click(function () {
+            $('#product_price').text('$ ' + $(this).attr('price') / 100);
+        })
     </script>
 
 </x-app-layout>
