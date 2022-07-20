@@ -104,7 +104,7 @@
                 @if ($locale == 'cart' && $products->count() > 0)
                     <td align="end">
                         <a href="{{route('checkout.index')}}"
-                            class="btn btn-outline-success {{ isset($out_of_stock) && in_array(true, $out_of_stock) ? 'disabled' : null }}"
+                            class="btn btn-success {{ isset($out_of_stock) && $product->is_trackingquantity == 1 && in_array(true, $out_of_stock) ? 'disabled' : null }}"
                         >
                             Proceed to Checkout
                         </a>
