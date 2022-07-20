@@ -231,7 +231,7 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 		});
 	});
 	Route::patch('/edit', 'editQty')->name('edit.qty');
-	Route::patch('/remove', 'removeProduct')->name('remove.product');
+	Route::get('/remove/{id}', 'removeProduct')->name('remove.product');
 });
 Route::resource('cart', CartController::class)->only(['index', 'store']);
 
