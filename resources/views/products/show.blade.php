@@ -163,9 +163,9 @@
                                 @endif
 
                                 <input type="hidden" name="id_product" value="{{$product->id}}">
-                                <button type="submit" class="btn btn-primary shadow-md" {{ $product->is_trackingquantity == 1 && $product->quantity < 1 ? 'disabled' : null }}>Add to Cart</button>
-                                <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->is_trackingquantity == 1 &&  $product->quantity < 1 ? 'disabled' : null }}>Buy Now</button>
-                            </form>        
+                                <button type="submit" class="btn btn-primary shadow-md" {{ $product->is_trackingquantity == 1 && $product->quantity < 1 ? 'disabled' : null }} disabled id="add_to_cart_btn">Add to Cart</button>
+                                <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->is_trackingquantity == 1 &&  $product->quantity < 1 ? 'disabled' : null }} disabled id="buy_now_btn">Buy Now</button>
+                            </form>
 
                         </div><!--End .bg-white product card-->
                         <div class="show-model-specs">
@@ -235,26 +235,31 @@
 
             variants.push({id: ids.sort().join(','), price: '{{ $variant->variant_price }}'})
         @endforeach
-        console.log(variants)
+
         $('.attribute-radio').click(function () {
-            var variant_attribute_value = [];
+            var variantAttributeValue = [];
+            var varaintAttributeCount = 0;
 
             $('.variant-group').find('div.form-group').each(function (i, div) {
                 var name = $(div).find('input').attr('name')
                 var value = document.cart_star_form[name].value
+                varaintAttributeCount++;
 
                 if (value)
-                    variant_attribute_value.push(value)
+                    variantAttributeValue.push(value)
             })
 
+            if (variantAttributeValue.length == varaintAttributeCount) {
+                $('#buy_now_btn, #add_to_cart_btn').removeAttr('disabled');
+            }
+
             variants.forEach(function (variant) {
-                if (variant.id == variant_attribute_value.sort().join(',')) {
+                if (variant.id == variantAttributeValue.sort().join(',')) {
                     $('#variant_attribute_value').val(variant.id)
                     $('#product_price').text('$' + variant.price / 100)
                 }
             })
         })
-
     </script>
 
 </x-app-layout>
