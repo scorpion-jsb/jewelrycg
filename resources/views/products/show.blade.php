@@ -163,8 +163,8 @@
                                 @endif
 
                                 <input type="hidden" name="id_product" value="{{$product->id}}">
-                                <button type="submit" class="btn btn-primary shadow-md" {{ $product->is_trackingquantity == 1 && $product->quantity < 1 ? 'disabled' : null }} disabled id="add_to_cart_btn">Add to Cart</button>
-                                <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->is_trackingquantity == 1 &&  $product->quantity < 1 ? 'disabled' : null }} disabled id="buy_now_btn">Buy Now</button>
+                                <button type="submit" class="btn btn-primary shadow-md" {{ $product->is_trackingquantity == 1 && $product->quantity < 1 ? 'disabled' : null }} id="add_to_cart_btn">Add to Cart</button>
+                                <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->is_trackingquantity == 1 &&  $product->quantity < 1 ? 'disabled' : null }} id="buy_now_btn">Buy Now</button>
                             </form>
 
                         </div><!--End .bg-white product card-->
