@@ -4,7 +4,7 @@
             <div class="col-md-7">
                 <div class="card">
                     <div class="card-body">
-                      <form action="{{ url('/checkout/shopping') }}" method="POST">
+                      <form action="{{ url('/checkout/shipping') }}" method="POST">
                         @csrf
                         <div class="border-bottom mb-3 fs-3">Shipping Address</div>
                         @include('includes.validation-form')

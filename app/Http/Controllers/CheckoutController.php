@@ -130,7 +130,7 @@ class CheckoutController extends Controller
             $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
 
             if ($userAddress) {
-                $userAddress = UserAddress::find($userAddress);
+                $userAddress = UserAddress::find($userAddress->id);
             } else {
                 $userAddress = new UserAddress;
             }
