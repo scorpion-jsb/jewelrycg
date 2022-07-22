@@ -14,7 +14,7 @@
       
       // Fetches a payment intent and captures the client secret
       async function initialize() {
-        const { clientSecret } = await fetch(payment_intent_route, { //
+        const { clientSecret } = await fetch(payment_intent_route, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

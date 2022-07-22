@@ -14,10 +14,10 @@ class OrderController extends Controller
         return view('orders.index', compact('orders'));
     }
 
-    public function show(int $id_order)
+    public function show(int $orderId)
     {
         $edit = (bool) request()->query('edit', 0);
-        $order = Order::with('items', 'items.product:id,name,slug')->find($id_order);
+        $order = Order::with('items', 'items.product:id,name,slug')->find($orderId);
         $this->authorize('show', $order);
         $order->formatPrice();
         $order->items->transform(function($i) {

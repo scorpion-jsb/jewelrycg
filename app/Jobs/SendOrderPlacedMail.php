@@ -33,6 +33,6 @@ class SendOrderPlacedMail implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->order->user)->send(new OrderPlacedMail($this->order));
+        // Mail::to($this->order->user)->send(new OrderPlacedMail($this->order));
     }
 }

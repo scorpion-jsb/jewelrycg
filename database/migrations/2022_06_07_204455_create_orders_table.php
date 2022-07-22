@@ -15,13 +15,21 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_user',)->nullable();
-            $table->string('address_shipping');
-            $table->string('address_billing');
-            $table->integer('total_price')->unsigned();
-            $table->string('status')->default('Processing');
-            $table->string('message')->nullable()->default(null);
-            $table->string('tracking_number');
+            $table->integer('user_id')->nullable();
+            $table->string('shipping_address1');
+            $table->string('shipping_address2');
+            $table->string('shipping_city');
+            $table->string('shipping_state');
+            $table->string('shipping_zipcode');
+            $table->string('shipping_country');
+            $table->string('shipping_phonenumber');
+            $table->string('billing_address1');
+            $table->string('billing_address2');
+            $table->string('billing_city');
+            $table->string('billing_state');
+            $table->string('billing_zipcode');
+            $table->string('billing_country');
+            $table->string('billing_phonenumber');
             $table->timestamps();
         });
     }
