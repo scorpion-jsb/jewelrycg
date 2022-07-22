@@ -89,6 +89,10 @@ class Order extends Model
     //     );
     // }
 
+    public function totalPrice() {
+        
+    }
+
     public function formatPrice()
     {
         $this->total_price = number_format($this->total_price / 100, 2);

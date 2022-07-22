@@ -42,8 +42,4 @@
             @endif
         </div>
     @endif
-    <div>
-        Total:
-        <span class="link-warning">${{$order->total_price}}</span>
-    </div>
 </form>
