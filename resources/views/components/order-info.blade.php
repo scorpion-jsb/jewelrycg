@@ -1,32 +1,38 @@
-<div>
+<div class="mb-2">
     Address:
-    <span class="text-secondary">{{$order->address1}}</span>
+    <span class="text-secondary">{{$order->billing_address1}}</span>
 </div>
-<div>
+<div class="mb-2">
     Secondary Address:
-    <span class="text-secondary">{{$order->address2}}</span>
+    <span class="text-secondary">{{$order->billing_address2}}</span>
 </div>
+<div class="mb-2">
+    City:
+    <span class="text-secondary">{{$order->billing_city}}</span>
+</div>
+<div class="mb-2">
+    State:
+    <span class="text-secondary">{{$order->billing_state}}</span>
+</div>
+<div class="mb-2">
+    Country:
+    <span class="text-secondary">{{$order->billing_country}}</span>
+</div>
+@if ($order->billing_phonenumber != '')
+    <div class="mb-2">
+        Phone:
+        <span class="text-secondary">{{$order->billing_phonenumber}}</span>
+    </div>
+@endif
+
 <form action="{{route('orders.update', $order)}}" method="post">
     @csrf
     @method('patch')
-    <div>
+    <div class="mb-2">
         Status:
-        <?php $let_edit = auth()->user()->is_admin && $edit ?>
-        @if ($let_edit)
-            <select name="status" id="status" class="form-select text-primary">
-                @foreach (App\Models\Order::$status_list as $status)
-                    <option {{ $order->status == $status ? 'selected' : null }}>{{$status}}</option>
-                @endforeach
-            </select>
-        @else
-            <span class="link-primary">{{$order->status}}</span>
-        @endif
+        <span class="link-primary">{{$order->status_payment}}</span>
     </div>
-    <div>
-        Tracking Number:
-        <a href="javascript:;" onclick="copyText(this)" class="link-secondary">{{$order->tracking_number}}</a>
-    </div>
-    @if ($let_edit || $order->message)
+    @if ($order->message)
         <div>
             Message:
             @if ($edit)
@@ -40,11 +46,4 @@
         Total:
         <span class="link-warning">${{$order->total_price}}</span>
     </div>
-    @if ($let_edit)
-        <div class="text-center">
-            <button class="btn btn-primary" type="submit">
-                Update
-            </button>
-        </div>
-    @endif
 </form>

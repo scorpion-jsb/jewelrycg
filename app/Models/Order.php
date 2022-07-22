@@ -6,12 +6,15 @@ use App\Http\Requests\UpdateOrderRequest;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Auth;
 
 class Order extends Model
 {
     use HasFactory;
 
     protected $fillable = [
+        'id',
+        'order_id',
         'user_id',
         'shipping_address1',
         'shipping_address2',
@@ -28,6 +31,8 @@ class Order extends Model
         'billing_country',
         'billing_phonenumber'        
     ];
+
+    protected $keyType = 'string';
 
     // public static $status_list = [
     //     'Processing',
@@ -56,23 +61,6 @@ class Order extends Model
     //     return auth()->user()->orders()->where('status', 'Processing')->withCount('items')->orderBy('id')->paginate(10);
     // }
 
-    public static function getCartTotalInCents()
-    {
-        $total_price_float = Cart::total(2, '.', '') * 100;
-        return (int) $total_price_float;
-    }
-
-    public static function changeCartInstanceIfBuyNowMode(bool $buy_now_mode)
-    {
-        if($buy_now_mode)
-        {
-            Cart::instance('buy_now');
-        }
-        else
-        {
-            Cart::instance('default');
-        }
-    }
 
     // public function adminUpdate(UpdateOrderRequest $req)
     // {
@@ -82,20 +70,6 @@ class Order extends Model
     //         $data['status'] = $req->status;
     //     }
     //     $this->update($data);
-    // }
-
-    // public function insertCartProducts()
-    // {
-    //     $cart_items = Cart::content();
-    //     $cart_items = $cart_items->map(function($i, $k) {
-    //         $i->model->decrement('quantity', $i->quantity);
-    //         return [
-    //             'id_product' => $i->id,
-    //             'quantity' => $i->quantity,
-    //             'price' => Product::getPriceInCents($i->price)
-    //         ];
-    //     });
-    //     $this->items()->createMany($cart_items->toArray());
     // }
 
     // public function restoreProductsQuantity()
@@ -123,7 +97,7 @@ class Order extends Model
 
     public function items()
     {
-        return $this->hasMany(OrderItem::class, 'order_id');
+        return $this->hasMany(OrderItem::class, 'order_id', 'order_id');
     }
 
     public function user()

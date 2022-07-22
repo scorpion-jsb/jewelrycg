@@ -80,13 +80,13 @@ class CartController extends Controller
     public function editQty(CartItemEditRequest $req)
     {
         Cart::instance('default')->update($req->row_id, $req->quantity);
+
         if(auth()->check())
         {
             Cart::restore(auth()->id());
             Cart::update($req->row_id, $req->quantity);
             Cart::store(auth()->id());
         }
-        // return redirect()->route('cart.index');
 
         return true;
     }
