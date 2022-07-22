@@ -68,11 +68,11 @@
                         @if ($locale == 'cart')
                             <div class=" justify-content-between">
                                 <div class="col-6">
-                                    <input type="number" value="{{ $product->qty }}"
-                                        placeholder="{{ $product->qty }}" name="quantity" min="1"
-                                        max="100" class="form-control quantity" id="{{ $product->rowId }}">
+                                    <input type="number" value="{{ $product->qty }}" placeholder="{{ $product->qty }}"
+                                        name="quantity" min="1" max="100" class="form-control quantity"
+                                        id="{{ $product->rowId }}">
                                 </div>
-                                <?php $out_of_stock[$key] = $product->qty > $product->model->quantity; ?>
+                                <?php $out_of_stock[$key] = $product->qty > $product->model->quantity && $product->model->is_trackingquantity; ?>
                                 @if ($out_of_stock[$key])
                                     <div class="col-2">
                                         <span class="badge rounded-pill text-light bg-danger">
@@ -83,7 +83,7 @@
                                 @csrf
                             </div>
                         @else
-                            {{ $product->quantity }}
+                            {{ $product->qty }}
                         @endif
                     </td>
                     <td>
@@ -95,7 +95,7 @@
                                 } else {
                                     $price = number_format($product->price, 2);
                                 }
-
+                                
                                 echo $product->qty * $price;
                             @endphp
                         </div>
@@ -103,11 +103,8 @@
                     <td>
                         <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger"
                             title="Remove from chart"><i class="bi bi-x-lg"></i></a>
-
                     </td>
                 @endif
-
-
             </tr>
         @endforeach
         @if ($locale != 'orders.show')

@@ -11,8 +11,9 @@ class OrderItem extends Model
     use HasFactory, FormatPrices;
 
     protected $fillable = [
-        'id_order',
-        'id_product',
+        'order_id',
+        'product_id',
+        'product_variant',
         'quantity',
         'price',
     ];
@@ -26,6 +27,6 @@ class OrderItem extends Model
 
     public function product()
     {
-        return $this->belongsTo(Product::class, 'id_product');
+        return $this->belongsTo(Product::class, 'product_id');
     }
 }

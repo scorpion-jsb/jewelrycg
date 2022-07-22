@@ -6,17 +6,34 @@ use App\Http\Requests\CancelCheckoutRequest;
 use App\Http\Requests\PlaceOrderRequest;
 use App\Http\Requests\StorePaymentIntentRequest;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Error;
 use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
+use Auth;
+use App\Models\UserAddress;
 
 class CheckoutController extends Controller
 {
     public function index()
     {
-        return view('checkout');
+        $products = Cart::instance('default')->content();
+
+        $isIncludeDigit = false;
+
+        foreach ($products as $product) {
+            if ($product->model->is_digital || $product->model->is_virtual) {
+                $isIncludeDigit = true;
+            }
+        }
+
+        if ($isIncludeDigit) {
+            return redirect()->route('checkout.shipping.get');
+        }
+
+        return redirect()->route('checkout.billing.get');
     }
 
     public function store(Request $req)
@@ -95,4 +112,123 @@ class CheckoutController extends Controller
         $order = auth()->user()->orders()->orderBy('id', 'desc')->first();
         return redirect()->route('orders.show', $order->id);
     }
+
+    public function postOrdering(Request $request)
+    {
+        $order = new Order;
+
+        $order->shipping_address1 = $request->address1;
+        $order->shipping_address2 = $request->address2;
+        $order->shipping_city = $request->city;
+        $order->shipping_state = $request->state;
+        $order->shipping_country = $request->country;
+        $order->shipping_zipcode = $request->pin_code;
+        $order->shipping_phonenumber = $request->phone;
+        $order->user_id = Auth::user()->id;
+
+        if ($request->isRemember) {
+            $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
+
+            if ($userAddress) {
+                $userAddress = UserAddress::find($userAddress);
+            } else {
+                $userAddress = new UserAddress;
+            }
+
+            $userAddress->address = $request->address1;
+            $userAddress->address2 = $request->address2;
+            $userAddress->city = $request->city;
+            $userAddress->state = $request->state;
+            $userAddress->country = $request->country;
+            $userAddress->postal_code = $request->pin_code;
+            $userAddress->save();
+        }
+
+        $orderId = 0;
+
+        if ($order->save()) {
+            $products = Cart::instance('default')->content();
+            $orderId = $order->id;
+
+            foreach ($products as $product) {
+                $orderItem = new OrderItem;
+
+                $orderItem->order_id = $orderId;
+                $orderItem->product_id = $product->id;
+                $orderItem->quantity = $product->qty;
+                $orderItem->product_variant = $product->options->id;
+                $orderItem->price = $product->options->price;
+                $orderItem->save();
+            }
+        }
+
+        return redirect()->route('checkout.billing.get', ['orderId' => $orderId]);
+    }
+
+    public function getBilling($orderId = 0)
+    {
+        return view('checkout.billing')->with(['orderId' => $orderId]);
+    }
+
+    public function postBilling(Request $request)
+    {
+        $order = null;
+
+        if ($request->orderId)
+            $order = Order::find($request->orderId);
+        else
+            $order = new Order;
+
+        $order->billing_address1 = $request->address1;
+        $order->billing_address2 = $request->address2;
+        $order->billing_city = $request->city;
+        $order->billing_state = $request->state;
+        $order->billing_country = $request->country;
+        $order->billing_zipcode = $request->pin_code;
+        $order->billing_phonenumber = $request->phone;
+        $order->user_id = Auth::user()->id;
+        $order->save();
+
+        if ($order->save() && !$request->orderId) {
+            $products = Cart::instance('default')->content();
+            $orderId = $order->id;
+
+            foreach ($products as $product) {
+                $orderItem = new OrderItem;
+
+                $orderItem->order_id = $orderId;
+                $orderItem->product_id = $product->id;
+                $orderItem->quantity = $product->qty;
+                $orderItem->product_variant = $product->options->id;
+                $orderItem->price = $product->options->price;
+                $orderItem->save();
+            }
+        }
+
+        if ($request->isRemember) {
+            $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
+
+            if ($userAddress) {
+                $userAddress = UserAddress::find($userAddress->id);
+            } else {
+                $userAddress = new UserAddress;
+            }
+  
+            $userAddress->user_id = Auth::user()->id;
+            $userAddress->address = $request->address1;
+            $userAddress->address2 = $request->address2;
+            $userAddress->city = $request->city;
+            $userAddress->state = $request->state;
+            $userAddress->country = $request->country;
+            $userAddress->postal_code = $request->pin_code;
+            $userAddress->save();
+        }
+
+        return redirect()->route('checkout.payment.get');
+   }
+
+   public function getPayment(Request $request) 
+   {
+        return view('checkout.payment');
+   }
 }

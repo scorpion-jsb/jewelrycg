@@ -1,4 +1,5 @@
 <x-app-layout page-title="Cart">
+
 <div class="py-6 cart-wrap">
     <div class="container">
         <div class="card">

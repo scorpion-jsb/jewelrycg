@@ -12,41 +12,49 @@ class Order extends Model
     use HasFactory;
 
     protected $fillable = [
-        'id_user',
-        'address1',
-        'address2',
-        'status',
-        'message',
-        'tracking_number',
-        'total_price',
+        'user_id',
+        'shipping_address1',
+        'shipping_address2',
+        'shipping_city',
+        'shipping_state',
+        'shipping_zipcode',
+        'shipping_country',
+        'shipping_phonenumber',
+        'billing_address1',
+        'billing_address2',
+        'billing_city',
+        'billing_state',
+        'billing_zipcode',
+        'billing_country',
+        'billing_phonenumber'        
     ];
 
-    public static $status_list = [
-        'Processing',
-        'Processed',
-        'Shipped',
-        'Delivered'
-    ];
+    // public static $status_list = [
+    //     'Processing',
+    //     'Processed',
+    //     'Shipped',
+    //     'Delivered'
+    // ];
 
-    public static function getBasedOnUser()
-    {
-        if(auth()->user()->is_admin)
-        {
-            return Order::withCount('items')->orderBy('id')->paginate(10);
-        }
+    // public static function getBasedOnUser()
+    // {
+    //     if(auth()->user()->is_admin)
+    //     {
+    //         return Order::withCount('items')->orderBy('id')->paginate(10);
+    //     }
         
-        return auth()->user()->orders()->withCount('items')->orderBy('id')->paginate(10);
-    }
+    //     return auth()->user()->orders()->withCount('items')->orderBy('id')->paginate(10);
+    // }
 
-    public static function getPendingBasedOnUser()
-    {
-        if(auth()->user()->is_admin)
-        {
-            return Order::where('status', 'Processing')->withCount('items')->orderBy('id')->paginate(10);
-        }
+    // public static function getPendingBasedOnUser()
+    // {
+    //     if(auth()->user()->is_admin)
+    //     {
+    //         return Order::where('status', 'Processing')->withCount('items')->orderBy('id')->paginate(10);
+    //     }
         
-        return auth()->user()->orders()->where('status', 'Processing')->withCount('items')->orderBy('id')->paginate(10);
-    }
+    //     return auth()->user()->orders()->where('status', 'Processing')->withCount('items')->orderBy('id')->paginate(10);
+    // }
 
     public static function getCartTotalInCents()
     {
@@ -66,46 +74,46 @@ class Order extends Model
         }
     }
 
-    public function adminUpdate(UpdateOrderRequest $req)
-    {
-        $data = $req->only('message');
-        if(in_array($req->status, Order::$status_list))
-        {
-            $data['status'] = $req->status;
-        }
-        $this->update($data);
-    }
+    // public function adminUpdate(UpdateOrderRequest $req)
+    // {
+    //     $data = $req->only('message');
+    //     if(in_array($req->status, Order::$status_list))
+    //     {
+    //         $data['status'] = $req->status;
+    //     }
+    //     $this->update($data);
+    // }
 
-    public function insertCartProducts()
-    {
-        $cart_items = Cart::content();
-        $cart_items = $cart_items->map(function($i, $k) {
-            $i->model->decrement('quantity', $i->quantity);
-            return [
-                'id_product' => $i->id,
-                'quantity' => $i->quantity,
-                'price' => Product::getPriceInCents($i->price)
-            ];
-        });
-        $this->items()->createMany($cart_items->toArray());
-    }
+    // public function insertCartProducts()
+    // {
+    //     $cart_items = Cart::content();
+    //     $cart_items = $cart_items->map(function($i, $k) {
+    //         $i->model->decrement('quantity', $i->quantity);
+    //         return [
+    //             'id_product' => $i->id,
+    //             'quantity' => $i->quantity,
+    //             'price' => Product::getPriceInCents($i->price)
+    //         ];
+    //     });
+    //     $this->items()->createMany($cart_items->toArray());
+    // }
 
-    public function restoreProductsQuantity()
-    {
-        Cart::content()->map(fn($i, $k) => $i->model->increment('quantity', $i->quantity));
-    }
+    // public function restoreProductsQuantity()
+    // {
+    //     Cart::content()->map(fn($i, $k) => $i->model->increment('quantity', $i->quantity));
+    // }
 
-    public function restoreCartItems()
-    {
-        $this->items->map(fn($i, $k) => Cart::add(
-                $i->id,
-                $i->product->name,
-                $i->quantity,
-                $i->price / 100
-            )
-            ->associate(Product::class)
-        );
-    }
+    // public function restoreCartItems()
+    // {
+    //     $this->items->map(fn($i, $k) => Cart::add(
+    //             $i->id,
+    //             $i->product->name,
+    //             $i->quantity,
+    //             $i->price / 100
+    //         )
+    //         ->associate(Product::class)
+    //     );
+    // }
 
     public function formatPrice()
     {
@@ -115,11 +123,11 @@ class Order extends Model
 
     public function items()
     {
-        return $this->hasMany(OrderItem::class, 'id_order');
+        return $this->hasMany(OrderItem::class, 'order_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class, 'id_user');
+        return $this->belongsTo(User::class, 'user_id');
     }
 }
