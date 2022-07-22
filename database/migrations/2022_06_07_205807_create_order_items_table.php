@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('product_variant');
             $table->tinyInteger('quantity')->unsigned();
             $table->smallInteger('price')->unsigned();
+            $table->smallInteger('status_fulfillment')->default(1); // 1: pending, 2: shipped, 3: delivered
             $table->timestamps();
         });
     }
