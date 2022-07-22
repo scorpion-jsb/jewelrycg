@@ -46,13 +46,12 @@
                                         </td>
                                         <td>
                                             <div class=" justify-content-between">
-                                                $item->quantity                                            
+                                                {{$item->quantity}}                                            
                                             </div>
                                         </td>
                                         <td>
                                             <div class=" justify-content-between">
-                                                 {{$item->price}} price
-                                                 {{$item->quantity}}
+                                                 {{$item->price / 100 * $item->quantity}}
                                             </div>
                                         </td>
 
