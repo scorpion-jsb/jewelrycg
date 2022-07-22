@@ -25,7 +25,7 @@
                     <div class="card">
                         <div class="card-body">
                             <div class="border-bottom mb-3">Order Details</div>
-                            <x-products-table locale="checkout" :type='payment' :instance="isset($buy_now_mode) && $buy_now_mode == 1 ? 'buy_now' : 'default'" />
+                            <x-products-table locale="checkout" :instance="isset($buy_now_mode) && $buy_now_mode == 1 ? 'buy_now' : 'default'" />
                             <div class="d-grid gap-2">
                                 <button id="submit" class="btn btn-primary">
                                     <div class="spinner hidden" id="spinner"></div>
