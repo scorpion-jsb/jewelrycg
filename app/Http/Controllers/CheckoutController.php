@@ -84,10 +84,11 @@ class CheckoutController extends Controller
                 $orderItem->price = $item->price * 100;
                 $orderItem->quantity = $item->qty;
 
+                $orderItem->product_variant = 0;
+
                 if (isset($item->options['id']))
                     $orderItem->product_variant = $item->options['id'];
 
-                $orderItem->product_variant = 0;
 
                 $orderItem->save();
             }
