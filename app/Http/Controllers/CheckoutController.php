@@ -113,7 +113,7 @@ class CheckoutController extends Controller
         return redirect()->route('orders.show', $order->id);
     }
 
-    public function postOrdering(Request $request)
+    public function postShipping(Request $request)
     {
         $order = new Order;
 
@@ -163,6 +163,10 @@ class CheckoutController extends Controller
         }
 
         return redirect()->route('checkout.billing.get', ['orderId' => $orderId]);
+    }
+
+    public function getShipping() {
+        return view('checkout.shipping');
     }
 
     public function getBilling($orderId = 0)
