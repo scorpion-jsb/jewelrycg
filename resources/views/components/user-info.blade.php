@@ -10,7 +10,7 @@
         <label for="address2" class="offset-md-1 col-sm-2 col-form-label">Secondary Address</label>
         <div class="col-sm-8">
             <input type="text" name="address2" value="{{ auth()->user()->address->address2 ?? old('address2') }}"
-                id="address2" class="form-control" required placeholder="Enter Secondary Address (optional)">
+                id="address2" class="form-control" placeholder="Enter Secondary Address (optional)">
         </div>
     </div>
     <div class="row mb-3">
@@ -45,7 +45,7 @@
         <label class="offset-md-1 col-sm-2 col-form-label" for="phone">Phone Number</label>
         <div class="col-sm-8">
             <input type="tel" name="phone" value="{{ auth()->user()->address->phone ?? old('phone') }}" id="phone"
-                class="form-control" required placeholder="Enter Phone Number">
+                class="form-control" placeholder="Enter Phone Number">
         </div>
     </div>
 </div>
