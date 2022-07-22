@@ -32,7 +32,7 @@
                                             <a href="{{ route('products.show', $item->product->slug) }}" class="link-dark">
                                                 @php
                                                     if ($item->product_variant != 0) {
-                                                        echo $item->product->name . ' - ' . $item->productVariant->name;
+                                                        echo $item->product->name . ' - ' . $item->productVariant->variant_name;
                                                     } else {
                                                         echo $item->product->name;
                                                     }
