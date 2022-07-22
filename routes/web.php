@@ -258,7 +258,7 @@ Route::group(['middleware' => 'auth'], function ()
 		Route::post('/payment/intent', [CheckoutController::class, 'createPaymentIntent'])->name('checkout.payment.intent');
 		Route::get('checkout/shipping', [CheckoutController::class, 'getShipping'])->name('checkout.shipping.get');
 		Route::post('checkout/shipping', [CheckoutController::class, 'postShipping'])->name('checkout.shipping.post');
-		Route::get('checkout/billing/{orderId?}', [CheckoutController::class, 'getBilling'])->name('checkout.billing.get');
+		Route::get('checkout/billing', [CheckoutController::class, 'getBilling'])->name('checkout.billing.get');
 		Route::post('checkout/billing', [CheckoutController::class, 'postBilling'])->name('checkout.billing.post');
 		Route::get('checkout/payment', [CheckoutController::class, 'getPayment'])->name('checkout.payment.get');
 		Route::post('checkout/payment', [CheckoutController::class, 'postPayment'])->name('checkout.payment.post');

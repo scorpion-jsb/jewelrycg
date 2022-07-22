@@ -27,16 +27,12 @@ class PlaceOrderRequest extends FormRequest
             'name' => 'prohibited',
             'email' => 'prohibited',
             'password' => 'prohibited',
-            'phone' => 'required|numeric|digits_between:8,12',
             'address1' => 'required|string|max:255',
             'address2' => 'nullable|string|max:255',
             'city' => 'required|string|max:255', //
             'state' => 'required|string|max:255', //
             'country' => 'required|string|max:255', //
             'pin_code' => 'required|numeric|digits_between:4,6', //
-            'status' => 'prohibited',
-            'message' => 'prohibited',
-            'tracking_number' => 'prohibited',
             'buy_now_mode' => 'required|boolean'
         ];
     }

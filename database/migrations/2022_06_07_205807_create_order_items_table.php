@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('order_items', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id',)->nullable();
+            $table->string('order_id',);
             $table->integer('product_id',)->nullable();
             $table->string('product_variant');
             $table->tinyInteger('quantity')->unsigned();

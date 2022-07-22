@@ -15,11 +15,11 @@ class BlogController extends Controller
 
     public function index()
     {
-      
         return view('blog.list', [
             'posts' => BlogPost::with(['categories', 'uploads', 'postauthor'])->orderBy('id', 'DESC')->get()
         ]);
     }
+    
     public function show($slug)
     {
         return view('blog.show', [

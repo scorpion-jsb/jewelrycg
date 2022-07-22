@@ -36,24 +36,64 @@ class CheckoutController extends Controller
         return redirect()->route('checkout.billing.get');
     }
 
-    public function store(Request $req)
+    public function store(Request $request)
     {
         try
         {
-            $rules = (new PlaceOrderRequest)->rules();
-            $this->validate($req, $rules);
-            Order::changeCartInstanceIfBuyNowMode($req->buy_now_mode);
+            $this->validate($request, (new PlaceOrderRequest)->rules());
 
-            $data = $req->all();
-            $user = auth()->user();
-            $user->update($data);
+            $order = new Order;
 
-            $data['tracking_number'] = random_int(100000, 999999);
-            $data['total_price'] = Order::getCartTotalInCents();
-    
-            $order = $user->orders()->create($data);
-            $order->insertCartProducts();    
+            $orderId = Auth::user()->id . $request->session()->get('order_id');
+
+            $order->id = $request->session()->get('order_id');
+            $order->order_id = $orderId;
+            $order->user_id = Auth::user()->id;
+            $order->billing_address1 = $request->session()->get('billing_address1', '');
+            $order->billing_address2 = $request->session()->get('billing_address2', '');
+            $order->billing_city = $request->session()->get('billing_city', '');
+            $order->billing_state = $request->session()->get('billing_state', '');
+            $order->billing_zipcode = $request->session()->get('billing_zipcode', '');
+            $order->billing_country = $request->session()->get('billing_country', '');
+            $order->billing_phonenumber = $request->session()->get('billing_phonenumber', '');
+            $order->shipping_address1 = $request->session()->get('shipping_address1', '');
+            $order->shipping_address2 = $request->session()->get('shipping_address2', '');
+            $order->shipping_city = $request->session()->get('shipping_city', '');
+            $order->shipping_state = $request->session()->get('shipping_state', '');
+            $order->shipping_zipcode = $request->session()->get('shipping_zipcode', '');
+            $order->shipping_country = $request->session()->get('shipping_country', '');
+            $order->shipping_phonenumber = $request->session()->get('shipping_phonenumber', '');
+            $order->save();
+
+            if($request->buy_now_mode)
+            {
+                Cart::instance('buy_now');
+            }
+            else
+            {
+                Cart::instance('default');
+            }
+
+            $cartItems = Cart::content();
+
+            foreach ($cartItems as $item) {
+                $orderItem = new OrderItem;
+
+                $orderItem->order_id = $orderId;
+                $orderItem->product_id = $item->id;
+                $orderItem->price = $item->price * 100;
+                $orderItem->quantity = $item->qty;
+
+                if (isset($item->options['id']))
+                    $orderItem->product_variant = $item->options['id'];
+
+                $orderItem->product_variant = 0;
+
+                $orderItem->save();
+            }
+            
             Cart::erase(auth()->id());
+
             Cart::destroy();    
         }
         catch(Exception|Error $e)
@@ -70,12 +110,19 @@ class CheckoutController extends Controller
 
         header('Content-Type: application/json');
 
-        Order::changeCartInstanceIfBuyNowMode($req->buy_now_mode);
+        if($req->buy_now_mode)
+        {
+            Cart::instance('buy_now');
+        }
+        else
+        {
+            Cart::instance('default');
+        }
 
         try {
             // Create a PaymentIntent with amount and currency
             $paymentIntent = \Stripe\PaymentIntent::create([
-                'amount' => Order::getCartTotalInCents(),
+                'amount' => Cart::total(2, '.', '') * 100,
                 'currency' => 'usd',
                 'automatic_payment_methods' => [
                     'enabled' => true,
@@ -96,7 +143,16 @@ class CheckoutController extends Controller
     public function cancel(CancelCheckoutRequest $req)
     {
         $order = auth()->user()->orders()->with('items', 'items.product:id,name,quantity')->orderBy('id', 'desc')->first();
-        Order::changeCartInstanceIfBuyNowMode($req->buy_now_mode);
+
+        if($req->buy_now_mode)
+        {
+            Cart::instance('buy_now');
+        }
+        else
+        {
+            Cart::instance('default');
+        }
+
         $order->restoreCartItems();
         $order->restoreProductsQuantity();
 
@@ -110,21 +166,24 @@ class CheckoutController extends Controller
     public function paymentFinished()
     {
         $order = auth()->user()->orders()->orderBy('id', 'desc')->first();
+
         return redirect()->route('orders.show', $order->id);
+    }
+
+    public function getShipping() {
+        return view('checkout.shipping');
     }
 
     public function postShipping(Request $request)
     {
-        $order = new Order;
-
-        $order->shipping_address1 = $request->address1;
-        $order->shipping_address2 = $request->address2;
-        $order->shipping_city = $request->city;
-        $order->shipping_state = $request->state;
-        $order->shipping_country = $request->country;
-        $order->shipping_zipcode = $request->pin_code;
-        $order->shipping_phonenumber = $request->phone;
-        $order->user_id = Auth::user()->id;
+        // store data to session
+        $request->session()->put('shipping_address1', $request->address1);
+        $request->session()->put('shipping_address2', $request->address2);
+        $request->session()->put('shipping_city', $request->city);
+        $request->session()->put('shipping_state', $request->state);
+        $request->session()->put('shipping_country', $request->country);
+        $request->session()->put('shipping_zipcode', $request->pin_code);
+        $request->session()->put('shipping_phonenumber', $request->phone);
 
         if ($request->isRemember) {
             $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
@@ -144,70 +203,23 @@ class CheckoutController extends Controller
             $userAddress->save();
         }
 
-        $orderId = 0;
-
-        if ($order->save()) {
-            $products = Cart::instance('default')->content();
-            $orderId = $order->id;
-
-            foreach ($products as $product) {
-                $orderItem = new OrderItem;
-
-                $orderItem->order_id = $orderId;
-                $orderItem->product_id = $product->id;
-                $orderItem->quantity = $product->qty;
-                $orderItem->product_variant = $product->options->id;
-                $orderItem->price = $product->options->price;
-                $orderItem->save();
-            }
-        }
-
-        return redirect()->route('checkout.billing.get', ['orderId' => $orderId]);
+        return redirect()->route('checkout.billing.get');
     }
 
-    public function getShipping() {
-        return view('checkout.shipping');
-    }
-
-    public function getBilling($orderId = 0)
+    public function getBilling()
     {
-        return view('checkout.billing')->with(['orderId' => $orderId]);
+        return view('checkout.billing');
     }
 
     public function postBilling(Request $request)
     {
-        $order = null;
-
-        if ($request->orderId)
-            $order = Order::find($request->orderId);
-        else
-            $order = new Order;
-
-        $order->billing_address1 = $request->address1;
-        $order->billing_address2 = $request->address2;
-        $order->billing_city = $request->city;
-        $order->billing_state = $request->state;
-        $order->billing_country = $request->country;
-        $order->billing_zipcode = $request->pin_code;
-        $order->billing_phonenumber = $request->phone;
-        $order->user_id = Auth::user()->id;
-        $order->save();
-
-        if ($order->save() && !$request->orderId) {
-            $products = Cart::instance('default')->content();
-            $orderId = $order->id;
-
-            foreach ($products as $product) {
-                $orderItem = new OrderItem;
-
-                $orderItem->order_id = $orderId;
-                $orderItem->product_id = $product->id;
-                $orderItem->quantity = $product->qty;
-                $orderItem->product_variant = $product->options->id;
-                $orderItem->price = $product->options->price;
-                $orderItem->save();
-            }
-        }
+        $request->session()->put('billing_address1', $request->address1);
+        $request->session()->put('billing_address2', $request->address2);
+        $request->session()->put('billing_city', $request->city);
+        $request->session()->put('billing_state', $request->state);
+        $request->session()->put('billing_country', $request->country);
+        $request->session()->put('billing_zipcode', $request->pin_code);
+        $request->session()->put('billing_phonenumber', $request->phone);
 
         if ($request->isRemember) {
             $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
@@ -229,10 +241,13 @@ class CheckoutController extends Controller
         }
 
         return redirect()->route('checkout.payment.get');
-   }
+    }
 
    public function getPayment(Request $request) 
    {
-        return view('checkout.payment');
+        $orderId = strtoupper(uniqid());
+        $request->session()->put('order_id', $orderId);
+
+        return view('checkout.payment')->with(['orderId' => $orderId]);
    }
 }
