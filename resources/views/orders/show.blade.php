@@ -51,7 +51,8 @@
                                         </td>
                                         <td>
                                             <div class=" justify-content-between">
-                                                {{ number_format($item->price, 2) * $item->quantity }}
+                                                 {{$item->price}} price
+                                                 {{$item->quantity}}
                                             </div>
                                         </td>
 
