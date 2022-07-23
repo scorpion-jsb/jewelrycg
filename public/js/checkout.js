@@ -34,7 +34,10 @@
       
       async function handleSubmit(e) {
         e.preventDefault();
+
         setLoading(true);
+
+
 
         // const phone = document.getElementById('phone').value
         // const address1 = document.getElementById('address1').value

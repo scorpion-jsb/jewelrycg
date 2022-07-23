@@ -42,12 +42,46 @@ class CheckoutController extends Controller
         {
             $this->validate($request, (new PlaceOrderRequest)->rules());
 
-            $order = new Order;
 
-            $orderId = Auth::user()->id . strtoupper(uniqid());
-            $request->session()->put('order_id', $orderId);
+            $orderId = $request->session()->get('order_id', '');
+
+            $order = Order::where('order_id', $orderId)->first();
+
+            if (!$order) {
+                $order = new Order;
+                $orderId = Auth::user()->id . strtoupper(uniqid());
+                $request->session()->put('order_id', $orderId);
+
+
+                if ($request->buy_now_mode) {
+                    Cart::instance('buy_now');
+                } else {
+                    Cart::instance('default');
+                }
     
+                $cartItems = Cart::content();
+    
+                foreach ($cartItems as $item) {
+                    $orderItem = new OrderItem;
+    
+                    $orderItem->order_id = $orderId;
+                    $orderItem->product_id = $item->id;
+                    $orderItem->price = $item->price * 100;
+                    $orderItem->quantity = $item->qty;
+    
+                    $orderItem->product_variant = 0;
+    
+                    if (isset($item->options['id'])) {
+                        $orderItem->product_variant = $item->options['id'];
+                    }
+    
+                    $orderItem->save();
+                }    
+            }
+
+ 
             $order->order_id = $orderId;
+            $order->status_payment = 1;
             $order->user_id = Auth::user()->id;
             $order->billing_address1 = $request->session()->get('billing_address1', '');
             $order->billing_address2 = $request->session()->get('billing_address2', '');
@@ -65,30 +99,6 @@ class CheckoutController extends Controller
             $order->shipping_phonenumber = $request->session()->get('shipping_phonenumber', '');
             $order->save();
 
-            if ($request->buy_now_mode) {
-                Cart::instance('buy_now');
-            } else {
-                Cart::instance('default');
-            }
-
-            $cartItems = Cart::content();
-
-            foreach ($cartItems as $item) {
-                $orderItem = new OrderItem;
-
-                $orderItem->order_id = $orderId;
-                $orderItem->product_id = $item->id;
-                $orderItem->price = $item->price * 100;
-                $orderItem->quantity = $item->qty;
-
-                $orderItem->product_variant = 0;
-
-                if (isset($item->options['id'])) {
-                    $orderItem->product_variant = $item->options['id'];
-                }
-
-                $orderItem->save();
-            }
 
             Cart::erase(auth()->id());
 
@@ -167,8 +177,15 @@ class CheckoutController extends Controller
 
         $order->restoreCartItems();
         // $order->restoreProductsQuantity();
-
         Cart::store(auth()->id());
+
+        if ($error['type'] == 'validation_error') {
+            Order::where('order_id', $orderId)->delete();
+            OrderItem::where('order_id', $orderId)->delete();
+            
+            return response(null, 204);            
+        }
+
 
         $order->status_payment = 3;
         $order->payment_intent = $error['payment_intent']['id']; 
@@ -183,6 +200,8 @@ class CheckoutController extends Controller
     {
 
         $orderId = $request->session()->get('order_id');
+
+        $request->session()->forget('order_id');
 
         $order = Order::where('order_id', $orderId)->first();
 
