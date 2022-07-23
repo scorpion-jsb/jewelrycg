@@ -39,6 +39,8 @@
             </div>
         </form>
     </div>
+
+    
     <x-slot:scripts>
         <script src="https://js.stripe.com/v3/"></script>
         <script defer>

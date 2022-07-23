@@ -3,6 +3,7 @@
 
 
       let elements;
+      let clientSecretValue = null;
       
       initialize();
       checkStatus();
@@ -22,6 +23,8 @@
           },
           body: JSON.stringify({ _token, buy_now_mode }),
         }).then((r) => r.json());
+
+        clientSecretValue = clientSecret;
 
         elements = stripe.elements({ clientSecret });
       
@@ -91,7 +94,6 @@
             },
             body: JSON.stringify({ buy_now_mode })
           });
-
         }
         else
         {
@@ -103,15 +105,21 @@
       
       // Fetches the payment intent status after payment submission
       async function checkStatus() {
-        const clientSecret = new URLSearchParams(window.location.search).get(
-          "payment_intent_client_secret"
-        );
+        // const clientSecret = new URLSearchParams(window.location.search).get(
+        //   "payment_intent_client_secret"
+        // );
       
+        const clientSecret = clientSecretValue;
+        
         if (!clientSecret) {
           return;
         }
+
+        console.log(clientSecret)
       
         const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+
+        console.log(paymentIntent)
       
         switch (paymentIntent.status) {
           case "succeeded":
