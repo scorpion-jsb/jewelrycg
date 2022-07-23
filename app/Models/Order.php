@@ -31,8 +31,8 @@ class Order extends Model
         'billing_country',
         'billing_phonenumber',
         'payment_intent',
-        'status',
-        'status_reason'
+        'status_payment',
+        'status_payment_reason'
     ];
 
     protected $keyType = 'string';
