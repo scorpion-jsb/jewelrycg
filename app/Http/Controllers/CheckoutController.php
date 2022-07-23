@@ -44,9 +44,9 @@ class CheckoutController extends Controller
 
             $order = new Order;
 
-            $orderId = Auth::user()->id . $request->session()->get('order_id');
-
-            $order->id = $request->session()->get('order_id');
+            $orderId = Auth::user()->id . strtoupper(uniqid());
+            $request->session()->put('order_id', $orderId);
+    
             $order->order_id = $orderId;
             $order->user_id = Auth::user()->id;
             $order->billing_address1 = $request->session()->get('billing_address1', '');
@@ -114,7 +114,7 @@ class CheckoutController extends Controller
 
         try {
 
-            $orderId = Auth::user()->id . $req->session()->get('orderId');
+            $orderId = $req->session()->get('orderId');
             // Create a PaymentIntent with amount and currency
             $paymentIntent = \Stripe\PaymentIntent::create([
                 'amount' => Cart::total(2, '.', '') * 100,
@@ -157,7 +157,7 @@ class CheckoutController extends Controller
         $orderId = $req->session()->get('order_id');
         $error = $req->error;
 
-        $order = Order::find($orderId);
+        $order = Order::where('order_id',  $orderId)->first();
 
         if ($req->buy_now_mode) {
             Cart::instance('buy_now');
@@ -171,6 +171,7 @@ class CheckoutController extends Controller
         Cart::store(auth()->id());
 
         $order->status_payment = 3;
+        $order->payment_intent = $error['payment_intent']['id']; 
         $order->status_payment_reason = $error['code'];
         $order->save();
 
@@ -183,7 +184,7 @@ class CheckoutController extends Controller
 
         $orderId = $request->session()->get('order_id');
 
-        $order = Order::find($orderId);
+        $order = Order::where('order_id', $orderId)->first();
 
         $order->status_payment = 2; // paid
         $order->payment_intent = $request->get('payment_intent'); 
@@ -268,9 +269,6 @@ class CheckoutController extends Controller
 
     public function getPayment(Request $request)
     {
-        $orderId = strtoupper(uniqid());
-        $request->session()->put('order_id', $orderId);
-
-        return view('checkout.payment')->with(['orderId' => $orderId]);
+        return view('checkout.payment');
     }
 }

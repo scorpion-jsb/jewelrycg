@@ -16,7 +16,7 @@ class OrderController extends Controller
 
     public function show($orderId)
     {
-        $order = Order::with('items', 'items.product:id,name,slug')->find($orderId);
+        $order = Order::with('items', 'items.product:id,name,slug')->where('order_id', $orderId)->first();
 
         return view('orders.show', compact('order'));
     }
