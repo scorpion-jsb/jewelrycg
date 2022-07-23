@@ -7,7 +7,7 @@
       
       initialize();
       checkStatus();
-
+      console.log('place_order_route', place_order_route)
       
       document
         .getElementById("payment-form")
@@ -36,23 +36,23 @@
         e.preventDefault();
         setLoading(true);
 
-        const phone = document.getElementById('phone').value
-        const address1 = document.getElementById('address1').value
-        const address2 = document.getElementById('address2').value
-        const city = document.getElementById('city').value
-        const state = document.getElementById('state').value
-        const country = document.getElementById('country').value
-        const pin_code = document.getElementById('pin_code').value
+        // const phone = document.getElementById('phone').value
+        // const address1 = document.getElementById('address1').value
+        // const address2 = document.getElementById('address2').value
+        // const city = document.getElementById('city').value
+        // const state = document.getElementById('state').value
+        // const country = document.getElementById('country').value
+        // const pin_code = document.getElementById('pin_code').value
 
         const obj = {
           _token, 
-          phone,
-          address1,
-          address2,
-          city,
-          state, 
-          country, 
-          pin_code,
+          // phone,
+          // address1,
+          // address2,
+          // city,
+          // state, 
+          // country, 
+          // pin_code,
           buy_now_mode
         };
 
@@ -67,13 +67,16 @@
 
         if(response.ok)
         {
-          const { error } = await stripe.confirmPayment({
+
+          const returnValue = await stripe.confirmPayment({
             elements,
             confirmParams: {
               // Make sure to change this to your payment completion page
               return_url: finish_page,
             },
           });
+
+          const error = returnValue.error
         
           // This point will only be reached if there is an immediate error when
           // confirming the payment. Otherwise, your customer will be redirected to
@@ -118,6 +121,7 @@
         console.log(clientSecret)
       
         const { paymentIntent } = await stripe.retrievePaymentIntent(clientSecret);
+
 
         console.log(paymentIntent)
       

@@ -24,15 +24,15 @@ class PlaceOrderRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'prohibited',
-            'email' => 'prohibited',
-            'password' => 'prohibited',
-            'address1' => 'required|string|max:255',
-            'address2' => 'nullable|string|max:255',
-            'city' => 'required|string|max:255', //
-            'state' => 'required|string|max:255', //
-            'country' => 'required|string|max:255', //
-            'pin_code' => 'required|numeric|digits_between:4,6', //
+            // 'name' => 'prohibited',
+            // 'email' => 'prohibited',
+            // 'password' => 'prohibited',
+            // 'address1' => 'required|string|max:255',
+            // 'address2' => 'nullable|string|max:255',
+            // 'city' => 'required|string|max:255', //
+            // 'state' => 'required|string|max:255', //
+            // 'country' => 'required|string|max:255', //
+            // 'pin_code' => 'required|numeric|digits_between:4,6', //
             'buy_now_mode' => 'required|boolean'
         ];
     }

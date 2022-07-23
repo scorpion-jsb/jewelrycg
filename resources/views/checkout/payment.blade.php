@@ -1,14 +1,5 @@
 <x-app-layout page-title="Payment">
     <div class="container">
-        <div class="billing_address">
-            <input type="hidden" id="phone" value="{{ Session::get('billing_phonenumber') }}">
-            <input type="hidden" id="address1" value="{{ Session::get('billing_address1') }}">
-            <input type="hidden" id="address2" value="{{ Session::get('billing_address2') }}">
-            <input type="hidden" id="city" value="{{ Session::get('billing_city') }}">
-            <input type="hidden" id="state" value="{{ Session::get('billing_state') }}">
-            <input type="hidden" id="country" value="{{ Session::get('billing_country') }}">
-            <input type="hidden" id="pin_code" value="{{ Session::get('billing_zipcode') }}">
-        </div>
         <form id="payment-form">
             <div class="row mb-3">
                 <div class="col-md-7">

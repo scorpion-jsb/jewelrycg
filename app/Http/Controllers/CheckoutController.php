@@ -153,7 +153,10 @@ class CheckoutController extends Controller
 
     public function cancel(CancelCheckoutRequest $req)
     {
-        $order = auth()->user()->orders()->with('items', 'items.product:id,name,quantity')->orderBy('id', 'desc')->first();
+        // $order = auth()->user()->orders()->with('items', 'items.product:id,name,quantity')->orderBy('id', 'desc')->first();
+        $orderId = $request->session()->get('order_id');
+
+        $order = Order::find($orderId);
 
         if ($req->buy_now_mode) {
             Cart::instance('buy_now');
@@ -171,11 +174,18 @@ class CheckoutController extends Controller
         return response(null, 204);
     }
 
-    public function paymentFinished()
+    // http://localhost:8000/payment/finished?payment_intent=pi_3LOkMMDNgrti9hIt1r7Kl9rl&payment_intent_client_secret=pi_3LOkMMDNgrti9hIt1r7Kl9rl_secret_6jksPyLMgQp8RmpNVlzf5M1GR&redirect_status=succeeded
+    public function paymentFinished(Request $request)
     {
-        $order = auth()->user()->orders()->orderBy('id', 'desc')->first();
 
-        return redirect()->route('orders.show', $order->id);
+        $orderId = $request->session()->get('order_id');
+
+        $order = Order::find($orderId);
+
+        $order->status_payment = 2; // paid
+        $order->save();
+
+        return redirect()->route('orders.show', $orderId);
     }
 
     public function getShipping()
