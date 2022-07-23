@@ -7,13 +7,13 @@ use App\Http\Requests\PlaceOrderRequest;
 use App\Http\Requests\StorePaymentIntentRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\UserAddress;
+use Auth;
 use Error;
 use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
-use Auth;
-use App\Models\UserAddress;
 
 class CheckoutController extends Controller
 {
@@ -65,12 +65,9 @@ class CheckoutController extends Controller
             $order->shipping_phonenumber = $request->session()->get('shipping_phonenumber', '');
             $order->save();
 
-            if($request->buy_now_mode)
-            {
+            if ($request->buy_now_mode) {
                 Cart::instance('buy_now');
-            }
-            else
-            {
+            } else {
                 Cart::instance('default');
             }
 
@@ -86,19 +83,17 @@ class CheckoutController extends Controller
 
                 $orderItem->product_variant = 0;
 
-                if (isset($item->options['id']))
+                if (isset($item->options['id'])) {
                     $orderItem->product_variant = $item->options['id'];
-
+                }
 
                 $orderItem->save();
             }
-            
+
             Cart::erase(auth()->id());
 
-            Cart::destroy();    
-        }
-        catch(Exception|Error $e)
-        {
+            Cart::destroy();
+        } catch (Exception | Error $e) {
             return response(['ok' => false, 'error' => $e->getMessage()], 401);
         }
 
@@ -111,20 +106,35 @@ class CheckoutController extends Controller
 
         header('Content-Type: application/json');
 
-        if($req->buy_now_mode)
-        {
+        if ($req->buy_now_mode) {
             Cart::instance('buy_now');
-        }
-        else
-        {
+        } else {
             Cart::instance('default');
         }
 
         try {
+
+            $orderId = Auth::user()->id . $req->session()->get('orderId');
             // Create a PaymentIntent with amount and currency
             $paymentIntent = \Stripe\PaymentIntent::create([
                 'amount' => Cart::total(2, '.', '') * 100,
                 'currency' => 'usd',
+                'customer' => null,
+                'description' => 'Order#' . $orderId,
+                'statement_descriptor' => 'Order#' . $orderId,
+                'shipping' => [
+                    'address' => [
+                        'city' => $req->session()->get('billing_city'),
+                        'state' => $req->session()->get('billing_state'),
+                        'country' => $req->session()->get('billing_country'),
+                        'postal_code' => $req->session()->get('billing_zipcode'),
+                        'line1' => $req->session()->get('billing_address1'),
+                        'line2' => $req->session()->get('billing_address2'),
+                    ],
+                    // 'email' => Auth::user()->email,
+                    'name' => Auth::user()->first_name . " " . Auth::user()->last_name,
+                    'phone' => $req->session()->get('billing_phonenumber'),
+                ],
                 'automatic_payment_methods' => [
                     'enabled' => true,
                 ],
@@ -143,35 +153,47 @@ class CheckoutController extends Controller
 
     public function cancel(CancelCheckoutRequest $req)
     {
-        $order = auth()->user()->orders()->with('items', 'items.product:id,name,quantity')->orderBy('id', 'desc')->first();
+        // $order = auth()->user()->orders()->with('items', 'items.product:id,name,quantity')->orderBy('id', 'desc')->first();
+        $orderId = $req->session()->get('order_id');
+        $error = $req->error;
 
-        if($req->buy_now_mode)
-        {
+        $order = Order::find($orderId);
+
+        if ($req->buy_now_mode) {
             Cart::instance('buy_now');
-        }
-        else
-        {
+        } else {
             Cart::instance('default');
         }
 
         $order->restoreCartItems();
-        $order->restoreProductsQuantity();
+        // $order->restoreProductsQuantity();
 
         Cart::store(auth()->id());
 
-        $order->delete();
+        // $order->status = 
+        $order->status_reason = $error['code'];
+        $order->save();
 
         return response(null, 204);
     }
 
-    public function paymentFinished()
+    // http://localhost:8000/payment/finished?payment_intent=pi_3LOkMMDNgrti9hIt1r7Kl9rl&payment_intent_client_secret=pi_3LOkMMDNgrti9hIt1r7Kl9rl_secret_6jksPyLMgQp8RmpNVlzf5M1GR&redirect_status=succeeded
+    public function paymentFinished(Request $request)
     {
-        $order = auth()->user()->orders()->orderBy('id', 'desc')->first();
 
-        return redirect()->route('orders.show', $order->id);
+        $orderId = $request->session()->get('order_id');
+
+        $order = Order::find($orderId);
+
+        $order->status_payment = 2; // paid
+        $order->payment_intent = $request->get('payment_intent'); 
+        $order->save();
+
+        return redirect()->route('orders.show', $orderId);
     }
 
-    public function getShipping() {
+    public function getShipping()
+    {
         return view('checkout.shipping');
     }
 
@@ -230,7 +252,7 @@ class CheckoutController extends Controller
             } else {
                 $userAddress = new UserAddress;
             }
-  
+
             $userAddress->user_id = Auth::user()->id;
             $userAddress->address = $request->address1;
             $userAddress->address2 = $request->address2;
@@ -244,11 +266,11 @@ class CheckoutController extends Controller
         return redirect()->route('checkout.payment.get');
     }
 
-   public function getPayment(Request $request) 
-   {
+    public function getPayment(Request $request)
+    {
         $orderId = strtoupper(uniqid());
         $request->session()->put('order_id', $orderId);
 
         return view('checkout.payment')->with(['orderId' => $orderId]);
-   }
+    }
 }

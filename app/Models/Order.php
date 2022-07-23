@@ -29,7 +29,10 @@ class Order extends Model
         'billing_state',
         'billing_zipcode',
         'billing_country',
-        'billing_phonenumber'        
+        'billing_phonenumber',
+        'payment_intent',
+        'status',
+        'status_reason'
     ];
 
     protected $keyType = 'string';
@@ -72,22 +75,23 @@ class Order extends Model
     //     $this->update($data);
     // }
 
-    // public function restoreProductsQuantity()
-    // {
-    //     Cart::content()->map(fn($i, $k) => $i->model->increment('quantity', $i->quantity));
-    // }
+    public function restoreProductsQuantity()
+    {
+        Cart::content()->map(fn($i, $k) => $i->model->increment('quantity', $i->quantity));
+    }
 
-    // public function restoreCartItems()
-    // {
-    //     $this->items->map(fn($i, $k) => Cart::add(
-    //             $i->id,
-    //             $i->product->name,
-    //             $i->quantity,
-    //             $i->price / 100
-    //         )
-    //         ->associate(Product::class)
-    //     );
-    // }
+    public function restoreCartItems()
+    {
+        $orderItems = $this->items;
+
+        foreach ($orderItems as $item) {
+            if (!$item->product_variant) {
+                Cart::add($item->product->id, $item->product->name, $item->quantity, $item->price / 100)->associate(Product::class);
+            } else {
+                Cart::add($item->product->id, $item->product->name, $item->quantity, $item->price / 100, 0, ['id' => $item->product_variant, 'name' => $item->productVariant->name, 'price' => $item->price / 100])->associate(Product::class);
+            }
+        }
+    }
 
     public function totalPrice() {
         

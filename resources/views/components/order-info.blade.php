@@ -30,7 +30,7 @@
     @method('patch')
     <div class="mb-2">
         Status:
-        <span class="link-primary">{{$order->status_payment}}</span>
+        <span class="link-primary">{{$order->status_payment == 1 ? 'unpaid' : 'paid'}}</span>
     </div>
     @if ($order->message)
         <div>
