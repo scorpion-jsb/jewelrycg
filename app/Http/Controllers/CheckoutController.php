@@ -170,8 +170,8 @@ class CheckoutController extends Controller
 
         Cart::store(auth()->id());
 
-        // $order->status = 
-        $order->status_reason = $error['code'];
+        $order->status_payment = 3;
+        $order->status_payment_reason = $error['code'];
         $order->save();
 
         return response(null, 204);
