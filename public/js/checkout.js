@@ -95,7 +95,7 @@
               'Content-Type': 'application/json',
               'X-CSRF-TOKEN': _token
             },
-            body: JSON.stringify({ buy_now_mode })
+            body: JSON.stringify({ buy_now_mode, error })
           });
         }
         else

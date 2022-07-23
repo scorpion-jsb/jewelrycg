@@ -32,6 +32,9 @@ return new class extends Migration
             $table->string('billing_country');
             $table->string('billing_phonenumber')->nullable();
             $table->smallInteger('status_payment')->default(1); // 1: unpaid, 2: paid
+            $table->string('payment_intent')->default('');
+            $table->string('status')->default('');
+            $table->string('status_reason')->default('');
             $table->timestamps();
         });
     }

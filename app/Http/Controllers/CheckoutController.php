@@ -154,7 +154,8 @@ class CheckoutController extends Controller
     public function cancel(CancelCheckoutRequest $req)
     {
         // $order = auth()->user()->orders()->with('items', 'items.product:id,name,quantity')->orderBy('id', 'desc')->first();
-        $orderId = $request->session()->get('order_id');
+        $orderId = $req->session()->get('order_id');
+        $error = $req->error;
 
         $order = Order::find($orderId);
 
@@ -165,11 +166,13 @@ class CheckoutController extends Controller
         }
 
         $order->restoreCartItems();
-        $order->restoreProductsQuantity();
+        // $order->restoreProductsQuantity();
 
         Cart::store(auth()->id());
 
-        $order->delete();
+        // $order->status = 
+        $order->status_reason = $error['code'];
+        $order->save();
 
         return response(null, 204);
     }
@@ -183,6 +186,7 @@ class CheckoutController extends Controller
         $order = Order::find($orderId);
 
         $order->status_payment = 2; // paid
+        $order->payment_intent = $request->get('payment_intent'); 
         $order->save();
 
         return redirect()->route('orders.show', $orderId);
