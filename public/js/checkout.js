@@ -27,7 +27,7 @@
         elements = stripe.elements({ clientSecret: clientSecret, loader: 'always' });
         
         
-        const paymentElement = elements.create("payment", {fields: {billingDetails: never}});
+        const paymentElement = elements.create("payment", {fields: {billingDetails: 'never'}});
         paymentElement.mount("#payment-element");
       }
       
@@ -75,6 +75,21 @@
             confirmParams: {
               // Make sure to change this to your payment completion page
               return_url: finish_page,
+              payment_method_data: {
+                billing_details: {
+                  address: {
+                    city: $('#city').val(),
+                    country: $('#country').val(),
+                    line1: $('#address1').val(),
+                    line2: $('#address2').val(),
+                    postal_code: $('#zipcode').val(),
+                    state: $('#state').val()
+                  },
+                  email: $('#email').val(),
+                  name: $('#name').val(),
+                  phone: $('#phonenumber').val()
+                }
+              }
             },
           });
 

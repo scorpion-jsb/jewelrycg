@@ -5,7 +5,16 @@
                 <div class="col-md-7">
                     <div class="card">
                         <div class="card-body">
-                            <div class="border-bottom mb-3">Pyament Information</div>
+                            <div class="border-bottom mb-3">Payment Information</div>
+                            <input type="hidden" name="" value="{{ Session::get('billing_address1') }}" id="address1">
+                            <input type="hidden" name="" value="{{ Session::get('billing_address2') }}" id="address2">
+                            <input type="hidden" name="" value="{{ Session::get('billing_city') }}" id="city">
+                            <input type="hidden" name="" value="{{ Session::get('billing_state') }}" id="state">
+                            <input type="hidden" name="" value="{{ Session::get('billing_country') }}" id="country">
+                            <input type="hidden" name="" value="{{ Session::get('billing_zipcode') }}" id="zipcode">
+                            <input type="hidden" name="" value="{{ Session::get('billing_phonenumber') }}" id="phonenumber">
+                            <input type="hidden" name="" value="{{ Auth::user()->email }}" id="email">
+                            <input type="hidden" name="" value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}" id="name">
                             <div id="payment-element">
                                 <!--Stripe.js injects the Payment Element-->
                             </div>
