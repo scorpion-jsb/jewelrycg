@@ -1,7 +1,7 @@
 <x-app-layout page-title="Payment">
     <div class="container">
         <form id="payment-form">
-            <div class="row mb-3">
+            <div class="row m-3">
                 <div class="col-md-7">
                     <div class="card">
                         <div class="card-body">
