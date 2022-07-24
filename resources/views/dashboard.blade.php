@@ -52,7 +52,7 @@
                             <div class="col-md-2">
                                 <div class="card">
                                     <div class="card-body">
-                                        @if ($item->product_variant == 0 )
+                                        @if ($item->product_variant == 0 || !$item->productVariant)
                                             <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}"
                                                 alt="" style="width: 100%;" class="mb-2">
                                             <a href="{{ url('products/') . '/' . $item->product->slug }}">
