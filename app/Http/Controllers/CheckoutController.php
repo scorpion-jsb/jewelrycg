@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CancelCheckoutRequest;
 use App\Http\Requests\PlaceOrderRequest;
 use App\Http\Requests\StorePaymentIntentRequest;
+use App\Models\Country;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\UserAddress;
@@ -214,7 +215,8 @@ class CheckoutController extends Controller
 
     public function getShipping()
     {
-        return view('checkout.shipping');
+        $countries = Country::all(['name', 'code']);
+        return view('checkout.shipping')->with('countries', $countries);
     }
 
     public function postShipping(Request $request)
@@ -251,7 +253,8 @@ class CheckoutController extends Controller
 
     public function getBilling()
     {
-        return view('checkout.billing');
+        $countries = Country::all(['name', 'code']);
+        return view('checkout.billing')->with('countries', $countries);
     }
 
     public function postBilling(Request $request)

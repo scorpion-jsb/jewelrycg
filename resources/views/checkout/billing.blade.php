@@ -8,7 +8,7 @@
                       @csrf
                       <div class="border-bottom mb-3 fs-3">Billing Address</div>
                       @include('includes.validation-form')
-                      <x-user-info />
+                      <x-user-info :countries="$countries"/>
                       <div class="row mb-3">
                           <div class="offset-md-3 col-md-8">
                               <label for="isRemember">
