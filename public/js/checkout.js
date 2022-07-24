@@ -27,7 +27,7 @@
         elements = stripe.elements({ clientSecret: clientSecret, loader: 'always' });
         
         
-        const paymentElement = elements.create("payment");
+        const paymentElement = elements.create("payment", {fields: {billingDetails: 'never'}});
         paymentElement.mount("#payment-element");
       }
       
