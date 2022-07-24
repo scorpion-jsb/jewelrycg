@@ -5,7 +5,6 @@
                 <th scope="col">User Id</th>
             @endif
             <th scope="col">Status</th>
-            <th scope="col">Tracking Number</th>
             <th scope="col">Message</th>
             <th scope="col">Products</th>
             <th scope="col">Total</th>
@@ -17,19 +16,20 @@
             <tr>
                 @if (auth()->user()->is_admin)
                     <td>
-                        <a href="{{route('user.index', $order->id_user)}}" class="link-primary">
-                            {{$order->id_user}}
+                        <a href="{{route('user.index', $order->user_id)}}" class="link-primary">
+                            {{$order->user->email}}
                         </a>
                     </td>
                 @endif
-                <td class="link-info">{{$order->status}}</td>
-                <td><a href="javascript:;" onclick="copyText(this)" class="link-secondary">{{$order->tracking_number}}</a></td>
-                <td>{{$order->message}}</td>
+                <td class="link-info">{{$order->status_payment == config('constants.payment_status.paid') ? 'paid' : ($order->status_payment == config('constants.payment_status.unpaid') ? 'unpaid' : 'rejected')}}</td>
+                @if ($order->status_payment == config('constants.payment_status.reject'))
+                    <td>{{$order->status_payment_reason}}</td>
+                @endif
                 <td>{{$order->items_count}}</td>
                 <td>${{$order->total_price}}</td>
                 <td>
                     <div class="d-flex justify-content-center">
-                        <a href="{{route('orders.show', $order->id)}}" class="btn btn-primary">Details</a>
+                        <a href="{{route('orders.show', $order->order_id)}}" class="btn btn-primary">Details</a>
                     </div>
                 </td>
             </tr>

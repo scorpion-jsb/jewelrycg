@@ -44,15 +44,15 @@ class Order extends Model
     //     'Delivered'
     // ];
 
-    // public static function getBasedOnUser()
-    // {
-    //     if(auth()->user()->is_admin)
-    //     {
-    //         return Order::withCount('items')->orderBy('id')->paginate(10);
-    //     }
+    public static function getBasedOnUser()
+    {
+        if(auth()->user()->is_admin)
+        {
+            return Order::withCount('items')->orderBy('id')->paginate(10);
+        }
         
-    //     return auth()->user()->orders()->withCount('items')->orderBy('id')->paginate(10);
-    // }
+        return auth()->user()->orders()->withCount('items')->orderBy('id')->paginate(10);
+    }
 
     // public static function getPendingBasedOnUser()
     // {
@@ -94,12 +94,18 @@ class Order extends Model
     }
 
     public function totalPrice() {
-        
+        $totalPrice = 0;
+
+        foreach ($this->items as $item) {
+            $totalPrice += $item->quantity * $item->price;
+        }
+
+        return $totalPrice;
     }
 
     public function formatPrice()
     {
-        $this->total_price = number_format($this->total_price / 100, 2);
+        $this->total_price = number_format($this->totalPrice() / 100, 2);
         return $this;
     }
 

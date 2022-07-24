@@ -52,12 +52,19 @@
                             <div class="col-md-2">
                                 <div class="card">
                                     <div class="card-body">
-                                        <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}"
+                                        @if ($item->product_variant == 0 )
+                                            <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}"
+                                                alt="" style="width: 100%;" class="mb-2">
+                                            <a href="{{ url('products/') . '/' . $item->product->slug }}">
+                                                <h6>{{ $item->product->name }}</h6>
+                                            </a>
+                                        @else
+                                            <img src="{{ asset('uploads/all/' . $item->productVariant->uploads->file_name) }}"
                                             alt="" style="width: 100%;" class="mb-2">
-                                        <a href="{{ url('product/') . $item->product->slug }}">
-                                            <h6>{{ $item->product->name }}</h6>
-                                        </a>
-
+                                            <a href="{{ url('products/') . '/' . $item->product->slug }}">
+                                                <h6>{{ $item->product->name }} - {{ $item->productVariant->variant_name }}</h6>
+                                            </a>
+                                        @endif
                                         <button class="btn btn-primary pur">
                                             <i class="bi bi-download"></i> Download
                                         </button>

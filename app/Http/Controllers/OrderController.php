@@ -11,6 +11,7 @@ class OrderController extends Controller
     {
         $orders = Order::getBasedOnUser();
         $orders->transform(fn($i) => $i->formatPrice());
+
         return view('orders.index', compact('orders'));
     }
 

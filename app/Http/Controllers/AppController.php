@@ -7,6 +7,8 @@ use App\Models\Order;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
 
+use function PHPSTORM_META\type;
+
 class AppController extends Controller
 {
     public function index()
@@ -21,11 +23,17 @@ class AppController extends Controller
 
     function dashboard() {
         $carts = Cart::instance('default')->content();
-        $orders = Order::where('user_id', Auth::user()->id)->where('status_payment', 1)->with('items')->get();
-        $wishlists = Cart::instance('wishlist')->content();;
+        $orders = Order::where('user_id', Auth::user()->id)->withCount('items')->get();
+
+        $orderCount = 0;
+        foreach ($orders as $order) {
+            $orderCount += $order->items_count;
+        }
+
+        $wishlists = Cart::instance('wishlist')->content();
 
         $purchases = Order::where('user_id', Auth::user()->id)->where('status_payment', 2)->with('items')->get();
 
-        return view('dashboard')->with(['carts' => count($carts), 'orders' => count($orders), 'wishlists' => count($wishlists), 'purchases' => $purchases]);
+        return view('dashboard')->with(['carts' => count($carts), 'orders' => $orderCount, 'wishlists' => count($wishlists), 'purchases' => $purchases]);
     }
 }
