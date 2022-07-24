@@ -196,7 +196,9 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 // Homepage
 Route::get('/', [AppController::class, 'index'])->name('index');
 
-Route::get('/dashboard', [AppController::class, 'dashboard']);
+Route::group(['middleware' => ['auth']], function () {
+	Route::get('/dashboard', [AppController::class, 'dashboard']);
+});
 
 // Blog
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
