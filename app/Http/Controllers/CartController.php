@@ -14,13 +14,11 @@ class CartController extends Controller
 {
     public function index()
     {
-
         return view('cart');
     }
 
     public function store(StoreProductCartRequest $req)
     {
-
         $product = Product::findOrFail($req->id_product);
 
         if($product->quantity < 1 && $product->is_trackingquantity)
@@ -121,13 +119,32 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($req->id_product);
 
-        Cart::instance('wishlist')->add(
-            $product->id,
-            $product->name,
-            1,
-            $product->price / 100
-        )
-        ->associate(Product::class);
+        if($product->quantity < 1 && $product->is_trackingquantity)
+        {
+            return back();
+        }
+
+        if ($req->variant_attribute_value) {
+            $variant = ProductsVariant::where('variant_attribute_value', $req->variant_attribute_value)->first();
+
+            Cart::instance('wishlist')->add(
+                $product->id,
+                $product->name,
+                1,
+                $variant->variant_price / 100,
+                0,
+                ['id' => $variant->id, 'name' => $variant->variant_name, 'price' => $variant->variant_price / 100]
+            )
+            ->associate(Product::class);    
+        } else {
+            Cart::instance('wishlist')->add(
+                $product->id,
+                $product->name,
+                1,
+                $product->price / 100
+            )
+            ->associate(Product::class);    
+        }
 
         Cart::restore(auth()->id());
         Cart::store(auth()->id());

@@ -1,13 +1,11 @@
       // This is your test publishable API key.
       const stripe = Stripe(stripe_key);
 
-
       let elements;
       let clientSecretValue = null;
       
       initialize();
       checkStatus();
-      console.log('place_order_route', place_order_route)
       
       document
         .getElementById("payment-form")
@@ -26,8 +24,9 @@
 
         clientSecretValue = clientSecret;
 
-        elements = stripe.elements({ clientSecret });
-      
+        elements = stripe.elements({ clientSecret: clientSecret, loader: 'always' });
+     
+       
         const paymentElement = elements.create("payment");
         paymentElement.mount("#payment-element");
       }

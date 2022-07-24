@@ -22,6 +22,7 @@
             <tr id="{{ $product->rowId }}">
                 <td>
                     <a href="{{ route('products.show', $product->slug) }}" class="link-dark">
+                        <img src="{{ asset('uploads/all/' . $product->model->uploads->file_name) }}" alt="" class="thumbnail" style="width: 80px;">
                         @php
                             if (count($product->options)) {
                                 echo $product->name . ' - ' . $product->options->name;

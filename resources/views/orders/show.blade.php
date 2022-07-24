@@ -30,6 +30,7 @@
                                     <tr >
                                         <td>
                                             <a href="{{ route('products.show', $item->product->slug) }}" class="link-dark">
+                                                <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}" alt="" class="thumbnail" style="width: 80px;">
                                                 @php
                                                     if ($item->product_variant != 0) {
                                                         echo $item->product->name . ' - ' . $item->productVariant->variant_name;
