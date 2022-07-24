@@ -14,4 +14,5 @@ class ProductsCategorie extends Model
         'category_excerpt',
         'slug',
     ];
+
 }
