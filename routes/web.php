@@ -196,6 +196,8 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 // Homepage
 Route::get('/', [AppController::class, 'index'])->name('index');
 
+Route::get('/dashboard', [AppController::class, 'dashboard']);
+
 // Blog
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.post.url');
@@ -234,7 +236,6 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 	Route::get('/remove/{id}', 'removeProduct')->name('remove.product');
 });
 Route::resource('cart', CartController::class)->only(['index', 'store']);
-
 
 // Auth
 Route::group(['middleware' => 'auth'], function ()

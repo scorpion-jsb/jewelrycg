@@ -42,16 +42,12 @@ class CheckoutController extends Controller
         {
             $this->validate($request, (new PlaceOrderRequest)->rules());
 
-
             $orderId = $request->session()->get('order_id', '');
 
             $order = Order::where('order_id', $orderId)->first();
 
             if (!$order) {
                 $order = new Order;
-                $orderId = Auth::user()->id . strtoupper(uniqid());
-                $request->session()->put('order_id', $orderId);
-
 
                 if ($request->buy_now_mode) {
                     Cart::instance('buy_now');
@@ -124,14 +120,18 @@ class CheckoutController extends Controller
 
         try {
 
-            $orderId = $req->session()->get('orderId');
+            $orderId = Auth::user()->id . strtoupper(uniqid());
+            $req->session()->put('order_id', $orderId);
+
+            $description = env('APP_NAME') . 'Order#' . $orderId;
+    
             // Create a PaymentIntent with amount and currency
             $paymentIntent = \Stripe\PaymentIntent::create([
                 'amount' => Cart::total(2, '.', '') * 100,
                 'currency' => 'usd',
                 'customer' => null,
-                'description' => 'Order#' . $orderId,
-                'statement_descriptor' => 'Order#' . $orderId,
+                'description' => $description,
+                'statement_descriptor' => substr($description, 0, 22),
                 'shipping' => [
                     'address' => [
                         'city' => $req->session()->get('billing_city'),
