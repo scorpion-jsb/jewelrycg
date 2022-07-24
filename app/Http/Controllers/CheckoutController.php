@@ -123,7 +123,7 @@ class CheckoutController extends Controller
             $orderId = Auth::user()->id . strtoupper(uniqid());
             $req->session()->put('order_id', $orderId);
 
-            $description = env('APP_NAME') . 'Order#' . $orderId;
+            $description = env('APP_NAME') . ' Order#' . $orderId;
     
             // Create a PaymentIntent with amount and currency
             $paymentIntent = \Stripe\PaymentIntent::create([
