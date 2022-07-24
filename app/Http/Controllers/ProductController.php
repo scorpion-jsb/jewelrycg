@@ -15,10 +15,12 @@ class ProductController extends Controller
 {
     public function search(SearchProductRequest $req)
     {
-        $search = new UserSearch;
-        $search->user_id = Auth::user()->id;
-        $search->query = json_encode(['category' => $req->category, 'query' => $req->q]);
-        $search->save();
+        if (Auth::check()) {
+            $search = new UserSearch;
+            $search->user_id = Auth::user()->id;
+            $search->query = json_encode(['category' => $req->category, 'query' => $req->q]);
+            $search->save();    
+        }
 
         $products = Product::searchWithImages($req->q, $req->category);
         return view('products.search', compact('products'));
