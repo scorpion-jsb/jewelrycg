@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchProductRequest;
 use App\Models\Product;
+use App\Models\ProductsCategorie;
 use App\Models\Upload;
 use App\Models\UserSearch;
 use App\Models\ProductsVariant;
@@ -14,8 +15,6 @@ class ProductController extends Controller
 {
     public function search(SearchProductRequest $req)
     {
-        abort_if(! in_array($req->category, array_merge(Product::$category_list, ['All'])), 404);
-
         $search = new UserSearch;
         $search->user_id = Auth::user()->id;
         $search->query = json_encode(['category' => $req->category, 'query' => $req->q]);
