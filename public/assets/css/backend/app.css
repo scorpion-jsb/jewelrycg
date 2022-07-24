@@ -24,13 +24,8 @@ header .nav-link {
 .content {
     
     /* width: calc(100vw - 184px); */
-    width: calc(100vw - 215px);
 }
-@media (max-width: 990px) {
-    .content {
-        width: 100%;
-    }
-}
+
 /* SIDEBAR */
 .sidebar {
     background: #000000;
