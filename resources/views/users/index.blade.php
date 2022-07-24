@@ -10,8 +10,8 @@
         </div>
     @endif
     
-    <div class="row">
-        <x-user-info-main :user="$user"/>
+    <div class="row m-3">
+        <x-user-info-main :user="$user" :edit='false'/>
     </div>
     
     @can('edit', $user)

@@ -29,7 +29,7 @@ class UserController extends Controller
     public function update(UpdateUserRequest $req)
     {
         auth()->user()->update($req->all());
-        return redirect()->route('user.index');
+        return redirect()->route('user.index', auth()->user()->id);
     }
 
     public function updatePassword(UpdateUserPasswordRequest $req)
@@ -37,7 +37,7 @@ class UserController extends Controller
         auth()->user()->update([
             'password' => bcrypt($req->new_password)
         ]);
-        return redirect()->route('user.index')->with('message', 'Password was Successfully Changed!');
+        return redirect()->route('user.index', auth()->user()->id)->with('message', 'Password was Successfully Changed!');
     }
 
     public function delete()
