@@ -34,7 +34,7 @@
         <div class="container-fluid">
             <div class="row">
                 @include('backend.layouts.navbars.sidebar')
-                <div class="col-lg-auto col-sm-12">
+                <div class="col-lg-10 col-sm-12">
                     <!-- Content -->
                     <div class="content py-3">
                         @yield('content')
