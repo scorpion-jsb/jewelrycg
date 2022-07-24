@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('query');
-            $table->integer('count');
             $table->timestamps();
         });
     }

@@ -15,8 +15,8 @@
                 <div class="mr-10px">
                     <select name="category" class="form-select text-small text-capitalize">
                         <option>All</option>
-                        @foreach (\App\Models\Product::$category_list as $category)
-                            <option {{ request()->category == $category ? 'selected' : null }}>{{$category}}</option>
+                        @foreach (\App\Models\ProductsCategorie::all() as $category)
+                            <option {{ request()->category == $category->category_name ? 'selected' : null }}>{{$category->category_name}}</option>
                         @endforeach
                     </select>
                 </div>
