@@ -66,6 +66,18 @@
                                 {{$product->description}}
                             </div>
 
+                            @if ($product->is_backorder)
+                                <div class="alert alert-info mt-2" role="alert">
+                                    This product is available on backorder and will be shipped when back in stock.
+                                </div>
+                            @endif
+
+                            @if ($product->is_madetoorder)
+                                <div class="alert alert-info mt-2" role="alert">
+                                    This product is made to order.
+                                </div>
+                            @endif
+
                             <div class="product-details-price mb-4">
                                 <div class="w-100">
                                     <div class="opacity-50 my-2">Price:</div>
