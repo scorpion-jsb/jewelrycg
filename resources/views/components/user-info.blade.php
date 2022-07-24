@@ -30,8 +30,17 @@
     <div class="row mb-3">
         <label class="offset-md-1 col-sm-2 col-form-label" for="country">Country</label>
         <div class="col-sm-8">
-            <input type="text" name="country" value="{{ auth()->user()->address->country ?? old('country') }}" id="country"
-                class="form-control" required placeholder="Enter Country">
+            <select name="country" id="" data-live-search="true" class="form-control">
+                @foreach ($countries as $country)
+                    @if (auth()->user()->address->country == $country->code)
+                        <option value="{{ $country->code }}" selected>{{ $country->name }}</option>
+                    @else
+                        <option value="{{ $country->code }}">{{ $country->name }}</option>
+                    @endif
+                @endforeach
+            </select>
+            {{-- <input type="text" name="country" value="{{ auth()->user()->address->country ?? old('country') }}" id="country"
+                class="form-control" required placeholder="Enter Country"> --}}
         </div>
     </div>
     <div class="row mb-3">
