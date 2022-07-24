@@ -110,7 +110,9 @@ class Product extends Model
 
         if($category != 'All')
         {
-            $q = $q->where('category', $category);
+            $q = $q->whereHas('product_category', function ($query) use ($category){
+                $query->where('category_name', $category);
+            });
         }
 
         return $q->where('name', 'like', "%$search%")
