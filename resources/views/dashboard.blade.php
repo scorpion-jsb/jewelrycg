@@ -59,7 +59,7 @@
                                                 <h6>{{ $item->product->name }}</h6>
                                             </a>
                                         @else
-                                            <img src="{{ asset('uploads/all/' . $item->productVariant->uploads->file_name) }}"
+                                            <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}"
                                             alt="" style="width: 100%;" class="mb-2">
                                             <a href="{{ url('products/') . '/' . $item->product->slug }}">
                                                 <h6>{{ $item->product->name }} - {{ $item->productVariant->variant_name }}</h6>
