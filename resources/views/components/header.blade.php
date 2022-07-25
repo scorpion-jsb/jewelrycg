@@ -69,5 +69,19 @@
             </ul>
         </div>
     </nav>
-    
 </header>
+<div class="global-search-wrap">
+        <div class="container">
+            <form method="get" action="{{route('products.search')}}" class="row">
+                <input name="q" type="search" class="form-control me-2 col-8" placeholder="Search" aria-label="Search">
+                <div class="col-4">
+                    <select name="category" class="form-select text-small text-capitalize">
+                        <option>All</option>
+                        @foreach (\App\Models\ProductsCategorie::all() as $category)
+                            <option  {{ request()->category == $category->category_name ? 'selected' : null }}>{{$category->category_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </form>
+        </div>
+</div><!-- end search-wrap-->
