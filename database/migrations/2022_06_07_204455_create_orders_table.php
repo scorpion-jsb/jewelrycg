@@ -17,6 +17,9 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('order_id');
+            $table->integer('total')->default(0);
+            $table->integer('tax')->default(0);
+            $table->integer('grand_total')->default(0);
             $table->string('shipping_address1');
             $table->string('shipping_address2')->nullable();
             $table->string('shipping_city');
