@@ -73,8 +73,8 @@
 <div class="global-search-wrap">
         <div class="container">
             <form method="get" action="{{route('products.search')}}" class="row">
-                <input name="q" type="search" class="form-control me-2 col-8" placeholder="Search" aria-label="Search">
-                <div class="col-4">
+                <input name="q" type="search" class="col-lg-8" placeholder="Search" aria-label="Search">
+                <div class="col-lg-4">
                     <select name="category" class="form-select text-small text-capitalize">
                         <option>All</option>
                         @foreach (\App\Models\ProductsCategorie::all() as $category)
