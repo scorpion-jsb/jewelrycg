@@ -33,9 +33,9 @@
                                                 <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}" alt="" class="thumbnail" style="width: 80px;">
                                                 @php
                                                     if ($item->product_variant != 0) {
-                                                        echo $item->product->name . ' - ' . $item->productVariant->variant_name;
+                                                        echo $item->product_name . ' - ' . $item->product_variant_name;
                                                     } else {
-                                                        echo $item->product->name;
+                                                        echo $item->product_name;
                                                     }
                                                 @endphp
                                             </a>

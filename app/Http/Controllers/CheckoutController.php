@@ -8,6 +8,7 @@ use App\Http\Requests\StorePaymentIntentRequest;
 use App\Models\Country;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\ProductsVariant;
 use App\Models\UserAddress;
 use Auth;
 use Error;
@@ -57,25 +58,33 @@ class CheckoutController extends Controller
                 }
     
                 $cartItems = Cart::content();
-    
+                $total = 0;
+                
                 foreach ($cartItems as $item) {
                     $orderItem = new OrderItem;
     
                     $orderItem->order_id = $orderId;
                     $orderItem->product_id = $item->id;
+                    $orderItem->product_name = $item->model->name;
                     $orderItem->price = $item->price * 100;
                     $orderItem->quantity = $item->qty;
-    
                     $orderItem->product_variant = 0;
+
+                    $total = $orderItem->price * $orderItem->quantity;
     
                     if (isset($item->options['id'])) {
                         $orderItem->product_variant = $item->options['id'];
+
+                        $productVariant = ProductsVariant::find($item->options['id']);
+                        $orderItem->product_variant_name = $productVariant->variant_name;
                     }
     
                     $orderItem->save();
-                }    
-            }
+                }                            
 
+                $order->total = $total;
+                $order->grand_total = $total;
+            }
  
             $order->order_id = $orderId;
             $order->status_payment = 1;
@@ -95,7 +104,6 @@ class CheckoutController extends Controller
             $order->shipping_country = $request->session()->get('shipping_country', '');
             $order->shipping_phonenumber = $request->session()->get('shipping_phonenumber', '');
             $order->save();
-
 
             Cart::erase(auth()->id());
 
