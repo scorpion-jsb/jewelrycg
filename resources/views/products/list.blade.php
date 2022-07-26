@@ -10,6 +10,8 @@
             <!--<p>Aw snap! There's no products that match your filters.</p>-->
         {{-- /if --}}
 
+        <x-products-display :products="$products"/>
+        
         <div class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-4 row-cols-md-4 row-cols-2">
             @foreach ($products as $product)
             <div class="col">
