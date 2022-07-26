@@ -39,7 +39,12 @@ class TaxOptionController extends Controller
      */
     public function store(TaxOptionStoreRequest $request)
     {
-        if (TaxOption::create($request->all())) {
+        $tax = new TaxOption;
+
+        $tax->price = $request->price * 100;
+        $tax->name = $request->name;
+
+        if ($tax->save()) {
             return redirect()->route('backend.tax.index')->withErrors('The create action is success');
         } else {
             return redirect()->route('backend.tax.index')->withErrors('The create action is failed.');
@@ -80,6 +85,7 @@ class TaxOptionController extends Controller
         $tax = TaxOption::find($id);
 
         $tax->name = $request->name;
+        $tax->price = $request->price * 100;
         
         if ($tax->save()) {
             return redirect()->route('backend.tax.index')->withErrors('The update action is success');

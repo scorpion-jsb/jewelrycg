@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 100)->default('');
             $table->string('description')->default('');
+            $table->string('price')->default(0);
             $table->timestamps();
         });
     }

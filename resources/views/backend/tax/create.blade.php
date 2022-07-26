@@ -37,6 +37,13 @@
                 </div>
             </div>
             <div class="row mb-3">
+                <div class="offset-md-4 col-sm-4">
+                    <label for="price">Price</label>
+                    <input type="text" name="price" value="{{ old('price') }}" id="price" class="form-control"
+                        required placeholder="Enter Price">
+                </div>
+            </div>
+            <div class="row mb-3">
               <div class="offset-md-4 col-sm-4">
                 <button type="submit" class="btn btn-primary float-end">Submit</button>
               </div>

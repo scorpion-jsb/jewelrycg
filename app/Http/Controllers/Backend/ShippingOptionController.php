@@ -38,7 +38,13 @@ class ShippingOptionController extends Controller
      */
     public function store(ShippingOptionStoreRequest $request)
     {
-        if (ShippingOption::create($request->all())) {
+        $shipping = new ShippingOption;
+
+        $shipping->name = $request->name;
+        $shipping->description = $request->description;
+        $shipping->price = $request->price * 100;
+
+        if ($shipping->save()) {
             return redirect()->route('backend.shipping.index')->withErrors('The create action is success');
         } else {
             return redirect()->route('backend.shipping.index')->withErrors('The create action is failed.');
@@ -80,6 +86,7 @@ class ShippingOptionController extends Controller
 
         $shipping->name = $request->name;
         $shipping->description = $request->description;
+        $shipping->price = $request->price * 100;
         
         if ($shipping->save()) {
             return redirect()->route('backend.shipping.index')->withErrors('The update action is success');

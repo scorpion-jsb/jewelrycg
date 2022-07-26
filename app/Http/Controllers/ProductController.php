@@ -19,7 +19,7 @@ class ProductController extends Controller
             $search = new UserSearch;
             $search->user_id = Auth::user()->id;
             $search->query = json_encode(['category' => $req->category, 'query' => $req->q]);
-            $search->save();    
+            $search->save();
         }
 
         $products = Product::searchWithImages($req->q, $req->category);

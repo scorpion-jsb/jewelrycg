@@ -10,12 +10,7 @@ class ShippingOption extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'description'
+        'description',
+        'price'
     ];
-
-    public function getOption($product_id) {
-        $row = ProductShippingOption::where('product_id', $product_id)->where('shipping_option_id', $this->id)->first();
-
-        return $row;
-    }
 }
