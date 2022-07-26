@@ -113,7 +113,7 @@ class ProductsController extends Controller
 
         foreach ($taxes as $i => $tax) {
             if (isset($tax['tax_option_id'])) {
-                ProductTaxOption::create(['tax_option_id' => $tax['tax_option_id'], 'price' => $tax['price'], 'product_id' => $product->id, 'type' => $tax['type']]);
+                ProductTaxOption::create(['tax_option_id' => $tax['tax_option_id'], 'price' => $tax['price'] * 100, 'product_id' => $product->id, 'type' => $tax['type']]);
             }
         }
 
@@ -121,7 +121,7 @@ class ProductsController extends Controller
 
         foreach ($shippings as $i => $shipping) {
             if (isset($shipping['shipping_option_id'])) {
-                ProductShippingOption::create(['shipping_option_id' => $shipping['shipping_option_id'], 'price' => $shipping['price'], 'product_id' => $product->id, 'type' => $shipping['type']]);
+                ProductShippingOption::create(['shipping_option_id' => $shipping['shipping_option_id'], 'price' => $shipping['price'] * 100, 'product_id' => $product->id, 'type' => $shipping['type']]);
             }
         }
 
@@ -141,8 +141,8 @@ class ProductsController extends Controller
                 'id_tag' => $id_tag,
                 'id_product' => $id_product,
              ]);
-
         }
+        
         return redirect()->route('backend.products.edit', $product->id);
     }
 
