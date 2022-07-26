@@ -87,7 +87,7 @@
             <form method="get" action="{{route('products.search')}}">
                 <div class="row">
                     <div class="col-lg-8">
-                        <input name="q" type="search" placeholder="Search" aria-label="Search">
+                        <input name="q" type="search" placeholder="Search" aria-label="Search" class="search-control">
                     </div>
                     <div class="col-lg-4">
                         <select name="category" class="form-select text-small text-capitalize">
