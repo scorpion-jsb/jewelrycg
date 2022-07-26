@@ -10,7 +10,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\ProductsVariant;
 use App\Models\ShippingOption;
-use App\Models\TaxOption;
+use App\Models\ProductsTaxOption;
 use App\Models\UserAddress;
 use Auth;
 use Error;
@@ -150,13 +150,9 @@ class CheckoutController extends Controller
             
             $total = Cart::total(2, '.', '') * 100;
             $shipping_option_id = $req->session()->get('shipping_option_id', 0);
-            $tax_option_id = $req->session()->get('tax_option_id', 0);
 
             if ($shipping_option_id) 
                 $total += ShippingOption::find($shipping_option_id)->price;
-
-            if ($tax_option_id) 
-                $total += TaxOption::find($tax_option_id)->price;
 
             // Create a PaymentIntent with amount and currency
             $paymentIntent = \Stripe\PaymentIntent::create([
@@ -288,9 +284,8 @@ class CheckoutController extends Controller
 
     public function getBilling()
     {
-        $taxes = TaxOption::all();
         $countries = Country::all(['name', 'code']);
-        return view('checkout.billing')->with(['countries' => $countries, 'taxes' => $taxes]);
+        return view('checkout.billing')->with(['countries' => $countries]);
     }
 
     public function postBilling(Request $request)

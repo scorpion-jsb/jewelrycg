@@ -44,6 +44,15 @@
                 </div>
             </div>
             <div class="row mb-3">
+                <div class="offset-md-4 col-sm-4">
+                    <label for="type">Type</label>
+                    <select name="type" class="form-control" id="type">
+                        <option value="percent">percent</option>
+                        <option value="flat">flat</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
               <div class="offset-md-4 col-sm-4">
                 <button type="submit" class="btn btn-primary float-end">Submit</button>
               </div>

@@ -25,7 +25,8 @@ class TaxOptionStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'price' => 'required|numeric'
+            'price' => 'required|numeric',
+            'type' => 'required|in:flat,percent'
         ];
     }
 }
