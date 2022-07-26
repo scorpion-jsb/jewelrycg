@@ -134,3 +134,12 @@ button.navbar-toggler {
     border: 0;
     vertical-align: -2px;
 }
+
+.auth-btn {
+    border-radius: 50px;
+    padding: 10px 25px;
+    border:1px solid #f9f9f9;
+}
+.auth-btn.primary {
+    background: #0057ff;
+}
