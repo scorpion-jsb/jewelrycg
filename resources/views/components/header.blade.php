@@ -14,13 +14,13 @@
             <!-- left navbar-->
             <ul class="navbar-nav mb-2 mb-lg-0">
                 <li class="nav-item dropdown menu-area">
-                    <a class="nav-link active" href="{{ route('index') }}">Home</a>
+                    <a class="nav-link" href="{{ route('index') }}">Home</a>
                 </li>
                 <li class="nav-item dropdown menu-area">
                     <a class="nav-link active" href="{{ route('shop_index') }}">3D Models</a>
                 </li>
                 <li class="nav-item dropdown">
-                    <a class="nav-link active dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Learn</a>
+                    <a class="nav-link dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Learn</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="{{ route('blog') }}">Blog</a></li>
                         <li><a class="dropdown-item" href="{{ route('categoryAll') }}">Categories</a></li>
