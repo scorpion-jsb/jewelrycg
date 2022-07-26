@@ -1,7 +1,7 @@
 <x-app-layout page-class="homepage" page-title="Jewelry CG">
 
 <section class="hero-content-container py-8">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <h4 class="fs-20 text-black mb-4">The world's preferred source for Jewelry CG content</h4>
@@ -48,7 +48,7 @@
 </section>
 
 <section class="why-points top-content-container pt-4 pb-4">
-    <div class="container-fluid">
+    <div class="container">
         <div class="row">
             <div class="overflow-hidden col-md-4 position-relative mt-3">
                 <!-- <div class="bg-overlay"> -->
@@ -79,7 +79,7 @@
 </section>
 
 <section class="home_latest_product mt-4 mb-4">
-    <div class="container-fluid">
+    <div class="container">
         <div class="d-flex mb-3 align-items-baseline border-bottom">
             <h3 class="h5 fw-700 mb-0 w-100">
                 <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">Recently Added Models</span>
