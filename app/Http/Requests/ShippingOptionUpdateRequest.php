@@ -26,6 +26,7 @@ class ShippingOptionUpdateRequest extends FormRequest
         return [
             'name' => 'required|string',
             'description' => 'required|string',
+            'price' => 'required|numeric'
         ];
     }
 }

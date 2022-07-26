@@ -38,8 +38,15 @@
             </div>
             <div class="row mb-3">
                 <div class="offset-md-4 col-sm-4">
+                    <label for="price">Price</label>
+                    <input type="text" name="price" value="{{ old('price') }}" id="price" class="form-control"
+                        required placeholder="Enter Price">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="offset-md-4 col-sm-4">
                     <label for="name">Description</label>
-                    <input type="teproxt" name="description" value="{{ old('description') }}" id="description" class="form-control"
+                    <input type="text" name="description" value="{{ old('description') }}" id="description" class="form-control"
                         required placeholder="Enter Description">
                 </div>
             </div>

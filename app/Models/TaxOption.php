@@ -10,12 +10,7 @@ class TaxOption extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
+        'price'
     ];
-
-    public function getOption($product_id) {
-        $row = ProductTaxOption::where('product_id', $product_id)->where('tax_option_id', $this->id)->first();
-
-        return $row;
-    }
 }

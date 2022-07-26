@@ -33,6 +33,7 @@
                                 </th>
                                 <th class="sorting">ID</th>
                                 <th>Name</th>
+                                <th>Price</th>
                                 <th>Actions</th>
                             </thead>
                             <tbody>
@@ -49,6 +50,7 @@
                                         </td>
                                         <td>{{ ++$nIndex }}</td>
                                         <td>{{ $tax->name }}</td>
+                                        <td>{{ $tax->price / 100 }}</td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a class="btn btn-dark btn-sm"

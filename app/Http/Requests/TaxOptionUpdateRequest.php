@@ -26,6 +26,7 @@ class TaxOptionUpdateRequest extends FormRequest
         return [
             // 'id' => 'required|exists:taxes,id',
             'name' => 'required|string',
+            'price' => 'required|numeric'
         ];
     }
 }
