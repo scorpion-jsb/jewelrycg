@@ -86,7 +86,9 @@
         <div class="global-search-form">
             <form method="get" action="{{route('products.search')}}">
                 <div class="row">
-                    <input name="q" type="search" class="col-lg-8" placeholder="Search" aria-label="Search">
+                    <div class="col-lg-8">
+                        <input name="q" type="search" placeholder="Search" aria-label="Search">
+                    </div>
                     <div class="col-lg-4">
                         <select name="category" class="form-select text-small text-capitalize">
                             <option>All</option>
