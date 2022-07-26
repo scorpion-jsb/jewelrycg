@@ -83,16 +83,18 @@
 </header>
 <div class="global-search-wrap py-2 border-bottom">
     <div class="container">
-        <form method="get" action="{{route('products.search')}}" class="row">
-            <input name="q" type="search" class="col-lg-8" placeholder="Search" aria-label="Search">
-            <div class="col-lg-4">
-                <select name="category" class="form-select text-small text-capitalize">
-                    <option>All</option>
-                    @foreach (\App\Models\ProductsCategorie::all() as $category)
-                        <option  {{ request()->category == $category->category_name ? 'selected' : null }}>{{$category->category_name}}</option>
-                    @endforeach
-                </select>
-            </div>
-        </form>
+        <div class="global-search-form">
+            <form method="get" action="{{route('products.search')}}" class="row">
+                <input name="q" type="search" class="col-lg-8" placeholder="Search" aria-label="Search">
+                <div class="col-lg-4">
+                    <select name="category" class="form-select text-small text-capitalize">
+                        <option>All</option>
+                        @foreach (\App\Models\ProductsCategorie::all() as $category)
+                            <option  {{ request()->category == $category->category_name ? 'selected' : null }}>{{$category->category_name}}</option>
+                        @endforeach
+                    </select>
+                </div>
+            </form>
+        </div>
     </div>
 </div><!-- end search-wrap-->
