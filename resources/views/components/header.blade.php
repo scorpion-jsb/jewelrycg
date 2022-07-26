@@ -81,18 +81,18 @@
         </div>
     </nav>
 </header>
-<div class="global-search-wrap py-2 border-bottom">
+<div class="global-search-wrap py-2 bg-white border-bottom">
     <div class="container">
         <div class="global-search-form">
             <form method="get" action="{{route('products.search')}}">
                 <div class="row">
-                    <div class="col-lg-8">
-                        <div class="w-100">
-                            <i class="bi bi-search"></i>
+                    <div class="col-8 search-col">
+                        <div class="w-100 h-100">
+                            <i class="bi bi-search p-3"></i>
                             <input name="q" type="search" placeholder="Search" aria-label="Search" class="search-control">
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-4">
                         <select name="category" class="form-select text-small text-capitalize">
                             <option>All</option>
                             @foreach (\App\Models\ProductsCategorie::all() as $category)
