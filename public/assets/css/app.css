@@ -69,8 +69,9 @@ button.navbar-toggler {
 }
 /*Search*/
 .global-search-form {
-    border-radius: 32px;
     border: 1px solid #ccc;
+    border-radius: 50px;
+    overflow: hidden;
 }
 .search-control {
     width: 100%;
