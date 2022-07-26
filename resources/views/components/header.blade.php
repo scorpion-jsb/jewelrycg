@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand-lg">
     <nav class="container">
-        <a class="navbar-brand col-auto FW-800" href="{{ route('index') }}">
+        <a class="navbar-brand col-auto fw-800" href="{{ route('index') }}">
                 <!--
                 <img src="{{ asset('img/logo.png') }}" width="50" height="50" alt="logo">
                 <img class="logo" src="https://districtgurus.com/public/uploads/all/SC008HOLHmfOeB8E3SxNDONHI7nad1YJcmSl0ds9.png" data-src="https://districtgurus.com/public/uploads/all/SC008HOLHmfOeB8E3SxNDONHI7nad1YJcmSl0ds9.png" alt="District Gurus">-->
