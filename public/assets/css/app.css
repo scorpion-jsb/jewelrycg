@@ -74,13 +74,13 @@ button.navbar-toggler {
     overflow: hidden;
 }
 .search-control {
-    width: 100%;
     background: #eee;
     border: 0;
     height: 100%;
-    padding: 0 10px;
-    border-top-left-radius: 50px;
-    border-bottom-left-radius: 50px;
+    padding-left: 15px;
+}
+.search-col {
+    background: #eee;
     border-right: 1px solid #ccc;
 }
 /* Hero */
