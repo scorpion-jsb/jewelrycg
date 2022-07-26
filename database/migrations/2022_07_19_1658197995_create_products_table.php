@@ -32,6 +32,7 @@ class CreateProductsTable extends Migration
 					$table->integer('is_trackingquantity',)->nullable();
 					$table->integer('is_backorder',)->nullable();
 					$table->integer('is_madetoorder',)->nullable();
+					$table->integer('tax_option_id',)->default(0);
 					$table->string('product_thumbnail')->nullable();
 					$table->text('product_images')->nullable();
 					$table->text('product_3dpreview')->nullable();

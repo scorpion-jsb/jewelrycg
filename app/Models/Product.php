@@ -58,6 +58,7 @@ class Product extends Model
         'product_thumbnail',
         'slug',
         'status',
+        'tax_option_id',
         'product_3dpreview',
         'product_attributes',
         'product_attribute_values',
@@ -210,5 +211,13 @@ class Product extends Model
         $attributesValues = $model->get();
 
         return $attributesValues;
+    }
+
+    public function taxPrice() {
+        if ($this->tax_option_id) {
+            return ProductsTaxOption::find($this->tax_option_id)->price;
+        }
+
+        return 0;
     }
 }

@@ -341,6 +341,26 @@
                     </div>
                 </div>
                 <!-- End Card -->
+                <!-- Card -->
+                <div class="card mb-3 mb-4">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">Tax</h4>
+                    </div>
+                    <!-- End Header -->
+
+                    <!-- Body -->
+                    <div class="card-body">
+                        <label for="tax_option_id">Tax</label>
+                        <select name="tax_option_id" id="tax_option_id" class="form-control">
+                            <option value="0">Not Taxable</option>
+                            @foreach ($taxes as $tax)
+                                <option @if ($product->tax_option_id == $tax->id) selected @endif value="{{ $tax->id }}">{{ $tax->name }} - {{ $tax->price / 100 }} ({{ $tax->type }})</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+                <!-- End Card -->
             </div>
         </div>
 

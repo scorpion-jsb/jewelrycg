@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tax_options', function (Blueprint $table) {
+        Schema::create('products_tax_options', function (Blueprint $table) {
             $table->id();
             $table->string('name', 100)->default('');
             $table->enum('type', ['flat', 'percent']);
@@ -29,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tax_options');
+        Schema::dropIfExists('products_tax_options');
     }
 };

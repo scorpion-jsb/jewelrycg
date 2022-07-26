@@ -45,6 +45,15 @@
                 </div>
             </div>
             <div class="row mb-3">
+                <div class="offset-md-4 col-sm-4">
+                    <label for="type">Type</label>
+                    <select name="type" class="form-control" id="type">
+                        <option value="percent" @if ($tax->type == 'percent') selected @endif>percent</option>
+                        <option value="flat" @if ($tax->type == 'flat') selected @endif>flat</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row mb-3">
               <div class="offset-md-4 col-sm-4">
                 <button type="submit" class="btn btn-primary float-end">Submit</button>
               </div>

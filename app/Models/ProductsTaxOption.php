@@ -5,12 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class TaxOption extends Model
+class ProductsTaxOption extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'price'
+        'price',
+        'type'
     ];
 }

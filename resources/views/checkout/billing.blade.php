@@ -11,26 +11,6 @@
                     @csrf
                     <div class="card">
                         <div class="card-body">
-                            <div class="border-bottom mb-3 fs-3">Tax Options</div>
-                            <div class="row mb-3">
-                                @foreach ($taxes as $i => $tax)
-                                    <div class="offset-md-2 col-md-8 mb-2">
-                                        <input type="radio" value="{{ $tax->id }}" class="btn-check"
-                                            name="tax_option" id="option{{ $tax->id }}" autocomplete="off"
-                                            @if ($i == 0) checked @endif />
-                                        <label class="btn btn-default tax-radio" for="option{{ $tax->id }}"
-                                            style="width: 100%;">
-                                            <span>{{ $tax->name }}</span>
-                                            <span class="float-right">${{ $tax->price / 100 }}</span>
-                                        </label>
-                                    </div>
-                                @endforeach
-                            </div>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-body">
                             <div class="border-bottom mb-3 fs-3">Billing Address</div>
                             @include('includes.validation-form')
                             <x-user-info :countries="$countries" />
