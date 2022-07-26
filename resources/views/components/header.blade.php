@@ -1,10 +1,10 @@
 <header class="navbar navbar-expand-lg">
     <nav class="container">
-        <a class="navbar-brand col-auto" href="{{ route('index') }}">
+        <a class="navbar-brand col-auto FW-800" href="{{ route('index') }}">
                 <!--
                 <img src="{{ asset('img/logo.png') }}" width="50" height="50" alt="logo">
                 <img class="logo" src="https://districtgurus.com/public/uploads/all/SC008HOLHmfOeB8E3SxNDONHI7nad1YJcmSl0ds9.png" data-src="https://districtgurus.com/public/uploads/all/SC008HOLHmfOeB8E3SxNDONHI7nad1YJcmSl0ds9.png" alt="District Gurus">-->
-                #JewelryCG
+                #JEWELRYCG
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -69,10 +69,10 @@
 
                 @else
                 <li class="nav-item ml-1">
-                    <a class="nav-link" href="{{ route('login') }}">Login</a>  
+                    <a class="nav-link auth-btn" href="{{ route('login') }}">Login</a>  
                 </li>
                 <li class="nav-item ml-1">
-                    <a class="nav-link" href="{{ route('register') }}">Register</a>  
+                    <a class="nav-link auth-btn auth-primary" href="{{ route('register') }}">Register</a>  
                 </li>
                 @endauth
             </ul>
