@@ -142,7 +142,7 @@ class ProductsController extends Controller
                 'id_product' => $id_product,
              ]);
         }
-        
+
         return redirect()->route('backend.products.edit', $product->id);
     }
 
@@ -219,7 +219,7 @@ class ProductsController extends Controller
         ProductTaxOption::where(['product_id' => $product])->delete();
         foreach ($taxes as $i => $tax) {
             if (isset($tax['tax_option_id'])) {
-                ProductTaxOption::create(['tax_option_id' => $tax['tax_option_id'], 'price' => $tax['price'], 'product_id' => $product, 'type' => $tax['type']]);
+                ProductTaxOption::create(['tax_option_id' => $tax['tax_option_id'], 'price' => $tax['price'] * 100, 'product_id' => $product, 'type' => $tax['type']]);
             }
         }
 
@@ -228,7 +228,7 @@ class ProductsController extends Controller
         ProductShippingOption::where(['product_id' => $product])->delete();
         foreach ($shippings as $i => $shipping) {
             if (isset($shipping['shipping_option_id'])) {
-                ProductShippingOption::create(['shipping_option_id' => $shipping['shipping_option_id'], 'price' => $shipping['price'], 'product_id' => $product, 'type' => $shipping['type']]);
+                ProductShippingOption::create(['shipping_option_id' => $shipping['shipping_option_id'], 'price' => $shipping['price'] * 100, 'product_id' => $product, 'type' => $shipping['type']]);
             }
         }
 
