@@ -127,6 +127,20 @@
               <span class="dropdown-header mt-4">{{ __("Configuration") }}</span>
 
               <div class="nav-item">
+                <a class="nav-link nav-link-main " href="{{ route('backend.tax.index') }}" data-placement="left">
+                  <i class="bi-key nav-icon"></i>
+                  <span class="nav-link-title">Tax</span>
+                </a>
+              </div>
+
+              <div class="nav-item">
+                <a class="nav-link nav-link-main " href="{{ route('backend.shipping.index') }}" data-placement="left">
+                  <i class="bi-key nav-icon"></i>
+                  <span class="nav-link-title">Shipping</span>
+                </a>
+              </div>
+
+              <div class="nav-item">
                 <a class="nav-link nav-link-main " href="#" data-placement="left">
                   <i class="bi-key nav-icon"></i>
                   <span class="nav-link-title">General</span>

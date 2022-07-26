@@ -10,12 +10,12 @@ use App\Models\ProductsCategorie;
 use App\Models\ProductTag;
 use App\Models\ProductsVariant;
 use App\Models\Attribute;
+use App\Models\ProductShippingOption;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
-use App\Http\Controllers\Backend\UploadController;
-
-
-
+use App\Models\ProductTaxOption;
+use App\Models\ShippingOption;
+use App\Models\TaxOption;
 
 class ProductsController extends Controller
 {
@@ -64,7 +64,9 @@ class ProductsController extends Controller
         return view('backend.products.create', [
             'attributes' => Attribute::orderBy('id', 'DESC')->get(),
             'categories' => ProductsCategorie::all(),
-            'tags' => ProductTag::all()
+            'tags' => ProductTag::all(),
+            'taxes' => TaxOption::all(),
+            'shippings' => ShippingOption::all()
         ]);
     }
 
@@ -107,6 +109,21 @@ class ProductsController extends Controller
         $product = Product::create($data);
         $id_product = $product->id;
 
+        $taxes = $req->tax;
+
+        foreach ($taxes as $i => $tax) {
+            if (isset($tax['tax_option_id'])) {
+                ProductTaxOption::create(['tax_option_id' => $tax['tax_option_id'], 'price' => $tax['price'], 'product_id' => $product->id, 'type' => $tax['type']]);
+            }
+        }
+
+        $shippings = $req->shipping;
+
+        foreach ($shippings as $i => $shipping) {
+            if (isset($shipping['shipping_option_id'])) {
+                ProductShippingOption::create(['shipping_option_id' => $shipping['shipping_option_id'], 'price' => $shipping['price'], 'product_id' => $product->id, 'type' => $shipping['type']]);
+            }
+        }
 
         foreach($variants as $variant)
         {
@@ -166,7 +183,9 @@ class ProductsController extends Controller
             'attributes' => Attribute::orderBy('id', 'DESC')->get(),
             'tags' => ProductTag::all(),
             'uploads' => Upload::whereIn('id', explode(',',$product->product_images))->get(),
-            'selected_values' => $prepare_values
+            'selected_values' => $prepare_values,
+            'taxes' => TaxOption::all(),
+            'shippings' => ShippingOption::all()
         ]);
     }
 
@@ -194,6 +213,24 @@ class ProductsController extends Controller
         $data['is_trackingquantity'] = $req->is_trackingquantity ? 1 : 0;
         $data['product_attributes'] = $attributes;
         $data['product_attribute_values'] = $values;
+
+        $taxes = $req->tax;
+
+        foreach ($taxes as $i => $tax) {
+            if (isset($tax['tax_option_id'])) {
+                ProductTaxOption::where(['tax_option_id' => $tax['tax_option_id'], 'product_id' => $product])->delete();
+                ProductTaxOption::create(['tax_option_id' => $tax['tax_option_id'], 'price' => $tax['price'], 'product_id' => $product, 'type' => $tax['type']]);
+            }
+        }
+
+        $shippings = $req->shipping;
+
+        foreach ($shippings as $i => $shipping) {
+            if (isset($shipping['shipping_option_id'])) {
+                ProductShippingOption::where(['shipping_option_id' => $shipping['shipping_option_id'], 'product_id' => $product])->delete();
+                ProductShippingOption::create(['shipping_option_id' => $shipping['shipping_option_id'], 'price' => $shipping['price'], 'product_id' => $product, 'type' => $shipping['type']]);
+            }
+        }
 
         if($req->slug == "")
         {
