@@ -216,18 +216,18 @@ class ProductsController extends Controller
 
         $taxes = $req->tax;
 
+        ProductTaxOption::where(['product_id' => $product])->delete();
         foreach ($taxes as $i => $tax) {
             if (isset($tax['tax_option_id'])) {
-                ProductTaxOption::where(['product_id' => $product])->delete();
                 ProductTaxOption::create(['tax_option_id' => $tax['tax_option_id'], 'price' => $tax['price'], 'product_id' => $product, 'type' => $tax['type']]);
             }
         }
 
         $shippings = $req->shipping;
 
+        ProductShippingOption::where(['product_id' => $product])->delete();
         foreach ($shippings as $i => $shipping) {
             if (isset($shipping['shipping_option_id'])) {
-                ProductShippingOption::where(['product_id' => $product])->delete();
                 ProductShippingOption::create(['shipping_option_id' => $shipping['shipping_option_id'], 'price' => $shipping['price'], 'product_id' => $product, 'type' => $shipping['type']]);
             }
         }
