@@ -160,7 +160,7 @@ button.navbar-toggler {
 }
 .auth-btn:hover {
     border: 1px solid transparent !important;
-    background: #eeeeee;
+    background: #f1f1f1;
 }
 .auth-primary {
     background: #0057ff;
