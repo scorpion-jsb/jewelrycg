@@ -158,8 +158,16 @@ button.navbar-toggler {
     font-weight: 500 !important;
     font-size: 14px !important;
 }
+.auth-btn:hover {
+    border: 0;
+    background: #eeeeee;
+}
 .auth-primary {
     background: #0057ff;
     border:1px solid #0057ff;
     color: #ffffff !important;
+}
+.auth-primary:hover {
+    border: 0;
+    background: #003ecb;
 }
