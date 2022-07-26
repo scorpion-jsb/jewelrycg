@@ -82,11 +82,14 @@ button.navbar-toggler {
     height: 100%;
     font-size: 22px;
     width: 100%;
-    padding: 10px 20px;
+    padding: 10px 40px;
 }
 .search-col {
     background: #f9f9f9;
     border-right: 1px solid #ccc;
+}
+.search-col .bi-search {
+    position: absolute;
 }
 /* Hero */
 .hero-content-container {
