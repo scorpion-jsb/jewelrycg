@@ -1,5 +1,5 @@
 <header class="navbar navbar-expand-lg">
-    <nav class="container-fluid">
+    <nav class="container">
         <a class="navbar-brand col-auto fw-800" href="{{ route('index') }}">
                 <!--
                 <img src="{{ asset('img/logo.png') }}" width="50" height="50" alt="logo">
@@ -82,7 +82,7 @@
     </nav>
 </header>
 <div class="global-search-wrap py-2 bg-white border-bottom">
-    <div class="container-fluid">
+    <div class="container">
         <div class="global-search-form">
             <form method="get" action="{{route('products.search')}}">
                 <div class="row">
