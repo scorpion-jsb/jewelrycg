@@ -40,13 +40,6 @@
                         <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
                     </ul>
                 </li>
-                @else
-                <li class="nav-item ml-1">
-                    <a class="nav-link" href="{{ route('login') }}">Login</a>  
-                </li>
-                <li class="nav-item ml-1">
-                    <a class="nav-link" href="{{ route('register') }}">Register</a>  
-                </li>
                 @endauth
             </ul>
             <!-- end left navbar-->
