@@ -60,7 +60,7 @@ header a.nav-link {
     color: #000000;
     padding: 15px;
 }
-header a.nav-link.active {
+header a.nav-link.active, header a.nav-link:hover {
     border-bottom: 2px solid #000;
 }
 button.navbar-toggler {
