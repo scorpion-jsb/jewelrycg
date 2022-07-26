@@ -25,7 +25,8 @@ use App\Http\Controllers\Backend\AttributesvaluesController;
 use App\Http\Controllers\Backend\UploadController;
 
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
-
+use App\Http\Controllers\Backend\ShippingOptionController;
+use App\Http\Controllers\Backend\TaxOptionController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -43,6 +44,12 @@ use Illuminate\Support\Facades\Route;
 // Backend
 Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth', 'admin']], function ()
 {
+
+	// tax
+	Route::resource('/setting/tax', TaxOptionController::class);
+	// shipping
+	Route::resource('/setting/shipping', ShippingOptionController::class);
+
 
 	//uploads
 	Route::group(['prefix' => 'filemanager', 'as' => 'filemanager.'], function ()
@@ -278,6 +285,7 @@ Route::group(['middleware' => 'auth'], function ()
 		Route::delete('/delete', 'delete')->name('delete');
 		Route::get('/{id_user}', 'index')->name('index');
 	});
+
 });
 
 require __DIR__ . '/auth.php';

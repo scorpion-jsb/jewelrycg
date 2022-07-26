@@ -212,6 +212,62 @@
                 </div>
                 <!-- End Card -->
 
+
+                <div class="card mb-4">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">Tax Options</h4>
+                    </div>
+                    <!-- End Header --> 
+                    <div class="card-body">
+                        <table style="width: 100%;">
+                            @foreach ($taxes as $i => $tax)
+                                <tr>
+                                    <td>
+                                        <label for="tax{{ $tax->id }}"><input type="checkbox" name="tax[{{ $i }}][tax_option_id]" id="tax{{ $tax->id }}" value="{{ $tax->id }}" @if ($tax->getOption($product->id)) checked @endif>&nbsp;{{ $tax->name }}</label></td>                                    
+                                    <td>
+                                        <input type="text" style="height: 24px;width: 100%;" @if ($tax->getOption($product->id)) value="{{ $tax->getOption($product->id)->price }}" @endif placeholder="price" name="tax[{{ $i }}][price]">
+                                    </td>
+                                    <td>
+                                        <select id="" style="height: 24px;width: 100%;" name="tax[{{ $i }}][type]">
+                                            <option value="flat" @if ($tax->getOption($product->id) && $tax->getOption($product->id)->type == 'flat') selected @endif>flat</option>
+                                            <option value="percent" @if ($tax->getOption($product->id) && $tax->getOption($product->id)->type == 'percent') selected @endif>percent</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+
+                <div class="card mb-4">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">Shipping Options</h4>
+                    </div>
+                    <!-- End Header --> 
+                    <div class="card-body">
+                        <table style="width: 100%;">
+                            @foreach ($shippings as $i => $shipping)
+                                <tr  title="{{ $shipping->description }}">
+                                    <td>
+                                        <label for="shipping{{ $shipping->id }}"><input type="checkbox" name="shipping[{{ $i }}][shipping_option_id]" id="shipping{{ $shipping->id }}" value="{{ $shipping->id }}" @if ($shipping->getOption($product->id)) checked @endif>&nbsp;{{ $shipping->name }}</label></td>                                    
+                                    <td>
+                                        <input type="text" style="height: 24px;width: 100%;" @if ($shipping->getOption($product->id)) value="{{ $shipping->getOption($product->id)->price }}" @endif placeholder="price" name="shipping[{{ $i }}][price]">
+                                    </td>
+                                    <td>
+                                        <select id="" style="height: 24px;width: 100%;" name="shipping[{{ $i }}][type]">
+                                            <option value="flat" @if ($shipping->getOption($product->id) && $shipping->getOption($product->id)->type == 'flat') selected @endif>flat</option>
+                                            <option value="percent" @if ($shipping->getOption($product->id) && $shipping->getOption($product->id)->type == 'percent') selected @endif>percent</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                            @endforeach
+                        </table>
+                    </div>
+                </div>
+
+
                 <!-- Card -->
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
