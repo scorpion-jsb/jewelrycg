@@ -81,15 +81,19 @@ button.navbar-toggler {
     border: 0;
     height: 100%;
     font-size: 20px;
-    width: 100%;
-    padding: 8px 40px;
+    width: 95%;
+    padding: 8px 0px;
+    display: block;
+    float: left;
 }
 .search-col {
     background: #f9f9f9;
     border-right: 1px solid #ccc;
 }
 .search-col .bi-search {
-    position: absolute;
+    display: block;
+    float: left;
+    width: 5%;
 }
 /* Hero */
 .hero-content-container {
