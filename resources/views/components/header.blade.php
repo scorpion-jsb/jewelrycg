@@ -49,7 +49,6 @@
                     <div class="row">
                         <div class="col-12 search-col">
                             <div class="w-100 h-100">
-                                <i class="bi bi-search p-3"></i>
                                 <input name="q" type="search" placeholder="Search" aria-label="Search" class="search-control">
                             </div>
                         </div>
