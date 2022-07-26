@@ -11,6 +11,7 @@ class ProductShippingOption extends Model
     protected $fillable = [
         'product_id',
         'shipping_option_id',
-        'price'
+        'price',
+        'type'
     ];
 }

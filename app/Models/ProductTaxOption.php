@@ -11,7 +11,8 @@ class ProductTaxOption extends Model
     protected $fillable = [
         'product_id',
         'tax_option_id',
-        'price'
+        'price',
+        'type'
     ];
 
 }
