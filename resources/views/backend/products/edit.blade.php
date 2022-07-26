@@ -355,7 +355,7 @@
                                     <td>
                                         <label for="tax{{ $tax->id }}"><input type="checkbox" name="tax[{{ $i }}][tax_option_id]" id="tax{{ $tax->id }}" value="{{ $tax->id }}" @if ($tax->getOption($product->id)) checked @endif>&nbsp;{{ $tax->name }}</label></td>                                    
                                     <td>
-                                        <input type="text" style="height: 24px;width: 100%;" @if ($tax->getOption($product->id)) value="{{ $tax->getOption($product->id)->price }}" @endif placeholder="price" name="tax[{{ $i }}][price]">
+                                        <input type="text" style="height: 24px;width: 100%;" @if ($tax->getOption($product->id)) value="{{ $tax->getOption($product->id)->price / 100 }}" @endif placeholder="price" name="tax[{{ $i }}][price]">
                                     </td>
                                     <td>
                                         <select id="" style="height: 24px;width: 100%;" name="tax[{{ $i }}][type]">
@@ -380,9 +380,9 @@
                             @foreach ($shippings as $i => $shipping)
                                 <tr  title="{{ $shipping->description }}">
                                     <td>
-                                        <label for="shipping{{ $shipping->id }}"><input type="checkbox" name="shipping[{{ $i }}][shipping_option_id]" id="shipping{{ $shipping->id }}" value="{{ $shipping->id }}" @if ($shipping->getOption($product->id)) checked @endif>&nbsp;{{ $shipping->name }}</label></td>                                    
+                                        <label for="shipping{{ $shipping->id }}"><input type="checkbox" name="shipping[{{ $i }}][shipping_option_id]" id="shipping{{ $shipping->id }}" value="{{ $shipping->id }}" @if ($shipping->getOption($product->id)) checked @endif>&nbsp;{{ $shipping->name }}</label></td>
                                     <td>
-                                        <input type="text" style="height: 24px;width: 100%;" @if ($shipping->getOption($product->id)) value="{{ $shipping->getOption($product->id)->price }}" @endif placeholder="price" name="shipping[{{ $i }}][price]">
+                                        <input type="text" style="height: 24px;width: 100%;" @if ($shipping->getOption($product->id)) value="{{ $shipping->getOption($product->id)->price / 100 }}" @endif placeholder="price" name="shipping[{{ $i }}][price]">
                                     </td>
                                     <td>
                                         <select id="" style="height: 24px;width: 100%;" name="shipping[{{ $i }}][type]">
