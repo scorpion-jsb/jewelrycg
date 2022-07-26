@@ -65,7 +65,7 @@ header a.nav-link.active {
 }
 button.navbar-toggler {
     border: 0;
-    padding: 0;
+    padding: 15px 0;
     color: #000000 !important;
 }
 .navbar-collapse.collapse.show {
