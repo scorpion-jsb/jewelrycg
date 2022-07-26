@@ -43,26 +43,27 @@
                 @endauth
             </ul>
             <!-- end left navbar-->
+
             <div class="search-form ml-auto mr-auto">
-            <form method="get" action="{{route('products.search')}}">
-                <div class="row">
-                    <div class="col-8 search-col">
-                        <div class="w-100 h-100">
-                            <i class="bi bi-search p-3"></i>
-                            <input name="q" type="search" placeholder="Search" aria-label="Search" class="search-control">
+                <form method="get" action="{{route('products.search')}}">
+                    <div class="row">
+                        <div class="col-8 search-col">
+                            <div class="w-100 h-100">
+                                <i class="bi bi-search p-3"></i>
+                                <input name="q" type="search" placeholder="Search" aria-label="Search" class="search-control">
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <select name="category" class="form-select text-small text-capitalize">
+                                <option>All</option>
+                                @foreach (\App\Models\ProductsCategorie::all() as $category)
+                                    <option  {{ request()->category == $category->category_name ? 'selected' : null }}>{{$category->category_name}}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
-                    <div class="col-4">
-                        <select name="category" class="form-select text-small text-capitalize">
-                            <option>All</option>
-                            @foreach (\App\Models\ProductsCategorie::all() as $category)
-                                <option  {{ request()->category == $category->category_name ? 'selected' : null }}>{{$category->category_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-            </form>
-        </div>
+                </form>
+            </div>
 
             <!-- right navbar-->
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
