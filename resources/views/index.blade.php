@@ -80,15 +80,7 @@
 
 <section class="home_latest_product mt-4 mb-4">
     <div class="container">
-        <div class="d-flex mb-3 align-items-baseline border-bottom">
-            <h3 class="h5 fw-700 mb-0 w-100">
-                <span class="border-bottom border-primary border-width-2 pb-3 d-inline-block">Recently Added Models</span>
-            </h3>
-            <a href="javascript:void(0)" class="ml-auto mr-0 btn btn-primary btn-sm shadow-md">20</a>
-        </div>
-
         <x-products-display :products="$products"/>
-        
     </div>
 </section>
 </x-app-layout>
