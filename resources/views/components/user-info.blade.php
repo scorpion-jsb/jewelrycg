@@ -32,7 +32,7 @@
         <div class="col-sm-8">
             <select name="country" id="" data-live-search="true" class="form-control">
                 @foreach ($countries as $country)
-                    @if (auth()->user()->address->country == $country->code)
+                    @if (auth()->user()->address && auth()->user()->address->country == $country->code)
                         <option value="{{ $country->code }}" selected>{{ $country->name }}</option>
                     @else
                         <option value="{{ $country->code }}">{{ $country->name }}</option>

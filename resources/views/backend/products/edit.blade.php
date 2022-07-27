@@ -337,7 +337,7 @@
                                 style="width: 100%">
                         </div>
                         <label class="btn text-primary mt-2 p-0" id="getFileManager">Select thumbnail</label>
-                        <input type="hidden" id="fileManagerId" value={{$product->product_thumbnail}} name="product_thumbnail">
+                        <input type="hidden" id="fileManagerId" value="{{$product->product_thumbnail}}" name="product_thumbnail">
                     </div>
                 </div>
                 <!-- End Card -->

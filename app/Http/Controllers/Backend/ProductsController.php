@@ -192,6 +192,7 @@ class ProductsController extends Controller
         $data['is_trackingquantity'] = $req->is_trackingquantity ? 1 : 0;
         $data['product_attributes'] = $attributes;
         $data['product_attribute_values'] = $values;
+        
 
         if($req->slug == "")
         {

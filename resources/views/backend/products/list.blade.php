@@ -51,7 +51,7 @@
                                         </td>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->name }}</td>
-                                        <td>{{ $product->price }} $</td>
+                                        <td>${{ number_format($product->price / 100, 2) }}</td>
                                         <td>{{ $product->quantity }}</td>
                                         <td>{{ $product->product_category ? $product->product_category->category_name : '' }}
                                         </td>
