@@ -62,7 +62,6 @@ class CheckoutController extends Controller
                 $cartItems = Cart::content();
                 $total = 0;
 
-                    dd($cartItems);
                 foreach ($cartItems as $item) {
                     $orderItem = new OrderItem;
     
