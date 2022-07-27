@@ -87,13 +87,9 @@ class CheckoutController extends Controller
                 $order->total = $total;
 
                 $shipping_option_id = $request->session()->get('shipping_option_id', 0);
-                $tax_option_id = $request->session()->get('tax_option_id', 0);
 
                 if ($shipping_option_id) 
                     $total += ShippingOption::find($shipping_option_id)->price;
-
-                if ($tax_option_id) 
-                    $total += TaxOption::find($tax_option_id)->price;
 
                 $order->grand_total = $total;
             }
@@ -116,7 +112,6 @@ class CheckoutController extends Controller
             $order->shipping_country = $request->session()->get('shipping_country', '');
             $order->shipping_phonenumber = $request->session()->get('shipping_phonenumber', '');
             $order->shipping_option_id = $request->session()->get('shipping_option_id', 0);
-            $order->tax_option_id = $request->session()->get('tax_option_id', 0);
             $order->save();
 
             Cart::erase(auth()->id());
@@ -153,6 +148,13 @@ class CheckoutController extends Controller
 
             if ($shipping_option_id) 
                 $total += ShippingOption::find($shipping_option_id)->price;
+            
+            $taxPrice = 0;
+            foreach (Cart::content() as $product) {
+                $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
+            }
+
+            $total += floor($taxPrice + 0.5);
 
             // Create a PaymentIntent with amount and currency
             $paymentIntent = \Stripe\PaymentIntent::create([
@@ -260,6 +262,7 @@ class CheckoutController extends Controller
         $request->session()->put('shipping_zipcode', $request->pin_code);
         $request->session()->put('shipping_phonenumber', $request->phone);
         $request->session()->put('shipping_option_id', $request->shipping_option);
+        $request->session()->put('shipping_price', ShippingOption::find($request->shipping_option)->price);
 
         if ($request->isRemember) {
             $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
@@ -297,7 +300,6 @@ class CheckoutController extends Controller
         $request->session()->put('billing_country', $request->country);
         $request->session()->put('billing_zipcode', $request->pin_code);
         $request->session()->put('billing_phonenumber', $request->phone);
-        $request->session()->put('tax_option_id', $request->tax_option);
 
         if ($request->isRemember) {
             $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
