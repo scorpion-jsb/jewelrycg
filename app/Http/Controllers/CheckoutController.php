@@ -61,7 +61,8 @@ class CheckoutController extends Controller
     
                 $cartItems = Cart::content();
                 $total = 0;
-                
+
+                    dd($cartItems);
                 foreach ($cartItems as $item) {
                     $orderItem = new OrderItem;
     
@@ -72,7 +73,7 @@ class CheckoutController extends Controller
                     $orderItem->quantity = $item->qty;
                     $orderItem->product_variant = 0;
 
-                    $total = $orderItem->price * $orderItem->quantity;
+                    $total = $orderItem->price * $orderItem->quantity;                    
     
                     if (isset($item->options['id'])) {
                         $orderItem->product_variant = $item->options['id'];
