@@ -185,7 +185,7 @@
                                 <span class="text-dark">Digital</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" class="form-check-input" name="is_digital" value="1" @if($product->is_digital == 1) checked @endif id="availabilitySwitch1">
+                                <input type="checkbox" class="form-check-input" name="is_digital" @if($product->is_digital == 1) checked @endif id="availabilitySwitch1">
                             </span>
                         </label>
                         <label class="row form-switch mb-4" for="availabilitySwitch2">
@@ -193,7 +193,7 @@
                                 <span class="text-dark">Virtual</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" value="1" name="is_virtual" @if($product->is_virtual == 1) checked @endif class="form-check-input" id="availabilitySwitch2">
+                                <input type="checkbox" name="is_virtual" @if($product->is_virtual == 1) checked @endif class="form-check-input" id="availabilitySwitch2">
                             </span>
                         </label>
                         <label class="row form-switch" for="">

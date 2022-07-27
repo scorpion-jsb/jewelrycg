@@ -95,7 +95,7 @@ class ProductsController extends Controller
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
         $data['is_digital'] = $req->is_digital ? 1 : 0;
-        $data['is_virual'] = $req->is_virual ? 1 : 0;
+        $data['is_virtual'] = $req->is_virtual ? 1 : 0;
         $data['is_backorder'] = $req->is_backorder ? 1 : 0;
         $data['is_madetoorder'] = $req->is_madetoorder ? 1 : 0;
         $data['is_trackingquantity'] = $req->is_trackingquantity ? 1 : 0;
@@ -185,8 +185,8 @@ class ProductsController extends Controller
         $values = implode(",",(array)$req->input('values'));
         $data = $req->all();
         $data['price'] = Product::stringPriceToCents($req->price);
-        $data['is_digital'] = ($req->is_digital & $req->is_digital == 1)? 1 : 0;
-        $data['is_virual'] = ($req->is_virual & $req->is_virual == 1) ? 1 : 0;
+        $data['is_digital'] = ($req->is_digital)? 1 : 0;
+        $data['is_virtual'] = ($req->is_virtual) ? 1 : 0;
         $data['is_backorder'] = ($req->is_backorder & $req->is_backorder == 1) ? 1 : 0;
         $data['is_madetoorder'] = ($req->is_madetoorder & $req->is_madetoorder == 1) ? 1 : 0;
         $data['is_trackingquantity'] = $req->is_trackingquantity ? 1 : 0;
