@@ -54,4 +54,9 @@ class ProductController extends Controller
         return view('products.show', compact('product', 'uploads', 'variants', 'maxPrice', 'minPrice'));
     }
 
+    public function download($id)
+    {
+        $product = Product::find($id);
+
+    }
 }

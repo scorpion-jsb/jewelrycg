@@ -25,19 +25,19 @@ class CheckoutController extends Controller
     {
         $products = Cart::instance('default')->content();
 
-        $isIncludeDigit = false;
+        $isIncludeShipping = false;
 
         foreach ($products as $product) {
-            if ($product->model->is_digital || $product->model->is_virtual) {
-                $isIncludeDigit = true;
+            if (!$product->model->is_digital && !$product->model->is_virtual) {
+                $isIncludeShipping = true;
             }
         }
 
-        if ($isIncludeDigit) {
-            return redirect()->route('checkout.billing.get');
+        if ($isIncludeShipping) {
+            return redirect()->route('checkout.shipping.get');
         }
 
-        return redirect()->route('checkout.shipping.get');
+        return redirect()->route('checkout.billing.get');
     }
 
     public function store(Request $request)
