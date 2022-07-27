@@ -1,5 +1,7 @@
 <style>
-    #total_td>div {
+    #total_td>div,
+    #shipping_td,
+    #tax_td {
         font-weight: bold;
         font-size: medium;
     }
@@ -22,7 +24,8 @@
             <tr id="{{ $product->rowId }}">
                 <td>
                     <a href="{{ route('products.show', $product->slug) }}" class="link-dark">
-                        <img src="{{ asset('uploads/all/' . $product->model->uploads->file_name) }}" alt="" class="thumbnail" style="width: 80px;">
+                        <img src="{{ asset('uploads/all/' . $product->model->uploads->file_name) }}" alt=""
+                            class="thumbnail" style="width: 80px;">
                         @php
                             if (count($product->options)) {
                                 echo $product->name . ' - ' . $product->options->name;
@@ -63,7 +66,6 @@
                         @endif
                     </div>
                 </td>
-
                 @if ($locale != 'wishlist')
                     <td>
                         @if ($locale == 'cart')
@@ -87,17 +89,26 @@
                             {{ $product->qty }}
                         @endif
                     </td>
+                    {{-- <td>
+                        $@php
+                            if (count($product->options)) {
+                                echo number_format(($product->options->price * $product->qty * $product->model->taxPrice()) / 10000, 2);
+                            } else {
+                                echo number_format(($product->price * $product->qty * $product->model->taxPrice()) / 10000, 2);
+                            }
+                        @endphp
+                    </td> --}}
                     <td>
                         <div class="justify-content-between total-price">
                             $@php
                                 $price = 0;
                                 if (count($product->options)) {
-                                    $price = number_format($product->options->price, 2);
+                                    $price = $product->options->price;
                                 } else {
-                                    $price = number_format($product->price, 2);
+                                    $price = $product->price;
                                 }
                                 
-                                echo $product->qty * $price;
+                                echo number_format($product->qty * $price, 2);
                             @endphp
                         </div>
                     </td>
@@ -109,15 +120,54 @@
             </tr>
         @endforeach
         @if ($locale != 'orders.show')
+            @if ($locale != 'cart')
+                <tr id="total">
+                    <th scope="row">Shipping:</th>
+                    <td></td>
+                    <td></td>
+                    <td id="shipping_td">
+                        <div>
+                            $@php
+                                $shippingPrice = Session::get('shipping_price', 0);
+
+                                echo number_format($shippingPrice / 100, 2);
+                            @endphp
+                        </div>
+                    </td>
+                </tr>
+                <tr id="total">
+                    <th scope="row">Tax:</th>
+                    <td></td>
+                    <td></td>
+                    <td id="tax_td">
+                        <div>
+                            $@php
+                                $taxPrice = 0;
+                                foreach ($products as $product) {
+                                    $taxPrice += $product->qty * $product->price * $product->model->taxPrice();
+                                }
+
+                                echo number_format($taxPrice / 100 / 100, 2);
+                            @endphp
+                        </div>
+                    </td>
+                </tr>
+            @endif
             <tr id="total">
                 <th scope="row">Total:</th>
                 <td></td>
                 <td></td>
                 <td id="total_td"
                     {{ in_array($locale, ['checkout', 'wishlist']) || $products->count() == 0 ? 'colspan=2' : null }}>
+                    @if ($locale == 'cart')
+                        <div class="">
+                            ${{ Cart::total() }}
+                        </div>
+                    @else
                     <div class="">
-                        ${{ Cart::total() }}
+                        ${{ number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) }}
                     </div>
+                @endif
                 </td>
                 @if ($locale == 'cart' && $products->count() > 0)
                     <td>

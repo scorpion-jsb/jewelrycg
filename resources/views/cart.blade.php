@@ -9,7 +9,7 @@
                 </h4>
             @endif
             <div class="card-body">
-                <x-products-table/>
+                <x-products-table locale="cart"/>
             </div>
         </div>  
     </div>
