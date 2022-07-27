@@ -34,10 +34,10 @@ class CheckoutController extends Controller
         }
 
         if ($isIncludeDigit) {
-            return redirect()->route('checkout.shipping.get');
+            return redirect()->route('checkout.billing.get');
         }
 
-        return redirect()->route('checkout.billing.get');
+        return redirect()->route('checkout.shipping.get');
     }
 
     public function store(Request $request)
