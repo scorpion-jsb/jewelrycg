@@ -81,10 +81,10 @@
 
                 @else
                 <li class="nav-item ml-1">
-                    <a class="nav-link auth-btn" href="{{ route('login') }}">Login</a>  
+                    <a class="nav-link auth-btn" href="{{ route('login') }}">Log In</a>  
                 </li>
                 <li class="nav-item ml-1">
-                    <a class="nav-link auth-btn auth-primary" href="{{ route('register') }}">Register</a>  
+                    <a class="nav-link auth-btn auth-primary" href="{{ route('register') }}">Sign Up</a>  
                 </li>
                 @endauth
             </ul>
