@@ -139,7 +139,7 @@
                                 <span class="text-dark">Virtual</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" value="1" name="is_virual" class="form-check-input" id="availabilitySwitch2">
+                                <input type="checkbox" value="1" name="is_virtual" class="form-check-input" id="availabilitySwitch2">
                             </span>
                         </label>
                         <label class="row form-check form-switch mb-4" for="">

@@ -193,7 +193,7 @@
                                 <span class="text-dark">Virtual</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" value="1" @if($product->is_virtual == 1) checked @endif class="form-check-input" id="availabilitySwitch2">
+                                <input type="checkbox" value="1" name="is_virtual" @if($product->is_virtual == 1) checked @endif class="form-check-input" id="availabilitySwitch2">
                             </span>
                         </label>
                         <label class="row form-switch" for="">
