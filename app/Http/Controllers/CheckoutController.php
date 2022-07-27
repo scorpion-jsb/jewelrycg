@@ -77,8 +77,8 @@ class CheckoutController extends Controller
                     if (isset($item->options['id'])) {
                         $orderItem->product_variant = $item->options['id'];
 
-                        $productVariant = ProductsVariant::find($item->options['id']);
-                        $orderItem->product_variant_name = $productVariant->variant_name;
+                        // $productVariant = ProductsVariant::find($item->options['id']);
+                        $orderItem->product_variant_name = $item->options['name'];;
                     }
     
                     $orderItem->save();
