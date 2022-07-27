@@ -46,12 +46,11 @@
         </div>
     </div>
 </section>
-
+<!--
 <section class="why-points top-content-container pt-4 pb-4">
     <div class="container">
         <div class="row">
             <div class="overflow-hidden col-md-4 position-relative mt-3">
-                <!-- <div class="bg-overlay"> -->
                 <div class="card mb-0">
                     <div class="d-block w-100 h-100 px-4 pt-4 pb-5">
                         <h2 class="text-black fw-700">Custom Design</h2>
@@ -59,7 +58,6 @@
                 </div>
             </div>
             <div class="overflow-hidden col-md-4 position-relative mt-3">
-                <!-- <div class="bg-overlay"> -->
                 <div class="card mb-0 h-100">
                     <div class="d-block w-100 h-100 px-4 pt-4 pb-5">
                         <h2 class="text-black fw-700">Knowledge Base Blog</h2>
@@ -67,7 +65,6 @@
                 </div>
             </div>
             <div class="overflow-hidden col-md-4 position-relative mt-3">
-                <!-- <div class="bg-overlay"> -->
                 <div class="card mb-0 h-100">
                     <div class="d-block w-100 h-100 px-4 pt-4 pb-5">
                         <h2 class="text-black fw-700">Cost Analysis Blog</h2>
@@ -77,7 +74,7 @@
         </div>
     </div>
 </section>
-
+-->
 <section class="home_latest_product mt-4 mb-4">
     <div class="container">
         <x-products-display :products="$products"/>
