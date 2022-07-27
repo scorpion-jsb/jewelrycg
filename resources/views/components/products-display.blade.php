@@ -1,4 +1,4 @@
-<div class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-4 row-cols-md-4 row-cols-2">
+<div class="row row-cols-xxl-5 row-cols-xl-5 row-cols-lg-4 row-cols-md-4 row-cols-2">
 @foreach ($products->chunk(4) as $products_chunk)
     @foreach ($products_chunk as $product)
     <div class="col">
