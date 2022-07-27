@@ -12,8 +12,45 @@ use Illuminate\Http\Request;
 
 class CartController extends Controller
 {
+
     public function index()
     {
+        // Cart::instance('default')->erase(auth()->id());
+        // Cart::instance('default')->destroy();
+        // dd(Cart::content());
+
+        Cart::restore(auth()->id());
+        foreach (Cart::content() as $item) {
+
+            if (isset($item->options['variant_attribute_value'])) {
+                $variant = ProductsVariant::where('product_id', $item->id)->where('variant_attribute_value', $item->options['variant_attribute_value'])->first();
+
+                if (!$variant) {
+                    Cart::remove($item->rowId);
+                    continue;
+                }
+
+                Cart::update($item->rowId, [
+                    'price' => $variant->variant_price / 100, 
+                    'name' => $item->model->name,
+                    'qty' => $item->qty,
+                    'options' => [
+                        'id' => $variant->id,
+                        'variant_attribute_value' => $variant->variant_attribute_value,
+                        'name' => $variant->variant_name,
+                        'price' => $variant->variant_price / 100
+                    ]
+                ]);
+            } else {
+                Cart::update($item->rowId, [
+                    'price' => $item->model->price / 100, 
+                    'name' => $item->model->name,
+                    'qty' => $item->qty
+                ]);
+            }
+        }
+        Cart::store(auth()->id());
+
         return view('cart');
     }
 
@@ -27,7 +64,7 @@ class CartController extends Controller
         }
 
         if ($req->variant_attribute_value) {
-            $variant = ProductsVariant::where('variant_attribute_value', $req->variant_attribute_value)->first();
+            $variant = ProductsVariant::where('product_id', $req->id_product)->where('variant_attribute_value', $req->variant_attribute_value)->first();
 
             Cart::instance('default')->add(
                 $product->id,
@@ -35,7 +72,7 @@ class CartController extends Controller
                 1,
                 $variant->variant_price / 100,
                 0,
-                ['id' => $variant->id, 'name' => $variant->variant_name, 'price' => $variant->variant_price / 100]
+                ['id' => $variant->id, 'name' => $variant->variant_name, 'price' => $variant->variant_price / 100, 'variant_attribute_value' => $variant->variant_attribute_value]
             )
             ->associate(Product::class);    
         } else {
@@ -78,8 +115,6 @@ class CartController extends Controller
 
     public function editQty(CartItemEditRequest $req)
     {
-        Cart::instance('default')->update($req->row_id, $req->quantity);
-
         if(auth()->check())
         {
             Cart::restore(auth()->id());
