@@ -249,6 +249,8 @@ Route::resource('cart', CartController::class)->only(['index', 'store']);
 // Auth
 Route::group(['middleware' => 'auth'], function ()
 {
+	Route::get('/product/download/{id}', [ProductController::class, 'download'])->name('download');
+
 	Route::group(['prefix' => 'email/verify', 'as' => 'verification.', 'controller' => VerifyEmailController::class ], function ()
 	{
 		Route::get('/', 'emailVerificationNotice')->name('notice');

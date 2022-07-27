@@ -181,6 +181,14 @@ class Product extends Model
         ]);
     }
 
+    public function digital()
+    {
+        return $this->belongsTo(Upload::class, 'product_thumbnail' , 'id')->withDefault([
+            'file_name' => "none.png",
+            'id' => null
+        ]);
+    }
+
     public function variants()
     {
         return $this->hasMany(ProductsVariant::class, 'product_id' , 'id');
