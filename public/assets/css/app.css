@@ -24,8 +24,6 @@ body {
   max-height: 75px;
 }
 
-
-
 #main-image {
   max-height: 350px;
 }
@@ -83,6 +81,7 @@ button.navbar-toggler {
 }
 .search-control {
     font-weight: 400;
+    font-size: 14px;
     line-height: 28px;
     box-sizing: border-box;
     width: 100%;
