@@ -3,7 +3,7 @@
     @foreach ($products_chunk as $product)
     <div class="col">
         <a class="mt-1 mb-2" href="{{route('products.show', $product->slug)}}">
-            <div class="card">
+            <div class="card mb-2">
                 @if($product->uploads->file_name == 'none.png')
                     <img src="{{ asset('assets/img/placeholder.jpg') }}" alt="{{ $product->name }}" class="rounded w-100 lazyloaded">
                 @else
