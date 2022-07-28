@@ -43,7 +43,8 @@ header {
     background: #ffffff;
     color: #000000;
     padding: 0 !important;
-    border-bottom: 1px solid #eeeeee;
+    -webkit-box-shadow: inset 0px -1px 0px #f3f3f4;
+    box-shadow: inset 0px -1px 0px #f3f3f4;
 }
 header.home {
     background: #f1f6ff;
