@@ -27,6 +27,7 @@
     <!-- CSS Front Template -->
     <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}" data-hs-appearance="default" as="style">
     <link rel="stylesheet" href="{{ asset('assets/css/backend/app.css') }}" data-hs-appearance="default" as="style">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 </head>
 
@@ -55,7 +56,6 @@
     <!-- ========== END SECONDARY CONTENTS ========== -->
 
     <!-- JS Global Compulsory  -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.4.0/jquery-migrate.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 
@@ -168,18 +168,19 @@
                         $('#product_attribute_values').html(data);
                     }
                 })
-
             })
 
-            var getVariants = function(isDigital) {
-                var values_selected = $('#product_attribute_values').val()
+            var getVariants = function(isDigital, productId) {
+                var values_selected = $('#product_attribute_values').val();
+
                 $.ajax({
                     type: 'POST',
                     url: "{{ route('backend.products.attributes.combinations') }}",
                     data: {
                         "_token": "{{ csrf_token() }}",
                         "values": values_selected,
-                        'isDigital': isDigital
+                        'isDigital': isDigital,
+                        product_id: productId
                     },
                     success: function(result) {
                         $('#variantsbody').html(result)
@@ -188,7 +189,7 @@
             }
 
             $('#generatevariants').on('click', function() {
-                getVariants($('#availabilitySwitch1').prop('checked') * 1);
+                getVariants($('#availabilitySwitch1').prop('checked') * 1, $(this).attr('data-product-id'));
             })
 
             jQuery('#getFileManager').click(function(e) {

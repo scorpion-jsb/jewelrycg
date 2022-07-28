@@ -7,8 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
 use App\Http\Requests\StoreAttributeRequest;
-
-
+use App\Models\ProductsVariant;
 
 class AttributesController extends Controller
 {
@@ -70,7 +69,6 @@ class AttributesController extends Controller
     }
     public function combinations(Request $request)
     {
-        $prepare_arrays = [];
         $values = AttributeValue::whereIn('id', $request->input('values'))->get();
         $groupped_values = $values->groupBy('attribute_id')->toArray();
         $table = [];
@@ -84,15 +82,52 @@ class AttributesController extends Controller
                 array_push($table[$i], $data['attribute_id']."-".$data['id']."-".$data['name']);
             }
             $i++;
-            
         }
 
         $combined = $this->make_combinations($table);
+
+        // $result = [];
+        // if (isset($request->product_id)) {
+        //     // remove the items on product variants
+        //     $productVariants = ProductsVariant::where('product_id', $request->product_id)->get();
+
+        //     $variantAttributeValues = [];
+
+        //     foreach ($productVariants as $variant) {
+        //         $variantAttributeValues[] = $variant->variant_attribute_value;
+        //     }
+
+        //     foreach ($combined as $value) {
+        //         $combinedId = [];
+
+        //         foreach ($value as $item) {
+        //             $id = explode('-', $item);
+
+        //             $combinedId[] = $id[1];
+        //         }
+
+        //         $combinedId = implode(',', $combinedId);
+
+        //         if (!in_array($combinedId, $variantAttributeValues)) {
+        //             $result[] = $value;
+        //         }
+        //     }
+        // } else {
+        //     $result = $combined;
+        // }
+
+        // $productVariant
+
         return view('backend.products.ajax.values', [
             'variants' => $combined,
+            'product_id' => $request->product_id ? $request->product_id : 0,
             'isDigital' => $request->isDigital
         ]);
        
+    }
+
+    function getProductAttribute(Request $request) {
+        return ProductsVariant::where('product_id', $request->product_id)->with('uploads', 'asset')->get();
     }
 
     /**
