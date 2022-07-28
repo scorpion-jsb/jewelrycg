@@ -119,6 +119,15 @@ button.navbar-toggler {
     filter: brightness(0.3);
     -ms-flex-pack: center;
     justify-content: center;
+    filter: brightness(0.4);
+}
+.hero-media-asset {
+    position: absolute;
+    transition: all 0.8s ease-in-out;
+}
+.hero-media-asset {
+    width: 100vw;
+    height: auto;
 }
 /*Products*/
 .product-details-title h1 {
