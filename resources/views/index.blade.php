@@ -6,6 +6,18 @@
             <div class="col-lg-12 text-center">
                 <h4 class="fs-20 text-white mb-4">The world's preferred source for Jewelry CG content</h4>
                 <h1 class="text-white font-weight-bold mb-4">Explore our vast collections of 3D models</h1>
+                <div class="search-form ml-auto mr-auto">
+                    <form method="get" action="{{route('products.search')}}">
+                        <div class="row">
+                            <div class="col-12 search-col">
+                                <div class="w-100 h-100">
+                                    <input name="q" type="search" placeholder="Search" aria-label="Search" class="search-control">
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                
             </div>
         </div>
     </div>
