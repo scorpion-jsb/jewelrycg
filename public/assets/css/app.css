@@ -102,13 +102,10 @@ button.navbar-toggler {
     appearance: none;
 }
 .search-col {
-    background: #f9f9f9;
-    border-right: 1px solid #ccc;
+
 }
 .search-col .bi-search {
-    display: block;
-    float: left;
-    width: 5%;
+
 }
 /* Hero */
 .hero-content-container {
