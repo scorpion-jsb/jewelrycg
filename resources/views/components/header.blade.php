@@ -82,7 +82,7 @@
         </div>
     </nav>
 </header>
-<!--
+
 <div class="global-search-wrap py-2 bg-white border-bottom">
     <div class="container">
         <div class="global-search-form">
@@ -107,5 +107,5 @@
         </div>
     </div>
 </div>
--->
+
 <!-- end search-wrap-->
