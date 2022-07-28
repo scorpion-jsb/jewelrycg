@@ -20,18 +20,15 @@
             <th class="table-column-ps-0 sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
         </tr>
     </thead>
-
     <tbody id="addVariantsContainer">
         @forelse($variants as $k => $variant)
             @php
                 $current_name = '';
                 $attributes_ids = '';
-                $variants_ids = '';
-                
+                $variants_ids = '';              
             @endphp
             @if (!isset($variant->id))
                 @php
-                    
                     foreach ((array) $variant as $key => $parameters) {
                         $params = explode('-', $parameters);
                         $sep = $key == 0 ? '' : ' - ';
@@ -40,6 +37,10 @@
                         $variants_ids .= $sep2 . $params[1];
                         $attributes_ids .= $sep2 . $params[0];
                     }
+                @endphp
+            @else
+                @php
+                    $variants_ids = $variant->variant_attribute_value;
                 @endphp
             @endif
 
@@ -60,14 +61,14 @@
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="min-width: 7rem;">
                         <div class="input-group-prepend input-group-text">USD</div>
-                        <input type="text" class="form-control" name="variant[{{ $k }}][variant_price]"
+                        <input type="text" class="form-control" id="variant_price_{{ str_replace(',', '_', $variants_ids) }}" name="variant[{{ $k }}][variant_price]"
                             @if (isset($variant->variant_price)) value='{{ $variant->variant_price }}' @else value='0' @endif>
                     </div>
                 </th>
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="width: 11rem;">
                         <div class="input-group-prepend input-group-text">SKU</div>
-                        <input type="text" class="form-control" name="variant[{{ $k }}][variant_sku]"
+                        <input type="text" class="form-control" id="variant_sku_{{ str_replace(',', '_', $variants_ids) }}" name="variant[{{ $k }}][variant_sku]"
                             @if (isset($variant->variant_sku)) value='{{ $variant->variant_sku }}' @endif>
                     </div>
                 </th>
@@ -78,7 +79,7 @@
                         <div class="js-quantity-counter-input row align-items-center">
                             <div class="col">
                                 <input class="js-result form-control form-control-quantity-counter" type="text"
-                                    name="variant[{{ $k }}][variant_quantity]"
+                                    name="variant[{{ $k }}][variant_quantity]" id="variant_quantity_{{ str_replace(',', '_', $variants_ids) }}"
                                     @if (isset($variant->variant_quantity)) value='{{ $variant->variant_quantity }}' @else value="1" @endif>
                             </div>
                             <!-- End Col -->
@@ -109,20 +110,20 @@
                 </th>
                 <th class="table-column-ps-0">
                     <a href='javascript:;' onclick="fileSelect({{ $k }})"> select </a>
-                    <input type="hidden" name="variant[{{ $k }}][variant_thumbnail]"
+                    <input type="hidden" name="variant[{{ $k }}][variant_thumbnail]" class="variant_thumbnail_{{ str_replace(',', '_', $variants_ids) }}"
                         id="variant-{{ $k }}-thumbnail" @if (isset($variant->variant_thumbnail)) value='{{ $variant->variant_thumbnail }}' @endif>
                     <div id="selected_{{ $k }}_image" class="selected-image">
-                        @php                        
+                        {{-- @php
                             if (isset($variant->variant_thumbnail)) {
                                 echo "<img src='" . asset('/uploads/all') . '/' . $variant->uploads->file_name . "' style='width:150px;height:100px'/>";
                             }
-                        @endphp
+                        @endphp --}}
                     </div>
                 </th>
                 @if ($isDigital)
                 <th class="table-column-ps-0" style="text-align: center;">
                     <a href='javascript:;' onclick="assetSelect({{ $k }})" > upload </a><br/><br/>
-                    <input type="hidden" name="variant[{{ $k }}][digital_download_assets]"
+                    <input type="hidden" name="variant[{{ $k }}][digital_download_assets]" class="variant_asset_{{ str_replace(',', '_', $variants_ids) }}"
                         id="variant-{{ $k }}-assets" @if (isset($variant->digital_download_assets)) value='{{ $variant->digital_download_assets }}' @endif>
                         <div id="selected_{{ $k }}_asset" class="selected-asset">
                             @php                        
@@ -458,4 +459,25 @@ aria-hidden="true">
             assetSelect(selectedId);
         }, 500);
     }
+
+    $.ajax({
+        url: "{{ route('backend.products.attributes.getproductattribute') }}",
+        data: {
+            product_id: {{ $product_id }}
+        },
+        success: function(variants) {
+            var asset = "{{ asset('/uploads/all') }}";
+
+            variants.map(function (variant) {
+                var attribute = variant.variant_attribute_value.replace(',', '_');
+
+                $(`#variant_price_${attribute}`).val(variant.variant_price / 100);
+                $(`#variant_sku_${attribute}`).val(variant.variant_sku);
+                $(`#variant_quantity_${attribute}`).val(variant.quantity? variant.quantity : 1);
+                $(`.variant_thumbnail_${attribute}`).val(variant.variant_thumbnail);
+                $(`.variant_thumbnail_${attribute}`).next().html(`<img src='${asset + '/' + variant.uploads.file_name}' style='width:150px;height:100px;'/>`);
+                // $(`.variant_asset_${attribute}`).val(variant.digital_download_assets);
+            })
+        }
+    })
 </script>

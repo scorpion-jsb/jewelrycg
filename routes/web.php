@@ -119,6 +119,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::post('/get_combinations', [AttributesController::class, 'combinations'])->name('combinations');
 		Route::get('/get', [AttributesController::class, 'get'])->name('get');
 		Route::post('/get/values', [AttributesController::class, 'getvalues'])->name('getvalues');
+		Route::get('/get_product_attribute', [AttributesController::class, 'getProductAttribute'])->name('getproductattribute');
 	});
 
 	Route::group(['prefix' => 'products/attributes/{id_attribute}/values', 'as' => 'products.attributes.values.'], function ()

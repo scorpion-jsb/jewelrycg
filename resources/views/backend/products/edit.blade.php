@@ -139,7 +139,7 @@
                             </select>
                         </div>
                         <div class="mb-4 text-right">
-                            <a class="btn btn-info btn-sm pull-right" id="generatevariants">
+                            <a class="btn btn-info btn-sm pull-right" id="generatevariants" data-product-id="{{ $product->id }}">
                                 Generate variants
                             </a>
                         </div>
@@ -147,6 +147,7 @@
                     <div class="card-body" id="variantsbody" style="overflow-x: scroll ">
                         @include('backend.products.ajax.values',[
                                 'variants' => $variants,
+                                'product_id' => $product->id,
                                 'isDigital' => $product->is_digital
                                 ])
                     </div>
