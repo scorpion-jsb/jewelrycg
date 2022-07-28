@@ -44,17 +44,6 @@
             </ul>
             <!-- end left navbar-->
 
-            <div class="search-form ml-auto mr-auto">
-                <form method="get" action="{{route('products.search')}}">
-                    <div class="row">
-                        <div class="col-12 search-col">
-                            <div class="w-100 h-100">
-                                <input name="q" type="search" placeholder="Search" aria-label="Search" class="search-control">
-                            </div>
-                        </div>
-                    </div>
-                </form>
-            </div>
 
             <!-- right navbar-->
             <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
