@@ -107,18 +107,15 @@ button.navbar-toggler {
 
 }
 /* Hero */
-.hero-content-container {
+.hero-home {
     background: #284367;
     border-bottom: 1px solid #eee;
 }
+.hero-content-container {
+    z-index: 9999;
+}
 .hero-media {
-    display: -ms-flexbox;
     display: flex;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     -ms-flex-align: center;
     align-items: center;
     -webkit-filter: brightness(0.3);
@@ -126,14 +123,12 @@ button.navbar-toggler {
     -ms-flex-pack: center;
     justify-content: center;
     filter: brightness(0.4);
-}
-.hero-media-asset {
-    position: absolute;
-    transition: all 0.8s ease-in-out;
+    z-index: -99;
 }
 .hero-media-asset {
     width: 100vw;
-    height: auto;
+    position: absolute;
+    transition: all 0.8s ease-in-out;
 }
 
 /*Products*/
