@@ -1,8 +1,7 @@
 <x-guest-layout page-title="Shipping Detail">
     <div class="container">
-        
-            <div class="col-lg-10 col-md-10 mx-auto checkout-wrap">
-<div class="row">
+        <div class="col-lg-10 col-md-10 mx-auto checkout-wrap">
+            <div class="row">
                 <div class="col-lg-7">
                     <form action="{{ url('/checkout/shipping') }}" method="POST">
                         @csrf
@@ -54,8 +53,8 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- end checkout-wrap -->
-        </div><!-- end row -->
+            </div><!-- end row -->
+        </div><!-- end checkout-wrap -->
     </div><!-- end container -->
     <script>
         $(function() {
