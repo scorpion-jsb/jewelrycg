@@ -8,9 +8,9 @@
                         <nav class="pb-4" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/cart">Cart</a></li>
-                                <li class="breadcrumb-item active">Shipping</li>
-                                <li class="breadcrumb-item" aria-current="page">Billing</li>
-                                <li class="breadcrumb-item" aria-current="page">Payment</li>
+                                <li class="breadcrumb-item"><a href="/checkout/shipping">Shipping</a></li>
+                                <li class="breadcrumb-item" aria-current="page"><a href="/checkout/billing">Billing</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Payment</li>
                             </ol>
                         </nav>
                         <div class="checkout-card">
