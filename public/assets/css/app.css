@@ -58,7 +58,7 @@ header a.nav-link {
     font-size: 16px;
     margin-left: 10px;
     color: #000000;
-    padding: 15px;
+    padding: 25px;
 }
 header a.nav-link.active, header a.nav-link:hover {
     border-bottom: 2px solid #000;
@@ -73,6 +73,28 @@ button.navbar-toggler {
     border-top: 1px solid #eee;
     margin-top: 10px;
 }
+.auth-btn {
+    border-radius: 50px;
+    padding: 8px 25px !important;
+    margin-top: 18px;
+    border: 1px solid #e8e8e8;
+    font-weight: 500 !important;
+    font-size: 14px !important;
+}
+.auth-btn:hover {
+    border: 1px solid transparent !important;
+    background: #f1f1f1;
+}
+.auth-primary {
+    background: #0057ff;
+    border:1px solid #0057ff;
+    color: #ffffff !important;
+}
+.auth-primary:hover {
+    border: 1px solid transparent !important;
+    background: #003ecb;
+}
+
 /*Search*/
 .global-search-form {
     border: 1px solid #ccc;
@@ -180,26 +202,4 @@ button.navbar-toggler {
     content: '';
     border: 0;
     vertical-align: -2px;
-}
-
-.auth-btn {
-    border-radius: 50px;
-    padding: 8px 25px !important;
-    margin-top: 8px;
-    border: 1px solid #e8e8e8;
-    font-weight: 500 !important;
-    font-size: 14px !important;
-}
-.auth-btn:hover {
-    border: 1px solid transparent !important;
-    background: #f1f1f1;
-}
-.auth-primary {
-    background: #0057ff;
-    border:1px solid #0057ff;
-    color: #ffffff !important;
-}
-.auth-primary:hover {
-    border: 1px solid transparent !important;
-    background: #003ecb;
 }
