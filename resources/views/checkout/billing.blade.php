@@ -3,6 +3,16 @@
         <div class="col-lg-8 col-md-10 mx-auto checkout-wrap">
             <div class="row">
                 <div class="col-lg-7">
+                    <div class="logo py-4 fw-800 fs-24">#JEWELRYCG</div>
+                    <nav class="pb-4" aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Cart</a></li>
+                            <li class="breadcrumb-item"><a href="#">Shipping</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Billing</li>
+                            <li class="breadcrumb-item active" aria-current="page">Payment</li>
+                        </ol>
+                    </nav>
+
                     <form action="{{ url('/checkout/billing') }}" method="POST">
                         @csrf
                         <div class="checkout-card">
