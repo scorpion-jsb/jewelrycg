@@ -118,11 +118,6 @@ button.navbar-toggler {
 .hero-media {
     display: -ms-flexbox;
     display: flex;
-    position: absolute;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
     -ms-flex-align: center;
     align-items: center;
     -webkit-filter: brightness(0.3);
@@ -130,13 +125,14 @@ button.navbar-toggler {
     -ms-flex-pack: center;
     justify-content: center;
     filter: brightness(0.4);
-
-    z-index: -99;
+    z-index: -9999;
 }
 .hero-media-asset {
-    width: 100vw;
     position: absolute;
     transition: all 0.8s ease-in-out;
+    height: auto;
+    min-height: 650px;
+    width: 200vw;
 }
 
 /*Products*/
