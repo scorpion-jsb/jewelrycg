@@ -9,7 +9,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12 hero-content-container">
-                <div class="hero-categories">
+                <div class="hero-categories filter-categories">
                     <ul>
                     @foreach (\App\Models\ProductsCategorie::all() as $category)
                         <li>{{$category->category_name}}</li>
