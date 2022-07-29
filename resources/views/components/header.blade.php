@@ -86,7 +86,7 @@
 <div class="global-search-wrap py-2 bg-white border-bottom">
     <div class="container">
         <div class="global-search-form">
-            <form method="get" action="{{route('products.search')}}">
+            <form method="get" action="{{route('search')}}">
                 <div class="row">
                     <div class="col-8 search-col">
                         <div class="w-100 h-100">
