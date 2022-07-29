@@ -13,9 +13,9 @@
                     </nav>
                     <form action="{{ url('/checkout/shipping') }}" method="POST">
                         @csrf
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="border-bottom mb-3 fs-3">Shipping Options</div>
+                        <div class="checkout-card">
+                            <div class="checkout-card-body">
+                                <h3 class="mb-3 fs-3">Shipping Options</h3>
                                 <div class="row mb-3">
                                     @foreach ($shippings as $i => $shipping)
                                         <div class="offset-md-1 col-md-10 mb-2">
