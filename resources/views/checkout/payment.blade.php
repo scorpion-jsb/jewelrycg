@@ -53,8 +53,6 @@
         </div><!-- end checkout-wrap -->
     </div><!-- end container -->
 
-
-    
     <x-slot:scripts>
     <script src="https://js.stripe.com/v3/"></script>
     <script defer>
