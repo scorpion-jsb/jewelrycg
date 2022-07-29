@@ -8,6 +8,15 @@
     </div>
     <div class="container">
         <div class="row">
+            <div class="col-lg-12">
+                <div class="hero-categories">
+                    <ul>
+                    @foreach (\App\Models\ProductsCategorie::all() as $category)
+                        <li>{{$category->category_name}}</li>
+                    @endforeach
+                    </ul>
+                </div>
+            </div> 
             <div class="col-lg-6 mx-auto text-center hero-content-container">
                 <h4 class="fs-20 text-white pb-4 mb-0">The world's preferred source for Jewelry CG content</h4>
                 <h1 class="text-white font-weight-bold pb-4 mb-0">Explore our vast collections of 3D models</h1>
