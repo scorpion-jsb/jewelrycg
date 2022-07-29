@@ -138,7 +138,7 @@ button.navbar-toggler {
     position: relative;
 }
 .hero-content-container {
-    z-index: 9999;
+    /*z-index: 9999;*/
 }
 .hero-media {
     display: -ms-flexbox;
@@ -159,7 +159,6 @@ button.navbar-toggler {
     transition: all 0.8s ease-in-out;
     width: 100vw;
 }
-
 .filter-categories {
     position: relative;
     text-align: center;
