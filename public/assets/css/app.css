@@ -155,8 +155,7 @@ button.navbar-toggler {
     position: absolute;
     transition: all 0.8s ease-in-out;
     height: auto;
-    min-height: 650px;
-    width: 200vw;
+    width: 100vw;
 }
 
 /*Products*/
