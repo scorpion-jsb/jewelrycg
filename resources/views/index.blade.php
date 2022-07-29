@@ -2,8 +2,8 @@
 
 <section class="hero-home py-8">
     <div class="container">
-        <div class="row hero-content-container">
-            <div class="col-lg-6 mx-auto text-center">
+        <div class="row">
+            <div class="col-lg-6 mx-auto text-center hero-content-container">
                 <h4 class="fs-20 text-white pb-4 mb-0">The world's preferred source for Jewelry CG content</h4>
                 <h1 class="text-white font-weight-bold pb-4 mb-0">Explore our vast collections of 3D models</h1>
                 <div class="search-form ml-auto mr-auto py-2">
