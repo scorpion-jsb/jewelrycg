@@ -23,7 +23,7 @@ class ProductController extends Controller
         }
 
         $products = Product::searchWithImages($req->q, $req->category);
-        return view('products.search', compact('products'));
+        return view('search', compact('products'));
     }
 
     public function products_index()
