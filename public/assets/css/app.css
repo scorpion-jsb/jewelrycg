@@ -83,6 +83,7 @@ button.navbar-toggler {
     font-size: 14px !important;
 }
 .auth-btn:hover {
+    color: #000000 !important;
     border: 1px solid transparent !important;
     background: #f1f1f1;
 }
