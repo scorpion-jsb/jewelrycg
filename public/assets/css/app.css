@@ -111,7 +111,6 @@ button.navbar-toggler {
     background: #284367;
     border-bottom: 1px solid #eee;
 }
-/*
 .hero-media {
     display: -ms-flexbox;
     display: flex;
@@ -136,7 +135,7 @@ button.navbar-toggler {
     width: 100vw;
     height: auto;
 }
-*/
+
 /*Products*/
 .product-details-title h1 {
     font-size:40px;
