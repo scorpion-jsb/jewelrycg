@@ -194,6 +194,17 @@ button.navbar-toggler {
     font-size: 16px;
     display: inline-block;
 }
+.filter-categories .category.active a, .filter-categories .category a:hover {
+    background: #fff;
+    color: #000;
+    font-weight: 500;
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-radius: 50px;
+    margin: 0 5px;
+    padding: 16px 20px;
+    font-size: 16px;
+}
 /*Products*/
 .product-details-title h1 {
     font-size:40px;
