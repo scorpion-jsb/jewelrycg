@@ -217,7 +217,7 @@ Route::get('/blog/tag/list/all', [BlogController::class, 'tagAll'])->name('tagAl
 Route::get('/blog/tag/{tag}', [BlogController::class, 'tagPost'])->name('tagPost');
 
 // Search
-Route::get('/products/search', [ProductController::class, 'search'])->name('products.search');
+Route::get('/search', [ProductController::class, 'search'])->name('search');
 
 // Products
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
