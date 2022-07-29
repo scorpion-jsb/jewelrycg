@@ -154,8 +154,7 @@ button.navbar-toggler {
 .hero-media-asset {
     position: absolute;
     transition: all 0.8s ease-in-out;
-    height: auto;
-    width: 100vw;
+    height: 100vw;
 }
 
 /*Products*/
