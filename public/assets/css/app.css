@@ -116,7 +116,13 @@ button.navbar-toggler {
     z-index: 9999;
 }
 .hero-media {
+    display: -ms-flexbox;
     display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     -ms-flex-align: center;
     align-items: center;
     -webkit-filter: brightness(0.3);
@@ -124,6 +130,7 @@ button.navbar-toggler {
     -ms-flex-pack: center;
     justify-content: center;
     filter: brightness(0.4);
+
     z-index: -99;
 }
 .hero-media-asset {
