@@ -15,7 +15,7 @@
         @foreach ($orders as $order)
             <tr>
                 @if (auth()->user()->is_admin)
-                    <td>
+                    <td> 
                         <a href="{{route('user.index', $order->user_id)}}" class="link-primary">
                             {{$order->user->email}}
                         </a>
