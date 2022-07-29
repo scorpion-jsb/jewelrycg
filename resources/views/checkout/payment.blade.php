@@ -67,4 +67,4 @@
     <script src="{{ asset('js/checkout.js') }}" defer></script>
     </x-slot>
 
-</x-app-layout>
+</x-guest-layout>
