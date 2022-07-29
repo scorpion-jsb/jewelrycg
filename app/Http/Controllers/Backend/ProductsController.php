@@ -201,7 +201,16 @@ class ProductsController extends Controller
         $product = Product::findOrFail($product);
         $product->update($data);
         ProductTagsRelationship::where('id_product', $product->id)->delete();
-        ProductsVariant::where('product_id', $product->id)->delete();
+
+        // product variant
+        // ProductsVariant::where('product_id', $product->id)->delete();
+
+        $variantIds = [];
+        foreach($variants as $variant)
+        {
+            $variantIds[] = $variant['id'];
+        }
+        ProductsVariant::where('product_id', $product->id)->whereNotIn('id', $variantIds)->delete();
 
         foreach($variants as $variant)
         {
@@ -209,7 +218,7 @@ class ProductsController extends Controller
             $variant_data['product_id'] = $product->id;
             $variant_data['variant_price'] = Product::stringPriceToCents($variant_data['variant_price']);
 
-            ProductsVariant::create($variant_data);
+            ProductsVariant::updateOrCreate(['product_id' => $product->id, 'variant_attribute_value' => $variant['variant_attribute_value']], $variant_data);
         }
         
         foreach( $tags as $tag )
