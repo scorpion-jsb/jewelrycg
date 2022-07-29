@@ -183,7 +183,7 @@ class Product extends Model
 
     public function digital()
     {
-        return $this->belongsTo(Upload::class, 'product_thumbnail' , 'id')->withDefault([
+        return $this->belongsTo(Upload::class, 'digital_download_assets' , 'id')->withDefault([
             'file_name' => "none.png",
             'id' => null
         ]);

@@ -42,12 +42,12 @@
                         @include('includes.validation-form')
                         <div class="mb-4">
                             <label for="productNameLabel" class="form-label">Name </label>
-                            <input type="text" name="name" id="name" class="form-control">
+                            <input type="text" name="name" id="name" class="form-control" value="{{ old('name') }}">
                         </div>
 
                         <div class="mb-4">
                             <label for="desc">Description</label>
-                            <textarea name="description" id="description" rows="3" class="form-control"></textarea>
+                            <textarea name="description" id="description" rows="3" class="form-control">{{ old('description') }}</textarea>
                         </div>
                     </div>
                 </div>
@@ -59,7 +59,7 @@
                         <!-- Gallery link -->
                         <label class="btn text-primary p-0" id="getFileManagerForProducts">
                             Select product gallery images
-                            <input type="hidden" id="all_checks" value="" name="product_images">
+                            <input type="hidden" id="all_checks" value="{{ old('product_images') }}" name="product_images">
                         </label>
                         <!-- Gallery link -->
                     </div>
@@ -131,7 +131,7 @@
                                 <span class="text-dark">Digital</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" class="form-check-input" name="is_digital" id="availabilitySwitch1" >
+                                <input type="checkbox" class="form-check-input" name="is_digital" id="availabilitySwitch1" {{ old('is_digital') ? 'checked' : '' }}>
                             </span>
                         </label>
                         <label class="row form-switch mb-4" for="availabilitySwitch2">
@@ -139,7 +139,7 @@
                                 <span class="text-dark">Virtual</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" name="is_virtual" class="form-check-input" id="availabilitySwitch2">
+                                <input type="checkbox" name="is_virtual" class="form-check-input" id="availabilitySwitch2" {{ old('is_virtual') ? 'checked' : '' }}>
                             </span>
                         </label>
                         <label class="row form-check form-switch mb-4" for="">
@@ -170,26 +170,26 @@
                     <div class="card-body">
                         <div class="mb-4">
                             <label for="priceNameLabel" class="form-label">Price</label>
-                            <input type="text" name="price" id="price" class="form-control" placeholder="0.00">
+                            <input type="text" name="price" id="price" class="form-control" placeholder="0.00" value="{{ old('price', 0.00) }}">
                         </div>
                         <label class="row form-switch mb-4" for="availabilitySwitch5">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Track Quantity</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" name="is_trackingquantity" value="1" class="form-check-input" id="availabilitySwitch5">
+                                <input type="checkbox" name="is_trackingquantity" value="1" {{ old('is_trackingquantity') ? 'checked' : '' }} class="form-check-input" id="availabilitySwitch5">
                             </span>
                         </label>
                         <div class="mb-4">
                             <label for="qty">Quantity in Stock:</label>
-                            <input type="number" name="quantity" id="quantity" class="form-control" disabled min="0" value="0">
+                            <input type="number" name="quantity" id="quantity" {{ old('is_trackingquantity') ? '' : 'disabled' }}  class="form-control"  min="0" value="{{ old('quantity', 0) }}">
                         </div>
                         <label class="row form-switch mb-4" for="availabilitySwitch3">
                             <span class="col-8 col-sm-9 ms-0">
                                 <span class="text-dark">Backorder</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" name="is_backorder" value="1" class="form-check-input" id="availabilitySwitch3">
+                                <input type="checkbox" name="is_backorder" {{ old('is_backorder') ? 'checked' : '' }} value="1" class="form-check-input" id="availabilitySwitch3">
                             </span>
                         </label>
                         <label class="row form-switch mb-4" for="availabilitySwitch4">
@@ -197,7 +197,7 @@
                                 <span class="text-dark">Made to Order</span>
                             </span>
                             <span class="col-4 col-sm-3 text-end">
-                                <input type="checkbox" name="is_madetoorder" value="1" class="form-check-input" id="availabilitySwitch4">
+                                <input type="checkbox" name="is_madetoorder" {{ old('is_madetoorder') ? 'checked' : '' }} value="1" class="form-check-input" id="availabilitySwitch4">
                             </span>
                         </label>
                     </div>
@@ -219,10 +219,9 @@
                             <select class="selectpicker w-100" name="category" data-live-search="true">
                                 <option disabled selected>Select category</option>
                                 @foreach ($categories as $categorie)
-                                    <option value="{{ $categorie->id }}" data-tokens="{{ $categorie->category_name }}">
+                                    <option value="{{ $categorie->id }}" {{ old('category') == $categorie->id ? 'selected' : '' }} data-tokens="{{ $categorie->category_name }}">
                                         {{ $categorie->category_name }}</option>
                                 @endforeach
-
                             </select>
                         </div>
                         <div class="mb-4">
@@ -248,7 +247,7 @@
                     <!-- Body -->
                     <div class="card-body">
                         <label class="btn text-primary mt-2 p-0" id="getFileManagerModel">Select 3d model</label>
-                        <input type="hidden" id="fileManagerModelId" name="product_3dpreview">
+                        <input type="hidden" id="fileManagerModelId" name="product_3dpreview" value="{{ old('product_3dpreview') }}">
                     </div>
                 </div>
                 <!-- End Card -->
@@ -283,9 +282,9 @@
                     <div class="card-body">
                         <label for="tax_option_id">Tax</label>
                         <select name="tax_option_id" id="tax_option_id" class="form-control">
-                            <option value="0">Not Taxable</option>
+                            <option value="0" {{ old('tax_option_id') == 0 ? 'selected' : '' }}>Not Taxable</option>
                             @foreach ($taxes as $tax)
-                                <option value="{{ $tax->id }}">{{ $tax->name }} - {{ $tax->price / 100 }} ({{ $tax->type }})</option>
+                                <option {{ old('tax_option_id') == $tax->id ? 'selected' : '' }} value="{{ $tax->id }}">{{ $tax->name }} - {{ $tax->price / 100 }} ({{ $tax->type }})</option>
                             @endforeach
                         </select>
                     </div>

@@ -23,11 +23,12 @@
                                     <th scope="col">Price</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Total</th>
+                                    <th scope="col">Download</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($order->items as $key => $item)
-                                    <tr >
+                                    <tr>
                                         <td>
                                             <a href="{{ route('products.show', $item->product->slug) }}" class="link-dark">
                                                 <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}" alt="" class="thumbnail" style="width: 80px;">
@@ -55,7 +56,17 @@
                                                  ${{number_format($item->price / 100 * $item->quantity, 2)}}
                                             </div>
                                         </td>
-
+                                        <td>
+                                            @if ($item->product->is_digital)
+                                                @if ($item->product_variant)
+                                                    <a href="{{ asset('uploads/all/') . '/' . $item->productVariant->asset->file_name }}" target="_blank"><i class="bi bi-download"></i> </a>
+                                                @else
+                                                    <a href="{{ asset('uploads/all/') . '/' . $item->product->digital->file_name }}" target="_blank"><i class="bi bi-download"></i> </a>
+                                                @endif
+                                            @else
+                                                <a ><i class="bi bi-download"></i></a>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
 
