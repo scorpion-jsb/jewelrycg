@@ -1,4 +1,4 @@
-<x-app-layout page-title="Shipping Detail">
+<x-guest-layout page-title="Shipping Detail">
     <style>
         .shipping-radio {
             background-color: #EEEEEE !important;
@@ -75,4 +75,4 @@
 
                 })
             </script>
-</x-app-layout>
+</x-guest-layout>
