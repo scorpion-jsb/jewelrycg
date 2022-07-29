@@ -160,6 +160,40 @@ button.navbar-toggler {
     width: 100vw;
 }
 
+.filter-categories {
+    position: relative;
+    text-align: center;
+    font-family: "Haas Grot Text R Web", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 20px;
+}
+.filter-categories:not(.allow-overflow) {
+    overflow-x: auto;
+    overflow-y: hidden;
+}
+.filter-categories ul {
+    padding: 0 2px;
+    white-space: nowrap;
+    scroll-behavior: smooth;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+}
+.filter-categories .category {
+    display: inline-block;
+}
+.filter-categories .category a {
+    -webkit-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+    border-radius: 50px;
+    background: rgba(0,0,0,0.5);
+    color: #fff;
+    margin: 0 5px;
+    padding: 16px 20px;
+    font-size: 16px;
+    display: inline-block;
+}
 /*Products*/
 .product-details-title h1 {
     font-size:40px;
