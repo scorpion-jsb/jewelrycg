@@ -62,7 +62,7 @@ header a.nav-link {
 }
 header a.nav-link.active, header a.nav-link:hover {
     font-weight: 800;
-    color: #0057ff;;
+    color: #0057ff !important;
 }
 button.navbar-toggler {
     border: 0;
