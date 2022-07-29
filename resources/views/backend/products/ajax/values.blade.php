@@ -45,6 +45,7 @@
             @endif
 
             <tr role="row" class="odd" id="variantproduct-{{ $k }}">
+                <input type="hidden" name="variant[{{ $k }}][id]" @if (isset($variant->id)) value="{{ $variant->id }}" @else value="0" @endif id="variant_id_{{ str_replace(',', '_', $variants_ids) }}">
                 <input type="hidden" name="variant[{{ $k }}][variant_attribute_value]" @if (isset($variant->variant_attribute_value)) value="{{ $variant->variant_attribute_value }}" @else value="{{ $variants_ids }}" @endif>
 
                 <th class="table-column-ps-0">
@@ -473,7 +474,8 @@ aria-hidden="true">
 
                 $(`#variant_price_${attribute}`).val(variant.variant_price / 100);
                 $(`#variant_sku_${attribute}`).val(variant.variant_sku);
-                $(`#variant_quantity_${attribute}`).val(variant.quantity? variant.quantity : 1);
+                $(`#variant_id_${attribute}`).val(variant.id);
+                $(`#variant_quantity_${attribute}`).val(variant.variant_quantity? variant.variant_quantity : 1);
                 $(`.variant_thumbnail_${attribute}`).val(variant.variant_thumbnail);
                 $(`.variant_thumbnail_${attribute}`).next().html(`<img src='${asset + '/' + variant.uploads.file_name}' style='width:150px;height:100px;'/>`);
                 // $(`.variant_asset_${attribute}`).val(variant.digital_download_assets);
