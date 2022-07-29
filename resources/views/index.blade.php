@@ -8,7 +8,7 @@
     </div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12">
+            <div class="col-lg-12 hero-content-container">
                 <div class="hero-categories">
                     <ul>
                     @foreach (\App\Models\ProductsCategorie::all() as $category)
