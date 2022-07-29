@@ -3,7 +3,8 @@
         <div class="col-lg-10 col-md-10 mx-auto checkout-wrap">
             <div class="row">
                 <div class="col-lg-7">
-                    <nav aria-label="breadcrumb">
+                    <div class="logo pb-4">#JEWELRYCG</div>
+                    <nav class="py-4" aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="#">Cart</a></li>
                             <li class="breadcrumb-item"><a href="#">Shipping</a></li>
