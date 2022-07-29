@@ -1,7 +1,7 @@
 <x-guest-layout page-title="Shipping Detail">
     <div class="container">
         <div class="col-lg-8 col-md-10 mx-auto checkout-wrap">
-            <div class="row">
+
                 <form id="payment-form">
                     <div class="row m-3">
                         <div class="col-lg-7">
@@ -49,7 +49,7 @@
                         </div>
                     </div>
                 </form>
-            </div><!-- end row -->
+
         </div><!-- end checkout-wrap -->
     </div><!-- end container -->
 
