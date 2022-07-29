@@ -150,12 +150,14 @@ button.navbar-toggler {
     -ms-flex-pack: center;
     justify-content: center;
     filter: brightness(0.4);
-    z-index: -9999;
+    /* z-index: -9999; */
+    width: 100%;
+    position: absolute;
 }
 .hero-media-asset {
     position: absolute;
     transition: all 0.8s ease-in-out;
-    height: 100vw;
+    width: 100vw;
 }
 
 /*Products*/
