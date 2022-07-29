@@ -198,6 +198,7 @@ button.navbar-toggler {
 .filter-categories .category.active a, .filter-categories .category a:hover {
     background: #fff;
     color: #000;
+    font-weight: 500;
 }
 /*Products*/
 .product-details-title h1 {
