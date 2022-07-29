@@ -12,7 +12,7 @@
                 <div class="hero-categories filter-categories">
                     <ul>
                     @foreach (\App\Models\ProductsCategorie::all() as $category)
-                        <li class="category">{{$category->category_name}}</li>
+                        <li class="category"><a hre="#">{{$category->category_name}}</a></li>
                     @endforeach
                     </ul>
                 </div>
