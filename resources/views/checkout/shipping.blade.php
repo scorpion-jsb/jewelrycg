@@ -3,6 +3,14 @@
         <div class="col-lg-10 col-md-10 mx-auto checkout-wrap">
             <div class="row">
                 <div class="col-lg-7">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Cart</a></li>
+                            <li class="breadcrumb-item"><a href="#">Shipping</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Billing</li>
+                            <li class="breadcrumb-item active" aria-current="page">Payment</li>
+                        </ol>
+                    </nav>
                     <form action="{{ url('/checkout/shipping') }}" method="POST">
                         @csrf
                         <div class="card">
@@ -27,9 +35,9 @@
                                 <hr>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="border-bottom mb-3 fs-3">Shipping Address</div>
+                        <div class="checkout-card">
+                            <div class="checkout-card-body">
+                                <h3 class="mb-3 fs-20">Shipping Address</h3>
                                 @include('includes.validation-form')
                                 <x-user-info :countries="$countries" />
                                 <div class="row mb-3">
