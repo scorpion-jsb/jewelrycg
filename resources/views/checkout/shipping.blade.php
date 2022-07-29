@@ -1,7 +1,8 @@
 <x-guest-layout page-title="Shipping Detail">
     <div class="container">
-        <div class="row">
+        
             <div class="col-lg-10 col-md-10 mx-auto checkout-wrap">
+<div class="row">
                 <div class="col-lg-7">
                     <form action="{{ url('/checkout/shipping') }}" method="POST">
                         @csrf
