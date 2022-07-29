@@ -18,7 +18,7 @@
                                     @include('includes.validation-form')
                                     <div class="col-md-12 mb-2">
                                         <label for="name">Name</label>
-                                        <input type="text" name="category_name" id="name" value="" class="form-control">
+                                        <input type="text" name="category_name" id="name" value="{{ old('category_name') }}" class="form-control">
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label for="name">Parent</label>
@@ -39,12 +39,12 @@
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label for="name">Slug:</label>
-                                        <input type="text" name="slug" id="slug" value="" class="form-control">
+                                        <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
                                     </div>
                                     <div class="col-md-12 mb-2">
                                         <label for="desc">Description:</label>
                                         <textarea name="category_excerpt" id="desc" rows="3" class="form-control">
-                                            
+                                            {{ old('category_excerpt') }}
                                         </textarea>
                                     </div>
                                     

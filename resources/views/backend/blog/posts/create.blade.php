@@ -16,12 +16,11 @@
                         @include('includes.validation-form')
                         <div class="mb-2">
                             <label for="name" class="w-100 mb-2">Name:</label>
-                            <input type="text" name="name" id="name" value="" class="form-control">
+                            <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
                         </div>
                         <div class="mb-2">
                             <label for="desc" class="w-100 mb-2">Post:</label>
-                            <textarea name="post" id="desc" rows="6" class="form-control"></textarea>
-
+                            <textarea name="post" id="desc" rows="6" class="form-control">{{ old('post') }}</textarea>
                         </div>
 
             

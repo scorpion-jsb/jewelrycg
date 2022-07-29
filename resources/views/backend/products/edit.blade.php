@@ -28,9 +28,6 @@
         <!-- End Row -->
     </div>
 
-
-
-
     <form action="{{ route('backend.products.update', $product) }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('PUT')
