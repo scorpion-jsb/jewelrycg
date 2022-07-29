@@ -11,7 +11,7 @@
             <div class="col-lg-12 hero-content-container">
                 <div class="hero-categories filter-categories">
                     <ul>
-                    <li class="category active"><a href="#">{{$category->category_name}}</a></li>
+                    <li class="category active"><a href="#">Explore</a></li>
                     @foreach (\App\Models\ProductsCategorie::all() as $category)
                         <li class="category"><a href="#">{{$category->category_name}}</a></li>
                     @endforeach
