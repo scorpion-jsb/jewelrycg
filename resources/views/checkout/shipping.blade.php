@@ -18,7 +18,7 @@
                                 <h3 class="mb-3 fs-20">Shipping method</h3>
                                 <div class="row mb-3">
                                     @foreach ($shippings as $i => $shipping)
-                                        <div class="option">
+                                        <div class="option mb-2">
                                             <input type="radio" value="{{ $shipping->id }}"
                                                 class="btn-check shipping_option" name="shipping_option"
                                                 id="option{{ $i }}" autocomplete="off"
