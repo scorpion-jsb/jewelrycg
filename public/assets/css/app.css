@@ -135,6 +135,7 @@ button.navbar-toggler {
     background: #000000;
     border-bottom: 1px solid #eee;
     overflow: hidden;
+    position: relative;
 }
 .hero-content-container {
     z-index: 9999;
