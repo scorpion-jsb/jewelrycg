@@ -110,6 +110,7 @@ button.navbar-toggler {
 .hero-home {
     background: #284367;
     border-bottom: 1px solid #eee;
+    overflow: hidden;
 }
 .hero-content-container {
     z-index: 9999;
