@@ -9,8 +9,8 @@
                     <div class="col-lg-4">
                         <div class="product-details-price mb-4">
                             <div class="w-100">
-                                <a class="btn btn-light" id="product_price" href="#">
-                                    <i class="bi bi-cart-plus"></i>
+                                <a class="btn btn-primary" id="product_price" href="#">
+                                    <i class="bi bi-cart-plus p-1"></i>
                                     @if (count($variants))
                                         ${{ $minPrice }} ~ ${{ $maxPrice }}
                                     @else
@@ -33,7 +33,7 @@
                                         <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
                                             @csrf
                                             <input type="hidden" name="id_product" value="{{$product->id}}">
-                                            <button type="submit" class="btn btn-primary">
+                                            <button type="submit" class="btn btn-light">
                                                 <i class="bi bi-heart p-1"></i>
                                                 Save
                                             </button>
