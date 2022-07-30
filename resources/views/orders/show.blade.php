@@ -31,7 +31,7 @@
                             <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}" alt="" class="thumbnail border w-100">
                         </div>
                         <div class="col-lg-10">
-                            <div class="order-item-title fs-24 mb-2 fw-600">
+                            <div class="order-item-title fs-24 py-2 fw-600">
                             @php
                                 if ($item->product_variant != 0) {
                                     echo $item->product_name . ' - ' . $item->product_variant_name;
@@ -40,13 +40,15 @@
                                 }
                             @endphp
                             </div>
-                            <div class="order-item-qty-price"><span class="fw-600">Quantity</span> {{$item->quantity}} | <span class="fw-600">Price</span> ${{ number_format($item->price / 100, 2) }}</div>
+                            <div class="order-item-qty-price fs-16 pb-2"><span class="fw-600">Quantity</span> {{$item->quantity}} | <span class="fw-600">Price</span> ${{ number_format($item->price / 100, 2) }}</div>
                             @if ($item->product->is_digital)
                                 <div class="is_downloadable">
                                 @if ($item->product_variant)
-                                    <a href="{{ asset('uploads/all/') . '/' . $item->productVariant->asset->file_name }}" target="_blank"><i class="bi bi-download"></i> Download</a>
+                                    <a href="{{ asset('uploads/all/') . '/' . $item->productVariant->asset->file_name }}" target="_blank">
+                                    <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
                                 @else
-                                    <a href="{{ asset('uploads/all/') . '/' . $item->product->digital->file_name }}" target="_blank"><i class="bi bi-download"></i> Download</a>
+                                    <a href="{{ asset('uploads/all/') . '/' . $item->product->digital->file_name }}" target="_blank">
+                                    <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
                                 @endif
                                 </div>
                             @endif
