@@ -1,6 +1,6 @@
 <x-app-layout :page-title="'Order ' . $order->id">
     <div class="container">
-        <div class="col-lg-8 col-md-10 mx-auto checkout-wrap">
+        <div class="col-lg-8 col-md-10 py-8 mx-auto checkout-wrap">
             <h1>Thanks for shopping with us!</h1>
             <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation very soon!</p>
 
