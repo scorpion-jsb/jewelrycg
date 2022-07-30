@@ -265,7 +265,23 @@
                             <img id="fileManagerPreview" src="" style="width: 100%">
                         </div>
                         <label class="btn text-primary mt-2 p-0" id="getFileManager">Select thumbnail</label>
-                        <input type="hidden" id="fileManagerId" name="product_thumbnail">
+                        <input type="hidden" id="fileManagerId" name="product_thumbnail" value="{{ old('product_thumbnail') }}">
+                    </div>
+                </div>
+                <!-- End Card -->
+
+                <!-- Card -->
+                <div class="card mb-3 mb-4" @if (!old('is_digital')) style="display: none;" @endif>
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">Digital Asset File</h4>
+                    </div>
+                    <!-- End Header -->
+
+                    <!-- Body -->
+                    <div class="card-body">
+                        <label class="btn text-primary mt-2 p-0" id="getFileManagerAsset">Select asset</label>
+                        <input type="hidden" id="digital_download_assets" name="digital_download_assets" value="{{ old('digital_download_assets') }}" >
                     </div>
                 </div>
                 <!-- End Card -->
@@ -356,6 +372,13 @@
 
         // check the digital setting turn on
         $('#availabilitySwitch1').click(function () {
+            if ($('#availabilitySwitch1').prop('checked')) {
+                $('#digital_download_assets').val(0);
+                $('#digital_download_assets').parent().parent().show();
+            } else {
+                $('#digital_download_assets').parent().parent().hide();
+            }
+
             if ($('#variantsbody').html() != '') {
                 var values_selected = $('#product_attribute_values').val()
                 $.ajax({

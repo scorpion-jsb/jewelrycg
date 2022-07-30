@@ -28,6 +28,8 @@
                           @if ($is_product) return selectFileFromManagerMultiple({{ $file->id }}, '{{ url('uploads/all') }}/{{ $file->file_name }}')
                           @elseif($is_model)
                             return selectFileFromManagerModel({{ $file->id }});
+                          @elseif($is_asset)
+                            return selectFileFromManagerAsset({{ $file->id }});
                           @else
                             return selectFileFromManager({{ $file->id }}, '{{ url('uploads/all') }}/{{ $file->file_name }}') @endif
                           ">
@@ -95,7 +97,7 @@
                                             <p class="small">Updated {{ $file->created_at->diffForHumans() }}</p>
                                         </div>
 
-                                        <a class="stretched-link" href="#"></a>
+                                        <a class="stretched-link" href="javascript:;"></a>
                                     </div>
                                     <!-- End Card -->
                                 </div>

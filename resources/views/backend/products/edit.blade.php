@@ -339,6 +339,30 @@
                     </div>
                 </div>
                 <!-- End Card -->
+
+                <!-- Card -->
+                <div class="card mb-3 mb-4" @if (!$product->is_digital) style="display: none;" @endif>
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">Digital Asset File</h4>
+                    </div>
+                    <!-- End Header -->
+
+                    <!-- Body -->
+                    <div class="card-body">
+                        <p>
+                        @if ($product->digital_download_assets)
+                            <span class="badge btn-success"> digital asset attached</span>
+                        @else
+                            <span class="badge btn-danger"> No digital asset attached</span>
+                        @endif
+                        </p>
+                        <label class="btn text-primary mt-2 p-0" id="getFileManagerAsset">Select asset</label>
+                        <input type="hidden" id="digital_download_assets" name="digital_download_assets" value="{{ $product->digital_download_assets }}" >
+                    </div>
+                </div>
+                <!-- End Card -->
+
                 <!-- Card -->
                 <div class="card mb-3 mb-4">
                     <!-- Header -->

@@ -37,8 +37,18 @@ class ProductsVariant extends Model
             'file_name' => "none",
             'file_original_name' => 'none',
             'id' => null,
-            'extension' => ''
+            'extension' => 'none'
         ]);
+    }
+
+    public function product() {
+        return $this->belongsTo(Product::class, 'product_id');
+    }
+
+    public function getAssetOriginalFileName()
+    {
+        return $this->product->name . " - " . $this->variant_name . "." . $this->asset->extension;
+        // return $this->asset->file_original_name . "." . $this->asset->extension;
     }
 
     public function setPriceToFloat()
