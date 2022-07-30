@@ -11,7 +11,7 @@
                             <div class="w-100">
 
 
-                                        <div class="fs-20 fw-400 text-primary" id="product_price">
+                                        <div class="fs-20 fw-400 text-primary d-inline mt-1 btn" id="product_price">
                                             @if (count($variants))
                                                 ${{ $minPrice }} ~ ${{ $maxPrice }}
                                             @else
@@ -25,17 +25,17 @@
                                                 @method('delete')
                                                 @csrf
                                                 <input type="hidden" name="row_id" value="{{$wishlist_product->rowId}}">
-                                                <button type="submit" class="badge badge-lg bg-danger-1 border border-danger-1 text-light rounded-pill" style="border: 1px solid grey !important;color: black !important;">
-                                                    <i class="fa-solid fa-x"></i>
-                                                    Remove from Saved
+                                                <button type="submit" class="btn btn-danger" style="border: 1px solid grey !important;color: black !important;">
+                                                    <i class="bi bi-heart-fill"></i>
+                                                    Saved
                                                 </button>
                                             </form>
                                         @else
                                             <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
                                                 @csrf
                                                 <input type="hidden" name="id_product" value="{{$product->id}}">
-                                                <button type="submit" class="badge badge-lg bg-primary border border-primary text-light rounded-pill">
-                                                    <i class="fa-regular fa-heart"></i>
+                                                <button type="submit" class="btn btn-primary">
+                                                    <i class="bi bi-heart"></i>
                                                     Save
                                                 </button>
                                             </form>
