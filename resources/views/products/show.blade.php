@@ -9,15 +9,17 @@
                     <div class="col-lg-4">
                         <div class="product-details-price mb-4">
                             <div class="w-100">
-                                <div class="">
-                                    <div class="fs-20 fw-400 text-primary text-right" id="product_price">
-                                        @if (count($variants))
-                                            ${{ $minPrice }} ~ ${{ $maxPrice }}
-                                        @else
-                                            ${{ $product->price }}                                            
-                                        @endif
+                                <div class="row">
+                                    <div class="col-6">
+                                        <div class="fs-20 fw-400 text-primary text-right" id="product_price">
+                                            @if (count($variants))
+                                                ${{ $minPrice }} ~ ${{ $maxPrice }}
+                                            @else
+                                                ${{ $product->price }}                                            
+                                            @endif
+                                        </div>
                                     </div>
-                                    
+                                    <div class="col-6">
                                     @auth
                                         @if ($wishlist_product = Cart::instance('wishlist')->content()->firstWhere('id', $product->id))
                                             <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
@@ -26,7 +28,7 @@
                                                 <input type="hidden" name="row_id" value="{{$wishlist_product->rowId}}">
                                                 <button type="submit" class="badge badge-lg bg-danger-1 border border-danger-1 text-light rounded-pill" style="border: 1px solid grey !important;color: black !important;">
                                                     <i class="fa-solid fa-x"></i>
-                                                    <small>Remove from Wishlist</small>
+                                                    Remove from Saved
                                                 </button>
                                             </form>
                                         @else
@@ -35,11 +37,12 @@
                                                 <input type="hidden" name="id_product" value="{{$product->id}}">
                                                 <button type="submit" class="badge badge-lg bg-primary border border-primary text-light rounded-pill">
                                                     <i class="fa-regular fa-heart"></i>
-                                                    <small>Add To Wishlist</small>
+                                                    Save
                                                 </button>
                                             </form>
                                         @endif
                                     @endauth
+                                    </div>
                                 </div>
                             </div>
                         </div>
