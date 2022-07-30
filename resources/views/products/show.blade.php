@@ -29,7 +29,7 @@
                         <div class="bg-white d-block">
                             @if($product->modelpreview->file_name != 'none.png')
                             <div class="product-gallery bg-white mb-4">
-                                <div class="model-box border h-400px p-2">
+                                <div class="model-box border h-500px p-2">
                                     <model-viewer class="model-full-hw" alt="This is CAD Preview" src="{{asset('uploads/all/')}}/{{$product->modelpreview->file_name}}" ar-scale="auto" poster="assets/img/placeholder.jpg" loading="lazy" ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="0" camera-controls auto-rotate></model-viewer>
                                 </div>
                             </div>
