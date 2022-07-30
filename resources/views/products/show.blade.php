@@ -9,40 +9,37 @@
                     <div class="col-lg-4">
                         <div class="product-details-price mb-4">
                             <div class="w-100">
+                                <a class="fs-20 fw-600 text-primary d-inline mt-1 btn btn-light" id="product_price" href="#">
+                                    <i class="bi bi-cart2"></i>
+                                    @if (count($variants))
+                                        ${{ $minPrice }} ~ ${{ $maxPrice }}
+                                    @else
+                                        ${{ $product->price }}                                            
+                                    @endif
+                                </a>
 
-
-                                        <div class="fs-20 fw-400 text-primary d-inline mt-1 btn" id="product_price">
-                                            @if (count($variants))
-                                                ${{ $minPrice }} ~ ${{ $maxPrice }}
-                                            @else
-                                                ${{ $product->price }}                                            
-                                            @endif
-                                        </div>
-
-                                    @auth
-                                        @if ($wishlist_product = Cart::instance('wishlist')->content()->firstWhere('id', $product->id))
-                                            <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
-                                                @method('delete')
-                                                @csrf
-                                                <input type="hidden" name="row_id" value="{{$wishlist_product->rowId}}">
-                                                <button type="submit" class="btn btn-danger">
-                                                    <i class="bi bi-heart-fill p-1"></i>
-                                                    Saved
-                                                </button>
-                                            </form>
-                                        @else
-                                            <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
-                                                @csrf
-                                                <input type="hidden" name="id_product" value="{{$product->id}}">
-                                                <button type="submit" class="btn btn-primary">
-                                                    <i class="bi bi-heart p-1"></i>
-                                                    Save
-                                                </button>
-                                            </form>
-                                        @endif
-                                    @endauth
-
-
+                                @auth
+                                    @if ($wishlist_product = Cart::instance('wishlist')->content()->firstWhere('id', $product->id))
+                                        <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <input type="hidden" name="row_id" value="{{$wishlist_product->rowId}}">
+                                            <button type="submit" class="fs-20 fw-600 btn btn-danger">
+                                                <i class="bi bi-heart-fill p-1"></i>
+                                                Saved
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="id_product" value="{{$product->id}}">
+                                            <button type="submit" class="fs-20 fw-600 btn btn-primary">
+                                                <i class="bi bi-heart p-1"></i>
+                                                Save
+                                            </button>
+                                        </form>
+                                    @endif
+                                @endauth
                             </div>
                         </div>
                     </div>
