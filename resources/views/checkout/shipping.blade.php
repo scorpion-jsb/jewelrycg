@@ -25,7 +25,7 @@
                                                 id="option{{ $i }}" autocomplete="off"
                                                 @if ($i == 0) checked @endif
                                                 data-price="{{ $shipping->price / 100 }}" />
-                                            <label class="btn btn-default shipping-radio" for="option{{ $i }}"
+                                            <label class="btn btn-default card shipping-radio" for="option{{ $i }}"
                                                 style="width: 100%;">
                                                 <span>{{ $shipping->name }} ({{ $shipping->description }})</span>
                                                 <span class="float-right">${{ $shipping->price / 100 }}</span>
