@@ -3,10 +3,10 @@
         <div class="container">
             <div class="product-container col-lg-8 col-md-10 py-6 mx-auto checkout-wrap">
                 <div class="product-details-title mb-4 px-6 row">
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 col-12">
                         <h1 class="fs-20 fw-600">{{$product->name}}</h1>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4 col-12">
                         <div class="product-details-price mb-4">
                             <div class="w-100">
                                 <a class="btn btn-primary" id="product_price" href="#">
