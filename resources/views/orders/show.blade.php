@@ -3,7 +3,7 @@
         <div class="col-lg-8 col-md-10 py-8 mx-auto checkout-wrap">
             <h1 class="fw-800">Thanks for shopping with us!</h1>
             <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation very soon!</p>
-            <div class="order-items-card py-4">
+            <div class="order-items-card border-bottom py-4 mb-4">
                 <div class="row">
                     <div class="col-lg-3 col-6">
                         <div class="w-100 fs-18 fw-600">Order number</div>
@@ -42,7 +42,7 @@
                             </div>
                             <div class="order-item-qty-price"><span class="fw-600">Quantity</span> {{$item->quantity}} | <span class="fw-600">Price</span> ${{ number_format($item->price / 100, 2) }}</div>
                         </div>
-                        <div class="col-lg-2 text-right">${{ number_format($item->price / 100, 2) }}</div>
+                        <div class="col-lg-2">${{ number_format($item->price / 100, 2) }}</div>
                     </div>
                 </div>
             @endforeach
