@@ -9,17 +9,14 @@
                     <div class="col-lg-4">
                         <div class="product-details-price mb-4">
                             <div class="w-100">
-                                <div class="opacity-50 my-2">Price:</div>
-                            </div>
-                            <div class="w-100">
                                 <div class="">
-                                    <strong class="h2 fw-400 text-black" id="product_price">
+                                    <div class="fs-20 fw-400 text-primary text-right" id="product_price">
                                         @if (count($variants))
                                             ${{ $minPrice }} ~ ${{ $maxPrice }}
                                         @else
                                             ${{ $product->price }}                                            
                                         @endif
-                                    </strong>
+                                    </div>
                                 </div>
                             </div>
                         </div>
