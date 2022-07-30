@@ -42,7 +42,7 @@
                             </div>
                             <div class="order-item-qty-price fs-16 pb-2"><span class="fw-600">Quantity</span> {{$item->quantity}} | <span class="fw-600">Price</span> ${{ number_format($item->price / 100, 2) }}</div>
                             @if ($item->product->is_digital)
-                                <div class="is_downloadable">
+                                <div class="is_downloadable fw-600 fs-16">
                                 @if ($item->product_variant)
                                     <a href="{{ asset('uploads/all/') . '/' . $item->productVariant->asset->file_name }}" target="_blank">
                                     <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
@@ -59,7 +59,7 @@
             @endforeach
             
         </div>
-        <div class="row mt-3">
+
             <div class="col-md-4">
                 <div class="card">
                     <div class="card-body">
@@ -70,71 +70,5 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-body">
-                        <h5>Order's Product{{ $order->items->count() > 1 ? 's' : null }}</h5>
-                        <hr>
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Product</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Total</th>
-                                    <th scope="col">Download</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($order->items as $key => $item)
-                                    <tr>
-                                        <td>
-                                            <a href="{{ route('products.show', $item->product->slug) }}" class="link-dark">
-                                                <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}" alt="" class="thumbnail" style="width: 80px;">
-                                                @php
-                                                    if ($item->product_variant != 0) {
-                                                        echo $item->product_name . ' - ' . $item->product_variant_name;
-                                                    } else {
-                                                        echo $item->product_name;
-                                                    }
-                                                @endphp
-                                            </a>
-                                        </td>
-                                        <td>
-                                            <div class=" justify-content-between">
-                                                ${{ number_format($item->price / 100, 2) }}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class=" justify-content-between">
-                                                {{$item->quantity}}                                            
-                                            </div>
-                                        </td>
-                                        <td>
-                                            <div class=" justify-content-between">
-                                                 ${{number_format($item->price / 100 * $item->quantity, 2)}}
-                                            </div>
-                                        </td>
-                                        <td>
-                                            @if ($item->product->is_digital)
-                                                @if ($item->product_variant)
-                                                    <a href="{{ asset('uploads/all/') . '/' . $item->productVariant->asset->file_name }}" target="_blank"><i class="bi bi-download"></i> </a>
-                                                @else
-                                                    <a href="{{ asset('uploads/all/') . '/' . $item->product->digital->file_name }}" target="_blank"><i class="bi bi-download"></i> </a>
-                                                @endif
-                                            @else
-                                                <a ><i class="bi bi-download"></i></a>
-                                            @endif
-                                        </td>
-                                    </tr>
-                                @endforeach
-
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+           
 </x-app-layout>
