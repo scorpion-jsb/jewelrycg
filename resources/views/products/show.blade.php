@@ -25,8 +25,8 @@
                                                 @method('delete')
                                                 @csrf
                                                 <input type="hidden" name="row_id" value="{{$wishlist_product->rowId}}">
-                                                <button type="submit" class="btn btn-danger" style="border: 1px solid grey !important;color: black !important;">
-                                                    <i class="bi bi-heart-fill"></i>
+                                                <button type="submit" class="btn btn-danger">
+                                                    <i class="bi bi-heart-fill p-1"></i>
                                                     Saved
                                                 </button>
                                             </form>
@@ -35,7 +35,7 @@
                                                 @csrf
                                                 <input type="hidden" name="id_product" value="{{$product->id}}">
                                                 <button type="submit" class="btn btn-primary">
-                                                    <i class="bi bi-heart"></i>
+                                                    <i class="bi bi-heart p-1"></i>
                                                     Save
                                                 </button>
                                             </form>
