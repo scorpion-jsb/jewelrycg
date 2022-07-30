@@ -44,23 +44,26 @@ use Illuminate\Support\Facades\Route;
 // Backend
 Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth', 'admin']], function ()
 {
-
 	// tax
 	Route::resource('/setting/tax', TaxOptionController::class);
 	// shipping
 	Route::resource('/setting/shipping', ShippingOptionController::class);
 
-
 	//uploads
 	Route::group(['prefix' => 'filemanager', 'as' => 'filemanager.'], function ()
 	{
 		Route::get('/', [UploadController::class, 'index'])->name('list');
-		Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
+		Route::middleware('optimizeImages')->group(function () {
+			// all images will be optimized automatically
+			// Route::post('upload-images', 'UploadController@index');
+			Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
+			Route::post('/ajaxupload', [UploadController::class, 'ajaxupload'])->name('ajaxupload');
+			Route::post('/store', [UploadController::class, 'store'])->name('store');
+		});
+		// Route::post('/upload', [UploadController::class, 'upload'])->name('upload');
 		Route::get('/get_filemanager', [UploadController::class, 'get_filemanager'])->name('get_filemanager');
 		Route::get('/files', [UploadController::class, 'getUploadedFile'])->name('getUploadedFile');
 		Route::put('/update/{product}', [UploadController::class, 'update'])->name('update');
-		Route::post('/store', [UploadController::class, 'store'])->name('store');
-		Route::post('/ajaxupload', [UploadController::class, 'ajaxupload'])->name('ajaxupload');
 		Route::get('/get', [UploadController::class, 'get'])->name('get');
 		Route::get('/getUploadedAssetsId', [UploadController::class, 'getUploadedAssetsId'])->name('getUploadedAssetsId');
 	});

@@ -274,6 +274,25 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
+                        <h4 class="card-header-title">Digital Asset File</h4>
+                    </div>
+                    <!-- End Header -->
+
+                    <!-- Body -->
+                    <div class="card-body">
+                        <div class="imagePreview img-thumbnail p-2">
+                            <img id="fileManagerPreview" src="" style="width: 100%">
+                        </div>
+                        <label class="btn text-primary mt-2 p-0" id="getFileManager">Select asset</label>
+                        <input type="hidden" id="digital_download_assets" name="digital_download_assets">
+                    </div>
+                </div>
+                <!-- End Card -->
+
+                <!-- Card -->
+                <div class="card mb-3 mb-4">
+                    <!-- Header -->
+                    <div class="card-header">
                         <h4 class="card-header-title">Tax</h4>
                     </div>
                     <!-- End Header -->

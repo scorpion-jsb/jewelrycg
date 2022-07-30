@@ -10,6 +10,7 @@ use Response;
 use Auth;
 use Storage;
 use Image;
+use ImageOptimizer;
 
 class UploadController extends Controller
 {
@@ -64,6 +65,7 @@ class UploadController extends Controller
     public function show_uploader(Request $request){
         return view('uploader.aiz-uploader');
     }
+    
     public function upload(Request $request){
         $type = array(
             "jpg"=>"image",
@@ -251,13 +253,16 @@ class UploadController extends Controller
                 //$path = $request->file('aiz_file')->store('uploads/all', 'local');
                 $hash = Str::random(40);
                 $extension = $request->file('file')->getClientOriginalExtension();
-
-                
                 
                 $size = $request->file('file')->getSize();
                 $path = $request->file('file')->move(
                     public_path('uploads/all'), $hash . '.' . $extension
                 );
+
+                // the image will be replaced with an optimized version which should be smaller
+                // ImageOptimizer::optimize(public_path('uploads/all/') . $hash . '.' . $extension);
+                // ImageOptimizer::optimize(public_path('uploads/all/') . $hash . '.' . $extension, public_path('uploads/optimize/1.jpg'));
+
                 // Return MIME type ala mimetype extension
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
                 
