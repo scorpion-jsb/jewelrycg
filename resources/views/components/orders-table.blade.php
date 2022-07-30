@@ -1,24 +1,30 @@
+@foreach ($orders as $order)
 <div class="card">
     <div class="card-body">
         <div class="row">
             <div class="col-lg-3">
                 <div class="fw-600">Order number</div>
-                <div>#3286</div>
+                <div>#{{$order->order_id}}</div>
             </div>
             <div class="col-lg-3">
                 <div class="fw-600">Date placed</div>
-                <span>Jul 20, 2022</span>
+                <span>{{$order->created_at}}</span>
             </div>
             <div class="col-lg-3">
                 <div class="fw-600">Total amount</div>
                 <span>$115.00</span>
             </div>
             <div class="col-lg-3">
-                <a href="#" class="btn btn-primary">View Order</a>
+                <a href="{{route('orders.show', $order->order_id)}}" class="btn btn-primary">View Order</a>
             </div>
         </div>
     </div>
+    <div class="card-body">
+
+    </div>
 </div>
+@endforeach
+
 <table class="table">
     <thead>
         <tr>
