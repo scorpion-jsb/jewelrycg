@@ -58,17 +58,12 @@
                 </div>
             @endforeach
             
-        </div>
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-body">
-                        <h5>Order Info</h5>
-                        <hr>
-                        @include('includes.validation-form')
-                        <x-order-info :order="$order" />
-                    </div>
-                </div>
+            <div class="col-lg-4">
+                <h5 class="fs-18 py-2 fw-600">Order Info</h5>
+                @include('includes.validation-form')
+                <x-order-info :order="$order" />
             </div>
+
+        </div>
            
 </x-app-layout>
