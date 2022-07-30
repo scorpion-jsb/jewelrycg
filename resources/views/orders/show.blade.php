@@ -27,10 +27,10 @@
             @foreach ($order->items as $key => $item)
                 <div class="order-items-card pb-4">
                     <div class="row">
-                        <div class="col-lg-2">
+                        <div class="col-lg-2 col-3">
                             <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}" alt="" class="thumbnail border w-100">
                         </div>
-                        <div class="col-lg-10">
+                        <div class="col-lg-10 col-9">
                             <div class="order-item-title fs-24 py-2 fw-600">
                             @php
                                 if ($item->product_variant != 0) {
