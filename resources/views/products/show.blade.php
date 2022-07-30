@@ -1,7 +1,18 @@
 <x-app-layout :page-title="$product->name">
     <section class="product_detail_single pt-4 pb-3">
         <div class="container">
-            <div class="product-container">
+            <div class="product-container col-lg-8 col-md-10 py-8 mx-auto checkout-wrap">
+                <div class="product-details-title mb-4 px-3">
+                    <h1 class="fs-20 fw-600">{{$product->name}}</h1>
+                </div>
+                @if($product->modelpreview->file_name != 'none.png')
+                <div class="product-3dmodel bg-white mb-4">
+                    <div class="model-box border h-400px p-2">
+                        <model-viewer class="model-full-hw" alt="This is CAD Preview" src="{{asset('uploads/all/')}}/{{$product->modelpreview->file_name}}" ar-scale="auto" poster="assets/img/placeholder.jpg" loading="lazy" ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="0" camera-controls auto-rotate></model-viewer>
+                    </div>
+                </div>
+                @endif
+                
                 <div class="row">
                     <!-- Product Images/Preview -->
                     <div class="col-xl-6 col-lg-6"> 
