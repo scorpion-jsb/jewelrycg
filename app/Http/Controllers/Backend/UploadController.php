@@ -286,7 +286,7 @@ class UploadController extends Controller
 
                         $thumbnailWidth = Config::get('constants.product_thumbnail_size.width');
                         $thumbnailHeight = Config::get('constants.product_thumbnail_size.height');
-                        $suffix = Config::get('constants.product_thubmail_suffix');
+                        $suffix = Config::get('constants.product_thumbnail_suffix');
 
                         $image->resize($thumbnailWidth, $thumbnailHeight);
 
@@ -379,13 +379,14 @@ class UploadController extends Controller
         else
         {
             $selections = [];
-
         }
         $product = $request->is_product ? true : false;
         $model = $request->is_model ? true : false;
+        $asset = $request->is_asset ? true : false;
         return (string) view('backend.filemanager.partials.modals.call-manager', [
             'files' =>  $uploads->paginate(60)->appends(request()->query()),
             'is_product' => $product,
+            'is_asset' => $asset,
             'is_model' => $model,
             'selected' => explode(",", $request->seleted)
         ]);

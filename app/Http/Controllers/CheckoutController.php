@@ -247,8 +247,9 @@ class CheckoutController extends Controller
     {
         $countries = Country::all(['name', 'code']);
         $shippings = ShippingOption::all();
+        $products = Cart::instance('default')->content();
 
-        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings]);
+        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout']);
     }
 
     public function postShipping(Request $request)
@@ -288,7 +289,9 @@ class CheckoutController extends Controller
     public function getBilling()
     {
         $countries = Country::all(['name', 'code']);
-        return view('checkout.billing')->with(['countries' => $countries]);
+        $products = Cart::instance('default')->content();
+
+        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout']);
     }
 
     public function postBilling(Request $request)
@@ -325,6 +328,9 @@ class CheckoutController extends Controller
 
     public function getPayment(Request $request)
     {
-        return view('checkout.payment');
+        $instance = isset($buy_now_mode) && $buy_now_mode == 1 ? 'buy_now' : 'default';
+        
+        $products = Cart::instance($instance)->content();
+        return view('checkout.payment')->with(['products' => $products, 'locale' => 'checkout']);;
     }
 }

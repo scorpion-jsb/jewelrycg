@@ -36,6 +36,7 @@ class Product extends Model
         'product_3dpreview',
         'product_attributes',
         'product_attribute_values',
+        'digital_download_assets'
     ];
 
     /*
@@ -160,8 +161,15 @@ class Product extends Model
         return $this->belongsTo(Upload::class, 'digital_download_assets' , 'id')->withDefault([
             'file_name' => "none.png",
             'id' => null,
-            'extension' => null            
+            'file_original_name' => 'none',
+            'extension' => 'none'            
         ]);
+    }
+
+    public function getDigitalOriginalFileName()
+    {
+        return $this->name . "." . $this->digital->extension;
+        // return $this->digital->file_original_name . "." . $this->asset->extension;
     }
 
     public function variants()
@@ -214,7 +222,7 @@ class Product extends Model
     public function getThumbnailFilePath()
     {
         if ($this->uploads->file_name != 'none.png') {
-            $filename = str_replace('.' . $this->uploads->extension, Config::get('constants.product_thubmail_suffix') . '.' . $this->uploads->extension, $this->uploads->file_name);
+            $filename = str_replace('.' . $this->uploads->extension, Config::get('constants.product_thumbnail_suffix') . '.' . $this->uploads->extension, $this->uploads->file_name);
 
             return asset('uploads/all/' . $filename);
         }

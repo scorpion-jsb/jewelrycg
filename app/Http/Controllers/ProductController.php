@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchProductRequest;
 use App\Models\Product;
-use App\Models\ProductsCategorie;
 use App\Models\Upload;
 use App\Models\UserSearch;
 use App\Models\ProductsVariant;
@@ -54,9 +53,17 @@ class ProductController extends Controller
         return view('products.show', compact('product', 'uploads', 'variants', 'maxPrice', 'minPrice'));
     }
 
-    public function download($id)
+    public function download(Request $request)
     {
-        $product = Product::find($id);
+        if ($request->has('product_id')) {
+            $product = Product::find($request->product_id);
+
+            return response()->download(public_path('uploads/all/') . $product->digital->file_name, $product->getDigitalOriginalFileName());
+        } else {
+            $productVariant = ProductsVariant::find($request->variant_id);
+
+            return response()->download(public_path('uploads/all/') . $productVariant->asset->file_name, $productVariant->getAssetOriginalFileName());
+        }
 
     }
 }

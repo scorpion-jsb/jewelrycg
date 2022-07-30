@@ -91,6 +91,11 @@
             $('#CallFilesModal').modal('hide')
         }
 
+        function selectFileFromManagerAsset(id) {
+            $('#digital_download_assets').val(id);
+            $('#CallFilesModal').modal('hide')
+        }
+
         function uploadAjax(is_model, is_product) {
             var files = $("#prepare_images").get(0).files[0];
             var formData = new FormData()
@@ -230,6 +235,28 @@
                     }
                 });
             });
+
+            jQuery('#getFileManagerAsset').click(function(e) {
+                e.preventDefault();
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    }
+                });
+                jQuery.ajax({
+                    url: "{{ route('backend.filemanager.get_filemanager') }}",
+                    method: 'get',
+                    data: {
+                        'is_asset': true
+                    },
+                    dataType: 'HTML',
+                    success: function(result) {
+                        $('#ajaxCalls').html(result);
+                        $('#CallFilesModal').modal('show')
+                    }
+                });
+            });
+
 
             jQuery('#getFileManagerForProducts').click(function(e) {
                 e.preventDefault();

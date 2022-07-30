@@ -4,7 +4,12 @@ return [
         'width' => 400,
         'height' => 400
     ],
-    'product_thubmail_suffix' => '_thubmail',
+    'product_thumbnail_suffix' => '_thumbnail',
+    'order_item_status_fulfillment' => [
+        'pending',
+        'shipped',
+        'delivered'
+    ],
     'payment_status' => [
         'unpaid' => 1,
         'paid' => 2,
