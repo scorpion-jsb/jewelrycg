@@ -66,29 +66,9 @@
                 </div>
 
                 <div class="row">
-                    <!-- Product Images/Preview -->
-                    <div class="col-xl-6 col-lg-6"> 
-                        <div class="bg-white d-block">
-                            @if($product->modelpreview->file_name != 'none.png')
-                            <div class="product-gallery bg-white mb-4">
-                                <div class="model-box border h-500px p-2">
-                                    <model-viewer class="model-full-hw" alt="This is CAD Preview" src="{{asset('uploads/all/')}}/{{$product->modelpreview->file_name}}" ar-scale="auto" poster="assets/img/placeholder.jpg" loading="lazy" ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="0" camera-controls auto-rotate></model-viewer>
-                                </div>
-                            </div>
-                            @endif
-                            <div class="product-gallery-thumb row mb-2">
-                            @foreach ($uploads as $key => $image)
-                                @if ($key < 3)
-                                    <div class="carousel-box c-pointer col-6 col-lg-6 mb-3">
-                                        <img src="{{asset('uploads/all/')}}/{{$image->file_name}}" class="mw-100 mx-auto border" alt="{{$key}}">
-                                    </div>
-                                @endif
-                            @endforeach
-                            </div>
-                        </div>
-                    </div>
+
                     <!-- Product Details/Title -->
-                    <div class="col-xl-6 col-lg-6"> 
+                    <div class="col-xl-12 col-lg-12"> 
                         <div class="bg-white p-3 mb-0">
                             <div class="product-details-title mb-3">
                                 <h1 class="mb-2 fs-30 fw-400">{{$product->name}}</h1>
