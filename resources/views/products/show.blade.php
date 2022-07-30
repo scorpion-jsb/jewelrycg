@@ -1,31 +1,71 @@
 <x-app-layout :page-title="$product->name">
-    <section class="product_detail_single pt-4 pb-3">
+    <section class="product_detail_single">
         <div class="container">
-            <div class="product-container">
-                <div class="row">
-                    <!-- Product Images/Preview -->
-                    <div class="col-xl-6 col-lg-6"> 
-                        <div class="bg-white d-block">
-                            @if($product->modelpreview->file_name != 'none.png')
-                            <div class="product-gallery bg-white mb-4">
-                                <div class="model-box border h-400px p-2">
-                                    <model-viewer class="model-full-hw" alt="This is CAD Preview" src="{{asset('uploads/all/')}}/{{$product->modelpreview->file_name}}" ar-scale="auto" poster="assets/img/placeholder.jpg" loading="lazy" ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="0" camera-controls auto-rotate></model-viewer>
-                                </div>
-                            </div>
-                            @endif
-                            <div class="product-gallery-thumb row mb-2">
-                            @foreach ($uploads as $key => $image)
-                                @if ($key < 3)
-                                    <div class="carousel-box c-pointer col-6 col-lg-6 mb-3">
-                                        <img src="{{asset('uploads/all/')}}/{{$image->file_name}}" class="mw-100 mx-auto border" alt="{{$key}}">
-                                    </div>
-                                @endif
-                            @endforeach
+            <div class="product-container col-lg-8 col-md-10 py-6 mx-auto checkout-wrap">
+                <div class="product-details-title mb-4 col-lg-10 mx-auto row">
+                    <div class="col-lg-8 col-12 p-0">
+                        <h1 class="fs-20 fw-600">{{$product->name}}</h1>
+                    </div>
+                    <div class="col-lg-auto col-12 ml-auto p-0">
+                        <div class="product-details-price mb-4">
+                            <div class="w-100">
+                                <a class="btn btn-primary" id="product_price" href="#">
+                                    <i class="bi bi-cart-plus p-1"></i>
+                                    @if (count($variants))
+                                        ${{ $minPrice }} ~ ${{ $maxPrice }}
+                                    @else
+                                        ${{ $product->price }}                                            
+                                    @endif
+                                </a>
+
+                                @auth
+                                    @if ($wishlist_product = Cart::instance('wishlist')->content()->firstWhere('id', $product->id))
+                                        <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
+                                            @method('delete')
+                                            @csrf
+                                            <input type="hidden" name="row_id" value="{{$wishlist_product->rowId}}">
+                                            <button type="submit" class="btn btn-danger">
+                                                <i class="bi bi-heart-fill p-1"></i>
+                                                Saved
+                                            </button>
+                                        </form>
+                                    @else
+                                        <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
+                                            @csrf
+                                            <input type="hidden" name="id_product" value="{{$product->id}}">
+                                            <button type="submit" class="btn btn-light">
+                                                <i class="bi bi-heart p-1"></i>
+                                                Save
+                                            </button>
+                                        </form>
+                                    @endif
+                                @endauth
                             </div>
                         </div>
                     </div>
+                </div>
+                @if($product->modelpreview->file_name != 'none.png')
+                <div class="product-3dmodel bg-white mb-4">
+                    <div class="model-box border rounded h-500px p-2">
+                        <model-viewer class="model-full-hw" alt="This is CAD Preview" src="{{asset('uploads/all/')}}/{{$product->modelpreview->file_name}}" ar-scale="auto" poster="assets/img/placeholder.jpg" loading="lazy" ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="0" camera-controls auto-rotate></model-viewer>
+                    </div>
+                </div>
+                @endif
+                <!-- Product Images/Preview -->
+                <div class="product-gallery-thumb row mb-2">
+                @foreach ($uploads as $key => $image)
+                    @if ($key < 3)
+                        <div class="carousel-box c-pointer col-6 col-lg-6 mb-3">
+                            <img src="{{asset('uploads/all/')}}/{{$image->file_name}}" class="mw-100 mx-auto border rounded" alt="{{$key}}">
+                        </div>
+                    @endif
+                @endforeach
+                </div>
+
+                <div class="row">
+
                     <!-- Product Details/Title -->
-                    <div class="col-xl-6 col-lg-6"> 
+                    <div class="col-xl-12 col-lg-12"> 
                         <div class="bg-white p-3 mb-0">
                             <div class="product-details-title mb-3">
                                 <h1 class="mb-2 fs-30 fw-400">{{$product->name}}</h1>
@@ -96,34 +136,9 @@
                             </div>
 
                             <div class="product-details-misc mb-4">
-                                @if (session('wishlist-message'))
-                                    <h4 class="text-center text-success">
-                                        {{session('wishlist-message')}}
-                                    </h4>
-                                @endif
+                                
                                 <h4>
-                                    @auth
-                                        @if ($wishlist_product = Cart::instance('wishlist')->content()->firstWhere('id', $product->id))
-                                            <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
-                                                @method('delete')
-                                                @csrf
-                                                <input type="hidden" name="row_id" value="{{$wishlist_product->rowId}}">
-                                                <button type="submit" class="badge badge-lg bg-danger-1 border border-danger-1 text-light rounded-pill" style="border: 1px solid grey !important;color: black !important;">
-                                                    <i class="fa-solid fa-x"></i>
-                                                    <small>Remove from Wishlist</small>
-                                                </button>
-                                            </form>
-                                        @else
-                                            <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
-                                                @csrf
-                                                <input type="hidden" name="id_product" value="{{$product->id}}">
-                                                <button type="submit" class="badge badge-lg bg-primary border border-primary text-light rounded-pill">
-                                                    <i class="fa-regular fa-heart"></i>
-                                                    <small>Add To Wishlist</small>
-                                                </button>
-                                            </form>
-                                        @endif
-                                    @endauth
+
                                     @if ($product->is_trackingquantity)
                                         @if ($product->quantity)
                                             <span class="badge badge-lg bg-success text-light rounded-pill"><small>On Stock: {{$product->quantity}}</small></span>
@@ -235,6 +250,15 @@
             </div>
         </div>
     </section>
+
+    <!--
+    @if (session('wishlist-message'))
+        <h4 class="text-center text-success">
+            {{session('wishlist-message')}}
+        </h4>
+    @endif
+    -->
+    
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    <script>
