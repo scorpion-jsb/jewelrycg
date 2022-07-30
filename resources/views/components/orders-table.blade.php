@@ -1,5 +1,5 @@
 <div class="card">
-    <div class="card-heade">
+    <div class="card-body">
         <div class="row">
             <div class="col-lg-3">
                 <div class="fw-600">Order number</div>
@@ -17,9 +17,6 @@
                 <a href="#" class="btn btn-primary">View Order</a>
             </div>
         </div>
-    </div>
-    <div class="card-body">
-        glt
     </div>
 </div>
 <table class="table">
