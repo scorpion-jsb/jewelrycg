@@ -2,8 +2,28 @@
     <section class="product_detail_single">
         <div class="container">
             <div class="product-container col-lg-8 col-md-10 py-6 mx-auto checkout-wrap">
-                <div class="product-details-title mb-4 px-6">
-                    <h1 class="fs-20 fw-600">{{$product->name}}</h1>
+                <div class="product-details-title mb-4 px-6 row">
+                    <div class="col-lg-8">
+                        <h1 class="fs-20 fw-600">{{$product->name}}</h1>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="product-details-price mb-4">
+                            <div class="w-100">
+                                <div class="opacity-50 my-2">Price:</div>
+                            </div>
+                            <div class="w-100">
+                                <div class="">
+                                    <strong class="h2 fw-400 text-black" id="product_price">
+                                        @if (count($variants))
+                                            ${{ $minPrice }} ~ ${{ $maxPrice }}
+                                        @else
+                                            ${{ $product->price }}                                            
+                                        @endif
+                                    </strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 @if($product->modelpreview->file_name != 'none.png')
                 <div class="product-3dmodel bg-white mb-4">
