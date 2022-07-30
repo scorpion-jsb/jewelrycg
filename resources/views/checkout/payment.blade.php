@@ -28,6 +28,13 @@
                                 <div id="payment-element">
                                     <!--Stripe.js injects the Payment Element-->
                                 </div>
+                                <div class="d-grid gap-2">
+                                    <button id="submit" class="btn btn-primary">
+                                        <div class="spinner hidden" id="spinner"></div>
+                                        <span id="button-text">Pay now</span>
+                                    </button>
+                                    <div id="payment-message" class="hidden text-center text-danger"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -37,13 +44,6 @@
                                 <div class="checkout-card-body">
                                     <h3 class="mb-3 fs-20">Order Details</h3>
                                     <x-products-table locale="checkout" :instance="isset($buy_now_mode) && $buy_now_mode == 1 ? 'buy_now' : 'default'" />
-                                    <div class="d-grid gap-2">
-                                        <button id="submit" class="btn btn-primary">
-                                            <div class="spinner hidden" id="spinner"></div>
-                                            <span id="button-text">Pay now</span>
-                                        </button>
-                                        <div id="payment-message" class="hidden text-center text-danger"></div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
