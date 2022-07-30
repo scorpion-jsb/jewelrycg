@@ -39,6 +39,9 @@ body {
 .form-floating>label {
     font-size: 12px;
 }
+.form-floating>.form-control {
+    height: calc(3.9rem + 2px);
+}
 /* HEADER */
 header {
     background: #ffffff;
