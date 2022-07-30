@@ -1,8 +1,8 @@
 <x-app-layout page-title="My Orders">
 <div class="container">
     <div class="col-lg-8 col-md-10 py-8 mx-auto checkout-wrap">
-        <h1 class="fw-800">Thanks for shopping with us!</h1>
-        <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation very soon!</p>
+        <h1 class="fw-800">Order history</h1>
+        <p>Check the status of recent orders, view order details, and fufilment status.</p>
 
         <x-orders-table :orders="$orders"/>
         {{$orders->links()}}
