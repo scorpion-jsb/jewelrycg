@@ -8,7 +8,7 @@
             </div>
             <div class="col-lg-2 col-6 mb-2">
                 <div class="fw-600">Date placed</div>
-                <span>{{$order->created_at}}</span>
+                <span>{{ date('F d, Y', strtotime($order->created_at)) }}</span>
             </div>
             <div class="col-lg-2 col-6 mb-2">
                 <div class="fw-600">Items</div>
