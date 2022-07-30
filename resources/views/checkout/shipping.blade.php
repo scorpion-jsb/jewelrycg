@@ -28,8 +28,8 @@
                                             <label class="card btn shipping-method-btn shipping-radio" for="option{{ $i }}"
                                                 style="width: 100%;">
                                                 <div class="row">
-                                                    <div class="col-auto text-left">{{ $shipping->name }} ({{ $shipping->description }})</div>
-                                                    <div class="col-auto text-right">${{ $shipping->price / 100 }}</div>
+                                                    <div class="col-8 text-left">{{ $shipping->name }} ({{ $shipping->description }})</div>
+                                                    <div class="col-4 text-right">${{ $shipping->price / 100 }}</div>
                                                 </div>
                                             </label>
                                         </div>
