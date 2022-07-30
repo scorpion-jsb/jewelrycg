@@ -4,16 +4,9 @@
         <h1 class="fw-800">Thanks for shopping with us!</h1>
         <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation very soon!</p>
 
-        <div class="p-3">
-            <div class="card ">
-                <div class="card-body">
-                    <x-orders-table :orders="$orders"/>
-                </div>
-            </div>        
-            <div class="text-center">
-                {{$orders->links()}}
-            </div>    
-        </div>
+        <x-orders-table :orders="$orders"/>
+        {{$orders->links()}}
+
     </div>
 </div>
 </x-app-layout>
