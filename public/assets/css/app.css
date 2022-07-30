@@ -36,6 +36,9 @@ body {
     padding-left: 20px;
     padding-right: 20px;
 }
+.form-floating>label {
+    font-size: 12px;
+}
 /* HEADER */
 header {
     background: #ffffff;
