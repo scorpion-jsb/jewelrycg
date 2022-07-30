@@ -1,5 +1,29 @@
 <x-app-layout :page-title="'Order ' . $order->id">
     <div class="container">
+        <div class="col-lg-8 col-md-10 mx-auto checkout-wrap">
+            <h1>Thanks for shopping with us!</h1>
+            <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation very soon!</p>
+
+            <div class="row">
+                <div class="col-lg-3">
+                    <div class="w-100 fs-18 fw-600">Order number</div>
+                    <div class="fs-14 text-primary">#0000</div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="w-100 fs-18 fw-600">Payment status</div>
+                    <div class="fs-14 ">Paid</div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="w-100 fs-18 fw-600">Fufilment status</div>
+                    <div class="fs-14 ">#0000</div>
+                </div>
+                <div class="col-lg-3">
+                    <div class="w-100 fs-18 fw-600">Date created</div>
+                    <div class="fs-14 ">July 30, 2022</div>
+                </div>
+            </div>
+            
+        </div>
         <div class="row mt-3">
             <div class="col-md-4">
                 <div class="card">
