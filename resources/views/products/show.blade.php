@@ -9,8 +9,8 @@
                     <div class="col-lg-4">
                         <div class="product-details-price mb-4">
                             <div class="w-100">
-                                <div class="row">
-                                    <div class="col-6">
+
+
                                         <div class="fs-20 fw-400 text-primary" id="product_price">
                                             @if (count($variants))
                                                 ${{ $minPrice }} ~ ${{ $maxPrice }}
@@ -18,8 +18,7 @@
                                                 ${{ $product->price }}                                            
                                             @endif
                                         </div>
-                                    </div>
-                                    <div class="col-6">
+
                                     @auth
                                         @if ($wishlist_product = Cart::instance('wishlist')->content()->firstWhere('id', $product->id))
                                             <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
@@ -42,8 +41,8 @@
                                             </form>
                                         @endif
                                     @endauth
-                                    </div>
-                                </div>
+
+
                             </div>
                         </div>
                     </div>
