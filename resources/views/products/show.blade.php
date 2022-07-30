@@ -17,6 +17,29 @@
                                             ${{ $product->price }}                                            
                                         @endif
                                     </div>
+                                    
+                                    @auth
+                                        @if ($wishlist_product = Cart::instance('wishlist')->content()->firstWhere('id', $product->id))
+                                            <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
+                                                @method('delete')
+                                                @csrf
+                                                <input type="hidden" name="row_id" value="{{$wishlist_product->rowId}}">
+                                                <button type="submit" class="badge badge-lg bg-danger-1 border border-danger-1 text-light rounded-pill" style="border: 1px solid grey !important;color: black !important;">
+                                                    <i class="fa-solid fa-x"></i>
+                                                    <small>Remove from Wishlist</small>
+                                                </button>
+                                            </form>
+                                        @else
+                                            <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
+                                                @csrf
+                                                <input type="hidden" name="id_product" value="{{$product->id}}">
+                                                <button type="submit" class="badge badge-lg bg-primary border border-primary text-light rounded-pill">
+                                                    <i class="fa-regular fa-heart"></i>
+                                                    <small>Add To Wishlist</small>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    @endauth
                                 </div>
                             </div>
                         </div>
