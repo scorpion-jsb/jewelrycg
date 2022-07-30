@@ -11,7 +11,7 @@
                             <div class="w-100">
                                 <div class="row">
                                     <div class="col-6">
-                                        <div class="fs-20 fw-400 text-primary text-right" id="product_price">
+                                        <div class="fs-20 fw-400 text-primary" id="product_price">
                                             @if (count($variants))
                                                 ${{ $minPrice }} ~ ${{ $maxPrice }}
                                             @else
@@ -60,7 +60,7 @@
                 @foreach ($uploads as $key => $image)
                     @if ($key < 3)
                         <div class="carousel-box c-pointer col-6 col-lg-6 mb-3">
-                            <img src="{{asset('uploads/all/')}}/{{$image->file_name}}" class="mw-100 mx-auto border" alt="{{$key}}">
+                            <img src="{{asset('uploads/all/')}}/{{$image->file_name}}" class="mw-100 mx-auto border rounded" alt="{{$key}}">
                         </div>
                     @endif
                 @endforeach
