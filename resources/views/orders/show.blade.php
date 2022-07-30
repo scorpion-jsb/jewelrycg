@@ -5,19 +5,19 @@
             <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation very soon!</p>
             <div class="order-items-card border-bottom py-4 mb-4">
                 <div class="row">
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-3 col-6 mb-2">
                         <div class="w-100 fs-18 fw-600">Order number</div>
                         <div class="fs-14 text-primary">#0000</div>
                     </div>
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-3 col-6 mb-2">
                         <div class="w-100 fs-18 fw-600">Payment status</div>
                         <div class="fs-14 ">Paid</div>
                     </div>
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-3 col-6 mb-2">
                         <div class="w-100 fs-18 fw-600">Fufilment status</div>
                         <div class="fs-14 ">#0000</div>
                     </div>
-                    <div class="col-lg-3 col-6">
+                    <div class="col-lg-3 col-6 mb-2">
                         <div class="w-100 fs-18 fw-600">Date created</div>
                         <div class="fs-14 ">July 30, 2022</div>
                     </div>
