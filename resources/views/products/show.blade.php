@@ -7,7 +7,7 @@
                         <h1 class="fs-20 fw-600">{{$product->name}}</h1>
                     </div>
                     <div class="col-lg-4 col-12">
-                        <div class="product-details-price mb-4">
+                        <div class="product-details-price text-right mb-4">
                             <div class="w-100">
                                 <a class="btn btn-primary" id="product_price" href="#">
                                     <i class="bi bi-cart-plus p-1"></i>
