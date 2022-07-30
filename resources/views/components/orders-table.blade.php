@@ -1,25 +1,25 @@
 <div class="card">
     <div class="card-header">
         <div class="row">
-            <div class="col-auto">
+            <div class="col-lg-3">
                 <div class="fw-600">Order number</div>
-                <span>#3286</span>
+                <div>#3286</div>
             </div>
-            <div class="col-auto">
+            <div class="col-lg-3">
                 <div class="fw-600">Date placed</div>
                 <span>Jul 20, 2022</span>
             </div>
-            <div class="col-auto">
+            <div class="col-lg-3">
                 <div class="fw-600">Total amount</div>
                 <span>$115.00</span>
             </div>
-            <div class="ml-auto col-auto">
+            <div class="col-lg-3">
                 <a href="#" class="btn btn-primary">View Order</a>
             </div>
         </div>
     </div>
     <div class="card-body">
-glt
+        glt
     </div>
 </div>
 <table class="table">
