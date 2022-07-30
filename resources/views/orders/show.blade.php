@@ -59,7 +59,7 @@
             @endforeach
             
             <div class="col-lg-4">
-                <h5 class="fs-18 py-2 fw-600">Order Info</h5>
+                <h5 class="fs-18 py-2 fw-600">Billing Address</h5>
                 @include('includes.validation-form')
                 <x-order-info :order="$order" />
             </div>
