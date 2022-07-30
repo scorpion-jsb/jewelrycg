@@ -19,7 +19,7 @@
                             @php
                                 $status = 'Completed';
                                 foreach ($order->items as $key => $item) {
-                                    if ($item->fulfilment_status != '3') $status = 'Pending';
+                                    if ($item->fulfilment_status != '3' && !$item->product->is_digital && !$item->product->is_virtual) $status = 'Pending';
                                 }
                                 
                                 echo $status;
