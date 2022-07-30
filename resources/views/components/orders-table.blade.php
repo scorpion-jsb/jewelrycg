@@ -18,7 +18,7 @@
                 <div class="fw-600">Total amount</div>
                 <span>$115.00</span>
             </div>
-            <div class="col-lg-2">
+            <div class="col-lg-2 ml-auto">
                 <a href="{{route('orders.show', $order->order_id)}}" class="btn btn-primary">View Order</a>
             </div>
         </div>
