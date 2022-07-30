@@ -25,10 +25,12 @@
                                                 id="option{{ $i }}" autocomplete="off"
                                                 @if ($i == 0) checked @endif
                                                 data-price="{{ $shipping->price / 100 }}" />
-                                            <label class="card btn shipping-method-btn p-3 shipping-radio" for="option{{ $i }}"
+                                            <label class="card btn shipping-method-btn shipping-radio" for="option{{ $i }}"
                                                 style="width: 100%;">
-                                                <span>{{ $shipping->name }} ({{ $shipping->description }})</span>
-                                                <span class="float-right">${{ $shipping->price / 100 }}</span>
+                                                <div class="row">
+                                                    <div class="col-6">{{ $shipping->name }} ({{ $shipping->description }})</div>
+                                                    <div class="col-6">${{ $shipping->price / 100 }}</div>
+                                                </div>
                                             </label>
                                         </div>
                                     @endforeach
