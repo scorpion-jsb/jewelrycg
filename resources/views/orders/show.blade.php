@@ -5,23 +5,46 @@
             <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation very soon!</p>
 
             <div class="row">
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-6">
                     <div class="w-100 fs-18 fw-600">Order number</div>
                     <div class="fs-14 text-primary">#0000</div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-6">
                     <div class="w-100 fs-18 fw-600">Payment status</div>
                     <div class="fs-14 ">Paid</div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-6">
                     <div class="w-100 fs-18 fw-600">Fufilment status</div>
                     <div class="fs-14 ">#0000</div>
                 </div>
-                <div class="col-lg-3">
+                <div class="col-lg-3 col-6">
                     <div class="w-100 fs-18 fw-600">Date created</div>
                     <div class="fs-14 ">July 30, 2022</div>
                 </div>
             </div>
+
+            @foreach ($order->items as $key => $item)
+                <div class="order-items-card">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}" alt="" class="thumbnail w-100">
+                        </div>
+                        <div class="col-lg-7">
+                            <div class="order-item-title">
+                            @php
+                                if ($item->product_variant != 0) {
+                                    echo $item->product_name . ' - ' . $item->product_variant_name;
+                                } else {
+                                    echo $item->product_name;
+                                }
+                            @endphp
+                            </div>
+                            <div class="order-item-qty-price"><span class="fw-600">Quantity</span> {{$item->quantity}} | <span class="fw-600">Price</span> ${{ number_format($item->price / 100, 2) }}</div>
+                        </div>
+                        <div class="col-lg-2 text-right">${{ number_format($item->price / 100, 2) }}</div>
+                    </div>
+                </div>
+            @endforeach
             
         </div>
         <div class="row mt-3">
