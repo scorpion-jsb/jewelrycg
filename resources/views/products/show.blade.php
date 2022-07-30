@@ -9,8 +9,8 @@
                     <div class="col-lg-4">
                         <div class="product-details-price mb-4">
                             <div class="w-100">
-                                <a class="d-inline mt-1 btn btn-light" id="product_price" href="#">
-                                    <i class="bi bi-cart2"></i>
+                                <a class="btn btn-light" id="product_price" href="#">
+                                    <i class="bi bi-cart-plus"></i>
                                     @if (count($variants))
                                         ${{ $minPrice }} ~ ${{ $maxPrice }}
                                     @else
