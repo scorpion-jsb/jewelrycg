@@ -7,7 +7,7 @@
                 #JEWELRYCG
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
+        <i class="bi bi-list"></i>
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
@@ -82,30 +82,3 @@
         </div>
     </nav>
 </header>
-<!--
-<div class="global-search-wrap py-2 bg-white border-bottom">
-    <div class="container">
-        <div class="global-search-form">
-            <form method="get" action="{{route('search')}}">
-                <div class="row">
-                    <div class="col-8 search-col">
-                        <div class="w-100 h-100">
-                            <i class="bi bi-search p-3"></i>
-                            <input name="q" type="search" placeholder="Search" aria-label="Search" class="search-control">
-                        </div>
-                    </div>
-                    <div class="col-4">
-                        <select name="category" class="form-select text-small text-capitalize">
-                            <option>All</option>
-                            @foreach (\App\Models\ProductsCategorie::all() as $category)
-                                <option  {{ request()->category == $category->category_name ? 'selected' : null }}>{{$category->category_name}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
--->
-<!-- end search-wrap-->
