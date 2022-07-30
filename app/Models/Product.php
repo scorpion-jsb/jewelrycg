@@ -11,37 +11,11 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Attribute;
 use App\Models\AttributeValue;
+use Illuminate\Support\Facades\Config;
 
 class Product extends Model
 {
     use HasFactory, FormatPrices, SoftDeletes;
-
-    public static $category_list = [
-        'Arts',
-        'Automotive',
-        'Baby',
-        'Beauty & Personal Care',
-        'Books',
-        "Boy's Fashion",
-        'Computers',
-        'Digital Music',
-        'Electronics',
-        "Girls' Fashion",
-        'Health & Household',
-        'Home & Kitchen',
-        'Industrial & Scientific',
-        'Luggage',
-        "Men's Fashion",
-        'Movies & TV',
-        'Music, CDs & Vinyl',
-        'Pet Supplies',
-        'Software',
-        'Sports & Outdoors',
-        'Tools & Home Improvement',
-        'Toys & Games',
-        'Video Games',
-        "Women's Fashion"        
-    ];
 
     protected $fillable = [
         'price',
@@ -185,7 +159,8 @@ class Product extends Model
     {
         return $this->belongsTo(Upload::class, 'digital_download_assets' , 'id')->withDefault([
             'file_name' => "none.png",
-            'id' => null
+            'id' => null,
+            'extension' => null            
         ]);
     }
 
@@ -227,5 +202,23 @@ class Product extends Model
         }
 
         return 0;
+    }
+
+    /**
+     * get thumbnail file name from Upload model
+     *
+     * if thumbnail file name is 'none.png' on Upload model, return placeholder.jpg
+     *
+     * @return type
+     **/
+    public function getThumbnailFilePath()
+    {
+        if ($this->uploads->file_name != 'none.png') {
+            $filename = str_replace('.' . $this->uploads->extension, Config::get('constants.product_thubmail_suffix') . '.' . $this->uploads->extension, $this->uploads->file_name);
+
+            return asset('uploads/all/' . $filename);
+        }
+
+        return asset('assets/img/placeholder.jpg');
     }
 }

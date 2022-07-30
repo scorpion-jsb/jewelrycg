@@ -203,7 +203,6 @@ class ProductsController extends Controller
         ProductTagsRelationship::where('id_product', $product->id)->delete();
 
         // product variant
-        // ProductsVariant::where('product_id', $product->id)->delete();
 
         $variantIds = [];
         foreach($variants as $variant)

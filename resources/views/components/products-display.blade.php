@@ -4,11 +4,7 @@
     <div class="col">
         <a class="mt-1 mb-2" href="{{route('products.show', $product->slug)}}">
             <div class="card mb-2">
-                @if($product->uploads->file_name == 'none.png')
-                    <img src="{{ asset('assets/img/placeholder.jpg') }}" alt="{{ $product->name }}" class="rounded w-100 lazyloaded">
-                @else
-                    <img src="{{ asset('uploads/all') }}/{{$product->uploads->file_name}}" alt="{{ $product->name }}" class="rounded w-100 lazyloaded">
-                @endif
+                <img src="{{ $product->getThumbnailFilePath() }}" alt="{{ $product->name }}" class="rounded w-100 lazyloaded">
             </div>
             <div class="text-left px-2">
                 <div class="fs-15">

@@ -5,19 +5,19 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Config;
 use App\Upload;
 use Response;
 use Auth;
 use Storage;
 use Image;
-use ImageOptimizer;
+// use ImageOptimizer;
 
 class UploadController extends Controller
 {
 
 
     public function index(Request $request){
-
 
         $all_uploads = (auth()->user()->is_admin == 3) ? Upload::where('id_user',auth()->user()->id) : Upload::query();
         $search = null;
@@ -255,6 +255,7 @@ class UploadController extends Controller
                 $extension = $request->file('file')->getClientOriginalExtension();
                 
                 $size = $request->file('file')->getSize();
+
                 $path = $request->file('file')->move(
                     public_path('uploads/all'), $hash . '.' . $extension
                 );
@@ -267,28 +268,32 @@ class UploadController extends Controller
                 $finfo = finfo_open(FILEINFO_MIME_TYPE);
                 
                 // Get the MIME type of the file
-                $file_mime = finfo_file($finfo,$path);
+                $file_mime = finfo_file($finfo, $path);
 
-                if($type[$extension] == 'image'){
+                if($type[$extension] == 'image') {
                     try {
-                        $img = Image::make($request->file('file')->getRealPath())->encode();
-                        $height = $img->height();
-                        $width = $img->width();
-                        if($width > $height && $width > 1500){
-                            $img->resize(1500, null, function ($constraint) {
-                                $constraint->aspectRatio();
-                            });
-                        }elseif ($height > 1500) {
-                            $img->resize(null, 800, function ($constraint) {
-                                $constraint->aspectRatio();
-                            });
-                        }
-                        $img->save(base_path('public/').$path);
+                        $image = Image::make(public_path('uploads/all/') . $hash . '.' . $extension);
+
+                        // if($width > $height && $width > 1500) {
+                        //     $image->resize(1500, null, function ($constraint) {
+                        //         $constraint->aspectRatio();
+                        //     });
+                        // }elseif ($height > 1500) {
+                        //     $image->resize(null, 800, function ($constraint) {
+                        //         $constraint->aspectRatio();
+                        //     });
+                        // }
+
+                        $thumbnailWidth = Config::get('constants.product_thumbnail_size.width');
+                        $thumbnailHeight = Config::get('constants.product_thumbnail_size.height');
+                        $suffix = Config::get('constants.product_thubmail_suffix');
+
+                        $image->resize($thumbnailWidth, $thumbnailHeight);
+
+                        $image->save(public_path('uploads/all/') . $hash . $suffix . '.' . $extension, 80);
                         clearstatcache();
-                        $size = $img->filesize();
 
                     } catch (\Exception $e) {
-                        //dd($e);
                     }
                 }
 
