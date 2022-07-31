@@ -27,6 +27,7 @@ use App\Http\Controllers\Backend\UploadController;
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\Backend\ShippingOptionController;
 use App\Http\Controllers\Backend\TaxOptionController;
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+// test route
+Route::get('test', [TestController::class, 'test']);
 
 // Backend
 Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth', 'admin']], function ()

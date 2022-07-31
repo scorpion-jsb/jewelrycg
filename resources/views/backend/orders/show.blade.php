@@ -108,13 +108,14 @@
 
   <script>
     $(function() {
-      $('#order-status').change(function () {
-        var orderItemId = $(this).attr('data-order-id');
+      $('.order-status').change(function () {
+        var orderItemId = $(this).attr('data-item-id');
 
         $.ajax({
           url: "{{ url('backend/orders/item') }}" + "/" + orderItemId,
           type: 'put',
           data: {
+            "_token": "{{ csrf_token() }}",
             status: $(this).val()
           },
           success: function (data) {
