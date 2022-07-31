@@ -3,7 +3,7 @@
     <div class="row">
         <div class="col-2">
             <img src="{{ asset('uploads/all/' . $product->model->uploads->file_name) }}" alt="" class="thumbnail border rounded w-100">
-        <div>
+        </div>
         <div class="col-8">
             @php
                 if (count($product->options)) {
@@ -12,10 +12,10 @@
                     echo $product->name;
                 }
             @endphp
-        <div>
+        </div>
         <div class="col-2">
 
-        <div>
+        </div>
     </div>  
 </div>
 @endforeach
