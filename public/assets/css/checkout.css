@@ -6,6 +6,7 @@
 }
 .checkout-sidebar {
     border-left: 1px solid #eeeeee;
+    background: #f9f9f9;
 }
 @media (min-width: 1000px)
 {
