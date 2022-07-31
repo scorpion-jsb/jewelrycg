@@ -1,3 +1,6 @@
+.checkout-container {
+    overflow-x: hidden;
+}
 .shipping-method-btn {
     cursor: pointer;
 }
