@@ -269,3 +269,13 @@ button.navbar-toggler {
     border: 0;
     vertical-align: -2px;
 }
+
+/* Panel Cart */
+.panel-cart {
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    top: 0;
+    background: #ffcc00;
+    z-index: 9999;
+}
