@@ -26,7 +26,7 @@
 <div class="cart-item mb-3">
     <div class="row">
         <div class="col-2">
-            <span class="fs-5">Shipping</span>
+            <span class="fw-800">Shipping</span>
         </div>
         <div class="col-auto ml-auto text-right">
             <span class="fs-5">
@@ -41,7 +41,7 @@
 <div class="cart-item mb-3">
     <div class="row">
         <div class="col-2">
-            <span class="fs-5">Tax</span>
+            <span class="fw-800">Tax</span>
         </div>
         <div class="col-auto ml-auto text-right">
             <span class="fs-5">
@@ -59,7 +59,7 @@
 <div class="cart-item mb-3">
     <div class="row">
         <div class="col-2">
-            <span class="fs-5">Total</span>
+            <span class="fw-800">Total</span>
         </div>
         <div class="col-auto ml-auto text-right">
             <span>
