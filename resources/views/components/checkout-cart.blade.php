@@ -29,7 +29,7 @@
             <span class="fw-800">Shipping</span>
         </div>
         <div class="col-auto ml-auto text-right">
-            <span class="fs-5">
+            <span class="fw-800">
                 $@php
                     $shippingPrice = Session::get('shipping_price', 0);
                     echo number_format($shippingPrice / 100, 2);
@@ -44,7 +44,7 @@
             <span class="fw-800">Tax</span>
         </div>
         <div class="col-auto ml-auto text-right">
-            <span class="fs-5">
+            <span class="fw-800">
                 $@php
                     $taxPrice = 0;
                     foreach ($products as $product) {
@@ -63,7 +63,7 @@
         </div>
         <div class="col-auto ml-auto text-right">
             <span>
-                <span class="fs-5">
+                <span class="fw-800 text-primary">
                     ${{ number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) }}
                 </span>
             </span>
