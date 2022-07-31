@@ -24,6 +24,10 @@
           0% { transform: rotate(0deg); }
           100% { transform: rotate(360deg); }
         }
+
+        #add_to_cart_btn {
+            width: 120px;
+        }
     </style>
 
     <section class="product_detail_single">
@@ -340,10 +344,12 @@
                 method: 'post',
                 data: data,
                 success: function (data) {
-                    $('.loader-container').hide();
-                    $('.orginal-name').fadeIn();
+                    setTimeout(() => {
+                        $('.loader-container').hide();
+                        $('.orginal-name').fadeIn();
 
-                    $('.cart-count').html('<span class="rounded-pill pill badge bg-primary text-light">' + data + '</span>');
+                        $('.cart-count').html('<span class="rounded-pill pill badge bg-primary text-light">' + data + '</span>');
+                    }, 1600);
                 }
             })
 

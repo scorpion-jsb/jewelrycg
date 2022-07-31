@@ -9,7 +9,9 @@
                             <nav class="pb-4" aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/cart">Cart</a></li>
-                                    <li class="breadcrumb-item"><a href="/checkout/shipping">Shipping</a></li>
+                                    @if ($isIncludeShipping)
+                                        <li class="breadcrumb-item"><a href="/checkout/shipping">Shipping</a></li>
+                                    @endif
                                     <li class="breadcrumb-item" aria-current="page"><a
                                             href="/checkout/billing">Billing</a>
                                     </li>
