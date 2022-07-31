@@ -56,7 +56,8 @@
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-6">
+                <div class="col-lg-6 checkout-sidebar">
+
                     <div class="card">
                         <div class="card-body">
                             <div class="border-bottom mb-3 fs-3">Order Details</div>
