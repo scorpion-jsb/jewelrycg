@@ -216,7 +216,7 @@ Route::get('/blog', [BlogController::class, 'index'])->name('blog');
 Route::get('/blog/{slug}', [BlogController::class, 'show'])->name('blog.post.url');
 Route::get('/blog/archives/category/', [BlogController::class, 'categoryAll'])->name('categoryAll');
 Route::get('/blog/category/{category}', [BlogController::class, 'categoryPost'])->name('categoryPost');
-Route::get('/blog//archives/tag/', [BlogController::class, 'tagAll'])->name('tagAll');
+Route::get('/blog/archives/tag/', [BlogController::class, 'tagAll'])->name('tagAll');
 Route::get('/blog/tag/{tag}', [BlogController::class, 'tagPost'])->name('tagPost');
 
 // Search
