@@ -1,5 +1,5 @@
 <x-app-layout page-title="3D Models">
-<section class="py-8 border-b border-gray-200">
+<section class="py-9 border-b border-gray-200">
     <div class="max-w-5xl mx-auto">
         <h2 class="text-center text-4xl font-semibold mb-2">Buy Professional 3D models</h2>
     </div>
