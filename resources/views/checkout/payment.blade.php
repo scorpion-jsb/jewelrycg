@@ -42,7 +42,7 @@
                                         <!--Stripe.js injects the Payment Element-->
                                     </div>
                                     <div class="d-grid gap-2">
-                                        <button id="submit" class="btn btn-primary">
+                                        <button id="submit" class="btn btn-primary mt-2">
                                             <div class="spinner hidden" id="spinner"></div>
                                             <span id="button-text">Pay now</span>
                                         </button>
