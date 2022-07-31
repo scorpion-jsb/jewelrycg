@@ -288,10 +288,20 @@ class CheckoutController extends Controller
 
     public function getBilling()
     {
+        $products = Cart::instance('default')->content();
+
+        $isIncludeShipping = false;
+
+        foreach ($products as $product) {
+            if (!$product->model->is_digital && !$product->model->is_virtual) {
+                $isIncludeShipping = true;
+            }
+        }
+
         $countries = Country::all(['name', 'code']);
         $products = Cart::instance('default')->content();
 
-        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout']);
+        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping]);
     }
 
     public function postBilling(Request $request)
@@ -329,8 +339,18 @@ class CheckoutController extends Controller
     public function getPayment(Request $request)
     {
         $instance = isset($buy_now_mode) && $buy_now_mode == 1 ? 'buy_now' : 'default';
-        
+
+        $products = Cart::instance('default')->content();
+
+        $isIncludeShipping = false;
+
+        foreach ($products as $product) {
+            if (!$product->model->is_digital && !$product->model->is_virtual) {
+                $isIncludeShipping = true;
+            }
+        }
+
         $products = Cart::instance($instance)->content();
-        return view('checkout.payment')->with(['products' => $products, 'locale' => 'checkout']);;
+        return view('checkout.payment')->with(['products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping]);;
     }
 }

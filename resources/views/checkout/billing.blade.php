@@ -8,12 +8,13 @@
                         <nav class="pb-4" aria-label="breadcrumb">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="/cart">Cart</a></li>
-                                <li class="breadcrumb-item"><a href="/checkout/shipping">Shipping</a></li>
+                                @if ($isIncludeShipping)
+                                    <li class="breadcrumb-item"><a href="/checkout/shipping">Shipping</a></li>
+                                @endif
                                 <li class="breadcrumb-item active" aria-current="page">Billing</li>
                                 <li class="breadcrumb-item" aria-current="page">Payment</li>
                             </ol>
                         </nav>
-
                         <form action="{{ url('/checkout/billing') }}" method="POST">
                             @csrf
                             <div class="checkout-card">
