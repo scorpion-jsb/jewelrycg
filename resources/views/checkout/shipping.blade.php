@@ -3,7 +3,7 @@
         <div class="checkout-wrap">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="col-lg-8 ml-auto p-3">
+                    <div class="col-xl-8 col-lg-10 ml-auto p-3">
                         <div class="logo py-4 fw-800 fs-24">#JEWELRYCG</div>
                         <nav class="pb-4" aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -59,7 +59,7 @@
                     </div>
                 </div>
                 <div class="col-lg-6 checkout-sidebar">
-                    <div class="col-lg-8 mr-auto p-3">
+                    <div class="col-xl-8 col-lg-10 mr-auto p-3">
                         <div class="cart-items-card">
                             <div class="card-body">
                                 <div class="py-4 fw-800 fs-24">Order Details</div>
