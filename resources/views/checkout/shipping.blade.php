@@ -60,9 +60,9 @@
                 </div>
                 <div class="col-lg-6 checkout-sidebar">
                     <div class="col-lg-8 mr-auto p-3">
-                        <div class="card">
+                        <div class="cart-items-card">
                             <div class="card-body">
-                                <div class="border-bottom mb-3 fs-3">Order Details</div>
+                                <div class="py-4 fw-800 fs-24">Order Details</div>
                                 <x-products-table locale="checkout" :instance="'default'" />
                             </div>
                         </div>
