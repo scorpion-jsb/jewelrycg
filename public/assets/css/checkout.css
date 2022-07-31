@@ -11,6 +11,9 @@
     -ms-flex-direction: column-reverse;
     flex-direction: column-reverse;
 }
+.checkout-wrap::after {
+    background-color: #000;
+}
 @media (min-width: 1000px)
 {
     .checkout-wrap {
