@@ -17,7 +17,7 @@
                 </div>
                 <div class="item-meta mb-2">Quanity {{ $product->qty }}</div>
             </div>
-            <div class="col-2">
+            <div class="col-2 text-right">
                 <span class="text-primary fw-800">${{ $product->price }}</span>
             </div>
         </div>
