@@ -196,6 +196,8 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 	Route::group(['prefix' => 'orders', 'as' => 'orders.'], function ()
 	{
 		Route::get('/', [BackendOrderController::class, 'index'])->name('list');
+		Route::get('/{id}', [BackendOrderController::class, 'show'])->name('show');
+		Route::put('/item/{id}', [BackendOrderController::class, 'update'])->name('update');
 		Route::get('/pending', [BackendOrderController::class, 'pending'])->name('pending');
 	});
 

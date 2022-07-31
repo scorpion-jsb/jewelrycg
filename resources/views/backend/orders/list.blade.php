@@ -32,6 +32,7 @@
                     <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Payment status: activate to sort column ascending">Order Total</th>
                     <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Date: activate to sort column ascending">Date</th>
                     <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Customer: activate to sort column ascending">Customer</th>
+                    <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Fulfillment status: activate to sort column ascending">Payment status</th>
                     <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Fulfillment status: activate to sort column ascending">Fulfillment status</th>
                     <th class="sorting" tabindex="0" aria-controls="datatable" aria-label="Actions: activate to sort column ascending">Actions</th>
                 </tr>
@@ -45,20 +46,32 @@
                                 <label class="form-check-label" for="ordersCheck1"></label>
                             </div>
                         </td>
-                        <td><a href="javascript:;" onclick="copyText(this)" class="link-primary">#{{$order->tracking_number}}</a></td>
+                        <td><a href="javascript:;" class="link-primary">#{{$order->order_id}}</a></td>
                         <td>${{$order->total_price}}</td>
                         <td>{{$order->created_at}}</td>
                         <td>
-                            <a href="{{route('user.index', $order->id_user)}}" class="link-primary">
-                                {{$order->id_user}}
+                            <a href="{{route('user.index', $order->user_id)}}" class="link-primary">
+                                {{$order->user->email}}
                             </a>
                         </td>
-                        <td>{{$order->status}}</td>
+                        <td title="{{ $order->status_payment_reason }}">
+                            {{Config::get('constants.oder_payment_status')[$order->status_payment]}}
+                        </td>
+                        <td>
+                            @php
+                                $status = 'Completed';
+                                foreach ($order->items as $key => $item) {
+                                    if ($item->fulfilment_status != '3' && !$item->product->is_digital && !$item->product->is_virtual) $status = 'Pending';
+                                }
+                                
+                                echo $status;
+                            @endphp
+                        </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a class="btn btn-white btn-sm" href="{{ route('orders.show', $order->id) }}"> <i class="bi-eye"></i> View </a>
+                                <a class="btn btn-white btn-sm" href="{{ route('backend.orders.show', $order->id) }}"> <i class="bi-eye"></i> View </a>
                                 <!-- Button Group -->
-                                <div class="btn-group">
+                                {{-- <div class="btn-group">
                                     <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                     <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
                                         <span class="dropdown-header">Options</span>
@@ -83,7 +96,7 @@
                                         <div class="dropdown-divider"></div>
                                         <a class="dropdown-item" href="javascript:;"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- End Unfold -->
                             </div>
                             <!-- End Button -->

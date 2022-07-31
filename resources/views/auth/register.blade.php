@@ -16,7 +16,7 @@
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
         <div class="alert alert-danger" id="recaptcha_error">
-            recapcha error
+            Recaptcha error
         </div>
 
         <form method="POST" action="{{ route('register') }}" id="registerForm">
@@ -87,7 +87,7 @@
                     } else {
                         document.getElementById('registerForm').addEventListener('submit', function(event) {
                             event.preventDefault();
-                            $('#recapcha error').show();
+                            $('#recaptcha_error').show();
                             // alert('recapcha error');
                         });
                     }
