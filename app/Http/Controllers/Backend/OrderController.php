@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\OrderItem;
 
 class OrderController extends Controller
 {
@@ -61,7 +62,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        //
+        return view('backend.orders.show')->with('order', Order::find($id));
     }
 
     /**
@@ -84,7 +85,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        return OrderItem::where('id', $id)->update(['status_fulfillment' => $request->status]);
     }
 
     /**

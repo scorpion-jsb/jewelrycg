@@ -15,6 +15,10 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
+        <div class="alert alert-danger" id="recaptcha_error">
+            Recaptcha error
+        </div>
+
         <form method="POST" action="{{ route('register') }}" id="registerForm">
             @csrf
 
@@ -79,11 +83,12 @@
                 response.json().then(function(data) {
                     console.log(data);
                     if (data.success && data.score > 0.5) {
-                        console.log('valid recpatcha');
+                        console.log('valid recapcha');
                     } else {
                         document.getElementById('registerForm').addEventListener('submit', function(event) {
                             event.preventDefault();
-                            alert('recpatcha error');
+                            $('#recaptcha_error').show();
+                            // alert('recapcha error');
                         });
                     }
                 });
