@@ -22,7 +22,7 @@
                                     @include('includes.validation-form')
                                     <x-user-info :countries="$countries" />
                                     <div class="row mb-3">
-                                        <div class="offset-md-3 col-md-8">
+                                        <div class="col-12">
                                             <label for="isRemember">
                                                 <input type="checkbox" name="isRemember" id="isRemember"> Remember Address
                                             </label>
