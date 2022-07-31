@@ -1,5 +1,5 @@
 <x-app-layout page-title="Blog">
-    <section class="p-6">
+    <section class="pt-9 p-6">
         <div class="container text-center">
             <div class="row">
                 <div class="col-lg-12 text-center">
