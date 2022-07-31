@@ -77,7 +77,6 @@
 
                     <!-- Body -->
                     <div class="card-body">
-                        
                         <div class="col-12 mb-4">
                         <label class="mb-2" for="">Status</label>
                             <select class="selectpicker w-100" name="status">
@@ -86,7 +85,6 @@
                                 <option value="3" @if($post->status == 3) selected @endif>Pending Review</option>
                             </select>
                         </div>
-                        
                         <div class="col-12 mb-4">
                             <label for="category" class="mb-2 w-100">Category:</label>
                             <select multiple class="selectpicker" name="categories[]" data-live-search="true" data-container="body">
@@ -110,7 +108,6 @@
                     </div>
                 </div>
                 <!-- End Card -->
-
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
@@ -125,8 +122,6 @@
                     </div>
                 </div>
                 <!-- End Card -->
-
-                
             </div>
         </div>
 
