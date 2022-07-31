@@ -1,6 +1,6 @@
 <x-guest-layout page-title="Shipping Detail">
-    <div class="container">
-        <div class="col-lg-8 col-md-10 mx-auto checkout-wrap">
+    <div class="container-fluid">
+        <div class="checkout-wrap">
             <div class="row">
                 <div class="col-lg-6">
                     <div class="logo py-4 fw-800 fs-24">#JEWELRYCG</div>
@@ -57,7 +57,6 @@
                     </form>
                 </div>
                 <div class="col-lg-6 checkout-sidebar">
-
                     <div class="card">
                         <div class="card-body">
                             <div class="border-bottom mb-3 fs-3">Order Details</div>
