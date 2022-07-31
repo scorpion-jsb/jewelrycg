@@ -2,18 +2,8 @@
     cursor: pointer;
 }
 .checkout-wrap::before {
-    content: "";
-    display: block;
-    width: 300%;
-    position: absolute;
-    top: 0;
-    bottom: 0;
     background: #ffffff;
-    z-index: -1;
-    left: 0;
-    background-position: left top;
-    -webkit-box-shadow: 1px 0 0 #ddd4d7 inset;
-    box-shadow: 1px 0 0 #ddd4d7 inset;
+
 }
 .checkout-sidebar {
     
