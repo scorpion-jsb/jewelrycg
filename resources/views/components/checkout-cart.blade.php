@@ -23,7 +23,7 @@
         </div>
     </div>
 @endforeach
-<div class="cart-item mb-3">
+<div class="cart-item mb-3 pt-3">
     <div class="row">
         <div class="col-2">
             <span class="fw-800">Shipping</span>
