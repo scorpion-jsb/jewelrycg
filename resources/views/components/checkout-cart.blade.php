@@ -28,7 +28,7 @@
         <div class="col-2">
             <span class="fs-5">Shipping</span>
         </div>
-        <div class="offset-md-8 col-md-2">
+        <div class="col-auto ml-auto text-right">
             <span class="fs-5">
                 $@php
                     $shippingPrice = Session::get('shipping_price', 0);
@@ -43,7 +43,7 @@
         <div class="col-2">
             <span class="fs-5">Tax</span>
         </div>
-        <div class="offset-md-8 col-md-2">
+        <div class="col-auto ml-auto text-right">
             <span class="fs-5">
                 $@php
                     $taxPrice = 0;
@@ -61,7 +61,7 @@
         <div class="col-2">
             <span class="fs-5">Total</span>
         </div>
-        <div class="offset-md-8 col-md-2">
+        <div class="col-auto ml-auto text-right">
             <span>
                 <span class="fs-5">
                     ${{ number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) }}
