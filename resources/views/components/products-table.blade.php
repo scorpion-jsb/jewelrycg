@@ -24,11 +24,6 @@
     </div>
 </div>
 
-<div class="card">
-    <div class="card-body">
-        <div class="row"></div>
-    </div>
-</div>
 
 <style>
     #total_td>div,
