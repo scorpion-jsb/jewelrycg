@@ -4,37 +4,8 @@
 .checkout-wrap {
     background: #ffffff;
 }
-.checkout-wrap {
-    -webkit-box-orient: vertical;
-    -webkit-box-direction: reverse;
-    -webkit-flex-direction: column-reverse;
-    -ms-flex-direction: column-reverse;
-    flex-direction: column-reverse;
-}
-.checkout-wrap::after {
-    background-color: #000;
-}
-@media (min-width: 1000px)
-{
-    .checkout-wrap {
-        -webkit-box-orient: horizontal;
-        -webkit-box-direction: normal;
-        -webkit-flex-direction: row;
-        -ms-flex-direction: row;
-        flex-direction: row;
-    }
-}
-
 .checkout-sidebar {
-    background: #f6ebef;
-    -webkit-box-shadow: 0 -1px 0 #ddd4d7 inset;
-    box-shadow: 0 -1px 0 #ddd4d7 inset;
-}
-.checkout-sidebar::after {
-    background: #f6ebef;
-    -webkit-box-shadow: 0 -1px 0 #ddd4d7 inset;
-    box-shadow: 0 -1px 0 #ddd4d7 inset;
-    position: absolute;
+    border-left: 1px solid #eeeeee;
 }
 @media (min-width: 1000px)
 {
