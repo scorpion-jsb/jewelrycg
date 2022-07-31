@@ -1,5 +1,5 @@
 @foreach ($products as $key => $product)
-<div class="cart-item mb-2">
+<div class="cart-item mb-3">
     <div class="row">
         <div class="col-3">
             <img src="{{ asset('uploads/all/' . $product->model->uploads->file_name) }}" alt="" class="thumbnail border rounded w-100">
