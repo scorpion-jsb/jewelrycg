@@ -272,6 +272,7 @@ button.navbar-toggler {
 
 /* Panel Cart */
 .panel-cart {
+    display: none;
     position: absolute;
     right: 0;
     height: 100vh;
