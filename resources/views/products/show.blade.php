@@ -1,4 +1,31 @@
 <x-app-layout :page-title="$product->name">
+    <style>
+        .loader-container {
+            display: flex;
+        }
+        .loader {
+          margin-left: 8px;
+          border: 4px solid #f3f3f3;
+          border-radius: 50%;
+          border-top: 4px solid #cf4109;
+          width: 20px;
+          height: 20px;
+          -webkit-animation: spin 2s linear infinite; /* Safari */
+          animation: spin 2s linear infinite;
+        }
+        
+        /* Safari */
+        @-webkit-keyframes spin {
+          0% { -webkit-transform: rotate(0deg); }
+          100% { -webkit-transform: rotate(360deg); }
+        }
+        
+        @keyframes spin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
+        }
+    </style>
+
     <section class="product_detail_single">
         <div class="container">
             <div class="product-container col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
@@ -14,7 +41,7 @@
                                     @if (count($variants))
                                         ${{ $minPrice }} ~ ${{ $maxPrice }}
                                     @else
-                                        ${{ $product->price }}                                            
+                                        ${{ $product->price }}
                                     @endif
                                 </a>
 
@@ -101,7 +128,6 @@
                                     </ul>
                                 </div>
                             </div>
-                                
                             <div class="product-details-misc mb-4">
                                 {{$product->description}}
                             </div>
@@ -128,7 +154,7 @@
                                             @if (count($variants))
                                                 ${{ $minPrice }} ~ ${{ $maxPrice }}
                                             @else
-                                                ${{ $product->price }}                                            
+                                                ${{ $product->price }}
                                             @endif
                                         </strong>
                                     </div>
@@ -136,7 +162,7 @@
                             </div>
 
                             <div class="product-details-misc mb-4">
-                                
+
                                 <h4>
 
                                     @if ($product->is_trackingquantity)
@@ -166,7 +192,7 @@
                                     {{session('message')}}
                                 </div>
                             @endif
-                            <form action="{{route('cart.store')}}" method="post" class="my-3" name="cart_star_form">
+                            <form action="{{route('cart.store')}}" method="post" class="my-3" name="cart_star_form" id="cart_star_form">
                                 @csrf
 
                                 <input type="hidden" name="variant_attribute_value" id="variant_attribute_value" value="0">
@@ -190,7 +216,7 @@
                                 @endif
 
                                 <input type="hidden" name="id_product" value="{{$product->id}}">
-                                <button type="submit" class="btn btn-primary shadow-md" {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }} id="add_to_cart_btn">Add to Cart</button>
+                                <button type="submit" class="btn btn-primary shadow-md" {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }} id="add_to_cart_btn"> <div class="loader-container">Adding <div class="loader"></div></div> <div class="orginal-name">Add to Cart</div> </button>
                                 <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->is_trackingquantity == 1 &&  $product->quantity < 1 || count($variants) > 0 ? 'disabled' : null }} id="buy_now_btn">Buy Now</button>
                             </form>
 
@@ -258,12 +284,13 @@
         </h4>
     @endif
     -->
-    
+
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    <script>
 
         var variants = [];
+        $('.loader-container').hide();
 
         @foreach ($variants as $variant)
             var ids = '{{ $variant->variant_attribute_value }}';
@@ -296,5 +323,31 @@
                 }
             })
         })
+
+        document.cart_star_form.onsubmit = function () {
+            var data = {};
+            var formData = $('#cart_star_form').serializeArray();
+
+            formData.map(function (item) {
+                data[item.name] = item.value;
+            });
+
+            $('.orginal-name').hide();
+            $('.loader-container').fadeIn();
+
+            $.ajax({
+                url: "{{ route('cart.store') }}",
+                method: 'post',
+                data: data,
+                success: function (data) {
+                    $('.loader-container').hide();
+                    $('.orginal-name').fadeIn();
+
+                    $('.cart-count').html('<span class="rounded-pill pill badge bg-primary text-light">' + data + '</span>');
+                }
+            })
+
+            return false;
+        }
     </script>
 </x-app-layout>
