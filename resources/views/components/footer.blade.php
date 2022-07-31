@@ -93,3 +93,11 @@
         </div>
     </div>
 </footer>
+
+<div class="panel-cart">
+    <div class="panel-cart-header row">
+        <div class="col-6">Cart</div>
+        <div class="col-6 text-right">X</div>
+    </div>
+    
+</div>
