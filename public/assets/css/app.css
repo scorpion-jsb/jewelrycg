@@ -69,6 +69,13 @@ header a.nav-link {
     color: #000000;
     padding: 25px;
 }
+header ul.dropdown-menu.show {
+    border: 1px solid #eeeeee !important;
+    border-top: 0 !important;
+    margin: 0 !important;
+    padding: 0!important;
+    border-radius: 0 !important;
+}
 header a.nav-link.active, header a.nav-link:hover {
     color: #0057ff !important;
 }
