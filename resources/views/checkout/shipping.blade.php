@@ -1,5 +1,5 @@
 <x-guest-layout page-title="Shipping Detail">
-    <div class="container-fluid">
+    <div class="checkout-container">
         <div class="checkout-wrap">
             <div class="row">
                 <div class="col-lg-6">
