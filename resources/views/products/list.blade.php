@@ -1,7 +1,36 @@
 <x-app-layout page-title="3D Models">
-<section class="py-9 border-b border-gray-200">
-    <div class="max-w-5xl mx-auto">
-        <h2 class="text-center text-4xl font-semibold mb-2">Buy Professional 3D models</h2>
+<section class="hero-home py-9">
+<!--
+    <div class="hero-media" id="hero-media">
+      <video class="hero-media-asset is-visible" autoplay="" muted="" loop="" playsinline="" data-hero-video="" data-src-lg="https://cdn.dribbble.com/uploads/39417/original/49dbf46eae15d227fc95a69cee31251e.mp4?1657824906" data-src-sm="https://cdn.dribbble.com/uploads/39418/original/0cc960a3bf612d0badc4f6165eb36f7b.mp4?1657824915">
+        <source src="https://cdn.dribbble.com/uploads/39417/original/49dbf46eae15d227fc95a69cee31251e.mp4?1657824906" type="video/mp4">
+      </video>
+    </div>
+    -->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 hero-content-container">
+                <div class="hero-categories filter-categories pb-4">
+                    <ul class="mb-3">
+                    <li class="category active"><a href="#">Explore</a></li>
+                    @foreach (\App\Models\ProductsCategorie::all() as $category)
+                        <li class="category"><a href="#">{{$category->category_name}}</a></li>
+                    @endforeach
+                    </ul>
+                </div>
+            </div> 
+            <div class="col-lg-6 mx-auto text-center hero-content-container">
+                <h4 class="fs-20 text-white pb-4 mb-0">The world's preferred source for Jewelry CG content</h4>
+                <h1 class="text-white font-weight-bold pb-4 mb-0">Explore our vast collections of 3D models</h1>
+                <div class="search-form ml-auto mr-auto py-2">
+                    <form method="get" action="{{route('search')}}">
+                        <div class="search-col">
+                            <input name="q" type="search" placeholder="Search" aria-label="Search" class="search-control">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
 </section>
 <main class="py-6">
