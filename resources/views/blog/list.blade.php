@@ -41,7 +41,7 @@
                                     </a>
                                 </h2>
                                 <div class="mb-2 opacity-50 article-list-category">
-                                <p> Author: {{ $post->postauthor->name}} </p>
+                                <p> Author: {{ $post->postauthor->first_name . " " . $post->postauthor->last_name }} </p>
                                 </div>
                                 
                                     <div class="mb-2 opacity-50 article-list-category">
