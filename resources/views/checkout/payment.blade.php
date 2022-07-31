@@ -10,7 +10,8 @@
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item"><a href="/cart">Cart</a></li>
                                     <li class="breadcrumb-item"><a href="/checkout/shipping">Shipping</a></li>
-                                    <li class="breadcrumb-item" aria-current="page"><a href="/checkout/billing">Billing</a>
+                                    <li class="breadcrumb-item" aria-current="page"><a
+                                            href="/checkout/billing">Billing</a>
                                     </li>
                                     <li class="breadcrumb-item active" aria-current="page">Payment</li>
                                 </ol>
@@ -30,9 +31,10 @@
                                         id="country">
                                     <input type="hidden" name="" value="{{ Session::get('billing_zipcode') }}"
                                         id="zipcode">
-                                    <input type="hidden" name="" value="{{ Session::get('billing_phonenumber') }}"
-                                        id="phonenumber">
-                                    <input type="hidden" name="" value="{{ Auth::user()->email }}" id="email">
+                                    <input type="hidden" name=""
+                                        value="{{ Session::get('billing_phonenumber') }}" id="phonenumber">
+                                    <input type="hidden" name="" value="{{ Auth::user()->email }}"
+                                        id="email">
                                     <input type="hidden" name=""
                                         value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}"
                                         id="name">
@@ -55,7 +57,7 @@
                             <div class="cart-items-card">
                                 <div class="card-body">
                                     <div class="py-4 fw-800 fs-24">Order Details</div>
-                                    <x-products-table locale="checkout" :instance="isset($buy_now_mode) && $buy_now_mode == 1 ? 'buy_now' : 'default'" />
+                                    <x-checkout-cart locale="checkout" :instance="isset($buy_now_mode) && $buy_now_mode == 1 ? 'buy_now' : 'default'" />
                                 </div>
                             </div>
                         </div>
@@ -65,18 +67,16 @@
         </div><!-- end checkout-wrap -->
     </div><!-- end container -->
 
-    <x-slot:scripts>
-        <script src="https://js.stripe.com/v3/"></script>
-        <script defer>
-            const stripe_key = '{{ config('app.stripe_key') }}';
-            const payment_intent_route = '{{ route('checkout.payment.intent') }}';
-            const _token = '{{ csrf_token() }}';
-            const place_order_route = '{{ route('checkout.store') }}';
-            const order_cancel_route = '{{ route('checkout.cancel') }}';
-            const finish_page = '{{ route('checkout.finished') }}';
-            const buy_now_mode = '{{ $buy_now_mode ?? 0 }}';
-        </script>
-        <script src="{{ asset('js/checkout.js') }}" defer></script>
-        </x-slot>
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const stripe_key = '{{ config('app.stripe_key') }}';
+        const payment_intent_route = '{{ route('checkout.payment.intent') }}';
+        const _token = '{{ csrf_token() }}';
+        const place_order_route = '{{ route('checkout.store') }}';
+        const order_cancel_route = '{{ route('checkout.cancel') }}';
+        const finish_page = '{{ route('checkout.finished') }}';
+        const buy_now_mode = '{{ $buy_now_mode ?? 0 }}';
+    </script>
+    <script src="{{ asset('js/checkout.js') }}"></script>
 
 </x-guest-layout>

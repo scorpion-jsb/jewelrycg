@@ -11,7 +11,7 @@
             <div class="card-body">
                 <x-products-table locale="cart"/>
             </div>
-        </div>  
+        </div>
     </div>
-</div>      
+</div>
 </x-app-layout>

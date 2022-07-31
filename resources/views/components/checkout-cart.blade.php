@@ -19,6 +19,6 @@
         <div class="col-2">
             <span class="text-primary fw-800">${{ $product->price }}</span>
         </div>
-    </div>  
+    </div>
 </div>
 @endforeach
