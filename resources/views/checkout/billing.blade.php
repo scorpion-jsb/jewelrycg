@@ -41,7 +41,7 @@
                         <div class="cart-items-card">
                             <div class="card-body">
                                 <div class="py-4 fw-800 fs-24">Order Details</div>
-                                <x-products-table locale="checkout" :instance="'default'" />
+                                <x-checkout-cart locale="checkout" :instance="'default'" />
                             </div>
                         </div>
                     </div>
