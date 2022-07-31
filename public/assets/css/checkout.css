@@ -34,6 +34,7 @@
     background: #f6ebef;
     -webkit-box-shadow: 0 -1px 0 #ddd4d7 inset;
     box-shadow: 0 -1px 0 #ddd4d7 inset;
+    position: absolute;
 }
 @media (min-width: 1000px)
 {
