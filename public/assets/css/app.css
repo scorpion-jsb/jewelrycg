@@ -50,6 +50,9 @@ header {
     border-bottom: 0 !important;
     -webkit-box-shadow: inset 0px -1px 0px #f3f3f4;
     box-shadow: inset 0px -1px 0px #f3f3f4;
+    position: fixed !important;
+    z-index: 9999;
+    width: 100%;
 }
 header.home {
     background: #f1f6ff;
