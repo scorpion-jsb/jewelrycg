@@ -1,7 +1,7 @@
 .shipping-method-btn {
     cursor: pointer;
 }
-checkout-wrap::before {
+checkout-wrap {
     content: "";
     display: block;
     width: 300%;
