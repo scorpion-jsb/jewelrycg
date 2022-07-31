@@ -1,3 +1,35 @@
+<div class="container">
+    <div class="col-lg-8 col-md-10 mx-auto checkout-wrap">
+        @foreach ($products as $key => $product)
+        <div class="cart-item">
+            <div class="row">
+                <div class="col-2">
+                    <img src="{{ asset('uploads/all/' . $product->model->uploads->file_name) }}" alt="" class="thumbnail border rounded w-100">
+                <div>
+                <div class="col-8">
+                    @php
+                        if (count($product->options)) {
+                            echo $product->name . ' - ' . $product->options->name;
+                        } else {
+                            echo $product->name;
+                        }
+                    @endphp
+                <div>
+                <div class="col-2">
+
+                <div>
+            </div>  
+        </div>
+        @endforeach
+    </div>
+</div>
+
+<div class="card">
+    <div class="card-body">
+        <div class="row"></div>
+    </div>
+</div>
+
 <style>
     #total_td>div,
     #shipping_td,
