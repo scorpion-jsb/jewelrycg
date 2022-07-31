@@ -3,6 +3,18 @@
 }
 
 .checkout-sidebar {
-    height: 100vh;
-    border-left: 1px solid #eee;
+    
+}
+.checkout-sidebar::after {
+    content: "";
+    display: block;
+    width: 300%;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    bottom: 0;
+    background: #f6ebef;
+    z-index: -1;
+    -webkit-box-shadow: 0 -1px 0 #ddd4d7 inset;
+    box-shadow: 0 -1px 0 #ddd4d7 inset;
 }
