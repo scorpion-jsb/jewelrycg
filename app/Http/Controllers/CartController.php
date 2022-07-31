@@ -91,7 +91,8 @@ class CartController extends Controller
             Cart::store(auth()->id());
         }
 
-        return redirect()->route('products.show', $product->slug)->with(['message' => 'Successfully added to Cart!']);
+        // return redirect()->route('products.show', $product->slug)->with(['message' => 'Successfully added to Cart!']);
+        return Cart::content()->count();
     }
 
     public function buyNow(StoreProductCartRequest $req)

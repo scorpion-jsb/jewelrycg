@@ -58,11 +58,13 @@
                                 Cart::merge(auth()->id());
                             }
                         ?>
-                        @if ($cart_items = Cart::content()->count())
-                            <span class="rounded-pill pill badge bg-primary text-light">
-                                {{$cart_items}}
-                            </span>
-                        @endif
+                        <span class="cart-count">
+                            @if ($cart_items = Cart::content()->count())
+                                <span class="rounded-pill pill badge bg-primary text-light">
+                                    {{$cart_items}}
+                                </span>
+                            @endif
+                        </span>
                     </a>
                 </li>
 
