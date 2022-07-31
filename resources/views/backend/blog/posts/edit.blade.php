@@ -59,10 +59,10 @@
                         <small class="text-muted">Published: 2 days ago</small>
                     </div>
                     <div class="card-body">
-                        {{ date('F d, Y', strtotime($post->created_at)) }}
+                        {{ date('F d, Y, h:i:s A', strtotime($post->created_at)) }}
                         <br />
                         <br />
-                        Author: {{ $post->postauthor->email }}
+                        Author: {{ $post->postauthor->first_name . " " . $post->postauthor->last_name }}
                     </div>
                 </div>
                 <!-- End Card -->
