@@ -25,7 +25,7 @@
                         <li>
                             <a class="dropdown-item" href="{{ route('blog') }}">
                                 <div class="row">
-                                    <div class="col-auto w-20"><i class="bi bi-book"></i></div>
+                                    <div class="col-auto"><i class="bi bi-book"></i></div>
                                     <div class="col-auto w-80">
                                         <div class="w-100">Blog</div>
                                         <div class="w-100">Learn product design in just 16 weeks...</div>
