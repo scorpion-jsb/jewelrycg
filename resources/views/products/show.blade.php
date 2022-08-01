@@ -235,7 +235,7 @@
                                                 <label for=""
                                                     class="control-label col-md-2">{{ $attribute->name }}</label>
                                                 <div class="col-md-10">
-                                                    <div class="btn-group" data-toggle="buttons" id="variants_group">
+                                                    <div class="variants-btn-group" data-toggle="buttons" id="variants_group">
                                                         @foreach ($product->attributeValue($attribute->id) as $attributeValue)
                                                             <label class="btn btn-default btn-sm"
                                                                 style="border: 1px solid grey">
