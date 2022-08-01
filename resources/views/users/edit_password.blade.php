@@ -4,7 +4,7 @@
         @csrf
         @method('patch')
         <div class="row justify-content-center mt-5">
-            <div class="card col-md-4">
+            <div class="card">
                 <div class="card-body">
                     @include('includes.validation-form')
                     <label for="old_password">Current Password:</label>
