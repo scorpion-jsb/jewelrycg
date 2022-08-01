@@ -92,7 +92,8 @@ class CartController extends Controller
         }
 
         // return redirect()->route('products.show', $product->slug)->with(['message' => 'Successfully added to Cart!']);
-        return Cart::content()->count();
+
+        return view('products.cart-drawer')->with(['items' => Cart::content()]);
     }
 
     public function buyNow(StoreProductCartRequest $req)
@@ -191,6 +192,15 @@ class CartController extends Controller
         return back();
     }
 
+    public function destroy($id)
+    {
+        Cart::instance('default')->restore(auth()->id());
+        Cart::remove($id);
+        Cart::store(auth()->id());
+
+        return true;
+    }
+
     public function wishlistToCart(RemoveFromWishlistRequest $req)
     {
         $product = Cart::instance('wishlist')->get($req->row_id)->model;
@@ -211,5 +221,10 @@ class CartController extends Controller
         Cart::store(auth()->id());
 
         return redirect()->route('cart.wishlist');
+    }
+
+    public function getCount()
+    {
+        return Cart::content()->count();
     }
 }

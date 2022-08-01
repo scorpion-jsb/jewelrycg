@@ -15,10 +15,6 @@
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
 
-        <div class="alert alert-danger" id="recaptcha_error">
-            Recaptcha error
-        </div>
-
         <form method="POST" action="{{ route('register') }}" id="registerForm">
             @csrf
 
@@ -87,8 +83,6 @@
                     } else {
                         document.getElementById('registerForm').addEventListener('submit', function(event) {
                             event.preventDefault();
-                            $('#recaptcha_error').show();
-                            // alert('recapcha error');
                         });
                     }
                 });

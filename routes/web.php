@@ -250,10 +250,11 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 			Route::delete('/', 'removeFromWishlist');
 		});
 	});
+	Route::get('/count', 'getCount')->name('count');
 	Route::post('/edit', 'editQty')->name('edit.qty');
 	Route::get('/remove/{id}', 'removeProduct')->name('remove.product');
 });
-Route::resource('cart', CartController::class)->only(['index', 'store']);
+Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy']);
 
 // Auth
 Route::group(['middleware' => 'auth'], function ()

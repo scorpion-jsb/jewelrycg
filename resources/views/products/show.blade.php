@@ -3,26 +3,38 @@
         .loader-container {
             display: flex;
         }
+
         .loader {
-          margin-left: 8px;
-          border: 4px solid #f3f3f3;
-          border-radius: 50%;
-          border-top: 4px solid #cf4109;
-          width: 20px;
-          height: 20px;
-          -webkit-animation: spin 2s linear infinite; /* Safari */
-          animation: spin 2s linear infinite;
+            margin-left: 8px;
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #cf4109;
+            width: 20px;
+            height: 20px;
+            -webkit-animation: spin 2s linear infinite;
+            /* Safari */
+            animation: spin 2s linear infinite;
         }
-        
+
         /* Safari */
         @-webkit-keyframes spin {
-          0% { -webkit-transform: rotate(0deg); }
-          100% { -webkit-transform: rotate(360deg); }
+            0% {
+                -webkit-transform: rotate(0deg);
+            }
+
+            100% {
+                -webkit-transform: rotate(360deg);
+            }
         }
-        
+
         @keyframes spin {
-          0% { transform: rotate(0deg); }
-          100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
         #add_to_cart_btn {
@@ -35,7 +47,7 @@
             <div class="product-container col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
                 <div class="product-details-title mb-4 col-lg-10 mx-auto row">
                     <div class="col-lg-8 col-12 p-0">
-                        <h1 class="fs-20 fw-600">{{$product->name}}</h1>
+                        <h1 class="fs-20 fw-600">{{ $product->name }}</h1>
                     </div>
                     <div class="col-lg-auto col-12 ml-auto p-0">
                         <div class="product-details-price mb-4">
@@ -51,19 +63,19 @@
 
                                 @auth
                                     @if ($wishlist_product = Cart::instance('wishlist')->content()->firstWhere('id', $product->id))
-                                        <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
+                                        <form action="{{ route('cart.wishlist') }}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
-                                            <input type="hidden" name="row_id" value="{{$wishlist_product->rowId}}">
+                                            <input type="hidden" name="row_id" value="{{ $wishlist_product->rowId }}">
                                             <button type="submit" class="btn btn-danger">
                                                 <i class="bi bi-heart-fill p-1"></i>
                                                 Saved
                                             </button>
                                         </form>
                                     @else
-                                        <form action="{{route('cart.wishlist')}}" method="post" class="d-inline">
+                                        <form action="{{ route('cart.wishlist') }}" method="post" class="d-inline">
                                             @csrf
-                                            <input type="hidden" name="id_product" value="{{$product->id}}">
+                                            <input type="hidden" name="id_product" value="{{ $product->id }}">
                                             <button type="submit" class="btn btn-light">
                                                 <i class="bi bi-heart p-1"></i>
                                                 Save
@@ -75,65 +87,77 @@
                         </div>
                     </div>
                 </div>
-                @if($product->modelpreview->file_name != 'none.png')
-                <div class="product-3dmodel bg-white mb-4">
-                    <div class="model-box border rounded h-500px p-2">
-                        <model-viewer class="model-full-hw" alt="This is CAD Preview" src="{{asset('uploads/all/')}}/{{$product->modelpreview->file_name}}" ar-scale="auto" poster="assets/img/placeholder.jpg" loading="lazy" ar ar-modes="webxr scene-viewer quick-look" shadow-intensity="0" camera-controls auto-rotate></model-viewer>
+                @if ($product->modelpreview->file_name != 'none.png')
+                    <div class="product-3dmodel bg-white mb-4">
+                        <div class="model-box border rounded h-500px p-2">
+                            <model-viewer class="model-full-hw" alt="This is CAD Preview"
+                                src="{{ asset('uploads/all/') }}/{{ $product->modelpreview->file_name }}"
+                                ar-scale="auto" poster="assets/img/placeholder.jpg" loading="lazy" ar
+                                ar-modes="webxr scene-viewer quick-look" shadow-intensity="0" camera-controls
+                                auto-rotate></model-viewer>
+                        </div>
                     </div>
-                </div>
                 @endif
                 <!-- Product Images/Preview -->
                 <div class="product-gallery-thumb row mb-2">
-                @foreach ($uploads as $key => $image)
-                    @if ($key < 3)
-                        <div class="carousel-box c-pointer col-6 col-lg-6 mb-3">
-                            <img src="{{asset('uploads/all/')}}/{{$image->file_name}}" class="mw-100 mx-auto border rounded" alt="{{$key}}">
-                        </div>
-                    @endif
-                @endforeach
+                    @foreach ($uploads as $key => $image)
+                        @if ($key < 3)
+                            <div class="carousel-box c-pointer col-6 col-lg-6 mb-3">
+                                <img src="{{ asset('uploads/all/') }}/{{ $image->file_name }}"
+                                    class="mw-100 mx-auto border rounded" alt="{{ $key }}">
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
 
                 <div class="row">
 
                     <!-- Product Details/Title -->
-                    <div class="col-xl-12 col-lg-12"> 
+                    <div class="col-xl-12 col-lg-12">
                         <div class="bg-white p-3 mb-0">
                             <div class="product-details-title mb-3">
-                                <h1 class="mb-2 fs-30 fw-400">{{$product->name}}</h1>
+                                <h1 class="mb-2 fs-30 fw-400">{{ $product->name }}</h1>
                             </div>
                             <div class="product-details-misc border-bottom pb-2 mb-4">
                                 <div class="col-6 text-left">
                                     <ul class="list-inline social fw-600 mb-0">
-                                        <li class="list-inline-item"> 
-                                            <a target="_self" href="mailto:?subject={{$product->name}}&amp;body=#" class="jssocials-share-link text-black fs-18">
+                                        <li class="list-inline-item">
+                                            <a target="_self" href="mailto:?subject={{ $product->name }}&amp;body=#"
+                                                class="jssocials-share-link text-black fs-18">
                                                 <i class="bi bi-envelope fs-20"></i>
                                             </a>
                                         </li>
-                                        <li class="list-inline-item"> 
-                                            <a target="_blank" href="https://twitter.com/share?url=#&amp;text={{$product->name}}" class="jssocials-share-link text-black fs-18">
-                                            <i class="bi bi-twitter fs-20"></i>
+                                        <li class="list-inline-item">
+                                            <a target="_blank"
+                                                href="https://twitter.com/share?url=#&amp;text={{ $product->name }}"
+                                                class="jssocials-share-link text-black fs-18">
+                                                <i class="bi bi-twitter fs-20"></i>
                                             </a>
                                         </li>
-                                        <li class="list-inline-item"> 
-                                            <a target="_blank" href="https://facebook.com/sharer/sharer.php?u=#" class="jssocials-share-link text-black fs-18">
-                                            <i class="bi bi-facebook fs-20"></i>
+                                        <li class="list-inline-item">
+                                            <a target="_blank" href="https://facebook.com/sharer/sharer.php?u=#"
+                                                class="jssocials-share-link text-black fs-18">
+                                                <i class="bi bi-facebook fs-20"></i>
                                             </a>
                                         </li>
-                                        <li class="list-inline-item"> 
-                                            <a target="_blank" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=#" class="jssocials-share-link text-black fs-18">
-                                            <i class="bi bi-linkedin fs-20"></i>
+                                        <li class="list-inline-item">
+                                            <a target="_blank"
+                                                href="https://www.linkedin.com/shareArticle?mini=true&amp;url=#"
+                                                class="jssocials-share-link text-black fs-18">
+                                                <i class="bi bi-linkedin fs-20"></i>
                                             </a>
                                         </li>
-                                        <li class="list-inline-item"> 
-                                            <a target="_self" href="whatsapp://send?text=#" class="jssocials-share-link text-black fs-18">
-                                            <i class="bi bi-whatsapp fs-20"></i>
+                                        <li class="list-inline-item">
+                                            <a target="_self" href="whatsapp://send?text=#"
+                                                class="jssocials-share-link text-black fs-18">
+                                                <i class="bi bi-whatsapp fs-20"></i>
                                             </a>
                                         </li>
                                     </ul>
                                 </div>
                             </div>
                             <div class="product-details-misc mb-4">
-                                {{$product->description}}
+                                {{ $product->description }}
                             </div>
 
                             @if ($product->is_backorder)
@@ -171,9 +195,11 @@
 
                                     @if ($product->is_trackingquantity)
                                         @if ($product->quantity)
-                                            <span class="badge badge-lg bg-success text-light rounded-pill"><small>On Stock: {{$product->quantity}}</small></span>
+                                            <span class="badge badge-lg bg-success text-light rounded-pill"><small>On
+                                                    Stock: {{ $product->quantity }}</small></span>
                                         @else
-                                            <span class="badge badge-lg bg-danger text-light rounded-pill"><small>Out of Stock</small></span>
+                                            <span class="badge badge-lg bg-danger text-light rounded-pill"><small>Out of
+                                                    Stock</small></span>
                                         @endif
                                     @endif
                                 </h4>
@@ -189,27 +215,36 @@
                                 </a>
                             </div>
                             -->
-                            {{-- else --}} 
+                            {{-- else --}}
 
                             @if (session('message'))
                                 <div class="text-success">
-                                    {{session('message')}}
+                                    {{ session('message') }}
                                 </div>
                             @endif
-                            <form action="{{route('cart.store')}}" method="post" class="my-3" name="cart_star_form" id="cart_star_form">
+                            <form action="{{ route('cart.store') }}" method="post" class="my-3"
+                                name="cart_star_form" id="cart_star_form">
                                 @csrf
 
-                                <input type="hidden" name="variant_attribute_value" id="variant_attribute_value" value="0">
+                                <input type="hidden" name="variant_attribute_value" id="variant_attribute_value"
+                                    value="0">
                                 @if (count($variants) > 0)
-                                    <div class="border-bottom variant-group" >
+                                    <div class="border-bottom variant-group">
                                         @foreach ($product->attribute() as $attribute)
                                             <div class="form-group" style="margin-bottom: 8px">
-                                                <label for="" class="control-label col-md-2">{{ $attribute->name }}</label>
+                                                <label for=""
+                                                    class="control-label col-md-2">{{ $attribute->name }}</label>
                                                 <div class="col-md-10">
                                                     <div class="btn-group" data-toggle="buttons" id="variants_group">
                                                         @foreach ($product->attributeValue($attribute->id) as $attributeValue)
-                                                            <label class="btn btn-default btn-sm" style="border: 1px solid grey">
-                                                                <input type="radio" id="attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}"  class="sm attribute-radio attribute{{ $attribute->id }}" value="{{ $attributeValue->id }}" > {{ $attributeValue->name }}
+                                                            <label class="btn btn-default btn-sm"
+                                                                style="border: 1px solid grey">
+                                                                <input type="radio"
+                                                                    id="attribute{{ $attribute->id }}"
+                                                                    name="attribute{{ $attribute->id }}"
+                                                                    class="sm attribute-radio attribute{{ $attribute->id }}"
+                                                                    value="{{ $attributeValue->id }}">
+                                                                {{ $attributeValue->name }}
                                                             </label>
                                                         @endforeach
                                                     </div>
@@ -219,15 +254,28 @@
                                     </div>
                                 @endif
 
-                                <input type="hidden" name="id_product" value="{{$product->id}}">
-                                <button type="submit" class="btn btn-primary shadow-md" {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }} id="add_to_cart_btn"> <div class="loader-container">Adding <div class="loader"></div></div> <div class="orginal-name">Add to Cart</div> </button>
-                                <button type="submit" formaction="{{route('cart.buy.now')}}" class="btn btn-success shadow-md" {{ $product->is_trackingquantity == 1 &&  $product->quantity < 1 || count($variants) > 0 ? 'disabled' : null }} id="buy_now_btn">Buy Now</button>
+                                <input type="hidden" name="id_product" value="{{ $product->id }}">
+                                <button type="submit" class="btn btn-primary shadow-md"
+                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
+                                    id="add_to_cart_btn">
+                                    <div class="loader-container">Adding <div class="loader"></div>
+                                    </div>
+                                    <div class="orginal-name">Add to Cart</div>
+                                </button>
+                                <button type="submit" formaction="{{ route('cart.buy.now') }}"
+                                    class="btn btn-success shadow-md"
+                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
+                                    id="buy_now_btn">Buy Now</button>
                             </form>
 
-                        </div><!--End .bg-white product card-->
+                        </div>
+                        <!--End .bg-white product card-->
                         <div class="show-model-specs">
-                        <div class="show-specs-btn d-none d-lg-block mb-3 text-uppercase fw-700 border p-3">Metal Weight</div>
-                        <a class="show-specs-btn d-lg-none mb-4 pb-2 d-block text-uppercase fw-700 card p-3" data-toggle="collapse" href="#showGold" role="button" aria-expanded="false" aria-controls="showGold">Metal Weight <span class="las la-angle-down"></span></a>
+                            <div class="show-specs-btn d-none d-lg-block mb-3 text-uppercase fw-700 border p-3">Metal
+                                Weight</div>
+                            <a class="show-specs-btn d-lg-none mb-4 pb-2 d-block text-uppercase fw-700 card p-3"
+                                data-toggle="collapse" href="#showGold" role="button" aria-expanded="false"
+                                aria-controls="showGold">Metal Weight <span class="las la-angle-down"></span></a>
                         </div>
 
                         <div class="collapse multi-collapse d-lg-block" id="showGold">
@@ -274,25 +322,36 @@
                                     </div>
                                 </div>
                             </div>
-                        </div><!--End showGold-->
-                    </div><!--End col-6 -->
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!--
+    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="cartDrawer"
+        aria-labelledby="cartDrawerLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="cartDrawerLabel">Cart</h5>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body cart-drawer-content py-6">
+        </div>
+    </div>
+
+
     @if (session('wishlist-message'))
-        <h4 class="text-center text-success">
-            {{session('wishlist-message')}}
-        </h4>
+        {{-- <h4 class="text-center text-success">
+            {{ session('wishlist-message') }}
+        </h4> --}}
     @endif
-    -->
 
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>    <script>
-
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script>
         var variants = [];
         $('.loader-container').hide();
 
@@ -300,14 +359,17 @@
             var ids = '{{ $variant->variant_attribute_value }}';
             ids = ids.split(',');
 
-            variants.push({id: ids.sort().join(','), price: '{{ $variant->variant_price }}'})
+            variants.push({
+                id: ids.sort().join(','),
+                price: '{{ $variant->variant_price }}'
+            })
         @endforeach
 
-        $('.attribute-radio').click(function () {
+        $('.attribute-radio').click(function() {
             var variantAttributeValue = [];
             var varaintAttributeCount = 0;
 
-            $('.variant-group').find('div.form-group').each(function (i, div) {
+            $('.variant-group').find('div.form-group').each(function(i, div) {
                 var name = $(div).find('input').attr('name')
                 var value = document.cart_star_form[name].value
                 varaintAttributeCount++;
@@ -320,7 +382,7 @@
                 $('#buy_now_btn, #add_to_cart_btn').removeAttr('disabled');
             }
 
-            variants.forEach(function (variant) {
+            variants.forEach(function(variant) {
                 if (variant.id == variantAttributeValue.sort().join(',')) {
                     $('#variant_attribute_value').val(variant.id)
                     $('#product_price').text('$' + variant.price / 100)
@@ -328,11 +390,11 @@
             })
         })
 
-        document.cart_star_form.onsubmit = function () {
+        document.cart_star_form.onsubmit = function() {
             var data = {};
             var formData = $('#cart_star_form').serializeArray();
 
-            formData.map(function (item) {
+            formData.map(function(item) {
                 data[item.name] = item.value;
             });
 
@@ -343,12 +405,26 @@
                 url: "{{ route('cart.store') }}",
                 method: 'post',
                 data: data,
-                success: function (data) {
+                success: function(data) {
+
                     setTimeout(() => {
                         $('.loader-container').hide();
                         $('.orginal-name').fadeIn();
 
-                        $('.cart-count').html('<span class="rounded-pill pill badge bg-primary text-light">' + data + '</span>');
+                        $.ajax({
+                            url: "{{ route('cart.count') }}",
+                            method: 'get',
+                            success: function(count) {
+                                $('.cart-count').html(
+                                    '<span class="rounded-pill pill badge bg-primary text-light">' +
+                                    count + '</span>');
+                            }
+                        });
+
+                        $('.cart-drawer-content').html(data);
+                        var cartDrawer = new bootstrap.Offcanvas(document.getElementById(
+                            'cartDrawer'));
+                        cartDrawer.show();
                     }, 1600);
                 }
             })
