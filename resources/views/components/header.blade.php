@@ -13,7 +13,7 @@
 
             <!-- left navbar-->
             <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item dropdown menu-area">
+                <li class="nav-item dropdown menu-area d-none">
                     <a class="nav-link" href="{{ route('index') }}">Home</a>
                 </li>
                 <li class="nav-item dropdown menu-area">
