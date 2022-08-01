@@ -33,7 +33,6 @@
             </div>
         </div>
     </div>
-    
 </section>
 <!--
 <section class="why-points top-content-container pt-4 pb-4">
