@@ -33,9 +33,21 @@
                                 </div>
                             </a>
                         </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('blog') }}">
+                                <div class="row">
+                                    <div class="col-auto"><i class="bi bi-book"></i></div>
+                                    <div class="col-auto w-80">
+                                        <div class="w-100">Browse our courses</div>
+                                        <div class="w-100">Learn how to create jewelry & start a business.</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </li>
+                        <!--
                         <li><a class="dropdown-item" href="{{ route('categoryAll') }}">Categories</a></li>
                         <li><a class="dropdown-item" href="{{ route('tagAll') }}">Tags</a></li>
-                        <li><a class="dropdown-item" href="#">Comments</a></li>
+                        -->
                     </ul>
                 </li>
                 @auth
