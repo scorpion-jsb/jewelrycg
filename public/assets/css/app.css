@@ -93,6 +93,7 @@ header ul.dropdown-menu.show a.dropdown-item {
 .dropdown-item:focus, .dropdown-item:hover {
     color: #000000
     background-color: #FFFFFF;
+    background:#FFFFFF;
     border-bottom:1px solid #cccccc;
 }
 header a.nav-link.active, header a.nav-link:hover {
