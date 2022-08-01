@@ -1,9 +1,6 @@
 <x-app-layout>
 
     <style>
-        .sta {
-            height: 150px;
-        }
 
         .pur {
             width: 100%;
@@ -17,25 +14,25 @@
     </x-slot>
 
     <div class="py-9">
-        <div class="row p-6">
-            <div class="col-md-4">
-                <div class="card sta">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">{{ $carts }} Products</h4>
                         <h6 class="card-subtitle mb-2 text-muted">in your cart</h6>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card sta">
+            <div class="col-lg-4">
+                <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">{{ $wishlists }} Products</h4>
                         <h6 class="card-subtitle mb-2 text-muted">in your wishlist</h6>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="card sta">
+            <div class="col-lg-4">
+                <div class="card">
                     <div class="card-body">
                         <h4 class="card-title">{{ $orders }} Products</h4>
                         <h6 class="card-subtitle mb-2 text-muted">you ordered</h6>
