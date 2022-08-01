@@ -83,6 +83,8 @@ header ul.dropdown-menu.show {
     padding: 0!important;
     border-radius: 10px !important;
     top: 60px;
+    overflow: hidden;
+    color: #CCCCCC !important;
 }
 header ul.dropdown-menu.show a.dropdown-item {
     padding: 15px 10px;
@@ -91,10 +93,9 @@ header ul.dropdown-menu.show a.dropdown-item {
     white-space: inherit;
 }
 .dropdown-item:focus, .dropdown-item:hover {
-    color: #000000
+    color: #000000 !important;
     background-color: #FFFFFF;
     background:#FFFFFF;
-    border-bottom:1px solid #cccccc;
 }
 header a.nav-link.active, header a.nav-link:hover {
     color: #0057ff !important;
