@@ -43,13 +43,13 @@
             </div>
         
         
-            <div class="card mx-6">
+            <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Your Purchases</h4>
-                    <div class="row px-6">
+                    <div class="row">
                         @foreach ($purchases as $good)
                             @foreach ($good->items as $item)
-                                <div class="col-md-2">
+                                <div class="col-lg-4">
                                     <div class="card">
                                         <div class="card-body">
                                             @if ($item->product_variant == 0)
