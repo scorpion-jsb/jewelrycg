@@ -1,10 +1,10 @@
 <x-app-layout :page-title="'Order ' . $order->id">
     <div class="container">
-        <div class="col-lg-8 col-md-10 py-8 mx-auto checkout-wrap">
-            <h1 class="fw-800">Thanks for shopping with us!</h1>
+        <div class="col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
+            <h1 class="fw-800 mb-3">Thanks for shopping with us!</h1>
             <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation
                 very soon!</p>
-            <div class="order-items-card border-bottom py-4 mb-4">
+            <div class="order-items-card border-bottom py-4 mb-5">
                 <div class="row">
                     <div class="col-lg-3 col-6 mb-2">
                         <div class="w-100 fs-18 fw-600">Order number</div>
@@ -82,7 +82,7 @@
                 </div>
             @endforeach
 
-            <div class="col-lg-4">
+            <div class="col-lg-4 mt-3">
                 <h5 class="fs-18 py-2 fw-600">Billing Address</h5>
                 @include('includes.validation-form')
                 <x-order-info :order="$order" />
