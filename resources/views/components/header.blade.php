@@ -23,11 +23,13 @@
                     <a class="nav-link dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">Learn</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item row" href="{{ route('blog') }}">
-                                <div class="col-4"><i class="bi bi-book"></i></div>
-                                <div class="col-8">
-                                    <div class="w-100">Blog</div>
-                                    <div class="w-100">Learn product design in just 16 weeks...</div>
+                            <a class="dropdown-item" href="{{ route('blog') }}">
+                                <div class="row">
+                                    <div class="col-4"><i class="bi bi-book"></i></div>
+                                    <div class="col-8">
+                                        <div class="w-100">Blog</div>
+                                        <div class="w-100">Learn product design in just 16 weeks...</div>
+                                    </div>
                                 </div>
                             </a>
                         </li>
