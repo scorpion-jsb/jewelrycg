@@ -1,5 +1,5 @@
 <x-app-layout page-title="My Informations">
-
+<div class="container py-9">
     @if (session('message'))
         <div class="row justify-content-center">
             <div class="card col-md-6 mb-3">
@@ -10,7 +10,7 @@
         </div>
     @endif
     
-    <div class="row m-3">
+    <div class="row">
         <x-user-info-main :user="$user" :edit='false'/>
     </div>
     
@@ -31,4 +31,5 @@
             </div>
         </div>
     @endcan
+</div>
 </x-app-layout>
