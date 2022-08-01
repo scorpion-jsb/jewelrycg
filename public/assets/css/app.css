@@ -218,9 +218,10 @@ button.navbar-toggler {
     display: inline-block;
 }
 .filter-categories .category.active a, .filter-categories .category a:hover {
-    background: #fff;
+    background: #0057ff;
     color: #000;
     font-weight: 500;
+    color: #ffffff;
 }
 /*Products*/
 .product-details-title {
