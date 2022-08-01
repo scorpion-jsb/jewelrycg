@@ -232,7 +232,7 @@ button.navbar-toggler {
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     border-radius: 50px;
-    background: rgba(0,0,0,0.5);
+    background: #000000;
     color: #fff;
     margin: 0 5px;
     padding: 16px 20px;
