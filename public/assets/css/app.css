@@ -255,6 +255,18 @@ button.navbar-toggler {
     width: 60px;
     height: 2px;
 }
+.lineLoader:after {
+    content: "";
+    height: 100%;
+    width: 100%;
+    display: block;
+    position: absolute;
+    top: 0;
+    background-color: #eeeeee;
+    -webkit-animation: dashanim-active-trscale 1s var(--easeoutcubic) infinite;
+    animation: dashanim-active-trscale 1s var(--easeoutcubic) infinite;
+    left: 0;
+}
 /* Footer */
 .footer .footer-logo {
     height:20px;
