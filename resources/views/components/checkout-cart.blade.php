@@ -1,11 +1,11 @@
 @foreach ($products as $key => $product)
-    <div class="cart-item">
+    <div class="cart-item mb-3">
         <div class="row">
-            <div class="col-2">
+            <div class="col-3">
                 <img src="{{ asset('uploads/all/' . $product->model->uploads->file_name) }}" alt=""
                     class="thumbnail border rounded w-100">
             </div>
-            <div class="col-8">
+            <div class="col-7">
                 <div class="item-meta mb-2">
                     @php
                         if (count($product->options)) {
@@ -15,21 +15,21 @@
                         }
                     @endphp
                 </div>
-                <div class="item-meta mb-2">Quanity {{ $product->qty }}</div>
+                <div class="item-meta mb-2"><span class="fw-800">Quantity:</span> {{ $product->qty }}</div>
             </div>
-            <div class="col-2">
+            <div class="col-2 text-right">
                 <span class="text-primary fw-800">${{ $product->price }}</span>
             </div>
         </div>
     </div>
 @endforeach
-<div class="cart-item">
+<div class="cart-item mb-3 pt-3">
     <div class="row">
         <div class="col-2">
-            <span class="fs-5">Shipping</span>
+            <span class="fw-800">Shipping</span>
         </div>
-        <div class="offset-md-8 col-md-2">
-            <span class="fs-5">
+        <div class="col-auto ml-auto text-right">
+            <span class="fw-800" id="shipping_price">
                 $@php
                     $shippingPrice = Session::get('shipping_price', 0);
                     echo number_format($shippingPrice / 100, 2);
@@ -38,13 +38,13 @@
         </div>
     </div>
 </div>
-<div class="cart-item">
+<div class="cart-item mb-3">
     <div class="row">
         <div class="col-2">
-            <span class="fs-5">Tax</span>
+            <span class="fw-800">Tax</span>
         </div>
-        <div class="offset-md-8 col-md-2">
-            <span class="fs-5">
+        <div class="col-auto ml-auto text-right">
+            <span class="fw-800" id="tax_price">
                 $@php
                     $taxPrice = 0;
                     foreach ($products as $product) {
@@ -56,14 +56,14 @@
         </div>
     </div>
 </div>
-<div class="cart-item">
+<div class="cart-item mb-3">
     <div class="row">
         <div class="col-2">
-            <span class="fs-5">Total</span>
+            <span class="fw-800">Total</span>
         </div>
-        <div class="offset-md-8 col-md-2">
+        <div class="col-auto ml-auto text-right">
             <span>
-                <span class="fs-5">
+                <span class="fw-800 text-primary" id="total_price">
                     ${{ number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) }}
                 </span>
             </span>

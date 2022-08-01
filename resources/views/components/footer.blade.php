@@ -93,3 +93,14 @@
         </div>
     </div>
 </footer>
+
+<div class="panel-cart">
+    <div class="panel-cart-header row">
+        <div class="col-6">Cart</div>
+        <div class="col-6 text-right">X</div>
+    </div>
+    <div class="panel-body">
+        <div class="btn btn-light w-100 rounded-0 p-6">View Cart</div>
+        <div class="btn btn-primary w-100 rounded-0 p-6">Checkout</div>
+    </div>
+</div>

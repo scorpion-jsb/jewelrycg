@@ -156,6 +156,7 @@ button.navbar-toggler {
 /* Hero */
 .hero-home {
     background: #000000;
+    color: #FFFFFF;
     border-bottom: 1px solid #eee;
     overflow: hidden;
     position: relative;
@@ -267,4 +268,15 @@ button.navbar-toggler {
     content: '';
     border: 0;
     vertical-align: -2px;
+}
+
+/* Panel Cart */
+.panel-cart {
+    display: none;
+    position: absolute;
+    right: 0;
+    height: 100vh;
+    top: 0;
+    background: #ffcc00;
+    z-index: 9999;
 }
