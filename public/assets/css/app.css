@@ -155,8 +155,8 @@ button.navbar-toggler {
 }
 /* Hero */
 .hero-home {
-    background: #000000;
-    color: #FFFFFF;
+    background: #FFFFFF;
+    color:#000000;
     border-bottom: 1px solid #eee;
     overflow: hidden;
     position: relative;
