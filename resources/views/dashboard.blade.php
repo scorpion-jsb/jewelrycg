@@ -41,43 +41,44 @@
                     </div>
                 </div>
             </div>
-        </div>
         
-        <div class="card mx-6">
-            <div class="card-body">
-                <h4 class="card-title">Your Purchases</h4>
-                <div class="row px-6">
-                    @foreach ($purchases as $good)
-                        @foreach ($good->items as $item)
-                            <div class="col-md-2">
-                                <div class="card">
-                                    <div class="card-body">
-                                        @if ($item->product_variant == 0)
-                                            <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}"
+        
+            <div class="card mx-6">
+                <div class="card-body">
+                    <h4 class="card-title">Your Purchases</h4>
+                    <div class="row px-6">
+                        @foreach ($purchases as $good)
+                            @foreach ($good->items as $item)
+                                <div class="col-md-2">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            @if ($item->product_variant == 0)
+                                                <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}"
+                                                    alt="" style="width: 100%;" class="mb-2">
+                                                <a href="{{ url('products/') . '/' . $item->product->slug }}">
+                                                    <h6>{{ $item->product_name }}</h6>
+                                                </a>
+                                            @else
+                                                <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}"
                                                 alt="" style="width: 100%;" class="mb-2">
-                                            <a href="{{ url('products/') . '/' . $item->product->slug }}">
-                                                <h6>{{ $item->product_name }}</h6>
+                                                <a href="{{ url('products/') . '/' . $item->product->slug }}">
+                                                    <h6>{{ $item->product_name }} - {{ $item->product_variant_name }}</h6>
+                                                </a>
+                                            @endif
+                                            <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
+                                                <i class="bi bi-download"></i> Download
                                             </a>
-                                        @else
-                                            <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}"
-                                            alt="" style="width: 100%;" class="mb-2">
-                                            <a href="{{ url('products/') . '/' . $item->product->slug }}">
-                                                <h6>{{ $item->product_name }} - {{ $item->product_variant_name }}</h6>
-                                            </a>
-                                        @endif
-                                        <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
-                                            <i class="bi bi-download"></i> Download
-                                        </a>
-                                        <button class="btn btn-danger pur">
-                                            <i class="bi bi-link"></i> Create Item
-                                        </button>
+                                            <button class="btn btn-danger pur">
+                                                <i class="bi bi-link"></i> Create Item
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
+                            @endforeach
                         @endforeach
-                    @endforeach
+                    </div>
                 </div>
             </div>
-        </div>
+        </div>    
     </div>
 </x-app-layout>
