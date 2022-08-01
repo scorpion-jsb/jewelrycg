@@ -15,7 +15,7 @@
                 </div>
             @endif
 
-            <div class="row m-3">
+            <div class="row">
                 <x-user-info-main :edit="true" :user="auth()->user()"/>
             </div>
             <div class="d-flex justify-content-end mt-3">
