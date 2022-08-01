@@ -139,7 +139,7 @@ button.navbar-toggler {
     transition: background-color 200ms ease, outline 200ms ease, color 200ms ease, box-shadow 200ms ease, -webkit-box-shadow 200ms ease;
     padding: 28px 45px 28px 55px;
     border-radius: 50px;
-    border: 1px solid #cccccc;
+    border: 1px solid #CCCCCC;
     outline: none;
     background-color: #f3f3f4;
     color: #0d0c22;
