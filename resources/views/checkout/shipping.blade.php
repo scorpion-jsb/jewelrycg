@@ -68,20 +68,19 @@
                         </div>
                     </div>
                 </div>
-            </div><!-- end row -->
-        </div><!-- end checkout-wrap -->
-    </div><!-- end container -->
+            </div>
+        </div>
+    </div>
     <script>
         $(function() {
-            var totalPrice = $('#total_td').find('div').text().split('$')[1] * 1 - $('#shipping_td').find('div')
-                .text().split('$')[1] * 1;
+            var totalPrice = $('#total_price').text().split('$')[1] * 1 - $('#shipping_price').text().split('$')[1] * 1;
 
             $('.shipping_option').click(function() {
                 var shippingPrice = $(this).attr('data-price');
 
-                $('#shipping_td').text(`$${shippingPrice}`);
+                $('#shipping_price').text(`$${shippingPrice}`);
 
-                $('#total_td').find('div').text(
+                $('#total_price').text(
                     `$${(Math.round((totalPrice + shippingPrice * 1) * 100) / 100).toFixed(2)}`);
             })
 

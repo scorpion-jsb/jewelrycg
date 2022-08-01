@@ -21,6 +21,7 @@
         <link rel="stylesheet" href="{{ asset('assets/css/checkout.css') }}">
 
         <!-- Scripts -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="{{ asset('js/app.js') }}" defer></script>
         {{ $scripts ?? null }}
         <script src="{{asset('js/func_util.js')}}" defer></script>

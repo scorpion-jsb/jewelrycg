@@ -25,7 +25,6 @@
                                         $status = 'Pending';
                                     }
                                 }
-                                
                                 echo $status;
                             @endphp
                         </div>
@@ -72,14 +71,13 @@
                                             File not available for download. Please contact support.
                                         @else
                                             <a href="javascript:;" id="product_download"
-                                                data-product-id="{{ $item->id }}">
+                                                data-product-id="{{ $item->product_id }}">
                                                 <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
                                         @endif
                                     @endif
                                 </div>
                             @endif
                         </div>
-                        <!--<div class="col-lg-2">${{ number_format($item->price / 100, 2) }}</div>-->
                     </div>
                 </div>
             @endforeach
@@ -89,7 +87,6 @@
                 @include('includes.validation-form')
                 <x-order-info :order="$order" />
             </div>
-
         </div>
 
         <script>

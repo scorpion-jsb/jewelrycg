@@ -66,8 +66,8 @@
                     </div>
                 </div>
             </form>
-        </div><!-- end checkout-wrap -->
-    </div><!-- end container -->
+        </div>
+    </div>
 
     <script src="https://js.stripe.com/v3/"></script>
     <script>
