@@ -87,7 +87,6 @@ header ul.dropdown-menu.show {
 }
 header ul.dropdown-menu.show a.dropdown-item {
     padding: 15px 10px;
-    min-width: 300px;
     float: left;
     white-space: inherit;
     color: #000000 !important;
@@ -99,6 +98,12 @@ header ul.dropdown-menu.show a.dropdown-item:focus, header ul.dropdown-menu.show
 }
 header a.nav-link.active, header a.nav-link:hover {
     color: #0057ff !important;
+}
+header ul.dropdown-menu.400px{
+    min-width: 300px;
+}
+header ul.dropdown-menu.600px{
+    min-width: 600px;
 }
 .dropdown-icon-wrap {
     padding: 10px;
