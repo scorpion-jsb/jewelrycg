@@ -41,7 +41,7 @@
         @endphp
         <div class="row border-bottom" id="item{{ $item->rowId }}">
             <div class="col-md-3">
-                <img src="{{ $product->getThumbnailFilePath() }}" alt="" class="product-thumbnail w-100">
+                <img src="{{ $product->getThumbnailFilePath() }}" alt="" class="product-thumbnail border w-100">
             </div>
             <div class="col-md-9">
                 <div class="d-flex justify-content-between">
@@ -50,7 +50,7 @@
                 </div>
                 <div class="py-4 d-flex justify-content-between">
                     <input type="number" class="product-quantity p-1" value="{{ $item->qty }}" data-row-id="{{ $item->rowId }}" style="width: 60px;">
-                    <span class="product-price">${{ $product->price / 100 }}</span>
+                    <span class="product-price d-none">${{ $product->price / 100 }}</span>
                     <span class="total-price">${{ $item->qty * $product->price / 100 }}</span>
                 </div>
             </div>
