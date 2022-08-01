@@ -16,7 +16,7 @@
         </h2>
     </x-slot>
 
-    <div style="overflow: hidden">
+    <div class="py-9">
         <div class="row p-6">
             <div class="col-md-4">
                 <div class="card sta">
