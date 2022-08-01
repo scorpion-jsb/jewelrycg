@@ -329,15 +329,12 @@
         </div>
     </section>
     {{-- data-bs-scroll="true" --}}
-    <div class="offcanvas offcanvas-end"  tabindex="-1" id="cartDrawer"
-        aria-labelledby="cartDrawerLabel">
-        <div class="offcanvas-header">
+    <div class="offcanvas offcanvas-end"  tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
+        <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title" id="cartDrawerLabel">Cart</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body cart-drawer-content py-6">
-        </div>
+        <div class="offcanvas-body cart-drawer-content py-6"></div>
     </div>
 
 
