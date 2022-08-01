@@ -34,7 +34,7 @@
       transition: 0.5s;
     }
 </style>
-<div class="container">
+
     @foreach ($items as $item)
         @php
             $product = $item->model;
@@ -64,7 +64,7 @@
         <a class="checkout" href="{{ url('/checkout') }}">Checkout</a>
       </div>
     </div>
-</div>
+
 
 <script>
     $(function() {
