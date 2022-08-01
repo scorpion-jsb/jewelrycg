@@ -328,8 +328,8 @@
             </div>
         </div>
     </section>
-
-    <div class="offcanvas offcanvas-end" data-bs-scroll="true" tabindex="-1" id="cartDrawer"
+    {{-- data-bs-scroll="true" --}}
+    <div class="offcanvas offcanvas-end"  tabindex="-1" id="cartDrawer"
         aria-labelledby="cartDrawerLabel">
         <div class="offcanvas-header">
             <h5 class="offcanvas-title" id="cartDrawerLabel">Cart</h5>
