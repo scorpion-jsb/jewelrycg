@@ -229,7 +229,7 @@
                                 <input type="hidden" name="variant_attribute_value" id="variant_attribute_value"
                                     value="0">
                                 @if (count($variants) > 0)
-                                    <div class="border-bottom variant-group">
+                                    <div class="variant-group mb-2">
                                         @foreach ($product->attribute() as $attribute)
                                             <div class="form-group" style="margin-bottom: 8px">
                                                 <label for=""
