@@ -59,7 +59,7 @@
                                 ${{ number_format($item->price / 100, 2) }}</div>
                             @if ($item->product->is_digital)
                                 <div class="is_downloadable fw-600 fs-16">
-                                    @if ($item->has('productVariant'))
+                                    @if ($item->productVariant)
                                         @if (!$item->productVariant->has('asset') || $item->productVariant->asset->file_name == 'none')
                                             File not available for download. Please contact support.
                                         @else
