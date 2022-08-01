@@ -1,4 +1,5 @@
 <x-app-layout page-title="Edit Password">
+<div class="py-9">
     <form action="{{route('user.update.password')}}" method="post">
         @csrf
         @method('patch')
@@ -22,4 +23,5 @@
             </div>
         </div>
     </form>
+</div>
 </x-app-layout>
