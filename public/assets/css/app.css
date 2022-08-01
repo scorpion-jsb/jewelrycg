@@ -51,7 +51,7 @@ header {
     -webkit-box-shadow: inset 0px -1px 0px #f3f3f4;
     box-shadow: inset 0px -1px 0px #f3f3f4;
     position: fixed !important;
-    z-index: 9999;
+    z-index: 1000;
     width: 100%;
 }
 header.home {
