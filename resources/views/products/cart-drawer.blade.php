@@ -35,7 +35,6 @@
     }
 </style>
 <div class="container">
-    <h3>Cart</h3>
     @foreach ($items as $item)
         @php
             $product = $item->model;
