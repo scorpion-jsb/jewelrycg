@@ -158,6 +158,7 @@ button.navbar-toggler {
     background: #FFFFFF;
     color:#000000;
     border-bottom: 1px solid #eee;
+    text-align: center;
     overflow: hidden;
     position: relative;
 }
