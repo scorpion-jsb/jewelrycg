@@ -241,7 +241,20 @@ button.navbar-toggler {
     height: 100%;
     width: 100%;
 }
-
+.lineLoader {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    opacity: 0;
+    -webkit-transition: opacity 0.4s var(--easeoutcubic);
+    transition: opacity 0.4s var(--easeoutcubic);
+    color: var(--line-loader-color, inherit);
+    width: 60px;
+    height: 2px;
+}
 /* Footer */
 .footer .footer-logo {
     height:20px;
