@@ -90,6 +90,11 @@ header ul.dropdown-menu.show a.dropdown-item {
     float: left;
     white-space: inherit;
 }
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #000000
+    background-color: #FFFFFF;
+    border-bottom:1px solid #cccccc;
+}
 header a.nav-link.active, header a.nav-link:hover {
     color: #0057ff !important;
 }
