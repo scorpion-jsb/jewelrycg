@@ -10,7 +10,7 @@
     -->
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 hero-content-container">
+            <div class="col-12 hero-content-container">
                 <div class="hero-categories filter-categories pb-4">
                     <ul class="mb-3">
                     <li class="category active"><a href="#">Explore</a></li>
@@ -20,7 +20,7 @@
                     </ul>
                 </div>
             </div> 
-            <div class="col-lg-6 mr-auto hero-content-container">
+            <div class="col-12 hero-content-container">
                 <h4 class="fs-20 pb-4 mb-0">The world's preferred source for Jewelry CG content</h4>
                 <h1 class="font-weight-bold pb-4 mb-0">Explore our vast collections of 3D models</h1>
                 <div class="search-form ml-auto mr-auto py-2">
