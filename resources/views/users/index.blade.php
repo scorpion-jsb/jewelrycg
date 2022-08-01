@@ -1,6 +1,6 @@
 <x-app-layout page-title="My Informations">
 <div class="container">
-    <div class="col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
+    <div class="col-xl-4 col-lg-6 col-md-8 py-9 mx-auto">
         @if (session('message'))
             <div class="row justify-content-center">
                 <div class="card col-md-6 mb-3">
