@@ -100,7 +100,7 @@ header a.nav-link.active, header a.nav-link:hover {
     color: #0057ff !important;
 }
 header ul.dropdown-menu.400px{
-    min-width: 300px;
+    min-width: 400px;
 }
 header ul.dropdown-menu.600px{
     min-width: 600px;
