@@ -60,7 +60,7 @@
                                 <div class="is_downloadable fw-600 fs-16">
                                     @if ($item->productVariant)
                                         @if (!$item->productVariant->has('asset') || $item->productVariant->asset->file_name == 'none')
-                                            File not available for download. Please contact support.
+                                            File unavailable. Please contact support.
                                         @else
                                             <a href="javascript:;" class="variant_download"
                                                 data-variant-id="{{ $item->product_variant }}">
