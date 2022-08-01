@@ -84,13 +84,13 @@ header ul.dropdown-menu.show {
     border-radius: 10px !important;
     top: 60px;
     overflow: hidden;
-    color: #CCCCCC !important;
 }
 header ul.dropdown-menu.show a.dropdown-item {
     padding: 15px 10px;
     min-width: 250px;
     float: left;
     white-space: inherit;
+    color: #555555 !important;
 }
 .dropdown-item:focus, .dropdown-item:hover {
     color: #000000 !important;
