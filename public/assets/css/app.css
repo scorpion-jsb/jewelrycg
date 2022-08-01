@@ -70,11 +70,12 @@ header a.nav-link {
     padding: 25px;
 }
 header ul.dropdown-menu.show {
+    -webkit-box-shadow: 0 0 13px 0 rgb(82 63 105 / 5%);
+    box-shadow: 0 0 13px 0 rgb(82 63 105 / 5%);
     border: 1px solid #eeeeee !important;
-    border-top: 0 !important;
     margin: 0 !important;
     padding: 0!important;
-    border-radius: 0 !important;
+    border-radius: 50% !important;
 }
 header ul.dropdown-menu.show a.dropdown-item {
     padding: 15px 10px;
