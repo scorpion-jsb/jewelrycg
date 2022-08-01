@@ -16,7 +16,6 @@
     <div class="card">
         <div class="card-body">
             <div class="row">
-                <div class="col-md-6">
                     <label for="address1">Address:</label>
                     <input {{ $edit ? null : 'disabled' }} type="text" name="address1" id="address1" value="{{ old('address1') ?? $user->address->address}}" placeholder="{{$user->address->address}}" class="form-control">
                     <br>        
@@ -25,8 +24,7 @@
                     <br>        
                     <label for="country">Country:</label>
                     <input {{ $edit ? null : 'disabled' }} type="text" name="country" id="country" value="{{ old('country') ?? $user->address->country}}" placeholder="{{$user->address->country}}" class="form-control">
-                </div>
-                <div class="col-md-6">
+                    <br> 
                     <label for="address2">Secondary Address:</label>
                     <input {{ $edit ? null : 'disabled' }} type="text" name="address2" id="address2" value="{{ old('address2') ?? $user->address->address2}}" placeholder="{{$user->address->address2}}" class="form-control">
                     <br>
@@ -35,7 +33,7 @@
                     <br>
                     <label for="pin_code">PIN Code:</label>
                     <input {{ $edit ? null : 'disabled' }} type="text" name="pin_code" id="pin_code" value="{{ old('pin_code') ?? $user->address->postal_code}}" placeholder="{{$user->address->postal_code}}" class="form-control">
-                </div>
+ 
             </div>
         </div>
     </div>
