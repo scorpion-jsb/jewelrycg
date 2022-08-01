@@ -78,7 +78,6 @@ header ul.dropdown-menu.show {
 }
 header ul.dropdown-menu.show a.dropdown-item {
     padding: 15px 10px;
-    border-bottom: 1px solid #eee;
 }
 header a.nav-link.active, header a.nav-link:hover {
     color: #0057ff !important;
