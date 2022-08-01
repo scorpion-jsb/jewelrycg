@@ -68,7 +68,7 @@
                                         @endif
                                     @else
                                         @if (!$item->product->digital->id)
-                                            File not available for download. Please contact support.
+                                            File unavailable. Please contact support.
                                         @else
                                             <a href="javascript:;" id="product_download"
                                                 data-product-id="{{ $item->product_id }}">
