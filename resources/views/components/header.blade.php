@@ -27,7 +27,7 @@
                                 <div class="row">
                                     <div class="col-auto"><i class="bi bi-book"></i></div>
                                     <div class="col-auto w-80">
-                                        <div class="w-100">Blog</div>
+                                        <div class="w-100 fw-800 mb-2">Blog</div>
                                         <div class="w-100">Learn product design in just 16 weeks...</div>
                                     </div>
                                 </div>
@@ -38,7 +38,7 @@
                                 <div class="row">
                                     <div class="col-auto"><i class="bi bi-book"></i></div>
                                     <div class="col-auto w-80">
-                                        <div class="w-100">Browse our courses</div>
+                                        <div class="w-100 fw-800 mb-2">Browse our courses</div>
                                         <div class="w-100">Learn how to create jewelry & start a business.</div>
                                     </div>
                                 </div>
