@@ -13,10 +13,10 @@
 
             <!-- left navbar-->
             <ul class="navbar-nav mb-2 mb-lg-0">
-                <li class="nav-item dropdown menu-area d-none">
+                <li class="nav-item menu-area d-none">
                     <a class="nav-link" href="{{ route('index') }}">Home</a>
                 </li>
-                <li class="nav-item dropdown menu-area">
+                <li class="nav-item menu-area">
                     <a class="nav-link active" href="{{ route('shop_index') }}">3D Models</a>
                 </li>
                 <li class="nav-item dropdown">
@@ -54,7 +54,7 @@
                         -->
                     </ul>
                 </li>
-                <li class="nav-item dropdown menu-area">
+                <li class="nav-item menu-area">
                     <a class="nav-link" href="#">Hire Designers</a>
                 </li>
             </ul>
