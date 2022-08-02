@@ -1,6 +1,15 @@
 <style>
     .file-manager-item {
         cursor: pointer;
+        align-items: center;
+    }
+
+    .file-manager-item>img {
+        width: 100px;
+    }
+
+    .file-manager-item>.card-body {
+        width: 100%;
     }
 
     .file-manager-item-checked>.check-option {
@@ -42,7 +51,7 @@
             <div class="check-option d-none">✔</div>
             <span class="file-created-at">{{ date('F d, Y, h:i:s A', strtotime($file->created_at)) }}</span>
             @if ($file->type != 'image')
-              <img src="{{ asset('assets/svg/brands/google-docs-icon.svg') }}" alt="" style="height: 150px;">
+              <img src="{{ asset('assets/svg/brands/google-docs-icon.svg') }}" alt="">
             @else
               <img src="{{ $file->getFileManagerThumbnailPath() }}" class="card-img-top img-thumbnail" alt="{{ $file->file_name }}">
             @endif
