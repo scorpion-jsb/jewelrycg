@@ -40,7 +40,7 @@
         @foreach ($products as $key => $product)
             <tr id="{{ $product->rowId }}">
                 <td>
-                    <a href="{{ route('products.show', $product->slug) }}" class="link-dark">
+                    <a href="{{ route('products.show', $product->model->slug) }}" class="link-dark">
                         <img src="{{ asset('uploads/all/' . $product->model->uploads->file_name) }}" alt=""
                             class="thumbnail" style="width: 80px;">
                         @php
@@ -62,7 +62,7 @@
                             }
                         @endphp
                         @if ($locale == 'wishlist')
-                            <div class="col-8" align="end">
+                            <div class="col-8">
                                 <form action="{{ route('cart.wishlist') }}" method="post" class="d-inline">
                                     @csrf
                                     @method('put')
@@ -106,15 +106,6 @@
                             {{ $product->qty }}
                         @endif
                     </td>
-                    {{-- <td>
-                        $@php
-                            if (count($product->options)) {
-                                echo number_format(($product->options->price * $product->qty * $product->model->taxPrice()) / 10000, 2);
-                            } else {
-                                echo number_format(($product->price * $product->qty * $product->model->taxPrice()) / 10000, 2);
-                            }
-                        @endphp
-                    </td> --}}
                     <td>
                         <div class="justify-content-between total-price">
                             $@php

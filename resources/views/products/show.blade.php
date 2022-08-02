@@ -15,7 +15,7 @@
                     <div class="col-lg-auto col-12 ml-auto p-0">
                         <div class="product-details-price mb-4">
                             <div class="w-100">
-                                <a class="btn btn-primary" id="product_price" href="#">
+                                <a class="btn btn-primary product_price" href="#">
                                     <i class="bi bi-cart-plus p-1"></i>
                                     @if (count($variants))
                                         ${{ $minPrice }} ~ ${{ $maxPrice }}
@@ -141,7 +141,7 @@
                                 </div>
                                 <div class="w-100">
                                     <div class="">
-                                        <strong class="h2 fw-400 text-black" id="product_price">
+                                        <strong class="h2 fw-400 text-black product_price">
                                             @if (count($variants))
                                                 ${{ $minPrice }} ~ ${{ $maxPrice }}
                                             @else
@@ -295,6 +295,7 @@
             </div>
         </div>
     </section>
+
     {{-- data-bs-scroll="true" --}}
     <div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
         <div class="offcanvas-header border-bottom">
@@ -332,7 +333,7 @@
             var varaintAttributeCount = 0;
 
             $('.variant-group').find('div.form-group').each(function(i, div) {
-                var name = $(div).find('input').attr('name')
+                var name = $(div).find('input').attr('name');
                 var value = document.cart_star_form[name].value
                 varaintAttributeCount++;
 
@@ -345,9 +346,11 @@
             }
 
             variants.forEach(function(variant) {
+
                 if (variant.id == variantAttributeValue.sort().join(',')) {
+                    console.log('----------------')
                     $('#variant_attribute_value').val(variant.id)
-                    $('#product_price').text('$' + variant.price / 100)
+                    $('.product_price').text('$' + variant.price / 100)
                 }
             })
         })
