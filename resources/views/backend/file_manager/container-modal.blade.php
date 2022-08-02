@@ -161,7 +161,7 @@
 
         $('#files_container').on('click', '.file-manager-item', function() {
             if (isRadio) {
-                $('#files_container').find('div').find('.file-manager-item').each(function(nIndex,
+                $('#files_container').find('div').find('div').find('.file-manager-item').each(function(nIndex,
                 item) {
                     if (id !== $(this).attr('data-id'))
                         $(this).removeClass('file-manager-item-checked');
@@ -199,7 +199,7 @@
         selected = selectedId;
         isRadio = !isCheck;
 
-        $('#files_container').find('div').find('.file-manager-item').each(function() {
+        $('#files_container').find('div').find('div').find('.file-manager-item').each(function() {
             $(this).removeClass('file-manager-item-checked');
         })
 

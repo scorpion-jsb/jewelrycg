@@ -36,20 +36,23 @@
 
 <div class="row">
     @foreach ($files as $file)
-        <div class="card col-md-3 p-4 file-manager-item" id="item{{ $file->id }}" data-id="{{ $file->id }}"
-            data-file-path="{{ $file->getFileFullPath() }}">
+    <div class="col-md-3">
+        <div class="card p-4 file-manager-item" id="item{{ $file->id }}" data-id="{{ $file->id }}"
+            data-file-path="{{ $file->getFileManagerThumbnailPath() }}">
             <div class="check-option d-none">✔</div>
             <span class="file-created-at">{{ date('F d, Y, h:i:s A', strtotime($file->created_at)) }}</span>
             @if ($file->type != 'image')
               <img src="{{ asset('assets/svg/brands/google-docs-icon.svg') }}" alt="" style="height: 150px;">
             @else
-              <img src="{{ $file->getFileFullPath() }}" class="card-img-top img-thumbnail" alt="{{ $file->file_name }}">
+              <img src="{{ $file->getFileManagerThumbnailPath() }}" class="card-img-top img-thumbnail" alt="{{ $file->file_name }}">
             @endif
             <div class="card-body">
                 <h5 class="card-title text-center">{{ $file->getOriginalFileFullName() }}</h5>
                 <span class="file-size">{{ $file->file_size }} KB</span>
             </div>
         </div>
+
+    </div>
     @endforeach
     <div id="pagination">
         {{ $files->links() }}

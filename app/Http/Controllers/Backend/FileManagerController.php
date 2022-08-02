@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Config;
 use App\Models\Upload;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
@@ -56,8 +57,12 @@ class FileManagerController extends Controller
 
     private $fileUploadPath = '';
 
+    private $fileManagerThumbnailWidth = 100;
+    private $fileManagerThumbnailSuffix = '';
+
     public function __construct() {
         $this->fileUploadPath = Config::get('constants.file_upload_path');
+        $this->fileManagerThumbnailSuffix = Config::get('constants.file_manager_thumbnail_suffix');
     }
 
     /**
@@ -113,6 +118,7 @@ class FileManagerController extends Controller
 
                 if($this->fileTypes[$extension] == 'image') {
                     try {
+                        // this is for the product thumbnail
                         $image = Image::make(public_path($this->fileUploadPath) . $fileName);
 
                         $thumbnailWidth = Config::get('constants.product_thumbnail_size.width');
@@ -124,6 +130,15 @@ class FileManagerController extends Controller
                         $image->save(public_path($this->fileUploadPath) . $hash . $suffix . '.' . $extension, 80);
                         clearstatcache();
 
+                        // this is for the file manager thumbnail
+                        $image = Image::make(public_path($this->fileUploadPath) . $fileName);
+
+                        $height = $this->fileManagerThumbnailWidth * $image->height() / $image->width();
+
+                        $image->resize($this->fileManagerThumbnailWidth, $height);
+
+                        $image->save(public_path($this->fileUploadPath) . $hash . $this->fileManagerThumbnailSuffix . '.' . $extension, 80);
+                        clearstatcache();
                     } catch (\Exception $e) {
                     }
                 }

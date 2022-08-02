@@ -27,4 +27,10 @@ class Upload extends Model
         return $this->file_original_name . "." . $this->extension;
     }
 
+    public function getFileManagerThumbnailPath() {
+        $filename = str_replace('.' . $this->extension, Config::get('constants.file_manager_thumbnail_suffix') . '.' . $this->extension, $this->file_name);
+
+        return asset(Config::get('constants.file_upload_path')) . '/' . $filename;
+    }
+
 }
