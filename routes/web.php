@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\BlogtagsController;
 use App\Http\Controllers\Backend\ProducttagsController;
 use App\Http\Controllers\Backend\AttributesController;
 use App\Http\Controllers\Backend\AttributesvaluesController;
+use App\Http\Controllers\backend\FileManagerController;
 use App\Http\Controllers\Backend\UploadController;
 
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
@@ -55,7 +56,9 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 	//uploads
 	Route::group(['prefix' => 'filemanager', 'as' => 'filemanager.'], function ()
 	{
-		Route::get('/', [UploadController::class, 'index'])->name('list');
+		Route::get('/', [FileManagerController::class, 'index'])->name('index');
+
+		Route::get('/remove', [UploadController::class, 'index'])->name('list');
 		Route::middleware('optimizeImages')->group(function () {
 			// all images will be optimized automatically
 			// Route::post('upload-images', 'UploadController@index');
@@ -69,6 +72,11 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::put('/update/{product}', [UploadController::class, 'update'])->name('update');
 		Route::get('/get', [UploadController::class, 'get'])->name('get');
 		Route::get('/getUploadedAssetsId', [UploadController::class, 'getUploadedAssetsId'])->name('getUploadedAssetsId');
+	});
+
+	Route::group(['prefix' => 'file-manager', 'as' => 'file-manager.'], function() {
+		Route::get('/', [FileManagerController::class, 'index'])->name('index');
+		Route::post('/store', [FileManagerController::class, 'store'])->name('store');
 	});
 
 	//products routes

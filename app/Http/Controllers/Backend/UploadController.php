@@ -15,9 +15,7 @@ use Image;
 
 class UploadController extends Controller
 {
-
-
-    public function index(Request $request){
+    public function index(Request $request) {
 
         $all_uploads = (auth()->user()->is_admin == 3) ? Upload::where('id_user',auth()->user()->id) : Upload::query();
         $search = null;

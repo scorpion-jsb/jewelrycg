@@ -69,7 +69,7 @@
                     <div class="card-body">
                         <!-- Gallery -->
                         <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-3">
-                            
+
                         </div>
                         <!-- End Gallery -->
 
@@ -99,7 +99,6 @@
                             <label for="name">Attributes values:</label>
                             <select name="values[]" id="product_attribute_values" value="" class="form-control select2"
                                 multiple="multiple" style="width: 100%;">
-                               
                             </select>
                         </div>
                         <div class="mb-4 text-right">
@@ -109,7 +108,6 @@
                         </div>
                     </div>
                     <div class="card-body" id="variantsbody" style="overflow-x: scroll ">
-                        
                     </div>
                 </div>
             </div>
@@ -306,6 +304,7 @@
                     </div>
                 </div>
                 <!-- End Card -->
+
             </div>
         </div>
 
@@ -333,8 +332,11 @@
         </div>
     </form>
 
+    <div id="fileManagerContainer"></div>
+
     <div id='ajaxCalls'>
     </div>
+
 @endsection
 
 @section('js_content')
@@ -362,8 +364,8 @@
             }
             $('#all_checks').val(createChecks);
         }
-        $('.select2').select2({
 
+        $('.select2').select2({
             tags: true,
             maximumSelectionLength: 10,
             tokenSeparators: [','],
@@ -394,19 +396,63 @@
                     }
                 })
             }
-            // getVariants($('#availabilitySwitch1').prop('checked') * 1);
-
         })
 
         $('#availabilitySwitch5').click(function () {
             var isTrackQuantity = $('#availabilitySwitch5').prop('checked');
 
             if (!isTrackQuantity) {
-                // $('#quantity').val(0);
                 $('#quantity').attr('disabled', 'true');
             } else {
                 $('#quantity').removeAttr('disabled');
             }
         })
+
+        $('#getFileManagerForProducts').click(function () {
+            $.ajax({
+                url: "{{ route('backend.file-manager.index') }}",
+                success: function (data) {
+                    if (!$.trim($('#fileManagerContainer').html()))
+                        $('#fileManagerContainer').html(data);
+
+                    $('#fileManagerModal').modal('show');
+
+                    const getSelectedItem = function (selectedId, filePath) {
+                        $('#fancyboxGallery').empty();
+
+                        createChecks = selectedId;
+                        $('#all_checks').val(createChecks);
+
+                        selectedId.map(function (id, i) {
+                            $('#fancyboxGallery').prepend(productImageDiv(id, filePath[i]));
+                        });
+                    }
+
+                    setSelectedItemsCB(getSelectedItem, createChecks);
+                }
+            })
+        });
+
+        var digital_download_assets = [];
+        $('#getFileManagerModel').click(function () {
+            $.ajax({
+                url: "{{ route('backend.file-manager.index') }}",
+                success: function (data) {
+                    if (!$.trim($('#fileManagerContainer').html()))
+                        $('#fileManagerContainer').html(data);
+
+                    $('#fileManagerModal').modal('show');
+
+                    const getSelectedItem = function (selectedId, filePath) {
+
+                        digital_download_assets = selectedId;
+                        $('#digital_download_assets').val(digital_download_assets);
+                    }
+
+                    setSelectedItemsCB(getSelectedItem, digital_download_assets, false);
+                }
+            })
+        });
+
     </script>
 @endsection
