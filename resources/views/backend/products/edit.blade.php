@@ -529,5 +529,24 @@
             })
         });
 
+        $('#getFileManagerAsset').click(function () {
+            $.ajax({
+                url: "{{ route('backend.file.index') }}",
+                success: function (data) {
+                    if (!$.trim($('#fileManagerContainer').html()))
+                        $('#fileManagerContainer').html(data);
+
+                    $('#fileManagerModal').modal('show');
+
+                    const getSelectedItem = function (selectedId, filePath) {
+
+                        $('#digital_download_assets').val(selectedId);
+                    }
+
+                    setSelectedItemsCB(getSelectedItem, $('#digital_download_assets').val() == '' ? [] : [$('#digital_download_assets').val()], false);
+                }
+            })
+        });
+
     </script>
 @endsection
