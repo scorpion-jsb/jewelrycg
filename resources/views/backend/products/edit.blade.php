@@ -412,12 +412,14 @@
 
     </form>
 
+    <div id="fileManagerContainer"></div>
+
     <div id='ajaxCalls'>
     </div>
 @endsection
 @section('js_content')
     <script>
-        var createChecks = $('#all_checks').val().split(",");
+        var createChecks = $('#all_checks').val() === '' ? [] : $('#all_checks').val().split(",");
 
         function removepreviewappended(id) {
             createChecks = jQuery.grep(createChecks, function(value) {
@@ -480,6 +482,52 @@
                 $('#quantity').removeAttr('disabled');
             }
         })
+
+        $('#getFileManagerForProducts').click(function () {
+            $.ajax({
+                url: "{{ route('backend.file-manager.index') }}",
+                success: function (data) {
+                    if (!$.trim($('#fileManagerContainer').html()))
+                        $('#fileManagerContainer').html(data);
+
+                    $('#fileManagerModal').modal('show');
+
+                    const getSelectedItem = function (selectedId, filePath) {
+                        $('#fancyboxGallery').empty();
+
+                        createChecks = selectedId;
+                        $('#all_checks').val(createChecks);
+
+                        selectedId.map(function (id, i) {
+                            $('#fancyboxGallery').prepend(productImageDiv(id, filePath[i]));
+                        });
+                    }
+
+                    setSelectedItemsCB(getSelectedItem, createChecks);
+                }
+            })
+        });
+
+        var digital_download_assets = [];
+        $('#getFileManagerModel').click(function () {
+            $.ajax({
+                url: "{{ route('backend.file-manager.index') }}",
+                success: function (data) {
+                    if (!$.trim($('#fileManagerContainer').html()))
+                        $('#fileManagerContainer').html(data);
+
+                    $('#fileManagerModal').modal('show');
+
+                    const getSelectedItem = function (selectedId, filePath) {
+
+                        digital_download_assets = selectedId;
+                        $('#fileManagerModelId').val(digital_download_assets);
+                    }
+
+                    setSelectedItemsCB(getSelectedItem, digital_download_assets, false);
+                }
+            })
+        });
 
     </script>
 @endsection

@@ -1,16 +1,11 @@
 @foreach ($files as $file)
-    <div class="col mb-3 mb-lg-5"
-        onclick="
+    <div class="col mb-3 mb-lg-5" onclick="
 @if ($is_product) return selectFileFromManagerMultiple({{ $file->id }}, '{{ url('uploads/all') }}/{{ $file->file_name }}')
 @elseif($is_model)
 return selectFileFromManagerModel({{ $file->id }});
 @else
-return selectFileFromManager({{ $file->id }}, '{{ url('uploads/all') }}/{{ $file->file_name }}') @endif
-">
-        <!-- Card -->
-        <div id="file-{{ $file->id }}"
-            class="card card-sm card-hover-shadow card-header-borderless h-100 text-center 
-@if (isset($selected) && in_array($file->id, $selected)) selected @endif
+return selectFileFromManager({{ $file->id }}, '{{ url('uploads/all') }}/{{ $file->file_name }}') @endif ">
+        <div id="file-{{ $file->id }}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center @if (isset($selected) && in_array($file->id, $selected)) selected @endif
 ">
             <div class="card-header card-header-content-between border-0">
                 <span class="small">{{ $file->file_size }}kb</span>
@@ -25,7 +20,6 @@ return selectFileFromManager({{ $file->id }}, '{{ url('uploads/all') }}/{{ $file
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="filesGridDropdown1"
                         style="min-width: 13rem;">
                         <span class="dropdown-header">Settings</span>
-
                         <a class="dropdown-item" href="#">
                             <i class="bi-share dropdown-item-icon"></i> Share file
                         </a>
@@ -41,9 +35,7 @@ return selectFileFromManager({{ $file->id }}, '{{ url('uploads/all') }}/{{ $file
                         <a class="dropdown-item" href="#">
                             <i class="bi-download dropdown-item-icon"></i> Download
                         </a>
-
                         <div class="dropdown-divider"></div>
-
                         <a class="dropdown-item" href="#">
                             <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
                         </a>
