@@ -52,7 +52,7 @@
                     </div>
                     <div class="tab-pane fade" id="file_upload_tab" role="tabpanel" aria-labelledby="file_upload">
                         <div class="p-4">
-                            <form method="post" action="{{ route('backend.file-manager.store') }}"
+                            <form method="post" action="{{ route('backend.file.store') }}"
                                 enctype="multipart/form-data" class="mb-0" name="file_upload_form">
                                 <div class="form-group">
                                     <input type="file" name="file_upload_input" id="file_upload_input">
@@ -106,7 +106,7 @@
                 $('.upload-btn').attr('disable', true);
 
                 $.ajax({
-                    url: "{{ route('backend.file-manager.store') }}",
+                    url: "{{ route('backend.file.store') }}",
                     type: 'post',
                     data: formData,
                     processData: false, // tell jQuery not to process the data
@@ -125,7 +125,7 @@
             return false;
         }
 
-        var url = "{{ route('backend.file-manager.index') . '?page=1' }}";
+        var url = "{{ route('backend.file.index') . '?page=1' }}";
 
         $('.files-placeholder').hide();
         const loadFiles = function() {
