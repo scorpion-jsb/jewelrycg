@@ -57,19 +57,6 @@
                 <li class="nav-item dropdown menu-area">
                     <a class="nav-link" href="#">Hire Designers</a>
                 </li>
-                @auth
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">{{ Auth::user()->first_name }}</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
-                        <li><a class="dropdown-item" href="{{route('user.index', auth()->user()->id)}}">My Info</a></li>
-                        <li><a class="dropdown-item" href="{{route('orders.index')}}">{{ auth()->user()->is_admin ? 'All Orders' : 'My Orders' }}</a></li>
-                        <li><a class="dropdown-item" href="{{route('cart.wishlist')}}">My Wishlist</a></li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
-                    </ul>
-                </li>
-                @endauth
             </ul>
             <!-- end left navbar-->
 
@@ -96,9 +83,18 @@
                         </span>
                     </a>
                 </li>
-
                 @auth
-
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">{{ Auth::user()->first_name }}</a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
+                        <li><a class="dropdown-item" href="{{route('user.index', auth()->user()->id)}}">My Info</a></li>
+                        <li><a class="dropdown-item" href="{{route('orders.index')}}">{{ auth()->user()->is_admin ? 'All Orders' : 'My Orders' }}</a></li>
+                        <li><a class="dropdown-item" href="{{route('cart.wishlist')}}">My Wishlist</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item" href="{{ route('logout') }}">Logout</a></li>
+                    </ul>
+                </li>
                 @else
                 <li class="nav-item ml-1">
                     <a class="auth-btn" href="{{ route('login') }}">Log In</a>  
