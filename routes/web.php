@@ -74,7 +74,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/getUploadedAssetsId', [UploadController::class, 'getUploadedAssetsId'])->name('getUploadedAssetsId');
 	});
 
-	Route::group(['prefix' => 'file-manager', 'as' => 'file-manager.'], function() {
+	Route::group(['prefix' => 'file', 'as' => 'file.'], function() {
 		Route::get('/', [FileManagerController::class, 'index'])->name('index');
 		Route::post('/store', [FileManagerController::class, 'store'])->name('store');
 	});
@@ -268,7 +268,7 @@ Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy
 Route::group(['middleware' => 'auth'], function ()
 {
 	Route::get('/product/download', [ProductController::class, 'download'])->name('download');
-	
+
 	Route::group(['prefix' => 'email/verify', 'as' => 'verification.', 'controller' => VerifyEmailController::class ], function ()
 	{
 		Route::get('/', 'emailVerificationNotice')->name('notice');
