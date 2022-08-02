@@ -14,8 +14,8 @@
             <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                 aria-label="Quantity: activate to sort column ascending">Photo</th>
             @if ($isDigital)
-                <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
-                    aria-label="Quantity: activate to sort column ascending">Digital</th>
+                <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1"
+                    colspan="1" aria-label="Quantity: activate to sort column ascending">Digital</th>
             @endif
             <th class="table-column-ps-0 sorting_disabled" rowspan="1" colspan="1" aria-label=""></th>
         </tr>
@@ -25,7 +25,7 @@
             @php
                 $current_name = '';
                 $attributes_ids = '';
-                $variants_ids = '';              
+                $variants_ids = '';
             @endphp
             @if (!isset($variant->id))
                 @php
@@ -45,8 +45,11 @@
             @endif
 
             <tr role="row" class="odd" id="variantproduct-{{ $k }}">
-                <input type="hidden" name="variant[{{ $k }}][id]" @if (isset($variant->id)) value="{{ $variant->id }}" @else value="0" @endif id="variant_id_{{ str_replace(',', '_', $variants_ids) }}">
-                <input type="hidden" name="variant[{{ $k }}][variant_attribute_value]" @if (isset($variant->variant_attribute_value)) value="{{ $variant->variant_attribute_value }}" @else value="{{ $variants_ids }}" @endif>
+                <input type="hidden" name="variant[{{ $k }}][id]"
+                    @if (isset($variant->id)) value="{{ $variant->id }}" @else value="0" @endif
+                    id="variant_id_{{ str_replace(',', '_', $variants_ids) }}">
+                <input type="hidden" name="variant[{{ $k }}][variant_attribute_value]"
+                    @if (isset($variant->variant_attribute_value)) value="{{ $variant->variant_attribute_value }}" @else value="{{ $variants_ids }}" @endif>
 
                 <th class="table-column-ps-0">
                     @if (isset($variant->variant_name))
@@ -62,14 +65,18 @@
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="min-width: 7rem;">
                         <div class="input-group-prepend input-group-text">USD</div>
-                        <input type="text" class="form-control" id="variant_price_{{ str_replace(',', '_', $variants_ids) }}" name="variant[{{ $k }}][variant_price]"
+                        <input type="text" class="form-control"
+                            id="variant_price_{{ str_replace(',', '_', $variants_ids) }}"
+                            name="variant[{{ $k }}][variant_price]"
                             @if (isset($variant->variant_price)) value='{{ $variant->variant_price }}' @else value='0' @endif>
                     </div>
                 </th>
                 <th class="table-column-ps-0">
                     <div class="input-group input-group-merge" style="width: 11rem;">
                         <div class="input-group-prepend input-group-text">SKU</div>
-                        <input type="text" class="form-control" id="variant_sku_{{ str_replace(',', '_', $variants_ids) }}" name="variant[{{ $k }}][variant_sku]"
+                        <input type="text" class="form-control"
+                            id="variant_sku_{{ str_replace(',', '_', $variants_ids) }}"
+                            name="variant[{{ $k }}][variant_sku]"
                             @if (isset($variant->variant_sku)) value='{{ $variant->variant_sku }}' @endif>
                     </div>
                 </th>
@@ -80,7 +87,8 @@
                         <div class="js-quantity-counter-input row align-items-center">
                             <div class="col">
                                 <input class="js-result form-control form-control-quantity-counter" type="text"
-                                    name="variant[{{ $k }}][variant_quantity]" id="variant_quantity_{{ str_replace(',', '_', $variants_ids) }}"
+                                    name="variant[{{ $k }}][variant_quantity]"
+                                    id="variant_quantity_{{ str_replace(',', '_', $variants_ids) }}"
                                     @if (isset($variant->variant_quantity)) value='{{ $variant->variant_quantity }}' @else value="1" @endif>
                             </div>
                             <!-- End Col -->
@@ -111,8 +119,10 @@
                 </th>
                 <th class="table-column-ps-0">
                     <a href='javascript:;' onclick="fileSelect({{ $k }})"> select </a>
-                    <input type="hidden" name="variant[{{ $k }}][variant_thumbnail]" class="variant_thumbnail_{{ str_replace(',', '_', $variants_ids) }}"
-                        id="variant-{{ $k }}-thumbnail" @if (isset($variant->variant_thumbnail)) value='{{ $variant->variant_thumbnail }}' @endif>
+                    <input type="hidden" name="variant[{{ $k }}][variant_thumbnail]"
+                        class="variant_thumbnail_{{ str_replace(',', '_', $variants_ids) }}"
+                        id="variant-{{ $k }}-thumbnail"
+                        @if (isset($variant->variant_thumbnail)) value='{{ $variant->variant_thumbnail }}' @endif>
                     <div id="selected_{{ $k }}_image" class="selected-image">
                         {{-- @php
                             if (isset($variant->variant_thumbnail)) {
@@ -122,12 +132,14 @@
                     </div>
                 </th>
                 @if ($isDigital)
-                <th class="table-column-ps-0" style="text-align: center;">
-                    <a href='javascript:;' onclick="assetSelect({{ $k }})" > upload </a><br/><br/>
-                    <input type="hidden" name="variant[{{ $k }}][digital_download_assets]" class="variant_asset_{{ str_replace(',', '_', $variants_ids) }}"
-                        id="variant-{{ $k }}-assets" @if (isset($variant->digital_download_assets)) value='{{ $variant->digital_download_assets }}' @endif>
+                    <th class="table-column-ps-0" style="text-align: center;">
+                        <a href='javascript:;' onclick="assetSelect({{ $k }})"> upload </a><br /><br />
+                        <input type="hidden" name="variant[{{ $k }}][digital_download_assets]"
+                            class="variant_asset_{{ str_replace(',', '_', $variants_ids) }}"
+                            id="variant-{{ $k }}-assets"
+                            @if (isset($variant->digital_download_assets)) value='{{ $variant->digital_download_assets }}' @endif>
                         <div id="selected_{{ $k }}_asset" class="selected-asset">
-                            @php                        
+                            @php
                                 if (isset($variant->digital_download_assets)) {
                                     echo '<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="width: 60px;"><br/>' . $variant->asset->file_original_name . '.' . $variant->asset->extension;
                                 }
@@ -173,7 +185,8 @@
                     </li>
                 </ul>
                 <div class="tab-content" id="TabContent">
-                    <div class="tab-pane fade show active" id="media" role="tabpanel" aria-labelledby="media-tab">
+                    <div class="tab-pane fade show active" id="media" role="tabpanel"
+                        aria-labelledby="media-tab">
                         <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="file_container">
                         </div>
                     </div>
@@ -195,8 +208,7 @@
                                     style="display: none">
                             </div>
                         </div>
-                        <span class="btn btn-success btn-sm" id="browse"
-                            onclick='return upload()'>Upload</span>
+                        <span class="btn btn-success btn-sm" id="browse" onclick='return upload()'>Upload</span>
                         <!-- End Dropzone -->
                     </div>
                 </div>
@@ -206,7 +218,7 @@
 </div>
 
 <div class="modal fade" id="product_asset_modal" tabindex="-1" aria-labelledby="uploadFilesModalLabel"
-aria-hidden="true">
+    aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -226,8 +238,10 @@ aria-hidden="true">
                     </li>
                 </ul>
                 <div class="tab-content" id="TabContent">
-                    <div class="tab-pane fade show active" id="media" role="tabpanel" aria-labelledby="media-tab">
-                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4" id="file_asset_container">
+                    <div class="tab-pane fade show active" id="media" role="tabpanel"
+                        aria-labelledby="media-tab">
+                        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4"
+                            id="file_asset_container">
                         </div>
                     </div>
                     <div class="tab-pane fade show" id="upload" role="tabpanel" aria-labelledby="upload-tab">
@@ -262,97 +276,144 @@ aria-hidden="true">
 <script>
     var selectedId = 0;
 
+    // function fileSelect(i) {
+    //     selectedId = i;
+
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    //         }
+    //     });
+
+    //     jQuery.ajax({
+    //         url: "{{ url('backend/filemanager/files') }}",
+    //         method: 'get',
+    //         success: function(files) {
+    //             $('#file_container').html('');
+    //             files = files.files;
+    //             var assets = "{{ asset('/uploads/all') }}";
+    //             $('#file_container').html('');
+
+    //             var selectedValue = $(`#variant-${selectedId}-thumbnail`).val();
+
+    //             for (var i = 0; i < files.length; i++) {
+    //                 console.log(files[i].type)
+    //                 var content = ``;
+
+
+    //                 content = `<div class="col mb-3 mb-lg-5">
+    //                     <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id ? 'selected' : ''} ">
+    //                         <div class="card-header card-header-content-between border-0">
+    //                             <span class="small">${files[i].file_size}kb</span>
+    //                             <!-- Dropdown -->
+    //                             <div class="dropdown">
+    //                                 <div class="dropdown-menu dropdown-menu-end"
+    //                                     aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
+    //                                     <span class="dropdown-header">Settings</span>
+
+    //                                     <a class="dropdown-item" href="#">
+    //                                         <i class="bi-share dropdown-item-icon"></i> Share file
+    //                                     </a>
+    //                                     <a class="dropdown-item" href="#">
+    //                                         <i class="bi-folder-plus dropdown-item-icon"></i> Move to
+    //                                     </a>
+    //                                     <a class="dropdown-item" href="#">
+    //                                         <i class="bi-star dropdown-item-icon"></i> Add to stared
+    //                                     </a>
+    //                                     <a class="dropdown-item" href="#">
+    //                                         <i class="bi-pencil dropdown-item-icon"></i> Rename
+    //                                     </a>
+    //                                     <a class="dropdown-item" href="#">
+    //                                         <i class="bi-download dropdown-item-icon"></i> Download
+    //                                     </a>
+
+    //                                     <div class="dropdown-divider"></div>
+
+    //                                     <a class="dropdown-item" href="#">
+    //                                         <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
+    //                                     </a>
+    //                                     <a class="dropdown-item" href="#">
+    //                                         <i class="bi-trash dropdown-item-icon"></i> Delete
+    //                                     </a>
+    //                                 </div>
+    //                             </div>
+    //                             <!-- End Dropdown -->
+    //                         </div>
+    //                     <div class="card-body">` +
+    //                     (files[i].type == 'image' ?
+    //                         `<img class="avatar-xxl"
+    //                                 src="{{ url('uploads/all') }}/${files[i].file_name}"
+    //                                 alt="Image Description">` :
+    //                         `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`
+    //                         ) +
+    //                     `</div><div class="card-body">
+    //                             <h5 class="card-title"><label><input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
+    //                             <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
+    //                         </div>
+    //                     </div></div>`
+
+    //                 $('#file_container').append(content);
+    //             }
+
+    //             $('#product_file_modal').modal('show');
+    //         }
+    //     });
+
+    //     $('#file_container').on('click', '#product_image', function() {
+    //         var assets = "{{ asset('/uploads/all') }}";
+
+    //         $(`#selected_${selectedId}_image`).html(
+    //             `<img src='${assets}/${$(this).val()}' style='width: 150px;height: 100px;'/>`);
+    //         $(`#variant-${selectedId}-thumbnail`).val($(this).attr('data-file-id'));
+    //     });
+    // }
+
     function fileSelect(i) {
         selectedId = i;
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        });
+        $.ajax({
+            url: "{{ route('backend.file.index') }}",
+            success: function(data) {
+                if (!$.trim($('#fileManagerContainer').html()))
+                    $('#fileManagerContainer').html(data);
 
-        jQuery.ajax({
-            url: "{{ url('backend/filemanager/files') }}",
-            method: 'get',
-            success: function(files) {
-                $('#file_container').html('');
-                files = files.files;
-                var assets = "{{ asset('/uploads/all') }}";
-                $('#file_container').html('');
+                $('#fileManagerModal').modal('show');
 
                 var selectedValue = $(`#variant-${selectedId}-thumbnail`).val();
 
-                for (var i = 0; i < files.length; i++) {
-                    console.log(files[i].type)
-                    var content = ``;
-
-
-                    content = `<div class="col mb-3 mb-lg-5">
-                        <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id ? 'selected' : ''} ">
-                            <div class="card-header card-header-content-between border-0">
-                                <span class="small">${files[i].file_size}kb</span>
-                                <!-- Dropdown -->
-                                <div class="dropdown">
-                                    <div class="dropdown-menu dropdown-menu-end"
-                                        aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
-                                        <span class="dropdown-header">Settings</span>
-
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bi-share dropdown-item-icon"></i> Share file
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bi-folder-plus dropdown-item-icon"></i> Move to
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bi-star dropdown-item-icon"></i> Add to stared
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bi-pencil dropdown-item-icon"></i> Rename
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bi-download dropdown-item-icon"></i> Download
-                                        </a>
-
-                                        <div class="dropdown-divider"></div>
-
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
-                                        </a>
-                                        <a class="dropdown-item" href="#">
-                                            <i class="bi-trash dropdown-item-icon"></i> Delete
-                                        </a>
-                                    </div>
-                                </div>
-                                <!-- End Dropdown -->
-                            </div>
-                        <div class="card-body">`
-                            +
-                            (files[i].type == 'image' ? 
-                                    `<img class="avatar-xxl"
-                                    src="{{ url('uploads/all') }}/${files[i].file_name}"
-                                    alt="Image Description">` : 
-                                    `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`)
-                            + 
-                            `</div><div class="card-body">
-                                <h5 class="card-title"><label><input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
-                                <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
-                            </div>
-                        </div></div>`
-
-                    $('#file_container').append(content);
+                const getSelectedItem = function(selectedIdP, filePath) {
+                    $(`#variant-${selectedId}-thumbnail`).val(selectedIdP);
+                    $(`#selected_${selectedId}_image`).html(`<img src='${filePath}' style='width: 150px;height: 100px;'/>`);
                 }
 
-                $('#product_file_modal').modal('show');
+                setSelectedItemsCB(getSelectedItem, [selectedValue], false);
             }
-        });
-
-        $('#file_container').on('click', '#product_image', function() {
-            var assets = "{{ asset('/uploads/all') }}";
-
-            $(`#selected_${selectedId}_image`).html(`<img src='${assets}/${$(this).val()}' style='width: 150px;height: 100px;'/>`);
-            $(`#variant-${selectedId}-thumbnail`).val($(this).attr('data-file-id'));
-        });
+        })
     }
+
+    function assetSelect(i) {
+        selectedId = i;
+
+        $.ajax({
+            url: "{{ route('backend.file.index') }}",
+            success: function(data) {
+                if (!$.trim($('#fileManagerContainer').html()))
+                    $('#fileManagerContainer').html(data);
+
+                $('#fileManagerModal').modal('show');
+
+                var selectedValue = $(`#variant-${selectedId}-assets`).val();
+
+                const getSelectedItem = function(selectedIdP, filePath) {
+                    $(`#variant-${selectedId}-assets`).val(selectedIdP);
+                    $(`#selected_${selectedId}_asset`).html('<img src="{{ asset("/assets/svg/brands/google-docs-icon.svg") }}" alt="" style="width: 60px;">');
+                }
+
+                setSelectedItemsCB(getSelectedItem, [selectedValue], false);
+            }
+        })
+    }
+
 
     function upload() {
         uploadAjax(0, 1, " ");
@@ -361,97 +422,98 @@ aria-hidden="true">
         }, 500);
     }
 
-    function assetSelect(i) {
-        selectedId = i;
+    // function assetSelect(i) {
+    //     selectedId = i;
 
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            }
-        });
+    //     $.ajaxSetup({
+    //         headers: {
+    //             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+    //         }
+    //     });
 
 
-        jQuery.ajax({
-            url: "{{ url('backend/filemanager/files') }}",
-            method: 'get',
-            success: function(files) {
-                files = files.files;
-                var assets = "{{ asset('/uploads/all') }}";
-                $('#file_container').html('');
+    //     jQuery.ajax({
+    //         url: "{{ url('backend/filemanager/files') }}",
+    //         method: 'get',
+    //         success: function(files) {
+    //             files = files.files;
+    //             var assets = "{{ asset('/uploads/all') }}";
+    //             $('#file_container').html('');
 
-                var selectedValue = $(`#variant-${selectedId}-thumbnail`).val();
-                $('#file_asset_container').html('');
+    //             var selectedValue = $(`#variant-${selectedId}-thumbnail`).val();
+    //             $('#file_asset_container').html('');
 
-                for (var i = 0; i < files.length; i++) {
-                    console.log(files[i].type)
-                    var content = ``;
+    //             for (var i = 0; i < files.length; i++) {
+    //                 console.log(files[i].type)
+    //                 var content = ``;
 
-                    content = `<div class="col mb-3 mb-lg-5">
-                    <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id ?'selected' : ""} ">
-                    <div class="card-header card-header-content-between border-0">
-                    <span class="small">${files[i].file_size}kb</span>
-                    <!-- Dropdown -->
-                    <div class="dropdown">
-                        <div class="dropdown-menu dropdown-menu-end"
-                            aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
-                            <span class="dropdown-header">Settings</span>
+    //                 content = `<div class="col mb-3 mb-lg-5">
+    //                 <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id ?'selected' : ""} ">
+    //                 <div class="card-header card-header-content-between border-0">
+    //                 <span class="small">${files[i].file_size}kb</span>
+    //                 <!-- Dropdown -->
+    //                 <div class="dropdown">
+    //                     <div class="dropdown-menu dropdown-menu-end"
+    //                         aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
+    //                         <span class="dropdown-header">Settings</span>
 
-                            <a class="dropdown-item" href="#">
-                                <i class="bi-share dropdown-item-icon"></i> Share file
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi-folder-plus dropdown-item-icon"></i> Move to
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi-star dropdown-item-icon"></i> Add to stared
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi-pencil dropdown-item-icon"></i> Rename
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi-download dropdown-item-icon"></i> Download
-                            </a>
+    //                         <a class="dropdown-item" href="#">
+    //                             <i class="bi-share dropdown-item-icon"></i> Share file
+    //                         </a>
+    //                         <a class="dropdown-item" href="#">
+    //                             <i class="bi-folder-plus dropdown-item-icon"></i> Move to
+    //                         </a>
+    //                         <a class="dropdown-item" href="#">
+    //                             <i class="bi-star dropdown-item-icon"></i> Add to stared
+    //                         </a>
+    //                         <a class="dropdown-item" href="#">
+    //                             <i class="bi-pencil dropdown-item-icon"></i> Rename
+    //                         </a>
+    //                         <a class="dropdown-item" href="#">
+    //                             <i class="bi-download dropdown-item-icon"></i> Download
+    //                         </a>
 
-                            <div class="dropdown-divider"></div>
+    //                         <div class="dropdown-divider"></div>
 
-                            <a class="dropdown-item" href="#">
-                                <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
-                            </a>
-                            <a class="dropdown-item" href="#">
-                                <i class="bi-trash dropdown-item-icon"></i> Delete
-                            </a>
-                        </div>
-                    </div>
-                    <!-- End Dropdown -->
-                    </div>
-                    <div class="card-body">`
-                    +
-                    (files[i].type == 'image' ? 
-                        `<img class="avatar-xxl"
-                        src="{{ url('uploads/all') }}/${files[i].file_name}"
-                        alt="Image Description">` : 
-                        `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`)
-                    + 
-                    `</div><div class="card-body">
-                    <h5 class="card-title"><label><input type='radio' id='product_assets' name='product_assets' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
-                    <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
-                    </div>
-                    </div></div>`;
+    //                         <a class="dropdown-item" href="#">
+    //                             <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
+    //                         </a>
+    //                         <a class="dropdown-item" href="#">
+    //                             <i class="bi-trash dropdown-item-icon"></i> Delete
+    //                         </a>
+    //                     </div>
+    //                 </div>
+    //                 <!-- End Dropdown -->
+    //                 </div>
+    //                 <div class="card-body">` +
+    //                     (files[i].type == 'image' ?
+    //                         `<img class="avatar-xxl"
+    //                     src="{{ url('uploads/all') }}/${files[i].file_name}"
+    //                     alt="Image Description">` :
+    //                         `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`
+    //                         ) +
+    //                     `</div><div class="card-body">
+    //                 <h5 class="card-title"><label><input type='radio' id='product_assets' name='product_assets' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
+    //                 <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
+    //                 </div>
+    //                 </div></div>`;
 
-                    $('#file_asset_container').append(content);
-                }
+    //                 $('#file_asset_container').append(content);
+    //             }
 
-                $('#product_asset_modal').modal('show');
-            }
-        });
+    //             $('#product_asset_modal').modal('show');
+    //         }
+    //     });
 
-        $('#file_asset_container').on('click', '#product_assets', function() {
-            var assets = "{{ asset('/uploads/all') }}";
+    //     $('#file_asset_container').on('click', '#product_assets', function() {
+    //         var assets = "{{ asset('/uploads/all') }}";
 
-            $(`#selected_${selectedId}_asset`).html('<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="width: 60px;"><br/>' + $(this).parent().text());
-            $(`#variant-${selectedId}-assets`).val($(this).attr('data-file-id'));
-        });
-}
+    //         $(`#selected_${selectedId}_asset`).html(
+    //             '<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="width: 60px;"><br/>' +
+    //             $(this).parent().text());
+    //         $(`#variant-${selectedId}-assets`).val($(this).attr('data-file-id'));
+    //     });
+    // }
 
     function uploadAsset() {
 
@@ -469,15 +531,18 @@ aria-hidden="true">
         success: function(variants) {
             var asset = "{{ asset('/uploads/all') }}";
 
-            variants.map(function (variant) {
+            variants.map(function(variant) {
                 var attribute = variant.variant_attribute_value.replace(',', '_');
 
                 $(`#variant_price_${attribute}`).val(variant.variant_price / 100);
                 $(`#variant_sku_${attribute}`).val(variant.variant_sku);
                 $(`#variant_id_${attribute}`).val(variant.id);
-                $(`#variant_quantity_${attribute}`).val(variant.variant_quantity? variant.variant_quantity : 1);
+                $(`#variant_quantity_${attribute}`).val(variant.variant_quantity ? variant
+                    .variant_quantity : 1);
                 $(`.variant_thumbnail_${attribute}`).val(variant.variant_thumbnail);
-                $(`.variant_thumbnail_${attribute}`).next().html(`<img src='${asset + '/' + variant.uploads.file_name}' style='width:150px;height:100px;'/>`);
+                $(`.variant_thumbnail_${attribute}`).next().html(
+                    `<img src='${asset + '/' + variant.uploads.file_name}' style='width:150px;height:100px;'/>`
+                    );
                 // $(`.variant_asset_${attribute}`).val(variant.digital_download_assets);
             })
         }

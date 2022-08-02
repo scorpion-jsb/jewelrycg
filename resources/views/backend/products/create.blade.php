@@ -436,7 +436,7 @@
         var digital_download_assets = [];
         $('#getFileManagerModel').click(function () {
             $.ajax({
-                url: "{{ route('backend.file-manager.index') }}",
+                url: "{{ route('backend.file.index') }}",
                 success: function (data) {
                     if (!$.trim($('#fileManagerContainer').html()))
                         $('#fileManagerContainer').html(data);
