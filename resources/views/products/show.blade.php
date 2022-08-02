@@ -1,42 +1,5 @@
 <x-app-layout :page-title="$product->name">
     <style>
-        .loader-container {
-            display: flex;
-        }
-
-        .loader {
-            margin-left: 8px;
-            border: 4px solid #f3f3f3;
-            border-radius: 50%;
-            border-top: 4px solid #cf4109;
-            width: 20px;
-            height: 20px;
-            -webkit-animation: spin 2s linear infinite;
-            /* Safari */
-            animation: spin 2s linear infinite;
-        }
-
-        /* Safari */
-        @-webkit-keyframes spin {
-            0% {
-                -webkit-transform: rotate(0deg);
-            }
-
-            100% {
-                -webkit-transform: rotate(360deg);
-            }
-        }
-
-        @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
-                transform: rotate(360deg);
-            }
-        }
-
         #add_to_cart_btn {
             width: 120px;
         }
@@ -235,7 +198,8 @@
                                                 <label for=""
                                                     class="control-label col-md-2">{{ $attribute->name }}</label>
                                                 <div class="col-md-10">
-                                                    <div class="variants-btn-group" data-toggle="buttons" id="variants_group">
+                                                    <div class="variants-btn-group" data-toggle="buttons"
+                                                        id="variants_group">
                                                         @foreach ($product->attributeValue($attribute->id) as $attributeValue)
                                                             <label class="btn btn-default btn-sm"
                                                                 style="border: 1px solid grey">
@@ -255,13 +219,16 @@
                                 @endif
 
                                 <input type="hidden" name="id_product" value="{{ $product->id }}">
-                                <button type="submit" class="btn btn-primary shadow-md"
-                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
-                                    id="add_to_cart_btn">
-                                    <div class="loader-container">Adding <div class="loader"></div>
+
+                                <button class="btn btn-primary shadow-md" type="submit"
+                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }} id="add_to_cart_btn">
+                                    <div class="loader-container">
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Adding ...
                                     </div>
                                     <div class="orginal-name">Add to Cart</div>
                                 </button>
+
                                 <button type="submit" formaction="{{ route('cart.buy.now') }}"
                                     class="btn btn-success shadow-md"
                                     {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
@@ -329,10 +296,11 @@
         </div>
     </section>
     {{-- data-bs-scroll="true" --}}
-    <div class="offcanvas offcanvas-end"  tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
         <div class="offcanvas-header border-bottom">
             <h5 class="offcanvas-title" id="cartDrawerLabel">Cart</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
+                aria-label="Close"></button>
         </div>
         <div class="offcanvas-body cart-drawer-content py-6"></div>
     </div>
@@ -345,9 +313,6 @@
     @endif
 
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"
-        integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
     <script>
         var variants = [];
         $('.loader-container').hide();
@@ -403,26 +368,23 @@
                 method: 'post',
                 data: data,
                 success: function(data) {
+                    $('.loader-container').hide();
+                    $('.orginal-name').fadeIn();
 
-                    setTimeout(() => {
-                        $('.loader-container').hide();
-                        $('.orginal-name').fadeIn();
+                    $.ajax({
+                        url: "{{ route('cart.count') }}",
+                        method: 'get',
+                        success: function(count) {
+                            $('.cart-count').html(
+                                '<span class="rounded-pill pill badge bg-primary text-light">' +
+                                count + '</span>');
+                        }
+                    });
 
-                        $.ajax({
-                            url: "{{ route('cart.count') }}",
-                            method: 'get',
-                            success: function(count) {
-                                $('.cart-count').html(
-                                    '<span class="rounded-pill pill badge bg-primary text-light">' +
-                                    count + '</span>');
-                            }
-                        });
-
-                        $('.cart-drawer-content').html(data);
-                        var cartDrawer = new bootstrap.Offcanvas(document.getElementById(
-                            'cartDrawer'));
-                        cartDrawer.show();
-                    }, 1600);
+                    $('.cart-drawer-content').html(data);
+                    var cartDrawer = new bootstrap.Offcanvas(document.getElementById(
+                        'cartDrawer'));
+                    cartDrawer.show();
                 }
             })
 
