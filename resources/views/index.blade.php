@@ -63,9 +63,9 @@
     </div>
 </section>
 -->
-<section class="home_latest_product mt-4 mb-4">
+<main class="py-6">
     <div class="container">
         <x-products-display :products="$products"/>
     </div>
-</section>
+</main>
 </x-app-layout>
