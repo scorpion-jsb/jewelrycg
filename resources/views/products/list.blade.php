@@ -28,10 +28,6 @@
 </section>
 <main class="py-6">
     <div class="container">
-        {{-- if no_results --}}
-            <!--<p>Aw snap! There's no products that match your filters.</p>-->
-        {{-- /if --}}
-
         <x-products-display :products="$products"/>
         
         <div class="mt-16 mb-6 border-t mx-auto py-8">
