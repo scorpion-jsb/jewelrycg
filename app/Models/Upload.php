@@ -55,5 +55,4 @@ class Upload extends Model
 
         return asset($this->fileUploadPath) . '/' . $filename;
     }
-
 }
