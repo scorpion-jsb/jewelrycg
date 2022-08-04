@@ -4,7 +4,7 @@
     <div class="col">
         <a class="mt-1 mb-2" href="{{route('products.show', $product->slug)}}">
             <div class="card mb-2">
-                <img src="{{ $product->getThumbnailFilePath() }}" alt="{{ $product->name }}" class="rounded w-100 lazyloaded">
+                <img src="{{ $product->getImageCacheFullName(400, 400) }}" alt="{{ $product->name }}" class="rounded w-100 lazyloaded">
             </div>
             <div class="text-left px-2">
                 <div class="fs-15">
