@@ -77,7 +77,7 @@
                             @foreach ($uploads as $upload)
                                 <div id="fileappend-{{$upload->id}}" class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">
                                     <div class="card card-sm"><img class="card-img-top"
-                                            src="{{ url('uploads/all')}}/{{ $upload->file_name}}"
+                                            src="{{ $upload->getImageCacheFullName() }}"
                                             alt="Image Description">
                                         <div class="card-body">
                                             <div class="row col-divider text-center">
@@ -331,7 +331,7 @@
                     <div class="card-body">
                         <div class="imagePreview img-thumbnail p-2">
                             <img id="fileManagerPreview"
-                                src="{{ url('uploads/all') }}/{{ $product->uploads->file_name }}"
+                                src="{{ $product->uploads->getImageCacheFullName() }}"
                                 style="width: 100%">
                         </div>
                         <label class="btn text-primary mt-2 p-0" id="getFileManager">Select thumbnail</label>

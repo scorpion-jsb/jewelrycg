@@ -37,6 +37,10 @@ class Upload extends Model
         return $this->file_original_name . "." . $this->extension;
     }
 
+    public function getImageCacheFullName($width, $height = 0) {
+        return asset('/imagecache/image/' . $this->file_name . '?width=$width&height=$height');
+    }
+
     public function getFileManagerThumbnailPath() {
         $filename = str_replace('.' . $this->extension, Config::get('constants.file_manager_thumbnail_suffix') . '.' . $this->extension, $this->file_name);
 
