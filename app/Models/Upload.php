@@ -38,12 +38,8 @@ class Upload extends Model
     }
 
     public function getImageCacheFullName($width = 0, $height = 0) {
-        if ($height = 0) {
-            return asset('/imagecache/image/' . $this->file_name . '?width=' . $width);
-        }
-        else {
-            return asset('/imagecache/image/' . $this->file_name . '?width=' . $width . '&' . 'height=' . $height);
-        }
+        //return asset('/imagecache/image/' . $this->file_name . '?width=' . $width . '&' . 'height=' . $height);
+        return asset('/imagecache/image/' . $this->file_name . '?width=' . $width );
     }
 
     public function getFileManagerThumbnailPath() {
