@@ -37,8 +37,13 @@ class Upload extends Model
         return $this->file_original_name . "." . $this->extension;
     }
 
-    public function getImageCacheFullName($width = 0, $height = 'auto') {
-        return asset('/imagecache/image/' . $this->file_name . '?width=' . $width . '&' . 'height=' . $height);
+    public function getImageCacheFullName($width = 0, $height = 0) {
+        if ($height = 0) {
+            return asset('/imagecache/image/' . $this->file_name . '?width=' . $width);
+        }
+        else {
+            return asset('/imagecache/image/' . $this->file_name . '?width=' . $width . '&' . 'height=' . $height);
+        }
     }
 
     public function getFileManagerThumbnailPath() {
