@@ -37,7 +37,7 @@ class Upload extends Model
         return $this->file_original_name . "." . $this->extension;
     }
 
-    public function getImageCacheFullName($width = 0, $height = auto) {
+    public function getImageCacheFullName($width = 0, $height = 'auto') {
         return asset('/imagecache/image/' . $this->file_name . '?width=' . $width . '&' . 'height=' . $height);
     }
 
