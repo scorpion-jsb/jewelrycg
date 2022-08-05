@@ -21,8 +21,7 @@ class ImageSizeFilter implements FilterInterface
         if (Request::has('height') && Request::get('height') != 0) 
             $height = Request::get('height');
 
-        Cache::forget($image->checksum());
 
-        return $image->fit($width, $height);
+        return $image->resize($width, $height);
     }
 }
