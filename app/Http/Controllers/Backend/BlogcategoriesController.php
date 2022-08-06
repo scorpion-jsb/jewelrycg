@@ -60,8 +60,50 @@ class BlogcategoriesController extends Controller
      */
     public function store(CategorieStoreRequest $request)
     {
-        BlogCategorie::create($request->input());
+        $slug = $this->slugify($request->slug);
+        if ($request->slug == '')
+            $slug = $this->slugify($request->category_name);
+
+        if (BlogCategorie::where('slug', $slug)->count()) {
+            $slug .= "-1";
+        }
+
+        $category = new BlogCategorie;
+
+        $category->category_excerpt = $request->category_excerpt;
+        $category->parent_id = $request->parent_id;
+        $category->category_name = $request->category_name;
+        $category->slug = $slug;
+        $category->save();
+
         return redirect()->route('backend.blog.categories.list');
+    }
+
+    public  function slugify($text, string $divider = '-')
+    {
+        // replace non letter or digits by divider
+        $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, $divider);
+
+        // remove duplicate divider
+        $text = preg_replace('~-+~', $divider, $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 
     /**
@@ -98,8 +140,22 @@ class BlogcategoriesController extends Controller
      */
     public function update(CategorieStoreRequest $request, $id)
     {
-        $categorie = BlogCategorie::findOrFail($id);
-        $categorie->update($request->input());
+        $category = BlogCategorie::findOrFail($id);
+
+        $slug = $this->slugify($request->slug);
+        if ($request->slug == '')
+            $slug = $this->slugify($request->category_name);
+
+        if (BlogCategorie::where('slug', $slug)->count()) {
+            $slug .= "-1";
+        }
+
+        $category->category_excerpt = $request->category_excerpt;
+        $category->parent_id = $request->parent_id;
+        $category->category_name = $request->category_name;
+        $category->slug = $slug;
+        $category->save();
+
         return redirect()->route('backend.blog.categories.list');
     }
 
