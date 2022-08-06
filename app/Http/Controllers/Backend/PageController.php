@@ -46,7 +46,7 @@ class PageController extends Controller
             $slug = $this->slugify($request->name);
 
         if (Page::where('slug', $slug)->count()) {
-            $slug =. "-1";
+            $slug .= "-1";
         }
 
         $url = $slug;
@@ -134,7 +134,7 @@ class PageController extends Controller
             $slug = $this->slugify($request->name);
 
         if (Page::where('slug', $slug)->where('id', '!=', $id)->count()) {
-            $slug =. "-1";
+            $slug .= "-1";
         }
 
         $url = $slug;
