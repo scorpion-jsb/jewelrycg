@@ -331,7 +331,7 @@
                     <div class="card-body">
                         <div class="imagePreview img-thumbnail p-2">
                             <img id="fileManagerPreview"
-                                src="{{ $product->uploads->getImageOptimizedFullName(0, 150) }}"
+                                src="{{ $product->uploads->getImageOptimizedFullName(400) }}"
                                 style="width: 100%">
                         </div>
                         <label class="btn text-primary mt-2 p-0" id="getFileManager">Select thumbnail</label>
