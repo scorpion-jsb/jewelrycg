@@ -116,7 +116,7 @@
                 @if($file->type != 'image')
                     {{ url('assets/svg/brands/google-docs-icon.svg') }}
                 @else
-                    {{ $file->getImageOptimizedFullName(100, 0) }}
+                    {{ $file->getImageOptimizedFullName(100, 100) }}
                 @endif
                 " alt="Image Description">
               </div>
