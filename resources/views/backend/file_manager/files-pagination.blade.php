@@ -47,7 +47,7 @@
     @foreach ($files as $file)
     <div class="col-md-3">
         <div class="card p-4 file-manager-item" id="item{{ $file->id }}" data-id="{{ $file->id }}"
-            data-file-path="{{ $file->getImageOptimizedFullName(0, 150) }}">
+            data-file-path="{{ $file->getImageOptimizedFullName(400) }}">
             <div class="check-option d-none">✔</div>
             <span class="file-created-at">{{ date('F d, Y, h:i:s A', strtotime($file->created_at)) }}</span>
             @if ($file->type != 'image')
