@@ -29,6 +29,12 @@
                             </div>
 
                             <div class="col-md-12 mb-2">
+                                <a href={{url($page->url)}}>{{url($page->url)}}</a>
+                                <input type="text" name="url" id="slug" value="{{ $page->slug }}"
+                                    class="form-control">
+                            </div>
+
+                            <div class="col-md-12 mb-2">
                                 <label for="desc">Post:</label>
                                 <textarea name="post" id="desc" rows="3" class="form-control">
                                     {{ $page->post }}
