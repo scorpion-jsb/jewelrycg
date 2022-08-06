@@ -53,7 +53,7 @@
             @if ($file->type != 'image')
               <img src="{{ asset('assets/svg/brands/google-docs-icon.svg') }}" alt="">
             @else
-              <img src="{{ $file->getFileManagerThumbnailPath() }}" class="card-img-top img-thumbnail" alt="{{ $file->file_name }}">
+              <img src="{{ $file->getImageOptimizedFullName() }}" class="card-img-top img-thumbnail" alt="{{ $file->file_name }}">
             @endif
             <div class="card-body">
                 <h5 class="card-title text-center">{{ $file->getOriginalFileFullName() }}</h5>

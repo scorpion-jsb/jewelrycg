@@ -2,7 +2,7 @@
     <div class="cart-item mb-3">
         <div class="row">
             <div class="col-3">
-                <img src="{{ $product->model->uploads->getImageCacheFullName() }}" alt=""
+                <img src="{{ $product->model->uploads->getImageOptimizedFullName() }}" alt=""
                     class="thumbnail border rounded w-100">
             </div>
             <div class="col-7">
@@ -41,7 +41,7 @@
             <tr id="{{ $product->rowId }}">
                 <td>
                     <a href="{{ route('products.show', $product->model->slug) }}" class="link-dark">
-                        <img src="{{ $product->model->uploads->getImageCacheFullName() }}" alt=""
+                        <img src="{{ $product->model->uploads->getImageOptimizedFullName() }}" alt=""
                             class="thumbnail" style="width: 80px;">
                         @php
                             if (count($product->options)) {
