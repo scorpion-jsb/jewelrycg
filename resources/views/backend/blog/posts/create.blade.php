@@ -21,9 +21,7 @@
                         <div class="mb-2">
                             <label for="desc" class="w-100 mb-2">Post:</label>
                             <textarea name="post" id="desc" rows="6" class="form-control">{{ old('post') }}</textarea>
-                        </div>
-
-            
+                        </div>            
                     </div>
                 </div>
             </div>
