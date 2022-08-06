@@ -225,8 +225,8 @@ Route::get('/', [AppController::class, 'index'])->name('index');
 
 Route::group(['middleware' => ['auth']], function () {
 	Route::get('/dashboard', [AppController::class, 'dashboard']);
-	Route::get('/image/{filename}', [AppController::class, 'image']);
 });
+Route::get('/image/{filename}', [AppController::class, 'image']);
 
 // Blog
 Route::get('/blog', [BlogController::class, 'index'])->name('blog');
