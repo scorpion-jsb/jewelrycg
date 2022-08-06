@@ -30,8 +30,6 @@
 
                             <div class="col-md-12 mb-2">
                                 <a href={{url($page->url)}}>{{url($page->url)}}</a>
-                                <input type="text" name="url" id="slug" value="{{ $page->slug }}"
-                                    class="form-control">
                             </div>
 
                             <div class="col-md-12 mb-2">
