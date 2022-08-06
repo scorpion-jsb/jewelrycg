@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Config;
-use App\Upload;
+use App\Models\Upload;
 use Response;
 use Auth;
 use Storage;
@@ -17,7 +17,7 @@ class UploadController extends Controller
 {
     public function index(Request $request) {
 
-        $all_uploads = (auth()->user()->is_admin == 3) ? Upload::where('id_user',auth()->user()->id) : Upload::query();
+        $all_uploads = (auth()->user()->is_admin == 3) ? Upload::where('user_id',auth()->user()->id) : Upload::query();
         $search = null;
         $sort_by = null;
 
@@ -178,7 +178,7 @@ class UploadController extends Controller
 
                 $upload->extension = $extension;
                 $upload->file_name = $hash . '.' . $extension;
-                $upload->id_user = Auth::user()->id;
+                $upload->user_id = Auth::user()->id;
                 $upload->type = $type[$upload->extension];
                 $upload->file_size = $size;
                 $upload->save();
@@ -311,7 +311,7 @@ class UploadController extends Controller
 
                 $upload->extension = $extension;
                 $upload->file_name = $hash . '.' . $extension;
-                $upload->id_user = Auth::user()->id;
+                $upload->user_id = Auth::user()->id;
                 $upload->type = $type[$upload->extension];
                 $upload->file_size = $size;
                 $upload->save();
@@ -319,7 +319,7 @@ class UploadController extends Controller
             
             $product = $request->is_product == 1 ? true : false;
             $model = $request->is_model == 1 ? true : false;
-            $uploads = Upload::orderBy('id', 'DESC')->where('id_user', Auth::user()->id);
+            $uploads = Upload::orderBy('id', 'DESC')->where('user_id', Auth::user()->id);
             return view('backend.filemanager.partials.components.list', [
                 'files' =>  $uploads->paginate(60)->appends(request()->query()),
                 'is_product' => $product,
@@ -330,7 +330,7 @@ class UploadController extends Controller
     }
 
     public function getUploadedFile(Request $request) {
-        $uploads = Upload::orderBy('id', 'DESC')->where('id_user', Auth::user()->id);
+        $uploads = Upload::orderBy('id', 'DESC')->where('user_id', Auth::user()->id);
 
         if ($request->search != null) {
             $uploads->where('file_original_name', 'like', '%'.$request->search.'%');
@@ -342,12 +342,12 @@ class UploadController extends Controller
     }
 
     public function getUploadedAssetsId(Request $request) {
-        return Upload::where('type', '!=', 'image')->where('id_user', Auth::user()->id)->orderBy('id', 'DESC')->first()->id;
+        return Upload::where('type', '!=', 'image')->where('user_id', Auth::user()->id)->orderBy('id', 'DESC')->first()->id;
     }
 
     public function get_filemanager(Request $request)
     {
-        $uploads = Upload::orderBy('id', 'DESC')->where('id_user', Auth::user()->id);
+        $uploads = Upload::orderBy('id', 'DESC')->where('user_id', Auth::user()->id);
         if ($request->search != null) {
             $uploads->where('file_original_name', 'like', '%'.$request->search.'%');
         }
@@ -394,7 +394,7 @@ class UploadController extends Controller
     {
         $upload = Upload::findOrFail($id);
 
-        if(auth()->user()->user_type == 'seller' && $upload->id_user != auth()->user()->id){
+        if(auth()->user()->user_type == 'seller' && $upload->user_id != auth()->user()->id){
             flash(translate("You don't have permission for deleting this!"))->error();
             return back();
         }
