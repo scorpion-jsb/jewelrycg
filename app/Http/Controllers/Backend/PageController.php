@@ -41,14 +41,15 @@ class PageController extends Controller
     {
         $parent = Page::find($request->parent_id);
 
-        $url = $request->slug;
-        if ($parent) {
-            $url = $parent->url . '/' . $request->slug;
-        }
 
         $slug = $request->slug;
         if ($request->slug == '')
             $slug = str_replace(' ', '-', $request->name);
+
+        $url = $slug;
+        if ($parent) {
+            $url = $parent->url . '/' . $slug;
+        }
 
         $page = new Page;
 
@@ -98,14 +99,14 @@ class PageController extends Controller
     {
         $parent = Page::find($request->parent_id);
 
-        $url = $request->slug;
-        if ($parent) {
-            $url = $parent->url . '/' . $request->slug;
-        }
-
         $slug = $request->slug;
         if ($request->slug == '')
             $slug = str_replace(' ', '-', $request->name);
+
+        $url = $slug;
+        if ($parent) {
+            $url = $parent->url . '/' . $slug;
+        }
 
         $page = Page::find($id);
 
