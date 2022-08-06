@@ -25,7 +25,6 @@ class ImageSizeFilter implements FilterInterface
             return $image->resize(null, Request::get('height'), function ($constraint) {
                 $constraint->aspectRatio();
             });
-        
 
         return $image->resize($width, $height);
     }

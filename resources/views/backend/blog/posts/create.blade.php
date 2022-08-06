@@ -113,6 +113,7 @@
         <!-- End Card -->
       </div>
     </form>
+    <div id="fileManagerContainer"></div>
 
     <div id='ajaxCalls'>
     </div>
@@ -159,6 +160,29 @@
             placeholder: "Select or type keywords",
             })
         });
+
+
+        $('#getFileManager').click(function () {
+            $.ajax({
+                url: "{{ route('backend.file.index') }}",
+                success: function (data) {
+                    if (!$.trim($('#fileManagerContainer').html()))
+                        $('#fileManagerContainer').html(data);
+
+                    $('#fileManagerModal').modal('show');
+
+                    const getSelectedItem = function (selectedId, filePath) {
+
+                        $('#fileManagerId').val(selectedId);
+                        $('#fileManagerPreview').attr('src', filePath);
+                    }
+
+                    setSelectedItemsCB(getSelectedItem, $('#fileManagerId').val() == '' ? [] : [$('#fileManagerId').val()], false);
+                }
+            })
+        });
+
+
     </script>
     <script src="{{ asset('assets/vendor/quill/dist/quill.min.js') }}"></script>
     <script src="{{ asset('assets/js/hs.quill.js') }}"></script>
