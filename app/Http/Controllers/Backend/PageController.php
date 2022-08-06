@@ -139,7 +139,7 @@ class PageController extends Controller
         }
 
         if (Page::where('slug', $slug)->where('id', '!=', $id)->count()) {
-            return redirect()->route('backend.page.create')->witherrors('This slug is exist.');
+            return redirect()->route('backend.page.edit', $id)->witherrors('This slug is exist.');
         }
 
         $page = Page::find($id);
