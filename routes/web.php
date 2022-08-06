@@ -9,6 +9,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlogController;
+use App\Http\Controllers\UriController;
 
 // Backend
 use App\Http\Controllers\Backend\DashboardController;
@@ -27,6 +28,7 @@ use App\Http\Controllers\Backend\UploadController;
 
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\Backend\ShippingOptionController;
+use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\TaxOptionController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +54,8 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 	Route::resource('/setting/tax', TaxOptionController::class);
 	// shipping
 	Route::resource('/setting/shipping', ShippingOptionController::class);
+	// page
+	Route::resource('/page', PageController::class);
 
 	//uploads
 	Route::group(['prefix' => 'filemanager', 'as' => 'filemanager.'], function ()
@@ -308,4 +312,7 @@ Route::group(['middleware' => 'auth'], function ()
 });
 
 require __DIR__ . '/auth.php';
+
+Route::get('{slug?}', UriController::class)->name('page')->where('slug','.+');
+
 

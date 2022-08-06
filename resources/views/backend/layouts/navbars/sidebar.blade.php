@@ -62,9 +62,9 @@
                   <span class="nav-link-title">{{ __("Pages") }}</span>
                 </a>
 
-                <div id="navbarVerticalMenuAllPagesMenu" class="nav-collapse collapse @if($activePage == 'pages') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
-                  <a class="nav-link " href="#">{{ __("All Pages") }}</a>
-                  <a class="nav-link " href="#">{{ __("Add New") }}</a>
+                <div id="navbarVerticalMenuAllPagesMenu" class="nav-collapse collapse @if($activePage == 'page') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link " href="{{ route('backend.page.index') }}">{{ __("All Pages") }}</a>
+                  <a class="nav-link " href="{{ route('backend.page.create') }}">{{ __("Add New") }}</a>
                 </div>
               </div>
               <!-- End Collapse -->
