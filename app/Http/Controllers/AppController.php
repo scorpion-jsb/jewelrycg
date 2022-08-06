@@ -46,7 +46,7 @@ class AppController extends Controller
         $height = 100;
 
         if (Request::has('width') && Request::get('width') != 0 && Request::has('height') && Request::get('height') != 0)
-            $image->resize(Request::get('width'), Request::get('height'));
+            $image->crop(Request::get('width'), Request::get('height'));
         else if (Request::has('width') && Request::get('width') != 0 && (!Request::has('height') || Request::get('height') == 0))
             $image->resize(Request::get('width'), null, function ($constraint) {
                 $constraint->aspectRatio();
