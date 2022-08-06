@@ -46,7 +46,9 @@ class PageController extends Controller
             $url = $parent->url . '/' . $request->slug;
         }
 
-        $slug = str_replace(' ', '_', $request->slug);
+        $slug = $request->slug;
+        if ($request->slug == '')
+            $slug = str_replace(' ', '_', $request->slug);
 
         $page = new Page;
 
@@ -101,7 +103,9 @@ class PageController extends Controller
             $url = $parent->url . '/' . $request->slug;
         }
 
-        $slug = str_replace(' ', '_', $request->slug);
+        $slug = $request->slug;
+        if ($request->slug == '')
+            $slug = str_replace(' ', '_', $request->slug);
 
         $page = Page::find($id);
 
