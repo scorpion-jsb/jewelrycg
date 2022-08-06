@@ -46,12 +46,14 @@ class PageController extends Controller
             $url = $parent->url . '/' . $request->slug;
         }
 
+        $slug = str_replace(' ', '_', $request->slug);
+
         $page = new Page;
 
         $page->status = $request->status;
         $page->name = $request->name;
         $page->post = $request->post;
-        $page->slug = $request->slug;
+        $page->slug = $slug;
         $page->url = $url;
         $page->parent_id = $request->parent_id;
         $page->author_id = Auth::user()->id;
@@ -99,13 +101,15 @@ class PageController extends Controller
             $url = $parent->url . '/' . $request->slug;
         }
 
+        $slug = str_replace(' ', '_', $request->slug);
+
         $page = Page::find($id);
 
         $page->status = $request->status;
         $page->name = $request->name;
         $page->post = $request->post;
         $page->url = $url;
-        $page->slug = $request->slug;
+        $page->slug = $slug;
         $page->parent_id = $request->parent_id;
         $page->author_id = Auth::user()->id;
         $page->save();

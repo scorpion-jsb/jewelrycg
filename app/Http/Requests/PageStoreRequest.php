@@ -25,7 +25,7 @@ class PageStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'slug' => 'required|string|max:255',
+            // 'slug' => 'required|string|max:255',
             'status' => 'required|numeric',
             'post' => 'required|string',
         ];
