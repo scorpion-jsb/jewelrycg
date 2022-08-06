@@ -10,7 +10,6 @@ class ImageSizeFilter implements FilterInterface
 {
     public function applyFilter(Image $image)
     {
-
         $width = 100;
         $height = 100;
 
@@ -27,6 +26,7 @@ class ImageSizeFilter implements FilterInterface
                 $constraint->aspectRatio();
             });
         
+
         return $image->resize($width, $height);
     }
 }
