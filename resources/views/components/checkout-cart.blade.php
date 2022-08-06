@@ -2,7 +2,7 @@
     <div class="cart-item mb-3">
         <div class="row">
             <div class="col-3">
-                <img src="{{ $product->model->uploads->getImageCacheFullName() }}" alt=""
+                <img src="{{ $product->model->uploads->getImageOptimizedFullName() }}" alt=""
                     class="thumbnail border rounded w-100">
             </div>
             <div class="col-7">

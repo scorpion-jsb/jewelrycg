@@ -6,6 +6,8 @@ use App\Models\Product;
 use App\Models\Order;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
+use Intervention\Image\Facades\Image;
+use Request;
 
 use function PHPSTORM_META\type;
 
@@ -37,7 +39,25 @@ class AppController extends Controller
         return view('dashboard')->with(['carts' => count($carts), 'orders' => $orderCount, 'wishlists' => count($wishlists), 'purchases' => $purchases]);
     }
 
-    function page($page) {
-        dd($page);
+    function image($filename) {
+        $image = Image::make(public_path('/uploads/all/' . $filename));
+
+        $width = 100;
+        $height = 100;
+
+        if (Request::has('width') && Request::get('width') != 0 && Request::has('height') && Request::get('height') != 0)
+            $image->resize(Request::get('width'), Request::get('height'));
+        else if (Request::has('width') && Request::get('width') != 0 && !Request::has('height'))
+            $image->resize(Request::get('width'), null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+        else if (Request::has('height') && Request::get('height') != 0 && !Request::has('width'))
+            $image->resize(null, Request::get('height'), function ($constraint) {
+                $constraint->aspectRatio();
+            });
+        else
+            $image->resize($width, $height);
+
+        return $image->response();
     }
 }
