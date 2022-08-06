@@ -20,8 +20,7 @@ class BlogsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-      
+    {      
         return view('backend.blog.posts.list', [
             'posts' => BlogPost::with(['categories', 'postauthor'])->orderBy('id', 'DESC')->get()
         ]);
@@ -74,11 +73,11 @@ class BlogsController extends Controller
     {
         $blogtag = BlogTags::create([
             'name' => $tag,
-            'slug' => $this->generateSlug($tag),
+            'slug' => $this->slugify($tag),
         ]);
         return $blogtag->id;
     }
-    public static function slugify($text, string $divider = '-')
+    public function slugify($text, string $divider = '-')
     {
     // replace non letter or digits by divider
     $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
@@ -119,7 +118,13 @@ class BlogsController extends Controller
         $blog = new BlogPost();
         $data = $request->input();
         $data['author_id'] = Auth::id();
-        $data['slug'] = $this->slugify($request->name).$suffix;
+
+        if (BlogPost::where('slug', $this->slugify($request->name))->count()) {
+            $data['slug'] = $this->slugify($request->name) . "-1";
+        } else {
+            $data['slug'] = $this->slugify($request->name);
+        }
+
         $post_id = $blog->create($data)->id;
         foreach( $tags as $tag )
         {
@@ -185,10 +190,20 @@ class BlogsController extends Controller
         $blog = BlogPost::findOrFail($id);
         $data = $request->input();
         $data['author_id'] = Auth::id();
-        if($request->slug == "")
-        {
-            $data['slug'] = $this->slugify($request->name).$suffix;
+
+        $slug = $request->slug;
+
+        if ($slug == '') {
+            $slug = $request->name;
         }
+        
+        if (BlogPost::where('slug', $this->slugify($slug))->count()) {
+            $data['slug'] = $this->slugify($slug) . "-1";
+        } else {
+            $data['slug'] = $this->slugify($slug);
+        }    
+
+
         $blog->update($data);
 
         BlogPostTag::where('id_post', $blog->id)->delete();

@@ -21,6 +21,33 @@ class ProducttagsController extends Controller
             'tags' => ProductTag::orderBy('id', 'DESC')->get()
         ]);
     }
+        
+    public  function slugify($text, string $divider = '-')
+    {
+        // replace non letter or digits by divider
+        $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, $divider);
+
+        // remove duplicate divider
+        $text = preg_replace('~-+~', $divider, $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
+    }
 
     /**
      * Show the form for creating a new resource.
@@ -40,7 +67,21 @@ class ProducttagsController extends Controller
      */
     public function store(TagStoreRequest $request)
     {
-        ProductTag::create($request->input());
+        $slug = $this->slugify($request->slug);
+        if ($request->slug == '')
+            $slug = $this->slugify($request->name);
+
+        if (ProductTag::where('slug', $slug)->count()) {
+            $slug .= "-1";
+        }
+
+        $tag = new ProductTag;
+
+        $tag->description = $request->description;
+        $tag->name = $request->name;
+        $tag->slug = $slug;
+        $tag->save();        
+
         return redirect()->route('backend.products.tags.list');
     }
 
@@ -78,7 +119,20 @@ class ProducttagsController extends Controller
     public function update(TagStoreRequest $request, $id)
     {
         $tag = ProductTag::findOrFail($id);
-        $tag->update($request->input());
+
+        $slug = $this->slugify($request->slug);
+        if ($request->slug == '')
+            $slug = $this->slugify($request->name);
+
+        if (ProductTag::where('slug', $slug)->count()) {
+            $slug .= "-1";
+        }
+
+        $tag->description = $request->description;
+        $tag->name = $request->name;
+        $tag->slug = $slug;
+        $tag->save();        
+
         return redirect()->route('backend.products.tags.list');
     }
 

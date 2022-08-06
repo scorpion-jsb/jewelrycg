@@ -64,15 +64,15 @@
     <script>
          $(document).ready(function(){
             $('#desc').trumbowyg();
-            $('#name').keyup(function(){
-                var slug = $(this).val()
+            // $('#name').keyup(function(){
+            //     var slug = $(this).val()
                 
-                if(slug.charAt(slug.length - 1) != " ")
-                {
-                    $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
-                }
+            //     if(slug.charAt(slug.length - 1) != " ")
+            //     {
+            //         $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
+            //     }
                 
-            })
+            // })
          })
     </script> 
     @endsection

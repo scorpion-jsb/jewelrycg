@@ -25,7 +25,7 @@ class TagStoreRequest extends FormRequest
     {
         return [
             'name' => 'required|string',
-            'slug' => 'required|string',
+            // 'slug' => 'required|string',
             'description' => 'nullable',
 
         ];
