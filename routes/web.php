@@ -61,7 +61,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 	Route::group(['prefix' => 'filemanager', 'as' => 'filemanager.'], function ()
 	{
 
-		Route::get('/remove', [UploadController::class, 'index'])->name('list');
+		Route::get('/', [UploadController::class, 'index'])->name('list');
 		Route::middleware('optimizeImages')->group(function () {
 			// all images will be optimized automatically
 			// Route::post('upload-images', 'UploadController@index');
