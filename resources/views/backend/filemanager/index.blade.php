@@ -1,4 +1,4 @@
-@extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'Products Attributes', 'navName' => 'attributes', 'activeButton' => 'products'])
+@extends('backend.layouts.app', ['activePage' => 'filemanager', 'title' => 'File Manager', 'navName' => 'attributes', 'activeButton' => 'products'])
 
 @section('content')
  <!-- Content -->

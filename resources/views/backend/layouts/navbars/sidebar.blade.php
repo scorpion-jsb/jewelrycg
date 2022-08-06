@@ -70,7 +70,7 @@
               <!-- End Collapse -->
 
               <div class="nav-item">
-                <a class="nav-link nav-link-main " href="{{ route('backend.filemanager.list')}}" data-placement="left">
+                <a class="nav-link nav-link-main @if($activePage == 'filemanager') collapse @endif" href="{{ route('backend.filemanager.list')}}" data-placement="left">
                   <i class="bi-folder2-open nav-icon"></i>
                   <span class="nav-link-title">File Manager</span>
                 </a>

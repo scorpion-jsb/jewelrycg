@@ -24,14 +24,13 @@
             <div class="col-xl-11 mx-auto">
                 <div class="row gutters-10 row-cols-lg-3 row-cols-md-2 row-cols-1">
                     @foreach ($posts as $post)
-
                     <div class="col mb-3">
                         <div class="blog-post-list-container">
                             <a href="{{ route('blog.post.url', ['slug'=>$post->slug]) }}" class="text-reset d-block">
                                 @if($post->uploads->file_name == 'none.png')
                                     <img src="{{ asset('assets/img/placeholder.jpg') }}" alt="{{ $post->name }}" class="img-blog-cropped border lazyloaded">
                                 @else
-                                    <img src="{{ asset('uploads/all') }}/{{$post->uploads->file_name}}" alt="{{ $post->name }}" class="img-blog-cropped border lazyloaded">
+                                    <img src="{{$post->uploads->getImageOptimizedFullName(400)}}" alt="{{ $post->name }}" class="img-blog-cropped border lazyloaded">
                                 @endif
                             </a>
                             <div class="p-2 pt-3">

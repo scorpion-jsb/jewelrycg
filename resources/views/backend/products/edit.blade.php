@@ -454,6 +454,13 @@
 
         // check the digital setting turn on
         $('#availabilitySwitch1').click(function () {
+            if ($('#availabilitySwitch1').prop('checked')) {
+                $('#digital_download_assets').val(0);
+                $('#digital_download_assets').parent().parent().show();
+            } else {
+                $('#digital_download_assets').parent().parent().hide();
+            }
+
             if ($('#variantsbody').html() != '') {
                 var values_selected = $('#product_attribute_values').val()
                 $.ajax({
