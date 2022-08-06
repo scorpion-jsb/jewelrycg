@@ -36,4 +36,8 @@ class AppController extends Controller
 
         return view('dashboard')->with(['carts' => count($carts), 'orders' => $orderCount, 'wishlists' => count($wishlists), 'purchases' => $purchases]);
     }
+
+    function page($page) {
+        dd($page);
+    }
 }
