@@ -54,7 +54,6 @@ class Upload extends Model
 
             $image->save(public_path($this->fileUploadPath) . '/' . $filename, 80);
             clearstatcache();
-
         }
 
         return asset($this->fileUploadPath) . '/' . $filename;
