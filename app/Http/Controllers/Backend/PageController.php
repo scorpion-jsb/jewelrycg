@@ -42,9 +42,9 @@ class PageController extends Controller
         $parent = Page::find($request->parent_id);
 
 
-        $slug = $request->slug;
+        $slug = $this->slugify($request->slug);
         if ($request->slug == '')
-            $slug = str_replace(' ', '-', $request->name);
+            $slug = $this->slugify($request->name);
 
         $url = $slug;
         if ($parent) {
@@ -63,6 +63,33 @@ class PageController extends Controller
         $page->save();        
 
         return redirect()->route('backend.page.edit', $page->id);
+    }
+    
+    public  function slugify($text, string $divider = '-')
+    {
+    // replace non letter or digits by divider
+    $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+    // transliterate
+    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+    // remove unwanted characters
+    $text = preg_replace('~[^-\w]+~', '', $text);
+
+    // trim
+    $text = trim($text, $divider);
+
+    // remove duplicate divider
+    $text = preg_replace('~-+~', $divider, $text);
+
+    // lowercase
+    $text = strtolower($text);
+
+    if (empty($text)) {
+        return 'n-a';
+    }
+
+    return $text;
     }
 
     /**
@@ -99,9 +126,9 @@ class PageController extends Controller
     {
         $parent = Page::find($request->parent_id);
 
-        $slug = $request->slug;
+        $slug = $this->slugify($request->slug);
         if ($request->slug == '')
-            $slug = str_replace(' ', '-', $request->name);
+            $slug = $this->slugify($request->name);
 
         $url = $slug;
         if ($parent) {
