@@ -47,11 +47,11 @@ class AppController extends Controller
 
         if (Request::has('width') && Request::get('width') != 0 && Request::has('height') && Request::get('height') != 0)
             $image->resize(Request::get('width'), Request::get('height'));
-        else if (Request::has('width') && Request::get('width') != 0 && !Request::has('height'))
+        else if (Request::has('width') && Request::get('width') != 0 && (!Request::has('height') || Request::get('height') == 0))
             $image->resize(Request::get('width'), null, function ($constraint) {
                 $constraint->aspectRatio();
             });
-        else if (Request::has('height') && Request::get('height') != 0 && !Request::has('width'))
+        else if (Request::has('height') && Request::get('height') != 0 && (!Request::has('width') || Request::get('width') == 0))
             $image->resize(null, Request::get('height'), function ($constraint) {
                 $constraint->aspectRatio();
             });
