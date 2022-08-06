@@ -113,10 +113,10 @@
 
               <div class="card-body p-2">
                 <img class="avatar-xxl" src="
-                @if($file->extension == 'glb')
+                @if($file->type != 'image')
                     {{ url('assets/svg/brands/google-docs-icon.svg') }}
                 @else
-                    {{ url('uploads/all') }}/{{ $file->file_name }}
+                    {{ $file->getImageOptimizedFullName(0, 100) }}
                 @endif
                 " alt="Image Description">
               </div>
