@@ -45,13 +45,13 @@ class PageController extends Controller
         if ($request->slug == '')
             $slug = $this->slugify($request->name);
 
+        if (Page::where('slug', $slug)->count()) {
+            $slug =. "-1";
+        }
+
         $url = $slug;
         if ($parent) {
             $url = $parent->url . '/' . $slug;
-        }
-
-        if (Page::where('slug', $slug)->count()) {
-            return redirect()->route('backend.page.create')->witherrors('This slug is exist.');
         }
 
         $page = new Page;
@@ -133,13 +133,13 @@ class PageController extends Controller
         if ($request->slug == '')
             $slug = $this->slugify($request->name);
 
+        if (Page::where('slug', $slug)->where('id', '!=', $id)->count()) {
+            $slug =. "-1";
+        }
+
         $url = $slug;
         if ($parent) {
             $url = $parent->url . '/' . $slug;
-        }
-
-        if (Page::where('slug', $slug)->where('id', '!=', $id)->count()) {
-            return redirect()->route('backend.page.edit', $id)->witherrors('This slug is exist.');
         }
 
         $page = Page::find($id);
