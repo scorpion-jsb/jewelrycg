@@ -17,7 +17,21 @@
                 </div>
                 <div class="item-meta mb-2 row">
                     <div class="col-6">
-                        <span class="fw-800">Quantity:</span> {{ $product->qty }}
+                        <span class="fw-800">Quantity:</span> 
+                        @if ($locale == 'cart')
+                        <input type="number" value="{{ $product->qty }}" placeholder="{{ $product->qty }}" name="quantity" min="1" max="100" class="form-control quantity" id="{{ $product->rowId }}">
+                            <?php $out_of_stock[$key] = $product->qty > $product->model->quantity && $product->model->is_trackingquantity; ?>
+                            @if ($out_of_stock[$key])
+                                <div class="col-2">
+                                    <span class="badge rounded-pill text-light bg-danger">
+                                        In Stock: {{ $product->model->quantity }}
+                                    </span>
+                                </div>
+                            @endif
+                            @csrf
+                        @else
+                            {{ $product->qty }}
+                        @endif
                     </div>
                     <div class="col-6 text-right">
                         <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger" title="Remove from chart">Remove</a>
