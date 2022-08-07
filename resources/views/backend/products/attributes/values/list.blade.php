@@ -106,7 +106,7 @@
                                             @if ($attribute->type == 1)
                                                 <span class="h-20px w-20px d-block" style="background:{{$value->value}}"></span>
                                             @elseif($attribute->type == 2)
-                                                <img class="" src="{{ $value->image->getImageOptimizedFullName() }}" style="width:100px"/>
+                                                <img class="" src="{{ $value->image ? $value->image->getImageOptimizedFullName() : ''}}" style="width:100px"/>
                                             @else
                                             {{ $value->name }}
                                             @endif 
