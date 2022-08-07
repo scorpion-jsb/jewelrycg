@@ -23,27 +23,26 @@
                     <span class="text-primary fw-800 mb-2">${{ $product->price }}</span>
                 </div>
 
-                <div class="item-meta mb-2 row">
+                <div class="item-meta mb-2 row align-baseline">
                     <div class="col-auto">
                         <span class="fw-800">Quantity:</span> 
                     </div>
-                        <div class="col-auto">
-                            @if ($locale == 'cart')
-                            <input type="number" value="{{ $product->qty }}" placeholder="{{ $product->qty }}" name="quantity" min="1" max="100" class="form-control quantity" id="{{ $product->rowId }} inlineFormInputGroup">
-                                <?php $out_of_stock[$key] = $product->qty > $product->model->quantity && $product->model->is_trackingquantity; ?>
-                                @if ($out_of_stock[$key])
-                                    <div class="col-2">
-                                        <span class="badge rounded-pill text-light bg-danger">
-                                            In Stock: {{ $product->model->quantity }}
-                                        </span>
-                                    </div>
-                                @endif
-                                @csrf
-                            @else
-                                {{ $product->qty }}
+                    <div class="col-auto">
+                        @if ($locale == 'cart')
+                        <input type="number" value="{{ $product->qty }}" placeholder="{{ $product->qty }}" name="quantity" min="1" max="100" class="form-control quantity" id="{{ $product->rowId }} inlineFormInputGroup">
+                            <?php $out_of_stock[$key] = $product->qty > $product->model->quantity && $product->model->is_trackingquantity; ?>
+                            @if ($out_of_stock[$key])
+                                <div class="col-2">
+                                    <span class="badge rounded-pill text-light bg-danger">
+                                        In Stock: {{ $product->model->quantity }}
+                                    </span>
+                                </div>
                             @endif
-                        </div>
-                    
+                            @csrf
+                        @else
+                            {{ $product->qty }}
+                        @endif
+                    </div>
                 </div>
             </div>
             <div class="col-2 text-right">
