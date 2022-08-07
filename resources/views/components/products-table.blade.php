@@ -2,11 +2,10 @@
     <div class="cart-item mb-3">
         <div class="row">
             <div class="col-3">
-                <img src="{{ $product->model->uploads->getImageOptimizedFullName() }}" alt=""
-                    class="thumbnail border rounded w-100">
+                <img src="{{ $product->model->uploads->getImageOptimizedFullName() }}" alt="" class="thumbnail border rounded w-100">
             </div>
             <div class="col-7">
-                <div class="item-meta mb-2 fw-800 fs-20">
+                <div class="item-meta mb-2 fw-800 fs-18">
                     @php
                         if (count($product->options)) {
                             echo $product->name . ' - ' . $product->options->name;
@@ -15,10 +14,15 @@
                         }
                     @endphp
                 </div>
+                <!--
                 <div class="item-meta mb-2">
                     <span class="text-primary fw-800">${{ $product->price }}</span>
                 </div>
+                -->
                 <div class="item-meta mb-2 row">
+                    <div class="col-6">
+                        <span class="text-primary fw-800">${{ $product->price }}</span>
+                    </div>
                     <div class="col-6">
                         <span class="fw-800">Quantity:</span> 
                         @if ($locale == 'cart')
@@ -39,7 +43,7 @@
                     
                 </div>
             </div>
-            <div class="col-2 text-right">
+            <div class="col-1 text-right">
                 <div class="w-100">
                     <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger" title="Remove from chart"><i class="bi bi-x-lg"></i></a>
                 </div>
