@@ -17,7 +17,7 @@
                 <div class="item-meta mb-2">
                     <span class="text-primary fw-800 mb-2">${{ $product->price }}</span>
                 </div>
-                <div class="item-meta mb-2 row align-baseline">
+                <div class="item-meta mb-2 row align-items-baseline">
                     <div class="col-auto">
                         <span class="fw-800">Quantity:</span> 
                     </div>
