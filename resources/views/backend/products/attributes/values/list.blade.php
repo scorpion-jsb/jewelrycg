@@ -37,17 +37,17 @@
 
                         @if($attribute->type != 0)
                         <div class="col-md-12 mb-2">
-                            <label for="name">Value:</label>
-                                   
-                                    @if($attribute->type == 1)
-                                    <input type="color" name="value" id="name" value="" class="form-control">
-                                        
-                                    @elseif($attribute->type == 2)
-                                    <input type="file" name="value" id="name" value="" class="form-control">
-                                    @else($attribute->type == 0)
-                                    <input type="text" name="value" id="name" value="" class="form-control">
-                                    @endif
+                            <label for="name">Value:</label>                                   
+                            @if($attribute->type == 1)
+                            <input type="color" name="value" id="name" value="" class="form-control">                                
+                            @elseif($attribute->type == 2)
+                            <input type="file" name="value" id="name" value="" class="form-control">
+                            @else($attribute->type == 0)
+                            <input type="text" name="value" id="name" value="" class="form-control">
+                            @endif
                         </div>
+                        @else
+                            <input type="text" name="value" id="name" value="{{ $attribute->name }}" class="form-control">
                         @endif
                         <div class="col-md-12 mb-2">
                             <button type="submit" class="btn btn-primary col-md-12"> Add to {{ $attribute->name }} </button>
@@ -80,7 +80,7 @@
                                     <th class="sorting" aria-label="">ID</th>
                                     <th class="sorting_disabled" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Name</th>
                                     <th class="sorting_disabled" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Slug</th>
-                                    <th class="sorting_disabled" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Type</th>
+                                    <th class="sorting_disabled" tabindex="0" aria-controls="datatable" aria-label="Name: activate to sort column ascending">Value</th>
                                     <th class="sorting_disabled"aria-label="">Actions</th>
                                 </tr>
                             </thead>
@@ -100,7 +100,7 @@
                                         <td> {{ $value->slug }} </td>
                                         <td>
                                             @if ($attribute->type == 1)
-                                                <span class="dot" style="background:{{$value->value}}"></span>
+                                                <span class="h-20px w-20px d-block" style="background:{{$value->value}}"></span>
                                             @elseif($attribute->type == 2)
                                             {{ $value->name }}
                                             @else

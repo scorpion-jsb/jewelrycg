@@ -37,6 +37,8 @@
                                             <input type="text" name="value" id="name" value="" class="form-control">
                                             @endif
                                     </div>
+                                    @else
+                                        <input type="text" name="value" id="name" value="{{ $attribute->name }}" class="form-control">
                                     @endif
                                     
                                     <div class="col-md-12 text-center">
