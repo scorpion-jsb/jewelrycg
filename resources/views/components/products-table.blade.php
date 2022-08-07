@@ -2,10 +2,10 @@
     <div class="cart-item mb-3">
         <div class="row">
             <div class="col-lg-2 col-4">
-                <img src="{{ $product->model->uploads->getImageOptimizedFullName() }}" alt="" class="thumbnail border rounded w-100">
+                <img src="{{ $product->model->uploads->getImageOptimizedFullName(250) }}" alt="" class="thumbnail border rounded w-100">
             </div>
             <div class="col-lg-10 col-8">
-                <div class="item-meta mb-2 fw-800 fs-18">
+                <div class="item-meta mb-3 fw-800 fs-18">
                     @php
                         if (count($product->options)) {
                             echo $product->name . ' - ' . $product->options->name;
