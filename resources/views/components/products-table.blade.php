@@ -33,13 +33,14 @@
                             {{ $product->qty }}
                         @endif
                     </div>
-                    <div class="col-6 text-right">
-                        <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger" title="Remove from chart">Remove</a>
-                    </div>
+                    
                 </div>
             </div>
             <div class="col-2 text-right">
                 <span class="text-primary fw-800">${{ $product->price }}</span>
+                <div class="w-100">
+                    <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="text-danger" title="Remove from chart">Remove</a>
+                </div>
             </div>
         </div>
     </div>
