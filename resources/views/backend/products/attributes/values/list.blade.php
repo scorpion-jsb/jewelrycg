@@ -34,6 +34,8 @@
                             <input type="text" name="name" id="name" value="" class="form-control">
 
                         </div>
+
+                        @if($attribute->type != 0)
                         <div class="col-md-12 mb-2">
                             <label for="name">Value:</label>
                                    
@@ -46,6 +48,7 @@
                                     <input type="text" name="value" id="name" value="" class="form-control">
                                     @endif
                         </div>
+                        @endif
                         <div class="col-md-12 mb-2">
                             <button type="submit" class="btn btn-primary col-md-12"> Add to {{ $attribute->name }} </button>
                         </div>
