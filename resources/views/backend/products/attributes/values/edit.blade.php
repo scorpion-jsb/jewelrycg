@@ -26,18 +26,18 @@
                                         <label for="name">Slug:</label>
                                         <input type="text" value="{{ $value->slug }}" name="slug" id="slug" value="" class="form-control">
                                     </div>
+                                    @if($attribute->type != 0)
                                     <div class="col-md-12 mb-2">
                                         <label for="name">Value:</label>
-                                               
-                                                @if($attribute->type == 1)
-                                                <input type="color" name="value" id="name" value="{{ $value->value }}" class="form-control">
-                                                    
-                                                @elseif($attribute->type == 2)
-                                                <input type="file" name="value" id="name" value="" class="form-control">
-                                                @else($attribute->type == 0)
-                                                <input type="text" name="value" id="name" value="" class="form-control">
-                                                @endif
+                                            @if($attribute->type == 1)
+                                            <input type="color" name="value" id="name" value="{{ $value->value }}" class="form-control">                                                    
+                                            @elseif($attribute->type == 2)
+                                            <input type="file" name="value" id="name" value="" class="form-control">
+                                            @else($attribute->type == 0)
+                                            <input type="text" name="value" id="name" value="" class="form-control">
+                                            @endif
                                     </div>
+                                    @endif
                                     
                                     <div class="col-md-12 text-center">
                                         <button type="submit" class="btn btn-lg btn-outline-success">Update</button>
