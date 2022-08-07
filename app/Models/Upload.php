@@ -37,7 +37,7 @@ class Upload extends Model
         return $this->file_original_name . "." . $this->extension;
     }
 
-    public function  getImageOptimizedFullName($width = 0, $height = 0) {
+    public function  getImageOptimizedFullName ($width = 0, $height = 0) {
         return asset('/image/' . $this->file_name . '?width=' . $width . '&height=' . $height );
     }
 

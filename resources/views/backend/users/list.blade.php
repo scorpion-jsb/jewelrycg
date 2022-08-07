@@ -27,7 +27,6 @@
 							</div>
 						</th>
 						<th class="sorting" tabindex="0" aria-controls="datatable">Name</th>
-						<th class="sorting" tabindex="0" aria-controls="datatable">Country</th>
 						<th class="sorting" tabindex="0" aria-controls="datatable">Status</th>
 						<th class="sorting" tabindex="0" aria-controls="datatable">Role</th>
 						<th class="sorting_disabled" aria-label="">Actions</th>
@@ -41,9 +40,9 @@
 								<input class="form-check-input" type="checkbox" value="" id="datatableCheckAll1">
 								<label class="form-check-label" for="datatableCheckAll1"></label>
 							</div>
-						</td>
+ 						</td>
 						<td class="table-column-ps-0">
-							<a class="d-flex align-items-center" href="./user-profile.html">
+							<a class="d-flex align-items-center" href="{{url('backend/users/edit') . '/' . $user->id}}">
 								<div class="avatar avatar-circle">
 									<img class="avatar-img" src="{{ asset('assets/img/160x160/img10.jpg') }}" alt="Image Description">
 								</div>
@@ -55,7 +54,6 @@
 								</div>
 							</a>
 						</td>
-						<td>{{ $user->country }}</td>
 						<td> 
                             @if($user->email_verified_at == null) 
                             <span class="legend-indicator bg-warning"></span>
