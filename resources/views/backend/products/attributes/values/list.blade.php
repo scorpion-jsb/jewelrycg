@@ -47,7 +47,7 @@
                             @endif
                         </div>
                         @else
-                            <input type="text" name="value" id="name" value="{{ $attribute->name }}" class="form-control">
+                            <input type="hidden" name="value" id="name" value="{{ $attribute->name }}" class="form-control">
                         @endif
                         <div class="col-md-12 mb-2">
                             <button type="submit" class="btn btn-primary col-md-12"> Add to {{ $attribute->name }} </button>
