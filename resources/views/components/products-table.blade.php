@@ -1,10 +1,10 @@
 @foreach ($products as $key => $product)
     <div class="cart-item mb-3">
         <div class="row">
-            <div class="col-3">
+            <div class="col-2">
                 <img src="{{ $product->model->uploads->getImageOptimizedFullName() }}" alt="" class="thumbnail border rounded w-100">
             </div>
-            <div class="col-7">
+            <div class="col-8">
                 <div class="item-meta mb-2 fw-800 fs-18">
                     @php
                         if (count($product->options)) {
@@ -27,7 +27,7 @@
                         <span class="fw-800">Quantity:</span> 
                         <div class="input-group mb-2">
                             <div class="input-group-prepend">
-                                <div class="input-group-text">QTY</div>
+                                <div class="input-group-text">Qty</div>
                             </div>
                             @if ($locale == 'cart')
                             <input type="number" value="{{ $product->qty }}" placeholder="{{ $product->qty }}" name="quantity" min="1" max="100" class="form-control quantity" id="{{ $product->rowId }} inlineFormInputGroup">
@@ -48,7 +48,7 @@
                     
                 </div>
             </div>
-            <div class="col-1 text-right">
+            <div class="col-2 text-right">
                 <div class="w-100">
                     <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger" title="Remove from chart"><i class="bi bi-x-lg"></i></a>
                 </div>
