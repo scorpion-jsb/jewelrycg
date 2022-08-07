@@ -40,7 +40,7 @@
                 </div>
                 <div class="item-meta mb-2">
                     <div class="text-left">
-                        <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger" title="Remove from chart"><i class="bi bi-x-lg"></i></a>
+                        <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="text-danger" title="Remove from chart">Remove</a>
                     </div>
                 </div>
             </div>
