@@ -15,7 +15,14 @@
                         }
                     @endphp
                 </div>
-                <div class="item-meta mb-2"><span class="fw-800">Quantity:</span> {{ $product->qty }}</div>
+                <div class="item-meta mb-2 row">
+                    <div class="col-6">
+                        <span class="fw-800">Quantity:</span> {{ $product->qty }}
+                    </div>
+                    <div class="col-6 text-right">
+                        <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger" title="Remove from chart">Remove</a>
+                    </div>
+                </div>
             </div>
             <div class="col-2 text-right">
                 <span class="text-primary fw-800">${{ $product->price }}</span>
