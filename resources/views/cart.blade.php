@@ -1,7 +1,6 @@
 <x-app-layout page-title="Cart">
-
-<div class="py-9 cart-wrap">
-    <div class="container">
+<div class="container">
+    <div class="col-lg-8 col-md-10 py-9 mx-auto cart-wrap">
         <div class="card">
             @if (session('message'))
                 <h4 class="text-center text-danger mt-3">
