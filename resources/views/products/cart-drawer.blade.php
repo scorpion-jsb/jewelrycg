@@ -41,7 +41,7 @@
         @endphp
         <div class="row border-bottom" id="item{{ $item->rowId }}">
             <div class="col-md-3">
-                <img src="{{ $product->getImageOptimizedFullName() }}" alt="" class="product-thumbnail border w-100">
+                <img src="{{ $product->uploads->getImageOptimizedFullName() }}" alt="" class="product-thumbnail border w-100">
             </div>
             <div class="col-md-9">
                 <div class="d-flex justify-content-between">
