@@ -33,7 +33,7 @@
                                             <input type="color" name="value" id="name" value="{{ $value->value }}" class="form-control">                                                    
                                             @elseif($attribute->type == 2)
                                             <div class="imagePreview img-thumbnail p-2">
-                                                <img id="fileManagerPreview" src="{{ $value->image->getImageOptimizedFullName() }}" style="width: 100%">
+                                                <img id="fileManagerPreview" src="{{ $value->image ? $value->image->getImageOptimizedFullName() : '' }}" style="width: 100%">
                                             </div>
                                             <input type="hidden" name="value" id="image_value" value="" class="form-control">
                                             <label class="btn text-primary mt-2 p-0" id="getFileManager">Select Image</label>
