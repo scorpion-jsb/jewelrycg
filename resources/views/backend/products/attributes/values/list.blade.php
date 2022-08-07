@@ -41,7 +41,11 @@
                             @if($attribute->type == 1)
                             <input type="color" name="value" id="name" value="" class="form-control">                                
                             @elseif($attribute->type == 2)
-                            <input type="file" name="value" id="name" value="" class="form-control">
+                            <div class="imagePreview img-thumbnail p-2">
+                                <img id="fileManagerPreview" src="" style="width: 100%">
+                            </div>
+                            <input type="hidden" name="value" id="image_value" value="" class="form-control">
+                            <label class="btn text-primary mt-2 p-0" id="getFileManager">Select Image</label>
                             @else($attribute->type == 0)
                             <input type="text" name="value" id="name" value="" class="form-control">
                             @endif
@@ -102,7 +106,7 @@
                                             @if ($attribute->type == 1)
                                                 <span class="h-20px w-20px d-block" style="background:{{$value->value}}"></span>
                                             @elseif($attribute->type == 2)
-                                            {{ $value->name }}
+                                                <img class="" src="{{ $value->image->getImageOptimizedFullName() }}" style="width:100px"/>
                                             @else
                                             {{ $value->name }}
                                             @endif 
@@ -175,6 +179,9 @@
     </div>
 
     </div>
+
+    <div id="fileManagerContainer"></div>
+
     <!-- End Card -->
 @endsection
 
@@ -190,5 +197,26 @@
 
             })
         })
+
+        $('#getFileManager').click(function () {
+            $.ajax({
+                url: "{{ route('backend.file.index') }}",
+                success: function (data) {
+                    if (!$.trim($('#fileManagerContainer').html()))
+                        $('#fileManagerContainer').html(data);
+
+                    $('#fileManagerModal').modal('show');
+
+                    const getSelectedItem = function (selectedId, filePath) {
+
+                        $('#image_value').val(selectedId);
+                        $('#fileManagerPreview').attr('src', filePath);
+                    }
+
+                    setSelectedItemsCB(getSelectedItem, $('#image_value').val() == '' ? [] : [$('#image_value').val()], false);
+                }
+            })
+        });
+
     </script>
 @endsection

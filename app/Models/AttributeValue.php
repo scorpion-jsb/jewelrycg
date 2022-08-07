@@ -16,4 +16,16 @@ class AttributeValue extends Model
         'value',
         'slug',
     ];
+
+    function image() {
+        if ($this->attribute->type == 2) {
+            return $this->hasOne('App\Models\Upload', 'id', 'value');
+        } else {
+            return null;
+        }
+    }
+
+    function attribute() {
+        return $this->belongsTo('App\Models\Attribute', 'attribute_id', 'id');        
+    }
 }
