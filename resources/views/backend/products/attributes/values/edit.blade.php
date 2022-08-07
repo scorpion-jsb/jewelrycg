@@ -27,12 +27,16 @@
                                         <input type="text" value="{{ $value->slug }}" name="slug" id="slug" value="" class="form-control">
                                     </div>
                                     @if($attribute->type != 0)
-                                    <div class="col-md-12 mb-2">
+                                    <div class="col-md-6 mb-2">
                                         <label for="name">Value:</label>
                                             @if($attribute->type == 1)
                                             <input type="color" name="value" id="name" value="{{ $value->value }}" class="form-control">                                                    
                                             @elseif($attribute->type == 2)
-                                            <input type="file" name="value" id="name" value="" class="form-control">
+                                            <div class="imagePreview img-thumbnail p-2">
+                                                <img id="fileManagerPreview" src="{{ $value->image->getImageOptimizedFullName() }}" style="width: 100%">
+                                            </div>
+                                            <input type="hidden" name="value" id="image_value" value="" class="form-control">
+                                            <label class="btn text-primary mt-2 p-0" id="getFileManager">Select Image</label>
                                             @else($attribute->type == 0)
                                             <input type="text" name="value" id="name" value="" class="form-control">
                                             @endif
@@ -50,6 +54,7 @@
                     </form>
                 </div>
             </div>
+            <div id="fileManagerContainer"></div>
 
     @endsection
 
@@ -68,12 +73,32 @@
             })
 
             $('.select2').select2({
-            data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
-            tags: true,
-            maximumSelectionLength: 10,
-            tokenSeparators: [',', ' '],
-            placeholder: "Select or type keywords",
+                data: ["Piano", "Flute", "Guitar", "Drums", "Photography"],
+                tags: true,
+                maximumSelectionLength: 10,
+                tokenSeparators: [',', ' '],
+                placeholder: "Select or type keywords",
             })
+
+            $('#getFileManager').click(function () {
+                $.ajax({
+                    url: "{{ route('backend.file.index') }}",
+                    success: function (data) {
+                        if (!$.trim($('#fileManagerContainer').html()))
+                            $('#fileManagerContainer').html(data);
+
+                        $('#fileManagerModal').modal('show');
+
+                        const getSelectedItem = function (selectedId, filePath) {
+
+                            $('#image_value').val(selectedId);
+                            $('#fileManagerPreview').attr('src', filePath);
+                        }
+
+                        setSelectedItemsCB(getSelectedItem, $('#image_value').val() == '' ? [] : [$('#image_value').val()], false);
+                    }
+                })
+            });
          })
     </script> 
     @endsection
