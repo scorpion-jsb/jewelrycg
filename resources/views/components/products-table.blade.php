@@ -1,10 +1,10 @@
 @foreach ($products as $key => $product)
     <div class="cart-item mb-3">
         <div class="row">
-            <div class="col-lg-2 col-3">
+            <div class="col-lg-2 col-4">
                 <img src="{{ $product->model->uploads->getImageOptimizedFullName() }}" alt="" class="thumbnail border rounded w-100">
             </div>
-            <div class="col-lg-8 col-7">
+            <div class="col-lg-10 col-8">
                 <div class="item-meta mb-2 fw-800 fs-18">
                     @php
                         if (count($product->options)) {
@@ -14,15 +14,9 @@
                         }
                     @endphp
                 </div>
-                <!--
-                <div class="item-meta mb-2">
-                    <span class="text-primary fw-800">${{ $product->price }}</span>
-                </div>
-                -->
                 <div class="item-meta mb-2">
                     <span class="text-primary fw-800 mb-2">${{ $product->price }}</span>
                 </div>
-
                 <div class="item-meta mb-2 row align-baseline">
                     <div class="col-auto">
                         <span class="fw-800">Quantity:</span> 
@@ -44,10 +38,10 @@
                         @endif
                     </div>
                 </div>
-            </div>
-            <div class="col-2 text-right">
-                <div class="w-100">
-                    <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger" title="Remove from chart"><i class="bi bi-x-lg"></i></a>
+                <div class="item-meta mb-2">
+                    <div class="text-left">
+                        <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger" title="Remove from chart"><i class="bi bi-x-lg"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
