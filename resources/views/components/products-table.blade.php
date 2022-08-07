@@ -6,7 +6,7 @@
                     class="thumbnail border rounded w-100">
             </div>
             <div class="col-7">
-                <div class="item-meta mb-2">
+                <div class="item-meta mb-2 fw-800 fs-20">
                     @php
                         if (count($product->options)) {
                             echo $product->name . ' - ' . $product->options->name;
@@ -14,6 +14,9 @@
                             echo $product->name;
                         }
                     @endphp
+                </div>
+                <div class="item-meta mb-2">
+                    <span class="text-primary fw-800">${{ $product->price }}</span>
                 </div>
                 <div class="item-meta mb-2 row">
                     <div class="col-6">
@@ -37,9 +40,8 @@
                 </div>
             </div>
             <div class="col-2 text-right">
-                <span class="text-primary fw-800">${{ $product->price }}</span>
                 <div class="w-100">
-                    <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="text-danger" title="Remove from chart">Remove</a>
+                    <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="btn btn-danger" title="Remove from chart"><i class="bi bi-x-lg"></i></a>
                 </div>
             </div>
         </div>
