@@ -3,6 +3,11 @@
         #add_to_cart_btn {
             width: 120px;
         }
+
+        .btn-check:active+.btn, .btn-check:checked+.btn, .btn.active, .btn.show, .btn:active {
+            border: solid 1px white !important;
+            outline: solid 2px #007bff !important;
+        }
     </style>
 
     <section class="product_detail_single">
@@ -195,21 +200,25 @@
                                     <div class="variant-group mb-2">
                                         @foreach ($product->attribute() as $attribute)
                                             <div class="form-group" style="margin-bottom: 8px">
-                                                <label for=""
-                                                    class="control-label col-md-2">{{ $attribute->name }}</label>
-                                                <div class="col-md-10">
+                                                <label for="" class="control-label col-md-2">{{ $attribute->name }}</label>
+                                                <div class="col-md-10 mt-1">
                                                     <div class="variants-btn-group" data-toggle="buttons"
                                                         id="variants_group">
                                                         @foreach ($product->attributeValue($attribute->id) as $attributeValue)
-                                                            <label class="btn btn-default btn-sm"
-                                                                style="border: 1px solid grey">
-                                                                <input type="radio"
-                                                                    id="attribute{{ $attribute->id }}"
-                                                                    name="attribute{{ $attribute->id }}"
-                                                                    class="sm attribute-radio attribute{{ $attribute->id }}"
-                                                                    value="{{ $attributeValue->id }}">
-                                                                {{ $attributeValue->name }}
-                                                            </label>
+                                                            @if ($attribute->type == 1)
+                                                                <input type="radio" class="attribute-radio btn-check attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}" value="{{ $attributeValue->id }}" id="attribute{{$attributeValue->id}}" autocomplete="off">
+                                                                <label class="btn btn-secondary me-2" for="attribute{{$attributeValue->id}}" style="background-color:{{$attributeValue->value}};border-color: white;border-radius: 50%;height: 50px;width: 50px;"></label>
+                                                            @endif
+                                                            @if ($attribute->type == 2)
+                                                                <input type="radio" class="attribute-radio btn-check attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}" value="{{ $attributeValue->id }}" id="attribute{{$attributeValue->id}}" autocomplete="off">
+                                                                <label class="btn btn-secondary me-2 p-0" for="attribute{{$attributeValue->id}}" style="border: solid grey 1px;height: 52px;width: 52px;background-color: transparent;">
+                                                                    <img src="{{$attributeValue->image->getImageOptimizedFullName(50, 50)}}" class="" style="border-radius: 6px;"/>
+                                                                </label>
+                                                            @endif
+                                                            @if ($attribute->type == 0)
+                                                                <input type="radio" class="attribute-radio btn-check attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}" value="{{ $attributeValue->id }}" id="attribute{{$attributeValue->id}}" autocomplete="off">
+                                                                <label class="btn btn-secondary me-2" for="attribute{{$attributeValue->id}}" style="width: 80px;">{{$attributeValue->name}}</label>                                                               
+                                                            @endif
                                                         @endforeach
                                                     </div>
                                                 </div>
@@ -220,7 +229,7 @@
 
                                 <input type="hidden" name="id_product" value="{{ $product->id }}">
 
-                                <button class="btn btn-primary shadow-md" type="submit"
+                                <button class="btn btn-primary shadow-md mt-4" type="submit"
                                     {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }} id="add_to_cart_btn">
                                     <div class="loader-container">
                                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -230,12 +239,12 @@
                                 </button>
 
                                 <button type="submit" formaction="{{ route('cart.buy.now') }}"
-                                    class="btn btn-success shadow-md"
+                                    class="btn btn-success shadow-md mt-4"
                                     {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
                                     id="buy_now_btn">Buy Now</button>
                             </form>
-
                         </div>
+
                         <!--End .bg-white product card-->
                         <div class="show-model-specs">
                             <div class="show-specs-btn d-none d-lg-block mb-3 text-uppercase fw-700 border p-3">Metal
