@@ -30,7 +30,7 @@
                                 <div class="input-group-text">QTY</div>
                             </div>
                             @if ($locale == 'cart')
-                            <input type="number" value="{{ $product->qty }}" placeholder="{{ $product->qty }}" name="quantity" min="1" max="100" class="form-control quantity" id="{{ $product->rowId }}">
+                            <input type="number" value="{{ $product->qty }}" placeholder="{{ $product->qty }}" name="quantity" min="1" max="100" class="form-control quantity" id="{{ $product->rowId }} inlineFormInputGroup">
                                 <?php $out_of_stock[$key] = $product->qty > $product->model->quantity && $product->model->is_trackingquantity; ?>
                                 @if ($out_of_stock[$key])
                                     <div class="col-2">
