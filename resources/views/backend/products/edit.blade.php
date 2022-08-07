@@ -310,7 +310,7 @@
                     <div class="card-body">
                         <p>
                         @if ($product->product_3dpreview != null)
-                            <span class="badge btn-success"> 3d model attached</span>
+                            <span class="badge btn-success"> {{$product->modelpreview->file_name}}</span>
                         @else
                             <span class="badge btn-danger"> No 3d model attached</span>
                         @endif
@@ -352,7 +352,7 @@
                     <div class="card-body">
                         <p>
                         @if ($product->digital_download_assets)
-                            <span class="badge btn-success"> digital asset attached</span>
+                            <span class="badge btn-success"> {{$product->digital->file_name}}</span>
                         @else
                             <span class="badge btn-danger"> No digital asset attached</span>
                         @endif
