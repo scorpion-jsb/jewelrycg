@@ -2,7 +2,7 @@
     @php
         $product = $item->model;
     @endphp
-    <div class="row border-bottom" id="item{{ $item->rowId }}">
+    <div class="row border-bottom pb-2 mb-3" id="item{{ $item->rowId }}">
         <div class="col-4">
             <img src="{{ $product->uploads->getImageOptimizedFullName() }}" alt="" class="product-thumbnail border w-100">
         </div>
