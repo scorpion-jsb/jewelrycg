@@ -16,75 +16,73 @@
     <!-- End Row -->
 </div>  
 
-            <div class="row">
+<div class="row">
+    <div class="col-md-12">
+        <div class="card strpied-tabled-with-hover rounded-0">
+            <div class="table-full-width">
                 <div class="col-md-12">
-                    <div class="card strpied-tabled-with-hover rounded-0">
-                        <div class="table-full-width">
-                            <div class="col-md-12">
-                            <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-responsive no-footer">
-                                <thead>
-                                    <th class="sorting_disabled" aria-label="">
-                                        <div class="form-checkbox">
-                                            <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
-                                            <label class="form-check-label" for="datatableCheckAll"></label>
-                                        </div>
-                                    </th>
-                                    <th class="sorting">ID</th>
-                                    <th>Name</th>
-                                    <th>Slug</th>
-                                    <th>Parent</th>
-
-                                    <th>Actions</th>
-                                </thead>
-                                <tbody>
-                                    @php
-                                        $nIndex = 0;
-                                    @endphp
-                                    @foreach ($categories as $categorie)
-                                    @php
-                                        $nIndex++;
-                                    @endphp
-                                    <tr>
-                                    <td class="table-column-pe-0">
-                                        <div class="form-check">
-                                            <input type="checkbox" class="form-check-input" id="ordersCheck1">
-                                            <label class="form-check-label" for="ordersCheck1"></label>
-                                        </div>
-                                    </td>
-                                    <td>{{ $categorie->id }}</td>
-                                    <td>{{ $categorie->category_name }}</td>
-                                    <td>{{ $categorie->slug }}</td>
-                                    <td>{{ $categorie->parent_id }}</td>
-                                    <td>
-                                        <div class="btn-group" role="group">
-                                            <a class="btn btn-dark btn-sm" href="{{ route('backend.blog.categories.edit', $categorie->id) }}"> <i class="bi-pencil-fill p-1"></i> Edit </a>
-                                            @if ($nIndex != 1)
-                                                <!-- Button Group -->
-                                                <div class="btn-group">
-                                                    <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
-                                                    <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
-                                                        <span class="dropdown-header">Options</span>
-                                                        <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" onclick="return confirm('Are you sure you want to delete this product?')" href="{{ route("backend.blog.categories.delete", $categorie->id) }}"><i class="bi-trash dropdown-item-icon"></i> Delete </a>
-                                                    </div>
-                                                </div>
-                                                <!-- End Unfold -->
-                                            @endif
-                                        </div>
-                                        <!-- End Button -->
-
-                                    </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
-                            </table>
+                <table class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-responsive no-footer">
+                    <thead>
+                        <th class="sorting_disabled" aria-label="">
+                            <div class="form-checkbox">
+                                <input class="form-check-input" type="checkbox" value="" id="datatableCheckAll">
+                                <label class="form-check-label" for="datatableCheckAll"></label>
                             </div>
-                        </div>
-                    </div>
+                        </th>
+                        <th class="sorting">ID</th>
+                        <th>Name</th>
+                        <th>Slug</th>
+                        <th>Parent</th>
+
+                        <th>Actions</th>
+                    </thead>
+                    <tbody>
+                        @php
+                            $nIndex = 0;
+                        @endphp
+                        @foreach ($categories as $categorie)
+                        @php
+                            $nIndex++;
+                        @endphp
+                        <tr>
+                        <td class="table-column-pe-0">
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="ordersCheck1">
+                                <label class="form-check-label" for="ordersCheck1"></label>
+                            </div>
+                        </td>
+                        <td>{{ $categorie->id }}</td>
+                        <td>{{ $categorie->category_name }}</td>
+                        <td>{{ $categorie->slug }}</td>
+                        <td>{{ $categorie->parent_id }}</td>
+                        <td>
+                            <div class="btn-group" role="group">
+                                <a class="btn btn-dark btn-sm" href="{{ route('backend.blog.categories.edit', $categorie->id) }}">Edit</a>
+                                @if ($nIndex != 1)
+                                    <!-- Button Group -->
+                                    <div class="btn-group">
+                                        <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                        <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
+                                            <span class="dropdown-header">Options</span>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this product?')" href="{{ route("backend.blog.categories.delete", $categorie->id) }}">Delete</a>
+                                        </div>
+                                    </div>
+                                    <!-- End Unfold -->
+                                @endif
+                            </div>
+                            <!-- End Button -->
+
+                        </td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
                 </div>
-
-
             </div>
+        </div>
+    </div>
+</div>
   
 @endsection
 
