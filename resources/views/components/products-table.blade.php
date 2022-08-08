@@ -240,9 +240,8 @@
 </tr> --}}
 
 <div class="row">
-    <div class="col-lg-2 col-4">
-    </div>
-    <div class="col-lg-10 col-8">
+
+    <div class="col-auto ml-auto">
         Total: 
         @if ($locale == 'cart')
             <span class="total-price">
