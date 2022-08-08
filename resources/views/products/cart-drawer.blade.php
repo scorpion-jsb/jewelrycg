@@ -4,7 +4,7 @@
     @endphp
     <div class="row border-bottom pb-2 mb-3" id="item{{ $item->rowId }}">
         <div class="col-4">
-            <img src="{{ $product->uploads->getImageOptimizedFullName() }}" alt="" class="product-thumbnail border w-100">
+            <img src="{{ $product->uploads->getImageOptimizedFullName(150) }}" alt="" class="product-thumbnail border w-100">
         </div>
         <div class="col-8">
             <div class="cart-draw-item mb-2">
