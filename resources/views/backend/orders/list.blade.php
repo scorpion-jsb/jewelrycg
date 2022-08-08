@@ -69,7 +69,7 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a class="btn btn-dark btn-sm" href="{{ route('backend.orders.show', $order->id) }}"> <i class="bi-eye"></i> View </a>
+                                <a class="btn btn-dark btn-sm" href="{{ route('backend.orders.show', $order->id) }}">View</a>
                                 <!-- Button Group -->
                                 {{-- <div class="btn-group">
                                     <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
