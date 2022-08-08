@@ -300,3 +300,39 @@ button.navbar-toggler {
     border: 0;
     vertical-align: -2px;
 }
+
+/* Checkout */
+button.remove-item-btn:after {
+    display: inline-block;
+    content: "\00d7";
+}
+
+a.view-cart, a.checkout {
+    margin-top: 8px;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 2px;
+    display: block;
+    text-align: center;
+    cursor: pointer;
+}
+
+a.view-cart {
+    background-color: #eaedf0;
+    color: #393f45;
+}
+
+a.view-cart:hover {
+    background-color: #d1d6db;
+    transition: 0.5s;
+}
+
+a.checkout {
+    background-color: #282a30;
+    color: #d5d5d6;
+}
+
+a.checkout:hover {
+    background-color: #55565a;
+    transition: 0.5s;
+}
