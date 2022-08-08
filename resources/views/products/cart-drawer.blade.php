@@ -7,11 +7,13 @@
             <img src="{{ $product->uploads->getImageOptimizedFullName() }}" alt="" class="product-thumbnail border w-100">
         </div>
         <div class="col-8">
-            <div class="d-flex justify-content-between">
-                <span class="product-title">{{ $product->name }}</span>
+            <div class="cart-draw-item mb-2">
+                <div class="product-title">{{ $product->name }}</div>
+            </div>
+            <div class="cart-draw-item mb-2">
                 <button class="remove-item-btn btn btn-danger btn-sm" data-row-id="{{ $item->rowId }}"></button>
             </div>
-            <div class="py-4 d-flex justify-content-between">
+            <div class="d-flex justify-content-between align-items-baseline">
                 <input type="number" class="product-quantity p-1" value="{{ $item->qty }}" data-row-id="{{ $item->rowId }}" style="width: 60px;">
                 <span class="product-price d-none">${{ $product->price / 100 }}</span>
                 <span class="total-price">${{ $item->qty * $product->price / 100 }}</span>
