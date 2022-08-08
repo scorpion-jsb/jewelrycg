@@ -14,8 +14,8 @@ class SearchProductRequest extends FormRequest
     public function rules()
     {
         return [
-            'q' => 'nullable|string|max:255',
-            'category' => 'required|string|max:24'
+            'searchWord' => 'nullable|string|max:255',
+            'categoryId' => 'required|string|max:24'
         ];
     }
 }
