@@ -2,7 +2,7 @@
 <div class="footer">
       <div class="row justify-content-between align-items-center">
         <div class="col">
-          <p class="fs-6 mb-0">© 2022 G.G.M & Co.</p>
+          <p class="fs-6 mb-0">© 2022 G.G.M & Co. Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})</p>
         </div>
         <!-- End Col -->
 
