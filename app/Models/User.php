@@ -13,6 +13,7 @@ class User extends Authenticatable implements MustVerifyEmail
     use HasApiTokens, HasFactory, Notifiable;
 
     protected $fillable = [
+        'name',
         'first_name',
         'last_name',
         'email',
@@ -40,5 +41,9 @@ class User extends Authenticatable implements MustVerifyEmail
     public function address() 
     {
         return $this->hasOne(UserAddress::class, 'user_id');
+    }
+
+    public function getAttributeName() {
+        return $this->first_name . " " . $this->last_name;
     }
 }

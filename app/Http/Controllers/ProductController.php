@@ -12,19 +12,32 @@ use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
+    public function searchCategory(Request $req)
+    {
+        if (Auth::check()) {
+            $search = new UserSearch;
+            $search->user_id = Auth::user()->id;
+            $search->query = json_encode(['category' => $req->category, 'query' => $req->q]);
+            $search->save();
+        }
+
+        $products = Product::searchWithImages($req->q, $req->category);
+        // return view('search', compact('products'));
+
+        return view('components.products-display', compact('products'));
+    }
+
     public function search(SearchProductRequest $req)
     {
         if (Auth::check()) {
             $search = new UserSearch;
             $search->user_id = Auth::user()->id;
-            $search->query = json_encode(['category' => $req->categoryId, 'query' => $req->searchWord]);
+            $search->query = json_encode(['category' => $req->category, 'query' => $req->q]);
             $search->save();
         }
 
-        $products = Product::searchWithImages($req->searchWord, $req->categoryId);
-        // return view('search', compact('products'));
-
-        return view('components.products-display', compact('products'));
+        $products = Product::searchWithImages($req->q, $req->category);
+        return view('search', compact('products'));
     }
 
     public function products_index()

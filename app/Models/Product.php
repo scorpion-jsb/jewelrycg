@@ -84,10 +84,10 @@ class Product extends Model
     {
         $q = Product::with('uploads');
 
-        if($category != 0)
+        if($category != 'all')
         {
             $q = $q->whereHas('product_category', function ($query) use ($category){
-                $query->where('id', $category);
+                $query->where('category_name', $category);
             });
         }
 

@@ -8,6 +8,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
 use Intervention\Image\Facades\Image;
 use Request;
+use Illuminate\Support\Facades\Config;
 
 use function PHPSTORM_META\type;
 
@@ -45,7 +46,7 @@ class AppController extends Controller
         $width = 100;
         $height = 100;
 
-        if (Request::has('width') && Request::get('width') != 0 && Request::has('height') && Request::get('height') != 0)
+        if (Request::has('width') && Request::get('width') != 0 && Request::has('height') && Request::get('height') != 0) 
             $image->fit(Request::get('width'), Request::get('height'));
         else if (Request::has('width') && Request::get('width') != 0 && (!Request::has('height') || Request::get('height') == 0))
             $image->resize(Request::get('width'), null, function ($constraint) {
@@ -57,6 +58,10 @@ class AppController extends Controller
             });
         else
             $image->fit($width, $height);
+
+        $array = explode(".", $filename);
+        $filename = $array[0] . "-" . Request::get('width') . "-" . Request::get('height') . "." . $array[1];
+        $image->save(public_path(Config::get('constants.file_upload_path') . "/" . $filename));
 
         return $image->response();
     }
