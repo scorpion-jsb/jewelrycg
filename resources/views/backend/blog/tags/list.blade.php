@@ -93,14 +93,14 @@
                                         <td> {{ $tag->slug }} </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a class="btn btn-dark btn-sm" href="{{ route('backend.blog.tags.edit', $tag->id) }}"> <i class="bi-pencil-fill p-1"></i> Edit </a>
+                                                <a class="btn btn-dark btn-sm" href="{{ route('backend.blog.tags.edit', $tag->id) }}">Edit</a>
                                                 <!-- Button Group -->
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                                     <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
                                                         <span class="dropdown-header">Options</span>
                                                         <div class="dropdown-divider"></div>
-                                                        <a class="dropdown-item" onclick="return confirm('Are you sure you want to delete this product?')" href="{{ route("backend.blog.tags.delete", $tag->id) }}"><i class="bi-trash dropdown-item-icon"></i> Delete </a>
+                                                        <a class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this product?')" href="{{ route("backend.blog.tags.delete", $tag->id) }}">Delete</a>
                                                     </div>
                                                 </div>
                                                 <!-- End Unfold -->
