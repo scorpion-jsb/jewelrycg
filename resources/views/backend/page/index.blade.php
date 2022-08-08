@@ -53,9 +53,7 @@
                                         <td>{{ $page->author->first_name . " " . $page->author->last_name }}</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a class="btn btn-dark btn-sm"
-                                                    href="{{ route('backend.page.edit', $page->id) }}"> <i
-                                                        class="bi-pencil"></i> Edit </a>
+                                                <a class="btn btn-dark btn-sm" href="{{ route('backend.page.edit', $page->id) }}">Edit</a>
                                                 <!-- Button Group -->
                                                 <div class="btn-group">
                                                     <button type="button"
@@ -69,7 +67,7 @@
                                                         <form action="{{ route('backend.page.destroy', $page->id) }}" method="post">
                                                           @csrf
                                                           @method('delete')
-                                                            <button class="dropdown-item" onclick="return confirm('Are you sure you want to delete this page?')" >Delete</button>
+                                                            <button class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this page?')" >Delete</button>
                                                         </form>
                                                     </div>
                                                 </div>
