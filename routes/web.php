@@ -238,6 +238,7 @@ Route::get('/blog/tag/{tag}', [BlogController::class, 'tagPost'])->name('tagPost
 
 // Search
 Route::get('/search', [ProductController::class, 'search'])->name('search');
+Route::get('/searchCategory', [ProductController::class, 'searchCategory'])->name('searchCategory');
 
 // Products
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
