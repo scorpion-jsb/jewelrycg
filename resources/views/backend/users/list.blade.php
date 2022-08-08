@@ -64,21 +64,15 @@
 						<td>@if( $user->is_admin == 0 ) Customer @elseif( $user->is_admin == 1 ) Admin @else Seller @endif</td>
 						<td>
 							<div class="btn-group" role="group">
-								<a class="btn btn-dark btn-sm" href="#">
-									<i class="bi-eye p-1"></i> View 
-                                </a>
+								<a class="btn btn-dark btn-sm" href="#">View</a>
 								<!-- Button Group -->
 								<div class="btn-group">
 									<button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
 									<div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
 										<span class="dropdown-header">Options</span>
-										<a href="{{ route('backend.users.edit', $user->id) }}" class="js-export-print dropdown-item">
-											<i class="bi-pencil-fill me-1"></i> Edit User 
-                                        </a>
+										<a href="{{ route('backend.users.edit', $user->id) }}" class="js-export-print dropdown-item">Edit User</a>
 										<div class="dropdown-divider"></div>
-										<a class="dropdown-item" href="javascript:;">
-											<i class="bi-trash dropdown-item-icon"></i> Delete 
-                                        </a>
+										<a class="dropdown-item text-danger" href="javascript:;">Delete</a>
 									</div>
 								</div>
 								<!-- End Unfold -->
