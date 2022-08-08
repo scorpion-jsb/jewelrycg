@@ -58,8 +58,7 @@
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a class="btn btn-dark btn-sm"
-                                                    href="{{ route('backend.products.edit', $product->id) }}"> <i
-                                                        class="bi-pencil"></i> Edit </a>
+                                                    href="{{ route('backend.products.edit', $product->id) }}">Edit</a>
                                                 <!-- Button Group -->
                                                 <div class="btn-group">
                                                     <button type="button"
@@ -70,10 +69,7 @@
                                                         aria-labelledby="ordersExportDropdown1" style="">
                                                         <span class="dropdown-header">Options</span>
                                                         <div class="dropdown-divider"></div>
-                                                        <a onclick="return confirm('Are you sure you want to delete this product?')"
-                                                            class="dropdown-item"
-                                                            href="{{ route('backend.products.delete', $product->id) }}"> <i
-                                                                class="bi-trash dropdown-item-icon"></i> Delete </a>
+                                                        <a onclick="return confirm('Are you sure you want to delete this product?')" class="dropdown-item text-danger" href="{{ route('backend.products.delete', $product->id) }}">Delete</a>
                                                     </div>
                                                 </div>
                                                 <!-- End Unfold -->
