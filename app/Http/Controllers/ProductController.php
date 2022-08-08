@@ -40,6 +40,10 @@ class ProductController extends Controller
         return view('search', compact('products'));
     }
 
+    function index() {
+        return redirect()->route('shop_index');
+    }
+
     public function products_index()
     {
         $products = Product::orderBy('id', 'DESC')->get();
