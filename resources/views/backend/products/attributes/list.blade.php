@@ -87,8 +87,7 @@
 								<td> @if ($attribute->type == 1) Color @elseif($attribute->type == 2) Image @else Text @endif </td>
 								<td>
 									<div class="btn-group" role="group">
-                                        <a class="btn btn-dark btn-sm" href="{{ route('backend.products.attributes.values.list', $attribute->id) }}">
-                                        <i class="bi bi-pencil-fill p-1"></i> Values </a>
+                                        <a class="btn btn-dark btn-sm" href="{{ route('backend.products.attributes.values.list', $attribute->id) }}">Values</a>
                                         <!-- Button Group -->
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
