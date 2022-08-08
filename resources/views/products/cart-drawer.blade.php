@@ -11,7 +11,7 @@
                 <div class="product-title">{{ $product->name }}</div>
             </div>
             <div class="cart-draw-item mb-2">
-                <a href="#" data-row-id="{{ $item->rowId }}" class="text-danger remove-item-btn " title="Remove from chart">Remove</a>
+                <a href="javascript:;" data-row-id="{{ $item->rowId }}" class="text-danger remove-item-btn " title="Remove from chart">Remove</a>
             </div>
             <div class="d-flex justify-content-between align-items-baseline">
                 <input type="number" class="product-quantity p-1" value="{{ $item->qty }}" data-row-id="{{ $item->rowId }}" style="width: 60px;">
