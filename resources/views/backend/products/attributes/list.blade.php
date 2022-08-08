@@ -93,10 +93,8 @@
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                             <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
-                                                <a class="dropdown-item" href="{{ route('backend.products.attributes.edit', $attribute->id) }}">
-                                                    <i class="bi-eye dropdown-item-icon"></i> Edit </a>
-                                                <a class="dropdown-item" href="javascript:;">
-                                                    <i class="bi-trash dropdown-item-icon"></i> Delete </a>
+                                                <a class="dropdown-item" href="{{ route('backend.products.attributes.edit', $attribute->id) }}">Edit</a>
+                                                <a class="dropdown-item text-danger" href="javascript:;">Delete</a>
                                             </div>
                                         </div>
                                         <!-- End Unfold -->
