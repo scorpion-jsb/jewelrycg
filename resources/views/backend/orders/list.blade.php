@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="table-responsive datatable-custom">
-        <table class="table table-hover table-borderless table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
+        <table class="table table-hover table-thead-bordered table-nowrap table-align-middle card-table dataTable no-footer">
             <thead class="thead-light">
                 <tr role="row">
                     <th class="table-column-pe-0 sorting_disabled" aria-label="">
@@ -69,10 +69,10 @@
                         </td>
                         <td>
                             <div class="btn-group" role="group">
-                                <a class="btn btn-white btn-sm" href="{{ route('backend.orders.show', $order->id) }}"> <i class="bi-eye"></i> View </a>
+                                <a class="btn btn-dark btn-sm" href="{{ route('backend.orders.show', $order->id) }}"> <i class="bi-eye"></i> View </a>
                                 <!-- Button Group -->
                                 {{-- <div class="btn-group">
-                                    <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
+                                    <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                     <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
                                         <span class="dropdown-header">Options</span>
                                         <a class="js-export-print dropdown-item" href="javascript:;">
