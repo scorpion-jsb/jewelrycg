@@ -113,13 +113,13 @@
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a class="btn btn-white btn-sm" href="{{ route('backend.products.attributes.values.edit', ['id_attribute' => $attribute->id , 'id' => $value->id]) }}"> <i class="bi-list"></i> Edit </a>
+                                                <a class="btn btn-white btn-sm" href="{{ route('backend.products.attributes.values.edit', ['id_attribute' => $attribute->id , 'id' => $value->id]) }}">Edit</a>
                                                 <!-- Button Group -->
                                                 <div class="btn-group">
                                                     <button type="button" class="btn btn-white btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                                     <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
 
-                                                        <a class="dropdown-item" href="javascript:;"> <i class="bi-trash dropdown-item-icon"></i> Delete </a>
+                                                        <a class="dropdown-item text-danger" href="javascript:;">Delete</a>
                                                     </div>
                                                 </div>
                                                 <!-- End Unfold -->
