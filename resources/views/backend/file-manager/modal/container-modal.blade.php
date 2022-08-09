@@ -47,7 +47,7 @@
                         </div>
 
                         <div id="files_container" class="py-4">
-                            @include('backend.file_manager.files-pagination', ['files' => $files])
+                            @include('backend.file-manager.modal.files-pagination', ['files' => $files])
                         </div>
                     </div>
                     <div class="tab-pane fade" id="file_upload_tab" role="tabpanel" aria-labelledby="file_upload">

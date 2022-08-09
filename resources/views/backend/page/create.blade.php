@@ -6,7 +6,7 @@
         <h1 class="page-header-title">Create page</h1>
     </div>
     <!-- End Row -->
-</div>    
+</div>
     <form action="{{ route('backend.page.store') }}" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-8">
@@ -50,7 +50,7 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="mb-4 col-12">
                             <label for="category" class="w-100 mb-2">Parent</label>
                             <div class="col-12">
@@ -132,7 +132,7 @@
             });
 
             $('.select2').select2({
-            
+
             tags: true,
             maximumSelectionLength: 10,
             tokenSeparators: [','],
@@ -143,7 +143,7 @@
 
         $('#getFileManager').click(function () {
             $.ajax({
-                url: "{{ route('backend.file.index') }}",
+                url: "{{ route('backend.file.show') }}",
                 success: function (data) {
                     if (!$.trim($('#fileManagerContainer').html()))
                         $('#fileManagerContainer').html(data);

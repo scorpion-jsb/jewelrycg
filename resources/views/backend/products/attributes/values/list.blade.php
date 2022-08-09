@@ -37,9 +37,9 @@
 
                         @if($attribute->type != 0)
                         <div class="col-md-12 mb-2">
-                            <label for="name">Value:</label>                                   
+                            <label for="name">Value:</label>
                             @if($attribute->type == 1)
-                            <input type="color" name="value" id="name" value="" class="form-control">                                
+                            <input type="color" name="value" id="name" value="" class="form-control">
                             @elseif($attribute->type == 2)
                             <div class="imagePreview img-thumbnail p-2">
                                 <img id="fileManagerPreview" src="" style="width: 100%">
@@ -90,7 +90,7 @@
                             </thead>
 
                             <tbody>
-                                
+
                                 @foreach ($values as $value)
                                     <tr>
                                         <td class="table-column-pe-0">
@@ -109,7 +109,7 @@
                                                 <img class="" src="{{ $value->image ? $value->image->getImageOptimizedFullName() : ''}}" style="width:100px"/>
                                             @else
                                             {{ $value->name }}
-                                            @endif 
+                                            @endif
                                         </td>
                                         <td>
                                             <div class="btn-group" role="group">
@@ -127,7 +127,7 @@
                                             <!-- End Button -->
                                         </td>
 
-                                    </tr> 
+                                    </tr>
                                 @endforeach
 
                             </tbody>
@@ -200,7 +200,7 @@
 
         $('#getFileManager').click(function () {
             $.ajax({
-                url: "{{ route('backend.file.index') }}",
+                url: "{{ route('backend.file.show') }}",
                 success: function (data) {
                     if (!$.trim($('#fileManagerContainer').html()))
                         $('#fileManagerContainer').html(data);

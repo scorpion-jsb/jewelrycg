@@ -30,7 +30,7 @@
                                     <div class="col-md-6 mb-2">
                                         <label for="name">Value:</label>
                                             @if($attribute->type == 1)
-                                            <input type="color" name="value" id="name" value="{{ $value->value }}" class="form-control">                                                    
+                                            <input type="color" name="value" id="name" value="{{ $value->value }}" class="form-control">
                                             @elseif($attribute->type == 2)
                                             <div class="imagePreview img-thumbnail p-2">
                                                 <img id="fileManagerPreview" src="{{ $value->image ? $value->image->getImageOptimizedFullName() : '' }}" style="width: 100%">
@@ -44,7 +44,7 @@
                                     @else
                                         <input type="hidden" name="value" id="name" value="{{ $attribute->name }}" class="form-control">
                                     @endif
-                                    
+
                                     <div class="col-md-12 text-center">
                                         <button type="submit" class="btn btn-lg btn-outline-success">Update</button>
                                     </div>
@@ -59,17 +59,17 @@
     @endsection
 
     @section('js_content')
-    
+
     <script>
          $(document).ready(function(){
             $('#name').keyup(function(){
                 var slug = $(this).val()
-                
+
                 if(slug.charAt(slug.length - 1) != " ")
                 {
                     $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
                 }
-                
+
             })
 
             $('.select2').select2({
@@ -82,7 +82,7 @@
 
             $('#getFileManager').click(function () {
                 $.ajax({
-                    url: "{{ route('backend.file.index') }}",
+                    url: "{{ route('backend.file.show') }}",
                     success: function (data) {
                         if (!$.trim($('#fileManagerContainer').html()))
                             $('#fileManagerContainer').html(data);
@@ -100,5 +100,5 @@
                 })
             });
          })
-    </script> 
+    </script>
     @endsection

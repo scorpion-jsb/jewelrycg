@@ -372,7 +372,7 @@
         selectedId = i;
 
         $.ajax({
-            url: "{{ route('backend.file.index') }}",
+            url: "{{ route('backend.file.show') }}",
             success: function(data) {
                 if (!$.trim($('#fileManagerContainer').html()))
                     $('#fileManagerContainer').html(data);
@@ -395,7 +395,7 @@
         selectedId = i;
 
         $.ajax({
-            url: "{{ route('backend.file.index') }}",
+            url: "{{ route('backend.file.show') }}",
             success: function(data) {
                 if (!$.trim($('#fileManagerContainer').html()))
                     $('#fileManagerContainer').html(data);

@@ -6,7 +6,7 @@
         <h1 class="page-header-title">Edit Post</h1>
     </div>
     <!-- End Row -->
-</div>    
+</div>
     <style>
         .imagePreviewUpdate {
             width: 100%;
@@ -199,7 +199,7 @@
 
             $('#getFileManager').click(function () {
                 $.ajax({
-                    url: "{{ route('backend.file.index') }}",
+                    url: "{{ route('backend.file.show') }}",
                     success: function (data) {
                         if (!$.trim($('#fileManagerContainer').html()))
                             $('#fileManagerContainer').html(data);
