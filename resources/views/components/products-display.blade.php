@@ -9,9 +9,9 @@
             <div class="text-left px-2">
                 <div class="row">
                     <div class="fw-700 fs-15 text-primary col-6">${{$product->price}} </div>
-                    <div class="ml-auto col-auto">
-                        <span class="fs-14"><i class="bi bi-heart-fill"></i> 54</span>
-                        <span class="ml-4 fs-14"><i class="bi bi-eye-fill"></i> 434</span>
+                    <div class="ml-auto col-auto text-black">
+                        <span class="fs-12"><i class="bi bi-heart-fill"></i> 54</span>
+                        <span class="ml-4 fs-12"><i class="bi bi-eye-fill"></i> 434</span>
                     </div>
                 </div>
                 <h3 class="fw-600 fs-14 text-truncate-2 lh-1-4 mb-0 h-35px text-black">
