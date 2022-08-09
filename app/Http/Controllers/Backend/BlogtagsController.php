@@ -67,7 +67,8 @@ class BlogtagsController extends Controller
     public function store(TagStoreRequest $request)
     {
         $slug = $this->slugify($request->slug);
-        if ($request->slug == '')
+
+        if ($request->slug == '' || !$request->slug)
             $slug = $this->slugify($request->name);
 
         if (BlogTags::where('slug', $slug)->count()) {
@@ -119,7 +120,8 @@ class BlogtagsController extends Controller
     {
         $tag = BlogTags::findOrFail($id);
         $slug = $this->slugify($request->slug);
-        if ($request->slug == '')
+
+        if ($request->slug == '' || !$request->slug)
             $slug = $this->slugify($request->name);
 
         if (BlogTags::where('slug', $slug)->count()) {
