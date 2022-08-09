@@ -125,7 +125,7 @@
             return false;
         }
 
-        var url = "{{ route('backend.file.index') . '?page=1' }}";
+        var url = "{{ route('backend.file.show') . '?page=1' }}";
 
         $('.files-placeholder').hide();
         const loadFiles = function() {

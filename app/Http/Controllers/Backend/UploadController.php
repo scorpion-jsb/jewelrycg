@@ -11,7 +11,6 @@ use Response;
 use Auth;
 use Storage;
 use Image;
-// use ImageOptimizer;
 
 class UploadController extends Controller
 {

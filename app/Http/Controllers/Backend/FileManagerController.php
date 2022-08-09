@@ -71,15 +71,28 @@ class FileManagerController extends Controller
      */
     public function index(Request $request)
     {
-        $search = $request->has('search') ? $request->search : '';
+        $filename = $request->has('filename') ? $request->filename : '';
 
-        $files = Upload::where('file_original_name', 'LIKE' ,'%' . $search . '%')->orderby('id', 'desc')->paginate(16);
+        $query = Upload::where('file_original_name', 'LIKE' ,'%' . $filename . '%');
 
-        if ($request->ajax() && $request->has('page')) {
-            return view('backend.file_manager.files-pagination', ['files' => $files]);
+        if ($request->has('filesize') && $request->filesize) {
+            $query->where('file_size', '<=', $request->filesize);
         }
 
-        return view('backend.file_manager.container-modal', ['files' => $files]);
+        if ($request->has('filetype_image') && $request->filetype_image) {
+            $query->image();
+        }
+
+        if ($request->has('filetype_asset') && $request->filetype_asset) {
+            $query->asset();
+        }
+
+        $files = $query->paginate(16);
+
+        $minFileSize = Upload::min('file_size');
+        $maxFileSize = Upload::max('file_size');
+
+        return view('backend.file-manager.index', compact('files', 'minFileSize', 'maxFileSize'));
     }
 
     /**
@@ -115,32 +128,32 @@ class FileManagerController extends Controller
 
                 $request->file('file')->move(public_path($this->fileUploadPath), $fileName);
 
-                if($this->fileTypes[$extension] == 'image') {
-                    try {
-                        // this is for the product thumbnail
-                        $image = Image::make(public_path($this->fileUploadPath) . $fileName);
+                // if($this->fileTypes[$extension] == 'image') {
+                //     try {
+                //         // this is for the product thumbnail
+                //         $image = Image::make(public_path($this->fileUploadPath) . $fileName);
 
-                        $thumbnailWidth = Config::get('constants.product_thumbnail_size.width');
-                        $thumbnailHeight = Config::get('constants.product_thumbnail_size.height');
-                        $suffix = Config::get('constants.product_thumbnail_suffix');
+                //         $thumbnailWidth = Config::get('constants.product_thumbnail_size.width');
+                //         $thumbnailHeight = Config::get('constants.product_thumbnail_size.height');
+                //         $suffix = Config::get('constants.product_thumbnail_suffix');
 
-                        $image->resize($thumbnailWidth, $thumbnailHeight);
+                //         $image->resize($thumbnailWidth, $thumbnailHeight);
 
-                        $image->save(public_path($this->fileUploadPath) . $hash . $suffix . '.' . $extension, 80);
-                        clearstatcache();
+                //         $image->save(public_path($this->fileUploadPath) . $hash . $suffix . '.' . $extension, 80);
+                //         clearstatcache();
 
-                        // this is for the file manager thumbnail
-                        $image = Image::make(public_path($this->fileUploadPath) . $fileName);
+                //         // this is for the file manager thumbnail
+                //         $image = Image::make(public_path($this->fileUploadPath) . $fileName);
 
-                        $height = $this->fileManagerThumbnailWidth * $image->height() / $image->width();
+                //         $height = $this->fileManagerThumbnailWidth * $image->height() / $image->width();
 
-                        $image->resize($this->fileManagerThumbnailWidth, $height);
+                //         $image->resize($this->fileManagerThumbnailWidth, $height);
 
-                        $image->save(public_path($this->fileUploadPath) . $hash . $this->fileManagerThumbnailSuffix . '.' . $extension, 80);
-                        clearstatcache();
-                    } catch (\Exception $e) {
-                    }
-                }
+                //         $image->save(public_path($this->fileUploadPath) . $hash . $this->fileManagerThumbnailSuffix . '.' . $extension, 80);
+                //         clearstatcache();
+                //     } catch (\Exception $e) {
+                //     }
+                // }
 
                 $upload->extension = $extension;
                 $upload->file_name = $hash . '.' . $extension;
@@ -157,12 +170,20 @@ class FileManagerController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        //
+        $search = $request->has('search') ? $request->search : '';
+
+        $files = Upload::where('file_original_name', 'LIKE' ,'%' . $search . '%')->orderby('id', 'desc')->paginate(16);
+
+        if ($request->ajax() && $request->has('page')) {
+            return view('backend.file-manager.modal.files-pagination', ['files' => $files]);
+        }
+
+        return view('backend.file-manager.modal.container-modal', ['files' => $files]);
     }
 
     /**
@@ -196,6 +217,8 @@ class FileManagerController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Upload::destroy($id);
+
+        return redirect()->route('backend.file.index');
     }
 }

@@ -79,7 +79,9 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 
 	Route::group(['prefix' => 'file', 'as' => 'file.'], function() {
 		Route::get('/', [FileManagerController::class, 'index'])->name('index');
+		Route::get('/show', [FileManagerController::class, 'show'])->name('show');
 		Route::post('/store', [FileManagerController::class, 'store'])->name('store');
+		Route::post('/destroy/{id}', [FileManagerController::class, 'destroy'])->name('destroy');
 	});
 
 	//products routes
