@@ -80,6 +80,7 @@
                                         </li>
                                         <li>
                                             <form action="{{route('backend.file.destroy', $file->id)}}" method="post">
+                                                @csrf
                                                 <button type="submit" class="dropdown-item">
                                                     <i class="bi bi-trash"></i>
                                                     Delete
