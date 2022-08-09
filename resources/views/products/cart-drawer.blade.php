@@ -2,7 +2,7 @@
     @php
         $product = $item->model;
     @endphp
-    <div class="row border-bottom pb-2 mb-3" id="item{{ $item->rowId }}">
+    <div class="row cart-drawer-item pb-2 mb-3" id="item{{ $item->rowId }}">
         <div class="col-4">
             <img src="{{ $product->uploads->getImageOptimizedFullName(200) }}" alt="" class="product-thumbnail border w-100">
         </div>
@@ -10,13 +10,13 @@
             <div class="cart-draw-item mb-2">
                 <div class="product-title">{{ $product->name }}</div>
             </div>
-            <div class="cart-draw-item mb-2">
-                <a href="javascript:;" data-row-id="{{ $item->rowId }}" class="text-danger remove-item-btn " title="Remove from chart">Remove</a>
-            </div>
             <div class="d-flex justify-content-between align-items-baseline">
                 <input type="number" class="product-quantity p-1" value="{{ $item->qty }}" data-row-id="{{ $item->rowId }}" style="width: 60px;">
                 <span class="product-price d-none">${{ $product->price / 100 }}</span>
                 <span class="total-price">${{ $item->qty * $product->price / 100 }}</span>
+            </div>
+            <div class="cart-draw-item mb-2">
+                <a href="javascript:;" data-row-id="{{ $item->rowId }}" class="text-danger remove-item-btn " title="Remove from chart">Remove</a>
             </div>
         </div>
     </div>
