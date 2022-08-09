@@ -118,7 +118,7 @@ class FileManagerController extends Controller
             $upload = new Upload;
             $extension = strtolower($request->file('file')->getClientOriginalExtension());
 
-            if(isset($this->fileTypes[$extension])){
+            if(isset($this->fileTypes[$extension])) {
 
                 $upload->file_original_name = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
 
@@ -219,6 +219,6 @@ class FileManagerController extends Controller
     {
         Upload::destroy($id);
 
-        return redirect()->route('backend.file.show');
+        return redirect()->route('backend.file.index');
     }
 }
