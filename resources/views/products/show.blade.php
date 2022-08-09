@@ -306,13 +306,14 @@
     </section>
 
     {{-- data-bs-scroll="true" --}}
-    <div class="offcanvas offcanvas-end" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
-        <div class="offcanvas-header border-bottom">
+    <div class="offcanvas offcanvas-end cart-drawer-panel" tabindex="-1" id="cartDrawer" aria-labelledby="cartDrawerLabel">
+        <div class="offcanvas-header cart-drawer-header">
             <h5 class="offcanvas-title" id="cartDrawerLabel">Cart</h5>
-            <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas"
-                aria-label="Close"></button>
+            <button type="button" class="btn text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
+                <i class="bi bi-x-lg"></i>
+            </button>
         </div>
-        <div class="offcanvas-body cart-drawer-content py-6"></div>
+        <div class="offcanvas-body cart-drawer-content py-4"></div>
     </div>
 
 
