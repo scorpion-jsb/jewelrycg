@@ -68,4 +68,12 @@ class Upload extends Model
 
         return asset($this->fileUploadPath) . '/' . $filename;
     }
+
+    public function scopeImage($query) {
+        return $query->whereOr('type', 'image');
+    }
+
+    public function scopeAsset($query) {
+        return $query->where('type', '!=', 'image');
+    }
 }
