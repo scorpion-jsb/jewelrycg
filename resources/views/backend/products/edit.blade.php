@@ -311,7 +311,7 @@
                         <p>
                         @if ($product->product_3dpreview != null)
                             <span class="badge btn-success"> 3d model attached </span>
-                            <p>{{$product->modelpreview->file_original_name . "." . $product->digital->extension}}</p>
+                            <p>{{$product->modelpreview->file_original_name . "." . $product->modelpreview->extension}}</p>
                         @else
                             <span class="badge btn-danger"> No 3d model attached</span>
                         @endif
