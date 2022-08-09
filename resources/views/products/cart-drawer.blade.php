@@ -22,7 +22,7 @@
     </div>
 @endforeach
 <div class="row">
-  <div class="col-md-12 mb-2">
+  <div class="col-md-12 mb-3">
     <a class="view-cart" href="{{ url('/cart') }}">View Cart</a>
   </div>
   <div class="col-md-12">
