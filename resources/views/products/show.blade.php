@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <div class="col-lg-auto col-12 ml-auto p-0">
-                        <div class="product-details-price mb-4">
+                        <div class="product-details-price">
                             <div class="w-100">
                                 <a class="btn btn-primary product_price" href="#">
                                     <i class="bi bi-cart-plus p-1"></i>
