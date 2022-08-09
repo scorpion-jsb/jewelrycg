@@ -70,7 +70,7 @@
               <!-- End Collapse -->
 
               <div class="nav-item">
-                <a class="nav-link nav-link-main @if($activePage == 'filemanager') collapse @endif" href="{{ route('backend.filemanager.list')}}" data-placement="left">
+                <a class="nav-link nav-link-main @if($activePage == 'filemanager') collapse @endif" href="{{ route('backend.file.index')}}" data-placement="left">
                   <i class="bi-folder2-open nav-icon"></i>
                   <span class="nav-link-title">File Manager</span>
                 </a>
@@ -160,9 +160,9 @@
         <!-- Footer -->
         <div class="navbar-vertical-footer">
           <ul class="navbar-vertical-footer-list">
-            
 
-            
+
+
           </ul>
         </div>
         <!-- End Footer -->
