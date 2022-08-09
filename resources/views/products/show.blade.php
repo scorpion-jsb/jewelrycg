@@ -15,8 +15,8 @@
             <div class="product-container col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
                 <div class="product-details-title mb-4 col-lg-10 mx-auto row">
                     <div class="col-lg-8 col-12 p-0">
-                        <img src="https://jewelrycg.com/assets/img/160x160/img10.jpg" class="product-seller rounded-full" />
-                        <h1 class="fs-20 fw-600">{{ $product->name }}</h1>
+                        <img src="https://jewelrycg.com/assets/img/160x160/img10.jpg" class="product-seller rounded-circle" />
+                        <div class="fs-20 fw-600">{{ $product->name }}</div>
                     </div>
                     <div class="col-lg-auto col-12 ml-auto p-0">
                         <div class="product-details-price mb-4">
