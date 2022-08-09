@@ -6,7 +6,7 @@
         <h1 class="page-header-title">Create post</h1>
     </div>
     <!-- End Row -->
-</div>    
+</div>
     <form action="{{ route('backend.posts.store') }}" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-8">
@@ -21,7 +21,7 @@
                         <div class="mb-2">
                             <label for="desc" class="w-100 mb-2">Post:</label>
                             <textarea name="post" id="desc" rows="6" class="form-control">{{ old('post') }}</textarea>
-                        </div>            
+                        </div>
                     </div>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                                 </select>
                             </div>
                         </div>
-                        
+
                         <div class="mb-4 col-12">
                             <label for="category" class="w-100 mb-2">Category</label>
                             <div class="col-12">
@@ -151,7 +151,7 @@
             });
 
             $('.select2').select2({
-            
+
             tags: true,
             maximumSelectionLength: 10,
             tokenSeparators: [','],
@@ -162,7 +162,7 @@
 
         $('#getFileManager').click(function () {
             $.ajax({
-                url: "{{ route('backend.file.index') }}",
+                url: "{{ route('backend.file.show') }}",
                 success: function (data) {
                     if (!$.trim($('#fileManagerContainer').html()))
                         $('#fileManagerContainer').html(data);

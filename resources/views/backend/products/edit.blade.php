@@ -55,7 +55,7 @@
 
                     </div>
                 </div>
-                
+
                 <div class="card mb-3 mb-lg-5 mt-3">
                     <!-- Header -->
                     <div class="card-header card-header-content-between">
@@ -111,7 +111,7 @@
                         <div class="mb-4">
                             <label for="name">Attributes:</label>
                             @php
-                                $attributes_selected = explode(',', $product->product_attributes)    
+                                $attributes_selected = explode(',', $product->product_attributes)
                             @endphp
                             <select name="attributes[]" id="attributes" value="" class="form-control select2"
                                 multiple="multiple" style="width: 100%;">
@@ -124,11 +124,11 @@
                         <div class="mb-4">
                             <label for="name">Attributes values:</label>
                             @php
-                                $values_selected = explode(',', $product->product_attribute_values)    
+                                $values_selected = explode(',', $product->product_attribute_values)
                             @endphp
                             <select name="values[]" id="product_attribute_values" value="" class="form-control select2"
                                 multiple="multiple" style="width: 100%;">
-                                
+
                                 @include('backend.products.attributes.values.ajax',[
                                 'attributes' => $selected_values,
                                 'values_selected' => $values_selected
@@ -150,7 +150,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="col-lg-4">
 
                 <!-- Card -->
@@ -163,7 +163,7 @@
                         {{ date('F d, Y, h:i:s A', strtotime($product->created_at)) }}
                         <br />
                         <br />
-                        Seller: 
+                        Seller:
                     </div>
                 </div>
                 <!-- End Card -->
@@ -494,7 +494,7 @@
 
         $('#getFileManagerForProducts').click(function () {
             $.ajax({
-                url: "{{ route('backend.file.index') }}",
+                url: "{{ route('backend.file.show') }}",
                 success: function (data) {
                     if (!$.trim($('#fileManagerContainer').html()))
                         $('#fileManagerContainer').html(data);
@@ -520,7 +520,7 @@
         var digital_download_assets = [];
         $('#getFileManagerModel').click(function () {
             $.ajax({
-                url: "{{ route('backend.file.index') }}",
+                url: "{{ route('backend.file.show') }}",
                 success: function (data) {
                     if (!$.trim($('#fileManagerContainer').html()))
                         $('#fileManagerContainer').html(data);
@@ -540,7 +540,7 @@
 
         $('#getFileManagerAsset').click(function () {
             $.ajax({
-                url: "{{ route('backend.file.index') }}",
+                url: "{{ route('backend.file.show') }}",
                 success: function (data) {
                     if (!$.trim($('#fileManagerContainer').html()))
                         $('#fileManagerContainer').html(data);
@@ -559,7 +559,7 @@
 
         $('#getFileManager').click(function () {
             $.ajax({
-                url: "{{ route('backend.file.index') }}",
+                url: "{{ route('backend.file.show') }}",
                 success: function (data) {
                     if (!$.trim($('#fileManagerContainer').html()))
                         $('#fileManagerContainer').html(data);

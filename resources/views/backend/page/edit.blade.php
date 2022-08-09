@@ -6,7 +6,7 @@
         <h1 class="page-header-title">Edit Page</h1>
     </div>
     <!-- End Row -->
-</div>    
+</div>
     <form action="{{ route('backend.page.update', $page->id) }}" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-8">
@@ -168,7 +168,7 @@
 
             $('#getFileManager').click(function () {
                 $.ajax({
-                    url: "{{ route('backend.file.index') }}",
+                    url: "{{ route('backend.file.show') }}",
                     success: function (data) {
                         if (!$.trim($('#fileManagerContainer').html()))
                             $('#fileManagerContainer').html(data);

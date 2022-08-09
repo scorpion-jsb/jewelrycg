@@ -219,6 +219,6 @@ class FileManagerController extends Controller
     {
         Upload::destroy($id);
 
-        return redirect()->route('backend.file.index');
+        return redirect()->route('backend.file.show');
     }
 }

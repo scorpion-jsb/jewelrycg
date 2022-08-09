@@ -70,15 +70,9 @@
                                     </a>
                                     <ul class="dropdown-menu" aria-labelledby="dropdown{{$file->id}}">
                                         <li>
-                                            <a class="dropdown-item" href="#">
-                                                <i class="bi bi-arrow-up-left-square"></i>
-                                                Update
-                                            </a>
-                                        </li>
-                                        <li>
-                                            <a class="dropdown-item" href="#">
+                                            <a class="dropdown-item" href="{{ $file->getFileFullPath() }}" target="_blank">
                                                 <i class="bi bi-star"></i>
-                                                Shared
+                                                Share
                                             </a>
                                         </li>
                                         <li>
