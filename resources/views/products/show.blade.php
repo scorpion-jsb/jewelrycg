@@ -17,7 +17,7 @@
                     <div class="col-lg-8 col-12 p-0">
                         <div class="d-flex">
                             <img src="https://jewelrycg.com/assets/img/160x160/img10.jpg" class="product-seller rounded-circle h-60px" />
-                            <div class="product-details-title">
+                            <div class="product-details-title align-items-center">
                                 <div class="fs-20 fw-600">{{ $product->name }}</div>
                                 <div class="link">
                                     <span>farizzakky</span> <span> • Follow • Hire Us</span>
