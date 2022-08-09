@@ -87,7 +87,7 @@ class FileManagerController extends Controller
             $query->asset();
         }
 
-        $files = $query->paginate(16);
+        $files = $query->orderBy('id', 'desc')->paginate(16);
 
         $minFileSize = Upload::min('file_size');
         $maxFileSize = Upload::max('file_size');
