@@ -26,6 +26,7 @@
                     </div>
                     <div class="card-body">
                         <form>
+                            <input type="hidden" name="page" value="{{request()->get('page')}}">
                             <div class="form-group">
                                 <label for="filename">File Name</label>
                                 <input type="text" class="form-control form-control-sm" id="filename"
