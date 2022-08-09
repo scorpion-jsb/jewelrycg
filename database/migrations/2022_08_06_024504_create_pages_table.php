@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('author_id');
             $table->string('slug');
             $table->string('url');
-            $table->text('post');
+            $table->text('post')->nullable();
             $table->integer('status');
             $table->integer('parent_id')->default(0);
             $table->timestamps();

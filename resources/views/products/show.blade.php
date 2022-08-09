@@ -225,7 +225,7 @@
                                                             @endif
                                                             @if ($attribute->type == 0)
                                                                 <input type="radio" class="attribute-radio btn-check attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}" value="{{ $attributeValue->id }}" id="attribute{{$attributeValue->id}}" autocomplete="off">
-                                                                <label class="btn btn-secondary me-2" for="attribute{{$attributeValue->id}}" style="width: 80px;">{{$attributeValue->name}}</label>                                                               
+                                                                <label class="btn btn-secondary me-2" for="attribute{{$attributeValue->id}}" style="width: 80px;">{{$attributeValue->name}}</label>
                                                             @endif
                                                         @endforeach
                                                     </div>

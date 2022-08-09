@@ -26,7 +26,7 @@
                     </div>
                     <div class="card-body">
                         <form>
-                            <input type="hidden" name="page" value="{{request()->get('page')}}">
+                            <input type="hidden" name="page" value="{{ request()->get('page') }}">
                             <div class="form-group">
                                 <label for="filename">File Name</label>
                                 <input type="text" class="form-control form-control-sm" id="filename"
@@ -61,25 +61,42 @@
             <div class="col-md-9 col-sm-6">
                 <div class="row">
                     @foreach ($files as $file)
-                       @csrf
+                        @csrf
                         <div class="col-md-3">
                             <div class="card p-4" data-id="{{ $file->id }}">
                                 <div class="dropdown">
-                                    <a href="javascript:;" class="float-end" id="dropdown{{$file->id}}" data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
+                                    <a href="javascript:;" class="float-end" id="dropdown{{ $file->id }}"
+                                        data-bs-toggle="dropdown" aria-expanded="false" style="color: black;">
                                         <i class="bi bi-grid"></i>
                                     </a>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdown{{$file->id}}">
+                                    <ul class="dropdown-menu" aria-labelledby="dropdown{{ $file->id }}">
                                         <li>
-                                            <a class="dropdown-item" href="{{ $file->getFileFullPath() }}" target="_blank">
+                                            <a class="dropdown-item" href="javascript:;">
                                                 <i class="bi bi-star"></i>
                                                 Share
                                             </a>
+                                            <div class="ms-2 me-2">
+                                                <input type="text" class="form-control form-control-sm clipboard"
+                                                    name="share" value="{{ $file->getFileFullPath() }}">
+                                            </div>
                                         </li>
+                                        @if (in_array($file->extension, ['glb', 'gltf', 'usdz']))
+                                            <li>
+                                                <a class="dropdown-item" href="javascript:;">
+                                                    <i class="bi bi-badge-3d"></i>
+                                                    3D Model
+                                                </a>
+                                                <div class="ms-2 me-2">
+                                                    <input type="text" class="form-control form-control-sm clipboard"
+                                                        name="model" value="[3d_viewer id={{ $file->id }}]">
+                                                </div>
+                                            </li>
+                                        @endif
                                         <li>
                                             <hr class="dropdown-divider">
                                         </li>
                                         <li>
-                                            <form action="{{route('backend.file.destroy', $file->id)}}" method="post">
+                                            <form action="{{ route('backend.file.destroy', $file->id) }}" method="post">
                                                 @csrf
                                                 <button type="submit" class="dropdown-item">
                                                     <i class="bi bi-trash"></i>
@@ -89,13 +106,13 @@
                                         </li>
                                     </ul>
                                 </div>
-                                    <span
+                                <span
                                     class="file-created-at">{{ date('F d, Y, h:i:s A', strtotime($file->created_at)) }}</span>
                                 @if ($file->type != 'image')
                                     <img src="{{ asset('assets/svg/brands/google-docs-icon.svg') }}" alt="">
                                 @else
-                                    <img src="{{ $file->getImageOptimizedFullName() }}" class="card-img-top img-thumbnail"
-                                        alt="{{ $file->file_name }}">
+                                    <img src="{{ $file->getImageOptimizedFullName() }}"
+                                        class="card-img-top img-thumbnail" alt="{{ $file->file_name }}">
                                 @endif
                                 <div class="card-body">
                                     <h5 class="card-title text-center">{{ $file->getOriginalFileFullName() }}</h5>
@@ -109,9 +126,28 @@
             </div>
         </div>
     </div>
+
+    <div id="toast" role="alert" aria-live="assertive" aria-atomic="true" class="toast" data-bs-autohide="false">
+        <div class="toast-header">
+            <strong class="me-auto">Bootstrap</strong>
+            <small>11 mins ago</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body">
+            Copied
+        </div>
+    </div>
     <!-- End Content -->
 @endsection
 
 @section('js_content')
-    <script></script>
+    <script>
+        $(function() {
+            $('.clipboard').click(function() {
+                navigator.clipboard.writeText($(this).val()).then(function() {
+                    console.log('success');
+                });
+            });
+        })
+    </script>
 @endsection
