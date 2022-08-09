@@ -13,11 +13,16 @@
     <section class="product_detail_single">
         <div class="container">
             <div class="product-container col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
-                <div class="product-details-title mb-4 col-lg-10 mx-auto row">
+                <div class="product-details-meta-block align-items-center mb-4 col-lg-10 mx-auto row">
                     <div class="col-lg-8 col-12 p-0">
                         <div class="d-flex">
                             <img src="https://jewelrycg.com/assets/img/160x160/img10.jpg" class="product-seller rounded-circle h-60px" />
-                            <div class="fs-20 fw-600">{{ $product->name }}</div>
+                            <div class="product-details-title">
+                                <div class="fs-20 fw-600"{{ $product->name }}</div>
+                                <div class="link">
+                                    <span>farizzakky</span> <span> • Follow • Hire Us</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div class="col-lg-auto col-12 ml-auto p-0">
