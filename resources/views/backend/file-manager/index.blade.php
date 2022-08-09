@@ -108,6 +108,7 @@
                             </div>
                         </div>
                     @endforeach
+                    {{ $files->links() }}
                 </div>
             </div>
         </div>
