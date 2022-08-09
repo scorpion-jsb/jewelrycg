@@ -301,13 +301,16 @@ button.navbar-toggler {
     vertical-align: -2px;
 }
 
-/* Checkout */
+/* Cart Drawer*/
+.cart-drawer-header, .cart-drawer-item {
+    border-bottom: 1px solid #eeeeee;
+}
 button.remove-item-btn:after {
     display: inline-block;
     content: "\00d7";
 }
 
-a.view-cart, a.checkout {
+.cart-drawer-content a.view-cart, .cart-drawer-content a.checkout {
     margin-top: 8px;
     text-decoration: none;
     padding: 8px;
@@ -317,22 +320,22 @@ a.view-cart, a.checkout {
     cursor: pointer;
 }
 
-a.view-cart {
+.cart-drawer-content a.view-cart {
     background-color: #eaedf0;
     color: #393f45;
 }
 
-a.view-cart:hover {
+.cart-drawer-content a.view-cart:hover {
     background-color: #d1d6db;
     transition: 0.5s;
 }
 
-a.checkout {
-    background-color: #282a30;
-    color: #d5d5d6;
+.cart-drawer-content a.checkout {
+    background-color: #000000;
+    color: #FFFFFF;
 }
 
-a.checkout:hover {
+.cart-drawer-content a.checkout:hover {
     background-color: #55565a;
     transition: 0.5s;
 }
