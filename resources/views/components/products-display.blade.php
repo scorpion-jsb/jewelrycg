@@ -10,7 +10,7 @@
                 <div class="row align-items-center opacity-70">
                     <div class="fw-700 fs-15 text-primary col-4">${{$product->price}} </div>
                     <div class="ml-auto col-8 text-black text-right">
-                        <span class="fs-12 px-2"><i class="bi bi-heart-fill px-1"></i> 54</span>
+                        <span class="fs-12"><i class="bi bi-heart-fill px-1"></i> 54</span>
                         <span class="fs-12"><i class="bi bi-eye-fill px-1"></i> 434</span>
                     </div>
                 </div>
