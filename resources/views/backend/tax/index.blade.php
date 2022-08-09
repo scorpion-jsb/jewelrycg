@@ -56,8 +56,7 @@
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a class="btn btn-dark btn-sm"
-                                                    href="{{ route('backend.tax.edit', $tax->id) }}"> <i
-                                                        class="bi-pencil"></i> Edit </a>
+                                                    href="{{ route('backend.tax.edit', $tax->id) }}">Edit</a>
                                                 <!-- Button Group -->
                                                 <div class="btn-group">
                                                     <button type="button"
@@ -71,7 +70,7 @@
                                                         <form action="{{ route('backend.tax.destroy', $tax->id) }}" method="post">
                                                           @csrf
                                                           @method('delete')                                                            
-                                                            <button class="dropdown-item" onclick="return confirm('Are you sure you want to delete this tax?')" >Delete</button>
+                                                            <button class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this tax?')" >Delete</button>
                                                         </form>
                                                     </div>
                                                 </div>
