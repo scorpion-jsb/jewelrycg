@@ -160,9 +160,6 @@
         <!-- Footer -->
         <div class="navbar-vertical-footer">
           <ul class="navbar-vertical-footer-list">
-
-
-
           </ul>
         </div>
         <!-- End Footer -->
