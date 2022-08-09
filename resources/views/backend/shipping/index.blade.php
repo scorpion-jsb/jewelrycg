@@ -70,7 +70,7 @@
                                                         <form action="{{ route('backend.shipping.destroy', $shipping->id) }}" method="post">
                                                           @csrf
                                                           @method('delete')                                                            
-                                                            <button class="dropdown-item danger" onclick="return confirm('Are you sure you want to delete this shipping?')" >Delete</button>
+                                                            <button class="dropdown-item text-danger" onclick="return confirm('Are you sure you want to delete this shipping?')" >Delete</button>
                                                         </form>
                                                     </div>
                                                 </div>
