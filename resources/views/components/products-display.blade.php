@@ -7,7 +7,7 @@
                 <img src="{{ $product->uploads->getImageOptimizedFullName(400) }}" alt="{{ $product->name }}" class="rounded w-100 lazyloaded">
             </div>
             <div class="text-left px-2">
-                <div class="row">
+                <div class="row align-items-center">
                     <div class="fw-700 fs-15 text-primary col-4">${{$product->price}} </div>
                     <div class="ml-auto col-8 text-black text-right">
                         <span class="fs-12 px-2"><i class="bi bi-heart-fill"></i> 54</span>
