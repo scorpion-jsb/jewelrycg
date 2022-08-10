@@ -44,9 +44,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// test route
-Route::get('test', [TestController::class, 'test']);
-
 // Backend
 Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth', 'admin']], function ()
 {
@@ -60,7 +57,6 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 	//uploads
 	Route::group(['prefix' => 'filemanager', 'as' => 'filemanager.'], function ()
 	{
-
 		Route::get('/', [UploadController::class, 'index'])->name('list');
 		Route::middleware('optimizeImages')->group(function () {
 			// all images will be optimized automatically
@@ -259,19 +255,20 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 	{
 		Route::middleware('verified')->post('/buy-now', 'buyNow')->name('buy.now');
 
-		Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function ()
-		{
-			Route::get('/', 'wishlist');
-			Route::post('/', 'wishlistStore');
-			Route::put('/', 'wishlistToCart');
-			Route::delete('/', 'removeFromWishlist');
-		});
 	});
 	Route::get('/count', 'getCount')->name('count');
 	Route::post('/edit', 'editQty')->name('edit.qty');
 	Route::get('/remove/{id}', 'removeProduct')->name('remove.product');
 });
 Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy']);
+
+Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function ()
+{
+    Route::get('/', 'wishlist');
+    Route::post('/', 'wishlistStore');
+    Route::put('/', 'wishlistToCart');
+    Route::delete('/', 'removeFromWishlist');
+});
 
 // Auth
 Route::group(['middleware' => 'auth'], function ()

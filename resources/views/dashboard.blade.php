@@ -1,7 +1,5 @@
 <x-app-layout>
-
     <style>
-
         .pur {
             width: 100%;
             margin-bottom: 8px;
@@ -41,8 +39,7 @@
                     </div>
                 </div>
             </div>
-        
-        
+
             <div class="card">
                 <div class="card-header">Your Purchases</div>
                 <div class="card-body">
@@ -53,13 +50,13 @@
                                     <div class="card">
                                         <div class="card-body">
                                             @if ($item->product_variant == 0)
-                                                <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}"
+                                                <img src="{{ $item->product->uploads->getImageOptimizedFullName(400) }}"
                                                     alt="" style="width: 100%;" class="mb-2">
                                                 <a href="{{ url('products/') . '/' . $item->product->slug }}">
                                                     <h6>{{ $item->product_name }}</h6>
                                                 </a>
                                             @else
-                                                <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}"
+                                                <img src="{{ $item->product->uploads->getImageOptimizedFullName(400) }}"
                                                 alt="" style="width: 100%;" class="mb-2">
                                                 <a href="{{ url('products/') . '/' . $item->product->slug }}">
                                                     <h6>{{ $item->product_name }} - {{ $item->product_variant_name }}</h6>
@@ -79,6 +76,6 @@
                     </div>
                 </div>
             </div>
-        </div>    
+        </div>
     </div>
 </x-app-layout>
