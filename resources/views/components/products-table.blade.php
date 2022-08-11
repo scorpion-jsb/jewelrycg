@@ -89,7 +89,7 @@
                         @endphp
                         @if ($locale == 'wishlist')
                             <div class="col-8">
-                                <form action="{{ route('wishlist') }}" method="post" class="d-inline">
+                                <form action="{{-- route('wishlist') --}}" method="post" class="d-inline">
                                     @csrf
                                     @method('put')
                                     <input type="hidden" name="row_id" value="{{ $product->rowId }}">
@@ -97,7 +97,7 @@
                                         <i class="fa-solid fa-cart-arrow-down"></i>
                                     </button>
                                 </form>
-                                <form action="{{ route('wishlist') }}" method="post" class="d-inline">
+                                <form action="{{-- route('wishlist') --}}" method="post" class="d-inline">
                                     @csrf
                                     @method('delete')
                                     <input type="hidden" name="row_id" value="{{ $product->rowId }}">
