@@ -39,7 +39,7 @@
 
                                 @auth
                                     @if ($wishlist_product = Cart::instance('wishlist')->content()->firstWhere('id', $product->id))
-                                        <form action="{{ route('wishlist') }}" method="post" class="d-inline">
+                                        <form action="{{-- route('wishlist') --}}" method="post" class="d-inline">
                                             @method('delete')
                                             @csrf
                                             <input type="hidden" name="row_id" value="{{ $wishlist_product->rowId }}">
@@ -49,7 +49,7 @@
                                             </button>
                                         </form>
                                     @else
-                                        <form action="{{ route('wishlist') }}" method="post" class="d-inline">
+                                        <form action="{{-- route('wishlist') --}}" method="post" class="d-inline">
                                             @csrf
                                             <input type="hidden" name="id_product" value="{{ $product->id }}">
                                             <button type="submit" class="btn btn-light">
