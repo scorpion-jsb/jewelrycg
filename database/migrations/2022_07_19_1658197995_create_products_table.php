@@ -11,6 +11,7 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
 
 					$table->id();
+					$table->integer('status',)->nullable();
 					$table->integer('vendor',)->nullable();
 					$table->string('name');
 					$table->text('description')->nullable();
@@ -19,7 +20,6 @@ class CreateProductsTable extends Migration
 					$table->string('category',24);
 					$table->string('slug')->nullable();
 					$table->datetime('published_at')->nullable();
-					$table->integer('status',)->nullable();
 					$table->string('sku')->nullable();
 					$table->integer('price_discount',)->nullable();
 					$table->string('price_discount_type')->nullable();
