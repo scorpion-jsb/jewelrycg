@@ -37,6 +37,7 @@
     </main>
 
     <script>
+    /*
         $(function() {
             var categoryId = '';
 
@@ -68,5 +69,6 @@
                 search();
             });
         })
+        */
     </script>
 </div>
