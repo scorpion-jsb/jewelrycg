@@ -24,7 +24,7 @@
         <!-- Scripts -->
         <script src="{{ asset('js/app.js') }}" defer></script>
         {{ $scripts ?? null }}
-        <script src="{{asset('js/func_util.js')}}" defer></script>
+        <!--<script src="{{asset('js/func_util.js')}}" defer></script>-->
     </head>
     <body>
 
