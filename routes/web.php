@@ -262,7 +262,7 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 });
 Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy']);
 
-
+/*
 Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function ()
 {
     Route::get('/', 'wishlist');
@@ -270,7 +270,7 @@ Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function ()
     Route::put('/', 'wishlistToCart');
     Route::delete('/', 'removeFromWishlist');
 });
-
+*/
 
 // Auth
 Route::group(['middleware' => 'auth'], function ()
