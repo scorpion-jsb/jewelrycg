@@ -34,13 +34,13 @@
                                 @endif
                             </a>
                             <div class="p-2 pt-3">
-                                <h2 class="fs-18 fw-600 mb-1">
+                                <h2 class="fs-18 fw-600 mb-2">
                                     <a href="{{ route('blog.post.url', ['slug'=>$post->slug]) }}" class="text-reset article-list-title">
                                         {{ $post->name }}
                                     </a>
                                 </h2>
                                 <div class="mb-2 opacity-50 article-list-category">
-                                <p> Author: {{ $post->postauthor->first_name . " " . $post->postauthor->last_name }} </p>
+                                    <span>Author: {{ $post->postauthor->first_name . " " . $post->postauthor->last_name }} </span>
                                 </div>
                                 
                                     <div class="mb-2 opacity-50 article-list-category">
