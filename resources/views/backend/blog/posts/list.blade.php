@@ -66,7 +66,7 @@
                             </td>
                             <td>
                                 <div class="btn-group" role="group">
-                                    <a class="btn btn-dark btn-sm" target="_blank" href="{{ route('backend.posts.edit', $post->id) }}">Edit</a>
+                                    <a class="btn btn-dark btn-sm" href="{{ route('backend.posts.edit', $post->id) }}">Edit</a>
                                     <!-- Button Group -->
                                     <div class="btn-group">
                                         <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
