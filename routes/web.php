@@ -270,19 +270,17 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 });
 Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy']);
 
-/*
-Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function ()
-{
-    Route::get('/', 'wishlist');
-    Route::post('/', 'wishlistStore');
-    Route::put('/', 'wishlistToCart');
-    Route::delete('/', 'removeFromWishlist');
-});
-*/
-
 // Auth
 Route::group(['middleware' => 'auth'], function ()
 {
+	Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function ()
+	{
+		Route::get('/', 'wishlist');
+		Route::post('/', 'wishlistStore');
+		Route::put('/', 'wishlistToCart');
+		Route::delete('/', 'removeFromWishlist');
+	});
+
 	Route::get('/product/download', [ProductController::class, 'download'])->name('download');
 
 	Route::group(['prefix' => 'email/verify', 'as' => 'verification.', 'controller' => VerifyEmailController::class ], function ()
