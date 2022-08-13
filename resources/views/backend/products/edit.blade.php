@@ -276,12 +276,13 @@
                             <div class="col-12">
                                 <select class="selectpicker w-100" name="category" data-live-search="true">
                                     <option disabled>Select category</option>
-                                    <option value="{{ $categorie->id }}"
-                                        {{ $product->category == $categorie->id  ? 'selected' : ''  }}
-                                        data-tokens="{{ $categorie->category_name }}">
-                                        {{ $categorie->category_name }}
-                                    </option>
-
+                                    @foreach ($categories as $categorie)
+                                        <option value="{{ $categorie->id }}"
+                                            {{ $product->category == $categorie->id  ? 'selected' : ''  }}
+                                            data-tokens="{{ $categorie->category_name }}">
+                                            {{ $categorie->category_name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>
