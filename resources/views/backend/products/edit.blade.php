@@ -163,7 +163,7 @@
                         {{ date('F d, Y, h:i:s A', strtotime($product->created_at)) }}
                         <br />
                         <br />
-                        Seller:
+                        Seller: {{ $seller->first_name . " ".$seller->last_name  }}
                     </div>
                 </div>
                 <!-- End Card -->
@@ -276,12 +276,11 @@
                             <div class="col-12">
                                 <select class="selectpicker w-100" name="category" data-live-search="true">
                                     <option disabled>Select category</option>
-                                    @foreach ($categories as $categorie)
-                                        <option value="{{ $categorie->id }}"
-                                            data-tokens="{{ $categorie->category_name }}">
-                                            {{ $categorie->category_name }}
-                                        </option>
-                                    @endforeach
+                                    <option value="{{ $categorie->id }}"
+                                        {{ $product->category == $categorie->id  ? 'selected' : ''  }}
+                                        data-tokens="{{ $categorie->category_name }}">
+                                        {{ $categorie->category_name }}
+                                    </option>
 
                                 </select>
                             </div>
