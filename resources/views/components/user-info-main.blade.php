@@ -28,7 +28,7 @@
             <div class="mb-2">
                 <label for="phone">Phone Number:</label>
                 <input {{ $edit ? null : 'disabled' }} type="tel" name="phone" id="phone"
-                    value="{{ old('phone') ?? $user->address->phonenumber }}" placeholder="{{ $user->phone }}"
+                    value="{{ old('phone') ?? $user->phone }}" placeholder="{{ $user->phone }}"
                     class="form-control">
             </div>
         </div>
