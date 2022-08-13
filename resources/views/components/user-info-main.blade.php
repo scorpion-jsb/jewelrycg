@@ -40,13 +40,13 @@
             <div class="mb-2">
                 <label for="address1">Address:</label>
                 <input {{ $edit ? null : 'disabled' }} type="text" name="address1" id="address1"
-                    value="{{ old('address1') ?? $user->address->address }}"
-                    placeholder="{{ $user->address->address }}" class="form-control">
+                    value="{{ old('address1') ?? $user->address->address ?? ''}}"
+                    placeholder="{{ $user->address->address ?? ''}}" class="form-control">
             </div>
             <div class="mb-2">
                 <label for="city">City:</label>
                 <input {{ $edit ? null : 'disabled' }} type="text" name="city" id="city"
-                    value="{{ old('city') ?? $user->address->city }}" placeholder="{{ $user->address->city }}"
+                    value="{{ old('city') ?? $user->address->city ?? ''}}" placeholder="{{ $user->address->city ?? ''}}"
                     class="form-control">
             </div>
             <div class="mb-2">
