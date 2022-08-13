@@ -59,7 +59,7 @@
             </span>
         @else
             <span class="total-price">
-                ${{-- number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) --}}
+                {{-- number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) --}}
             </span>
         @endif
         @if ($locale == 'cart' && $products->count() > 0)
