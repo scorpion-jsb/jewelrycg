@@ -167,8 +167,8 @@ class ProductsController extends Controller
             'tags' => ProductTag::all(),
             'uploads' => Upload::whereIn('id', explode(',',$product->product_images))->get(),
             'selected_values' => $prepare_values,
-            'taxes' => ProductsTaxOption::all()
             'seller' => $seller,
+            'taxes' => ProductsTaxOption::all()
         ]);
     }
 
