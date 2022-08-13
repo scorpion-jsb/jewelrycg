@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request; 
 use App\Models\Product;
 use App\Http\Requests\ProductStoreRequest;
@@ -93,6 +94,7 @@ class ProductsController extends Controller
         $attributes = implode(",",(array)$req->input('attributes'));
         $values = implode(",",(array)$req->input('values'));
         $data = $req->all();
+        $data['vendor'] = auth()->id();
         $data['price'] = Product::stringPriceToCents($req->price);
         $data['is_digital'] = $req->is_digital ? 1 : 0;
         $data['is_virtual'] = $req->is_virtual ? 1 : 0;
@@ -156,6 +158,7 @@ class ProductsController extends Controller
 
         $selected_attributes = explode(',', $product->product_attributes);
         $prepare_values  = Attribute::whereIn('id', $selected_attributes)->with(['values'])->get();
+        $seller = User::query()->find($product->vendor);
         return view('backend.products.edit', [
             'product' => $product,
             'variants' => $variants,
@@ -165,6 +168,7 @@ class ProductsController extends Controller
             'uploads' => Upload::whereIn('id', explode(',',$product->product_images))->get(),
             'selected_values' => $prepare_values,
             'taxes' => ProductsTaxOption::all()
+            'seller' => $seller,
         ]);
     }
 
@@ -192,7 +196,7 @@ class ProductsController extends Controller
         $data['is_trackingquantity'] = $req->is_trackingquantity ? 1 : 0;
         $data['product_attributes'] = $attributes;
         $data['product_attribute_values'] = $values;
-        
+        $data['category'] = $req->get('category');
 
         if($req->slug == "")
         {
