@@ -273,13 +273,6 @@ Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy
 // Auth
 Route::group(['middleware' => 'auth'], function ()
 {
-	Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function ()
-	{
-		Route::get('/', 'wishlist');
-		Route::post('/', 'wishlistStore');
-		Route::put('/', 'wishlistToCart');
-		Route::delete('/', 'removeFromWishlist');
-	});
 
 	Route::get('/product/download', [ProductController::class, 'download'])->name('download');
 
