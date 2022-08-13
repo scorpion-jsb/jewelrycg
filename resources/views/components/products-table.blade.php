@@ -18,13 +18,13 @@
                     <div class="item-meta mb-2">
                         <span class="text-primary fw-800 mb-2" id="price{{ $product->rowId }}">${{ $product->price }}</span>
                     </div>
-                    <div class="item-meta mb-2 row align-items-baseline">
-                        <div class="col-auto">
-                            <span class="fw-800">Quantity:</span> 
-                        </div>
-                        <div class="col-auto">
-                            @if ($locale == 'cart')
-                            <input type="number" value="{{ $product->qty }}" placeholder="{{ $product->qty }}" name="quantity" min="1" max="100" class="form-control quantity" data-id="{{ $product->rowId }}" data-price="{{ $product->price }}" id="{{ $product->rowId }} inlineFormInputGroup">
+                    @if ($locale == 'cart')
+                        <div class="item-meta mb-2 row align-items-baseline">
+                            <div class="col-auto">
+                                <span class="fw-800">Quantity:</span> 
+                            </div>
+                            <div class="col-auto">
+                                <input type="number" value="{{ $product->qty }}" placeholder="{{ $product->qty }}" name="quantity" min="1" max="100" class="form-control quantity" data-id="{{ $product->rowId }}" data-price="{{ $product->price }}" id="{{ $product->rowId }} inlineFormInputGroup">
                                 <?php $out_of_stock[$key] = $product->qty > $product->model->quantity && $product->model->is_trackingquantity; ?>
                                 @if ($out_of_stock[$key])
                                     <div class="col-2">
@@ -34,16 +34,16 @@
                                     </div>
                                 @endif
                                 @csrf
-                            @else
-                                {{ $product->qty }}
-                            @endif
+                            </div>
                         </div>
-                    </div>
-                    <div class="item-meta mb-2">
-                        <div class="text-left">
-                            <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="text-danger" title="Remove from chart">Remove</a>
+                        <div class="item-meta mb-2">
+                            <div class="text-left">
+                                <a href="{{ url('cart/remove') . '/' . $product->rowId }}" class="text-danger" title="Remove from chart">Remove</a>
+                            </div>
                         </div>
-                    </div>
+                    @else
+                        <!-- {{ $product->qty }} -->
+                    @endif
                 </div>
             </div>
         </div>
