@@ -254,6 +254,14 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 	Route::group(['middleware' => 'auth'], function ()
 	{
 		Route::middleware('verified')->post('/buy-now', 'buyNow')->name('buy.now');
+		
+		Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function ()
+		{
+			Route::get('/', 'wishlist');
+			Route::post('/', 'wishlistStore');
+			Route::put('/', 'wishlistToCart');
+			Route::delete('/', 'removeFromWishlist');
+		});
 
 	});
 	Route::get('/count', 'getCount')->name('count');
