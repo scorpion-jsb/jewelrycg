@@ -59,7 +59,7 @@
             </span>
         @else
             <span class="total-price">
-                ${{ number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) }}
+                ${{-- number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) --}}
             </span>
         @endif
         @if ($locale == 'cart' && $products->count() > 0)
@@ -80,14 +80,11 @@
     });
 
     $('.quantity').change(function() {
-        // var price = $(this).parents('td').prev().text().split('$')[1]
+        
         var quantity = $(this).val();
         var rowId = $(this).attr('data-id');
         var price = $(this).attr('data-price');
         var total = price * quantity
-
-        // $(this).parents('td').next().find('div').text('$' + (Math.round(total * 100) / 100).toFixed(2));
-        // var rowId = $(this).attr('id');
 
         $.ajax({
             method: 'post',
@@ -98,16 +95,6 @@
             },
             success: function(data) {
                 total = 0;
-                // $('tbody').find('tr').each(function() {
-                //     if ($(this).attr('id') != 'total') {
-                //         var price = $(this).find('div').text().split('$')[1];
-                //         var quantity = $(this).find('input').val()
-
-                //         total += price * quantity;
-                //     }
-                // })
-
-                // $('#total_td').find('div').text('$' + (Math.round(total * 100) / 100).toFixed(2));
 
                 $('.product-container').find('div.product-item').each(function () {
                     var price = $(this).find('input.quantity').attr('data-price');
