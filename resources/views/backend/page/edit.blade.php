@@ -100,13 +100,13 @@
                 <div class="card-body">
                 <div class="row justify-content-center justify-content-sm-between">
                     <div class="col">
-                    <button type="button" class="btn btn-ghost-danger">Delete</button>
+                    <button type="button" class="btn btn-danger">Delete</button>
                     </div>
                     <!-- End Col -->
 
                     <div class="col-auto">
                     <div class="d-flex gap-3">
-                        <button type="button" class="btn btn-ghost-light">Unpublish</button>
+                        <button type="button" class="btn btn-light">Unpublish</button>
                         <button type="submit" class="btn btn-primary">Update</button>
                     </div>
                     </div>
