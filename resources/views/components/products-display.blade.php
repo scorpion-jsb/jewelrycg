@@ -1,7 +1,6 @@
 <div class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-4 row-cols-md-4 row-cols-2">
 @foreach ($products->chunk(4) as $products_chunk)
     @foreach ($products_chunk as $product)
-    $int = (int)$num
     <div class="col mt-1 mb-4">
         <a href="{{route('products.show', $product->slug)}}">
             <div class="card mb-2">
