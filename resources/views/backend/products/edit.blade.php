@@ -163,7 +163,7 @@
                         {{ date('F d, Y, h:i:s A', strtotime($product->created_at)) }}
                         <br />
                         <br />
-                        Seller: {{ $seller->first_name . " ".$seller->last_name  }}
+                        Seller: {{ $seller->first_name ?? ''}} {{  $seller->last_name ?? ''}}
                     </div>
                 </div>
                 <!-- End Card -->
