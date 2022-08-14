@@ -276,98 +276,6 @@
 <script>
     var selectedId = 0;
 
-    // function fileSelect(i) {
-    //     selectedId = i;
-
-    //     $.ajaxSetup({
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-    //         }
-    //     });
-
-    //     jQuery.ajax({
-    //         url: "{{ url('backend/filemanager/files') }}",
-    //         method: 'get',
-    //         success: function(files) {
-    //             $('#file_container').html('');
-    //             files = files.files;
-    //             var assets = "{{ asset('/uploads/all') }}";
-    //             $('#file_container').html('');
-
-    //             var selectedValue = $(`#variant-${selectedId}-thumbnail`).val();
-
-    //             for (var i = 0; i < files.length; i++) {
-    //                 console.log(files[i].type)
-    //                 var content = ``;
-
-
-    //                 content = `<div class="col mb-3 mb-lg-5">
-    //                     <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id ? 'selected' : ''} ">
-    //                         <div class="card-header card-header-content-between border-0">
-    //                             <span class="small">${files[i].file_size}kb</span>
-    //                             <!-- Dropdown -->
-    //                             <div class="dropdown">
-    //                                 <div class="dropdown-menu dropdown-menu-end"
-    //                                     aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
-    //                                     <span class="dropdown-header">Settings</span>
-
-    //                                     <a class="dropdown-item" href="#">
-    //                                         <i class="bi-share dropdown-item-icon"></i> Share file
-    //                                     </a>
-    //                                     <a class="dropdown-item" href="#">
-    //                                         <i class="bi-folder-plus dropdown-item-icon"></i> Move to
-    //                                     </a>
-    //                                     <a class="dropdown-item" href="#">
-    //                                         <i class="bi-star dropdown-item-icon"></i> Add to stared
-    //                                     </a>
-    //                                     <a class="dropdown-item" href="#">
-    //                                         <i class="bi-pencil dropdown-item-icon"></i> Rename
-    //                                     </a>
-    //                                     <a class="dropdown-item" href="#">
-    //                                         <i class="bi-download dropdown-item-icon"></i> Download
-    //                                     </a>
-
-    //                                     <div class="dropdown-divider"></div>
-
-    //                                     <a class="dropdown-item" href="#">
-    //                                         <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
-    //                                     </a>
-    //                                     <a class="dropdown-item" href="#">
-    //                                         <i class="bi-trash dropdown-item-icon"></i> Delete
-    //                                     </a>
-    //                                 </div>
-    //                             </div>
-    //                             <!-- End Dropdown -->
-    //                         </div>
-    //                     <div class="card-body">` +
-    //                     (files[i].type == 'image' ?
-    //                         `<img class="avatar-xxl"
-    //                                 src="{{ url('uploads/all') }}/${files[i].file_name}"
-    //                                 alt="Image Description">` :
-    //                         `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`
-    //                         ) +
-    //                     `</div><div class="card-body">
-    //                             <h5 class="card-title"><label><input type='radio' id='product_image' name='product_image' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
-    //                             <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
-    //                         </div>
-    //                     </div></div>`
-
-    //                 $('#file_container').append(content);
-    //             }
-
-    //             $('#product_file_modal').modal('show');
-    //         }
-    //     });
-
-    //     $('#file_container').on('click', '#product_image', function() {
-    //         var assets = "{{ asset('/uploads/all') }}";
-
-    //         $(`#selected_${selectedId}_image`).html(
-    //             `<img src='${assets}/${$(this).val()}' style='width: 150px;height: 100px;'/>`);
-    //         $(`#variant-${selectedId}-thumbnail`).val($(this).attr('data-file-id'));
-    //     });
-    // }
-
     function fileSelect(i) {
         selectedId = i;
 
@@ -406,7 +314,7 @@
 
                 const getSelectedItem = function(selectedIdP, filePath) {
                     $(`#variant-${selectedId}-assets`).val(selectedIdP);
-                    $(`#selected_${selectedId}_asset`).html('<img src="{{ asset("/assets/svg/brands/google-docs-icon.svg") }}" alt="" style="width: 60px;">');
+                    $(`#selected_${selectedId}_asset`).html('<img src="{{ asset("/assets/img/file.svg") }}" alt="" style="width: 60px;">');
                 }
 
                 setSelectedItemsCB(getSelectedItem, [selectedValue], false);
@@ -422,98 +330,6 @@
         }, 500);
     }
 
-    // function assetSelect(i) {
-    //     selectedId = i;
-
-    //     $.ajaxSetup({
-    //         headers: {
-    //             'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-    //         }
-    //     });
-
-
-    //     jQuery.ajax({
-    //         url: "{{ url('backend/filemanager/files') }}",
-    //         method: 'get',
-    //         success: function(files) {
-    //             files = files.files;
-    //             var assets = "{{ asset('/uploads/all') }}";
-    //             $('#file_container').html('');
-
-    //             var selectedValue = $(`#variant-${selectedId}-thumbnail`).val();
-    //             $('#file_asset_container').html('');
-
-    //             for (var i = 0; i < files.length; i++) {
-    //                 console.log(files[i].type)
-    //                 var content = ``;
-
-    //                 content = `<div class="col mb-3 mb-lg-5">
-    //                 <div id="file${files[i].id}" class="card card-sm card-hover-shadow card-header-borderless h-100 text-center ${selectedValue == files[i].id ?'selected' : ""} ">
-    //                 <div class="card-header card-header-content-between border-0">
-    //                 <span class="small">${files[i].file_size}kb</span>
-    //                 <!-- Dropdown -->
-    //                 <div class="dropdown">
-    //                     <div class="dropdown-menu dropdown-menu-end"
-    //                         aria-labelledby="filesGridDropdown1" style="min-width: 13rem;">
-    //                         <span class="dropdown-header">Settings</span>
-
-    //                         <a class="dropdown-item" href="#">
-    //                             <i class="bi-share dropdown-item-icon"></i> Share file
-    //                         </a>
-    //                         <a class="dropdown-item" href="#">
-    //                             <i class="bi-folder-plus dropdown-item-icon"></i> Move to
-    //                         </a>
-    //                         <a class="dropdown-item" href="#">
-    //                             <i class="bi-star dropdown-item-icon"></i> Add to stared
-    //                         </a>
-    //                         <a class="dropdown-item" href="#">
-    //                             <i class="bi-pencil dropdown-item-icon"></i> Rename
-    //                         </a>
-    //                         <a class="dropdown-item" href="#">
-    //                             <i class="bi-download dropdown-item-icon"></i> Download
-    //                         </a>
-
-    //                         <div class="dropdown-divider"></div>
-
-    //                         <a class="dropdown-item" href="#">
-    //                             <i class="bi-chat-left-dots dropdown-item-icon"></i> Report
-    //                         </a>
-    //                         <a class="dropdown-item" href="#">
-    //                             <i class="bi-trash dropdown-item-icon"></i> Delete
-    //                         </a>
-    //                     </div>
-    //                 </div>
-    //                 <!-- End Dropdown -->
-    //                 </div>
-    //                 <div class="card-body">` +
-    //                     (files[i].type == 'image' ?
-    //                         `<img class="avatar-xxl"
-    //                     src="{{ url('uploads/all') }}/${files[i].file_name}"
-    //                     alt="Image Description">` :
-    //                         `<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="height: 150px;">`
-    //                         ) +
-    //                     `</div><div class="card-body">
-    //                 <h5 class="card-title"><label><input type='radio' id='product_assets' name='product_assets' value='${files[i].file_name}' data-file-id='${files[i].id}'/>&nbsp;&nbsp;${ files[i].file_original_name }.${ files[i].extension }</label></h5>
-    //                 <p class="small">Updated ${ new Date(files[i].created_at).toLocaleDateString() }</p>
-    //                 </div>
-    //                 </div></div>`;
-
-    //                 $('#file_asset_container').append(content);
-    //             }
-
-    //             $('#product_asset_modal').modal('show');
-    //         }
-    //     });
-
-    //     $('#file_asset_container').on('click', '#product_assets', function() {
-    //         var assets = "{{ asset('/uploads/all') }}";
-
-    //         $(`#selected_${selectedId}_asset`).html(
-    //             '<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="width: 60px;"><br/>' +
-    //             $(this).parent().text());
-    //         $(`#variant-${selectedId}-assets`).val($(this).attr('data-file-id'));
-    //     });
-    // }
 
     function uploadAsset() {
 
@@ -543,7 +359,6 @@
                 $(`.variant_thumbnail_${attribute}`).next().html(
                     `<img src='${asset + '/' + variant.uploads.file_name}' style='width:150px;height:100px;'/>`
                     );
-                // $(`.variant_asset_${attribute}`).val(variant.digital_download_assets);
             })
         }
     })
