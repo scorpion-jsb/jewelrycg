@@ -143,7 +143,7 @@ class BlogsController extends Controller
                 'id_post' => $post_id
              ]);
         }
-        //return redirect()->route('backend.posts.list');
+        
         return redirect()->route('backend.posts.edit', $post_id);
     }
 
