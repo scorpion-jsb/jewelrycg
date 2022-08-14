@@ -8,8 +8,13 @@
             </div>
             <div class="text-left px-2">
                 <div class="fw-700 fs-16 text-primary col-4">
-                $@php 
-                if(is_float($product->price)){
+                $@php
+                function is_decimal($n) {
+                    // Note that floor returns a float 
+                    return is_numeric($n) && floor($n) != $n;
+                }
+
+                if (is_decimal($product->price)) {    
                     echo $product->price;
                 } else {
                     echo number_format($product->price / 100, 2);
