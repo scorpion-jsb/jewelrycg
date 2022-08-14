@@ -1,13 +1,22 @@
 <div class="row row-cols-xxl-6 row-cols-xl-6 row-cols-lg-4 row-cols-md-4 row-cols-2">
 @foreach ($products->chunk(4) as $products_chunk)
     @foreach ($products_chunk as $product)
+    $int = (int)$num
     <div class="col mt-1 mb-4">
         <a href="{{route('products.show', $product->slug)}}">
             <div class="card mb-2">
                 <img src="{{ $product->uploads->getImageOptimizedFullName(400) }}" alt="{{ $product->name }}" class="rounded w-100 lazyloaded">
             </div>
             <div class="text-left px-2">
-                <div class="fw-700 fs-16 text-primary col-4">${{number_format($product->price / 100, 2)}}</div>
+                <div class="fw-700 fs-16 text-primary col-4">
+                $ if(is_float($product->price)){
+                    {{$product->price}}
+                }
+                else
+                {
+                    {{number_format($product->price / 100, 2)}}
+                }
+                </div>
                 <!--<div class="row align-items-center opacity-70">
                     <div class="fw-700 fs-15 text-primary col-4">${{$product->price}} </div>
                     <div class="ml-auto col-8 text-black text-right">
