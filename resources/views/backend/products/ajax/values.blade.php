@@ -141,7 +141,7 @@
                         <div id="selected_{{ $k }}_asset" class="selected-asset">
                             @php
                                 if (isset($variant->digital_download_assets)) {
-                                    echo '<img src="https://jewelrycadfiles.com/assets/svg/brands/google-docs-icon.svg" alt="" style="width: 60px;"><br/>' . $variant->asset->file_original_name . '.' . $variant->asset->extension;
+                                    echo '<img src="https://jewelrycadfiles.com/assets/img/file.svg" alt="" style="width: 60px;"><br/>' . $variant->asset->file_original_name . '.' . $variant->asset->extension;
                                 }
                             @endphp
                         </div>
