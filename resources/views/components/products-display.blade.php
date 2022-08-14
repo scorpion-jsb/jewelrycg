@@ -8,8 +8,7 @@
             </div>
             <div class="text-left px-2">
                 <div class="fw-700 fs-16 text-primary col-4">
-                $
-                @php 
+                $@php 
                 if(is_float($product->price)){
                     echo $product->price;
                 } else {
