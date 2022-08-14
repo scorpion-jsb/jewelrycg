@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card mb-4 p-0">
     <div class="card-header">User Information</div>
     <div class="card-body">
         @if ($edit)
@@ -33,7 +33,7 @@
         </div>
     </div>
 </div>
-<div class="card mb-4">
+<div class="card mb-4 p-0">
     <div class="card-header">Shipping Address</div>
     <div class="card-body">
         <div class="mb-2">
@@ -74,7 +74,7 @@
         </div>
     </div>
 </div><!-- end shipping-address-->
-<div class="card">
+<div class="card p-0">
     <div class="card-header">Billing Address</div>
     <div class="card-body">
         <div class="mb-2">
