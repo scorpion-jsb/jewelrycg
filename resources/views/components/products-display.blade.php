@@ -9,13 +9,14 @@
             </div>
             <div class="text-left px-2">
                 <div class="fw-700 fs-16 text-primary col-4">
-                $ if(is_float($product->price)){
-                    {{$product->price}}
+                $
+                @php 
+                if(is_float($product->price)){
+                    echo $product->price;
+                } else {
+                    echo number_format($product->price / 100, 2);
                 }
-                else
-                {
-                    {{number_format($product->price / 100, 2)}}
-                }
+                @endphp
                 </div>
                 <!--<div class="row align-items-center opacity-70">
                     <div class="fw-700 fs-15 text-primary col-4">${{$product->price}} </div>
