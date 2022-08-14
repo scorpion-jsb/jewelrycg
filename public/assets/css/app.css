@@ -251,6 +251,10 @@ button.navbar-toggler {
     font-weight: 500;
     color: #ffffff;
 }
+.filter-categories::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
 /*Products*/
 .img-blog-cropped {
     max-width: 100%;
