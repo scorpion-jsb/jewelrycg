@@ -2,23 +2,23 @@
 
 @section('content')
     <div class="full-page section-image" data-color="black" data-image="{{ asset('light-bootstrap/img/full-screen-image-2.jpg') }}">
-        <div class="content pt-5">
-            <div class="container mt-5">    
-                <div class="col-md-4 col-sm-6 ml-auto mr-auto">
+        <div class="pt-5 content">
+            <div class="container mt-5">
+                <div class="ml-auto mr-auto col-md-4 col-sm-6">
                     <form class="form" method="POST" action="{{ route('login') }}">
                         @csrf
                         <div class="card card-login card-hidden">
                             <div class="card-header ">
-                                <h3 class="header text-center">{{ __('Login') }}</h3>
+                                <h3 class="text-center header">{{ __('Login') }}</h3>
                             </div>
                             <div class="card-body ">
                                 <div class="card-body">
                                     <div class="form-group">
                                         <label for="email" class="col-md-6 col-form-label">{{ __('E-Mail Address') }}</label>
-            
+
                                         <div class="col-md-14">
                                             <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', 'admin@lightbp.com') }}" required autocomplete="email" autofocus>
-            
+
                                             @error('email')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
@@ -27,10 +27,10 @@
                                         </div>
                                         <div class="form-group">
                                             <label for="password" class="col-md-6 col-form-label">{{ __('Password') }}</label>
-                
+
                                             <div class="col-md-14">
                                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" value="{{ old('password', 'secret') }}" required autocomplete="current-password">
-                
+
                                                 @error('password')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
@@ -49,7 +49,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card-footer ml-auto mr-auto">
+                                <div class="ml-auto mr-auto card-footer">
                                     <div class="container text-center" >
                                         <button type="submit" class="btn btn-warning btn-wd">{{ __('Login') }}</button>
                                     </div>
@@ -57,11 +57,11 @@
                                         <a class="btn btn-link"  style="color:#23CCEF" href="{{ route('password.request') }}">
                                         {{ __('Forgot password?') }}
                                         </a>
-                                        <a class="btn btn-link" style="color:#23CCEF" href="{{ route('register') }}">
+                                        <a class="btn btn-link" style="color:#23CCEF" href="{{ route('signup') }}">
                                             {{ __('Create account') }}
                                         </a>
                                     </div>
-                                    
+
                                 </div>
                             </div>
                         </div>

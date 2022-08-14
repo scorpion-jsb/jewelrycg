@@ -1,6 +1,6 @@
 <header class="navbar navbar-expand-lg">
     <nav class="container">
-        <a class="navbar-brand col-auto fw-800" href="{{ route('index') }}">
+        <a class="col-auto navbar-brand fw-800" href="{{ route('index') }}">
                 <!--
                 <img src="{{ asset('img/logo.png') }}" width="50" height="50" alt="logo">
                 <img class="logo" src="https://districtgurus.com/public/uploads/all/SC008HOLHmfOeB8E3SxNDONHI7nad1YJcmSl0ds9.png" data-src="https://districtgurus.com/public/uploads/all/SC008HOLHmfOeB8E3SxNDONHI7nad1YJcmSl0ds9.png" alt="District Gurus">-->
@@ -12,7 +12,7 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
 
             <!-- left navbar-->
-            <ul class="navbar-nav mb-2 mb-lg-0">
+            <ul class="mb-2 navbar-nav mb-lg-0">
                 <li class="nav-item menu-area d-none">
                     <a class="nav-link" href="{{ route('index') }}">Home</a>
                 </li>
@@ -29,7 +29,7 @@
                                         <div class="dropdown-icon-wrap"><i class="bi bi-book"></i></div>
                                     </div>
                                     <div class="col-auto w-80">
-                                        <div class="w-100 fw-800 mb-2">Blog</div>
+                                        <div class="mb-2 w-100 fw-800">Blog</div>
                                         <div class="w-100">Learn product design in just 16 weeks...</div>
                                     </div>
                                 </div>
@@ -42,7 +42,7 @@
                                         <div class="dropdown-icon-wrap"><i class="bi bi-book"></i></div>
                                     </div>
                                     <div class="col-auto w-80">
-                                        <div class="w-100 fw-800 mb-2">Browse our courses</div>
+                                        <div class="mb-2 w-100 fw-800">Browse our courses</div>
                                         <div class="w-100">Learn how to create jewelry & start a business.</div>
                                     </div>
                                 </div>
@@ -62,7 +62,7 @@
 
 
             <!-- right navbar-->
-            <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+            <ul class="mb-2 ml-auto navbar-nav mb-lg-0">
                 <li class="nav-item dropdown menu-area">
                     <a href="{{route('cart.index')}}" class="nav-link">
                         <i class="bi bi-cart2"></i>
@@ -96,11 +96,11 @@
                     </ul>
                 </li>
                 @else
-                <li class="nav-item ml-1">
-                    <a class="auth-btn" href="{{ route('login') }}">Log In</a>  
+                <li class="ml-1 nav-item">
+                    <a class="auth-btn" href="{{ route('login') }}">Log In</a>
                 </li>
-                <li class="nav-item ml-1">
-                    <a class="auth-btn auth-primary" href="{{ route('register') }}">Sign Up</a>  
+                <li class="ml-1 nav-item">
+                    <a class="auth-btn auth-primary" href="{{ route('signup') }}">Sign Up</a>
                 </li>
                 @endauth
             </ul>
