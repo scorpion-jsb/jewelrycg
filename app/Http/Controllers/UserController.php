@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserPasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Models\UserAddress;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -28,7 +29,16 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $req)
     {
-        auth()->user()->update($req->all());
+        $user = UserAddress::where('user_id', auth()->user()->id)->first();
+        $user->address = $req->address1;
+        $user->address2 = $req->address2;
+        $user->city = $req->city;
+        $user->state = $req->state;
+        $user->country = $req->country;
+        $user->postal_code = $req->pin_code;
+        $user->update();
+        // auth()->user()->update($req->all());
+        // return $req->all();
         return redirect()->route('user.index', auth()->user()->id);
     }
 
