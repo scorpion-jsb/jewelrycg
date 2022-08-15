@@ -14,9 +14,8 @@
                         </div>
                     </div>
                 @endif
-
                 <div class="row">
-                    <x-user-info-main :edit="true" :user="auth()->user()" />
+                    <x-user-info-main :edit="true" :user="auth()->user()" :shipping="$shipping" :billing="$billing" />
                 </div>
                 <div class="d-flex justify-content-end mt-3">
                     <div class="card">

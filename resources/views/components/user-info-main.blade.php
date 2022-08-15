@@ -36,40 +36,40 @@
     <div class="card-header">Shipping Address</div>
     <div class="card-body">
         <div class="mb-2">
-            <label for="address1">Address:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="address1" id="address1"
-                value="{{ old('address1') ?? ($user->address->address ?? '') }}"
-                placeholder="{{ $user->address->address ?? '' }}" class="form-control">
+            <label for="shipping_address1">Address:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="shipping_address1" id="shipping_address1"
+                value="{{ old('shipping_address1') ?? ($shipping->address ?? '') }}"
+                placeholder="{{ $shipping->address ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="city">City:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="city" id="city"
-                value="{{ old('city') ?? ($user->address->city ?? '') }}"
-                placeholder="{{ $user->address->city ?? '' }}" class="form-control">
+            <label for="shipping_city">City:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="shipping_city" id="shipping_city"
+                value="{{ old('shipping_city') ?? ($shipping->city ?? '') }}"
+                placeholder="{{ $shipping->city ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="country">Country:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="country" id="country"
-                value="{{ old('country') ?? ($user->address->country ?? '') }}"
-                placeholder="{{ $user->address->country ?? '' }}" class="form-control">
+            <label for="shipping_country">Country:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="shipping_country" id="shipping_country"
+                value="{{ old('shipping_country') ?? ($shipping->country ?? '') }}"
+                placeholder="{{ $shipping->country ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="address2">Secondary Address:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="address2" id="address2"
-                value="{{ old('address2') ?? ($user->address->address2 ?? '') }}"
-                placeholder="{{ $user->address->address2 ?? '' }}" class="form-control">
+            <label for="shipping_address2">Secondary Address:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="shipping_address2" id="shipping_address2"
+                value="{{ old('address2') ?? ($shipping->address2 ?? '') }}"
+                placeholder="{{ $shipping->address2 ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="state">State:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="state" id="state"
-                value="{{ old('state') ?? ($user->address->state ?? '') }}"
-                placeholder="{{ $user->address->state ?? '' }}" class="form-control">
+            <label for="shipping_state">State:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="shipping_state" id="shipping_state"
+                value="{{ old('shipping_state') ?? ($shipping->state ?? '') }}"
+                placeholder="{{ $shipping->state ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="pin_code">PIN Code:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="pin_code" id="pin_code"
-                value="{{ old('pin_code') ?? ($user->address->postal_code ?? '') }}"
-                placeholder="{{ $user->address->postal_code ?? '' }}" class="form-control">
+            <label for="shipping_pin_code">PIN Code:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="shipping_pin_code" id="shipping_pin_code"
+                value="{{ old('shipping_pin_code') ?? ($shipping->postal_code ?? '') }}"
+                placeholder="{{ $shipping->postal_code ?? '' }}" class="form-control">
         </div>
     </div>
 </div><!-- end shipping-address-->
@@ -77,40 +77,40 @@
     <div class="card-header">Billing Address</div>
     <div class="card-body">
         <div class="mb-2">
-            <label for="address1">Address:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="address1" id="address1"
-                value="{{ old('address1') ?? ($user->address->address ?? '') }}"
-                placeholder="{{ $user->address->address ?? '' }}" class="form-control">
+            <label for="billing_address1">Address:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="billing_address1" id="billing_address1"
+                value="{{ old('billing_address1') ?? ($billing->address ?? '') }}"
+                placeholder="{{ $billing->address ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="city">City:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="city" id="city"
-                value="{{ old('city') ?? ($user->address->city ?? '') }}"
-                placeholder="{{ $user->address->city ?? '' }}" class="form-control">
+            <label for="billing_city">City:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="billing_city" id="billing_city"
+                value="{{ old('billing_city') ?? ($billing->city ?? '') }}" placeholder="{{ $billing->city ?? '' }}"
+                class="form-control">
         </div>
         <div class="mb-2">
-            <label for="country">Country:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="country" id="country"
-                value="{{ old('country') ?? ($user->address->country ?? '') }}"
-                placeholder="{{ $user->address->country ?? '' }}" class="form-control">
+            <label for="billing_country">Country:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="billing_country" id="billing_country"
+                value="{{ old('country') ?? ($billing->country ?? '') }}"
+                placeholder="{{ $billing->country ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="address2">Secondary Address:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="address2" id="address2"
-                value="{{ old('address2') ?? ($user->address->address2 ?? '') }}"
-                placeholder="{{ $user->address->address2 ?? '' }}" class="form-control">
+            <label for="billing_address2">Secondary Address:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="billing_address2" id="billing_address2"
+                value="{{ old('billing_address2') ?? ($billing->address2 ?? '') }}"
+                placeholder="{{ $billing->address2 ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="state">State:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="state" id="state"
-                value="{{ old('state') ?? ($user->address->state ?? '') }}"
-                placeholder="{{ $user->address->state ?? '' }}" class="form-control">
+            <label for="billing_state">State:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="billing_state" id="billing_state"
+                value="{{ old('billing_state') ?? ($billing->state ?? '') }}"
+                placeholder="{{ $billing->state ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="pin_code">PIN Code:</label>
-            <input {{ $edit ? null : 'disabled' }} type="text" name="pin_code" id="pin_code"
-                value="{{ old('pin_code') ?? ($user->address->postal_code ?? '') }}"
-                placeholder="{{ $user->address->postal_code ?? '' }}" class="form-control">
+            <label for="billing_pin_code">PIN Code:</label>
+            <input {{ $edit ? null : 'disabled' }} type="text" name="billing_pin_code" id="billing_pin_code"
+                value="{{ old('billing_pin_code') ?? ($billing->postal_code ?? '') }}"
+                placeholder="{{ $billing->postal_code ?? '' }}" class="form-control">
         </div>
     </div>
 </div><!-- end billing-address-->
