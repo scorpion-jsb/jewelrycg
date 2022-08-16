@@ -58,13 +58,13 @@ class CheckoutController extends Controller
                 } else {
                     Cart::instance('default');
                 }
-    
+
                 $cartItems = Cart::content();
                 $total = 0;
 
                 foreach ($cartItems as $item) {
                     $orderItem = new OrderItem;
-    
+
                     $orderItem->order_id = $orderId;
                     $orderItem->product_id = $item->id;
                     $orderItem->product_name = $item->model->name;
@@ -72,28 +72,28 @@ class CheckoutController extends Controller
                     $orderItem->quantity = $item->qty;
                     $orderItem->product_variant = 0;
 
-                    $total = $orderItem->price * $orderItem->quantity;                    
-    
+                    $total = $orderItem->price * $orderItem->quantity;
+
                     if (isset($item->options['id'])) {
                         $orderItem->product_variant = $item->options['id'];
 
                         // $productVariant = ProductsVariant::find($item->options['id']);
                         $orderItem->product_variant_name = $item->options['name'];;
                     }
-    
+
                     $orderItem->save();
-                }                            
+                }
 
                 $order->total = $total;
 
                 $shipping_option_id = $request->session()->get('shipping_option_id', 0);
 
-                if ($shipping_option_id) 
+                if ($shipping_option_id)
                     $total += ShippingOption::find($shipping_option_id)->price;
 
                 $order->grand_total = $total;
             }
- 
+
             $order->order_id = $orderId;
             $order->status_payment = 1;
             $order->user_id = Auth::user()->id;
@@ -137,18 +137,18 @@ class CheckoutController extends Controller
         }
 
         try {
-            
+
             $orderId = Auth::user()->id . strtoupper(uniqid());
             $req->session()->put('order_id', $orderId);
 
             $description = env('APP_NAME') . ' Order#' . $orderId;
-            
+
             $total = Cart::total(2, '.', '') * 100;
             $shipping_option_id = $req->session()->get('shipping_option_id', 0);
 
-            if ($shipping_option_id) 
+            if ($shipping_option_id)
                 $total += ShippingOption::find($shipping_option_id)->price;
-            
+
             $taxPrice = 0;
             foreach (Cart::content() as $product) {
                 $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
@@ -213,13 +213,13 @@ class CheckoutController extends Controller
         if ($error['type'] == 'validation_error') {
             Order::where('order_id', $orderId)->delete();
             OrderItem::where('order_id', $orderId)->delete();
-            
-            return response(null, 204);            
+
+            return response(null, 204);
         }
 
 
         $order->status_payment = 3;
-        $order->payment_intent = $error['payment_intent']['id']; 
+        $order->payment_intent = $error['payment_intent']['id'];
         $order->status_payment_reason = $error['code'];
         $order->save();
 
@@ -237,7 +237,7 @@ class CheckoutController extends Controller
         $order = Order::where('order_id', $orderId)->first();
 
         $order->status_payment = 2; // paid
-        $order->payment_intent = $request->get('payment_intent'); 
+        $order->payment_intent = $request->get('payment_intent');
         $order->save();
 
         return redirect()->route('orders.show', $orderId);
@@ -300,8 +300,9 @@ class CheckoutController extends Controller
 
         $countries = Country::all(['name', 'code']);
         $products = Cart::instance('default')->content();
+        $billing_address = UserAddress::find(auth()->user()->address_billing);
 
-        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping]);
+        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping, 'billing'=> $billing_address,]);
     }
 
     public function postBilling(Request $request)

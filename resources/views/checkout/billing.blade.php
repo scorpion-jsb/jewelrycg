@@ -21,11 +21,12 @@
                                 <div class="checkout-card-body">
                                     <h3 class="mb-3 fs-20">Billing Address</h3>
                                     @include('includes.validation-form')
-                                    <x-user-info :countries="$countries" />
+                                    <x-user-info :countries="$countries" :billing="$billing" />
                                     <div class="row mb-3">
                                         <div class="col-12">
                                             <label for="isRemember">
-                                                <input type="checkbox" name="isRemember" id="isRemember"> Remember Address
+                                                <input type="checkbox" name="isRemember" id="isRemember"> Remember
+                                                Address
                                             </label>
                                             <input type="hidden" value="{{ isset($orderId) ? $orderId : 0 }}" />
                                             <button type="submit" class="btn btn-primary float-end">Continue</button>
