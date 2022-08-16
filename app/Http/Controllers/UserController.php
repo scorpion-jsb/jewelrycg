@@ -55,16 +55,11 @@ class UserController extends Controller
         }
         auth()->user()->update(['address_shipping' => $address1->id]);
 
-        if (!$req->billing_address1 && !$req->billing_address2 && !$req->billing_city && !$req->billing_country && !$req->billing_state && !$req->billing_pin_code) {
-        return $req;
-
+        if (!$req->billing_address1 || !$req->billing_address2 || !$req->billing_city || !$req->billing_country || !$req->billing_state || !$req->billing_pin_code) {
             if (auth()->user()->address_billing) {
                 $address2 = UserAddress::find(auth()->user()->address_billing)->delete();
                 auth()->user()->update(['address_billing' => null]);
             }
-            return redirect()->route('user.index', auth()->user()->id);
-        }
-        if (!$req->billing_address1 || !$req->billing_city || !$req->billing_country || !$req->billing_state || !$req->billing_pin_code) {
             return redirect()->route('user.index', auth()->user()->id);
         }
         // Save or Update billing Address

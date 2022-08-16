@@ -14,7 +14,7 @@
         <div class="container">
             <div class="product-container col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
                 <div class="product-details-meta-block align-items-center mb-4 col-lg-10 mx-auto row">
-                    <div class="col-lg-8 col-12 px-0 py-2">
+                    <div class="col-lg-8 col-12 px-0 py-3">
                         <div class="d-flex align-items-center">
                             <img src="https://jewelrycg.com/assets/img/avatar.png" class="product-seller rounded-circle h-60px" />
                             <div class="product-details-title px-2">
