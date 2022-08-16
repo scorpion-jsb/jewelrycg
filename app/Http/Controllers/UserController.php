@@ -37,7 +37,7 @@ class UserController extends Controller
 
         // Save or Update Shipping Address
         if (auth()->user()->address_shipping) {
-        $address1 = UserAddress::find(auth()->user()->address_shipping);
+            $address1 = UserAddress::find(auth()->user()->address_shipping);
         } else {
             $address1 = new UserAddress;
         }
@@ -67,9 +67,8 @@ class UserController extends Controller
             return redirect()->route('user.index', auth()->user()->id);
         }
 
-        // Save or Update billing Address
         if (auth()->user()->address_billing) {
-            $address2 = UserAddress::find(auth()->user()->address_billing);
+            UserAddress::find(auth()->user()->address_billing);
         } else {
             $address2 = new UserAddress;
         }
