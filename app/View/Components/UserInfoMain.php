@@ -9,9 +9,8 @@ use Illuminate\View\Component;
 class UserInfoMain extends Component
 {
 
-    public function __construct(public bool $edit = false, public User $user, public UserAddress $shipping, public UserAddress $billing)
+    public function __construct(public bool $edit = false, public User $user, public $shipping, public $billing)
     {
-        // $this->shipping_address = $shipping_address;
     }
 
     public function render()
