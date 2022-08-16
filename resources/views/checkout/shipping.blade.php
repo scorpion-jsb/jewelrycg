@@ -30,8 +30,10 @@
                                                     for="option{{ $i }}" style="width: 100%;">
                                                     <div class="row">
                                                         <div class="col-8 text-left">{{ $shipping->name }}
-                                                            ({{ $shipping->description }})</div>
-                                                        <div class="col-4 text-right">${{ $shipping->price / 100 }}</div>
+                                                            ({{ $shipping->description }})
+                                                        </div>
+                                                        <div class="col-4 text-right">${{ $shipping->price / 100 }}
+                                                        </div>
                                                     </div>
                                                 </label>
                                             </div>
@@ -43,11 +45,12 @@
                                 <div class="checkout-card-body">
                                     <h3 class="mb-3 fs-20">Shipping Address</h3>
                                     @include('includes.validation-form')
-                                    <x-user-info :countries="$countries" />
+                                    <x-user-info :countries="$countries" :billing="$shipping" />
                                     <div class="row mb-3">
                                         <div class="col-12">
                                             <label for="isRemember">
-                                                <input type="checkbox" name="isRemember" id="isRemember"> Remember Address
+                                                <input type="checkbox" name="isRemember" id="isRemember"> Remember
+                                                Address
                                             </label>
                                             <button type="submit" class="btn btn-primary float-end">Continue</button>
                                         </div>
@@ -73,7 +76,8 @@
     </div>
     <script>
         $(function() {
-            var totalPrice = $('#total_price').text().split('$')[1] * 1 - $('#shipping_price').text().split('$')[1] * 1;
+            var totalPrice = $('#total_price').text().split('$')[1] * 1 - $('#shipping_price').text().split('$')[
+                1] * 1;
 
             $('.shipping_option').click(function() {
                 var shippingPrice = $(this).attr('data-price');
