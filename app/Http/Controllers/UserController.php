@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdateUserPasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Models\UserAddress;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -12,13 +13,17 @@ class UserController extends Controller
     public function index(int $id_user)
     {
         $user = User::findOrFail($id_user);
+        $shipping_address = UserAddress::where('user_id', $id_user)->get()->first();
+        $billing_address = UserAddress::where('user_id', $id_user)->get()->last();
         $this->authorize('seeInfo', $user);
-        return view('users.index', compact('user'));
+        return view('users.index', ['user'=>$user, 'shipping'=> $shipping_address, 'billing'=>$billing_address]);
     }
 
     public function edit()
     {
-        return view('users.edit');
+        $shipping_address = UserAddress::where('user_id', auth()->user()->id)->get()->first();
+        $billing_address = UserAddress::where('user_id', auth()->user()->id)->get()->last();
+        return view('users.edit', ['shipping'=> $shipping_address, 'billing'=>$billing_address]);
     }
 
     public function editPassword()
@@ -26,13 +31,6 @@ class UserController extends Controller
         return view('users.edit_password');
     }
 
-    public function update(UpdateUserRequest $req)
-    {
-        auth()->user()->update($req->all());
-        return redirect()->route('user.index', auth()->user()->id);
-    }
-
-    /*
     public function update(UpdateUserRequest $req)
     {
         auth()->user()->update($req->all());
@@ -55,7 +53,7 @@ class UserController extends Controller
         $address2->postal_code = $req->billing_pin_code;
         $address2->update();
         return redirect()->route('user.index', auth()->user()->id);
-    }*/
+    }
 
     public function updatePassword(UpdateUserPasswordRequest $req)
     {
