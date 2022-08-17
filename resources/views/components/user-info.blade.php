@@ -22,7 +22,7 @@
     <label for="floatingCountry">Country</label>
     <select name="country" id="floatingCountry" data-live-search="true" class="form-control">
         @foreach ($countries as $country)
-            @if (auth()->user()->address && $billing->country == $country->code)
+            @if (auth()->user()->address && $billing && $billing->country == $country->code)
                 <option value="{{ $country->code }}" selected>{{ $country->name }}</option>
             @else
                 <option value="{{ $country->code }}">{{ $country->name }}</option>
@@ -37,6 +37,8 @@
 </div>
 <div class="form-floating mb-3">
     <label for="floatingPhonenumber">Phone Number</label>
-    <input type="tel" name="phone" value="{{ auth()->user()->address->phone ?? old('phone') }}"
+    <<<<<<< HEAD <input type="tel" name="phone" value="{{ auth()->user()->phone ?? old('phone') }}"=======<input
+        type="tel" name="phone" value="{{ auth()->user()->address->phone ?? old('phone') }}">>>>>>>
+        53792277282b43b2513440da602095f351c91ad1
         id="floatingPhonenumber phone" class="form-control" placeholder="Enter Phone Number">
 </div>

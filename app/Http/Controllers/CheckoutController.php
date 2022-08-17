@@ -248,8 +248,9 @@ class CheckoutController extends Controller
         $countries = Country::all(['name', 'code']);
         $shippings = ShippingOption::all();
         $products = Cart::instance('default')->content();
+        $shipping_address = auth()->user()->address_shipping ?  UserAddress::find(auth()->user()->address_shipping) : "";
 
-        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout']);
+        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout','shipping'=> $shipping_address ]);
     }
 
     public function postShipping(Request $request)
@@ -300,7 +301,7 @@ class CheckoutController extends Controller
 
         $countries = Country::all(['name', 'code']);
         $products = Cart::instance('default')->content();
-        $billing_address = UserAddress::find(auth()->user()->address_billing);
+        $billing_address = auth()->user()->address_billing ?  UserAddress::find(auth()->user()->address_billing) : "";
 
         return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping, 'billing'=> $billing_address,]);
     }
