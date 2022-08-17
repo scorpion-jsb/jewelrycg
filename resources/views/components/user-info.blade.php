@@ -37,8 +37,5 @@
 </div>
 <div class="form-floating mb-3">
     <label for="floatingPhonenumber">Phone Number</label>
-    <<<<<<< HEAD <input type="tel" name="phone" value="{{ auth()->user()->phone ?? old('phone') }}"=======<input
-        type="tel" name="phone" value="{{ auth()->user()->address->phone ?? old('phone') }}">>>>>>>
-        53792277282b43b2513440da602095f351c91ad1
-        id="floatingPhonenumber phone" class="form-control" placeholder="Enter Phone Number">
+    <input type="tel" name="phone" value="{{ auth()->user()->address->phone ?? old('phone') }}" id="floatingPhonenumber phone" class="form-control" placeholder="Enter Phone Number">
 </div>
