@@ -37,6 +37,5 @@
 </div>
 <div class="form-floating mb-3">
     <label for="floatingPhonenumber">Phone Number</label>
-    {{-- @dd(auth()->user()->phone) --}}
-    <input type="tel" name="phone" value="{{ auth()->user()->phone ?? old('phone') }}" id="floatingPhonenumber phone" class="form-control" placeholder="Enter Phone Number">
+    <input type="tel" name="phone" value="{{ $billing->phone ?? old('pin_code') }}" id="floatingPhonenumber phone" class="form-control" placeholder="Enter Phone Number">
 </div>
