@@ -6,6 +6,7 @@
             @method('patch')
             <div class="row justify-content-center mt-5">
                 <div class="card">
+                    <div class="card-header">Change Password</div>
                     <div class="card-body">
                         @include('includes.validation-form')
                         <label for="old_password">Current Password:</label>
@@ -17,8 +18,8 @@
                         <label for="new_password_confirmation">Confirm New Password:</label>
                         <input type="password" name="new_password_confirmation" id="new_password_confirmation" class="form-control">
                         <br>
-                        <div class="text-center">
-                            <button type="submit" class="btn btn-outline-success">Edit Password</button>
+                        <div class="d-block">
+                            <button type="submit" class="btn btn-primary">Edit Password</button>
                         </div>
                     </div>
                 </div>
