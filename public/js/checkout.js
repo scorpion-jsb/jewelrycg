@@ -36,25 +36,8 @@
 
         setLoading(true);
 
-
-
-        // const phone = document.getElementById('phone').value
-        // const address1 = document.getElementById('address1').value
-        // const address2 = document.getElementById('address2').value
-        // const city = document.getElementById('city').value
-        // const state = document.getElementById('state').value
-        // const country = document.getElementById('country').value
-        // const pin_code = document.getElementById('pin_code').value
-
         const obj = {
           _token, 
-          // phone,
-          // address1,
-          // address2,
-          // city,
-          // state, 
-          // country, 
-          // pin_code,
           buy_now_mode
         };
 
@@ -125,9 +108,6 @@
       
       // Fetches the payment intent status after payment submission
       async function checkStatus() {
-        // const clientSecret = new URLSearchParams(window.location.search).get(
-        //   "payment_intent_client_secret"
-        // );
       
         const clientSecret = clientSecretValue;
         
