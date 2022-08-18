@@ -3,7 +3,6 @@
     <input type="text" name="address1" value="{{ $billing->address ?? old('address1') }}" id="floatingAddress address1"
         class="form-control" required placeholder="Enter Address">
 </div>
-{{-- @dd($shipping) --}}
 <div class="form-floating mb-3">
     <label for="floatingAddress2">Secondary Address</label>
     <input type="text" name="address2" value="{{ $billing->address2 ?? old('address2') }}" id="floatingAddress2"
