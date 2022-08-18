@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateUserPasswordRequest;
 use App\Http\Requests\UpdateUserRequest;
+use App\Models\Country;
 use App\Models\User;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
@@ -23,7 +24,9 @@ class UserController extends Controller
     {
         $shipping_address = UserAddress::find(auth()->user()->address_shipping);
         $billing_address = UserAddress::find(auth()->user()->address_billing);
-        return view('users.edit', ['shipping'=> $shipping_address, 'billing'=>$billing_address]);
+        $countries = Country::all(['name', 'code']);
+        // dd($countries);
+        return view('users.edit', ['shipping'=> $shipping_address, 'billing'=>$billing_address, 'countries' => $countries]);
     }
 
     public function editPassword()
