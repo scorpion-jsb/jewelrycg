@@ -282,6 +282,7 @@ class CheckoutController extends Controller
                 'state' => $request->state,
                 'country' => $request->country,
                 'postal_code' =>  $request->pin_code,
+                'phone' => $request->phone,
             ]);
 
             $user = User::where('id', Auth::user()->id)->first();
@@ -294,6 +295,7 @@ class CheckoutController extends Controller
             $userAddress->state = $request->state;
             $userAddress->country = $request->country;
             $userAddress->postal_code = $request->pin_code;
+            $userAddress->phonenumber = $request->phone;
             $userAddress->update();
         }else{
             UserAddress::create([
@@ -304,7 +306,7 @@ class CheckoutController extends Controller
                 'state' => $request->state,
                 'country' => $request->country,
                 'postal_code' =>  $request->pin_code,
-                'phone_number' => $request->phone,
+                'phone' => $request->phone,
             ]);
 
         }
@@ -357,6 +359,7 @@ class CheckoutController extends Controller
                 'state' => $request->state,
                 'country' => $request->country,
                 'postal_code' =>  $request->pin_code,
+                'phone' => $request->phone,
             ]);
 
             $user = User::where('id', Auth::user()->id)->first();
@@ -372,7 +375,7 @@ class CheckoutController extends Controller
                 'state' => $request->state,
                 'country' => $request->country,
                 'postal_code' =>  $request->pin_code,
-                'phone_number' => $request->phone,
+                'phone' => $request->phone,
             ]);
         }
         return redirect()->route('checkout.payment.get');
