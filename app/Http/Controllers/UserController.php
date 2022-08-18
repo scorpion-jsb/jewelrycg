@@ -33,15 +33,14 @@ class UserController extends Controller
 
     public function update(UpdateUserRequest $req)
     {
-        auth()->user()->update($req->all());
-
-        // Save or Update Shipping Address
-        if (auth()->user()->address_shipping) {
-            $address1 = UserAddress::find(auth()->user()->address_shipping);
+       auth()->user()->update($req->all());
+       // Save or Update Shipping Address
+       if (auth()->user()->address_shipping) {
+           $address1 = UserAddress::find(auth()->user()->address_shipping);
         } else {
             $address1 = new UserAddress;
         }
-        $address1->user_id = auth()->user()->id;
+        $address1->user_id = Auth()->user()->id;
         $address1->address = $req->shipping_address1;
         $address1->address2 = $req->shipping_address2;
         $address1->city = $req->shipping_city;
@@ -53,6 +52,7 @@ class UserController extends Controller
         } else {
             $address1->save();
         }
+        
         auth()->user()->update(['address_shipping' => $address1->id]);
 
         if (!$req->billing_address1 && !$req->billing_address2 && !$req->billing_city && !$req->billing_country && !$req->billing_state && !$req->billing_pin_code) {
@@ -68,7 +68,7 @@ class UserController extends Controller
         }
 
         if (auth()->user()->address_billing) {
-            UserAddress::find(auth()->user()->address_billing);
+            $address2 = UserAddress::find(auth()->user()->address_billing);
         } else {
             $address2 = new UserAddress;
         }

@@ -19,20 +19,20 @@
                                 <div class="checkout-card-body">
                                     <h3 class="mb-3 fs-20">Shipping method</h3>
                                     <div class="row mb-3">
-                                        @foreach ($shippings as $i => $shipping)
+                                        @foreach ($shippings as $i => $ship)
                                             <div class="option mb-2">
-                                                <input type="radio" value="{{ $shipping->id }}"
+                                                <input type="radio" value="{{ $ship->id }}"
                                                     class="btn-check shipping_option" name="shipping_option"
                                                     id="option{{ $i }}" autocomplete="off"
                                                     @if ($i == 0) checked @endif
-                                                    data-price="{{ $shipping->price / 100 }}" />
+                                                    data-price="{{ $ship->price / 100 }}" />
                                                 <label class="card btn mb-2 p-3 shipping-method-btn shipping-radio"
                                                     for="option{{ $i }}" style="width: 100%;">
                                                     <div class="row">
-                                                        <div class="col-8 text-left">{{ $shipping->name }}
-                                                            ({{ $shipping->description }})
+                                                        <div class="col-8 text-left">{{ $ship->name }}
+                                                            ({{ $ship->description }})
                                                         </div>
-                                                        <div class="col-4 text-right">${{ $shipping->price / 100 }}
+                                                        <div class="col-4 text-right">${{ $ship->price / 100 }}
                                                         </div>
                                                     </div>
                                                 </label>
@@ -43,6 +43,7 @@
                             </div>
                             <div class="checkout-card">
                                 <div class="checkout-card-body">
+                
                                     <h3 class="mb-3 fs-20">Shipping Address</h3>
                                     @include('includes.validation-form')
                                     <x-user-info :countries="$countries" :billing="$shipping" />
