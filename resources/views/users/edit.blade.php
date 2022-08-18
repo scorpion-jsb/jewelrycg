@@ -14,10 +14,8 @@
                         </div>
                     </div>
                 @endif
-                <div class="row">
-                    {{-- {{ dd($countries) }} --}}
-                    <x-user-info-main :edit="true" :user="auth()->user()" :countries="$countries" :shipping="$shipping" :billing="$billing" />
-                </div>
+                {{-- {{ dd($countries) }} --}}
+                <x-user-info-main :edit="true" :user="auth()->user()" :countries="$countries" :shipping="$shipping" :billing="$billing" />
                 <div class="d-flex justify-content-end mt-3">
                     <div class="card">
                         <div class="card-body">
