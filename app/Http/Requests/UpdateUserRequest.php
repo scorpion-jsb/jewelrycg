@@ -18,7 +18,6 @@ class UpdateUserRequest extends FormRequest
             'last_name' => 'required|string|max:255',
             'email' => 'prohibited',
             'password' => 'prohibited',
-            'phone' => 'required|numeric|digits_between:8,12',
             'shipping_address1' => 'nullable|string|max:255',
             'shipping_address2' => 'nullable|string|max:255',
             'shipping_city' => 'required|string|max:255',
