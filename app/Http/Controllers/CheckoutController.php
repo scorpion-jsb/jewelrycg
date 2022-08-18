@@ -173,7 +173,6 @@ class CheckoutController extends Controller
                         'line1' => $req->session()->get('billing_address1'),
                         'line2' => $req->session()->get('billing_address2'),
                     ],
-                    // 'email' => Auth::user()->email,
                     'name' => Auth::user()->first_name . " " . Auth::user()->last_name,
                     'phone' => $req->session()->get('billing_phonenumber'),
                 ],
@@ -195,7 +194,6 @@ class CheckoutController extends Controller
 
     public function cancel(CancelCheckoutRequest $req)
     {
-        // $order = auth()->user()->orders()->with('items', 'items.product:id,name,quantity')->orderBy('id', 'desc')->first();
         $orderId = $req->session()->get('order_id');
         $error = $req->error;
 
@@ -208,7 +206,6 @@ class CheckoutController extends Controller
         }
 
         $order->restoreCartItems();
-        // $order->restoreProductsQuantity();
         Cart::store(auth()->id());
 
         if ($error['type'] == 'validation_error') {
@@ -227,7 +224,6 @@ class CheckoutController extends Controller
         return response(null, 204);
     }
 
-    // http://localhost:8000/payment/finished?payment_intent=pi_3LOkMMDNgrti9hIt1r7Kl9rl&payment_intent_client_secret=pi_3LOkMMDNgrti9hIt1r7Kl9rl_secret_6jksPyLMgQp8RmpNVlzf5M1GR&redirect_status=succeeded
     public function paymentFinished(Request $request)
     {
 
@@ -286,15 +282,11 @@ class CheckoutController extends Controller
                 'state' => $request->state,
                 'country' => $request->country,
                 'postal_code' =>  $request->pin_code,
-//                'phone' => $request->auth()->user()->address->phone,
             ]);
-//            dd($userAddressInfo);
+
             $user = User::where('id', Auth::user()->id)->first();
             $user->address_shipping =  $userAddressInfo->id;
             $user->save();
-
-            // $user = User::where('id', $request['user_id'])->first();
-            // dd($user);
 
             $userAddress->address = $request->address1;
             $userAddress->address2 = $request->address2;
@@ -302,7 +294,6 @@ class CheckoutController extends Controller
             $userAddress->state = $request->state;
             $userAddress->country = $request->country;
             $userAddress->postal_code = $request->pin_code;
-            // dd($userAddress);
             $userAddress->update();
         }else{
             UserAddress::create([
@@ -352,7 +343,6 @@ class CheckoutController extends Controller
 
         if ($request->isRemember) {
             $userAddress = UserAddress::where('id', Auth::user()->address_billing)->first();
-            // dd($userAddress);
             if ($userAddress) {
 
                 $userAddress = UserAddress::find($userAddress->id);
@@ -373,15 +363,6 @@ class CheckoutController extends Controller
             $user->address_billing =  $userAddress2Info->id;
             $user->save();
 
-            // dd($d);
-            // $userAddress->user_id = Auth::user()->id;
-            // $userAddress->address = $request->address1;
-            // $userAddress->address2 = $request->address2;
-            // $userAddress->city = $request->city;
-            // $userAddress->state = $request->state;
-            // $userAddress->country = $request->country;
-            // $userAddress->postal_code = $request->pin_code;
-            // $userAddress->create();
         }else{
             UserAddress::create([
                 'user_id' => Auth::user()->id,
