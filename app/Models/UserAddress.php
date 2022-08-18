@@ -17,6 +17,7 @@ class UserAddress extends Model
         'city',
         'state',
         'country',
-        'postal_code'
+        'postal_code',
+        'phone'
     ];
 }
