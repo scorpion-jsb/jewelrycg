@@ -295,7 +295,7 @@ class CheckoutController extends Controller
             $userAddress->state = $request->state;
             $userAddress->country = $request->country;
             $userAddress->postal_code = $request->pin_code;
-            $userAddress->phonenumber = $request->phone;
+            $userAddress->phone = $request->phone;
             $userAddress->update();
         }else{
             UserAddress::create([
