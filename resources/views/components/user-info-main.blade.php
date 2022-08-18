@@ -1,5 +1,4 @@
 <div class="card mb-4 p-0">
-    
     <div class="card-header">User Information</div>
     <div class="card-body">
         @if ($edit)
@@ -25,12 +24,6 @@
             <label for="email">Email:</label>
             <input disabled type="text" id="email" value="{{ $user->email }}" placeholder="{{ $user->email }}"
                 class="form-control">
-        </div>
-        <div class="mb-2">
-
-            <label for="phone">Phone Number:</label>
-            <input {{ $edit ? null : 'disabled' }} type="tel" name="phone" id="phone"
-                value="{{ old('phone') ?? $user->phone }}" placeholder="{{ $user->phone }}" class="form-control">
         </div>
     </div>
 </div>
@@ -62,7 +55,7 @@
                 placeholder="{{ $shipping->state ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="shipping_pin_code">PIN Code:</label>
+            <label for="shipping_pin_code">Zip Code:</label>
             <input {{ $edit ? null : 'disabled' }} type="text" name="shipping_pin_code" id="shipping_pin_code"
                 value="{{ old('shipping_pin_code') ?? ($shipping->postal_code ?? '') }}"
                 placeholder="{{ $shipping->postal_code ?? '' }}" class="form-control">
@@ -104,7 +97,7 @@
             placeholder="{{ $billing->state ?? '' }}" class="form-control">
         </div>
         <div class="mb-2">
-            <label for="billing_pin_code">PIN Code:</label>
+            <label for="billing_pin_code">Zip Code:</label>
             <input {{ $edit ? null : 'disabled' }} type="text" name="billing_pin_code" id="billing_pin_code"
                 value="{{ old('billing_pin_code') ?? ($billing->postal_code ?? '') }}"
                 placeholder="{{ $billing->postal_code ?? '' }}" class="form-control">
