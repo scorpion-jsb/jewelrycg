@@ -43,15 +43,15 @@
                             </div>
                             <div class="checkout-card">
                                 <div class="checkout-card-body">
-                
-                                    <h3 class="mb-3 fs-20">Shipping Address</h3>
+
+                                <h3 class="mb-3 fs-20">Shipping Address</h3>
                                     @include('includes.validation-form')
                                     <x-user-info :countries="$countries" :billing="$shipping" />
                                     <div class="row mb-3">
                                         <div class="col-12">
                                             <label for="isRemember">
                                                 <input type="checkbox" name="isRemember" id="isRemember"> 
-                                                @if(isset($shipping)) 
+                                                @if($shipping !== "NULL") 
                                                     Update Address
                                                 @else
                                                     Remember Address
