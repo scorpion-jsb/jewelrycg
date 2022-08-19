@@ -23,6 +23,7 @@ return new class extends Migration
             $table->tinyInteger('quantity')->unsigned();
             $table->smallInteger('price')->unsigned();
             $table->smallInteger('status_fulfillment')->default(1); // 1: pending, 2: shipped, 3: delivered
+            $table->string('status_tracking')->nullable();
             $table->timestamps();
         });
     }
