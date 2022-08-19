@@ -25,7 +25,7 @@
                                     <div class="row mb-3">
                                         <div class="col-12">
                                             <label for="isRemember">
-                                                <input type="checkbox" name="isRemember" id="isRemember"> 
+                                                <input type="checkbox" name="isRemember" id="isRemember">
                                                 @if(isset($billing)) 
                                                     Update Address
                                                 @else
