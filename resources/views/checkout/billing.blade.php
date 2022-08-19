@@ -26,7 +26,7 @@
                                         <div class="col-12">
                                             <label for="isRemember">
                                                 <input type="checkbox" name="isRemember" id="isRemember">
-                                                @if(isset($billing)) 
+                                                @if($billing !== "NULL") 
                                                     Update Address
                                                 @else
                                                     Remember Address
