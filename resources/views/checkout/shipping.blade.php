@@ -50,8 +50,12 @@
                                     <div class="row mb-3">
                                         <div class="col-12">
                                             <label for="isRemember">
-                                                <input type="checkbox" name="isRemember" id="isRemember"> Remember
-                                                Address
+                                                <input type="checkbox" name="isRemember" id="isRemember"> 
+                                                @if(isset($shipping)) 
+                                                    Update Address
+                                                @else
+                                                    Remember Address
+                                                @endif
                                             </label>
                                             <button type="submit" class="btn btn-primary float-end">Continue</button>
                                         </div>
