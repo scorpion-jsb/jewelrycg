@@ -128,33 +128,6 @@ class FileManagerController extends Controller
 
                 $request->file('file')->move(public_path($this->fileUploadPath), $fileName);
 
-                // if($this->fileTypes[$extension] == 'image') {
-                //     try {
-                //         // this is for the product thumbnail
-                //         $image = Image::make(public_path($this->fileUploadPath) . $fileName);
-
-                //         $thumbnailWidth = Config::get('constants.product_thumbnail_size.width');
-                //         $thumbnailHeight = Config::get('constants.product_thumbnail_size.height');
-                //         $suffix = Config::get('constants.product_thumbnail_suffix');
-
-                //         $image->resize($thumbnailWidth, $thumbnailHeight);
-
-                //         $image->save(public_path($this->fileUploadPath) . $hash . $suffix . '.' . $extension, 80);
-                //         clearstatcache();
-
-                //         // this is for the file manager thumbnail
-                //         $image = Image::make(public_path($this->fileUploadPath) . $fileName);
-
-                //         $height = $this->fileManagerThumbnailWidth * $image->height() / $image->width();
-
-                //         $image->resize($this->fileManagerThumbnailWidth, $height);
-
-                //         $image->save(public_path($this->fileUploadPath) . $hash . $this->fileManagerThumbnailSuffix . '.' . $extension, 80);
-                //         clearstatcache();
-                //     } catch (\Exception $e) {
-                //     }
-                // }
-
                 $upload->extension = $extension;
                 $upload->file_name = $hash . '.' . $extension;
                 $upload->user_id = Auth::user()->id;
