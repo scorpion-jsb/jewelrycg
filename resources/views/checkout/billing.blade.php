@@ -25,8 +25,12 @@
                                     <div class="row mb-3">
                                         <div class="col-12">
                                             <label for="isRemember">
-                                                <input type="checkbox" name="isRemember" id="isRemember"> Remember
-                                                Address
+                                                <input type="checkbox" name="isRemember" id="isRemember"> 
+                                                @if(isset($billing)) 
+                                                    Update Address
+                                                @else
+                                                    Remember Address
+                                                @endif
                                             </label>
                                             <input type="hidden" value="{{ isset($orderId) ? $orderId : 0 }}" />
                                             <button type="submit" class="btn btn-primary float-end">Continue</button>
