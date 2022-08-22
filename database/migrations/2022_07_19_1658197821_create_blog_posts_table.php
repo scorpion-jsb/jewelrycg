@@ -19,6 +19,8 @@ class CreateBlogPostsTable extends Migration
             $table->text('post')->nullable();
             $table->integer('tags_id')->nullable();
             $table->integer('categorie_id');
+            $table->string('meta_title')->nullable();
+		    $table->text('meta_description')->nullable();
             $table->timestamps();
             $table->softDeletes();
         });
