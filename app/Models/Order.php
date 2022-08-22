@@ -53,10 +53,10 @@ class Order extends Model
     {
         if(auth()->user()->is_admin)
         {
-            return Order::withCount('items')->orderBy('id')->paginate(10);
+            return Order::withCount('items')->orderBy('created_at', 'DESC')->paginate(10);
         }
         
-        return auth()->user()->orders()->withCount('items')->orderBy('id')->paginate(10);
+        return auth()->user()->orders()->withCount('items')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
     // public static function getPendingBasedOnUser()
