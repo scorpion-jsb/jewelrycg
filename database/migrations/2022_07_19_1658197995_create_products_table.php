@@ -19,7 +19,6 @@ class CreateProductsTable extends Migration
 					$table->smallInteger('quantity',)->nullable();
 					$table->string('category',24);
 					$table->string('slug')->nullable();
-					$table->datetime('published_at')->nullable();
 					$table->string('sku')->nullable();
 					$table->integer('price_discount',)->nullable();
 					$table->string('price_discount_type')->nullable();
@@ -41,6 +40,9 @@ class CreateProductsTable extends Migration
 					$table->integer('digital_download_assets_limit',)->nullable();
 					$table->string('product_attributes')->nullable();
 					$table->string('product_attribute_values')->nullable();
+					$table->string('meta_title')->nullable();
+					$table->text('meta_description')->nullable();
+					$table->datetime('published_at')->nullable();
 					$table->timestamps();
 					$table->softDeletes();
 
