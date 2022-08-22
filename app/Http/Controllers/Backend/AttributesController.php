@@ -19,7 +19,7 @@ class AttributesController extends Controller
     public function index()
     {
         return view('backend.products.attributes.list',[
-            'attributes' => Attribute::orderBy('id', 'DESC')->get()
+            'attributes' => Attribute::orderBy('id', 'DESC')->paginate(10)
         ]);
     }
 
