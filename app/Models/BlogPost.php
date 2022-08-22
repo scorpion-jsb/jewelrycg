@@ -21,6 +21,8 @@ class BlogPost extends Model
         "categorie_id",
         "thumbnail",
         "status",
+        "meta_title",
+        "meta_description",
     ];
 
     public function storeImages($images)
