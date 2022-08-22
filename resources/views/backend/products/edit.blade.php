@@ -159,12 +159,12 @@
                     <div class="card-body row">
                         @include('includes.validation-form')
                         <div class="mb-4">
-                            <label for="meta_title">Name</label>
+                            <label for="meta_title">Meta Title</label>
                             <input type="text" value='{{ $product->meta_title }}' name="meta_title" id="meta_title"
                                 class="form-control">
                         </div>
                         <div class="mb-4">
-                            <label for="meta_description">Description</label>
+                            <label for="meta_description">Meta Description</label>
                             <textarea name="meta_description" value='{{ $product->meta_description }}' id="meta_description" rows="3" class="form-control">{{ $product->meta_description }}</textarea>
                         </div>
                     </div>
