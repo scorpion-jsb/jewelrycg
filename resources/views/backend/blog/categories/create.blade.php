@@ -47,11 +47,11 @@
                                         </textarea>
                                     </div>
                                     <div class="col-md-12 mb-2">
-                                        <label for="meta_title">Name</label>
+                                        <label for="meta_title">Meta Title</label>
                                         <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
                                     </div>
                                     <div class="col-md-12 mb-2">
-                                        <label for="meta_desc">Description:</label>
+                                        <label for="meta_desc">Meta Description:</label>
                                         <textarea name="meta_description" id="meta_desc" rows="3" class="form-control">
                                             {{ old('meta_description') }}
                                         </textarea>

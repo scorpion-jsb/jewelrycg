@@ -80,6 +80,8 @@ class BlogtagsController extends Controller
         $tag->description = $request->description;
         $tag->name = $request->name;
         $tag->slug = $slug;
+        $tag->meta_title = $request->meta_title;
+        $tag->meta_description = $request->meta_description;
         $tag->save();        
 
         return redirect()->route('backend.blog.tags.list');
@@ -131,6 +133,8 @@ class BlogtagsController extends Controller
         $tag->description = $request->description;
         $tag->name = $request->name;
         $tag->slug = $slug;
+        $tag->meta_title = $request->meta_title;
+        $tag->meta_description = $request->meta_description;
         $tag->save();
 
         return redirect()->route('backend.blog.tags.list');

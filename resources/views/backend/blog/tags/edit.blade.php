@@ -29,7 +29,14 @@
                                         <label for="desc">Description:</label>
                                         <textarea name="description" value="{{ $tag->description }}" id="desc" rows="3" class="form-control">{{ $tag->description }}</textarea>
                                     </div>
-                                    
+                                    <div class="col-md-6 mb-2">
+                                        <label for="meta_title">Meta Title:</label>
+                                        <input value="{{ $tag->meta_title }}" type="text" name="meta_title" id="meta_title" value="" class="form-control">
+                                    </div>
+                                    <div class="col-md-12 mb-2">
+                                        <label for="meta_description">Meta Description:</label>
+                                        <textarea name="meta_description" value="{{ $tag->meta_description }}" id="meta_description" rows="3" class="form-control">{{ $tag->meta_description }}</textarea>
+                                    </div>
                                     <div class="col-md-12 text-center">
                                         <button type="submit" class="btn btn-lg btn-outline-success">Update</button>
                                     </div>
