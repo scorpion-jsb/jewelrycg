@@ -38,9 +38,17 @@
 
                     <div class="col-md-12 mb-2">
                         <label for="name">Description:</label>
-                        <textarea type="text" name="description" id="name" class="form-control">
-                        
-                        </textarea>
+                        <textarea type="text" name="description" id="name" class="form-control"></textarea>
+                    </div>
+                    
+                    <div class="col-md-12 mb-2">
+                        <label for="meta_title">Meta Title:</label>
+                        <input type="text" name="meta_title" id="meta_title" value="" class="form-control">
+                    </div>
+                    
+                    <div class="col-md-12 mb-2">
+                        <label for="meta_description">Meta Description:</label>
+                        <textarea type="text" name="meta_description" id="meta_description" class="form-control"></textarea>
                     </div>
 
                     <div class="col-md-12 mb-2">

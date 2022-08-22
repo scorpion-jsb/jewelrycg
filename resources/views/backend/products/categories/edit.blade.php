@@ -40,10 +40,23 @@
                                         <label for="name">Slug:</label>
                                         <input type="text" name="slug" id="slug" value="{{ $category->slug }}" class="form-control">
                                     </div>
+                                    
                                     <div class="col-md-12 mb-2">
                                         <label for="desc">Description:</label>
                                         <textarea name="category_excerpt" id="desc" rows="3" class="form-control">
                                             {{ $category->category_excerpt }}
+                                        </textarea>
+                                    </div>
+                                    
+                                    <div class="col-md-12 mb-2">
+                                        <label for="meta_title">Meta Title</label>
+                                        <input type="text" name="meta_title" id="meta_title" value="{{ $category->meta_title }}" class="form-control">
+                                    </div>
+
+                                    <div class="col-md-12 mb-2">
+                                        <label for="meta_desc">Meta Description:</label>
+                                        <textarea name="meta_description" id="meta_desc" rows="3" class="form-control">
+                                            {{ $category->meta_description }}
                                         </textarea>
                                     </div>
                                     
@@ -64,6 +77,7 @@
     <script>
          $(document).ready(function(){
             $('#desc').trumbowyg();
+            $('#meta_desc').trumbowyg();
             // $('#name').keyup(function(){
             //     var slug = $(this).val()
                 

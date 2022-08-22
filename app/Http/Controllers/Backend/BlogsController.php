@@ -204,7 +204,6 @@ class BlogsController extends Controller
             $data['slug'] = $this->slugify($slug);
         }    
 
-
         $blog->update($data);
 
         BlogPostTag::where('id_post', $blog->id)->delete();

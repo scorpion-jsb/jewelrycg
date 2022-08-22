@@ -1,4 +1,4 @@
-<x-app-layout page-title="{{ $post->name }}">
+<x-app-layout page-title="{{ $post->meta_title?$post->meta_title:$post->name }}" page-description="{{$post->meta_description}}">
     <section class="bg-white py-8">
         <div class="container">
             <div class="row">

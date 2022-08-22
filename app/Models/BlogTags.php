@@ -13,5 +13,7 @@ class BlogTags extends Model
         'name',
         'slug',
         'description',
+        'meta_title',
+        'meta_description',
     ];
 }

@@ -5,6 +5,26 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
+        <!-- SEO start -->
+        <meta name="description" content="{{ $pageTitle}}">
+
+        <!-- Google / Search Engine Tags -->
+        <meta itemprop="name" content="{{$pageTitle}}">
+        <meta itemprop="description" content="{{ $pageTitle}}">
+
+        <!-- Facebook Meta Tags -->
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="{{$pageTitle}}">
+        <meta property="og:description" content="{{ $pageTitle}}">
+
+        <!-- Twitter Meta Tags -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="{{$pageTitle}}">
+        <meta name="twitter:description" content="{{ $pageTitle}}">
+
+        <!-- SEO end -->
+
+
         <title>{{$pageTitle}}</title>
         <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}"/>
 
@@ -25,6 +45,8 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         {{ $scripts ?? null }}
         <!--<script src="{{asset('js/func_util.js')}}" defer></script>-->
+
+
     </head>
     <body>
 
