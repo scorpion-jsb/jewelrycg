@@ -22,6 +22,8 @@ return new class extends Migration
             $table->text('post')->nullable();
             $table->integer('status');
             $table->integer('parent_id')->default(0);
+            $table->string('meta_title')->nullable();
+			$table->text('meta_description')->nullable();
             $table->timestamps();
         });
     }
