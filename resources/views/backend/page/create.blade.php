@@ -110,7 +110,6 @@
     <script>
         $(document).ready(function() {
             $('#desc').trumbowyg();
-            $('#meta_description').trumbowyg();
         })
         $(".imgAdd").click(function() {
             $(this).closest(".row").find('.imgAdd').before(
