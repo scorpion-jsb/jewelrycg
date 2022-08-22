@@ -60,6 +60,8 @@ class PageController extends Controller
         $page->name = $request->name;
         $page->post = $request->post;
         $page->slug = $slug;
+        $page->meta_title = $request->meta_title;
+        $page->meta_description = $request->meta_description;
         $page->url = $url;
         $page->parent_id = $request->parent_id;
         $page->author_id = Auth::user()->id;
@@ -149,6 +151,8 @@ class PageController extends Controller
         $page->post = $request->post;
         $page->url = $url;
         $page->slug = $slug;
+        $page->meta_title = $request->meta_title;
+        $page->meta_description = $request->meta_description;
         $page->parent_id = $request->parent_id;
         $page->author_id = Auth::user()->id;
         $page->save();
