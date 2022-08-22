@@ -73,6 +73,8 @@ class CategorysController extends Controller
         $category->parent_id = $request->parent_id;
         $category->category_name = $request->category_name;
         $category->slug = $slug;
+        $category->meta_title = $request->meta_title;
+        $category->meta_description = $request->meta_description;
         $category->save();        
 
         return redirect()->route('backend.products.categories.list');
@@ -153,6 +155,8 @@ class CategorysController extends Controller
         $category->parent_id = $request->parent_id;
         $category->category_name = $request->category_name;
         $category->slug = $slug;
+        $category->meta_title = $request->meta_title;
+        $category->meta_description = $request->meta_description;
         $category->save();        
 
         return redirect()->route('backend.products.categories.list');

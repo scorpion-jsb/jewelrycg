@@ -21,10 +21,10 @@
                                         <input type="text" name="category_name" id="name" value="{{ old('category_name') }}" class="form-control">
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                        <label for="name">Parent</label>
+                                        <label for="parent_id">Parent</label>
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <select class="selectpicker" name="parent_id" data-live-search="true">
+                                                <select class="selectpicker" name="parent_id" id="parent_id" data-live-search="true">
                                                     <option selected disabled>None</option>
 
                                                     @foreach ($categories as $categorie)
@@ -38,13 +38,26 @@
                                           
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                        <label for="name">Slug:</label>
+                                        <label for="slug">Slug:</label>
                                         <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
                                     </div>
+
                                     <div class="col-md-12 mb-2">
                                         <label for="desc">Description:</label>
                                         <textarea name="category_excerpt" id="desc" rows="3" class="form-control">
                                             {{ old('category_excerpt') }}
+                                        </textarea>
+                                    </div>
+
+                                    <div class="col-md-12 mb-2">
+                                        <label for="meta_title">Meta Title</label>
+                                        <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
+                                    </div>
+
+                                    <div class="col-md-12 mb-2">
+                                        <label for="meta_desc">Meta Description:</label>
+                                        <textarea name="meta_description" id="meta_desc" rows="3" class="form-control">
+                                            {{ old('meta_description') }}
                                         </textarea>
                                     </div>
                                     
@@ -65,6 +78,7 @@
     <script>
          $(document).ready(function(){
             $('#desc').trumbowyg();
+            $('#meta_desc').trumbowyg();
             // $('#name').keyup(function(){
             //     var slug = $(this).val()
                 
