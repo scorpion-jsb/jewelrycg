@@ -36,7 +36,9 @@ class Product extends Model
         'product_3dpreview',
         'product_attributes',
         'product_attribute_values',
-        'digital_download_assets'
+        'digital_download_assets', 
+        'meta_title', 
+        'meta_description',
     ];
 
     /*

@@ -149,6 +149,27 @@
                                 ])
                     </div>
                 </div>
+
+                <div class="card col-md-12">
+                     <!-- Header -->
+                     <div class="card-header">
+                        <h4 class="card-header-title">Meta information</h4>
+                    </div>
+                    <!-- End Header -->
+                    <div class="card-body row">
+                        @include('includes.validation-form')
+                        <div class="mb-4">
+                            <label for="meta_title">Name</label>
+                            <input type="text" value='{{ $product->meta_title }}' name="meta_title" id="meta_title"
+                                class="form-control">
+                        </div>
+                        <div class="mb-4">
+                            <label for="meta_description">Description</label>
+                            <textarea name="meta_description" value='{{ $product->meta_description }}' id="meta_description" rows="3" class="form-control">{{ $product->meta_description }}</textarea>
+                        </div>
+                    </div>
+                </div>
+
             </div>
 
             <div class="col-lg-4">

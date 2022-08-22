@@ -110,6 +110,25 @@
                     <div class="card-body" id="variantsbody" style="overflow-x: scroll ">
                     </div>
                 </div>
+                <div class="card mb-3 mb-lg-5">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title">Meta information</h4>
+                    </div>
+                    <!-- End Header -->
+                    <div class="card-body">
+                        @include('includes.validation-form')
+                        <div class="mb-4">
+                            <label for="meta_title" class="form-label">Meta Title</label>
+                            <input type="text" name="meta_title" id="meta_title" class="form-control" value="{{ old('meta_title') }}">
+                        </div>
+
+                        <div class="mb-4">
+                            <label for="meta_description">Meta Description</label>
+                            <textarea name="meta_description" id="meta_description" rows="3" class="form-control">{{ old('meta_description') }}</textarea>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-4">
