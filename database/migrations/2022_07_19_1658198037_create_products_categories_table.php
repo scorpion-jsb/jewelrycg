@@ -15,6 +15,8 @@ class CreateProductsCategoriesTable extends Migration
 		$table->string('category_name');
 		$table->string('slug');
 		$table->string('category_excerpt')->nullable();
+        $table->string('meta_title')->nullable();
+		$table->text('meta_description')->nullable();
 		$table->timestamps();
 
         });
