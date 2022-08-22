@@ -54,9 +54,7 @@
                             </div>
                             <div class="col-md-12 mb-2">
                                 <label for="meta_description">Meta Description:</label>
-                                <textarea name="meta_description" id="meta_description" rows="3" class="form-control">
-                                    {{ $post->meta_description }}
-                                </textarea>
+                                <textarea name="meta_description" id="meta_description" rows="3" class="form-control">{{ $post->meta_description }}</textarea>
                             </div>
                         </div>
                     </div>
@@ -171,7 +169,6 @@
     <script>
         $(document).ready(function() {
             $('#desc').trumbowyg();
-            $('#meta_description').trumbowyg();
         })
         $(".imgAdd").click(function() {
             $(this).closest(".row").find('.imgAdd').before(
