@@ -1,4 +1,4 @@
-<x-app-layout :page-title="$product->meta_title" :pate-description="$product->meta_description">
+<x-app-layout :page-title="$product->meta_title?$product->meta_title:$product->name" :page-description="$product->meta_description">
     <style>
         #add_to_cart_btn {
             width: 120px;
