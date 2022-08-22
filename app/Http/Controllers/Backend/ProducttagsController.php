@@ -18,7 +18,7 @@ class ProducttagsController extends Controller
     public function index()
     {
         return view('backend.products.tags.list', [
-            'tags' => ProductTag::orderBy('id', 'DESC')->paginate(10)
+            'tags' => ProductTag::orderBy('id', 'DESC')->get()
         ]);
     }
         
