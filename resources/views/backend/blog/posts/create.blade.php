@@ -22,6 +22,14 @@
                             <label for="desc" class="w-100 mb-2">Post:</label>
                             <textarea name="post" id="desc" rows="6" class="form-control">{{ old('post') }}</textarea>
                         </div>
+                        <div class="mb-2">
+                            <label for="meta_title" class="w-100 mb-2">Meta Title:</label>
+                            <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label for="meta_description" class="w-100 mb-2">Meta Description:</label>
+                            <textarea name="meta_description" id="meta_description" rows="6" class="form-control">{{ old('meta_description') }}</textarea>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -121,6 +129,7 @@
     <script>
         $(document).ready(function() {
             $('#desc').trumbowyg();
+            $('#meta_description').trumbowyg();
         })
         $(".imgAdd").click(function() {
             $(this).closest(".row").find('.imgAdd').before(

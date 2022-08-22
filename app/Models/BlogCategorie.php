@@ -13,5 +13,7 @@ class BlogCategorie extends Model
         'category_name',
         'category_excerpt',
         'slug',
+        'meta_title',
+        'meta_description'
     ];
 }

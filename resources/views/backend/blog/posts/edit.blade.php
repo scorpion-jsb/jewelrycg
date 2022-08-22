@@ -47,6 +47,17 @@
                                     {{ $post->post }}
                                 </textarea>
                             </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="meta_title">Name:</label>
+                                <input type="text" name="meta_title" id="meta_title" value="{{ $post->meta_title }}"
+                                    class="form-control">
+                            </div>
+                            <div class="col-md-12 mb-2">
+                                <label for="meta_description">Post:</label>
+                                <textarea name="meta_description" id="meta_description" rows="3" class="form-control">
+                                    {{ $post->meta_description }}
+                                </textarea>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -160,6 +171,7 @@
     <script>
         $(document).ready(function() {
             $('#desc').trumbowyg();
+            $('#meta_description').trumbowyg();
         })
         $(".imgAdd").click(function() {
             $(this).closest(".row").find('.imgAdd').before(
