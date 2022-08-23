@@ -25,37 +25,50 @@
             <div class="col-md-8">
                 @csrf
                 @method('PUT')
-                <div class="justify-content-center">
-                    <div class="card col-md-12 mb-4">
-                        <div class="card-body row">
-                            @include('includes.validation-form')
+                <div class="card col-md-12 mb-2">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title mb-0">Post information</h4>
+                    </div>
+                    <!-- End Header -->
+                    <div class="card-body row">
+                        @include('includes.validation-form')
 
-                            <div class="col-md-12 mb-2">
-                                <label for="name">Name:</label>
-                                <input type="text" name="name" id="name" value="{{ $post->name }}"
-                                    class="form-control">
-                            </div>
-                            <div class="col-md-12 mb-2">
-                                <label for="name">Slug:</label>
-                                <input type="text" name="slug" id="slug" value="{{ $post->slug }}"
-                                    class="form-control">
-                            </div>
-
-                            <div class="col-md-12 mb-2">
-                                <label for="desc">Post:</label>
-                                <textarea name="post" id="desc" rows="3" class="form-control">
-                                    {{ $post->post }}
-                                </textarea>
-                            </div>
-                            <div class="col-md-12 mb-2">
-                                <label for="meta_title">Meta Title:</label>
-                                <input type="text" name="meta_title" id="meta_title" value="{{ $post->meta_title }}"
-                                    class="form-control">
-                            </div>
-                            <div class="col-md-12 mb-2">
-                                <label for="meta_description">Meta Description:</label>
-                                <textarea name="meta_description" id="meta_description" rows="3" class="form-control">{{ $post->meta_description }}</textarea>
-                            </div>
+                        <div class="col-md-12 mb-2">
+                            <label for="name">Name:</label>
+                            <input type="text" name="name" id="name" value="{{ $post->name }}"
+                                class="form-control">
+                        </div>
+                        <div class="col-md-12 mb-2">
+                            <label for="name">Slug:</label>
+                            <input type="text" name="slug" id="slug" value="{{ $post->slug }}"
+                                class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="desc">Post:</label>
+                            <textarea name="post" id="desc" rows="3" class="form-control">
+                                {{ $post->post }}
+                            </textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="card col-md-12">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title mb-0">Meta information</h4>
+                    </div>
+                    <!-- End Header -->
+                    <div class="card-body row">
+                        <div class="col-md-12 mb-2">
+                            <label for="meta_title">Meta Title:</label>
+                            <input type="text" name="meta_title" id="meta_title" value="{{ $post->meta_title }}"
+                                class="form-control">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="meta_description">Meta Description:</label>
+                            <textarea name="meta_description" id="meta_description" rows="3" class="form-control">
+                                {{ $post->meta_description }}
+                            </textarea>
                         </div>
                     </div>
                 </div>
@@ -64,7 +77,7 @@
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="card-header-title">Status</h3>
+                        <h3 class="card-header-title mb-0">Status</h3>
                         <small class="text-muted">Published: 2 days ago</small>
                     </div>
                     <div class="card-body">
@@ -80,7 +93,7 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Organization</h4>
+                        <h4 class="card-header-title mb-0">Organization</h4>
                     </div>
                     <!-- End Header -->
 
@@ -120,7 +133,7 @@
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="card-header-title">Featured Image</h3>
+                        <h3 class="card-header-title mb-0">Featured Image</h3>
                     </div>
                     <div class="card-body">
                         <div class="imagePreview img-thumbnail p-2">
@@ -169,6 +182,7 @@
     <script>
         $(document).ready(function() {
             $('#desc').trumbowyg();
+            $('#meta_description').trumbowyg();
         })
         $(".imgAdd").click(function() {
             $(this).closest(".row").find('.imgAdd').before(

@@ -18,7 +18,7 @@
             <div class="card mb-4">
                 <div class="card-header card-header-content-md-between">
                     <div class="mb-2 mb-md-0">
-                        <h3 class="card-header-title">Add Tag</h3>
+                        <h3 class="card-header-title mb-0">Add Tag</h3>
                     </div>
                 </div>
                 <div class="card-body">
@@ -64,7 +64,7 @@
             <div class="card rounded-0 mb-4">
                 <div class="card-header card-header-content-md-between">
                     <div class="mb-2 mb-md-0">
-                        <h3 class="card-header-title">Tags</h3>
+                        <h3 class="card-header-title mb-0">Tags</h3>
                     </div>
                 </div>
                 <div class="datatable-custom position-relative">

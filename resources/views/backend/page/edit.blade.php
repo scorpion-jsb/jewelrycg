@@ -12,8 +12,12 @@
             <div class="col-md-8">
                 @csrf
                 @method('PUT')
-                <div class="justify-content-center">
                     <div class="card col-md-12 mb-4">
+                        <!-- Header -->
+                        <div class="card-header">
+                            <h4 class="card-header-title mb-0">Page information</h4>
+                        </div>
+                        <!-- End Header -->
                         <div class="card-body row">
                             @include('includes.validation-form')
 
@@ -32,29 +36,37 @@
                                 <a href={{url($page->url)}}>{{url($page->url)}}</a>
                             </div>
 
-                            <div class="col-md-12 mb-2">
+                            <div class="col-md-12">
                                 <label for="desc">Post:</label>
                                 <textarea name="post" id="desc" rows="3" class="form-control">
                                     {{ $page->post }}
                                 </textarea>
                             </div>
+                        </div>
+                    </div>
+                    <div class="card col-md-12">
+                        <!-- Header -->
+                        <div class="card-header">
+                            <h4 class="card-header-title mb-0">Meta information</h4>
+                        </div>
+                        <!-- End Header -->
+                        <div class="card-body row">
                             <div class="mb-2">
                                 <label for="meta_title" class="w-100 mb-2">Meta Title:</label>
                                 <input type="text" name="meta_title" id="meta_title" value="{{ $page->meta_title }}" class="form-control">
                             </div>
-                            <div class="mb-2">
+                            <div class="">
                                 <label for="meta_description" class="w-100 mb-2">Meta Description:</label>
                                 <textarea name="meta_description" id="meta_description" rows="6" class="form-control">{{ $page->meta_description }}</textarea>
                             </div>
                         </div>
                     </div>
-                </div>
             </div>
             <div class="col-md-4">
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="card-header-title">Status</h3>
+                        <h3 class="card-header-title mb-0">Status</h3>
                         <small class="text-muted">Published: 2 days ago</small>
                     </div>
                     <div class="card-body">
@@ -70,7 +82,7 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Organization</h4>
+                        <h4 class="card-header-title mb-0">Organization</h4>
                     </div>
                     <!-- End Header -->
 
@@ -137,6 +149,7 @@
     <script>
         $(document).ready(function() {
             $('#desc').trumbowyg();
+            $('#meta_description').trumbowyg();
         })
         $(".imgAdd").click(function() {
             $(this).closest(".row").find('.imgAdd').before(
