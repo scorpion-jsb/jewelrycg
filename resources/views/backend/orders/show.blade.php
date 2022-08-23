@@ -69,16 +69,8 @@
                           <div class="order-item-qty-price fs-16 pb-2"><span class="fw-600">Quantity</span>
                               {{ $item->quantity }} | <span class="fw-600">Price</span>
                               ${{ number_format($item->price / 100, 2) }}</div>
-                          @if ($item->product->is_digital)
+                          @if (!$item->product->is_digital)
                               <div class="is_downloadable fw-600 fs-16">
-                                  {{-- @if ($item->product_variant)
-                                      <a href="javascript:;" class="variant_download"
-                                          data-variant-id="{{ $item->product_variant }}">
-                                          <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
-                                  @else
-                                      <a href="javascript:;" id="product_download" data-product-id="{{ $item->id }}">
-                                          <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
-                                  @endif --}}
                                   @php
                                     $orderStatus = Config::get('constants.order_item_status_fulfillment');
                                   @endphp
