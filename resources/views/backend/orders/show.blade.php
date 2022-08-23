@@ -78,10 +78,11 @@
                                   <select class="order-status" name="" id="" data-item-id="{{ $item->id }}">
                                     @foreach ($orderStatus as $key => $status)
                                       @if ($key != 0)
-                                        <option @if ($item->status_fulfillment == $key) selected @endif value="{{ $key }}">{{ $status }}</option>                                      
+                                        <option @if ($item->status_fulfillment == $key) selected @endif value="{{ $key }}">{{ $status }}</option>
                                       @endif
                                     @endforeach                                    
                                   </select>
+																	<input class='track_number' type='number' placeholder='Tracking Number' oninput='changeStatusTracking(this)' value='{{ $item->status_tracking }}' @if ($item->status_fulfillment != 2)style="display: none"@endif/> 
                               </div>
                           @endif
                       </div>
@@ -102,7 +103,11 @@
     $(function() {
       $('.order-status').change(function () {
         var orderItemId = $(this).attr('data-item-id');
-
+        if ($(this).val() == '2') {
+					$(this).closest(".is_downloadable").find('.track_number').css('display', 'inline-block')
+        } else {
+					$(this).closest(".is_downloadable").find(".track_number").css('display', 'none');
+        }
         $.ajax({
           url: "{{ url('backend/orders/item') }}" + "/" + orderItemId,
           type: 'put',
@@ -115,6 +120,21 @@
           }
         })
       });
+
     });
+		function changeStatusTracking(target) {
+			var orderItemId = $(target).closest(".is_downloadable").attr("data-item-id");
+			$.ajax({
+				url: "{{ url('backend/orders/status_tracking/') }}" + "/" + orderItemId, 
+				type: 'put',
+				data: {
+					"_token": "{{ csrf_token() }}",
+					status: $(target).val()
+				},
+				success: function (data) {
+					console.log(data)
+				}
+			})
+		}
   </script>
 @endsection
