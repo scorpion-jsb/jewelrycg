@@ -28,7 +28,7 @@
                 <div class="card col-md-12 mb-2">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Post information</h4>
+                        <h4 class="card-header-title mb-0">Post information</h4>
                     </div>
                     <!-- End Header -->
                     <div class="card-body row">
@@ -55,7 +55,7 @@
                 <div class="card col-md-12">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Meta information</h4>
+                        <h4 class="card-header-title mb-0">Meta information</h4>
                     </div>
                     <!-- End Header -->
                     <div class="card-body row">
@@ -77,7 +77,7 @@
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="card-header-title">Status</h3>
+                        <h3 class="card-header-title mb-0">Status</h3>
                         <small class="text-muted">Published: 2 days ago</small>
                     </div>
                     <div class="card-body">
@@ -93,7 +93,7 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Organization</h4>
+                        <h4 class="card-header-title mb-0">Organization</h4>
                     </div>
                     <!-- End Header -->
 
@@ -133,7 +133,7 @@
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="card-header-title">Featured Image</h3>
+                        <h3 class="card-header-title mb-0">Featured Image</h3>
                     </div>
                     <div class="card-body">
                         <div class="imagePreview img-thumbnail p-2">

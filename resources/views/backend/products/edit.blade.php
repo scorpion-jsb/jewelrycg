@@ -59,7 +59,7 @@
                 <div class="card mb-3 mb-lg-5 mt-3">
                     <!-- Header -->
                     <div class="card-header card-header-content-between">
-                        <h4 class="card-header-title">Media</h4>
+                        <h4 class="card-header-title mb-0">Media</h4>
 
                         <!-- Gallery link -->
                         <label class="btn text-primary p-0" id="getFileManagerForProducts">
@@ -153,7 +153,7 @@
                 <div class="card col-md-12">
                      <!-- Header -->
                      <div class="card-header">
-                        <h4 class="card-header-title">Meta information</h4>
+                        <h4 class="card-header-title mb-0">Meta information</h4>
                     </div>
                     <!-- End Header -->
                     <div class="card-body row">
@@ -177,7 +177,7 @@
                 <!-- Card -->
                 <div class="card mb-4">
                     <div class="card-header">
-                        <h3 class="card-header-title">Status</h3>
+                        <h3 class="card-header-title mb-0">Status</h3>
                         <small class="text-muted"></small>
                     </div>
                     <div class="card-body">
@@ -193,7 +193,7 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Options</h4>
+                        <h4 class="card-header-title mb-0">Options</h4>
                     </div>
                     <!-- End Header -->
 
@@ -236,7 +236,7 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Pricing + Stock</h4>
+                        <h4 class="card-header-title mb-0">Pricing + Stock</h4>
                     </div>
                     <!-- End Header -->
 
@@ -286,7 +286,7 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Organization</h4>
+                        <h4 class="card-header-title mb-0">Organization</h4>
                     </div>
                     <!-- End Header -->
 
@@ -323,7 +323,7 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">3D Model</h4>
+                        <h4 class="card-header-title mb-0">3D Model</h4>
                     </div>
                     <!-- End Header -->
 
@@ -345,7 +345,7 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Thumbnail</h4>
+                        <h4 class="card-header-title mb-0">Thumbnail</h4>
                     </div>
                     <!-- End Header -->
 
@@ -366,7 +366,7 @@
                 <div class="card mb-3 mb-4" @if (!$product->is_digital) style="display: none;" @endif>
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Digital Asset File</h4>
+                        <h4 class="card-header-title mb-0">Digital Asset File</h4>
                     </div>
                     <!-- End Header -->
 
@@ -390,7 +390,7 @@
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title">Tax</h4>
+                        <h4 class="card-header-title mb-0">Tax</h4>
                     </div>
                     <!-- End Header -->
 

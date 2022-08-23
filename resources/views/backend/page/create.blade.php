@@ -12,6 +12,11 @@
             <div class="col-md-8">
                 @csrf
                 <div class="card col-md-12 mb-4">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title mb-0">Page information</h4>
+                    </div>
+                    <!-- End Header -->
                     <div class="card-body">
                         @include('includes.validation-form')
                         <div class="mb-2">
@@ -26,11 +31,20 @@
                             <label for="desc" class="w-100 mb-2">Post:</label>
                             <textarea name="post" id="desc" rows="6" class="form-control">{{ old('post') }}</textarea>
                         </div>
+                    </div>
+                </div>
+                <div class="card col-md-12">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title mb-0">Meta information</h4>
+                    </div>
+                    <!-- End Header -->
+                    <div class="card-body">
                         <div class="mb-2">
                             <label for="meta_title" class="w-100 mb-2">Meta Title:</label>
                             <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
                         </div>
-                        <div class="mb-2">
+                        <div class="">
                             <label for="meta_description" class="w-100 mb-2">Meta Description:</label>
                             <textarea name="meta_description" id="meta_description" rows="6" class="form-control">{{ old('meta_description') }}</textarea>
                         </div>

@@ -17,7 +17,7 @@
                         <div class="card col-md-12">
                             <!-- Header -->
                             <div class="card-header">
-                                <h4 class="card-header-title">Tag information</h4>
+                                <h4 class="card-header-title mb-0">Tag information</h4>
                             </div>
                             <!-- End Header -->
                             <div class="card-body row">
@@ -42,7 +42,7 @@
                         <div class="card col-md-12">
                             <!-- Header -->
                             <div class="card-header">
-                                <h4 class="card-header-title">Meta information</h4>
+                                <h4 class="card-header-title mb-0">Meta information</h4>
                             </div>
                             <!-- End Header -->
                             <div class="card-body row">
