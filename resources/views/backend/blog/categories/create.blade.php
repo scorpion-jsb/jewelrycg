@@ -42,7 +42,9 @@
                                     </div>
                                     <div class="col-md-12 mb-2">
                                         <label for="desc">Description:</label>
-                                        <textarea name="category_excerpt" id="desc" rows="3" class="form-control">{{ old('category_excerpt') }}</textarea>
+                                        <textarea name="category_excerpt" id="desc" rows="3" class="form-control">
+                                            {{ old('category_excerpt') }}
+                                        </textarea>
                                     </div>
                                     <div class="col-md-12 mb-2">
                                         <label for="meta_title">Meta Title</label>
@@ -50,7 +52,9 @@
                                     </div>
                                     <div class="col-md-12 mb-2">
                                         <label for="meta_desc">Meta Description:</label>
-                                        <textarea name="meta_description" id="meta_desc" rows="3" class="form-control">{{ old('meta_description') }}</textarea>
+                                        <textarea name="meta_description" id="meta_desc" rows="3" class="form-control">
+                                            {{ old('meta_description') }}
+                                        </textarea>
                                     </div>
                                     <div class="col-md-12 text-center">
                                         <button type="submit" class="btn btn-lg btn-outline-success">Add</button>
@@ -69,6 +73,7 @@
     <script>
          $(document).ready(function(){
             $('#desc').trumbowyg();
+            $('#meta_desc').trumbowyg();
             // $('#name').keyup(function(){
             //     var slug = $(this).val()
                 
