@@ -49,6 +49,10 @@ class OrderController extends Controller
         return count($count);
     }
 
+    public function status_tracking_set(Request $request, $id) {
+        return OrderItem::where('id', $id)->update(['status_tracking' => $request->status]);
+    }
+
     /**
      * Show the form for creating a new resource.
      *

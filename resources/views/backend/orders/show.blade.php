@@ -70,7 +70,7 @@
                               {{ $item->quantity }} | <span class="fw-600">Price</span>
                               ${{ number_format($item->price / 100, 2) }}</div>
                           @if (!$item->product->is_digital)
-                              <div class="is_downloadable fw-600 fs-16">
+                              <div class="is_downloadable fw-600 fs-16" data-item-id="{{ $item->id }}">
                                   {{-- @if ($item->product_variant)
                                       <a href="javascript:;" class="variant_download"
                                           data-variant-id="{{ $item->product_variant }}">
@@ -90,7 +90,7 @@
                                       @endif
                                     @endforeach                                    
                                   </select>
-																	@if ($item->status_fulfillment == 2)<input id='track_number' type='number' placeholder='Tracking Number' /> @endif
+																	<input class='track_number' type='number' placeholder='Tracking Number' oninput='changeStatusTracking(this)' value='{{ $item->status_tracking }}' @if ($item->status_fulfillment != 2)style="display: none"@endif/> 
                               </div>
                           @endif
                       </div>
@@ -112,9 +112,9 @@
       $('.order-status').change(function () {
         var orderItemId = $(this).attr('data-item-id');
         if ($(this).val() == '2') {
-            $(".is_downloadable").append("<input id='track_number' type='number' placeholder='Tracking Number' />");
+					$(this).closest(".is_downloadable").find('.track_number').css('display', 'inline-block')
         } else {
-            $("#track_number").remove();
+					$(this).closest(".is_downloadable").find(".track_number").css('display', 'none');
         }
         $.ajax({
           url: "{{ url('backend/orders/item') }}" + "/" + orderItemId,
@@ -128,6 +128,21 @@
           }
         })
       });
+
     });
+		function changeStatusTracking(target) {
+			var orderItemId = $(target).closest(".is_downloadable").attr("data-item-id");
+			$.ajax({
+				url: "{{ url('backend/orders/status_tracking/') }}" + "/" + orderItemId, 
+				type: 'put',
+				data: {
+					"_token": "{{ csrf_token() }}",
+					status: $(target).val()
+				},
+				success: function (data) {
+					console.log(data)
+				}
+			})
+		}
   </script>
 @endsection
