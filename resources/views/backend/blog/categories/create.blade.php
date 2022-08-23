@@ -12,8 +12,12 @@
                 <div class="col-md-12">
                     <form action="{{route('backend.blog.categories.store')}}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="row justify-content-center">
                             <div class="card col-md-12">
+                                <!-- Header -->
+                                <div class="card-header">
+                                    <h4 class="card-header-title">Category information</h4>
+                                </div>
+                                <!-- End Header -->
                                 <div class="card-body row">
                                     @include('includes.validation-form')
                                     <div class="col-md-12 mb-2">
@@ -46,6 +50,18 @@
                                             {{ old('category_excerpt') }}
                                         </textarea>
                                     </div>
+                                    <div class="col-md-12 text-center">
+                                        <button type="submit" class="btn btn-lg btn-outline-success">Add</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card col-md-12">
+                                <!-- Header -->
+                                <div class="card-header">
+                                    <h4 class="card-header-title">Meta information</h4>
+                                </div>
+                                <!-- End Header -->
+                                <div class="card-body row">
                                     <div class="col-md-12 mb-2">
                                         <label for="meta_title">Meta Title</label>
                                         <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
@@ -56,12 +72,8 @@
                                             {{ old('meta_description') }}
                                         </textarea>
                                     </div>
-                                    <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn btn-lg btn-outline-success">Add</button>
-                                    </div>
                                 </div>
                             </div>
-                        </div>
                     </form>
                 </div>
             </div>
