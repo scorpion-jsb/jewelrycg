@@ -105,7 +105,7 @@
 
                 <div id="navbarVerticalMenuAllOrdersMenu" class="nav-collapse collapse @if($activePage == 'orders') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link @if($navName == 'orderslist') active @endif" href="{{ route('backend.orders.list') }}">{{ __("All Orders") }}</a>
-                  <a class="nav-link " href="{{ route('backend.orders.pending') }}">{{ __("Pending") }} <span id="pendingBadge" class="badge bg-primary rounded-pill ms-1">{{ "" }}</span></a>
+                  <a class="nav-link {{$navName}} @if($navName == 'ordersPending') active @endif" href="{{ route('backend.orders.pending') }}">{{ __("Pending") }} <span id="pendingBadge" class="badge bg-primary rounded-pill ms-1">{{ "" }}</span></a>
                 </div>
               </div>
               <!-- End Collapse -->

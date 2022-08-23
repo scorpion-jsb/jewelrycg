@@ -28,9 +28,16 @@ class OrderController extends Controller
      */
     public function pending()
     {
-        $orders = Order::getPendingBasedOnUser();
-        $orders->transform(fn($i) => $i->formatPrice());
-        return view('backend.orders.list', compact('orders'));
+        $orders = OrderItem::select('orders.*', 'users.email')
+                        ->join('orders', 'orders.order_id', '=', 'order_items.order_id')
+                        ->join('users', 'users.id', '=', 'orders.user_id')
+                        ->where('order_items.status_fulfillment', '=', 1)
+                        ->groupBy('order_items.order_id')
+                        ->get();
+                        // ->toArray();
+                        // var_dump($orders);die;
+        // $orders->transform(fn($i) => $i->formatPrice());
+        return view('backend.orders.pending', compact('orders'));
     }
 
     /**
