@@ -34,6 +34,22 @@ class OrderController extends Controller
     }
 
     /**
+     * Return count of the pending orders.
+     *
+     * @return int count
+     */
+    public function pending_badge() {
+        $count = OrderItem::select('order_items.order_id')
+                        ->join('orders', 'orders.order_id', '=', 'order_items.order_id')
+                        ->where('order_items.status_fulfillment', '=', 1)
+                        ->groupBy('order_items.order_id')
+                        ->get()
+                        ->toArray();
+
+        return count($count);
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -85,6 +101,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // 
         return OrderItem::where('id', $id)->update(['status_fulfillment' => $request->status]);
     }
 

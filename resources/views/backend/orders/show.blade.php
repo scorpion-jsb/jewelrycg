@@ -69,7 +69,7 @@
                           <div class="order-item-qty-price fs-16 pb-2"><span class="fw-600">Quantity</span>
                               {{ $item->quantity }} | <span class="fw-600">Price</span>
                               ${{ number_format($item->price / 100, 2) }}</div>
-                          @if ($item->product->is_digital)
+                          @if (!$item->product->is_digital)
                               <div class="is_downloadable fw-600 fs-16">
                                   {{-- @if ($item->product_variant)
                                       <a href="javascript:;" class="variant_download"
@@ -86,10 +86,11 @@
                                   <select class="order-status" name="" id="" data-item-id="{{ $item->id }}">
                                     @foreach ($orderStatus as $key => $status)
                                       @if ($key != 0)
-                                        <option @if ($item->status_fulfillment == $key) selected @endif value="{{ $key }}">{{ $status }}</option>                                      
+                                        <option @if ($item->status_fulfillment == $key) selected @endif value="{{ $key }}">{{ $status }}</option>
                                       @endif
                                     @endforeach                                    
                                   </select>
+																	@if ($item->status_fulfillment == 2)<input id='track_number' type='number' placeholder='Tracking Number' /> @endif
                               </div>
                           @endif
                       </div>
@@ -110,7 +111,11 @@
     $(function() {
       $('.order-status').change(function () {
         var orderItemId = $(this).attr('data-item-id');
-
+        if ($(this).val() == '2') {
+            $(".is_downloadable").append("<input id='track_number' type='number' placeholder='Tracking Number' />");
+        } else {
+            $("#track_number").remove();
+        }
         $.ajax({
           url: "{{ url('backend/orders/item') }}" + "/" + orderItemId,
           type: 'put',
