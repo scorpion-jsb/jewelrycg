@@ -28,6 +28,7 @@ use App\Http\Controllers\Backend\UploadController;
 
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\Backend\ShippingOptionController;
+use App\Http\Controllers\Backend\SettingGeneralController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\TaxOptionController;
 use App\Http\Controllers\TestController;
@@ -47,10 +48,14 @@ use Illuminate\Support\Facades\Route;
 // Backend
 Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth', 'admin']], function ()
 {
-	// tax
-	Route::resource('/setting/tax', TaxOptionController::class);
-	// shipping
-	Route::resource('/setting/shipping', ShippingOptionController::class);
+	Route::group(['prefix' => 'setting'], function () {
+		// tax
+		Route::resource('/tax', TaxOptionController::class);
+		// // shipping
+		Route::resource('/shipping', ShippingOptionController::class);
+		// // // general
+		Route::resource('/general', SettingGeneralController::class);
+	});
 	// page
 	Route::resource('/page', PageController::class);
 

@@ -129,28 +129,28 @@
               <div class="nav-item">
                 <a class="nav-link nav-link-main " href="{{ route('backend.tax.index') }}" data-placement="left">
                   <i class="bi-key nav-icon"></i>
-                  <span class="nav-link-title">Tax</span>
+                  <span class="nav-link-title @if($navName == 'tax') active @endif">Tax</span>
                 </a>
               </div>
 
               <div class="nav-item">
                 <a class="nav-link nav-link-main " href="{{ route('backend.shipping.index') }}" data-placement="left">
                   <i class="bi-key nav-icon"></i>
-                  <span class="nav-link-title">Shipping</span>
+                  <span class="nav-link-title @if($navName == 'Shipping') active @endif">Shipping</span>
+                </a>
+              </div>
+
+              <div class="nav-item">
+                <a class="nav-link nav-link-main " href="{{ route('backend.general.index') }}" data-placement="left">
+                  <i class="bi-key nav-icon"></i>
+                  <span class="nav-link-title @if($navName == 'ordersPending') active @endif">General</span>
                 </a>
               </div>
 
               <div class="nav-item">
                 <a class="nav-link nav-link-main " href="#" data-placement="left">
                   <i class="bi-key nav-icon"></i>
-                  <span class="nav-link-title">General</span>
-                </a>
-              </div>
-
-              <div class="nav-item">
-                <a class="nav-link nav-link-main " href="#" data-placement="left">
-                  <i class="bi-key nav-icon"></i>
-                  <span class="nav-link-title">API Keys</span>
+                  <span class="nav-link-title @if($navName == 'ordersPending') active @endif">API Keys</span>
                 </a>
               </div>
 
