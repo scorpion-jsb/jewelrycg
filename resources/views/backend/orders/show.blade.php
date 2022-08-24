@@ -82,7 +82,8 @@
                                       @endif
                                     @endforeach                                    
                                   </select>
-																	<input class='track_number' type='number' placeholder='Tracking Number' oninput='changeStatusTracking(this)' value='{{ $item->status_tracking }}' @if ($item->status_fulfillment != 2)style="display: none"@endif/> 
+									<input class='track_number' type='number' placeholder='Tracking Number' value='{{ $item->status_tracking }}' @if ($item->status_fulfillment != 2)style="display: none"@endif/> 
+                                    <button class='save_track_number' onclick="changeStatusTracking(event)">save</button>
                               </div>
                           @endif
                       </div>
@@ -105,8 +106,10 @@
         var orderItemId = $(this).attr('data-item-id');
         if ($(this).val() == '2') {
 					$(this).closest(".is_downloadable").find('.track_number').css('display', 'inline-block')
+					$(this).closest(".is_downloadable").find('.save_track_number').css('display', 'inline-block')
         } else {
 					$(this).closest(".is_downloadable").find(".track_number").css('display', 'none');
+					$(this).closest(".is_downloadable").find(".save_track_number").css('display', 'none');
         }
         $.ajax({
           url: "{{ url('backend/orders/item') }}" + "/" + orderItemId,
@@ -122,19 +125,19 @@
       });
 
     });
-		function changeStatusTracking(target) {
-			var orderItemId = $(target).closest(".is_downloadable").attr("data-item-id");
-			$.ajax({
-				url: "{{ url('backend/orders/status_tracking/') }}" + "/" + orderItemId, 
-				type: 'put',
-				data: {
-					"_token": "{{ csrf_token() }}",
-					status: $(target).val()
-				},
-				success: function (data) {
-					console.log(data)
-				}
-			})
-		}
+	function changeStatusTracking(e) {
+        var orderItemId = $(e.target).closest(".is_downloadable").attr("data-item-id");
+        $.ajax({
+            url: "{{ url('backend/orders/status_tracking/') }}" + "/" + orderItemId,
+            type: 'put',
+            data: {
+                "_token": "{{ csrf_token() }}",
+                status: $(e.target).closest(".is_downloadable").find(".track_number").val()
+            },
+            success: function(data) {
+                console.log(data)
+            }
+        })
+    }
   </script>
 @endsection
