@@ -82,16 +82,17 @@
                                   @php
                                     $orderStatus = Config::get('constants.order_item_status_fulfillment');
                                   @endphp
-
-                                  <select class="order-status" name="" id="" data-item-id="{{ $item->id }}">
-                                    @foreach ($orderStatus as $key => $status)
-                                      @if ($key != 0)
-                                        <option @if ($item->status_fulfillment == $key) selected @endif value="{{ $key }}">{{ $status }}</option>
-                                      @endif
-                                    @endforeach                                    
-                                  </select>
-									<input class='track_number' type='text' placeholder='Tracking Number' value='{{ $item->status_tracking }}' @if ($item->status_fulfillment != 2)style="display: none"@endif/> 
-                                    <button class='save_track_number' onclick="changeStatusTracking(event)"  @if ($item->status_fulfillment != 2)style="display: none"@endif>save</button>
+                                    <div class="d-flex">
+                                        <select class="order-status form-select" name="" id="" data-item-id="{{ $item->id }}" style="width: 120px;height:35.75px;padding-left:10px">
+                                          @foreach ($orderStatus as $key => $status)
+                                            @if ($key != 0)
+                                              <option @if ($item->status_fulfillment == $key) selected @endif value="{{ $key }}">{{ $status }}</option>
+                                            @endif
+                                          @endforeach                                    
+                                        </select>
+                                          <input class='track_number form-control mx-2' type='text' placeholder='Tracking Number' value='{{ $item->status_tracking }}' style="width: 100px;@if ($item->status_fulfillment != 2)display: none;@endif" /> 
+                                          <button class='save_track_number btn btn-sm btn-primary' onclick="changeStatusTracking(event)"  @if ($item->status_fulfillment != 2)style="display: none"@endif>save</button>
+                                    </div>
                               </div>
                           @endif
                       </div>
