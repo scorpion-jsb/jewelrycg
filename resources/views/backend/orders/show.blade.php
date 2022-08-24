@@ -33,7 +33,7 @@
                           @php
                               $status = 'Fulfilled';
                               foreach ($order->items as $key => $item) {
-                                  if ((!$item->product->is_digital && $item->status_fulfillment != '3') || ($item->product->is_digital && !$item->product->digital_download_assets)) {
+                                  if ((!$item->product->is_digital && $item->status_fulfillment != '1') || ($item->product->is_digital && !$item->product->digital_download_assets && $item->status_fulfillment != '1')) {
                                       $status = 'Unfulfilled';
                                   }
                               }
