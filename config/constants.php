@@ -8,9 +8,9 @@ return [
     'file_manager_thumbnail_suffix' => '_file_manager',
     'order_item_status_fulfillment' => [
         '',
-        'pending',
-        'shipped',
-        'delivered'
+        'Pending',
+        'Shipped',
+        'Delivered'
     ],
     'oder_payment_status' => [
         '',
