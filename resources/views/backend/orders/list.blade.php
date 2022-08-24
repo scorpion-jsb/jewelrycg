@@ -59,12 +59,13 @@
                         </td>
                         <td>
                             @php
-                                $status = 'Fulfilled';
-                                foreach ($order->items as $key => $item) {
-                                    if ((!$item->product->is_digital && $item->status_fulfillment != '3') || ($item->product->is_digital && !$item->product->digital_download_assets)) $status = 'Unfulfilled';
-                                }
-                                
-                                echo $status;
+                              $status = 'Fulfilled';
+                              foreach ($order->items as $key => $item) {
+                                  if ($item->status_fulfillment != '1') {
+                                      $status = 'Unfulfilled';
+                                  }
+                              }
+                              echo $status;
                             @endphp
                         </td>
                         <td>
