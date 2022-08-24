@@ -59,9 +59,9 @@
                         </td>
                         <td>
                             @php
-                                $status = 'Completed';
+                                $status = 'Fulfilled';
                                 foreach ($order->items as $key => $item) {
-                                    if ($item->fulfilment_status != '3' && !$item->product->is_digital && !$item->product->is_virtual) $status = 'Pending';
+                                    if ((!$item->product->is_digital && $item->status_fulfillment != '3') || ($item->product->is_digital && !$item->product->digital_download_assets)) $status = 'Unfulfilled';
                                 }
                                 
                                 echo $status;

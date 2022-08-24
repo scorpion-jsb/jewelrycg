@@ -31,10 +31,10 @@
                       <div class="w-100 fs-18 fw-600">Fufilment status</div>
                       <div class="fs-14 ">
                           @php
-                              $status = 'Completed';
+                              $status = 'Fulfilled';
                               foreach ($order->items as $key => $item) {
-                                  if ($item->fulfilment_status != '3' && !$item->product->is_digital && !$item->product->is_virtual) {
-                                      $status = 'Pending';
+                                  if ((!$item->product->is_digital && $item->status_fulfillment != '3') || ($item->product->is_digital && !$item->product->digital_download_assets)) {
+                                      $status = 'Unfulfilled';
                                   }
                               }
                               
@@ -69,16 +69,14 @@
                           <div class="order-item-qty-price fs-16 pb-2"><span class="fw-600">Quantity</span>
                               {{ $item->quantity }} | <span class="fw-600">Price</span>
                               ${{ number_format($item->price / 100, 2) }}</div>
-                          @if (!$item->product->is_digital)
+                          @if ($item->product->is_digital)
                               <div class="is_downloadable fw-600 fs-16" data-item-id="{{ $item->id }}">
-                                  {{-- @if ($item->product_variant)
-                                      <a href="javascript:;" class="variant_download"
-                                          data-variant-id="{{ $item->product_variant }}">
-                                          <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
+                                  @if (!$item->product->digital_download_assets)
+                                      <div class="order-item-title fs-18 fw-600">File anavailable. Please contact support.</div>
                                   @else
-                                      <a href="javascript:;" id="product_download" data-product-id="{{ $item->id }}">
+                                      <a href="javascript:;" class="my-2" id="product_download" data-product-id="{{ $item->id }}" style="display: flex;">
                                           <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
-                                  @endif --}}
+                                  @endif
                                   @php
                                     $orderStatus = Config::get('constants.order_item_status_fulfillment');
                                   @endphp
