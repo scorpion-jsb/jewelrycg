@@ -33,7 +33,7 @@
                           @php
                               $status = 'Fulfilled';
                               foreach ($order->items as $key => $item) {
-                                  if ($item->status_fulfillment != '1') {
+                                  if ($item->status_fulfillment == '1') {
                                       $status = 'Unfulfilled';
                                   }
                               }
