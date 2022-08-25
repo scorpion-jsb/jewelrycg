@@ -71,16 +71,17 @@
                                 {{ $item->quantity }} | <span class="fw-600">Price</span>
                                 ${{ number_format($item->price / 100, 2) }}
                             </div>
-                            @if (!$item->product->is_digital)
-                                <div class="is_downloadable fw-600 fs-16 mt-2" data-item-id="{{ $item->id }}"
-                                    data-product-id="{{ $item->product->id }}"
-                                    data-product-digital-assets="{{ $item->product->digital_download_assets }}">
+                            <div class="is_downloadable fw-600 fs-16 mt-2" data-item-id="{{ $item->id }}"
+                                data-product-id="{{ $item->product->id }}"
+                                data-product-digital-assets="{{ $item->product->digital_download_assets }}">
+                                @if ($item->product->is_digital)
                                     @if (!$item->product->digital_download_assets)
                                         <span class="fw-900 fs-14 badge bg-danger">No digital asset attached</span>
                                         <div class="order-item-title fs-17 fw-600 mt-2">File anavailable. Please contact
                                             support.</div>
                                         <div class="card-body digital-assets-file-wrap">
-                                            <label class="btn text-primary mt-2 p-0 getFileManagerModel cursor-pointer" onclick="openFileMangerModal(event)">Select
+                                            <label class="btn text-primary mt-2 p-0 getFileManagerModel cursor-pointer"
+                                                onclick="openFileMangerModal(event)">Select
                                                 asset</label>
                                             <input type="hidden" class="digital_assets" name="digital_download_assets"
                                                 value="{{ $item->product->digital_download_assets }}">
@@ -90,34 +91,37 @@
                                         <span class="fw-900 fs-14 mt-2 d-block" class=""
                                             data-product-id="{{ $item->id }}">{{ $item->product->digitalImage->file_original_name . '.' . $item->product->digitalImage->extension }}</span>
                                         <div class="card-body digital-assets-file-wrap">
-                                            <label class="btn text-primary mt-2 p-0 getFileManagerModel cursor-pointer" onclick="openFileMangerModal(event)">Select
+                                            <label class="btn text-primary mt-2 p-0 getFileManagerModel cursor-pointer"
+                                                onclick="openFileMangerModal(event)">Select
                                                 asset</label>
                                             <input type="hidden" class="digital_assets" name="digital_download_assets"
                                                 value="{{ $item->product->digital_download_assets }}">
                                         </div>
                                     @endif
-                                    @php
-                                        $orderStatus = Config::get('constants.order_item_status_fulfillment');
-                                    @endphp
-                                    <div class="d-flex mt-2">
-                                        <select class="order-status form-select" data-item-id="{{ $item->id }}"
-                                            style="width: 120px;height:35.75px;padding-left:10px">
-                                            @foreach ($orderStatus as $key => $status)
-                                                @if ($key != 0)
-                                                    <option @if ($item->status_fulfillment == $key) selected @endif
-                                                        value="{{ $key }}">{{ $status }}</option>
-                                                @endif
-                                            @endforeach
-                                        </select>
-                                        <input class='@if($item->status_fulfillment != 2) d-none @endif track_number form-control mx-2' type='text'
-                                            placeholder='Tracking Number ' value='{{ $item->status_tracking }}'
-                                            style="width: 100px;" />
-                                    </div>
-                                    <button
-                                        class='save_track_number btn btn-sm btn-primary mt-2 @if ($item->status_fulfillment != 2) d-none @endif'
-                                        onclick="changeStatusTracking(event)">save</button>
+                                @endif
+
+                                @php
+                                    $orderStatus = Config::get('constants.order_item_status_fulfillment');
+                                @endphp
+                                <div class="d-flex mt-2">
+                                    <select class="order-status form-select" data-item-id="{{ $item->id }}"
+                                        style="width: 120px;height:35.75px;padding-left:10px">
+                                        @foreach ($orderStatus as $key => $status)
+                                            @if ($key != 0)
+                                                <option @if ($item->status_fulfillment == $key) selected @endif
+                                                    value="{{ $key }}">{{ $status }}</option>
+                                            @endif
+                                        @endforeach
+                                    </select>
+                                    <input
+                                        class='@if ($item->status_fulfillment != 2) d-none @endif track_number form-control mx-2'
+                                        type='text' placeholder='Tracking Number ' value='{{ $item->status_tracking }}'
+                                        style="width: 100px;" />
                                 </div>
-                            @endif
+                                <button
+                                    class='save_track_number btn btn-sm btn-primary mt-2 @if ($item->status_fulfillment != 2) d-none @endif'
+                                    onclick="changeStatusTracking(event)">save</button>
+                            </div>
                         </div>
                         <!--<div class="col-lg-2">${{ number_format($item->price / 100, 2) }}</div>-->
                     </div>
@@ -169,7 +173,7 @@
                     "_token": "{{ csrf_token() }}",
                     status: $(e.target).closest(".is_downloadable").find(".track_number").val()
                 },
-                async: false, 
+                async: false,
                 success: function(data) {
                     console.log(data)
                 }
@@ -179,7 +183,7 @@
             $.ajax({
                 url: "{{ url('backend/products/update_digital_assets/') }}" + "/" + productId,
                 type: 'put',
-                async: false, 
+                async: false,
                 data: {
                     "_token": "{{ csrf_token() }}",
                     value: $(e.target).closest(".is_downloadable").find(".digital_assets").val()
