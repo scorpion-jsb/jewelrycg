@@ -14,6 +14,7 @@ use App\Models\Attribute;
 use App\Models\ProductsTaxOption;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
+use PhpParser\Node\Expr\FuncCall;
 
 class ProductsController extends Controller
 {
@@ -255,5 +256,9 @@ class ProductsController extends Controller
     {
         Product::withTrashed()->find($id)->restore();
         return redirect()->route('backend.products.trash');
+    }
+
+    public function update_digital_assets(Request $request, $id) {
+        return Product::where('id', $id)->update(['digital_download_assets' => $request->value]);
     }
 }

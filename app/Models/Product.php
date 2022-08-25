@@ -231,4 +231,8 @@ class Product extends Model
 
         return asset('assets/img/placeholder.jpg');
     }
+
+    public function digitalImage() {
+        return $this->belongsTo(Upload::class, 'digital_download_assets');
+    }
 }

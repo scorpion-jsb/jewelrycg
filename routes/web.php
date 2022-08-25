@@ -97,6 +97,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::post('/store', [ProductsController::class, 'store'])->name('store');
 		Route::get('/delete/{id}', [ProductsController::class, 'destroy'])->name('delete');
 		Route::get('/get', [ProductsController::class, 'get'])->name('get');
+		Route::put('/update_digital_assets/{id}', [ProductsController::class, 'update_digital_assets'])->name('update_digital_assets');
 	});
 
 	//users routes
