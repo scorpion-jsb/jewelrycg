@@ -504,7 +504,6 @@
                     const getSelectedItem = function (selectedId, filePath) {
 
                         $('#fileManagerId').val(selectedId);
-                        $('#fileManagerPreview').attr('src', filePath);
                     }
 
                     setSelectedItemsCB(getSelectedItem, $('#fileManagerId').val() == '' ? [] : [$('#fileManagerId').val()], false);
