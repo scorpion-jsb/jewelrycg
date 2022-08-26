@@ -79,10 +79,10 @@
                                     <span class="d-block" data-item-id="{{ $item->id }}">
                                         @foreach ($orderStatus as $key => $status)
                                             @if ($key != 0)
-                                                @if ($item->status_fulfillment == $key) {{$status}} @endif
+                                                @if ($item->status_fulfillment == $key) {{"Status: " . $status}} @endif
                                             @endif
                                         @endforeach
-                                        @if ($item->status_fulfillment == 2) {{ ", Tracking Number: " . $item->status_tracking }}  @endif 
+                                        @if ($item->status_fulfillment == 2) {{ " - Tracking #: " . $item->status_tracking }}  @endif 
                                     </span>
                                 </div>
                             </div>
