@@ -54,7 +54,7 @@
                 <div class="order-items-card pb-4">
                     <div class="row">
                         <div class="col-lg-2 col-3">
-                            <img src="{{ asset('uploads/all/' . $item->product->uploads->getImageOptimizedFullName(200)) }}"
+                            <img src="{{ $item->product->uploads->getImageOptimizedFullName(200) }}"
                                 alt="" class="thumbnail border w-100">
                         </div>
                         <div class="col-lg-10 col-9">
