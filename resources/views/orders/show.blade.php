@@ -57,27 +57,35 @@
                             <div class="order-item-qty-price fs-16 pb-2"><span class="fw-600">Quantity</span>
                                 {{ $item->quantity }} | <span class="fw-600">Price</span>
                                 ${{ number_format($item->price / 100, 2) }}</div>
-                            @if ($item->product->is_digital)
-                                <div class="is_downloadable fw-600 fs-16">
-                                    @if ($item->productVariant)
-                                        @if (!$item->productVariant->has('asset') || $item->productVariant->asset->file_name == 'none')
-                                            File unavailable. Please contact support.
-                                        @else
-                                            <a href="javascript:;" class="variant_download"
-                                                data-variant-id="{{ $item->product_variant }}">
-                                                <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
-                                        @endif
+                            <div class="is_downloadable fw-600 fs-16 mt-2" data-item-id="{{ $item->id }}"
+                                data-product-id="{{ $item->product->id }}"
+                                data-product-digital-assets="{{ $item->product->digital_download_assets }}">
+                                @if ($item->product->is_digital)
+                                    @if (!$item->product->digital_download_assets)
+                                        <span class="fw-900 fs-14 badge bg-danger">No digital asset attached</span>
+                                        <div class="order-item-title fs-17 fw-600 mt-2">File anavailable. Please contact
+                                            support.</div>
                                     @else
-                                        @if (!$item->product->digital->id)
-                                            File unavailable. Please contact support.
-                                        @else
-                                            <a href="javascript:;" id="product_download"
-                                                data-product-id="{{ $item->product_id }}">
-                                                <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
-                                        @endif
+                                        <span class="fw-900 fs-14 badge bg-success">Digital asset attached</span>
+                                        <span class="fw-900 fs-14 mt-2 d-block" class=""
+                                            data-product-id="{{ $item->id }}">{{ $item->product->digitalImage->file_original_name . '.' . $item->product->digitalImage->extension }}</span>
                                     @endif
+                                @endif
+
+                                @php
+                                    $orderStatus = Config::get('constants.order_item_status_fulfillment');
+                                @endphp
+                                <div class="d-flex mt-2">
+                                    <span class="d-block" data-item-id="{{ $item->id }}">
+                                        @foreach ($orderStatus as $key => $status)
+                                            @if ($key != 0)
+                                                @if ($item->status_fulfillment == $key) {{$status}} @endif
+                                            @endif
+                                        @endforeach
+                                        @if ($item->status_fulfillment == 2) {{ ", Tracking Number: " . $item->status_tracking }}  @endif 
+                                    </span>
                                 </div>
-                            @endif
+                            </div>
                         </div>
                     </div>
                 </div>
