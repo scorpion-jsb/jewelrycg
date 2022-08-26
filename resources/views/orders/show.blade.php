@@ -19,12 +19,13 @@
                         <div class="w-100 fs-18 fw-600">Fufilment status</div>
                         <div class="fs-14 ">
                             @php
-                                $status = 'Completed';
+                                $status = 'Fulfilled';
                                 foreach ($order->items as $key => $item) {
-                                    if ($item->fulfilment_status != '3' && !$item->product->is_digital && !$item->product->is_virtual) {
-                                        $status = 'Pending';
+                                    if ($item->status_fulfillment == '1') {
+                                        $status = 'Unfulfilled';
                                     }
                                 }
+                                
                                 echo $status;
                             @endphp
                         </div>
