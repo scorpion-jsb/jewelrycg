@@ -54,8 +54,8 @@
                 <div class="order-items-card pb-4">
                     <div class="row">
                         <div class="col-lg-2 col-3">
-                            <img src="{{ asset('uploads/all/' . $item->product->uploads->file_name) }}" alt=""
-                                class="thumbnail border w-100">
+                            <img src="{{ asset('uploads/all/' . $item->product->uploads->getImageOptimizedFullName(200)) }}"
+                                alt="" class="thumbnail border w-100">
                         </div>
                         <div class="col-lg-10 col-9">
                             <div class="order-item-title fs-24 mt-2 fw-600">
@@ -73,26 +73,41 @@
                             </div>
                             <div class="is_downloadable fw-600 fs-16 mt-2" data-item-id="{{ $item->id }}"
                                 data-product-id="{{ $item->product->id }}"
+                                data-variant-id="{{ $item->product_variant }}"
                                 data-product-digital-assets="{{ $item->product->digital_download_assets }}">
                                 @if ($item->product->is_digital)
-                                    @if (!$item->product->digital_download_assets)
-                                        <span class="fw-900 fs-14 badge bg-danger">No digital asset attached</span>
-                                        <div class="order-item-title fs-17 fw-600 mt-2">File anavailable. Please contact
-                                            support.</div>
-                                        <div class="card-body digital-assets-file-wrap">
-                                            <label class="btn text-primary mt-2 p-0 getFileManagerModel cursor-pointer"
-                                                onclick="openFileMangerModal(event)">Select
-                                                asset</label>
-                                            <input type="hidden" class="digital_assets" name="digital_download_assets"
-                                                value="{{ $item->product->digital_download_assets }}">
-                                        </div>
+                                    @if ($item->productVariant)
+                                        @if (!$item->productVariant->asset || $item->productVariant->asset->file_name == 'none')
+                                            <span class="fw-900 fs-14 badge bg-danger">No digital asset attached</span>
+                                            <div class="order-item-title fs-17 fw-600 mt-2">File anavailable. Please contact
+                                                support.</div>
+                                        @else
+                                            <span class="fw-900 fs-14 badge bg-success">Digital asset attached</span>
+                                            <span class="fw-900 fs-14 mt-2 d-block" class=""
+                                                data-product-id="{{ $item->id }}">{{ $item->productVariant->asset->file_original_name . '.' . $item->productVariant->asset->extension }}</span>
+                                                
+                                            <div class="card-body">
+                                                <label class="btn text-primary mt-2 p-0 getFileManagerModel cursor-pointer"
+                                                    onclick="openFileMangerModalVariant(event)">Select
+                                                    asset</label>
+                                                <input type="hidden" class="variant_assets" name="variant_assets"
+                                                    value="{{ $item->productVariant->digital_download_assets }}">
+                                            </div>
+                                        @endif
                                     @else
-                                        <span class="fw-900 fs-14 badge bg-success">Digital asset attached</span>
-                                        <span class="fw-900 fs-14 mt-2 d-block" class=""
-                                            data-product-id="{{ $item->id }}">{{ $item->product->digitalImage->file_original_name . '.' . $item->product->digitalImage->extension }}</span>
-                                        <div class="card-body digital-assets-file-wrap">
+                                        @if (!$item->product->digital_download_assets)
+                                            <span class="fw-900 fs-14 badge bg-danger">No digital asset attached</span>
+                                            <div class="order-item-title fs-17 fw-600 mt-2">File anavailable. Please contact
+                                                support.</div>
+                                        @else
+                                            <span class="fw-900 fs-14 badge bg-success">Digital asset attached</span>
+                                            <span class="fw-900 fs-14 mt-2 d-block" class=""
+                                                data-product-id="{{ $item->id }}">{{ $item->product->digitalImage->file_original_name . '.' . $item->product->digitalImage->extension }}</span>
+                                        @endif
+
+                                        <div class="card-body">
                                             <label class="btn text-primary mt-2 p-0 getFileManagerModel cursor-pointer"
-                                                onclick="openFileMangerModal(event)">Select
+                                                onclick="openFileMangerModalDigital(event)">Select
                                                 asset</label>
                                             <input type="hidden" class="digital_assets" name="digital_download_assets"
                                                 value="{{ $item->product->digital_download_assets }}">
@@ -120,7 +135,7 @@
                                 </div>
                                 <button
                                     class='save_track_number btn btn-sm btn-primary mt-2 @if ($item->status_fulfillment != 2) d-none @endif'
-                                    onclick="changeStatusTracking(event)">save</button>
+                                    onclick="AllSave(event)">save</button>
                             </div>
                         </div>
                         <!--<div class="col-lg-2">${{ number_format($item->price / 100, 2) }}</div>-->
@@ -164,7 +179,7 @@
 
         });
 
-        function changeStatusTracking(e) {
+        function AllSave(e) {
             var orderItemId = $(e.target).closest(".is_downloadable").attr("data-item-id");
             $.ajax({
                 url: "{{ url('backend/orders/status_tracking/') }}" + "/" + orderItemId,
@@ -180,22 +195,40 @@
             })
 
             var productId = $(e.target).closest(".is_downloadable").attr("data-product-id");
-            $.ajax({
-                url: "{{ url('backend/products/update_digital_assets/') }}" + "/" + productId,
-                type: 'put',
-                async: false,
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    value: $(e.target).closest(".is_downloadable").find(".digital_assets").val()
-                },
-                success: function(data) {
-                    console.log(data)
-                }
-            })
+            var variantId = $(e.target).closest(".is_downloadable").attr("data-variant-id");
+            
+            if (variantId == '0' && variantId) {
+                $.ajax({
+                    url: "{{ url('backend/products/update_digital_assets/') }}" + "/" + productId,
+                    type: 'put',
+                    async: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        value: $(e.target).closest(".is_downloadable").find(".digital_assets").val()
+                    },
+                    success: function(data) {
+                        console.log(data)
+                    }
+                })
+            } else {
+                $.ajax({
+                    url: "{{ url('backend/products/update_variant_assets/') }}" + "/" + variantId,
+                    type: 'put',
+                    async: false,
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        value: $(e.target).closest(".is_downloadable").find(".variant_assets").val()
+                    },
+                    success: function(data) {
+                        console.log(data)
+                    }
+                })
+            }
+
             location.reload();
         }
 
-        function openFileMangerModal(e) {
+        function openFileMangerModalDigital(e) {
             var target = $(e.target);
             $.ajax({
                 url: "{{ route('backend.file.show') }}",
@@ -211,6 +244,30 @@
                     }
                     var digital_assets = $(target).closest(".is_downloadable").find(
                         ".digital_assets").val();
+                    if (digital_assets == '') digital_assets = [];
+                    setSelectedItemsCB(getSelectedItem, [digital_assets], false);
+                    $(target).closest(".is_downloadable").find(".save_track_number").removeClass(
+                        'd-none');
+                }
+            })
+        }
+
+        function openFileMangerModalVariant(e) {
+            var target = $(e.target);
+            $.ajax({
+                url: "{{ route('backend.file.show') }}",
+                success: function(data) {
+                    if (!$.trim($('#fileManagerContainer').html()))
+                        $('#fileManagerContainer').html(data);
+
+                    $('#fileManagerModal').modal('show');
+
+                    const getSelectedItem = function(selectedId, filePath) {
+                        $(target).closest(".is_downloadable").find(".variant_assets").val(
+                            selectedId);
+                    }
+                    var digital_assets = $(target).closest(".is_downloadable").find(
+                        ".variant_assets").val();
                     if (digital_assets == '') digital_assets = [];
                     setSelectedItemsCB(getSelectedItem, [digital_assets], false);
                     $(target).closest(".is_downloadable").find(".save_track_number").removeClass(

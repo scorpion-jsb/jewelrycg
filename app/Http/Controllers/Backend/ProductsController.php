@@ -261,4 +261,8 @@ class ProductsController extends Controller
     public function update_digital_assets(Request $request, $id) {
         return Product::where('id', $id)->update(['digital_download_assets' => $request->value]);
     }
+
+    public function update_variant_assets(Request $request, $id) {
+        return ProductsVariant::where('id', $id)->update(['digital_download_assets' => $request->value]);
+    }
 }
