@@ -54,8 +54,13 @@
                 <div class="order-items-card pb-4">
                     <div class="row">
                         <div class="col-lg-2 col-3">
-                            <img src="{{ $item->product->uploads->getImageOptimizedFullName(200) }}"
-                                alt="" class="thumbnail border w-100">
+                            @if ($item->productVariant && $item->productVariant->uploads)
+                                <img src="{{ $item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt=""
+                                    class="thumbnail border w-100">
+                            @else
+                                <img src="{{ $item->product->uploads->getImageOptimizedFullName(150) }}" alt=""
+                                    class="thumbnail border w-100">
+                            @endif
                         </div>
                         <div class="col-lg-10 col-9">
                             <div class="order-item-title fs-24 mt-2 fw-600">

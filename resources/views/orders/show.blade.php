@@ -41,8 +41,13 @@
                 <div class="order-items-card pb-4">
                     <div class="row">
                         <div class="col-lg-2 col-3">
-                            <img src="{{ $item->product->uploads->getImageOptimizedFullName(150) }}" alt=""
-                                class="thumbnail border w-100">
+                            @if ($item->productVariant && $item->productVariant->uploads)
+                                <img src="{{ $item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt=""
+                                    class="thumbnail border w-100">
+                            @else
+                                <img src="{{ $item->product->uploads->getImageOptimizedFullName(150) }}" alt=""
+                                    class="thumbnail border w-100">
+                            @endif
                         </div>
                         <div class="col-lg-10 col-9">
                             <div class="order-item-title fs-24 py-2 fw-600">
@@ -114,7 +119,7 @@
                     document.location.replace("{{ url('product/download') }}" + "?variant_id=" + $(this).attr(
                         'data-variant-id'));
                 });
-    
+
                 $(".product_download").click(function() {
                     document.location.replace("{{ url('product/download') }}" + "?product_id=" + $(this).attr(
                         'data-product-id'));

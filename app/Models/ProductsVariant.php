@@ -25,10 +25,7 @@ class ProductsVariant extends Model
 
     public function uploads()
     {
-        return $this->hasOne(Upload::class, 'id', 'variant_thumbnail')->withDefault([
-            'file_name' => "none.png",
-            'id' => null
-        ]);
+        return $this->hasOne(Upload::class, 'id', 'variant_thumbnail');
     }
 
     public function asset()
