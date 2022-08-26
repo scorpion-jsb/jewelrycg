@@ -64,15 +64,17 @@
                                             File unavailable. Please contact support.
                                         @else
                                             <a href="javascript:;" class="variant_download"
-                                                data-variant-id="{{ $item->product_variant }}">
+                                                data-variant-id="{{ $item->product_variant }}"
+                                                onclick="variant_download(this)">
                                                 <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
                                         @endif
                                     @else
-                                        @if (!$item->product->digital->id)
+                                        @if (!$item->product->digital_download_assets)
                                             File unavailable. Please contact support.
                                         @else
                                             <a href="javascript:;" id="product_download"
-                                                data-product-id="{{ $item->product_id }}">
+                                                data-product-id="{{ $item->product_id }}"
+                                                onclick="product_download(this)">
                                                 <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
                                         @endif
                                     @endif
@@ -109,17 +111,15 @@
         </div>
 
         <script>
-            $(function() {
-                $('.variant_download').click(function() {
-                    document.location.replace("{{ url('product/download') }}" + "?variant_id=" + $(this).attr(
-                        'data-variant-id'));
-                });
+            function variant_download(target) {
+                document.location.replace("{{ url('product/download') }}" + "?variant_id=" + $(target).attr(
+                    'data-variant-id'));
+            }
 
-                $('.product_download').click(function() {
-                    document.location.replace("{{ url('product/download') }}" + "?product_id=" + $(this).attr(
-                        'data-product-id'));
-                })
-            })
+            function product_download(target) {
+                document.location.replace("{{ url('product/download') }}" + "?product_id=" + $(target).attr(
+                    'data-product-id'));
+            }
         </script>
 
 </x-app-layout>
