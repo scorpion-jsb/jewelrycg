@@ -98,6 +98,7 @@
                             </div>
                         </div>
                     </div>
+                </div>
             @endforeach
 
             <div class="col-lg-4 mt-3">
