@@ -237,6 +237,9 @@ class CheckoutController extends Controller
         $order->payment_intent = $request->get('payment_intent');
         $order->save();
 
+        // Send order placed email to customer
+
+        // redirect to order details
         return redirect()->route('orders.show', $orderId);
     }
 
