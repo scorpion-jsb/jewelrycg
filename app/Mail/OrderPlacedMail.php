@@ -29,10 +29,12 @@ class OrderPlacedMail extends Mailable
      */
     public function build()
     {
+        $userName = auth()->user()->first_name;
         return $this->subject('Order Placed')
             ->view('emails.orders.placed')
             ->with([
-                'tracking_number' => $this->order->tracking_number,
+                'username' => $userName,
+                'orderID' => $this->order->order_id,
                 'order_items' => $this->order->items->map(function($i) {
                     $i->getSelfWithProductInfo();
                     return $i->setPriceToFloat();
