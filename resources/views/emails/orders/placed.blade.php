@@ -377,7 +377,7 @@ ul.social li{
 					  	</td>
 					</tr>
 					<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;padding-left:0;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
 					  		<div class="totals-entry">
 					  			<div class="text">
 					  				<p>Taxes</p>
@@ -389,7 +389,7 @@ ul.social li{
 					  	</td>
 					</tr>
 					<tr>
-					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;padding-left:0;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
 					  		<div class="totals-entry">
 					  			<div class="text" style="color: #000000;font-weight: bold;">
 					  				<p>Total</p>
