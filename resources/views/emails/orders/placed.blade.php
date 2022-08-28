@@ -294,9 +294,6 @@ ul.social li{
 
 <body width="100%" style="margin: 0; padding: 0 !important; mso-line-height-rule: exactly; background-color: #f1f1f1;">
 	<center style="width: 100%; background-color: #f1f1f1;">
-    <div style="display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;">
-      &zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;&zwnj;&nbsp;
-    </div>
     <div style="max-width: 600px; margin: 0 auto;" class="email-container">
     	<!-- BEGIN BODY -->
       <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
@@ -328,12 +325,12 @@ ul.social li{
 	      <tr>
 	      	<table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
 	      		    <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					    <th width="70%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Item</th>
-					    <th width="30%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Price</th>
+					    <th width="80%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Item</th>
+					    <th width="20%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Price</th>
 					</tr>
                     @foreach ($order_items as $order_item)
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					  	<td valign="middle" width="70%" style="text-align:left; padding: 0 2.5em;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
 					  		<div class="product-entry">
                                 <a href="{{route('products.show', $order_item->id)}}">
                                     <img src="images/prod-1.jpg" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
@@ -344,7 +341,7 @@ ul.social li{
                                 </a>
 					  		</div>
 					  	</td>
-					  	<td valign="middle" width="30%" style="text-align:right; padding: 0 2.5em;">
+					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">${{$order_item->price}}</span>
 					  	</td>
 					</tr>
@@ -356,50 +353,50 @@ ul.social li{
 					</tr>
 					<!-- totals & taxes-->
 					<tr>
-					  	<td valign="middle" width="70%" style="text-align:left; padding: 0 2.5em;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
 					  		<div class="totals-entry">
 					  			<div class="text">
 					  				<p>Subtotal</p>
 					  			</div>
 					  		</div>
 					  	</td>
-					  	<td valign="middle" width="30%" style="text-align:right; padding: 0 2.5em;">
+					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
 					<tr>
-					  	<td valign="middle" width="70%" style="text-align:left; padding: 0 2.5em;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
 					  		<div class="totals-entry">
 					  			<div class="text">
 					  				<p>Shipping</p>
 					  			</div>
 					  		</div>
 					  	</td>
-					  	<td valign="middle" width="30%" style="text-align:right; padding: 0 2.5em;">
+					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
 					<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					  	<td valign="middle" width="70%" style="text-align:left; padding: 0 2.5em;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;padding-left:0;">
 					  		<div class="totals-entry">
 					  			<div class="text">
 					  				<p>Taxes</p>
 					  			</div>
 					  		</div>
 					  	</td>
-					  	<td valign="middle" width="30%" style="text-align:right; padding: 0 2.5em;">
+					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
 					<tr>
-					  	<td valign="middle" width="70%" style="text-align:left; padding: 0 2.5em;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;padding-left:0;">
 					  		<div class="totals-entry">
 					  			<div class="text" style="color: #000000;font-weight: bold;">
 					  				<p>Total</p>
 					  			</div>
 					  		</div>
 					  	</td>
-					  	<td valign="middle" width="30%" style="text-align:right; padding: 0 2.5em;">
+					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em; padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
