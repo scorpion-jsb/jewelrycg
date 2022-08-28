@@ -328,12 +328,16 @@ ul.social li{
 					    <th width="80%" style="text-align:left; padding: 0 1.0em; color: #000; padding-bottom: 20px">Item</th>
 					    <th width="20%" style="text-align:right; padding: 0 1.0em; padding-left:0; color: #000; padding-bottom: 20px">Price</th>
 					</tr>
-                    @foreach ($order_items as $order_item)
+					@foreach ($order->items as $key => $order_item)
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="product-entry" style="width:100%">
                                 <a href="{{route('products.show', $order_item->id)}}">
-                                    <img src="images/prod-1.jpg" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+								@if ($order_item->productVariant && $order_item->productVariant->uploads)
+									<img src="{{ $item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+								@else
+										<img src="{{ $item->product->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+								@endif
                                     <div class="text">
                                         <h3>{{$order_item->name}}</h3>
                                         <p>Quantity: {{$order_item->quantity}}</p>
