@@ -333,11 +333,7 @@ ul.social li{
 					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="product-entry" style="width:100%">
                                 <a href="{{route('products.show', $order_item->id)}}">
-								@if ($order_item->productVariant && $order_item->productVariant->uploads)
-									<img src="{{ $item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-								@else
-										<img src="{{ $item->product->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-								@endif
+									<img src="" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
                                     <div class="text">
                                         <h3>{{$order_item->name}}</h3>
                                         <p>Quantity: {{$order_item->quantity}}</p>
