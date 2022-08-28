@@ -328,8 +328,8 @@ ul.social li{
 	      <tr>
 	      	<table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
 	      		    <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					    <th width="80%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Item</th>
-					    <th width="20%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Price</th>
+					    <th width="70%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Item</th>
+					    <th width="30%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Price</th>
 					</tr>
                     @foreach ($order_items as $order_item)
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
@@ -345,7 +345,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;">
-					  		<span class="price" style="color: #000; font-size: 20px;">${{$order_item->price}}</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">${{$order_item->price}}</span>
 					  	</td>
 					</tr>
                     @endforeach
@@ -364,7 +364,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;">
-					  		<span class="price" style="color: #000; font-size: 20px;">$120</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
 					<tr>
@@ -376,7 +376,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;">
-					  		<span class="price" style="color: #000; font-size: 20px;">$120</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
 					<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
@@ -388,7 +388,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;">
-					  		<span class="price" style="color: #000; font-size: 20px;">$120</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
 					<tr>
@@ -400,7 +400,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;">
-					  		<span class="price" style="color: #000; font-size: 20px;">$120</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
 	      	</table>
@@ -442,7 +442,7 @@ ul.social li{
         </tr><!-- end: tr -->
         <tr>
           <td class="bg_white" style="padding: 0 2.5em;">
-          	<p>By placing your order, you agree to JewelryCG.com’s Privacy Notice and Conditions of Use. Unless otherwise noted, items sold by JewelryCG.com are subject to sales tax in select states in accordance with the applicable laws of that state.</p>
+          	<p>By placing your order, you agree to <a href="{{route('index')}}">JewelryCG.com</a>’s Privacy Notice and Conditions of Use. Unless otherwise noted, items sold by <a href="{{route('index')}}">JewelryCG.com</a> are subject to sales tax in select states in accordance with the applicable laws of that state.</p>
           	<p>This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</p>
           </td>
         </tr>
