@@ -20,7 +20,7 @@
                     </div>
                     @if ($locale == 'wishlist')
                     <div class="item-meta mb-2">
-                        <a href="#" class="btn btn-primary">View Product</a>
+                        <a href="#" class="btn btn-primary mt-1">View Product</a>
                     </div>
                     @endif
                     @if ($locale == 'cart')
