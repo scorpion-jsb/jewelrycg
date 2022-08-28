@@ -442,7 +442,7 @@ ul.social li{
         </tr><!-- end: tr -->
         <tr>
           <td class="bg_white" style="padding: 0 2.5em;">
-          	<p>By placing your order, you agree to Amazon.com’s Privacy Notice and Conditions of Use. Unless otherwise noted, items sold by Amazon.com are subject to sales tax in select states in accordance with the applicable laws of that state.</p>
+          	<p>By placing your order, you agree to JewelryCG.com’s Privacy Notice and Conditions of Use. Unless otherwise noted, items sold by JewelryCG.com are subject to sales tax in select states in accordance with the applicable laws of that state.</p>
           	<p>This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</p>
           </td>
         </tr>
