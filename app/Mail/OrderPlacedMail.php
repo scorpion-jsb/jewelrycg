@@ -33,7 +33,7 @@ class OrderPlacedMail extends Mailable
         return $this->subject('Your JewelryCG.com order #'.$this->order->order_id.'')
             ->view('emails.orders.placed')
             ->with([
-                '$first_name' => $first_name,
+                'first_name' => $first_name,
                 'orderID' => $this->order->order_id,
                 'order_items' => $this->order->items->map(function($i) {
                     $i->getSelfWithProductInfo();
