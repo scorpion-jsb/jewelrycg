@@ -29,11 +29,11 @@ class OrderPlacedMail extends Mailable
      */
     public function build()
     {
-        $userName = auth()->user()->first_name;
+        $first_name = auth()->user()->first_name;
         return $this->subject('Order Placed')
             ->view('emails.orders.placed')
             ->with([
-                'username' => $userName,
+                '$first_name' => $first_name,
                 'orderID' => $this->order->order_id,
                 'order_items' => $this->order->items->map(function($i) {
                     $i->getSelfWithProductInfo();
