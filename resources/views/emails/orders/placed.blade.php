@@ -133,7 +133,7 @@ img.g-img + div {
 	background: rgba(0,0,0,.8);
 }
 .email-section{
-	padding:2.5em;
+	padding:1.0em;
 }
 
 /*BUTTON*/
@@ -298,7 +298,7 @@ ul.social li{
     	<!-- BEGIN BODY -->
       <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
       	<tr>
-          <td valign="top" class="bg_white" style="padding: 1em 2.5em 0 2.5em;">
+          <td valign="top" class="bg_white" style="padding: 1em 1.0em 0 1.0em;">
           	<table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
           		<tr>
           			<td class="logo" style="text-align: left;">
@@ -312,7 +312,7 @@ ul.social li{
           <td valign="middle" class="hero bg_white" style="padding: 2em 0 2em 0;">
             <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
             	<tr>
-            		<td style="padding: 0 2.5em; text-align: left;">
+            		<td style="padding: 0 1.0em; text-align: left;">
             			<div class="text">
             				<h2>Your order has been placed - #434343</h2>
             				<h3>Hey Ronald, thanks for your order, we hope you enjoyed shopping with us.</h3>
@@ -325,12 +325,12 @@ ul.social li{
 	      <tr>
 	      	<table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
 	      		    <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					    <th width="80%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Item</th>
-					    <th width="20%" style="text-align:right; padding: 0 2.5em; padding-left:0; color: #000; padding-bottom: 20px">Price</th>
+					    <th width="80%" style="text-align:left; padding: 0 1.0em; color: #000; padding-bottom: 20px">Item</th>
+					    <th width="20%" style="text-align:right; padding: 0 1.0em; padding-left:0; color: #000; padding-bottom: 20px">Price</th>
 					</tr>
                     @foreach ($order_items as $order_item)
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="product-entry" style="width:100%">
                                 <a href="{{route('products.show', $order_item->id)}}">
                                     <img src="images/prod-1.jpg" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
@@ -341,62 +341,62 @@ ul.social li{
                                 </a>
 					  		</div>
 					  	</td>
-					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;padding-left:0;">
+					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">${{$order_item->price}}</span>
 					  	</td>
 					</tr>
                     @endforeach
 					<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					  	<td valign="middle" colspan="5"style="text-align:center; padding: 1em 2.5em;">
+					  	<td valign="middle" colspan="5"style="text-align:center; padding: 1em 1.0em;">
 					  		<p><a href="#" class="btn btn-primary">View or manage order</a></p>
 					  	</td>
 					</tr>
 					<!-- totals & taxes-->
 					<tr>
-					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="totals-entry">
 					  			<div class="text">
 					  				<p>Subtotal</p>
 					  			</div>
 					  		</div>
 					  	</td>
-					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;padding-left:0;">
+					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
 					<tr>
-					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="totals-entry">
 					  			<div class="text">
 					  				<p>Shipping</p>
 					  			</div>
 					  		</div>
 					  	</td>
-					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;padding-left:0;">
+					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
 					<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="totals-entry">
 					  			<div class="text">
 					  				<p>Taxes</p>
 					  			</div>
 					  		</div>
 					  	</td>
-					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em;padding-left:0;">
+					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
 					<tr>
-					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
+					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="totals-entry">
 					  			<div class="text" style="color: #000000;font-weight: bold;">
 					  				<p>Total</p>
 					  			</div>
 					  		</div>
 					  	</td>
-					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 2.5em; padding-left:0;">
+					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em; padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
 					  	</td>
 					</tr>
@@ -438,7 +438,7 @@ ul.social li{
           </td>
         </tr><!-- end: tr -->
         <tr>
-          <td class="bg_white" style="padding: 0 2.5em;">
+          <td class="bg_white" style="padding: 0 1.0em;">
           	<p>By placing your order, you agree to <a href="{{route('index')}}">JewelryCG.com</a>’s Privacy Notice and Conditions of Use. Unless otherwise noted, items sold by <a href="{{route('index')}}">JewelryCG.com</a> are subject to sales tax in select states in accordance with the applicable laws of that state.</p>
           	<p>This email was sent from a notification-only address that cannot accept incoming email. Please do not reply to this message.</p>
           </td>
