@@ -21,6 +21,7 @@ class Product extends Model
         'price',
         'description',
         'name',
+        'vendor',
         'is_digital',
         'is_virtual',
         'is_madetoorder',

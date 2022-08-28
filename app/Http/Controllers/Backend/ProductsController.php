@@ -14,7 +14,9 @@ use App\Models\Attribute;
 use App\Models\ProductsTaxOption;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
+use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\FuncCall;
+
 
 class ProductsController extends Controller
 {
