@@ -331,7 +331,7 @@ ul.social li{
                     @foreach ($order_items as $order_item)
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 2.5em;">
-					  		<div class="product-entry">
+					  		<div class="product-entry" style="width:100%">
                                 <a href="{{route('products.show', $order_item->id)}}">
                                     <img src="images/prod-1.jpg" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
                                     <div class="text">
