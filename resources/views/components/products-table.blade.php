@@ -18,6 +18,11 @@
                     <div class="item-meta mb-2">
                         <span class="text-primary fw-800 mb-2" id="price{{ $product->rowId }}">${{ $product->price }}</span>
                     </div>
+                    @if ($locale == 'wishlist')
+                    <div class="item-meta mb-2">
+                        <a href="#" class="btn btn-primary">View Product</a>
+                    </div>
+                    @endif
                     @if ($locale == 'cart')
                         <div class="item-meta mb-2 row align-items-baseline">
                             <div class="col-auto">
