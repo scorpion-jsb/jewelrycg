@@ -203,8 +203,8 @@
                                 @if (count($variants) > 0)
                                     <div class="variant-group mb-2">
                                         @foreach ($product->attribute() as $attribute)
-                                            <div class="form-group" style="margin-bottom: 8px">
-                                                <label for="" class="control-label col-md-2">{{ $attribute->name }}</label>
+                                            <div class="form-group mb-2">
+                                                <label for="" class="control-label opacity-50 my-2">{{ $attribute->name }}:</label>
                                                 <div class="col-md-10 mt-1">
                                                     <div class="variants-btn-group" data-toggle="buttons"
                                                         id="variants_group">
