@@ -70,7 +70,7 @@
                                         @else
                                             <a href="javascript:;" class="variant_download btn btn-primary"
                                                 data-variant-id="{{ $item->product_variant }}">
-                                                <i class="bi bi-download"></i> Download</a>
+                                                <i class="bi bi-download mr-10px"></i> Download</a>
                                         @endif
                                     @else
                                         @if (!$item->product->digital_download_assets)
@@ -78,7 +78,7 @@
                                         @else
                                             <a href="javascript:;" class="product_download btn btn-primary"
                                                 data-product-id="{{ $item->product_id }}">
-                                                <i class="bi bi-download"></i> Download</a>
+                                                <i class="bi bi-download mr-10px"></i> Download</a>
                                         @endif
                                     @endif
                                 @endif
