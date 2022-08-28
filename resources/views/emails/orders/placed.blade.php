@@ -339,7 +339,7 @@ ul.social li{
                                     <img src="images/prod-1.jpg" alt="" style="width: 80px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
                                     <div class="text">
                                         <h3>{{$order_item->name}}</h3>
-                                        <p>Quantity: {{$order_item->qty}}</p>
+                                        <p>Quantity: {{$order_item->quantity}}</p>
                                     </div>
                                 </a>
 					  		</div>
