@@ -68,7 +68,7 @@
             </span>
         @endif
         @if ($locale == 'cart' && $products->count() > 0)
-            <a href="{{ route('checkout.index') }}" class="btn btn-success float-right {{ isset($out_of_stock) && in_array(true, $out_of_stock) ? 'disabled' : null }}">Proceed to Checkout</a>
+            <a href="{{ route('checkout.index') }}" class="btn btn-primary float-right {{ isset($out_of_stock) && in_array(true, $out_of_stock) ? 'disabled' : null }}">Proceed to Checkout</a>
         @endif
 
     </div>
