@@ -237,6 +237,7 @@ class CheckoutController extends Controller
 
         $order->status_payment = 2; // paid
         $order->payment_intent = $request->get('payment_intent');
+        $order->order_id = $orderId;
         $order->save();
 
         // Send order placed email to customer
