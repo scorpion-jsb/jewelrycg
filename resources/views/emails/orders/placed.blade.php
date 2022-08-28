@@ -328,15 +328,15 @@ ul.social li{
 	      <tr>
 	      	<table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
 	      		    <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					    <th width="70%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Item</th>
-					    <th width="30%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Price</th>
+					    <th width="80%" style="text-align:left; padding: 0 2.5em; color: #000; padding-bottom: 20px">Item</th>
+					    <th width="20%" style="text-align:right; padding: 0 2.5em; color: #000; padding-bottom: 20px">Price</th>
 					</tr>
                     @foreach ($order_items as $order_item)
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 					  	<td valign="middle" width="70%" style="text-align:left; padding: 0 2.5em;">
 					  		<div class="product-entry">
                                 <a href="{{route('products.show', $order_item->id)}}">
-                                    <img src="images/prod-1.jpg" alt="" style="width: 80px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+                                    <img src="images/prod-1.jpg" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
                                     <div class="text">
                                         <h3>{{$order_item->name}}</h3>
                                         <p>Quantity: {{$order_item->quantity}}</p>
