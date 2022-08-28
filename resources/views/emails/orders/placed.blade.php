@@ -328,7 +328,7 @@ ul.social li{
 					    <th width="80%" style="text-align:left; padding: 0 1.0em; color: #000; padding-bottom: 20px">Item</th>
 					    <th width="20%" style="text-align:right; padding: 0 1.0em; padding-left:0; color: #000; padding-bottom: 20px">Price</th>
 					</tr>
-					@foreach ($order->items as $key => $order_item)
+					@foreach ($order_items as $order_item)
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="product-entry" style="width:100%">
