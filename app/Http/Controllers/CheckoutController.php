@@ -19,6 +19,8 @@ use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
+use Mail;
+use App\Mail\OrderPlacedMail;
 
 class CheckoutController extends Controller
 {
@@ -238,9 +240,13 @@ class CheckoutController extends Controller
         $order->save();
 
         // Send order placed email to customer
+        Mail::to(Auth::user()->email)->send(new OrderPlacedMail($order));
 
-        // redirect to order details
-        return redirect()->route('orders.show', $orderId);
+        if (Mail::flushMacros()) {
+            
+        } else {
+            return redirect()->route('orders.show', $orderId);
+        }
     }
 
     public function getShipping()
