@@ -210,18 +210,21 @@
                                                         id="variants_group">
                                                         @foreach ($product->attributeValue($attribute->id) as $attributeValue)
                                                             @if ($attribute->type == 1)
+                                                            <!-- color type -->
                                                                 <input type="radio" class="attribute-radio btn-check attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}" value="{{ $attributeValue->id }}" id="attribute{{$attributeValue->id}}" autocomplete="off">
                                                                 <label class="btn btn-secondary me-2" for="attribute{{$attributeValue->id}}" style="background-color:{{$attributeValue->value}};border-color: white;border-radius: 50%;height: 50px;width: 50px;"></label>
                                                             @endif
                                                             @if ($attribute->type == 2)
+                                                            <!-- image type -->
                                                                 <input type="radio" class="attribute-radio btn-check attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}" value="{{ $attributeValue->id }}" id="attribute{{$attributeValue->id}}" autocomplete="off">
                                                                 <label class="btn btn-secondary me-2 p-0" for="attribute{{$attributeValue->id}}" style="border: solid grey 1px;height: 52px;width: 52px;background-color: transparent;">
                                                                     <img src="{{$attributeValue->image->getImageOptimizedFullName(50, 50)}}" class="" style="border-radius: 6px;"/>
                                                                 </label>
                                                             @endif
                                                             @if ($attribute->type == 0)
+                                                            <!-- select type -->
                                                                 <input type="radio" class="attribute-radio btn-check attribute{{ $attribute->id }}" name="attribute{{ $attribute->id }}" value="{{ $attributeValue->id }}" id="attribute{{$attributeValue->id}}" autocomplete="off">
-                                                                <label class="btn btn-secondary me-2" for="attribute{{$attributeValue->id}}" style="width: 80px;">{{$attributeValue->name}}</label>
+                                                                <label class="btn btn-outline-primary me-2" for="attribute{{$attributeValue->id}}">{{$attributeValue->name}}</label>
                                                             @endif
                                                         @endforeach
                                                     </div>
