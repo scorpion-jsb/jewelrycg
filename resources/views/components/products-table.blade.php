@@ -59,11 +59,11 @@
     <div class="col-auto ml-auto">
         @if ($locale == 'cart')
         Total: 
-            <span class="total-price">
+            <span class="total-price mr-10px">
                 ${{ Cart::total() }}
             </span>
         @else
-            <span class="total-price">
+            <span class="total-price mr-10px">
                 {{-- number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) --}}
             </span>
         @endif
