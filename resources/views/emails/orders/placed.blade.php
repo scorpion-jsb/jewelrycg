@@ -236,7 +236,7 @@ table{
 	padding-top: 20px;
 }
 .product-entry .text{
-	width: calc(100% - 125px);
+	width: calc(100% - 70px);
 	padding-left: 20px;
 }
 .product-entry .text h3{
