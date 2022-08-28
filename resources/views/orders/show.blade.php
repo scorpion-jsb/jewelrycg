@@ -68,17 +68,17 @@
                                         @if (!$item->productVariant->has('asset') || $item->productVariant->asset->file_name == 'none')
                                             File unavailable. Please contact support.
                                         @else
-                                            <a href="javascript:;" class="variant_download"
+                                            <a href="javascript:;" class="variant_download btn btn-primary"
                                                 data-variant-id="{{ $item->product_variant }}">
-                                                <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
+                                                <i class="bi bi-arrow-down-square"></i> Download</a>
                                         @endif
                                     @else
                                         @if (!$item->product->digital_download_assets)
                                             File unavailable. Please contact support.
                                         @else
-                                            <a href="javascript:;" class="product_download"
+                                            <a href="javascript:;" class="product_download btn btn-primary"
                                                 data-product-id="{{ $item->product_id }}">
-                                                <i class="bi bi-file-earmark-arrow-down"></i> Download</a>
+                                                <i class="bi bi-arrow-down-square"></i> Download</a>
                                         @endif
                                     @endif
                                 @endif
