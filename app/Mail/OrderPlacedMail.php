@@ -30,7 +30,7 @@ class OrderPlacedMail extends Mailable
     public function build()
     {
         $first_name = auth()->user()->first_name;
-        return $this->subject('Order Placed')
+        return $this->subject('Your JewelryCG.com order #'.$this->order->order_id.'')
             ->view('emails.orders.placed')
             ->with([
                 '$first_name' => $first_name,
