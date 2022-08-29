@@ -63,8 +63,8 @@
                         name: 'email'
                     },
                     {
-                        data: 'is_admin',
-                        name: 'is_admin'
+                        data: 'role',
+                        name: 'role'
                     },
                     {
                         data: 'action',
