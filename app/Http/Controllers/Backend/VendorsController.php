@@ -20,25 +20,25 @@ class VendorsController extends Controller
     public function index()
     {
         return view('backend.users.list', [
-            'users' => User::where('is_admin', 3)->orderBy('id', 'DESC')->get()
+            'users' => User::where('role', 3)->orderBy('id', 'DESC')->get()
         ]);
     }
 
     public function get()
     {
-        return datatables()->of(User::query()->where('is_admin' , 3))
+        return datatables()->of(User::query()->where('role' , 3))
         
         ->addIndexColumn()
-        ->editColumn('is_admin', function($row) {
-            if($row->is_admin == 0)
+        ->editColumn('role', function($row) {
+            if($row->role == 0)
             {
                 return "<span class='badge badge-secondary'> Customer </span>";   
             }
-            elseif($row->is_admin == 1)
+            elseif($row->role == 1)
             {
                 return "<span class='badge badge-primary'> Admin </span>";   
             }
-            elseif($row->is_admin == 3)
+            elseif($row->role == 3)
             {
                 return "<span class='badge badge-info'> Seller </span>";   
             }
@@ -53,7 +53,7 @@ class VendorsController extends Controller
 
                 return $btn;
         })
-        ->rawColumns(['action', 'is_admin'])
+        ->rawColumns(['action', 'role'])
         ->make(true);
     }
 
@@ -85,7 +85,7 @@ class VendorsController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'is_admin' => 3
+            'role' => 3
         ]);
 
         return redirect()->route('backend.sellers.list');
