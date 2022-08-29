@@ -114,13 +114,13 @@
                         <div class="col-md-12">
                             <label for="category">Type:</label>
                             <div class="col-md-12">
-                                <select class="selectpicker" name="is_admin" data-live-search="true">
+                                <select class="selectpicker" name="role" data-live-search="true">
 
-                                    <option value="0" @if ($user->is_admin == 0) selected @endif
+                                    <option value="0" @if ($user->role == 0) selected @endif
                                         data-tokens="Customer">Customer</option>
-                                    <option value="1" @if ($user->is_admin == 1) selected @endif
+                                    <option value="1" @if ($user->role == 1) selected @endif
                                         data-tokens="Admin">Admin</option>
-                                    <option value="3" @if ($user->is_admin == 3) selected @endif
+                                    <option value="3" @if ($user->role == 3) selected @endif
                                         data-tokens="Seller">Seller</option>
 
 
