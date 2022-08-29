@@ -16,7 +16,7 @@ class UploadController extends Controller
 {
     public function index(Request $request) {
 
-        $all_uploads = (auth()->user()->is_admin == 3) ? Upload::where('user_id',auth()->user()->id) : Upload::query();
+        $all_uploads = (auth()->user()->role == 3) ? Upload::where('user_id',auth()->user()->id) : Upload::query();
         $search = null;
         $sort_by = null;
 
