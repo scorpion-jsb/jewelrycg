@@ -44,7 +44,7 @@
 						<td class="table-column-ps-0">
 							<a class="d-flex align-items-center" href="{{url('backend/users/edit') . '/' . $user->id}}">
 								<div class="avatar avatar-circle">
-									<img class="avatar-img" src="{{ asset('assets/img/160x160/img10.jpg') }}" alt="Image Description">
+									<img class="avatar-img" src="{{ asset('assets/img/avatar.png') }}" alt="Image Description">
 								</div>
 								<div class="ms-3">
 									<span class="d-block h5 text-inherit mb-0">{{ $user->name }}
