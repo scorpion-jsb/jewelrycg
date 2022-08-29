@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
-            $table->boolean('is_admin')->default(false); // 0 Customer , 1 Admin , 2 Seller 
+            $table->boolean('role')->default(false); // 0 Customer , 1 Admin , 2 Seller 
             $table->string('first_name');
             $table->string('last_name');
             $table->string('email')->unique();
