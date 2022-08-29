@@ -29,9 +29,9 @@ class UserSeeder extends Seeder
             'last_name' => 'Admin',
             'email' => 'admin@test.com',
             'password' => $password,
-            'is_admin' => true
+            'role' => true
         ]);
 
-        User::factory()->count(100)->create(['password' => $password]);
+        User::factory()->count(10)->create(['password' => $password]);
     }
 }
