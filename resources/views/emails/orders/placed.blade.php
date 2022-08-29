@@ -314,8 +314,8 @@ ul.social li{
             	<tr>
             		<td style="padding: 0 1.0em; text-align: left;">
             			<div class="text">
-            				<h2>We've received your order!</h2>
-            				<h3>Hey {{$first_name}}, We hope you enjoyed shopping with us. For reference your order number is #{{$orderID}}</h3>
+            				<h2>Hey {{$first_name}}, We've received your order!</h2>
+            				<h3>Thanks for shopping with us. For reference your order number is #{{$orderID}}</h3>
             			</div>
             		</td>
             	</tr>
