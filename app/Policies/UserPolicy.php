@@ -17,6 +17,6 @@ class UserPolicy
     public function seeInfo(User $user, User $other_user)
     {
         return self::edit($user, $other_user)
-            || $user->is_admin;
+            || $user->role;
     }
 }
