@@ -13,11 +13,11 @@ class OrderPolicy
     public function show(User $user, Order $order)
     {
         return $user->id == $order->user_id
-            || $user->is_admin;
+            || $user->role;
     }
 
     public function edit(User $user)
     {
-        return $user->is_admin;
+        return $user->role;
     }
 }
