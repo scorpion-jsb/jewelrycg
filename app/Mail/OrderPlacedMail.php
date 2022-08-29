@@ -44,7 +44,12 @@ class OrderPlacedMail extends Mailable
         }
 
         $total += floor($taxPrice + 0.5);
-        $shipping_price = ShippingOption::find($shipping_option_id)->price / 100;
+
+        $shipping_price = 0;
+        if ($shipping_option_id != "0") {
+            $shipping_price = ShippingOption::find($shipping_option_id)->price / 100;
+        }
+        
         $tax_price = $taxPrice;
         $total_price = $total;
 
