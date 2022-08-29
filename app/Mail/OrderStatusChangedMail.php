@@ -30,7 +30,7 @@ class OrderStatusChangedMail extends Mailable
     public function build()
     {
         return $this->subject('Order Status Changed')
-            ->view('emails.orders.placed')
+            ->view('emails.orders.status')
             ->with([
                 'tracking_number' => $this->order->tracking_number,
                 'order_items' => $this->order->items->map(function($i) {
