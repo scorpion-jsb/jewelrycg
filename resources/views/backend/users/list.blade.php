@@ -61,7 +61,7 @@
                             <span class="legend-indicator bg-success"></span>
                             Verified @endif 
                         </td>
-						<td>@if( $user->is_admin == 0 ) Customer @elseif( $user->is_admin == 1 ) Admin @else Seller @endif</td>
+						<td>@if( $user->role == 0 ) Customer @elseif( $user->role == 1 ) Admin @else Seller @endif</td>
 						<td>
 							<div class="btn-group" role="group">
 								<a class="btn btn-dark btn-sm" href="#">View</a>
@@ -148,8 +148,8 @@
                         name: 'email'
                     },
                     {
-                        data: 'is_admin',
-                        name: 'is_admin'
+                        data: 'role',
+                        name: 'role'
                     },
                     {
                         data: 'action',
