@@ -30,23 +30,23 @@ class UsersController extends Controller
     {
        
         return view('backend.users.list', [
-            'users' => User::where('is_admin', 0)->get()
+            'users' => User::where('role', 0)->get()
         ]);
     }
 
     public function get()
     {
         return datatables()->of(User::query())
-        ->editColumn('is_admin', function($row) {
-            if($row->is_admin == 0)
+        ->editColumn('role', function($row) {
+            if($row->role == 0)
             {
                 return "<span class='badge badge-secondary'> Customer </span>";   
             }
-            elseif($row->is_admin == 1)
+            elseif($row->role == 1)
             {
                 return "<span class='badge badge-primary'> Admin </span>";   
             }
-            elseif($row->is_admin == 3)
+            elseif($row->role == 3)
             {
                 return "<span class='badge badge-info'> Seller </span>";   
             }
@@ -61,7 +61,7 @@ class UsersController extends Controller
 
                 return $btn;
         })
-        ->rawColumns(['action', 'is_admin'])
+        ->rawColumns(['action', 'role'])
         ->make(true);
     }
 
@@ -124,7 +124,7 @@ class UsersController extends Controller
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$user->id],
-            'is_admin' => ['required'],
+            'role' => ['required'],
         ]);
         
         $user->name = $request->name;
@@ -136,7 +136,7 @@ class UsersController extends Controller
         $user->country = $request->country;
         $user->pin_code = $request->pin_code;
         $user->email_verified_at = ($request->email_verified_at == 1) ? date('Y-m-d h:i:s') : null;
-        $user->is_admin = $request->is_admin;
+        $user->role = $request->role;
         if($request->password)
         {
             $user->password = Hash::make($request->password);
