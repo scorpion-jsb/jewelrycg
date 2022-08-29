@@ -51,7 +51,7 @@ class Order extends Model
 
     public static function getBasedOnUser()
     {
-        if(auth()->user()->is_admin)
+        if(auth()->user()->role)
         {
             return Order::withCount('items')->orderBy('created_at', 'DESC')->paginate(10);
         }
@@ -61,7 +61,7 @@ class Order extends Model
 
     // public static function getPendingBasedOnUser()
     // {
-    //     if(auth()->user()->is_admin)
+    //     if(auth()->user()->role)
     //     {
     //         return Order::where('status', 'Processing')->withCount('items')->orderBy('id')->paginate(10);
     //     }
