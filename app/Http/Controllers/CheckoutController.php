@@ -75,7 +75,7 @@ class CheckoutController extends Controller
                     $orderItem->quantity = $item->qty;
                     $orderItem->product_variant = 0;
 
-                    $total = $orderItem->price * $orderItem->quantity;
+                    $total = $orderItem->price * $orderItem->quantity + $total;
 
                     if (isset($item->options['id'])) {
                         $orderItem->product_variant = $item->options['id'];
