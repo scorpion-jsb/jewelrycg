@@ -9,6 +9,7 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use Mail;
 use App\Mail\OrderStatusChangedMail;
+use Exception;
 
 class OrderController extends Controller
 {
@@ -63,7 +64,12 @@ class OrderController extends Controller
         $rst = OrderItem::where('id', $id)->update(['status_tracking' => $request->status]);
         $order_id = OrderItem::where('id', $id)->first()->order_id;
         $order = Order::where('order_id', $order_id)->first();
-        Mail::to(Auth::user()->email)->send(new OrderStatusChangedMail($order));
+        try {
+            //code...
+            Mail::to(Auth::user()->email)->send(new OrderStatusChangedMail($order));
+        } catch (Exception $th) {
+            echo ($th->getMessage());
+        }
 
         return $rst;
     }
