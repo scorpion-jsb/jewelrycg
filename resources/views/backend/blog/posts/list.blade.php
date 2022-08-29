@@ -61,7 +61,7 @@
                             <td>{{ $post->postauthor->name }}</td>
                             <td>
                                 @foreach($post->categories as $category_info)
-                                    <p><span class="badge btn-info"> {{$category_info->category->category_name}} </span>  </p>
+                                    <span>{{$category_info->category->category_name}}</span> 
                                 @endforeach
                             </td>
                             <td>
