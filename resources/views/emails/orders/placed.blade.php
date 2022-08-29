@@ -361,7 +361,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
-					  		<span class="price" style="color: #000; font-size: 16px;">${{sub_total}}</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">${{$sub_total}}</span>
 					  	</td>
 					</tr>
 					<tr>
@@ -373,7 +373,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
-					  		<span class="price" style="color: #000; font-size: 16px;">${{shipping_price}}</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">${{$shipping_price}}</span>
 					  	</td>
 					</tr>
 					<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
@@ -385,7 +385,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
-					  		<span class="price" style="color: #000; font-size: 16px;">${{tax_price}}</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">${{$tax_price}}</span>
 					  	</td>
 					</tr>
 					<tr>
