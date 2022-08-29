@@ -4,8 +4,11 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Auth;
 use App\Models\Order;
 use App\Models\OrderItem;
+use Mail;
+use App\Mail\OrderStatusChangedMail;
 
 class OrderController extends Controller
 {
@@ -57,7 +60,12 @@ class OrderController extends Controller
     }
 
     public function status_tracking_set(Request $request, $id) {
-        return OrderItem::where('id', $id)->update(['status_tracking' => $request->status]);
+        $rst = OrderItem::where('id', $id)->update(['status_tracking' => $request->status]);
+        $order_id = OrderItem::where('id', $id)->first()->order_id;
+        $order = Order::where('order_id', $order_id)->first();
+        Mail::to(Auth::user()->email)->send(new OrderStatusChangedMail($order));
+
+        return $rst;
     }
 
     /**

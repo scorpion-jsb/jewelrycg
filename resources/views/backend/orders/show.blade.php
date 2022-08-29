@@ -55,8 +55,8 @@
                     <div class="row">
                         <div class="col-lg-2 col-3">
                             @if ($item->productVariant && $item->productVariant->uploads)
-                                <img src="{{ $item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt=""
-                                    class="thumbnail border w-100">
+                                <img src="{{ $item->productVariant->uploads->getImageOptimizedFullName(150) }}"
+                                    alt="" class="thumbnail border w-100">
                             @else
                                 <img src="{{ $item->product->uploads->getImageOptimizedFullName(150) }}" alt=""
                                     class="thumbnail border w-100">
@@ -77,8 +77,7 @@
                                 ${{ number_format($item->price / 100, 2) }}
                             </div>
                             <div class="is_downloadable fw-600 fs-16 mt-2" data-item-id="{{ $item->id }}"
-                                data-product-id="{{ $item->product->id }}"
-                                data-variant-id="{{ $item->product_variant }}"
+                                data-product-id="{{ $item->product->id }}" data-variant-id="{{ $item->product_variant }}"
                                 data-product-digital-assets="{{ $item->product->digital_download_assets }}">
                                 @if ($item->product->is_digital)
                                     @if ($item->productVariant)
@@ -90,7 +89,7 @@
                                             <span class="fw-900 fs-14 badge bg-success">Digital asset attached</span>
                                             <span class="fw-900 fs-14 mt-2 d-block" class=""
                                                 data-product-id="{{ $item->id }}">{{ $item->productVariant->asset->file_original_name . '.' . $item->productVariant->asset->extension }}</span>
-                                                
+
                                             <div class="card-body">
                                                 <label class="btn text-primary mt-2 p-0 getFileManagerModel cursor-pointer"
                                                     onclick="openFileMangerModalVariant(event)">Select
@@ -134,12 +133,12 @@
                                         @endforeach
                                     </select>
                                     <input
-                                        class='@if ($item->status_fulfillment != 2) d-none @endif track_number form-control mx-2'
+                                        class='track_number @if ($item->status_fulfillment != 2) d-none @endif track_number form-control mx-2'
                                         type='text' placeholder='Tracking Number ' value='{{ $item->status_tracking }}'
                                         style="width: 100px;" />
                                 </div>
                                 <button
-                                    class='save_track_number btn btn-sm btn-primary mt-2 @if ($item->status_fulfillment != 2) d-none @endif'
+                                    class='allsave_button btn btn-sm btn-primary mt-2 d-none'
                                     onclick="AllSave(event)">save</button>
                             </div>
                         </div>
@@ -160,48 +159,55 @@
 
     <script>
         $(function() {
+            $(".track_number").change(function() {
+                $(this).closest(".is_downloadable").find('.allsave_button').removeClass('d-none');
+            })
             $('.order-status').change(function() {
-                var orderItemId = $(this).attr('data-item-id');
+                $(this).closest(".is_downloadable").find('.allsave_button').removeClass('d-none');
+                $(this).closest(".is_downloadable").find(".track_number").addClass('d-none');
                 if ($(this).val() == '2') {
                     $(this).closest(".is_downloadable").find('.track_number').removeClass('d-none');
-                    $(this).closest(".is_downloadable").find('.save_track_number').removeClass('d-none');
-                } else {
-                    $(this).closest(".is_downloadable").find(".track_number").addClass('d-none');
-                    $(this).closest(".is_downloadable").find(".save_track_number").addClass('d-none');
                 }
-                $.ajax({
-                    url: "{{ url('backend/orders/item') }}" + "/" + orderItemId,
-                    type: 'put',
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        status: $(this).val()
-                    },
-                    success: function(data) {
-                        console.log(data)
-                    }
-                })
+                // } else {
+                //     $(this).closest(".is_downloadable").find(".allsave_button").addClass('d-none');
+                // }
             });
 
         });
 
         function AllSave(e) {
             var orderItemId = $(e.target).closest(".is_downloadable").attr("data-item-id");
+
             $.ajax({
-                url: "{{ url('backend/orders/status_tracking/') }}" + "/" + orderItemId,
+                url: "{{ url('backend/orders/item') }}" + "/" + orderItemId,
                 type: 'put',
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    status: $(e.target).closest(".is_downloadable").find(".track_number").val()
+                    status: $(e.target).closest(".is_downloadable").find(".order-status").val()
                 },
-                async: false,
                 success: function(data) {
                     console.log(data)
                 }
             })
 
+            if ($(e.target).closest(".is_downloadable").find(".order-status").val() == 2) {
+                $.ajax({
+                    url: "{{ url('backend/orders/status_tracking/') }}" + "/" + orderItemId,
+                    type: 'put',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        status: $(e.target).closest(".is_downloadable").find(".track_number").val()
+                    },
+                    async: false,
+                    success: function(data) {
+                        console.log(data)
+                    }
+                })
+            }
+
             var productId = $(e.target).closest(".is_downloadable").attr("data-product-id");
             var variantId = $(e.target).closest(".is_downloadable").attr("data-variant-id");
-            
+
             if (variantId == '0' && variantId) {
                 $.ajax({
                     url: "{{ url('backend/products/update_digital_assets/') }}" + "/" + productId,
@@ -230,7 +236,7 @@
                 })
             }
 
-            location.reload();
+            // location.reload();
         }
 
         function openFileMangerModalDigital(e) {
@@ -251,7 +257,7 @@
                         ".digital_assets").val();
                     if (digital_assets == '') digital_assets = [];
                     setSelectedItemsCB(getSelectedItem, [digital_assets], false);
-                    $(target).closest(".is_downloadable").find(".save_track_number").removeClass(
+                    $(target).closest(".is_downloadable").find(".allsave_button").removeClass(
                         'd-none');
                 }
             })
@@ -275,7 +281,7 @@
                         ".variant_assets").val();
                     if (digital_assets == '') digital_assets = [];
                     setSelectedItemsCB(getSelectedItem, [digital_assets], false);
-                    $(target).closest(".is_downloadable").find(".save_track_number").removeClass(
+                    $(target).closest(".is_downloadable").find(".allsave_button").removeClass(
                         'd-none');
                 }
             })
