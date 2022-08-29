@@ -361,7 +361,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
-					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">${{sub_total}}</span>
 					  	</td>
 					</tr>
 					<tr>
@@ -373,7 +373,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
-					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">${{shipping_price}}</span>
 					  	</td>
 					</tr>
 					<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
@@ -385,7 +385,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
-					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">${{tax_price}}</span>
 					  	</td>
 					</tr>
 					<tr>
@@ -397,7 +397,7 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em; padding-left:0;">
-					  		<span class="price" style="color: #000; font-size: 16px;">$120</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">${{$total_price}}</span>
 					  	</td>
 					</tr>
 	      	</table>
@@ -414,9 +414,9 @@ ul.social li{
                     <tr>
                       <td style="text-align: left; padding-right: 10px;">
                       	<h3 class="heading">Billing</h3>
-                      	<p>99 Wall St, Address 2</p>
-                      	<p>City, State, 10550</p>
-                      	<p>United States</p>
+                      	<p>{{$billing_address1}}, {{$billing_address2}}</p>
+                      	<p>{{$billing_city}}, {{$billing_state}}, {{$billing_zipcode}}</p>
+                      	<p>{{$billing_country}}</p>
                       </td>
                     </tr>
                   </table>
@@ -426,9 +426,9 @@ ul.social li{
                     <tr>
                       <td style="text-align: left; padding-left: 5px; padding-right: 5px;">
                       	<h3 class="heading">Shipping</h3>
-                      	<p>99 Wall St, Address 2</p>
-                      	<p>City, State, 10550</p>
-                      	<p>United States</p>
+                      	<p>{{$shipping_address1}}, {{$shipping_address2}}</p>
+                      	<p>{{$shipping_city}}, {{$shipping_state}}, {{$shipping_zipcode}}</p>
+                      	<p>{{$shipping_country}}</p>
                       </td>
                     </tr>
                   </table>
