@@ -338,7 +338,7 @@ ul.social li{
                                         <h3>{{$order_item->name}}</h3>
                                         <div>Quantity: {{$order_item->quantity}}</div>
                                         <div>Price: ${{$order_item->price}}</div>
-                                        <div>Tracking #: {{$order_item->status_tracking}</div>
+                                        <div>Tracking #: </div>
                                     </div>
                                 </a>
 					  		</div>
