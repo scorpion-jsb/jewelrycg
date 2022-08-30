@@ -19,7 +19,7 @@ class OrderPlacedMail extends Mailable
      *
      * @return void
      */
-    public function __construct(private Order $order)
+    public function __construct(private Order $order, private $tax_price)
     {
         //
     }
@@ -61,7 +61,7 @@ class OrderPlacedMail extends Mailable
                 'sub_total' => ($this->order->total/100),
                 'total_price' => $total_price,
                 'shipping_price' => $shipping_price,
-                'tax_price' => $tax_price,
+                'tax_price' => $this->tax_price,
                 'billing_address1' => $this->order->billing_address1,
                 'billing_address2' => $this->order->billing_address2,
                 'billing_city' => $this->order->billing_city,
