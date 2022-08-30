@@ -9,81 +9,96 @@
 </div>
     <form action="{{ route('backend.page.store') }}" method="post" enctype="multipart/form-data">
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-md-6">
                 @csrf
                 <div class="card col-md-12 mb-4">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title mb-0">Page information</h4>
+                        <h4 class="card-header-title mb-0">General</h4>
                     </div>
                     <!-- End Header -->
                     <div class="card-body">
                         <div class="mb-2">
-                            <label for="name" class="w-100 mb-2">Name:</label>
+                            <label for="name" class="w-100 mb-2">Site Name:</label>
                             <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
                         </div>
                         <div class="mb-2">
-                            <label for="slug" class="w-100 mb-2">Slug:</label>
+                            <label for="slug" class="w-100 mb-2">Meta Title:</label>
                             <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
                         </div>
                         <div class="mb-2">
-                            <label for="desc" class="w-100 mb-2">Post:</label>
+                            <label for="desc" class="w-100 mb-2">Meta Description:</label>
                             <textarea name="post" id="desc" rows="6" class="form-control">{{ old('post') }}</textarea>
+                        </div>
+                        <div class="mb-2">
+                            <label for="slug" class="w-100 mb-2">Twitter:</label>
+                            <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label for="slug" class="w-100 mb-2">Instagram:</label>
+                            <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label for="slug" class="w-100 mb-2">Facebook:</label>
+                            <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label for="slug" class="w-100 mb-2">Youtube:</label>
+                            <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
                         </div>
                     </div>
                 </div>
                 <div class="card col-md-12">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title mb-0">Meta information</h4>
+                        <h4 class="card-header-title mb-0">Stripe Settings</h4>
                     </div>
                     <!-- End Header -->
                     <div class="card-body">
                         <div class="mb-2">
-                            <label for="meta_title" class="w-100 mb-2">Meta Title:</label>
+                            <label for="meta_title" class="w-100 mb-2">Stripe Key:</label>
                             <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
                         </div>
-                        <div class="">
-                            <label for="meta_description" class="w-100 mb-2">Meta Description:</label>
-                            <textarea name="meta_description" id="meta_description" rows="6" class="form-control">{{ old('meta_description') }}</textarea>
+                        <div class="mb-2">
+                            <label for="meta_title" class="w-100 mb-2">Stripe Secret:</label>
+                            <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="col-md-4">
-                <!-- Card -->
-                <div class="card mb-3 mb-4">
+                <div class="card col-md-12">
                     <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title mb-0">Organization</h4>
+                        <h4 class="card-header-title mb-0">SMTP Settings</h4>
                     </div>
                     <!-- End Header -->
-
-                    <!-- Body -->
                     <div class="card-body">
-                        <div class="mb-4 col-12">
-                            <div class="col-12">
-                                <label class="mb-2" for="">Status</label>
-                                <select class="selectpicker w-100" name="status">
-                                    <option value="1" selected>Published</option>
-                                    <option value="2" >Draft</option>
-                                    <option value="3" >Pending Review</option>
-                                </select>
-                            </div>
+                        <div class="mb-2">
+                            <label for="meta_title" class="w-100 mb-2">Stripe Key:</label>
+                            <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
                         </div>
-
-                        <div class="mb-4 col-12">
-                            <label for="category" class="w-100 mb-2">Parent</label>
-                            <div class="col-12">
-                                <select class="selectpicker " name="parent_id" data-live-search="true" data-container="body">
-                                    <option value='0'>None</option>
-    
-                                </select>
-                            </div>
+                        <div class="mb-2">
+                            <label for="meta_title" class="w-100 mb-2">Stripe Secret:</label>
+                            <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
                         </div>
                     </div>
                 </div>
-                <!-- End Card -->
+                <div class="card col-md-12">
+                    <!-- Header -->
+                    <div class="card-header">
+                        <h4 class="card-header-title mb-0">Recaptcha Settings</h4>
+                    </div>
+                    <!-- End Header -->
+                    <div class="card-body">
+                        <div class="mb-2">
+                            <label for="meta_title" class="w-100 mb-2">Stripe Key:</label>
+                            <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
+                        </div>
+                        <div class="mb-2">
+                            <label for="meta_title" class="w-100 mb-2">Stripe Secret:</label>
+                            <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
