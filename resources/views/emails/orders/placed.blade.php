@@ -425,6 +425,7 @@ ul.social li{
                     </tr>
                   </table>
                 </td>
+				@if ($shipping_address1 != '')
                 <td valign="top" width="50%" style="padding-top: 20px;">
                   <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                     <tr>
@@ -437,6 +438,7 @@ ul.social li{
                     </tr>
                   </table>
                 </td>
+				@endif
               </tr>
             </table>
           </td>

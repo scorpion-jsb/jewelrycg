@@ -238,10 +238,16 @@ class CheckoutController extends Controller
         $order->status_payment = 2; // paid
         $order->payment_intent = $request->get('payment_intent');
         $order->order_id = $orderId;
+
+        $taxPrice = 0;
+        foreach (Cart::content() as $product) {
+            $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
+        }
+
         $order->save();
 
         // Send order placed email to customer
-        Mail::to(Auth::user()->email)->send(new OrderPlacedMail($order));
+        Mail::to(Auth::user()->email)->send(new OrderPlacedMail($order, $taxPrice));
 
         if (Mail::flushMacros()) {
             
