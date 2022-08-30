@@ -117,7 +117,7 @@
                                 @endphp
                                 <div class="mt-2">
                                     <div class="row">
-                                        <div class="col-4">
+                                        <div class="col-auto">
                                             <select class="order-status form-select w-100" data-item-id="{{ $item->id }}">
                                                 @foreach ($orderStatus as $key => $status)
                                                     @if ($key != 0)
@@ -127,7 +127,7 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="col-8">
+                                        <div class="col-6">
                                         <input
                                             class='track_number @if ($item->status_fulfillment != 2) d-none @endif track_number form-control w-100'
                                             type='text' placeholder='Tracking Number ' value='{{ $item->status_tracking }}' />
