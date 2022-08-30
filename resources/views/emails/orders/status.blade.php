@@ -325,12 +325,11 @@ ul.social li{
 	      <tr>
 	      	<table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
 	      		    <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					    <th width="80%" style="text-align:left; padding: 0 1.0em; color: #000; padding-bottom: 20px">Item</th>
-					    <th width="20%" style="text-align:right; padding: 0 1.0em; padding-left:0; color: #000; padding-bottom: 20px">Status</th>
+					    <th width="100%" style="text-align:left; padding: 0 1.0em; color: #000; padding-bottom: 20px">Item</th>
 					</tr>
 					@foreach ($order_items as $order_item)
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
-					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
+					  	<td valign="middle" width="100%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="product-entry" style="width:100%">
 								@if ($order_item->productVariant && $order_item->productVariant->uploads)
 								<img src="{{ $order_item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
@@ -339,6 +338,15 @@ ul.social li{
 								@endif
 								<div class="text">
 									<h3>{{$order_item->name}}</h3>
+									<div>
+									@if ($order_item->status_fulfillment == 1) 
+									Pending
+									@elseif ($order_item->status_fulfillment == 2)
+									Shipped
+									@elseif ($order_item->status_fulfillment == 3)
+									Delivered
+									@endif 
+									</div>
 									@if ($order_item->status_tracking != "")
 									<div style="font-weight:bold;">Tracking #: {{$order_item->status_tracking}}</div>
 									@endif
@@ -346,17 +354,6 @@ ul.social li{
 									<p>Price: ${{$order_item->price}}</p>
 								</div>
 					  		</div>
-					  	</td>
-					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
-					  		<span class="price" style="color: #000; font-size: 16px;">
-							@if ($order_item->status_fulfillment == 1) 
-							Pending
-							@elseif ($order_item->status_fulfillment == 2)
-							Shipped
-							@elseif ($order_item->status_fulfillment == 3)
-							Delivered
-							@endif 
-							</span>
 					  	</td>
 					</tr>
                     @endforeach
