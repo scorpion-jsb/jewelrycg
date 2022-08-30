@@ -29,7 +29,7 @@ class OrderStatusChangedMail extends Mailable
      */
     public function build()
     {
-        $first_name = auth()->user()->first_name;
+        $first_name = "Franl";
         return $this->subject('Order Status Changed')
             ->view('emails.orders.status')
             ->with([
