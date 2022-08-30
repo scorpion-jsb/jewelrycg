@@ -103,7 +103,7 @@
                                         @endif
 
                                         <div class="card-body">
-                                            <label class="btn btn-primary mt-2 p-0 getFileManagerModel cursor-pointer"
+                                            <label class="btn btn-primary mt-2 getFileManagerModel cursor-pointer"
                                                 onclick="openFileMangerModalDigital(event)"><i class="bi bi-upload mr-10px"></i> Select
                                                 asset</label>
                                             <input type="hidden" class="digital_assets" name="digital_download_assets"
