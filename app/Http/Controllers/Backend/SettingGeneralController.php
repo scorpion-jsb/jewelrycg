@@ -14,9 +14,7 @@ class SettingGeneralController extends Controller
      */
     public function index()
     {
-        //
-        var_dump("OK");
-        die;
+        return view('backend.settings.index');
     }
 
     /**
