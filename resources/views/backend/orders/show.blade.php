@@ -84,8 +84,8 @@
                                                 data-product-id="{{ $item->id }}">{{ $item->productVariant->asset->file_original_name . '.' . $item->productVariant->asset->extension }}</span>
 
                                             <div class="card-body">
-                                                <label class="btn text-primary mt-2 p-0 getFileManagerModel cursor-pointer"
-                                                    onclick="openFileMangerModalVariant(event)">Select
+                                                <label class="btn btn-primary mt-2 getFileManagerModel cursor-pointer"
+                                                    onclick="openFileMangerModalVariant(event)"><i class="bi bi-upload mr-10px"></i> Select
                                                     asset</label>
                                                 <input type="hidden" class="variant_assets" name="variant_assets"
                                                     value="{{ $item->productVariant->digital_download_assets }}">
@@ -103,8 +103,8 @@
                                         @endif
 
                                         <div class="card-body">
-                                            <label class="btn text-primary mt-2 p-0 getFileManagerModel cursor-pointer"
-                                                onclick="openFileMangerModalDigital(event)">Select
+                                            <label class="btn btn-primary mt-2 p-0 getFileManagerModel cursor-pointer"
+                                                onclick="openFileMangerModalDigital(event)"><i class="bi bi-upload mr-10px"></i> Select
                                                 asset</label>
                                             <input type="hidden" class="digital_assets" name="digital_download_assets"
                                                 value="{{ $item->product->digital_download_assets }}">
