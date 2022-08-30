@@ -334,10 +334,10 @@ ul.social li{
 					  		<div class="product-entry" style="width:100%">
                                 <a href="{{route('products.show', $order_item->id)}}">
 									@if ($order_item->productVariant && $order_item->productVariant->uploads)
-										<img src="{{ $order_item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-										@else
-										<img src="{{ $order_item->product->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-										@endif
+									<img src="{{ $order_item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+									@else
+									<img src="{{ $order_item->product->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+									@endif
                                     <div class="text">
                                         <h3>{{$order_item->name}}</h3>
                                         <div>Quantity: {{$order_item->quantity}}</div>
@@ -348,7 +348,15 @@ ul.social li{
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
-					  		<span class="price" style="color: #000; font-size: 16px;">Shipped</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">
+							@if ($status_fulfillment = 1) 
+							Pending
+							@elseif ($status_fulfillment = 2)
+							Shipped
+							@elseif ($status_fulfillment = 3)
+							Delivered
+							@endif 
+							</span>
 					  	</td>
 					</tr>
                     @endforeach
