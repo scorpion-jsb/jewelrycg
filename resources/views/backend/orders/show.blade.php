@@ -1,13 +1,6 @@
 @extends('backend.layouts.app', ['activePage' => 'orders', 'title' => 'Order', 'navName' => 'orderslist', 'activeButton' => 'catalogue'])
 
 @section('content')
-    <style>
-        .order-status {
-            width: max-content;
-            padding: 2px 4px;
-        }
-    </style>
-
     <div class="page-header">
         <div class="row align-items-end">
             <h1 class="page-header-title">Order</h1>
