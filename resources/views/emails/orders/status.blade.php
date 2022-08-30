@@ -338,7 +338,7 @@ ul.social li{
 								@endif
 								<div class="text">
 									<h3>{{$order_item->name}}</h3>
-									<div>
+									<div>Status: 
 									@if ($order_item->status_fulfillment == 1) 
 									Pending
 									@elseif ($order_item->status_fulfillment == 2)
@@ -348,7 +348,7 @@ ul.social li{
 									@endif 
 									</div>
 									@if ($order_item->status_tracking != "")
-									<div style="font-weight:bold;">Tracking #: {{$order_item->status_tracking}}</div>
+									<div>Tracking #: <b>{{$order_item->status_tracking}}<b/></div>
 									@endif
 									<div>Quantity: {{$order_item->quantity}}</div>
 									<p>Price: ${{$order_item->price}}</p>
