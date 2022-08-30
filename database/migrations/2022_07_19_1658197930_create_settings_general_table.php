@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('settings_general', function (Blueprint $table) {
             $table->id();
 
-            // general
+            //general
             $table->string('sitename')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
@@ -41,7 +41,7 @@ return new class extends Migration
             $table->string('mail_from_address')->nullable();
             $table->string('mail_from_name')->nullable();
 
-            // recaptcha
+            //recaptcha
             $table->string('recaptcha_site_key')->nullable();
             $table->string('recaptcha_secret_key')->nullable();
         });
