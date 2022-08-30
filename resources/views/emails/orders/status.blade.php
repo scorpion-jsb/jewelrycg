@@ -326,7 +326,7 @@ ul.social li{
 	      	<table class="bg_white" role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%">
 	      		    <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 					    <th width="80%" style="text-align:left; padding: 0 1.0em; color: #000; padding-bottom: 20px">Item</th>
-					    <th width="20%" style="text-align:right; padding: 0 1.0em; padding-left:0; color: #000; padding-bottom: 20px">Price</th>
+					    <th width="20%" style="text-align:right; padding: 0 1.0em; padding-left:0; color: #000; padding-bottom: 20px">Status</th>
 					</tr>
 					@foreach ($order_items as $order_item)
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
@@ -340,13 +340,15 @@ ul.social li{
 										@endif
                                     <div class="text">
                                         <h3>{{$order_item->name}}</h3>
-                                        <p>Quantity: {{$order_item->quantity}}</p>
+                                        <div>Quantity: {{$order_item->quantity}}</div>
+                                        <div>Price: ${{$order_item->price}}</div>
+                                        <div>Tracking #: ${{$tracking_number}</div>
                                     </div>
                                 </a>
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
-					  		<span class="price" style="color: #000; font-size: 16px;">${{$order_item->price}}</span>
+					  		<span class="price" style="color: #000; font-size: 16px;">Shipped</span>
 					  	</td>
 					</tr>
                     @endforeach
@@ -360,24 +362,6 @@ ul.social li{
       <!-- 1 Column Text + Button : END -->
       </table>
       <table align="center" role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="margin: auto;">
-      	<tr>
-          <td valign="middle" class="bg_light footer email-section">
-            <table>
-            	<tr>
-                <td valign="top" width="100%" style="padding-top: 20px;">
-                  <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                    <tr>
-                      <td style="text-align: left; padding-right: 10px;">
-                      	<h3 class="heading">Tracking Number</h3>
-                      	<p>{{$tracking_number}}</p>
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </td>
-        </tr><!-- end: tr -->
         <tr>
           <td class="bg_white" style="padding: 0 1.0em;">
           	<p>By placing your order, you agree to <a href="{{route('index')}}">JewelryCG.com</a>’s Privacy Notice and Conditions of Use. Unless otherwise noted, items sold by <a href="{{route('index')}}">JewelryCG.com</a> are subject to sales tax in select states in accordance with the applicable laws of that state.</p>
