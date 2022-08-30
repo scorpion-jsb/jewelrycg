@@ -69,22 +69,20 @@
                                 {{ $item->quantity }} | <span class="fw-600">Price</span>
                                 ${{ number_format($item->price / 100, 2) }}
                             </div>
-                            <div class="is_downloadable fw-600 fs-16 mt-2" data-item-id="{{ $item->id }}"
+                            <div class="is_downloadable mt-2" data-item-id="{{ $item->id }}"
                                 data-product-id="{{ $item->product->id }}" data-variant-id="{{ $item->product_variant }}"
                                 data-product-digital-assets="{{ $item->product->digital_download_assets }}">
                                 @if ($item->product->is_digital)
                                     @if ($item->productVariant)
                                         @if (!$item->productVariant->asset || $item->productVariant->asset->file_name == 'none')
-                                            <span class="fw-900 fs-14 badge bg-danger">No digital asset attached</span>
-                                            <div class="order-item-title fs-17 fw-600 mt-2">File anavailable. Please contact
-                                                support.</div>
+                                            <span class="fs-14 badge bg-danger">No digital asset attached</span>
                                         @else
-                                            <span class="fw-900 fs-14 badge bg-success">Digital asset attached</span>
-                                            <span class="fw-900 fs-14 mt-2 d-block" class=""
+                                            <span class="fs-14 badge bg-success">Digital asset attached</span>
+                                            <span class="fs-14 mt-2 d-block" class=""
                                                 data-product-id="{{ $item->id }}">{{ $item->productVariant->asset->file_original_name . '.' . $item->productVariant->asset->extension }}</span>
 
                                             <div class="card-body">
-                                                <label class="btn btn-primary mt-2 getFileManagerModel cursor-pointer"
+                                                <label class="btn btn-primary mt-2 mb-2 getFileManagerModel cursor-pointer"
                                                     onclick="openFileMangerModalVariant(event)"><i class="bi bi-upload mr-10px"></i> Select
                                                     asset</label>
                                                 <input type="hidden" class="variant_assets" name="variant_assets"
@@ -93,17 +91,15 @@
                                         @endif
                                     @else
                                         @if (!$item->product->digital_download_assets)
-                                            <span class="fw-900 fs-14 badge bg-danger">No digital asset attached</span>
-                                            <div class="order-item-title fs-17 fw-600 mt-2">File anavailable. Please contact
-                                                support.</div>
+                                            <span class="fs-14 badge bg-danger">No digital asset attached</span>
                                         @else
-                                            <span class="fw-900 fs-14 badge bg-success">Digital asset attached</span>
-                                            <span class="fw-900 fs-14 mt-2 d-block" class=""
+                                            <span class="fs-14 badge bg-success">Digital asset attached</span>
+                                            <span class="fs-14 mt-2 d-block" class=""
                                                 data-product-id="{{ $item->id }}">{{ $item->product->digitalImage->file_original_name . '.' . $item->product->digitalImage->extension }}</span>
                                         @endif
 
                                         <div class="card-body">
-                                            <label class="btn btn-primary mt-2 getFileManagerModel cursor-pointer"
+                                            <label class="btn btn-primary mt-2 mb-2 getFileManagerModel cursor-pointer"
                                                 onclick="openFileMangerModalDigital(event)"><i class="bi bi-upload mr-10px"></i> Select
                                                 asset</label>
                                             <input type="hidden" class="digital_assets" name="digital_download_assets"
@@ -139,7 +135,6 @@
                                     onclick="AllSave(event)">save</button>
                             </div>
                         </div>
-                        <!--<div class="col-lg-2">${{ number_format($item->price / 100, 2) }}</div>-->
                     </div>
                 </div>
             @endforeach
