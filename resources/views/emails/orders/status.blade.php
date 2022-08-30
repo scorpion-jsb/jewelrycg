@@ -332,21 +332,19 @@ ul.social li{
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="product-entry" style="width:100%">
-                                <a href="{{route('products.show', $order_item->id)}}">
-									@if ($order_item->productVariant && $order_item->productVariant->uploads)
-									<img src="{{ $order_item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-									@else
-									<img src="{{ $order_item->product->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+								@if ($order_item->productVariant && $order_item->productVariant->uploads)
+								<img src="{{ $order_item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+								@else
+								<img src="{{ $order_item->product->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+								@endif
+								<div class="text">
+									<h3>{{$order_item->name}}</h3>
+									<div>Quantity: {{$order_item->quantity}}</div>
+									<div>Price: ${{$order_item->price}}</div>
+									@if ($order_item->status_tracking != "")
+									<div>Tracking #: {{$order_item->status_tracking}}</div>
 									@endif
-                                    <div class="text">
-                                        <h3>{{$order_item->name}}</h3>
-                                        <div>Quantity: {{$order_item->quantity}}</div>
-                                        <div>Price: ${{$order_item->price}}</div>
-										@if ($order_item->status_tracking != "")
-                                        <div>Tracking #: {{$order_item->status_tracking}}</div>
-										@endif
-                                    </div>
-                                </a>
+								</div>
 					  		</div>
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
