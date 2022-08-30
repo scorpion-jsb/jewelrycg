@@ -16,8 +16,12 @@ return new class extends Migration
         Schema::create('settings_general', function (Blueprint $table) {
             $table->id();
 
-            //social
+            // general
             $table->string('sitename')->nullable();
+            $table->string('meta_title')->nullable();
+            $table->string('meta_description')->nullable();
+
+            //social
             $table->string('twitter')->nullable();
             $table->string('facebook')->nullable();
             $table->string('instagram')->nullable();
