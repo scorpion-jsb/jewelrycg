@@ -340,7 +340,7 @@ ul.social li{
 								<div class="text">
 									<h3>{{$order_item->name}}</h3>
 									@if ($order_item->status_tracking != "")
-									<p style="font-weight:bold;">Tracking #: {{$order_item->status_tracking}}</p>
+									<div style="font-weight:bold;">Tracking #: {{$order_item->status_tracking}}</div>
 									@endif
 									<div>Quantity: {{$order_item->quantity}}</div>
 									<p>Price: ${{$order_item->price}}</p>
