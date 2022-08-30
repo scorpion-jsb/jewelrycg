@@ -122,20 +122,24 @@
                                 @php
                                     $orderStatus = Config::get('constants.order_item_status_fulfillment');
                                 @endphp
-                                <div class="d-flex mt-2">
-                                    <select class="order-status form-select" data-item-id="{{ $item->id }}"
-                                        style="width: 120px;height:35.75px;padding-left:10px">
-                                        @foreach ($orderStatus as $key => $status)
-                                            @if ($key != 0)
-                                                <option @if ($item->status_fulfillment == $key) selected @endif
-                                                    value="{{ $key }}">{{ $status }}</option>
-                                            @endif
-                                        @endforeach
-                                    </select>
-                                    <input
-                                        class='track_number @if ($item->status_fulfillment != 2) d-none @endif track_number form-control mx-2'
-                                        type='text' placeholder='Tracking Number ' value='{{ $item->status_tracking }}'
-                                        style="width: 100px;" />
+                                <div class="mt-2">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <select class="order-status form-select w-100" data-item-id="{{ $item->id }}">
+                                                @foreach ($orderStatus as $key => $status)
+                                                    @if ($key != 0)
+                                                        <option @if ($item->status_fulfillment == $key) selected @endif
+                                                            value="{{ $key }}">{{ $status }}</option>
+                                                    @endif
+                                                @endforeach
+                                            </select>
+                                        </div>
+                                        <div class="col-8">
+                                        <input
+                                            class='track_number @if ($item->status_fulfillment != 2) d-none @endif track_number form-control w-100'
+                                            type='text' placeholder='Tracking Number ' value='{{ $item->status_tracking }}' />
+                                        </div>
+                                    </div>
                                 </div>
                                 <button
                                     class='allsave_button btn btn-sm btn-primary mt-2 d-none'
