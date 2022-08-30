@@ -101,30 +101,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="position-fixed start-50 bottom-0 translate-middle-x w-100 zi-99 mb-3" style="max-width: 40rem;">
-        <!-- Card -->
-        <div class="card card-sm bg-dark border-dark mx-2">
-          <div class="card-body">
-            <div class="row justify-content-center justify-content-sm-between">
-              <div class="col">
-                <button type="button" class="btn btn-danger">Cancel</button>
-              </div>
-              <!-- End Col -->
-
-              <div class="col-auto">
-                <div class="d-flex gap-3">
-                  <button type="button" class="btn btn-light">Save Draft</button>
-                  <button type="submit" class="btn btn-primary">Publish</button>
-                </div>
-              </div>
-              <!-- End Col -->
-            </div>
-            <!-- End Row -->
-          </div>
-        </div>
-        <!-- End Card -->
-      </div>
     </form>
 
 @endsection
