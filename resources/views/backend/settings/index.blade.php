@@ -1,9 +1,9 @@
-@extends('backend.layouts.app', ['activePage' => 'page', 'title' => 'Create Page', 'navName' => 'addpost', 'activeButton' => 'blog'])
+@extends('backend.layouts.app', ['activePage' => 'page', 'title' => 'General Settings', 'navName' => 'addpost', 'activeButton' => 'blog'])
 
 @section('content')
 <div class="page-header">
     <div class="row align-items-end">
-        <h1 class="page-header-title">Create page</h1>
+        <h1 class="page-header-title">Settings</h1>
     </div>
     <!-- End Row -->
 </div>
@@ -18,7 +18,6 @@
                     </div>
                     <!-- End Header -->
                     <div class="card-body">
-                        @include('includes.validation-form')
                         <div class="mb-2">
                             <label for="name" class="w-100 mb-2">Name:</label>
                             <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
@@ -78,9 +77,7 @@
                             <div class="col-12">
                                 <select class="selectpicker " name="parent_id" data-live-search="true" data-container="body">
                                     <option value='0'>None</option>
-                                    @foreach ($parents as $parent)
-                                        <option value="{{$parent->id}}">{{$parent->name}}</option>
-                                    @endforeach
+    
                                 </select>
                             </div>
                         </div>
@@ -114,85 +111,9 @@
         <!-- End Card -->
       </div>
     </form>
-    <div id="fileManagerContainer"></div>
 
-    <div id='ajaxCalls'>
-    </div>
 @endsection
 
 @section('js_content')
-    <script>
-        $(document).ready(function() {
-            $('#desc').trumbowyg();
-            $('#meta_description').trumbowyg();
-        })
-        $(".imgAdd").click(function() {
-            $(this).closest(".row").find('.imgAdd').before(
-                '<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>'
-            );
-        });
-        $(document).on("click", "i.del", function() {
-            $(this).parent().remove();
-        });
-        $(function() {
-            $(document).on("change", ".uploadFile", function() {
-                var uploadFile = $(this);
-                var files = !!this.files ? this.files : [];
-                if (!files.length || !window.FileReader)
-                    return; // no file selected, or no FileReader support
-
-                if (/^image/.test(files[0].type)) { // only image file
-                    var reader = new FileReader(); // instance of the FileReader
-                    reader.readAsDataURL(files[0]); // read the local file
-
-                    reader.onloadend = function() { // set image data as background of div
-                        //alert(uploadFile.closest(".upimage").find('.imagePreview').length);
-                        uploadFile.closest(".imgUp").find('.imagePreview').css("background-image",
-                            "url(" + this.result + ")");
-                    }
-                }
-
-            });
-
-            $('.select2').select2({
-
-            tags: true,
-            maximumSelectionLength: 10,
-            tokenSeparators: [','],
-            placeholder: "Select or type keywords",
-            })
-        });
-
-
-        $('#getFileManager').click(function () {
-            $.ajax({
-                url: "{{ route('backend.file.show') }}",
-                success: function (data) {
-                    if (!$.trim($('#fileManagerContainer').html()))
-                        $('#fileManagerContainer').html(data);
-
-                    $('#fileManagerModal').modal('show');
-
-                    const getSelectedItem = function (selectedId, filePath) {
-
-                        $('#fileManagerId').val(selectedId);
-                        $('#fileManagerPreview').attr('src', filePath);
-                    }
-
-                    setSelectedItemsCB(getSelectedItem, $('#fileManagerId').val() == '' ? [] : [$('#fileManagerId').val()], false);
-                }
-            })
-        });
-
-
-    </script>
-    <script src="{{ asset('assets/vendor/quill/dist/quill.min.js') }}"></script>
-    <script src="{{ asset('assets/js/hs.quill.js') }}"></script>
-    <script>
-    (function() {
-        // INITIALIZATION OF QUILLJS EDITOR
-        // =======================================================
-        HSCore.components.HSQuill.init('.js-quill')
-    });
-    </script>
+   
 @endsection
