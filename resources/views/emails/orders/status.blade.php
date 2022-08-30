@@ -349,7 +349,13 @@ ul.social li{
 					  	</td>
 					  	<td valign="middle" width="20%" style="text-align:right; padding: 0 1.0em;padding-left:0;">
 					  		<span class="price" style="color: #000; font-size: 16px;">
-							shipped
+							@if ($order_item->status_fulfillment = 1) 
+							Pending
+							@elseif ($order_item->status_fulfillment = 2)
+							Shipped
+							@elseif ($order_item->status_fulfillment = 3)
+							Delivered
+							@endif 
 							</span>
 					  	</td>
 					</tr>
