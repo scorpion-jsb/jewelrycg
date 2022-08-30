@@ -65,7 +65,7 @@
                                     }
                                 @endphp
                             </div>
-                            <div class="order-item-qty-price fs-16 mt-2"><span class="fw-600">Quantity</span>
+                            <div class="order-item-qty-price fs-16 mt-2"><span class="fw-600">Quantity:</span>
                                 {{ $item->quantity }} | <span class="fw-600">Price</span>
                                 ${{ number_format($item->price / 100, 2) }}
                             </div>
@@ -82,7 +82,7 @@
                                                 data-product-id="{{ $item->id }}">{{ $item->productVariant->asset->file_original_name . '.' . $item->productVariant->asset->extension }}</span>
 
                                             <div class="card-body">
-                                                <label class="btn btn-primary mt-2 mb-2 getFileManagerModel cursor-pointer"
+                                                <label class="btn btn-primary mt-2 getFileManagerModel cursor-pointer"
                                                     onclick="openFileMangerModalVariant(event)"><i class="bi bi-upload mr-10px"></i> Select
                                                     asset</label>
                                                 <input type="hidden" class="variant_assets" name="variant_assets"
@@ -99,7 +99,7 @@
                                         @endif
 
                                         <div class="card-body">
-                                            <label class="btn btn-primary mt-2 mb-2 getFileManagerModel cursor-pointer"
+                                            <label class="btn btn-primary mt-2 getFileManagerModel cursor-pointer"
                                                 onclick="openFileMangerModalDigital(event)"><i class="bi bi-upload mr-10px"></i> Select
                                                 asset</label>
                                             <input type="hidden" class="digital_assets" name="digital_download_assets"
