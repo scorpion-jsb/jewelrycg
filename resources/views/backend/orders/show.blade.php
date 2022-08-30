@@ -182,7 +182,24 @@
                 }
             })
 
+            // Send if status is 2 aka shipped
             if ($(e.target).closest(".is_downloadable").find(".order-status").val() == 2) {
+                $.ajax({
+                    url: "{{ url('backend/orders/status_tracking/') }}" + "/" + orderItemId,
+                    type: 'put',
+                    data: {
+                        "_token": "{{ csrf_token() }}",
+                        status: $(e.target).closest(".is_downloadable").find(".track_number").val()
+                    },
+                    async: false,
+                    success: function(data) {
+                        console.log(data)
+                    }
+                })
+            }
+
+            // send if status is 3 aka delivered
+            if ($(e.target).closest(".is_downloadable").find(".order-status").val() == 3) {
                 $.ajax({
                     url: "{{ url('backend/orders/status_tracking/') }}" + "/" + orderItemId,
                     type: 'put',
