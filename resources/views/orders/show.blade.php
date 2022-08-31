@@ -107,11 +107,15 @@
             @endforeach
             <div class="row">
                 <div class="col-lg-4 mt-3">
-                    <h5 class="fs-18 py-2 fw-600">Summary</h5>
-                    <div class="mb-2"><span class="fw-600">Subtotal:</span> ${{ ($order->total / 100) }}</div>
-                    <div class="mb-2"><span class="fw-600">Shipping:</span> ${{ ($order->shipping_total / 100) }}</div>
-                    <div class="mb-2"><span class="fw-600">Tax:</span> ${{ ($order->tax_total / 100) }}</div>
-                    <div class="mb-2"><span class="fw-600">Total:</span> ${{ ($order->grand_total / 100) }}</div>
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="fs-18 py-2 fw-600 card-header">Summary</div>
+                            <div class="mb-2"><span class="fw-600">Subtotal:</span> ${{ ($order->total / 100) }}</div>
+                            <div class="mb-2"><span class="fw-600">Shipping:</span> ${{ ($order->shipping_total / 100) }}</div>
+                            <div class="mb-2"><span class="fw-600">Tax:</span> ${{ ($order->tax_total / 100) }}</div>
+                            <div class="mb-2"><span class="fw-600">Total:</span> ${{ ($order->grand_total / 100) }}</div>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 mt-3">
                     <h5 class="fs-18 py-2 fw-600">Billing Address</h5>
