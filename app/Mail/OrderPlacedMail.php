@@ -33,24 +33,25 @@ class OrderPlacedMail extends Mailable
     {
         $first_name = auth()->user()->first_name;
         $total = $this->order->total / 100;
-        $shipping_option_id = $this->order->shipping_option_id;
 
+        // Set Tax
+        $taxPrice = 0;
+        $taxPrice = $this->order->tax_total;
+
+        // Add tax to total
+        $total += $this->order->tax_total/100;
+        
+        // Add shipping to total
+        $shipping_option_id = $this->order->shipping_option_id;
         if ($shipping_option_id)
              $total += (ShippingOption::find($shipping_option_id)->price / 100);
 
-         $taxPrice = 0;
-         foreach (Cart::content() as $product) {
-             $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
-        }
-
-        $total += floor($taxPrice + 0.5);
-
+        // Set shipping price
         $shipping_price = 0;
         if ($shipping_option_id != "0") {
             $shipping_price = ShippingOption::find($shipping_option_id)->price / 100;
         }
         
-        $tax_price = $taxPrice;
         $total_price = $total;
 
         return $this->subject('Your JewelryCG.com order #'.$this->order->order_id.'')
@@ -61,7 +62,7 @@ class OrderPlacedMail extends Mailable
                 'sub_total' => ($this->order->total/100),
                 'total_price' => $total_price,
                 'shipping_price' => $shipping_price,
-                'tax_price' => $this->tax_price,
+                'tax_price' => ($this->order->tax_total/100),
                 'billing_address1' => $this->order->billing_address1,
                 'billing_address2' => $this->order->billing_address2,
                 'billing_city' => $this->order->billing_city,

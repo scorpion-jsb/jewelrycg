@@ -1,4 +1,4 @@
-<x-app-layout :page-title="'Order ' . $order->id">
+<x-app-layout :page-title="'Order #' . $order->order_id">
     <div class="container">
         <div class="col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
             <h1 class="fw-800 mb-3">Thanks for shopping with us!</h1>
@@ -105,11 +105,27 @@
                     </div>
                 </div>
             @endforeach
-
-            <div class="col-lg-4 mt-3">
-                <h5 class="fs-18 py-2 fw-600">Billing Address</h5>
-                @include('includes.validation-form')
-                <x-order-info :order="$order" />
+            <div class="row">
+                <div class="col-lg-4 mt-3">
+                    <div class="card">
+                        <div class="fs-18 py-2 fw-600 card-header">Summary</div>
+                        <div class="card-body">
+                            <div class="mb-2"><span class="fw-600">Subtotal:</span> ${{ ($order->total / 100) }}</div>
+                            <div class="mb-2"><span class="fw-600">Shipping:</span> ${{ ($order->shipping_total / 100) }}</div>
+                            <div class="mb-2"><span class="fw-600">Tax:</span> ${{ ($order->tax_total / 100) }}</div>
+                            <div class="mb-2"><span class="fw-600">Total:</span> ${{ ($order->grand_total / 100) }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 mt-3">
+                    <div class="card">
+                        <div class="fs-18 py-2 fw-600 card-header">Billing Address</div>
+                        <div class="card-body">
+                            @include('includes.validation-form')
+                            <x-order-info :order="$order" />
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
