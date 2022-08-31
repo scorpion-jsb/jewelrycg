@@ -14,7 +14,6 @@ return new class extends Migration
     public function up()
     {
         Schema::create('settings_general', function (Blueprint $table) {
-            $table->id();
             $table->string('sitename')->nullable();
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
@@ -34,7 +33,6 @@ return new class extends Migration
             $table->string('mail_from_name')->nullable();
             $table->string('recaptcha_site_key')->nullable();
             $table->string('recaptcha_secret_key')->nullable();
-            $table->timestamps();
         });
     }
 
