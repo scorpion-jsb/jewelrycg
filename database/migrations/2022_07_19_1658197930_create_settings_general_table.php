@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('mail_from_name')->nullable();
             $table->string('recaptcha_site_key')->nullable();
             $table->string('recaptcha_secret_key')->nullable();
+            $table->timestamps();
         });
     }
 
