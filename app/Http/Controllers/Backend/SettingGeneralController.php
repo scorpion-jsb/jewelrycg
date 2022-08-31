@@ -37,13 +37,11 @@ class SettingGeneralController extends Controller
      */
     public function store(SettingStoreRequest $request)
     {
-        // $this->authorize('create', SettingGeneral::class);
-
         $validated = $request->validated();
-        // dd($validated);
+
         $newSetting = SettingGeneral::create($validated);
         return redirect()
-            ->route('backend.general.edit', $newSetting->id)
+            ->back()
             ->withSuccess(__('crud.common.created'));
     }
 

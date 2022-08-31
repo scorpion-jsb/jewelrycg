@@ -19,7 +19,7 @@ class SettingGeneral extends Model
         'stripe_key',
         'stripe_secret',            
         'mail_mailer',
-        'mail_host' => 'required|string|max:255',
+        'mail_host',
         'mail_port',
         'mail_username',
         'mail_password',
