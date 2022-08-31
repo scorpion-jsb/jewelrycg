@@ -315,7 +315,7 @@ ul.social li{
             		<td style="padding: 0 1.0em; text-align: left;">
             			<div class="text">
             				<h2>Hey {{$first_name}},</h2>
-            				<h3>This is just a quick email to let you know the status of an item in your order has been updated to shipped!</h3>
+            				<h3>This is just a quick email to let you know the status of an item in your order has been updated.</h3>
             			</div>
             		</td>
             	</tr>
