@@ -47,6 +47,16 @@
                             <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
                         </div>
                     </div>
+                    <div class="mb-2">
+                        <label for="youtube" class="w-100 mb-2">Youtube:</label>
+                        <input type="text" name="youtube" id="youtube" value="{{ old('youtube') }}" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="card col-md-12">
+                <!-- Header -->
+                <div class="card-header">
+                    <h4 class="card-header-title mb-0">Stripe Settings</h4>
                 </div>
                 <div class="card col-md-12">
                     <!-- Header -->
