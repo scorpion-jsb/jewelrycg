@@ -38,10 +38,8 @@ class OrderPlacedMail extends Mailable
         if ($shipping_option_id)
              $total += (ShippingOption::find($shipping_option_id)->price / 100);
 
-         $taxPrice = 0;
-         foreach (Cart::content() as $product) {
-             $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
-        }
+        $taxPrice = 0;
+        $taxPrice = $this->order->tax_total;
 
         $total += floor($taxPrice + 0.5);
 
@@ -50,7 +48,6 @@ class OrderPlacedMail extends Mailable
             $shipping_price = ShippingOption::find($shipping_option_id)->price / 100;
         }
         
-        $tax_price = $taxPrice;
         $total_price = $total;
 
         return $this->subject('Your JewelryCG.com order #'.$this->order->order_id.'')
@@ -61,7 +58,7 @@ class OrderPlacedMail extends Mailable
                 'sub_total' => ($this->order->total/100),
                 'total_price' => $total_price,
                 'shipping_price' => $shipping_price,
-                'tax_price' => $this->tax_price,
+                'tax_price' => ($this->order->tax_total/100),
                 'billing_address1' => $this->order->billing_address1,
                 'billing_address2' => $this->order->billing_address2,
                 'billing_city' => $this->order->billing_city,
