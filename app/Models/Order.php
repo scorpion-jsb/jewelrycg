@@ -17,6 +17,7 @@ class Order extends Model
         'order_id',
         'user_id',
         'total',
+        'tax_total',
         'grand_total',
         'tax',
         'shipping_address1',
@@ -42,13 +43,6 @@ class Order extends Model
 
     protected $keyType = 'string';
 
-    // public static $status_list = [
-    //     'Processing',
-    //     'Processed',
-    //     'Shipped',
-    //     'Delivered'
-    // ];
-
     public static function getBasedOnUser()
     {
         if(auth()->user()->role)
@@ -58,27 +52,6 @@ class Order extends Model
         
         return auth()->user()->orders()->withCount('items')->orderBy('created_at', 'DESC')->paginate(10);
     }
-
-    // public static function getPendingBasedOnUser()
-    // {
-    //     if(auth()->user()->role)
-    //     {
-    //         return Order::where('status', 'Processing')->withCount('items')->orderBy('id')->paginate(10);
-    //     }
-        
-    //     return auth()->user()->orders()->where('status', 'Processing')->withCount('items')->orderBy('id')->paginate(10);
-    // }
-
-
-    // public function adminUpdate(UpdateOrderRequest $req)
-    // {
-    //     $data = $req->only('message');
-    //     if(in_array($req->status, Order::$status_list))
-    //     {
-    //         $data['status'] = $req->status;
-    //     }
-    //     $this->update($data);
-    // }
 
     public function restoreProductsQuantity()
     {
