@@ -92,12 +92,14 @@ class CheckoutController extends Controller
                 if ($shipping_option_id)
                     $total += ShippingOption::find($shipping_option_id)->price;
 
+                $order->shipping_total = ShippingOption::find($shipping_option_id)->price;
+
                 $taxPrice = 0;
                 foreach (Cart::content() as $product) {
                     $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
                 }
                 $order->tax_total = $taxPrice;
-                
+        
                 $order->grand_total = $total+$taxPrice;
 
             }
