@@ -79,8 +79,6 @@ class CheckoutController extends Controller
 
                     if (isset($item->options['id'])) {
                         $orderItem->product_variant = $item->options['id'];
-
-                        // $productVariant = ProductsVariant::find($item->options['id']);
                         $orderItem->product_variant_name = $item->options['name'];;
                     }
 
@@ -95,6 +93,12 @@ class CheckoutController extends Controller
                     $total += ShippingOption::find($shipping_option_id)->price;
 
                 $order->grand_total = $total;
+
+                $taxPrice = 0;
+                foreach (Cart::content() as $product) {
+                    $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
+                }
+                $order->grand_total = $taxPrice;
             }
 
             $order->order_id = $orderId;
