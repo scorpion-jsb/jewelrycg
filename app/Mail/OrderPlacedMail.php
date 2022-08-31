@@ -33,15 +33,20 @@ class OrderPlacedMail extends Mailable
     {
         $first_name = auth()->user()->first_name;
         $total = $this->order->total / 100;
-        $shipping_option_id = $this->order->shipping_option_id;
 
+        // Set Tax
+        $taxPrice = 0;
+        $taxPrice = $this->order->tax_total;
+
+        // Add tax to total
+        $total += $this->order->tax_total/100;
+        
+        // Add shipping to total
+        $shipping_option_id = $this->order->shipping_option_id;
         if ($shipping_option_id)
              $total += (ShippingOption::find($shipping_option_id)->price / 100);
 
-        $taxPrice = 0;
-        $taxPrice = $this->order->tax_total;
-        $total += $this->order->tax_total/100;
-
+        // Set shipping price
         $shipping_price = 0;
         if ($shipping_option_id != "0") {
             $shipping_price = ShippingOption::find($shipping_option_id)->price / 100;
