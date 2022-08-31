@@ -108,8 +108,8 @@
             <div class="row">
                 <div class="col-lg-4 mt-3">
                     <div class="card">
+                        <div class="fs-18 py-2 fw-600 card-header">Summary</div>
                         <div class="card-body">
-                            <div class="fs-18 py-2 fw-600 card-header">Summary</div>
                             <div class="mb-2"><span class="fw-600">Subtotal:</span> ${{ ($order->total / 100) }}</div>
                             <div class="mb-2"><span class="fw-600">Shipping:</span> ${{ ($order->shipping_total / 100) }}</div>
                             <div class="mb-2"><span class="fw-600">Tax:</span> ${{ ($order->tax_total / 100) }}</div>
