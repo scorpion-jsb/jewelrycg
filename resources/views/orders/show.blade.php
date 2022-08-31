@@ -118,9 +118,13 @@
                     </div>
                 </div>
                 <div class="col-lg-4 mt-3">
-                    <h5 class="fs-18 py-2 fw-600">Billing Address</h5>
-                    @include('includes.validation-form')
-                    <x-order-info :order="$order" />
+                    <div class="card">
+                        <div class="fs-18 py-2 fw-600 card-header">Billing Address</div>
+                        <div class="card-body">
+                            @include('includes.validation-form')
+                            <x-order-info :order="$order" />
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
