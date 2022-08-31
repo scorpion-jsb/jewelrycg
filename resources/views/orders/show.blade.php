@@ -1,4 +1,4 @@
-<x-app-layout :page-title="'Order ' . $order->id">
+<x-app-layout :page-title="'Order #' . $order->order_id">
     <div class="container">
         <div class="col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
             <h1 class="fw-800 mb-3">Thanks for shopping with us!</h1>
