@@ -40,8 +40,7 @@ class OrderPlacedMail extends Mailable
 
         $taxPrice = 0;
         $taxPrice = $this->order->tax_total;
-
-        $total += floor($taxPrice + 0.5);
+        $total += $this->order->tax_total/100;
 
         $shipping_price = 0;
         if ($shipping_option_id != "0") {
