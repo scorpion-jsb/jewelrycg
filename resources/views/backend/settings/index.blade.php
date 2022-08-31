@@ -16,7 +16,6 @@
                 <!-- Header -->
                 <div class="card-header">
                     <h4 class="card-header-title mb-0">General</h4>
-                    <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-3 border border-blue-700 rounded">Save</button>
                 </div>
                 <!-- End Header -->
                 <div class="card-body">
@@ -122,6 +121,9 @@
                     <div class="mb-2">
                         <label for="recaptcha_secret_key" class="w-100 mb-2">Recaptcha Secret Key:</label>
                         <input type="text" name="recaptcha_secret_key" id="recaptcha_secret_key" value="{{ old('recaptcha_secret_key') }}" class="form-control">
+                    </div>
+                    <div class="mt-4">
+                        <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-3 border border-blue-700 rounded">Save</button>                        
                     </div>
                 </div>
             </div>
