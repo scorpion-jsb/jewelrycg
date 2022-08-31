@@ -108,10 +108,10 @@
             <div class="row">
                 <div class="col-lg-4 mt-3">
                     <h5 class="fs-18 py-2 fw-600">Summary</h5>
-                    <div class="mb-2">Subtotal: ${{ ($order->total / 100) }}</div>
-                    <div class="mb-2">Shipping: ${{ ($order->shipping_total / 100) }}</div>
-                    <div class="mb-2">Tax: ${{ ($order->tax_total / 100) }}</div>
-                    <div class="mb-2">Total: ${{ ($order->grand_total / 100) }}</div>
+                    <div class="mb-2"><span class="fw-600">Subtotal:</span> ${{ ($order->total / 100) }}</div>
+                    <div class="mb-2"><span class="fw-600">Shipping:</span> ${{ ($order->shipping_total / 100) }}</div>
+                    <div class="mb-2"><span class="fw-600">Tax:</span> ${{ ($order->tax_total / 100) }}</div>
+                    <div class="mb-2"><span class="fw-600">Total:</span> ${{ ($order->grand_total / 100) }}</div>
                 </div>
                 <div class="col-lg-4 mt-3">
                     <h5 class="fs-18 py-2 fw-600">Billing Address</h5>
