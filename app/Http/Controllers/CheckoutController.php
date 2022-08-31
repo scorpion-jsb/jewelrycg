@@ -98,7 +98,7 @@ class CheckoutController extends Controller
                 foreach (Cart::content() as $product) {
                     $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
                 }
-                $order->grand_total = $taxPrice;
+                $order->tax_total = $taxPrice;
             }
 
             $order->order_id = $orderId;
