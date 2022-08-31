@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('order_id');
             $table->integer('total')->default(0);
             $table->integer('tax_total')->default(0);
+            $table->integer('shipping_total')->default(0);
             $table->integer('grand_total')->default(0);
             $table->integer('shipping_option_id')->default(0);
             $table->integer('tax_option_id')->default(0);
