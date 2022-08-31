@@ -7,110 +7,127 @@
     </div>
     <!-- End Row -->
 </div>
-    <form action="{{ route('backend.page.store') }}" method="post" enctype="multipart/form-data">
-        <div class="row">
-            <div class="col-md-8">
-                @csrf
-                <div class="card col-md-12 mb-4">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title mb-0">Page information</h4>
-                    </div>
-                    <!-- End Header -->
-                    <div class="card-body">
-                        <div class="mb-2">
-                            <label for="name" class="w-100 mb-2">Name:</label>
-                            <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label for="slug" class="w-100 mb-2">Slug:</label>
-                            <input type="text" name="slug" id="slug" value="{{ old('slug') }}" class="form-control">
-                        </div>
-                        <div class="mb-2">
-                            <label for="desc" class="w-100 mb-2">Post:</label>
-                            <textarea name="post" id="desc" rows="6" class="form-control">{{ old('post') }}</textarea>
-                        </div>
-                    </div>
+
+<form action="{{ route('backend.general.store') }}" method="post" enctype="multipart/form-data">
+    @csrf
+    <div class="row">
+        <div class="col-md-6">            
+            <div class="card col-md-12 mb-4">
+                <!-- Header -->
+                <div class="card-header">
+                    <h4 class="card-header-title mb-0">General</h4>
+                    <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-3 border border-blue-700 rounded">Save</button>
                 </div>
-                <div class="card col-md-12">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title mb-0">Meta information</h4>
+                <!-- End Header -->
+                <div class="card-body">
+                    <div class="mb-2">
+                        <label for="sitename" class="w-100 mb-2">Site Name:</label>
+                        <input type="text" name="sitename" id="sitename" value="{{ old('sitename') }}" class="form-control">
                     </div>
-                    <!-- End Header -->
-                    <div class="card-body">
-                        <div class="mb-2">
-                            <label for="meta_title" class="w-100 mb-2">Meta Title:</label>
-                            <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
-                        </div>
-                        <div class="">
-                            <label for="meta_description" class="w-100 mb-2">Meta Description:</label>
-                            <textarea name="meta_description" id="meta_description" rows="6" class="form-control">{{ old('meta_description') }}</textarea>
-                        </div>
+                    <div class="mb-2">
+                        <label for="meta_title" class="w-100 mb-2">Meta Title:</label>
+                        <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="meta_description" class="w-100 mb-2">Meta Description:</label>
+                        <textarea name="meta_description" id="meta_description" rows="6" class="form-control">{{ old('meta_description') }}</textarea>
+                    </div>
+                    <div class="mb-2">
+                        <label for="twitter" class="w-100 mb-2">Twitter:</label>
+                        <input type="text" name="twitter" id="twitter" value="{{ old('twitter') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="facebook" class="w-100 mb-2">Instagram:</label>
+                        <input type="text" name="facebook" id="facebook" value="{{ old('facebook') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="instagram" class="w-100 mb-2">Facebook:</label>
+                        <input type="text" name="instagram" id="instagram" value="{{ old('instagram') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="youtube" class="w-100 mb-2">Youtube:</label>
+                        <input type="text" name="youtube" id="youtube" value="{{ old('youtube') }}" class="form-control">
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <!-- Card -->
-                <div class="card mb-3 mb-4">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title mb-0">Organization</h4>
+            <div class="card col-md-12">
+                <!-- Header -->
+                <div class="card-header">
+                    <h4 class="card-header-title mb-0">Stripe Settings</h4>
+                </div>
+                <!-- End Header -->
+                <div class="card-body">
+                    <div class="mb-2">
+                        <label for="stripe_key" class="w-100 mb-2">Stripe Key:</label>
+                        <input type="text" name="stripe_key" id="stripe_key" value="{{ old('stripe_key') }}" class="form-control">
                     </div>
-                    <!-- End Header -->
-
-                    <!-- Body -->
-                    <div class="card-body">
-                        <div class="mb-4 col-12">
-                            <div class="col-12">
-                                <label class="mb-2" for="">Status</label>
-                                <select class="selectpicker w-100" name="status">
-                                    <option value="1" selected>Published</option>
-                                    <option value="2" >Draft</option>
-                                    <option value="3" >Pending Review</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="mb-4 col-12">
-                            <label for="category" class="w-100 mb-2">Parent</label>
-                            <div class="col-12">
-                                <select class="selectpicker " name="parent_id" data-live-search="true" data-container="body">
-                                    <option value='0'>None</option>
-    
-                                </select>
-                            </div>
-                        </div>
+                    <div class="mb-2">
+                        <label for="stripe_secret" class="w-100 mb-2">Stripe Secret:</label>
+                        <input type="text" name="stripe_secret" id="stripe_secret" value="{{ old('stripe_secret') }}" class="form-control">
                     </div>
                 </div>
-                <!-- End Card -->
+            </div>
+            <div class="card col-md-12">
+                <!-- Header -->
+                <div class="card-header">
+                    <h4 class="card-header-title mb-0">SMTP Settings</h4>
+                </div>
+                <!-- End Header -->
+                <div class="card-body">
+                    <div class="mb-2">
+                        <label for="mail_mailer" class="w-100 mb-2">Mail Mailer:</label>
+                        <input type="text" name="mail_mailer" id="mail_mailer" value="{{ old('mail_mailer') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="mail_host" class="w-100 mb-2">Mail Host:</label>
+                        <input type="text" name="mail_host" id="mail_host" value="{{ old('mail_host') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="mail_port" class="w-100 mb-2">Mail Port:</label>
+                        <input type="text" name="mail_port" id="mail_port" value="{{ old('mail_port') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="mail_username" class="w-100 mb-2">Mail Username:</label>
+                        <input type="text" name="mail_username" id="mail_username" value="{{ old('mail_username') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="mail_password" class="w-100 mb-2">Mail Password:</label>
+                        <input type="text" name="mail_password" id="mail_password" value="{{ old('mail_password') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="mail_encryption" class="w-100 mb-2">Mail Encryption:</label>
+                        <input type="text" name="mail_encryption" id="mail_encryption" value="{{ old('mail_encryption') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="mail_from_address" class="w-100 mb-2">Mail From Address:</label>
+                        <input type="text" name="mail_from_address" id="mail_from_address" value="{{ old('mail_from_address') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="mail_from_name" class="w-100 mb-2">Mail From Name:</label>
+                        <input type="text" name="mail_from_name" id="mail_from_name" value="{{ old('mail_from_name') }}" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="card col-md-12">
+                <!-- Header -->
+                <div class="card-header">
+                    <h4 class="card-header-title mb-0">Recaptcha Settings</h4>
+                </div>
+                <!-- End Header -->
+                <div class="card-body">
+                    <div class="mb-2">
+                        <label for="recaptcha_site_key" class="w-100 mb-2">Recaptcha Site Key:</label>
+                        <input type="text" name="recaptcha_site_key" id="recaptcha_site_key" value="{{ old('recaptcha_site_key') }}" class="form-control">
+                    </div>
+                    <div class="mb-2">
+                        <label for="recaptcha_secret_key" class="w-100 mb-2">Recaptcha Secret Key:</label>
+                        <input type="text" name="recaptcha_secret_key" id="recaptcha_secret_key" value="{{ old('recaptcha_secret_key') }}" class="form-control">
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="position-fixed start-50 bottom-0 translate-middle-x w-100 zi-99 mb-3" style="max-width: 40rem;">
-        <!-- Card -->
-        <div class="card card-sm bg-dark border-dark mx-2">
-          <div class="card-body">
-            <div class="row justify-content-center justify-content-sm-between">
-              <div class="col">
-                <button type="button" class="btn btn-danger">Cancel</button>
-              </div>
-              <!-- End Col -->
-
-              <div class="col-auto">
-                <div class="d-flex gap-3">
-                  <button type="button" class="btn btn-light">Save Draft</button>
-                  <button type="submit" class="btn btn-primary">Publish</button>
-                </div>
-              </div>
-              <!-- End Col -->
-            </div>
-            <!-- End Row -->
-          </div>
-        </div>
-        <!-- End Card -->
-      </div>
-    </form>
+    </div>
+</form>
 
 @endsection
 

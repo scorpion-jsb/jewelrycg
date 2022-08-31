@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\SettingGeneral;
+use App\Http\Requests\SettingStoreRequest;
 
 class SettingGeneralController extends Controller
 {
@@ -33,10 +35,18 @@ class SettingGeneralController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(SettingStoreRequest $request)
     {
-        //
+        // $this->authorize('create', SettingGeneral::class);
+
+        $validated = $request->validated();
+        // dd($validated);
+        $newSetting = SettingGeneral::create($validated);
+        return redirect()
+            ->route('backend.general.edit', $newSetting->id)
+            ->withSuccess(__('crud.common.created'));
     }
+
 
     /**
      * Display the specified resource.
@@ -57,7 +67,7 @@ class SettingGeneralController extends Controller
      */
     public function edit($id)
     {
-        //
+        dd($id);
     }
 
     /**
