@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\SettingGeneral;
 use App\Http\Requests\SettingStoreRequest;
+use Illuminate\Support\Facades\Auth;
 
 class SettingGeneralController extends Controller
 {
@@ -16,7 +17,8 @@ class SettingGeneralController extends Controller
      */
     public function index()
     {
-        return view('backend.settings.index');
+        $setting = SettingGeneral::first();
+        return view('backend.settings.index', [ "data" => $setting ]);
     }
 
     /**
@@ -38,8 +40,14 @@ class SettingGeneralController extends Controller
     public function store(SettingStoreRequest $request)
     {
         $validated = $request->validated();
-
-        $newSetting = SettingGeneral::create($validated);
+        $setting = SettingGeneral::first();
+        if($setting == null ){
+            $newSetting = SettingGeneral::create($validated);
+        } else {
+            SettingGeneral::truncate();
+            $newSetting = SettingGeneral::create($validated);
+        }
+        
         return redirect()
             ->back()
             ->withSuccess(__('crud.common.created'));
