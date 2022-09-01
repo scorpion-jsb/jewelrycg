@@ -21,7 +21,7 @@
                 <div class="card-body">
                     <div class="mb-2">
                         <label for="sitename" class="w-100 mb-2"> Site Name:</label>
-                        <input type="text" name="sitename" id="sitename" value="{{ old('sitename') ?? $data->sitename }}" class="form-control">
+                        <input type="text" name="sitename" id="sitename" value="{{ $data->sitename }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="meta_title" class="w-100 mb-2">Meta Title:</label>
