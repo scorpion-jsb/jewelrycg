@@ -183,6 +183,7 @@ return [
         Illuminate\View\ViewServiceProvider::class,
         Yajra\Datatables\DatatablesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        \Torann\GeoIP\GeoIPServiceProvider::class,
         // Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
 
         /*
@@ -216,6 +217,7 @@ return [
         'Datatables' => 'Yajra\Datatables\Facades\Datatables',
         'Image' => 'Intervention\Image\Facades\Image',
         'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
+        'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
     ])->toArray(),
 
     // Stripe Key
