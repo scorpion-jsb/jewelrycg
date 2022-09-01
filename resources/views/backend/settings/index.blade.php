@@ -20,32 +20,32 @@
                 <!-- End Header -->
                 <div class="card-body">
                     <div class="mb-2">
-                        <label for="sitename" class="w-100 mb-2">Site Name:</label>
-                        <input type="text" name="sitename" id="sitename" value="{{ old('sitename') }}" class="form-control">
+                        <label for="sitename" class="w-100 mb-2"> Site Name:</label>
+                        <input type="text" name="sitename" id="sitename" value="{{ $data->sitename }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="meta_title" class="w-100 mb-2">Meta Title:</label>
-                        <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
+                        <input type="text" name="meta_title" id="meta_title" value="{{ $data->meta_title }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="meta_description" class="w-100 mb-2">Meta Description:</label>
-                        <textarea name="meta_description" id="meta_description" rows="6" class="form-control">{{ old('meta_description') }}</textarea>
+                        <textarea name="meta_description" id="meta_description" rows="6" class="form-control">{{$data->meta_description}}</textarea>
                     </div>
                     <div class="mb-2">
                         <label for="twitter" class="w-100 mb-2">Twitter:</label>
-                        <input type="text" name="twitter" id="twitter" value="{{ old('twitter') }}" class="form-control">
+                        <input type="text" name="twitter" id="twitter" value="{{ $data->twitter }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="facebook" class="w-100 mb-2">Instagram:</label>
-                        <input type="text" name="facebook" id="facebook" value="{{ old('facebook') }}" class="form-control">
+                        <input type="text" name="facebook" id="facebook" value="{{ $data->instagram }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="instagram" class="w-100 mb-2">Facebook:</label>
-                        <input type="text" name="instagram" id="instagram" value="{{ old('instagram') }}" class="form-control">
+                        <input type="text" name="instagram" id="instagram" value="{{ $data->facebook }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="youtube" class="w-100 mb-2">Youtube:</label>
-                        <input type="text" name="youtube" id="youtube" value="{{ old('youtube') }}" class="form-control">
+                        <input type="text" name="youtube" id="youtube" value="{{ $data->youtube }}" class="form-control">
                     </div>
                 </div>
             </div>
@@ -58,11 +58,11 @@
                 <div class="card-body">
                     <div class="mb-2">
                         <label for="stripe_key" class="w-100 mb-2">Stripe Key:</label>
-                        <input type="text" name="stripe_key" id="stripe_key" value="{{ old('stripe_key') }}" class="form-control">
+                        <input type="text" name="stripe_key" id="stripe_key" value="{{ $data->stripe_key }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="stripe_secret" class="w-100 mb-2">Stripe Secret:</label>
-                        <input type="text" name="stripe_secret" id="stripe_secret" value="{{ old('stripe_secret') }}" class="form-control">
+                        <input type="text" name="stripe_secret" id="stripe_secret" value="{{ $data->stripe_secret }}" class="form-control">
                     </div>
                 </div>
             </div>
@@ -75,35 +75,35 @@
                 <div class="card-body">
                     <div class="mb-2">
                         <label for="mail_mailer" class="w-100 mb-2">Mail Mailer:</label>
-                        <input type="text" name="mail_mailer" id="mail_mailer" value="{{ old('mail_mailer') }}" class="form-control">
+                        <input type="text" name="mail_mailer" id="mail_mailer" value="{{ $data->mail_mailer }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="mail_host" class="w-100 mb-2">Mail Host:</label>
-                        <input type="text" name="mail_host" id="mail_host" value="{{ old('mail_host') }}" class="form-control">
+                        <input type="text" name="mail_host" id="mail_host" value="{{ $data->mail_host }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="mail_port" class="w-100 mb-2">Mail Port:</label>
-                        <input type="text" name="mail_port" id="mail_port" value="{{ old('mail_port') }}" class="form-control">
+                        <input type="text" name="mail_port" id="mail_port" value="{{ $data->mail_port }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="mail_username" class="w-100 mb-2">Mail Username:</label>
-                        <input type="text" name="mail_username" id="mail_username" value="{{ old('mail_username') }}" class="form-control">
+                        <input type="text" name="mail_username" id="mail_username" value="{{ $data->mail_username }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="mail_password" class="w-100 mb-2">Mail Password:</label>
-                        <input type="text" name="mail_password" id="mail_password" value="{{ old('mail_password') }}" class="form-control">
+                        <input type="text" name="mail_password" id="mail_password" value="{{ $data->mail_password }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="mail_encryption" class="w-100 mb-2">Mail Encryption:</label>
-                        <input type="text" name="mail_encryption" id="mail_encryption" value="{{ old('mail_encryption') }}" class="form-control">
+                        <input type="text" name="mail_encryption" id="mail_encryption" value="{{ $data->mail_encryption }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="mail_from_address" class="w-100 mb-2">Mail From Address:</label>
-                        <input type="text" name="mail_from_address" id="mail_from_address" value="{{ old('mail_from_address') }}" class="form-control">
+                        <input type="text" name="mail_from_address" id="mail_from_address" value="{{ $data->mail_from_address }}" class="form-control">
                     </div>
                     <div class="mb-2">
                         <label for="mail_from_name" class="w-100 mb-2">Mail From Name:</label>
-                        <input type="text" name="mail_from_name" id="mail_from_name" value="{{ old('mail_from_name') }}" class="form-control">
+                        <input type="text" name="mail_from_name" id="mail_from_name" value="{{ $data->mail_from_name }}" class="form-control">
                     </div>
                 </div>
             </div>
