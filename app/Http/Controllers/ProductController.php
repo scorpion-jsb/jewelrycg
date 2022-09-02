@@ -9,7 +9,6 @@ use App\Models\UserSearch;
 use App\Models\ProductsVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 class ProductController extends Controller
 {
@@ -59,14 +58,8 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        /*
-        try{
-            $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
-        } catch(ModelNotFoundException $e) {
-            $product = Product::with(['modelpreview'])->whereId($slug)->firstOrFail();
-        }
-        */
         $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
+
         abort_if(! $product, 404);
 
         $product->setPriceToFloat();
