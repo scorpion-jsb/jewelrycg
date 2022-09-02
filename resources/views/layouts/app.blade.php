@@ -25,7 +25,7 @@
         <!-- SEO end -->
 
 
-        <title>{{$pageTitle}} | Jewelry CG</title>
+        <title>{{$pageTitle}}</title>
         <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}"/>
 
         <!-- Google Fonts -->
