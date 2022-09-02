@@ -6,20 +6,20 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- SEO start -->
-        <meta name="description" content="{{ $pageTitle}} | Jewelry CG">
+        <meta name="description" content="{{ $pageTitle}}">
 
         <!-- Google / Search Engine Tags -->
-        <meta itemprop="name" content="{{$pageTitle}} | Jewelry CG">
+        <meta itemprop="name" content="{{$pageTitle}}">
         <meta itemprop="description" content="{{ $pageTitle}}">
 
         <!-- Facebook Meta Tags -->
         <meta property="og:type" content="website">
-        <meta property="og:title" content="{{$pageTitle}} | Jewelry CG">
+        <meta property="og:title" content="{{$pageTitle}}">
         <meta property="og:description" content="{{ $pageTitle}}">
 
         <!-- Twitter Meta Tags -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{$pageTitle}} | Jewelry CG">
+        <meta name="twitter:title" content="{{$pageTitle}}">
         <meta name="twitter:description" content="{{ $pageTitle}}">
 
         <!-- SEO end -->
