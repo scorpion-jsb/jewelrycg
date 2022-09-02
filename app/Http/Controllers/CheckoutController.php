@@ -21,7 +21,8 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Mail;
 use App\Mail\OrderPlacedMail;
-use \Torann\GeoIP\Facades\GeoIP;
+//use \Torann\GeoIP\Facades\GeoIP;
+use GeoIP;
 
 class CheckoutController extends Controller
 {
