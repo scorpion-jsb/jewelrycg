@@ -56,7 +56,7 @@ class ProductController extends Controller
 
     }
 
-    public function show($slug, $type=1)
+    public function show($slug, $type)
     {
         if($type == 1){
             $product = Product::with(['modelpreview'])->whereId($slug)->firstOrFail();
