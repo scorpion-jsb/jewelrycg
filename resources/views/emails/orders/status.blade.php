@@ -339,7 +339,7 @@ ul.social li{
 									@endif
 								</a>
 								<div class="text">
-									<h3>{{$order_item->name}}</h3>
+									<a href="{{route('products.show', $order_item->product_id)}}"><h3>{{$order_item->name}}</h3></a>
 									<div>Status: 
 									@if ($order_item->status_fulfillment == 1) 
 									Pending
