@@ -20,7 +20,7 @@
                     </div>
                     @if ($locale == 'wishlist')
                     <div class="item-meta mb-2">
-                        <a href="{{ route('products.show', $product->slug) }}" class="btn btn-primary mt-1">View Product</a>
+                        <a href="{{ route('products.show', $product->rowId) }}" class="btn btn-primary mt-1">View Product</a>
                     </div>
                     @endif
                     @if ($locale == 'cart')
