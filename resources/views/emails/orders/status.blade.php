@@ -337,24 +337,24 @@ ul.social li{
 									@else
 									<img src="{{ $order_item->product->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
 									@endif
-									<div class="text">
-										<h3>{{$order_item->name}}</h3>
-										<div>Status: 
-										@if ($order_item->status_fulfillment == 1) 
-										Pending
-										@elseif ($order_item->status_fulfillment == 2)
-										Shipped
-										@elseif ($order_item->status_fulfillment == 3)
-										Delivered
-										@endif 
-										</div>
-										@if ($order_item->status_tracking != "")
-										<div>Tracking #: <b>{{$order_item->status_tracking}}</b></div>
-										@endif
-										<div>Quantity: {{$order_item->quantity}}</div>
-										<p>Price: ${{$order_item->price}}</p>
-									</div>
 								</a>
+								<div class="text">
+									<h3>{{$order_item->name}}</h3>
+									<div>Status: 
+									@if ($order_item->status_fulfillment == 1) 
+									Pending
+									@elseif ($order_item->status_fulfillment == 2)
+									Shipped
+									@elseif ($order_item->status_fulfillment == 3)
+									Delivered
+									@endif 
+									</div>
+									@if ($order_item->status_tracking != "")
+									<div>Tracking #: <b>{{$order_item->status_tracking}}</b></div>
+									@endif
+									<div>Quantity: {{$order_item->quantity}}</div>
+									<p>Price: ${{$order_item->price}}</p>
+								</div>
 					  		</div>
 					  	</td>
 					</tr>
