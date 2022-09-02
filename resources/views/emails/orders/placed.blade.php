@@ -332,7 +332,7 @@ ul.social li{
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 					  	<td valign="middle" width="80%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="product-entry" style="width:100%">
-                                <a href="{{route('products.show', $order_item->id)}}">
+                                <a href="{{route('products.show', $order_item->product_id)}}">
 									@if ($order_item->productVariant && $order_item->productVariant->uploads)
 										<img src="{{ $order_item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
 										@else
@@ -352,7 +352,7 @@ ul.social li{
                     @endforeach
 					<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 					  	<td valign="middle" colspan="5"style="text-align:center; padding: 1em 1.0em;">
-					  		<p><a href="#" class="btn btn-primary">View or manage order</a></p>
+					  		<p><a href="{{route('orders.show', $orderID)}}" class="btn btn-primary">View or manage order</a></p>
 					  	</td>
 					</tr>
 					<!-- totals & taxes-->
