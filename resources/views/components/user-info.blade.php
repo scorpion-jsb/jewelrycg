@@ -22,7 +22,7 @@
     <label for="floatingCountry">Country</label>
     <select name="country" id="floatingCountry" data-live-search="true" class="form-control">
         @foreach ($countries as $country)
-            @if (auth()->user()->address && $billing !== "NULL" && $billing->country == $country->code)
+            @if ((auth()->user()->address && $billing !== "NULL" && $billing->country == $country->code) || $country->name == $location->country )
                 <option value="{{ $country->code }}" selected>{{ $country->name }}</option>
             @else
                 <option value="{{ $country->code }}">{{ $country->name }}</option>
