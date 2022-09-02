@@ -17,6 +17,7 @@
         "laravel/ui": "^3.4",
         "spatie/laravel-image-optimizer": "^1.7",
         "stripe/stripe-php": "^8.6",
+        "torann/geoip": "^3.0",
         "yajra/laravel-datatables-oracle": "^10.1"
     },
     "require-dev": {

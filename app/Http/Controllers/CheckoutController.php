@@ -21,6 +21,7 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Mail;
 use App\Mail\OrderPlacedMail;
+use \Torann\GeoIP\Facades\GeoIP;
 
 class CheckoutController extends Controller
 {
@@ -271,7 +272,10 @@ class CheckoutController extends Controller
         $products = Cart::instance('default')->content();
         $shipping_address = auth()->user()->address_shipping ?  UserAddress::find(auth()->user()->address_shipping) : "NULL";
 
-        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout','shipping'=> $shipping_address ]);
+        $user_ip = geoip()->getClientIP();
+        $location = geoip()->getLocation($user_ip);
+
+        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout','shipping'=> $shipping_address, 'location' => $location ]);
     }
 
     public function postShipping(Request $request)
