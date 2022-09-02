@@ -50,11 +50,14 @@ class ProductController extends Controller
 
     public function show($slug)
     {
+        /*
         try{
             $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
         } catch(ModelNotFoundException $e) {
             $product = Product::with(['modelpreview'])->whereId($slug)->firstOrFail();
         }
+        */
+        $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
         abort_if(! $product, 404);
 
         $product->setPriceToFloat();
