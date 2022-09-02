@@ -278,7 +278,7 @@ class CheckoutController extends Controller
         $user_ip = geoip()->getClientIP();
         $location = geoip()->getLocation($user_ip);
 
-        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout','shipping'=> $shipping_address, 'location' => $location ]);
+        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout','shipping'=> $shipping_address, 'location' => $location,]);
     }
 
     public function postShipping(Request $request)
@@ -348,7 +348,7 @@ class CheckoutController extends Controller
         $products = Cart::instance('default')->content();
         $billing_address = auth()->user()->address_billing ?  UserAddress::find(auth()->user()->address_billing) : "NULL";
 
-        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping, 'billing'=> $billing_address,]);
+        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping, 'billing'=> $billing_address, 'location' => $location,]);
     }
 
     public function postBilling(Request $request)
