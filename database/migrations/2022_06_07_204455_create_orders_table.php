@@ -17,12 +17,9 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('order_id');
-            $table->integer('total')->default(0);
-            $table->integer('tax_total')->default(0);
-            $table->integer('shipping_total')->default(0);
-            $table->integer('grand_total')->default(0);
-            $table->integer('shipping_option_id')->default(0);
-            $table->integer('tax_option_id')->default(0);
+            $table->string('first_name');
+            $table->string('last_name');
+            $table->string('email');
             $table->string('shipping_address1');
             $table->string('shipping_address2')->nullable();
             $table->string('shipping_city');
@@ -37,6 +34,12 @@ return new class extends Migration
             $table->string('billing_zipcode');
             $table->string('billing_country');
             $table->string('billing_phonenumber')->nullable();
+            $table->integer('total')->default(0);
+            $table->integer('tax_total')->default(0);
+            $table->integer('shipping_total')->default(0);
+            $table->integer('grand_total')->default(0);
+            $table->integer('shipping_option_id')->default(0);
+            $table->integer('tax_option_id')->default(0);
             $table->string('payment_intent')->default('');
             $table->smallInteger('status_payment')->default(1); // 1: unpaid, 2: paid
             $table->string('status_payment_reason')->default('');
