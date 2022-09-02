@@ -14,12 +14,11 @@ class Order extends Model
 
     protected $fillable = [
         'id',
-        'order_id',
         'user_id',
-        'total',
-        'tax_total',
-        'grand_total',
-        'tax',
+        'order_id',
+        'first_name',
+        'last_name',
+        'email',
         'shipping_address1',
         'shipping_address2',
         'shipping_city',
@@ -34,11 +33,15 @@ class Order extends Model
         'billing_zipcode',
         'billing_country',
         'billing_phonenumber',
-        'payment_intent',
-        'status_payment',
-        'status_payment_reason',
+        'total',
+        'tax_total',
+        'shipping_total',
+        'grand_total',
         'shipping_option_id',
         'tax_option_id'
+        'payment_intent',
+        'status_payment',
+        'status_payment_reason'
     ];
 
     protected $keyType = 'string';
