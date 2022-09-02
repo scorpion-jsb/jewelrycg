@@ -58,9 +58,9 @@ class ProductController extends Controller
 
     public function show($slug, $type)
     {
-        if($type == 1){
+        if($type == "id"){
             $product = Product::with(['modelpreview'])->whereId($slug)->firstOrFail();
-        } else{
+        } else {
             $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
         }
         abort_if(! $product, 404);
