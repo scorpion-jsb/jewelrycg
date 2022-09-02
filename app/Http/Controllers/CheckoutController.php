@@ -272,7 +272,7 @@ class CheckoutController extends Controller
         $products = Cart::instance('default')->content();
         $shipping_address = auth()->user()->address_shipping ?  UserAddress::find(auth()->user()->address_shipping) : "NULL";
 
-        $user_ip = $request->ip();;
+        $user_ip = $request->ip();
         $location = geoip($user_ip)->getLocation();
 
         return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout','shipping'=> $shipping_address, 'location' => $location ]);
