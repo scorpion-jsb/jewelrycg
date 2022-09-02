@@ -56,10 +56,13 @@ class ProductController extends Controller
 
     }
 
-    public function show($slug)
+    public function show($slug, $type=1)
     {
-        $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
-
+        if($type == 1){
+            $product = Product::with(['modelpreview'])->whereId($slug)->firstOrFail();
+        } else{
+            $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
+        }
         abort_if(! $product, 404);
 
         $product->setPriceToFloat();
