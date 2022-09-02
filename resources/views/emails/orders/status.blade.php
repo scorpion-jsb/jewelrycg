@@ -331,35 +331,37 @@ ul.social li{
                     <tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 					  	<td valign="middle" width="100%" style="text-align:left; padding: 0 1.0em;">
 					  		<div class="product-entry" style="width:100%">
-								@if ($order_item->productVariant && $order_item->productVariant->uploads)
-								<img src="{{ $order_item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-								@else
-								<img src="{{ $order_item->product->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
-								@endif
-								<div class="text">
-									<h3>{{$order_item->name}}</h3>
-									<div>Status: 
-									@if ($order_item->status_fulfillment == 1) 
-									Pending
-									@elseif ($order_item->status_fulfillment == 2)
-									Shipped
-									@elseif ($order_item->status_fulfillment == 3)
-									Delivered
-									@endif 
-									</div>
-									@if ($order_item->status_tracking != "")
-									<div>Tracking #: <b>{{$order_item->status_tracking}}</b></div>
+							  	<a href="{{route('products.show', $order_item->product_id)}}">
+									@if ($order_item->productVariant && $order_item->productVariant->uploads)
+									<img src="{{ $order_item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
+									@else
+									<img src="{{ $order_item->product->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
 									@endif
-									<div>Quantity: {{$order_item->quantity}}</div>
-									<p>Price: ${{$order_item->price}}</p>
-								</div>
+									<div class="text">
+										<h3>{{$order_item->name}}</h3>
+										<div>Status: 
+										@if ($order_item->status_fulfillment == 1) 
+										Pending
+										@elseif ($order_item->status_fulfillment == 2)
+										Shipped
+										@elseif ($order_item->status_fulfillment == 3)
+										Delivered
+										@endif 
+										</div>
+										@if ($order_item->status_tracking != "")
+										<div>Tracking #: <b>{{$order_item->status_tracking}}</b></div>
+										@endif
+										<div>Quantity: {{$order_item->quantity}}</div>
+										<p>Price: ${{$order_item->price}}</p>
+									</div>
+								</a>
 					  		</div>
 					  	</td>
 					</tr>
                     @endforeach
 					<tr style="border-bottom: 1px solid rgba(0,0,0,.05);">
 					  	<td valign="middle" colspan="5"style="text-align:center; padding: 1em 1.0em;">
-					  		<p><a href="#" class="btn btn-primary">View or manage order</a></p>
+					  		<p><a href="{{route('orders.show', $orderID)}}" class="btn btn-primary">View or manage order</a></p>
 					  	</td>
 					</tr>
 	      	</table>
