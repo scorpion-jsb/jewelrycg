@@ -21,7 +21,7 @@
                                 <div class="checkout-card-body">
                                     <h3 class="mb-3 fs-20">Billing Address</h3>
                                     @include('includes.validation-form')
-                                    <x-user-info :countries="$countries" :billing="$billing" />
+                                    <x-user-info :countries="$countries" :billing="$billing" :location="$location"/>
                                     <div class="row mb-3">
                                         <div class="col-12">
                                             <label for="isRemember">
