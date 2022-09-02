@@ -318,7 +318,6 @@ class CheckoutController extends Controller
                 $user->save();
             }
 
-         
             $userAddress->address = $request->address1;
             $userAddress->address2 = $request->address2;
             $userAddress->city = $request->city;
@@ -348,7 +347,7 @@ class CheckoutController extends Controller
         $products = Cart::instance('default')->content();
         $billing_address = auth()->user()->address_billing ?  UserAddress::find(auth()->user()->address_billing) : "NULL";
 
-        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping, 'billing'=> $billing_address, 'location' => $location,]);
+        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping, 'billing'=> $billing_address, 'location' => $location]);
     }
 
     public function postBilling(Request $request)
