@@ -87,23 +87,19 @@ class CheckoutController extends Controller
 
                 $order->total = $total;
 
-                // get shipping option
                 $shipping_option_id = $request->session()->get('shipping_option_id', 0);
+
                 if ($shipping_option_id)
                     $total += ShippingOption::find($shipping_option_id)->price;
 
-                // set shipping price
-                $shippingPrice = 0;
-                $shippingPrice = ShippingOption::find($shipping_option_id)->price;
-                $order->shipping_total = $shippingPrice;
-                
-                // set tax price
+                $order->shipping_total = ShippingOption::find($shipping_option_id)->price;
+
                 $taxPrice = 0;
                 foreach (Cart::content() as $product) {
                     $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
                 }
-
                 $order->tax_total = $taxPrice;
+        
                 $order->grand_total = $total+$taxPrice;
 
             }
@@ -111,9 +107,6 @@ class CheckoutController extends Controller
             $order->order_id = $orderId;
             $order->status_payment = 1;
             $order->user_id = Auth::user()->id;
-            $order->first_name = Auth::user()->first_name;
-            $order->last_name = Auth::user()->last_name;
-            $order->email = Auth::user()->email;
             $order->billing_address1 = $request->session()->get('billing_address1', '');
             $order->billing_address2 = $request->session()->get('billing_address2', '');
             $order->billing_city = $request->session()->get('billing_city', '');
