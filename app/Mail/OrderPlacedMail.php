@@ -47,7 +47,6 @@ class OrderPlacedMail extends Mailable
              $total += (ShippingOption::find($shipping_option_id)->price / 100);
 
         // Set shipping price
-        $shipping_price = 0;
         if ($shipping_option_id != "0") {
             $shipping_price = ShippingOption::find($shipping_option_id)->price / 100;
         }
