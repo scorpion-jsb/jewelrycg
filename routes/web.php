@@ -249,9 +249,7 @@ Route::get('/searchCategory', [ProductController::class, 'searchCategory'])->nam
 
 // Products
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
-
-Route::get('products/{slug}', [ProductController::class, 'show'])->name('products.show');
-
+Route::get('product/{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('products', [ProductController::class, 'index'])->name('products.index');
 
 // Products Shop Page
