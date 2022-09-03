@@ -286,7 +286,10 @@ class CheckoutController extends Controller
         $request->session()->put('shipping_zipcode', $request->pin_code);
         $request->session()->put('shipping_phonenumber', $request->phone);
         $request->session()->put('shipping_option_id', $request->shipping_option);
-        $request->session()->put('shipping_price', ShippingOption::find($request->shipping_option)->price);
+        if ($shipping_option_id) {
+            $request->session()->put('shipping_price', ShippingOption::find($request->shipping_option)->price);
+        }
+
         if ($request->isRemember) {
 
             $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
