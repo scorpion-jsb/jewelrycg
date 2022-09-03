@@ -31,7 +31,7 @@ class OrderPlacedMail extends Mailable
      */
     public function build()
     {
-        $first_name = auth()->user()->first_name;
+        //$first_name = auth()->user()->first_name;
         $total = $this->order->total / 100;
 
         // Set Tax
@@ -57,7 +57,7 @@ class OrderPlacedMail extends Mailable
         return $this->subject('Your JewelryCG.com order #'.$this->order->order_id.'')
             ->view('emails.orders.placed')
             ->with([
-                'first_name' => $first_name,
+                'first_name' => $this->order->first_name,
                 'orderID' => $this->order->order_id,
                 'sub_total' => ($this->order->total/100),
                 'total_price' => $total_price,
