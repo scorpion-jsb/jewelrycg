@@ -259,6 +259,7 @@ class CheckoutController extends Controller
         if (Mail::flushMacros()) {
             
         } else {
+            $request->session()->forget('shipping_price');
             return redirect()->route('orders.show', $orderId);
         }
     }
