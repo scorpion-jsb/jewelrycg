@@ -338,7 +338,7 @@ ul.social li{
 									<img src="{{ $order_item->product->uploads->getImageOptimizedFullName(150) }}" alt="" style="width: 50px; max-width: 600px; height: auto; margin-bottom: 20px; display: block;">
 									@endif
 								</a>
-								<div class="text">
+								<div class="text" style="color:#000000;">
 									<a href="{{route('products.show', $order_item->product_id)}}"><h3>{{$order_item->name}}</h3></a>
 									<div>Status: 
 									@if ($order_item->status_fulfillment == 1) 
@@ -350,10 +350,10 @@ ul.social li{
 									@endif 
 									</div>
 									@if ($order_item->status_tracking != "")
-									<div style="color:#000000;">Tracking #: <b>{{$order_item->status_tracking}}</b></div>
+									<div>Tracking #: <b>{{$order_item->status_tracking}}</b></div>
 									@endif
 									<div>Quantity: {{$order_item->quantity}}</div>
-									<p style="color:#000000;">Price: ${{$order_item->price}}</p>
+									<p>Price: ${{$order_item->price}}</p>
 								</div>
 					  		</div>
 					  	</td>
