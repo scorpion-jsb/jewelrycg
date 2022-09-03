@@ -21,7 +21,6 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use Mail;
 use App\Mail\OrderPlacedMail;
-use GeoIP;
 
 class CheckoutController extends Controller
 {
@@ -108,9 +107,6 @@ class CheckoutController extends Controller
             $order->order_id = $orderId;
             $order->status_payment = 1;
             $order->user_id = Auth::user()->id;
-            $order->first_name = Auth::user()->first_name;
-            $order->last_name = Auth::user()->last_name;
-            $order->email = Auth::user()->email;
             $order->billing_address1 = $request->session()->get('billing_address1', '');
             $order->billing_address2 = $request->session()->get('billing_address2', '');
             $order->billing_city = $request->session()->get('billing_city', '');
@@ -274,10 +270,8 @@ class CheckoutController extends Controller
         $shippings = ShippingOption::all();
         $products = Cart::instance('default')->content();
         $shipping_address = auth()->user()->address_shipping ?  UserAddress::find(auth()->user()->address_shipping) : "NULL";
-        $user_ip = request()->ip();
-        $location = geoip()->getLocation($user_ip);
 
-        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout','shipping'=> $shipping_address, 'location'=> $location]);
+        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout','shipping'=> $shipping_address ]);
     }
 
     public function postShipping(Request $request)
@@ -295,7 +289,9 @@ class CheckoutController extends Controller
         if ($request->isRemember) {
 
             $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
+
             if ($userAddress) {
+
                 $userAddress = UserAddress::find($userAddress->id);
             } else {
                 $userAddress = new UserAddress;
@@ -345,10 +341,7 @@ class CheckoutController extends Controller
         $products = Cart::instance('default')->content();
         $billing_address = auth()->user()->address_billing ?  UserAddress::find(auth()->user()->address_billing) : "NULL";
 
-        $user_ip = request()->ip();
-        $location = geoip()->getLocation($user_ip);
-        
-        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping, 'billing'=> $billing_address, 'location' => $location ]);
+        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping, 'billing'=> $billing_address,]);
     }
 
     public function postBilling(Request $request)
