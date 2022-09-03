@@ -15,16 +15,7 @@ class ProductController extends Controller
 {
     public function searchCategory(Request $req)
     {
-        // if (Auth::check()) {
-        //     $search = new UserSearch;
-        //     $search->user_id = Auth::user()->id;
-        //     $search->query = json_encode(['category' => $req->category, 'query' => $req->q]);
-        //     $search->save();
-        // }
-
         $products = Product::searchWithImages($req->q, $req->category);
-        // return view('search', compact('products'));
-
         return view('components.products-display', compact('products'));
     }
 
@@ -59,8 +50,7 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        try
-        {
+        try {
             $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
         } catch(ModelNotFoundException $e) {
             $product = Product::with(['modelpreview'])->whereId($slug)->firstOrFail();
