@@ -29,11 +29,10 @@ class OrderStatusChangedMail extends Mailable
      */
     public function build()
     {
-        $first_name = auth()->user()->first_name;
         return $this->subject('Order Status Changed')
             ->view('emails.orders.status')
             ->with([
-                'first_name' => $first_name,
+                'first_name' => $this->order->first_name,
                 'orderID' => $this->order->order_id,
                 'order_items' => $this->order->items->map(function($i) {
                     $i->getSelfWithProductInfo();
