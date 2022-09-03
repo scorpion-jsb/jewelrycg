@@ -350,10 +350,10 @@ ul.social li{
 									@endif 
 									</div>
 									@if ($order_item->status_tracking != "")
-									<div>Tracking #: <b>{{$order_item->status_tracking}}</b></div>
+									<div style="color:#000000;">Tracking #: <b>{{$order_item->status_tracking}}</b></div>
 									@endif
 									<div>Quantity: {{$order_item->quantity}}</div>
-									<p>Price: ${{$order_item->price}}</p>
+									<p style="color:#000000;">Price: ${{$order_item->price}}</p>
 								</div>
 					  		</div>
 					  	</td>
