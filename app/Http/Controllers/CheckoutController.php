@@ -286,9 +286,7 @@ class CheckoutController extends Controller
         $request->session()->put('shipping_zipcode', $request->pin_code);
         $request->session()->put('shipping_phonenumber', $request->phone);
         $request->session()->put('shipping_option_id', $request->shipping_option);
-        if ($shipping_option_id) {
-            $request->session()->put('shipping_price', ShippingOption::find($request->shipping_option)->price);
-        }
+        $request->session()->put('shipping_price', ShippingOption::find($request->shipping_option)->price);
 
         if ($request->isRemember) {
 
