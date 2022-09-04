@@ -198,7 +198,7 @@ class BlogsController extends Controller
             $slug = $request->name;
         }
         
-        if (BlogPost::where('slug', $this->slugify($slug))->count()) {
+        if (BlogPost::where('id', '!=', $id)->where('slug', $this->slugify($slug))->count()) {
             $data['slug'] = $this->slugify($slug) . "-1";
         } else {
             $data['slug'] = $this->slugify($slug);
