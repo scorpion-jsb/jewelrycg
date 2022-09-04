@@ -34,3 +34,6 @@
         @endforeach
     @endforeach
 </div>
+<div class="row mt-5">
+    {{ $products->links() }}
+</div>
