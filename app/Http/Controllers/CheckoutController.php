@@ -19,8 +19,6 @@ use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
-use Mail;
-use App\Mail\OrderPlacedMail;
 
 class CheckoutController extends Controller
 {
@@ -75,10 +73,12 @@ class CheckoutController extends Controller
                     $orderItem->quantity = $item->qty;
                     $orderItem->product_variant = 0;
 
-                    $total = $orderItem->price * $orderItem->quantity + $total;
+                    $total = $orderItem->price * $orderItem->quantity;
 
                     if (isset($item->options['id'])) {
                         $orderItem->product_variant = $item->options['id'];
+
+                        // $productVariant = ProductsVariant::find($item->options['id']);
                         $orderItem->product_variant_name = $item->options['name'];;
                     }
 
@@ -92,24 +92,12 @@ class CheckoutController extends Controller
                 if ($shipping_option_id)
                     $total += ShippingOption::find($shipping_option_id)->price;
 
-                $order->shipping_total = ShippingOption::find($shipping_option_id)->price;
-
-                $taxPrice = 0;
-                foreach (Cart::content() as $product) {
-                    $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
-                }
-                $order->tax_total = $taxPrice;
-        
-                $order->grand_total = $total+$taxPrice;
-
+                $order->grand_total = $total;
             }
 
             $order->order_id = $orderId;
             $order->status_payment = 1;
             $order->user_id = Auth::user()->id;
-            $order->first_name = Auth::user()->first_name;
-            $order->last_name = Auth::user()->last_name;
-            $order->email = Auth::user()->email;
             $order->billing_address1 = $request->session()->get('billing_address1', '');
             $order->billing_address2 = $request->session()->get('billing_address2', '');
             $order->billing_city = $request->session()->get('billing_city', '');
@@ -242,29 +230,17 @@ class CheckoutController extends Controller
         $orderId = $request->session()->get('order_id');
 
         $request->session()->forget('order_id');
-        $request->session()->forget('shipping_price');
 
         $order = Order::where('order_id', $orderId)->first();
 
         $order->status_payment = 2; // paid
         $order->payment_intent = $request->get('payment_intent');
-        $order->order_id = $orderId;
-
-        $taxPrice = 0;
-        foreach (Cart::content() as $product) {
-            $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
-        }
-
         $order->save();
 
         // Send order placed email to customer
-        Mail::to(Auth::user()->email)->send(new OrderPlacedMail($order, $taxPrice));
 
-        if (Mail::flushMacros()) {
-            
-        } else {
-            return redirect()->route('orders.show', $orderId);
-        }
+        // redirect to order details
+        return redirect()->route('orders.show', $orderId);
     }
 
     public function getShipping()
@@ -290,7 +266,6 @@ class CheckoutController extends Controller
         $request->session()->put('shipping_phonenumber', $request->phone);
         $request->session()->put('shipping_option_id', $request->shipping_option);
         $request->session()->put('shipping_price', ShippingOption::find($request->shipping_option)->price);
-
         if ($request->isRemember) {
 
             $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
