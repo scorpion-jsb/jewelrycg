@@ -17,7 +17,7 @@
 <div class="mb-4">
 	<div class="datatable-custom position-relative mb-4">
 		<div id="datatable_wrapper" class="border dataTables_wrapper no-footer">
-			<table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover table-responsive no-footer" role="grid" aria-describedby="datatable_info">
+			<table id="datatable" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-hover table-responsive no-footer mb-0" role="grid" aria-describedby="datatable_info">
 				<thead class="thead-light">
 					<tr role="row">
 						<th class="table-column-pe-0 sorting_disabled" rowspan="1" colspan="1" aria-label="">
@@ -83,10 +83,15 @@
                     @endforeach 
                 </tbody>
 			</table>
-			<div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 15 of 24 entries</div>
+			{{-- <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 15 of 24 entries</div> --}}
 		</div>
 	</div>
 	<div class="card-footer">
+		<div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+			{{ $users->links() }}
+		</div>
+	</div>
+	{{-- <div class="card-footer">
 		<div class="row justify-content-center justify-content-sm-between align-items-sm-center">
 			<div class="col-sm mb-2 mb-sm-0">
 				<div class="col-sm-auto">
@@ -120,7 +125,7 @@
 			</div>
 			<!-- End Row -->
 		</div>
-	</div>
+	</div> --}}
 </div>
 <!-- End Card --> 
 @endsection
@@ -129,36 +134,36 @@
     <script>
         $(function() {
 
-            $('.table').DataTable({
-                processing: true,
-                serverSide: true,
-                bAutoWidth: false,
+            // $('.table').DataTable({
+            //     processing: true,
+            //     serverSide: true,
+            //     bAutoWidth: false,
 
-                ajax: '{{ route('backend.users.get') }}',
-                columns: [{
-                        data: 'id',
-                        name: 'id'
-                    },
-                    {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'email',
-                        name: 'email'
-                    },
-                    {
-                        data: 'role',
-                        name: 'role'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
-                ]
-            });
+            //     ajax: '{{ route('backend.users.get') }}',
+            //     columns: [{
+            //             data: 'id',
+            //             name: 'id'
+            //         },
+            //         {
+            //             data: 'name',
+            //             name: 'name'
+            //         },
+            //         {
+            //             data: 'email',
+            //             name: 'email'
+            //         },
+            //         {
+            //             data: 'role',
+            //             name: 'role'
+            //         },
+            //         {
+            //             data: 'action',
+            //             name: 'action',
+            //             orderable: false,
+            //             searchable: false
+            //         },
+            //     ]
+            // });
         });
     </script>
 @endsection
