@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Order;
+use App\Models\SettingGeneral;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
 use Intervention\Image\Facades\Image;
@@ -21,7 +22,8 @@ class AppController extends Controller
         $products->each(function($product) {
             $product->setPriceToFloat();
         });
-        return view('index', compact('products'));
+        $metaInfo = SettingGeneral::select('meta_title as metaTitle', 'meta_description as metaDescription')->first() ?? ['metaTitle'=> '', 'metaDescription'=> ''];
+        return view('index', compact('products', 'metaInfo'));
     }
 
     function dashboard() {

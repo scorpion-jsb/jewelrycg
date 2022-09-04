@@ -1,4 +1,4 @@
-<x-app-layout page-class="homepage" page-title="Jewelry CG">
+<x-app-layout page-class="homepage" :page-title="$metaInfo ? $metaInfo->metaTitle : 'Jewelry CG'">
     <x-hero :products="$products"/>
 <!--
 <section class="why-points top-content-container pt-4 pb-4">
