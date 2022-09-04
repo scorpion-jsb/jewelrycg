@@ -19,6 +19,9 @@ use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
+use Mail;
+use App\Mail\OrderPlacedMail;
+
 
 class CheckoutController extends Controller
 {
