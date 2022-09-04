@@ -19,7 +19,7 @@ class OrderPlacedMail extends Mailable
      *
      * @return void
      */
-    public function __construct(private Order $order, private $tax_price)
+    public function __construct(private Order $order)
     {
         //
     }
