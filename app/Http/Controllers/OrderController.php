@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\UpdateOrderRequest;
 use App\Models\Order;
+use Illuminate\Http\Request;
 
 class OrderController extends Controller
 {
@@ -29,5 +30,20 @@ class OrderController extends Controller
         $order->adminUpdate($req);
 
         return redirect()->route('orders.show', $order);
+    }
+
+    /**
+     * Track order page
+     */
+    public function trackOrder(Request $request){
+        if($request->query('orderId') && $request->query('email')){
+            $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
+                        ->where('order_id', $request->query('orderId'))
+                        ->where('email', $request->query('email'))
+                        ->first();
+            return view('orders.show', compact('order'));
+        }else{
+            return view('trackorder');
+        }
     }
 }

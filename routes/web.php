@@ -334,6 +334,9 @@ Route::group(['middleware' => 'auth'], function ()
 
 });
 
+// track order page
+Route::get('trackorder', [OrderController::class, 'trackOrder'])->name('track.order');
+
 require __DIR__ . '/auth.php';
 
 Route::get('{slug?}', UriController::class)->name('page')->where('slug','.+');
