@@ -242,6 +242,7 @@ class CheckoutController extends Controller
         $orderId = $request->session()->get('order_id');
 
         $request->session()->forget('order_id');
+        $request->session()->forget('shipping_price');
 
         $order = Order::where('order_id', $orderId)->first();
 
@@ -262,7 +263,6 @@ class CheckoutController extends Controller
         if (Mail::flushMacros()) {
             
         } else {
-            $request->session()->forget('shipping_price');
             return redirect()->route('orders.show', $orderId);
         }
     }
