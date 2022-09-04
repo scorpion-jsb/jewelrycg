@@ -10,7 +10,7 @@
 
         <!-- Google / Search Engine Tags -->
         <meta itemprop="name" content="{{$pageTitle}}">
-        <meta itemprop="description" content="{{ $pageTitle}}">
+        <meta itemprop="description" content="{{ $pageDescription}}">
 
         <!-- Facebook Meta Tags -->
         <meta property="og:type" content="website">
