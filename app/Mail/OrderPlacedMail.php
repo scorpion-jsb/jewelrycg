@@ -31,27 +31,15 @@ class OrderPlacedMail extends Mailable
      */
     public function build()
     {
-        //$first_name = auth()->user()->first_name;
-        $total = $this->order->total / 100;
 
         // Set Tax
         $taxPrice = 0;
-        $taxPrice = $this->order->tax_total;
-
-        // Add tax to total
-        $total += $this->order->tax_total/100;
-        
-        // Add shipping to total
-        $shipping_option_id = $this->order->shipping_option_id;
-        if ($shipping_option_id)
-             $total += (ShippingOption::find($shipping_option_id)->price / 100);
+        $taxPrice = $this->order->tax_total / 100;
 
         // Set shipping price
-        if ($shipping_option_id != "0") {
-            $shipping_price = ShippingOption::find($shipping_option_id)->price / 100;
-        }
+        $shipping_price = 0;
+        $shipping_price = $this->order->shipping_total / 100;
         
-        $total_price = $total;
 
         return $this->subject('Your JewelryCG.com order #'.$this->order->order_id.'')
             ->view('emails.orders.placed')
@@ -59,7 +47,7 @@ class OrderPlacedMail extends Mailable
                 'first_name' => $this->order->first_name,
                 'orderID' => $this->order->order_id,
                 'sub_total' => ($this->order->total/100),
-                'total_price' => $total_price,
+                'total_price' => ($this->order->grand_total/100),
                 'shipping_price' => $shipping_price,
                 'tax_price' => ($this->order->tax_total/100),
                 'billing_address1' => $this->order->billing_address1,
