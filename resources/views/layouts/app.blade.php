@@ -5,9 +5,6 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"/>
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- SEO start -->
-        <meta name="description" content="{{ $pageTitle}}">
-
         <!-- Google / Search Engine Tags -->
         <meta itemprop="name" content="{{$pageTitle}}">
         <meta itemprop="description" content="{{ $pageDescription}}">
@@ -22,10 +19,9 @@
         <meta name="twitter:title" content="{{$pageTitle}}">
         <meta name="twitter:description" content="{{ $pageDescription}}">
 
-        <!-- SEO end -->
-
-
+        <!-- title/description -->
         <title>{{$pageTitle}}</title>
+        <meta name="description" content="{{ $pageDescription}}">
         <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}"/>
 
         <!-- Google Fonts -->
