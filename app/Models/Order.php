@@ -22,6 +22,7 @@ class Order extends Model
         'total',
         'tax_total',
         'grand_total',
+        'shipping_total',
         'tax',
         'shipping_address1',
         'shipping_address2',
