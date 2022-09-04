@@ -98,6 +98,9 @@ class CheckoutController extends Controller
             $order->order_id = $orderId;
             $order->status_payment = 1;
             $order->user_id = Auth::user()->id;
+            $order->first_name = Auth::user()->first_name;
+            $order->last_name = Auth::user()->last_name;
+            $order->email = Auth::user()->email;
             $order->billing_address1 = $request->session()->get('billing_address1', '');
             $order->billing_address2 = $request->session()->get('billing_address2', '');
             $order->billing_city = $request->session()->get('billing_city', '');
