@@ -6,26 +6,26 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <!-- SEO start -->
-        <meta name="description" content="{{ $metaInfo ? $metaInfo->metaDescription : $pageTitle }}">
+        <meta name="description" content="{{ $pageTitle}}">
 
         <!-- Google / Search Engine Tags -->
-        <meta itemprop="name" content="{{$metaInfo ? $metaInfo->metaDescription : $pageTitle}}">
-        <meta itemprop="description" content="{{ $metaInfo ? $metaInfo->metaDescription : $pageTitle}}">
+        <meta itemprop="name" content="{{$pageTitle}}">
+        <meta itemprop="description" content="{{ $pageTitle}}">
 
         <!-- Facebook Meta Tags -->
         <meta property="og:type" content="website">
-        <meta property="og:title" content="{{$metaInfo ? $metaInfo->metaTitle : $pageTitle}}">
-        <meta property="og:description" content="{{ $metaInfo ? $metaInfo->metaDescription : $pageTitle}}">
+        <meta property="og:title" content="{{$pageTitle}}">
+        <meta property="og:description" content="{{ $pageTitle}}">
 
         <!-- Twitter Meta Tags -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="{{$metaInfo ? $metaInfo->metaTitle : $pageTitle}}">
-        <meta name="twitter:description" content="{{ $metaInfo ? $metaInfo->metaDescription : $pageTitle}}">
+        <meta name="twitter:title" content="{{$pageTitle}}">
+        <meta name="twitter:description" content="{{ $pageTitle}}">
 
         <!-- SEO end -->
 
 
-        <title>{{$metaInfo ? $metaInfo->metaTitle : $pageTitle}}</title>
+        <title>{{$pageTitle}}</title>
         <link rel="shortcut icon" type="image/png" href="{{ asset('assets/img/favicon.png') }}"/>
 
         <!-- Google Fonts -->
