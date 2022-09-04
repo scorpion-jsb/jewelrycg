@@ -38,7 +38,7 @@ class ProductController extends Controller
 
     public function products_index()
     {
-        $products = Product::orderBy('id', 'DESC')->get();
+        $products = Product::orderBy('id', 'DESC')->paginate(24);
         $products->each(function($product){
             $product->setPriceToFloat();
         });
