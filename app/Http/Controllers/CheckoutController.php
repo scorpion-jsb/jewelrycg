@@ -156,7 +156,7 @@ class CheckoutController extends Controller
             if ($shipping_option_id)
                 $total += ShippingOption::find($shipping_option_id)->price;
                 // save shipping total
-                $order->shipping_total = ShippingOption::find($shipping_option_id)->price;
+                //$order->shipping_total = ShippingOption::find($shipping_option_id)->price;
 
             $taxPrice = 0;
             foreach (Cart::content() as $product) {
@@ -164,7 +164,7 @@ class CheckoutController extends Controller
             }
             $total += floor($taxPrice + 0.5);
             // save tax total
-            $order->tax_total = $taxPrice;
+            //$order->tax_total = $taxPrice;
 
             // Create a PaymentIntent with amount and currency
             $paymentIntent = \Stripe\PaymentIntent::create([
