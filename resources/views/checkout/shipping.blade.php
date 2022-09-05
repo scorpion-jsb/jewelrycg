@@ -46,7 +46,7 @@
 
                                 <h3 class="mb-3 fs-20">Shipping Address</h3>
                                     @include('includes.validation-form')
-                                    <x-user-info :countries="$countries" :billing="$shipping" />
+                                    <x-user-info :countries="$countries" :billing="$shipping" :location="$location" />
                                     <div class="row mb-3">
                                         <div class="col-12">
                                             <label for="isRemember">
