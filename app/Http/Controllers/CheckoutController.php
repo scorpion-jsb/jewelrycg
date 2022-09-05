@@ -104,7 +104,7 @@ class CheckoutController extends Controller
                 }
                 
                 // Save tax 
-                $order->shipping_total = $taxPrice;
+                $order->tax_total = $taxPrice;
 
                 // Save grand total
                 $order->grand_total = $total+$taxPrice;
