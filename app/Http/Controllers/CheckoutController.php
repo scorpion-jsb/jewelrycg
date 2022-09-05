@@ -249,6 +249,7 @@ class CheckoutController extends Controller
 
         $request->session()->forget('order_id');
         $request->session()->forget('shipping_price');
+        $request->session()->forget('shipping_option_id');
 
         $order = Order::where('order_id', $orderId)->first();
 
