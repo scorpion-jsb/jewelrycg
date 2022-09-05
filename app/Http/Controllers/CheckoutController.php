@@ -88,14 +88,26 @@ class CheckoutController extends Controller
                     $orderItem->save();
                 }
 
+                // Save order subtotal
                 $order->total = $total;
 
+                // Find shipping price
                 $shipping_option_id = $request->session()->get('shipping_option_id', 0);
-
-                if ($shipping_option_id)
+                if ($shipping_option_id) {
                     $total += ShippingOption::find($shipping_option_id)->price;
+                    $order->shipping_total = ShippingOption::find($shipping_option_id)->price;
+                }
 
-                $order->grand_total = $total;
+                $taxPrice = 0;
+                foreach (Cart::content() as $product) {
+                    $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
+                }
+                
+                // Save tax 
+                $order->shipping_total = $taxPrice;
+
+                // Save grand total
+                $order->grand_total = $total+$taxPrice;
             }
 
             $order->order_id = $orderId;
