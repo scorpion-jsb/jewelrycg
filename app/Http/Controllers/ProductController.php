@@ -90,10 +90,10 @@ class ProductController extends Controller
 
         $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();
         return view('components.products-display', [
-            'products'  => $products, 
-            'categories'=>$categories, 
+            'products'  => $products,
+            'categories'=>$categories,
             'attrs'     => $attributes
-        ]);        
+        ]);
     }
     public function show($slug)
     {

@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\Order;
 use App\Models\SettingGeneral;
 use App\Models\ProductsCategorie;
+use App\Models\Attribute;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
 use Intervention\Image\Facades\Image;
@@ -24,7 +25,10 @@ class AppController extends Controller
             $product->setPriceToFloat();
         });
         $metaInfo = SettingGeneral::select('meta_title as metaTitle', 'meta_description as metaDescription')->first() ?? ['metaTitle'=> '', 'metaDescription'=> ''];
-        return view('index', compact('products', 'metaInfo'));
+        $categories = ProductsCategorie::whereNull('parent_id')->get();
+
+        $attrs = Attribute::has('values')->select('id', 'name', 'type')->get();        
+        return view('index', compact('products', 'metaInfo', 'categories', 'attrs'));
     }
 
     function dashboard() {
