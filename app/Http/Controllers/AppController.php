@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Order;
 use App\Models\SettingGeneral;
+use App\Models\ProductsCategorie;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
 use Intervention\Image\Facades\Image;

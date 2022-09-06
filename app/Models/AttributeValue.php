@@ -19,7 +19,7 @@ class AttributeValue extends Model
 
     function image() {
         if ($this->attribute->type == 2) {
-            return $this->hasOne('App\Models\Upload', 'id', 'value');
+            return $this->hasOne(Upload::class, 'id', 'value');
         } else {
             return null;
         }

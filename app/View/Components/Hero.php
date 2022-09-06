@@ -11,7 +11,7 @@ class Hero extends Component
      *
      * @return void
      */
-    public function __construct(public $products)
+    public function __construct(public $products, public $categories, public $attrs)
     {
         //
     }

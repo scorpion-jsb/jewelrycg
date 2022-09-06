@@ -246,6 +246,7 @@ Route::get('/blog/tag/{tag}', [BlogController::class, 'tagPost'])->name('tagPost
 // Search
 Route::get('/search', [ProductController::class, 'search'])->name('search');
 Route::get('/searchCategory', [ProductController::class, 'searchCategory'])->name('searchCategory');
+Route::get('/filter-product', [ProductController::class, 'filterProduct'])->name('filter.product');
 
 // Products
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
@@ -331,7 +332,6 @@ Route::group(['middleware' => 'auth'], function ()
 		Route::delete('/delete', 'delete')->name('delete');
 		Route::get('/{id_user}', 'index')->name('index');
 	});
-
 });
 
 // track order page

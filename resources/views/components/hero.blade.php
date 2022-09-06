@@ -31,15 +31,75 @@
     </section>
 
     <main class="py-6">
-        <div class="container product-container">
-            <x-products-display :products="$products" />
+        <div class="container">
+            <div class="filter-panel">
+                <div class="d-flex justify-content-end mb-2">
+                    <a class="btn btn-sm btn-primary" role="button" data-bs-toggle="collapse" href="#filterPanel" aria-expanded="false" aria-controls="filterPanel">Filter</a>
+                </div>
+                <div class="collapse" id="filterPanel">
+                    <div class="card">
+                        <div class="card-body d-flex justify-content-between p-2">
+                            <div class="col-md-3 p-3">
+                                <label for="imageAttributeFilter" class="form-label fw-bold">CATEGORY</label>
+                                <ul class="nav flex-column category-list">
+                                    @foreach ( $categories as $category )
+                                        <li class="nav-item category-item">
+                                            @if (count($category->subcategory) == 0)
+                                                <label class="custom-checkbox-container">{{ $category->category_name }}
+                                                    <input type="checkbox" id="category-{{ $category->id }}" value="{{ $category->id }}">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                            @else
+                                                <label class="custom-checkbox-container">{{ $category->category_name }}
+                                                    <input type="checkbox" id="category-{{ $category->id }}" value="{{ $category->id }}">
+                                                    <span class="checkmark"></span>
+                                                </label>
+                                                @include('components.subcategory-list',['subcategories' => $category->subcategory])
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                                @include('products.js')
+                            </div>
+                            <div class="col-md-9 d-flex flex-wrap justify-content-between">
+                                @foreach ($attrs as $attr)
+                                    <div class="col-md-3 p-3">
+                                        <label for="colorAttributeFilter" class="form-label fw-bold">{{ $attr->name }}</label>
+                                        <div class="attribute-list d-flex">
+                                            @foreach ($attr->values as $value)
+                                                @if ($attr->type == 0) {{-- text attribute --}}
+                                                    <div class="attribute-item text-attribute p-2 text-center text-capitalize" 
+                                                    data-toggle="tooltip" title="{{ $value->name }}"
+                                                    data-id="{{ $value->id }}">{{ $value->name }}</div>
+                                                @endif
+                                                @if ($attr->type == 1) {{-- color attribute--}}
+                                                    <div class="attribute-item p-2 text-center color-attribute rounded-circle" 
+                                                    data-toggle="tooltip" title="{{ $value->name }}"
+                                                    data-id="{{ $value->id }}" style="background-color: {{ $value->value }}"></div>
+                                                @endif
+                                                @if ($attr->type == 2) {{-- color attribute--}}
+                                                <div class="attribute-item p-2 text-center image-attribute img-rounded img-thumbnail" 
+                                                data-toggle="tooltip" title="{{ $value->name }}"
+                                                data-id="{{ $value->id }}" style="background-image: url({{ $value->image->getFileFullPath() }})"></div>
+                                                @endif
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="product-container">
+                <x-products-display :products="$products"/>
+            </div>
         </div>
     </main>
 
     <script>
     $(function() {
             var categoryId = '';
-
             const search = function() {
                 var searchWord = $('#search').val();
 

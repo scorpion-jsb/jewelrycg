@@ -14,5 +14,14 @@ class ProductsCategorie extends Model
         'category_excerpt',
         'slug',
     ];
+    public function subcategory()
+    {
+        return $this->hasMany($this, 'parent_id');
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo($this, 'parent_id');
+    }    
 
 }

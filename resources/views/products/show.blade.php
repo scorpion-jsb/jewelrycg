@@ -361,13 +361,11 @@
             if (variantAttributeValue.length == varaintAttributeCount) {
                 $('#buy_now_btn, #add_to_cart_btn').removeAttr('disabled');
             }
-
             variants.forEach(function(variant) {
 
                 if (variant.id == variantAttributeValue.sort().join(',')) {
-                    console.log('----------------')
                     $('#variant_attribute_value').val(variant.id)
-                    $('.product_price').text('$' + variant.price / 100)
+                    $('.product_price').text('$' + (variant.price / 100))
                 }
             })
         })
