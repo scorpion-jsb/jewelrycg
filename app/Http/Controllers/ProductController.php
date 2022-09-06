@@ -77,8 +77,12 @@ class ProductController extends Controller
     public function filterProduct(Request $request){
         if( $request->attrs && count($request->attrs)){
             $attribute_query = '%'.implode(",", $request->attrs).'%';
-            $products = Product::whereIn('category', $request->categories)
-                        ->where('product_attribute_values', 'like', $attribute_query)
+            $products = Product::leftJoin('products_variants', 'products.id', '=', 'products_variants.product_id')
+                        ->whereIn('category', $request->categories)
+                        ->where(function($query) use($attribute_query){
+                            $query->where('products.product_attribute_values', 'like', $attribute_query)
+                            ->orWhere('products_variants.variant_attribute_value', 'like', $attribute_query);
+                        })
                         ->orderBy('id', 'DESC')->paginate(24);
         }else if($request->categories && count($request->categories)){
             $products = Product::whereIn('category', $request->categories)
