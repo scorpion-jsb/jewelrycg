@@ -178,6 +178,27 @@
             <div class="card col-md-12">
                 <!-- Header -->
                 <div class="card-header">
+                    <h4 class="card-header-title mb-0">Guest Checkout</h4>
+                </div>
+                <!-- End Header -->
+                <div class="card-body">
+                    <div class="form-check form-switch mb-2">
+                        @if ($data && $data->guest_checkout)
+                        <input class="form-check-input" type="checkbox" id="guest_checkout" name="guest_checkout" 
+                            value="{{ $data->guest_checkout }}" 
+                            {{ $data->guest_checkout == 1 ? 'checked' : '' }}>
+                        @else
+                        <input class="form-check-input" type="checkbox" id="guest_checkout" name="guest_checkout" 
+                            value="{{ old('guest_checkout') }}" 
+                            {{ old('guest_checkout') == 1 ? 'checked' : '' }}>
+                        @endif                        
+                        <label class="form-check-label ms-3" for="guest_checkout">Guest Checkout</label>
+                    </div>                    
+                </div>
+            </div>            
+            <div class="card col-md-12">
+                <!-- Header -->
+                <div class="card-header">
                     <h4 class="card-header-title mb-0">Recaptcha Settings</h4>
                 </div>
                 <!-- End Header -->
@@ -210,5 +231,15 @@
 @endsection
 
 @section('js_content')
-   
+   <script>
+    $(function(){
+        $('#guest_checkout').change(function(){
+            if($(this).val() == 1){
+                $(this).val(0);
+            }else{
+                $(this).val(1);
+            }
+        })
+    })
+   </script>
 @endsection

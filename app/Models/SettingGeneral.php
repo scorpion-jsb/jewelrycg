@@ -28,6 +28,7 @@ class SettingGeneral extends Model
         'mail_from_name',
         'recaptcha_site_key',
         'recaptcha_secret_key',
+        'guest_checkout',
     ];
     protected $table = 'settings_general';
     
