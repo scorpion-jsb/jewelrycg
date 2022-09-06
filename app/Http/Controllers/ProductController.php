@@ -7,6 +7,8 @@ use App\Models\Product;
 use App\Models\Upload;
 use App\Models\UserSearch;
 use App\Models\ProductsVariant;
+use App\Models\ProductsCategorie;
+use App\Models\Attribute;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -16,7 +18,14 @@ class ProductController extends Controller
     public function searchCategory(Request $req)
     {
         $products = Product::searchWithImages($req->q, $req->category);
-        return view('components.products-display', compact('products'));
+        $categories = ProductsCategorie::whereNull('parent_id')->get();
+
+        $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();            
+        return view('components.products-display', [
+            'products'  => $products, 
+            'categories'=>$categories, 
+            'attrs'     => $attributes
+        ]);
     }
 
     public function search(SearchProductRequest $req)
@@ -29,7 +38,14 @@ class ProductController extends Controller
         }
 
         $products = Product::searchWithImages($req->q, $req->category);
-        return view('search', compact('products'));
+        $categories = ProductsCategorie::whereNull('parent_id')->get();
+
+        $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();        
+        return view('search', [
+            'products'  => $products, 
+            'categories'=>$categories, 
+            'attrs'     => $attributes
+        ]);
     }
 
     function index() {
@@ -42,12 +58,43 @@ class ProductController extends Controller
         $products->each(function($product){
             $product->setPriceToFloat();
         });
+
+        $categories = ProductsCategorie::whereNull('parent_id')->get();
+
+        $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();
         return view('products.list', [
-            'products' => $products
+            'products'  => $products, 
+            'categories'=> $categories, 
+            'attrs'     => $attributes
         ]);
 
     }
 
+    /**
+     * Filter producst by category and attribute_values
+     * 
+     */
+    public function filterProduct(Request $request){
+        if( $request->attrs && count($request->attrs)){
+            $attribute_query = '%'.implode(",", $request->attrs).'%';
+            $products = Product::whereIn('category', $request->categories)
+                        ->where('product_attribute_values', 'like', $attribute_query)
+                        ->orderBy('id', 'DESC')->paginate(24);
+        }else if($request->categories && count($request->categories)){
+            $products = Product::whereIn('category', $request->categories)
+                        ->orderBy('id', 'DESC')->paginate(24);
+        }else{
+            $products = Product::orderBy('id', 'DESC')->paginate(24);            
+        }
+        $categories = ProductsCategorie::whereNull('parent_id')->get();
+
+        $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();
+        return view('components.products-display', [
+            'products'  => $products, 
+            'categories'=>$categories, 
+            'attrs'     => $attributes
+        ]);        
+    }
     public function show($slug)
     {
         try {

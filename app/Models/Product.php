@@ -95,7 +95,7 @@ class Product extends Model
         }
 
         return $q->where('name', 'like', "%$search%")
-                ->paginate(100);
+                ->paginate(24);
     }
 
     public static function stringPriceToCents(string $price)
