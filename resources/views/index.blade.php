@@ -1,5 +1,5 @@
 <x-app-layout page-class="homepage" :page-title="$metaInfo->metaTitle !='' ? $metaInfo->metaTitle : env('APP_NAME')" :page-description="$metaInfo->metaDescription !='' ? $metaInfo->metaDescription : ''">
-    <--x-hero :products="$products"/-->
+    <x-hero :products="$products"/>
 
 <section class="why-points top-content-container pt-4 pb-4">
     <div class="container">
