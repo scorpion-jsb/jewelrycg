@@ -98,6 +98,7 @@ class ProductController extends Controller
         }else{
             $products = Product::orderBy('id', 'DESC')->paginate(24);            
         }
+        $products->withPath('/');
         $categories = ProductsCategorie::whereNull('parent_id')->get();
 
         $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();
