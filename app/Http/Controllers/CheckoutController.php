@@ -142,6 +142,7 @@ class CheckoutController extends Controller
             $order->billing_zipcode = $request->session()->get('billing_zipcode', '');
             $order->billing_country = $request->session()->get('billing_country', '');
             $order->billing_phonenumber = $request->session()->get('billing_phonenumber', '');
+
             $order->shipping_first_name = $request->session()->get('shipping_firstname');
             $order->shipping_last_name = $request->session()->get('shipping_lastname');
             $order->shipping_address1 = $request->session()->get('shipping_address1', '');
@@ -310,14 +311,13 @@ class CheckoutController extends Controller
         $shippings = ShippingOption::all();
         $products = Cart::instance('default')->content();
         if(auth()->user()){
-            $shipping_address = auth()->user()->address_shipping ?  UserAddress::find(auth()->user()->address_shipping) : "NULL";
+            $shipping_address = auth()->user()->address_shipping ?  (UserAddress::find(auth()->user()->address_shipping) ?? "NULL") : "NULL";
         }else{
             $shipping_address = "NULL";
         }
         $user_ip = request()->ip();
         $location = geoip()->getLocation($user_ip);
-
-        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout','shipping'=> $shipping_address, 'location'=> $location ]);
+        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout', 'shipping'=> $shipping_address, 'location'=> $location ]);
     }
 
     public function postShipping(Request $request)
@@ -334,14 +334,23 @@ class CheckoutController extends Controller
         $request->session()->put('shipping_phonenumber', $request->phone);
         $request->session()->put('shipping_option_id', $request->shipping_option);
         $request->session()->put('shipping_price', ShippingOption::find($request->shipping_option)->price);
-        if ($request->isRemember) {
-            $userAddress = UserAddress::where('user_id', auth()->id())->first();
-
+        if ($request->isRemember && auth()->user()) {
+            $userAddress = UserAddress::find(auth()->user()->address_shipping);
             if ($userAddress) {
-
-                $userAddress = UserAddress::find($userAddress->id);
+                $userAddress->first_name = $request->first_name;
+                $userAddress->last_name = $request->last_name;         
+                $userAddress->address = $request->address1;
+                $userAddress->address2 = $request->address2;
+                $userAddress->city = $request->city;
+                $userAddress->state = $request->state;
+                $userAddress->country = $request->country;
+                $userAddress->postal_code = $request->pin_code;
+                $userAddress->phone = $request->phone;
+                $userAddress->update();
+                $user = User::find(auth()->id());
+                $user->address_shipping =  $userAddress->id;
+                $user->save();                
             } else {
-                $userAddress = new UserAddress;
                 $userAddressInfo = UserAddress::create([
                     'user_id' => auth()->id(),
                     'first_name' => $request->first_name,
@@ -355,21 +364,10 @@ class CheckoutController extends Controller
                     'phone' => $request->phone,
                 ]);
     
-                $user = User::where('id', auth()->id())->first();
+                $user = User::find(auth()->id());
                 $user->address_shipping =  $userAddressInfo->id;
                 $user->save();
             }
-
-            $userAddress->first_name = $request->first_name;
-            $userAddress->last_name = $request->last_name;         
-            $userAddress->address = $request->address1;
-            $userAddress->address2 = $request->address2;
-            $userAddress->city = $request->city;
-            $userAddress->state = $request->state;
-            $userAddress->country = $request->country;
-            $userAddress->postal_code = $request->pin_code;
-            $userAddress->phone = $request->phone;
-            $userAddress->update();
         }
         
         return redirect()->route('checkout.billing.get');
@@ -390,13 +388,12 @@ class CheckoutController extends Controller
         $countries = Country::all(['name', 'code']);
         $products = Cart::instance('default')->content();
         if (auth()->user()) {
-            $billing_address = auth()->user()->address_billing ?  UserAddress::find(auth()->user()->address_billing) : "NULL";
+            $billing_address = auth()->user()->address_billing ?  (UserAddress::find(auth()->user()->address_billing) ?? "NULL" )  : "NULL";
         }else{
             $billing_address = "NULL";
         }
         $user_ip = request()->ip();
         $location = geoip()->getLocation($user_ip);
-
         return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping, 'billing'=> $billing_address, 'location'=> $location]);
     }
 
@@ -415,15 +412,26 @@ class CheckoutController extends Controller
             $request->session()->put('billing_email', $request->email);
         }
         if ($request->isRemember && auth()->user()) {
-            $userAddress = UserAddress::where('id', auth()->user()->address_billing)->first();
+            $userAddress = UserAddress::find(auth()->user()->address_billing);
             if ($userAddress) {
-                $userAddress = UserAddress::find($userAddress->id);
+                $userAddress->first_name = $request->first_name;
+                $userAddress->last_name = $request->last_name;         
+                $userAddress->address = $request->address1;
+                $userAddress->address2 = $request->address2;
+                $userAddress->city = $request->city;
+                $userAddress->state = $request->state;
+                $userAddress->country = $request->country;
+                $userAddress->postal_code = $request->pin_code;
+                $userAddress->phone = $request->phone;
+                $userAddress->update();
+                $user = User::find(auth()->id());
+                $user->address_shipping =  $userAddress->id;
+                $user->save();                      
             } else {
-                $userAddress = new UserAddress;
-                $userAddress2Info = UserAddress::create([
+                $userAddressInfo = UserAddress::create([
                     'user_id' => auth()->id(),
                     'first_name' => $request->first_name,
-                    'last_name' => $request->last_name,                    
+                    'last_name' => $request->last_name,
                     'address' => $request->address1,
                     'address2' => $request->address2,
                     'city' => $request->city,
@@ -432,22 +440,11 @@ class CheckoutController extends Controller
                     'postal_code' =>  $request->pin_code,
                     'phone' => $request->phone,
                 ]);
-                $user = User::where('id', auth()->id())->first();
-                $user->address_billing =  $userAddress2Info->id;
+    
+                $user = User::find(auth()->id());
+                $user->address_billing =  $userAddressInfo->id;
                 $user->save();
             }
-          
-            $userAddress->first_name = $request->first_name;
-            $userAddress->last_name = $request->last_name;
-            $userAddress->address = $request->address1;
-            $userAddress->address2 = $request->address2;
-            $userAddress->city = $request->city;
-            $userAddress->state = $request->state;
-            $userAddress->country = $request->country;
-            $userAddress->postal_code = $request->pin_code;
-            $userAddress->phone = $request->phone;
-
-            $userAddress->update();
         }
           
         return redirect()->route('checkout.payment.get');
