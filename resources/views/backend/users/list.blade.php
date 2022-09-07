@@ -1,14 +1,14 @@
-@extends('backend.layouts.app', ['activePage' => 'users', 'title' => 'All Users', 'navName' => 'userslist', 'activeButton' => 'laravel']) @section('content')
+@extends('backend.layouts.app', ['activePage' => 'users', 'title' => $title, 'navName' => 'userslist', 'activeButton' => 'laravel']) @section('content')
 <!-- Page Header -->
 <div class="page-header mb-4">
 	<nav aria-label="breadcrumb">
 		<ol class="breadcrumb breadcrumb-no-gutter">
 			<li class="breadcrumb-item"><a class="breadcrumb-link" href="{{ route('backend.users.list') }}">Users</a></li>
-			<li class="breadcrumb-item active" aria-current="page">All Users</li>
+			<li class="breadcrumb-item active" aria-current="page">{{ $title }}</li>
 		</ol>
 	</nav>
 	<div class="row align-items-end">
-		<h1 class="page-header-title">Users</h1>
+		<h1 class="page-header-title">{{ $title }}</h1>
 	</div>
 	<!-- End Row -->
 </div>
