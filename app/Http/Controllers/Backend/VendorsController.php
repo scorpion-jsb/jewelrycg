@@ -20,7 +20,7 @@ class VendorsController extends Controller
     public function index()
     {
         return view('backend.users.list', [
-            'users' => User::where('role', 3)->orderBy('id', 'DESC')->get()
+            'users' => User::where('role', 3)->orderBy('id', 'DESC')->paginate(20)
         ]);
     }
 

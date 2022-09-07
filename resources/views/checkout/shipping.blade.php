@@ -49,7 +49,7 @@
                                     <x-user-info :countries="$countries" :billing="$shipping" :location="$location" />
                                     <div class="row mb-3">
                                         <div class="col-12">
-                                            @if (!guest_checkout())
+                                            @if (auth()->id())
                                                 <label for="isRemember">
                                                     <input type="checkbox" name="isRemember" id="isRemember">
                                                     @if($shipping !== "NULL") 

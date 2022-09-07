@@ -86,11 +86,13 @@
 			{{-- <div class="dataTables_info" id="datatable_info" role="status" aria-live="polite">Showing 1 to 15 of 24 entries</div> --}}
 		</div>
 	</div>
-	<div class="card-footer">
-		<div class="row justify-content-center justify-content-sm-between align-items-sm-center">
-			{{ $users->links() }}
+	@if (count($users))
+		<div class="card-footer">
+			<div class="row justify-content-center justify-content-sm-between align-items-sm-center">
+				{{ $users->links() }}
+			</div>
 		</div>
-	</div>
+	@endif
 	{{-- <div class="card-footer">
 		<div class="row justify-content-center justify-content-sm-between align-items-sm-center">
 			<div class="col-sm mb-2 mb-sm-0">
