@@ -126,17 +126,15 @@ class CheckoutController extends Controller
             $order->status_payment = 1;
             if(auth()->user()){
                 $order->user_id = auth()->id();
-                $order->first_name = auth()->user()->first_name;
-                $order->last_name = auth()->user()->last_name;
+                // $order->first_name = auth()->user()->first_name;
+                // $order->last_name = auth()->user()->last_name;
                 $order->email = auth()->user()->email;
             }else{
                 $order->user_id = 0;
-                $order->billing_first_name = $request->session()->get('billing_firstname');
-                $order->billing_last_name = $request->session()->get('billing_lastname');
                 $order->email = $request->session()->get('billing_email');
-                $order->shipping_first_name = $request->session()->get('shipping_firstname');
-                $order->shipping_last_name = $request->session()->get('shipping_lastname');
             }
+            $order->billing_first_name = $request->session()->get('billing_firstname');
+            $order->billing_last_name = $request->session()->get('billing_lastname');
             $order->billing_address1 = $request->session()->get('billing_address1', '');
             $order->billing_address2 = $request->session()->get('billing_address2', '');
             $order->billing_city = $request->session()->get('billing_city', '');
@@ -144,6 +142,8 @@ class CheckoutController extends Controller
             $order->billing_zipcode = $request->session()->get('billing_zipcode', '');
             $order->billing_country = $request->session()->get('billing_country', '');
             $order->billing_phonenumber = $request->session()->get('billing_phonenumber', '');
+            $order->shipping_first_name = $request->session()->get('shipping_firstname');
+            $order->shipping_last_name = $request->session()->get('shipping_lastname');
             $order->shipping_address1 = $request->session()->get('shipping_address1', '');
             $order->shipping_address2 = $request->session()->get('shipping_address2', '');
             $order->shipping_city = $request->session()->get('shipping_city', '');
