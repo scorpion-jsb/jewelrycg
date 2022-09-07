@@ -1,5 +1,3 @@
-
-@if (guest_checkout())
 <div class="row">
     <div class="col-6">
         <div class="form-floating mb-3">
@@ -16,6 +14,7 @@
         </div>
     </div>
 </div>
+@if (guest_checkout())
 @if (\Route::currentRouteName() == 'checkout.billing.get')
     <div class="form-floating mb-3">
         <label for="floatingEmail">Email</label>
