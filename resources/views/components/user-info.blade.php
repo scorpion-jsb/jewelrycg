@@ -14,7 +14,7 @@
         </div>
     </div>
 </div>
-@if (guest_checkout())
+@if (guest_checkout() && auth()->user() == null)
 @if (\Route::currentRouteName() == 'checkout.billing.get')
     <div class="form-floating mb-3">
         <label for="floatingEmail">Email</label>
