@@ -19,13 +19,13 @@ use Exception;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
-use Mail;
 use App\Mail\OrderPlacedMail;
 use GeoIP;
 
 use App\Models\SettingGeneral;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Mail;
 
 class CheckoutController extends Controller
 {
