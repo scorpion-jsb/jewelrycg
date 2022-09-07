@@ -1,3 +1,5 @@
+
+@if (guest_checkout())
 <div class="row">
     <div class="col-6">
         <div class="form-floating mb-3">
@@ -14,6 +16,14 @@
         </div>
     </div>
 </div>
+@if (\Route::currentRouteName() == 'checkout.billing.get')
+    <div class="form-floating mb-3">
+        <label for="floatingEmail">Email</label>
+        <input type="email" name="email" value="{{ old('email') }}" id="floatingEmail"
+            class="form-control" required placeholder="Enter Email">
+    </div>
+@endif
+@endif
 <div class="form-floating mb-3">
     <label for="floatingAddress">Address</label>
     <input type="text" name="address1" value="{{ $billing->address ?? old('address1') }}" id="floatingAddress address1"
@@ -38,7 +48,7 @@
     <label for="floatingCountry">Country</label>
     <select name="country" id="floatingCountry" data-live-search="true" class="form-control">
         @foreach ($countries as $country)
-            @if ((auth()->user()->address && $billing !== "NULL" && $billing->country == $country->code) || $country->name == $location->country )
+            @if (( auth()->user() && auth()->user()->address && $billing !== "NULL" && $billing->country == $country->code) || $country->name == $location->country )
                 <option value="{{ $country->code }}" selected>{{ $country->name }}</option>
             @else
                 <option value="{{ $country->code }}">{{ $country->name }}</option>

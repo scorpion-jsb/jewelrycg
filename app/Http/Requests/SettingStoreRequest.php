@@ -43,6 +43,7 @@ class SettingStoreRequest extends FormRequest
             'mail_from_name' => ['nullable', 'max:255', 'string'],
             'recaptcha_site_key' => ['nullable', 'max:255', 'string'],
             'recaptcha_secret_key' => ['nullable', 'max:255', 'string'],
+            'guest_checkout' => ['nullable', 'numeric'],
         ];
     }
 }

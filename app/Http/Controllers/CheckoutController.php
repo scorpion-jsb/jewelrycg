@@ -23,9 +23,20 @@ use Mail;
 use App\Mail\OrderPlacedMail;
 use GeoIP;
 
+use App\Models\SettingGeneral;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 
 class CheckoutController extends Controller
 {
+    // middleware
+    public function __construct()
+    {
+        $setting = SettingGeneral::first();
+        if($setting->guest_checkout != 1){
+            $this->middleware(['checkout', 'verified']);
+        }
+    }
     public function index()
     {
         $products = Cart::instance('default')->content();
@@ -113,10 +124,19 @@ class CheckoutController extends Controller
 
             $order->order_id = $orderId;
             $order->status_payment = 1;
-            $order->user_id = Auth::user()->id;
-            $order->first_name = Auth::user()->first_name;
-            $order->last_name = Auth::user()->last_name;
-            $order->email = Auth::user()->email;
+            if(auth()->user()){
+                $order->user_id = auth()->id();
+                $order->first_name = auth()->user()->first_name;
+                $order->last_name = auth()->user()->last_name;
+                $order->email = auth()->user()->email;
+            }else{
+                $order->user_id = 0;
+                $order->billing_first_name = $request->session()->get('billing_firstname');
+                $order->billing_last_name = $request->session()->get('billing_lastname');
+                $order->email = $request->session()->get('billing_email');
+                $order->shipping_first_name = $request->session()->get('shipping_firstname');
+                $order->shipping_last_name = $request->session()->get('shipping_lastname');
+            }
             $order->billing_address1 = $request->session()->get('billing_address1', '');
             $order->billing_address2 = $request->session()->get('billing_address2', '');
             $order->billing_city = $request->session()->get('billing_city', '');
@@ -134,7 +154,11 @@ class CheckoutController extends Controller
             $order->shipping_option_id = $request->session()->get('shipping_option_id', 0);
             $order->save();
 
-            Cart::erase(auth()->id());
+            if(auth()->user()){
+                Cart::erase(auth()->id());
+            }else{
+                Cart::erase($request->session()->get('order_id'));
+            }
 
             Cart::destroy();
         } catch (Exception | Error $e) {
@@ -158,7 +182,13 @@ class CheckoutController extends Controller
 
         try {
 
-            $orderId = Auth::user()->id . strtoupper(uniqid());
+            if(auth()->user()){
+                $orderId = auth()->id() . strtoupper(uniqid());
+                $username = auth()->user()->first_name . " " . auth()->user()->last_name;
+            }else{
+                $orderId = '0' . strtoupper(uniqid());
+                $username = $req->session()->get('billing_firstname') . " " . $req->session()->get('billing_lastname');
+            }
             $req->session()->put('order_id', $orderId);
 
             $description = env('APP_NAME') . ' Order#' . $orderId;
@@ -177,6 +207,7 @@ class CheckoutController extends Controller
             $total += floor($taxPrice + 0.5);
 
             // Create a PaymentIntent with amount and currency
+
             $paymentIntent = \Stripe\PaymentIntent::create([
                 'amount' => $total,
                 'currency' => 'usd',
@@ -192,7 +223,7 @@ class CheckoutController extends Controller
                         'line1' => $req->session()->get('billing_address1'),
                         'line2' => $req->session()->get('billing_address2'),
                     ],
-                    'name' => Auth::user()->first_name . " " . Auth::user()->last_name,
+                    'name' => $username,
                     'phone' => $req->session()->get('billing_phonenumber'),
                 ],
                 'automatic_payment_methods' => [
@@ -225,7 +256,11 @@ class CheckoutController extends Controller
         }
 
         $order->restoreCartItems();
-        Cart::store(auth()->id());
+        if(auth()->user()){
+            Cart::store(auth()->id());
+        }else{
+            Cart::store($req->session()->get('order_id'));
+        }
 
         if ($error['type'] == 'validation_error') {
             Order::where('order_id', $orderId)->delete();
@@ -257,9 +292,12 @@ class CheckoutController extends Controller
         $order->status_payment = 2; // paid
         $order->payment_intent = $request->get('payment_intent');
         $order->save();
-
         // Send order placed email to customer
-        Mail::to(Auth::user()->email)->send(new OrderPlacedMail($order));
+        if(auth()->user()){
+            Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
+        }else{
+            Mail::to($request->session()->get('billing_email'))->send(new OrderPlacedMail($order));
+        }
 
         // redirect to order details
         return redirect()->route('orders.show', $orderId);
@@ -271,7 +309,11 @@ class CheckoutController extends Controller
         $countries = Country::all(['name', 'code']);
         $shippings = ShippingOption::all();
         $products = Cart::instance('default')->content();
-        $shipping_address = auth()->user()->address_shipping ?  UserAddress::find(auth()->user()->address_shipping) : "NULL";
+        if(auth()->user()){
+            $shipping_address = auth()->user()->address_shipping ?  UserAddress::find(auth()->user()->address_shipping) : "NULL";
+        }else{
+            $shipping_address = "NULL";
+        }
         $user_ip = request()->ip();
         $location = geoip()->getLocation($user_ip);
 
@@ -281,6 +323,8 @@ class CheckoutController extends Controller
     public function postShipping(Request $request)
     {
         // store data to session
+        $request->session()->put('shipping_firstname', $request->first_name);
+        $request->session()->put('shipping_lastname', $request->last_name);
         $request->session()->put('shipping_address1', $request->address1);
         $request->session()->put('shipping_address2', $request->address2);
         $request->session()->put('shipping_city', $request->city);
@@ -291,8 +335,7 @@ class CheckoutController extends Controller
         $request->session()->put('shipping_option_id', $request->shipping_option);
         $request->session()->put('shipping_price', ShippingOption::find($request->shipping_option)->price);
         if ($request->isRemember) {
-
-            $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
+            $userAddress = UserAddress::where('user_id', auth()->id())->first();
 
             if ($userAddress) {
 
@@ -300,7 +343,7 @@ class CheckoutController extends Controller
             } else {
                 $userAddress = new UserAddress;
                 $userAddressInfo = UserAddress::create([
-                    'user_id' => Auth::user()->id,
+                    'user_id' => auth()->id(),
                     'address' => $request->address1,
                     'address2' => $request->address2,
                     'city' => $request->city,
@@ -310,7 +353,7 @@ class CheckoutController extends Controller
                     'phone' => $request->phone,
                 ]);
     
-                $user = User::where('id', Auth::user()->id)->first();
+                $user = User::where('id', auth()->id())->first();
                 $user->address_shipping =  $userAddressInfo->id;
                 $user->save();
             }
@@ -343,7 +386,11 @@ class CheckoutController extends Controller
 
         $countries = Country::all(['name', 'code']);
         $products = Cart::instance('default')->content();
-        $billing_address = auth()->user()->address_billing ?  UserAddress::find(auth()->user()->address_billing) : "NULL";
+        if (auth()->user()) {
+            $billing_address = auth()->user()->address_billing ?  UserAddress::find(auth()->user()->address_billing) : "NULL";
+        }else{
+            $billing_address = "NULL";
+        }
         $user_ip = request()->ip();
         $location = geoip()->getLocation($user_ip);
 
@@ -359,15 +406,19 @@ class CheckoutController extends Controller
         $request->session()->put('billing_country', $request->country);
         $request->session()->put('billing_zipcode', $request->pin_code);
         $request->session()->put('billing_phonenumber', $request->phone);
-
-        if ($request->isRemember) {
-            $userAddress = UserAddress::where('id', Auth::user()->address_billing)->first();
+        if (! auth()->user()) {
+            $request->session()->put('billing_firstname', $request->first_name);
+            $request->session()->put('billing_lastname', $request->last_name);
+            $request->session()->put('billing_email', $request->email);
+        }
+        if ($request->isRemember && auth()->user()) {
+            $userAddress = UserAddress::where('id', auth()->user()->address_billing)->first();
             if ($userAddress) {
                 $userAddress = UserAddress::find($userAddress->id);
             } else {
                 $userAddress = new UserAddress;
                 $userAddress2Info = UserAddress::create([
-                    'user_id' => Auth::user()->id,
+                    'user_id' => auth()->id(),
                     'address' => $request->address1,
                     'address2' => $request->address2,
                     'city' => $request->city,
@@ -376,7 +427,7 @@ class CheckoutController extends Controller
                     'postal_code' =>  $request->pin_code,
                     'phone' => $request->phone,
                 ]);
-                $user = User::where('id', Auth::user()->id)->first();
+                $user = User::where('id', auth()->id())->first();
                 $user->address_billing =  $userAddress2Info->id;
                 $user->save();
             }

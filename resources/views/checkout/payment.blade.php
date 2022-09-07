@@ -35,10 +35,10 @@
                                         id="zipcode">
                                     <input type="hidden" name=""
                                         value="{{ Session::get('billing_phonenumber') }}" id="phonenumber">
-                                    <input type="hidden" name="" value="{{ Auth::user()->email }}"
+                                    <input type="hidden" name="" value="{{ Session::get('billing_email') }}"
                                         id="email">
                                     <input type="hidden" name=""
-                                        value="{{ Auth::user()->first_name . ' ' . Auth::user()->last_name }}"
+                                        value="{{ Session::get('billing_firstname') . ' ' . Session::get('billing_lastname') }}"
                                         id="name">
                                     <div id="payment-element">
                                         <!--Stripe.js injects the Payment Element-->
