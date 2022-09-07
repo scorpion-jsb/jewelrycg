@@ -1,3 +1,19 @@
+<div class="row">
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <label for="floatingAddress">First name</label>
+            <input type="text" name="first_name" value="{{ $billing->first_name ?? old('first_name') }}" id="floatingAddress first_name"
+                class="form-control" required placeholder="Enter Ffirst name">
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <label for="floatingAddress">Last name</label>
+            <input type="text" name="last_name" value="{{ $billing->last_name ?? old('last_name') }}" id="floatingAddress last_name"
+                class="form-control" required placeholder="Enter last name">
+        </div>
+    </div>
+</div>
 <div class="form-floating mb-3">
     <label for="floatingAddress">Address</label>
     <input type="text" name="address1" value="{{ $billing->address ?? old('address1') }}" id="floatingAddress address1"
