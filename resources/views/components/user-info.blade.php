@@ -1,13 +1,20 @@
+
 @if (guest_checkout())
-<div class="form-floating mb-3">
-    <label for="floatingFirstName">First Name</label>
-    <input type="text" name="first_name" value="{{ old('first_name') }}" id="floatingFirstName"
-        class="form-control" required placeholder="Enter First Name">
-</div>
-<div class="form-floating mb-3">
-    <label for="floatingLastName">Last Name</label>
-    <input type="text" name="last_name" value="{{ old('last_name') }}" id="floatingLastName"
-        class="form-control" required placeholder="Enter Last Name">
+<div class="row">
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <label for="floatingAddress">First name</label>
+            <input type="text" name="first_name" value="{{ $billing->first_name ?? old('first_name') }}" id="floatingAddress first_name"
+                class="form-control" required placeholder="Enter Ffirst name">
+        </div>
+    </div>
+    <div class="col-6">
+        <div class="form-floating mb-3">
+            <label for="floatingAddress">Last name</label>
+            <input type="text" name="last_name" value="{{ $billing->last_name ?? old('last_name') }}" id="floatingAddress last_name"
+                class="form-control" required placeholder="Enter last name">
+        </div>
+    </div>
 </div>
 <div class="form-floating mb-3">
     <label for="floatingEmail">Email</label>
