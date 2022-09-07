@@ -360,7 +360,8 @@ class CheckoutController extends Controller
                 $user->save();
             }
 
-         
+            $userAddress->first_name = $request->first_name;
+            $userAddress->last_name = $request->last_name;         
             $userAddress->address = $request->address1;
             $userAddress->address2 = $request->address2;
             $userAddress->city = $request->city;
@@ -436,6 +437,8 @@ class CheckoutController extends Controller
                 $user->save();
             }
           
+            $userAddress->first_name = $request->first_name;
+            $userAddress->last_name = $request->last_name;
             $userAddress->address = $request->address1;
             $userAddress->address2 = $request->address2;
             $userAddress->city = $request->city;
