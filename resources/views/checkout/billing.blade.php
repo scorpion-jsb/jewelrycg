@@ -24,7 +24,7 @@
                                     <x-user-info :countries="$countries" :billing="$billing" :location="$location"/>
                                     <div class="row mb-3">
                                         <div class="col-12">
-                                            @if (!guest_checkout() || auth()->id())
+                                            @if (auth()->id())
                                                 <label for="isRemember">
                                                     <input type="checkbox" name="isRemember" id="isRemember">
                                                     @if($billing !== "NULL") 
