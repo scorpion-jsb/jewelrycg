@@ -219,7 +219,12 @@
                         <input type="text" name="recaptcha_secret_key" id="recaptcha_secret_key" value="{{ old('recaptcha_secret_key') }}" class="form-control">
                         @endif
                     </div>
-                    <div class="mt-4">
+                </div>
+            </div>
+            <div class="card col-md-12">
+                <!-- End Header -->
+                <div class="card-body">
+                    <div class="">
                         <button class="bg-blue-500 hover:bg-blue-700 text-black font-bold py-2 px-3 border border-blue-700 rounded">Save</button>                        
                     </div>
                 </div>

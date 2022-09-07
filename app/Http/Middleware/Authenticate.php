@@ -3,7 +3,10 @@
 namespace App\Http\Middleware;
 
 use Illuminate\Auth\Middleware\Authenticate as Middleware;
-
+use Closure;
+use App\Models\SettingGeneral;
+use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Str;
 class Authenticate extends Middleware
 {
     /**
@@ -18,4 +21,22 @@ class Authenticate extends Middleware
             return route('login');
         }
     }
+    /**
+     * Handle an incoming request.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \Closure  $next
+     * @param  string[]  ...$guards
+     * @return mixed
+     *
+     * @throws \Illuminate\Auth\AuthenticationException
+     */
+    public function handle($request, Closure $next, ...$guards)
+    {
+        $setting = SettingGeneral::first();
+        if($setting->guest_checkout != 1 && !Str::startsWith(Route::currentRouteName(), 'checkout')){
+            $this->authenticate($request, $guards);
+        }
+        return $next($request);
+    }    
 }

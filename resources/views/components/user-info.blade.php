@@ -1,3 +1,20 @@
+@if (guest_checkout())
+<div class="form-floating mb-3">
+    <label for="floatingFirstName">First Name</label>
+    <input type="text" name="first_name" value="{{ old('first_name') }}" id="floatingFirstName"
+        class="form-control" required placeholder="Enter First Name">
+</div>
+<div class="form-floating mb-3">
+    <label for="floatingLastName">Last Name</label>
+    <input type="text" name="last_name" value="{{ old('last_name') }}" id="floatingLastName"
+        class="form-control" required placeholder="Enter Last Name">
+</div>
+<div class="form-floating mb-3">
+    <label for="floatingEmail">Email</label>
+    <input type="email" name="email" value="{{ old('email') }}" id="floatingEmail"
+        class="form-control" required placeholder="Enter Email">
+</div>
+@endif
 <div class="form-floating mb-3">
     <label for="floatingAddress">Address</label>
     <input type="text" name="address1" value="{{ $billing->address ?? old('address1') }}" id="floatingAddress address1"
@@ -22,7 +39,7 @@
     <label for="floatingCountry">Country</label>
     <select name="country" id="floatingCountry" data-live-search="true" class="form-control">
         @foreach ($countries as $country)
-            @if ((auth()->user()->address && $billing !== "NULL" && $billing->country == $country->code) || $country->name == $location->country )
+            @if (( auth()->user() && auth()->user()->address && $billing !== "NULL" && $billing->country == $country->code) || $country->name == $location->country )
                 <option value="{{ $country->code }}" selected>{{ $country->name }}</option>
             @else
                 <option value="{{ $country->code }}">{{ $country->name }}</option>
