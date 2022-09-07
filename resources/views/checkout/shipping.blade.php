@@ -52,7 +52,7 @@
                                             @if (!guest_checkout())
                                                 <label for="isRemember">
                                                     <input type="checkbox" name="isRemember" id="isRemember">
-                                                    @if($billing !== "NULL") 
+                                                    @if($shipping !== "NULL") 
                                                         Update Address
                                                     @else
                                                         Remember Address
