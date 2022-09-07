@@ -49,14 +49,16 @@
                                     <x-user-info :countries="$countries" :billing="$shipping" :location="$location" />
                                     <div class="row mb-3">
                                         <div class="col-12">
-                                            <label for="isRemember">
-                                                <input type="checkbox" name="isRemember" id="isRemember"> 
-                                                @if($shipping !== "NULL") 
-                                                    Update Address
-                                                @else
-                                                    Remember Address
-                                                @endif
-                                            </label>
+                                            @if (!guest_checkout())
+                                                <label for="isRemember">
+                                                    <input type="checkbox" name="isRemember" id="isRemember">
+                                                    @if($billing !== "NULL") 
+                                                        Update Address
+                                                    @else
+                                                        Remember Address
+                                                    @endif
+                                                </label>
+                                            @endif
                                             <button type="submit" class="btn btn-primary float-end">Continue</button>
                                         </div>
                                     </div>

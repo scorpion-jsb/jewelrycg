@@ -16,11 +16,13 @@
         </div>
     </div>
 </div>
-<div class="form-floating mb-3">
-    <label for="floatingEmail">Email</label>
-    <input type="email" name="email" value="{{ old('email') }}" id="floatingEmail"
-        class="form-control" required placeholder="Enter Email">
-</div>
+@if (\Route::currentRouteName() == 'checkout.billing.get')
+    <div class="form-floating mb-3">
+        <label for="floatingEmail">Email</label>
+        <input type="email" name="email" value="{{ old('email') }}" id="floatingEmail"
+            class="form-control" required placeholder="Enter Email">
+    </div>
+@endif
 @endif
 <div class="form-floating mb-3">
     <label for="floatingAddress">Address</label>

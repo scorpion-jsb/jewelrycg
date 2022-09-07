@@ -131,9 +131,11 @@ class CheckoutController extends Controller
                 $order->email = Auth::user()->email;
             }else{
                 $order->user_id = 0;
-                $order->first_name = $request->session()->get('billing_firstname');
-                $order->last_name = $request->session()->get('billing_lastname');
+                $order->billing_first_name = $request->session()->get('billing_firstname');
+                $order->billing_last_name = $request->session()->get('billing_lastname');
                 $order->email = $request->session()->get('billing_email');
+                $order->shipping_first_name = $request->session()->get('shipping_firstname');
+                $order->shipping_last_name = $request->session()->get('shipping_lastname');
             }
             $order->billing_address1 = $request->session()->get('billing_address1', '');
             $order->billing_address2 = $request->session()->get('billing_address2', '');
@@ -154,6 +156,8 @@ class CheckoutController extends Controller
 
             if(auth()->user()){
                 Cart::erase(auth()->id());
+            }else{
+                Cart::erase($request->session()->get('order_id'));
             }
 
             Cart::destroy();
@@ -252,7 +256,11 @@ class CheckoutController extends Controller
         }
 
         $order->restoreCartItems();
-        Cart::store(auth()->id());
+        if(auth()->user()){
+            Cart::store(auth()->id());
+        }else{
+            Cart::store($req->session()->get('order_id'));
+        }
 
         if ($error['type'] == 'validation_error') {
             Order::where('order_id', $orderId)->delete();
@@ -315,6 +323,8 @@ class CheckoutController extends Controller
     public function postShipping(Request $request)
     {
         // store data to session
+        $request->session()->put('shipping_firstname', $request->first_name);
+        $request->session()->put('shipping_lastname', $request->last_name);
         $request->session()->put('shipping_address1', $request->address1);
         $request->session()->put('shipping_address2', $request->address2);
         $request->session()->put('shipping_city', $request->city);
@@ -325,7 +335,6 @@ class CheckoutController extends Controller
         $request->session()->put('shipping_option_id', $request->shipping_option);
         $request->session()->put('shipping_price', ShippingOption::find($request->shipping_option)->price);
         if ($request->isRemember) {
-
             $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
 
             if ($userAddress) {

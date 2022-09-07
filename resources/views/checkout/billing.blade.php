@@ -24,14 +24,16 @@
                                     <x-user-info :countries="$countries" :billing="$billing" :location="$location"/>
                                     <div class="row mb-3">
                                         <div class="col-12">
-                                            <label for="isRemember">
-                                                <input type="checkbox" name="isRemember" id="isRemember">
-                                                @if($billing !== "NULL") 
-                                                    Update Address
-                                                @else
-                                                    Remember Address
-                                                @endif
-                                            </label>
+                                            @if (!guest_checkout())
+                                                <label for="isRemember">
+                                                    <input type="checkbox" name="isRemember" id="isRemember">
+                                                    @if($billing !== "NULL") 
+                                                        Update Address
+                                                    @else
+                                                        Remember Address
+                                                    @endif
+                                                </label>
+                                            @endif
                                             <input type="hidden" value="{{ isset($orderId) ? $orderId : 0 }}" />
                                             <button type="submit" class="btn btn-primary float-end">Continue</button>
                                         </div>
