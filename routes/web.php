@@ -137,6 +137,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/edit/{id}', [AttributesController::class, 'edit'])->name('edit');
 		Route::put('/update/{product}', [AttributesController::class, 'update'])->name('update');
 		Route::post('/store', [AttributesController::class, 'store'])->name('store');
+		Route::get('/delete/{id}', [AttributesController::class, 'destroy'])->name('delete');
 		Route::post('/get_for_variants', [AttributesController::class, 'ajaxcall'])->name('ajaxcall');
 		Route::post('/get_combinations', [AttributesController::class, 'combinations'])->name('combinations');
 		Route::get('/get', [AttributesController::class, 'get'])->name('get');
@@ -151,6 +152,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::get('/edit/{id}', [AttributesvaluesController::class, 'edit'])->name('edit');
 		Route::put('/update/{id}', [AttributesvaluesController::class, 'update'])->name('update');
 		Route::post('/store', [AttributesvaluesController::class, 'store'])->name('store');
+		Route::get('/delete/{id}', [AttributesvaluesController::class, 'destroy'])->name('delete');
 		Route::get('/get', [AttributesvaluesController::class, 'get'])->name('get');
 	});
 
