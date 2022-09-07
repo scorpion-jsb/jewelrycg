@@ -18,7 +18,16 @@ class OrderController extends Controller
 
     public function show($orderId)
     {
-        $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')->where('order_id', $orderId)->first();
+        if(auth()->user()){
+            $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
+                        ->where('order_id', $orderId)
+                        ->where('user_id', auth()->id())
+                        ->first();
+        }else{
+            $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
+                        ->where('order_id', $orderId)
+                        ->first();
+        }
 
         return view('orders.show', compact('order'));
     }

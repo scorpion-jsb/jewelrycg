@@ -34,7 +34,7 @@ class Authenticate extends Middleware
     public function handle($request, Closure $next, ...$guards)
     {
         $setting = SettingGeneral::first();
-        if($setting->guest_checkout == 1 && Str::startsWith(Route::currentRouteName(), 'checkout')){
+        if($setting->guest_checkout == 1 && (Str::startsWith(Route::currentRouteName(), 'checkout') || (Route::currentRouteName() == 'orders.show'))){
             
         }else{
             $this->authenticate($request, $guards);
