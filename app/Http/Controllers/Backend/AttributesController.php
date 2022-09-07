@@ -203,6 +203,11 @@ class AttributesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $attribute = Attribute::find($id);
+        if($attribute){
+            $attribute->values()->delete();
+            $attribute->delete();
+        }
+        return redirect()->route('backend.products.attributes.list');
     }
 }

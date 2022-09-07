@@ -84,7 +84,7 @@ class AttributesvaluesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(StoreAttributeValuesRequest $request,$id_attribute, $id)
+    public function update(StoreAttributeValuesRequest $request, $id_attribute, $id)
     {
         
         $data = $request->input();
@@ -100,8 +100,9 @@ class AttributesvaluesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id_attribute, $id)
     {
-        //
+        AttributeValue::findOrFail($id)->delete();
+        return redirect()->route('backend.products.attributes.values.list', $id_attribute);
     }
 }

@@ -17,7 +17,8 @@ class UsersController extends Controller
     {
        
         return view('backend.users.list', [
-            'users' => User::orderBy('id', 'DESC')->paginate(20)
+            'users' => User::orderBy('id', 'DESC')->paginate(10),
+            'title' => 'All Users'
         ]);
     }
 
@@ -30,7 +31,8 @@ class UsersController extends Controller
     {
        
         return view('backend.users.list', [
-            'users' => User::where('role', 0)->get()
+            'users' => User::where('role', 0)->paginate(10),
+            'title' => 'Customers'
         ]);
     }
 
