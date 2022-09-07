@@ -17,11 +17,6 @@ class Admin
     public function handle(Request $request, Closure $next)
     {
         abort_if(! auth()->user()->role, 401);
-        // if(auth()->user()){
-        //     abort_if(! auth()->user()->role, 401);
-        // }else{
-        //     return redirect()->route('backend.login');
-        // }
         return $next($request);
     }
 }
