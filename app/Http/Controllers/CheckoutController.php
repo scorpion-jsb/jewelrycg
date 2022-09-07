@@ -344,6 +344,8 @@ class CheckoutController extends Controller
                 $userAddress = new UserAddress;
                 $userAddressInfo = UserAddress::create([
                     'user_id' => auth()->id(),
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
                     'address' => $request->address1,
                     'address2' => $request->address2,
                     'city' => $request->city,
@@ -419,6 +421,8 @@ class CheckoutController extends Controller
                 $userAddress = new UserAddress;
                 $userAddress2Info = UserAddress::create([
                     'user_id' => auth()->id(),
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,                    
                     'address' => $request->address1,
                     'address2' => $request->address2,
                     'city' => $request->city,
