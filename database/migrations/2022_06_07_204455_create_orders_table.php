@@ -17,9 +17,9 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->string('order_id');
-            $table->string('first_name');
-            $table->string('last_name');
             $table->string('email');
+            $table->string('shipping_first_name');
+            $table->string('shipping_last_name');
             $table->string('shipping_address1');
             $table->string('shipping_address2')->nullable();
             $table->string('shipping_city');
@@ -27,6 +27,8 @@ return new class extends Migration
             $table->string('shipping_zipcode');
             $table->string('shipping_country');
             $table->string('shipping_phonenumber')->nullable();
+            $table->string('billing_first_name');
+            $table->string('billing_last_name');
             $table->string('billing_address1');
             $table->string('billing_address2')->nullable();
             $table->string('billing_city');
