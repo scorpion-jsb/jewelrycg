@@ -409,9 +409,9 @@ class CheckoutController extends Controller
         $request->session()->put('billing_country', $request->country);
         $request->session()->put('billing_zipcode', $request->pin_code);
         $request->session()->put('billing_phonenumber', $request->phone);
+        $request->session()->put('billing_firstname', $request->first_name);
+        $request->session()->put('billing_lastname', $request->last_name);
         if (! auth()->user()) {
-            $request->session()->put('billing_firstname', $request->first_name);
-            $request->session()->put('billing_lastname', $request->last_name);
             $request->session()->put('billing_email', $request->email);
         }
         if ($request->isRemember && auth()->user()) {
