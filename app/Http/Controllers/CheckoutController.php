@@ -125,10 +125,10 @@ class CheckoutController extends Controller
             $order->order_id = $orderId;
             $order->status_payment = 1;
             if(auth()->user()){
-                $order->user_id = Auth::user()->id;
-                $order->first_name = Auth::user()->first_name;
-                $order->last_name = Auth::user()->last_name;
-                $order->email = Auth::user()->email;
+                $order->user_id = auth()->id();
+                $order->first_name = auth()->user()->first_name;
+                $order->last_name = auth()->user()->last_name;
+                $order->email = auth()->user()->email;
             }else{
                 $order->user_id = 0;
                 $order->billing_first_name = $request->session()->get('billing_firstname');
@@ -183,8 +183,8 @@ class CheckoutController extends Controller
         try {
 
             if(auth()->user()){
-                $orderId = Auth::user()->id . strtoupper(uniqid());
-                $username = Auth::user()->first_name . " " . Auth::user()->last_name;
+                $orderId = auth()->id() . strtoupper(uniqid());
+                $username = auth()->user()->first_name . " " . auth()->user()->last_name;
             }else{
                 $orderId = '0' . strtoupper(uniqid());
                 $username = $req->session()->get('billing_firstname') . " " . $req->session()->get('billing_lastname');
@@ -294,7 +294,7 @@ class CheckoutController extends Controller
         $order->save();
         // Send order placed email to customer
         if(auth()->user()){
-            Mail::to(Auth::user()->email)->send(new OrderPlacedMail($order));
+            Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
         }else{
             Mail::to($request->session()->get('billing_email'))->send(new OrderPlacedMail($order));
         }
@@ -335,7 +335,7 @@ class CheckoutController extends Controller
         $request->session()->put('shipping_option_id', $request->shipping_option);
         $request->session()->put('shipping_price', ShippingOption::find($request->shipping_option)->price);
         if ($request->isRemember) {
-            $userAddress = UserAddress::where('user_id', Auth::user()->id)->first();
+            $userAddress = UserAddress::where('user_id', auth()->id())->first();
 
             if ($userAddress) {
 
@@ -343,7 +343,7 @@ class CheckoutController extends Controller
             } else {
                 $userAddress = new UserAddress;
                 $userAddressInfo = UserAddress::create([
-                    'user_id' => Auth::user()->id,
+                    'user_id' => auth()->id(),
                     'address' => $request->address1,
                     'address2' => $request->address2,
                     'city' => $request->city,
@@ -353,7 +353,7 @@ class CheckoutController extends Controller
                     'phone' => $request->phone,
                 ]);
     
-                $user = User::where('id', Auth::user()->id)->first();
+                $user = User::where('id', auth()->id())->first();
                 $user->address_shipping =  $userAddressInfo->id;
                 $user->save();
             }
@@ -412,13 +412,13 @@ class CheckoutController extends Controller
             $request->session()->put('billing_email', $request->email);
         }
         if ($request->isRemember && auth()->user()) {
-            $userAddress = UserAddress::where('id', Auth::user()->address_billing)->first();
+            $userAddress = UserAddress::where('id', auth()->user()->address_billing)->first();
             if ($userAddress) {
                 $userAddress = UserAddress::find($userAddress->id);
             } else {
                 $userAddress = new UserAddress;
                 $userAddress2Info = UserAddress::create([
-                    'user_id' => Auth::user()->id,
+                    'user_id' => auth()->id(),
                     'address' => $request->address1,
                     'address2' => $request->address2,
                     'city' => $request->city,
@@ -427,7 +427,7 @@ class CheckoutController extends Controller
                     'postal_code' =>  $request->pin_code,
                     'phone' => $request->phone,
                 ]);
-                $user = User::where('id', Auth::user()->id)->first();
+                $user = User::where('id', auth()->id())->first();
                 $user->address_billing =  $userAddress2Info->id;
                 $user->save();
             }
