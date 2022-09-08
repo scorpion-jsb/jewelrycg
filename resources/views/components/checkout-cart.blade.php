@@ -64,7 +64,7 @@
         <div class="col-auto ml-auto text-right">
             <span>
                 <span class="fw-800 text-primary" id="total_price">
-                    ${{number_format(Cart::total(), 2)}}
+                    ${{(Cart::total() /100)}}
                 </span>
                 <span class="fw-800 text-primary" id="total_price">
                     ${{$taxPrice }}
