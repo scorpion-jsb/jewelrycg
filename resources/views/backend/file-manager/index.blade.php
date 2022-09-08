@@ -98,7 +98,7 @@
                                         <li>
                                             <form action="{{ route('backend.file.destroy', $file->id) }}" method="post">
                                                 @csrf
-                                                <button type="submit" class="dropdown-item">
+                                                <button type="submit" class="dropdown-item file-delete-btn">
                                                     <i class="bi bi-trash"></i>
                                                     Delete
                                                 </button>
@@ -148,6 +148,12 @@
                     console.log('success');
                 });
             });
+            $('.file-delete-btn').click(function(e){
+                if(confirm("Are you sure you want to delete this file")){
+                }else{
+                    e.preventDefault();
+                }
+            })            
         })
     </script>
 @endsection

@@ -93,7 +93,7 @@
                                             <button type="button" class="btn btn-dark btn-icon btn-sm dropdown-toggle dropdown-toggle-empty" id="ordersExportDropdown1" data-bs-toggle="dropdown" aria-expanded="false"></button>
                                             <div class="dropdown-menu dropdown-menu-end mt-1" aria-labelledby="ordersExportDropdown1" style="">
                                                 <a class="dropdown-item" href="{{ route('backend.products.attributes.edit', $attribute->id) }}">Edit</a>
-                                                <a class="dropdown-item text-danger" href="{{ route('backend.products.attributes.delete', $attribute->id) }}">Delete</a>
+                                                <a class="dropdown-item text-danger attribute-delete-btn" href="{{ route('backend.products.attributes.delete', $attribute->id) }}">Delete</a>
                                             </div>
                                         </div>
                                         <!-- End Unfold -->
@@ -155,6 +155,12 @@
 			var slug = $(this).val()
 			if (slug.charAt(slug.length - 1) != " ") {
 				$('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
+			}
+		})
+		$('.attribute-delete-btn').click(function(e){
+			if(confirm("Are you sure you want to delete this attribute")){
+			}else{
+				e.preventDefault();
 			}
 		})
 	})
