@@ -109,7 +109,7 @@
                                 <span
                                     class="file-created-at">{{ date('F d, Y, h:i:s A', strtotime($file->created_at)) }}</span>
                                 @if ($file->type != 'image')
-                                    <img src="{{ asset('assets/svg/brands/google-docs-icon.svg') }}" alt="">
+                                    <img src="{{ asset('assets/img/file.svg') }}" alt="">
                                 @else
                                     <img src="{{ $file->getImageOptimizedFullName() }}"
                                         class="card-img-top img-thumbnail" alt="{{ $file->file_name }}">
