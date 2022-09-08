@@ -50,7 +50,7 @@
                     foreach ($products as $product) {
                         $taxPrice += $product->qty * $product->price * $product->model->taxPrice();
                     }
-                    echo number_format($taxPrice / 100 / 100, 2);
+                    echo number_format($taxPrice / 100 / 100, 0);
                 @endphp
             </span>
         </div>
@@ -64,7 +64,7 @@
         <div class="col-auto ml-auto text-right">
             <span>
                 <span class="fw-800 text-primary" id="total_price">
-                    ${{ number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) }}
+                    ${{ number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 0) }}
                 </span>
             </span>
         </div>
