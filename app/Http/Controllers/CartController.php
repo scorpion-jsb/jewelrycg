@@ -69,7 +69,7 @@ class CartController extends Controller
 
             Cart::instance('default')->add(
                 $product->id,
-                $product->name,
+                $product->name.'('.$variant->variant_name.')',
                 1,
                 $variant->variant_price / 100,
                 0,

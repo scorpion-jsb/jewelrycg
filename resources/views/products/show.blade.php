@@ -350,7 +350,6 @@
             var selectedAttributeCount = 0;
 
             $('.variant-group').find('div.form-group').each(function(i, div) {
-                console.log($(div).find('input'));
                 var name = $(div).find('input').attr('name');
                 var value = document.cart_star_form[name].value
                 selectedAttributeCount++;
@@ -374,7 +373,7 @@
         document.cart_star_form.onsubmit = function() {
             var data = {};
             var formData = $('#cart_star_form').serializeArray();
-
+            console.log(formData);
             formData.map(function(item) {
                 data[item.name] = item.value;
             });
