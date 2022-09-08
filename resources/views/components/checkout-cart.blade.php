@@ -64,7 +64,7 @@
         <div class="col-auto ml-auto text-right">
             <span>
                 <span class="fw-800 text-primary" id="total_price">
-                    ${{number_format(floatval(Cart::total()) + $shippingPrice/100 + $taxPrice/10000, 2)}}
+                    ${{number_format(floatval(Cart::total()) + $shippingPrice/100 + $taxPrice/1000, 2)}}
                 </span>
                 chcolo
                 <span class="fw-800 text-primary" id="total_price">
