@@ -8,12 +8,12 @@
         </div>
         <div class="col-8">
             <div class="cart-drawer-item-meta mb-2">
-                <div class="product-title">{{ $product->name }}</div>
+                <div class="product-title">{{ $item->name }}</div>
             </div>
             <div class="d-flex justify-content-between cart-drawer-item-meta align-items-baseline mb-2">
                 <input type="number" class="product-quantity p-1" value="{{ $item->qty }}" data-row-id="{{ $item->rowId }}" style="width: 60px;">
-                <span class="product-price d-none">${{ $product->price / 100 }}</span>
-                <span class="total-price">${{ $item->qty * $product->price / 100 }}</span>
+                <span class="product-price d-none">${{ $item->price }}</span>
+                <span class="total-price">${{ $item->qty * $item->price }}</span>
             </div>
             <div class="cart-drawer-item-meta">
                 <a href="javascript:;" data-row-id="{{ $item->rowId }}" class="text-danger remove-item-btn " title="Remove from chart">Remove</a>
