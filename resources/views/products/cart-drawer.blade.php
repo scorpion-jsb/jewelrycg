@@ -16,7 +16,7 @@
                 <span class="total-price">${{ $item->qty * $item->price }}</span>
             </div>
             <div class="cart-drawer-item-meta">
-                <a href="javascript:;" data-row-id="{{ $item->rowId }}" class="text-danger remove-item-btn " title="Remove from chart">Remove</a>
+                <a href="javascript:;" data-row-id="{{ $item->rowId }}" class="text-danger remove-item-btn " title="Remove from chat">Remove</a>
             </div>
         </div>
     </div>
