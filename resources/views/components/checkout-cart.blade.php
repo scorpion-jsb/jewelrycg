@@ -64,7 +64,8 @@
         <div class="col-auto ml-auto text-right">
             <span>
                 <span class="fw-800 text-primary" id="total_price">
-                    ${{ number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 0) }}
+                    ${--{-- number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 0) }--}
+                    ${{ Cart::total() + $shippingPrice + $taxPrice  }}
                 </span>
             </span>
         </div>
