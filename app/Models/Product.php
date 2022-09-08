@@ -191,7 +191,6 @@ class Product extends Model
     public function attribute() {
         $attributesIds = explode(',', $this->product_attributes);
         $attributes = Attribute::whereIn('id', $attributesIds)->get();
-
         return $attributes;
     }
 
