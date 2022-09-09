@@ -15,7 +15,7 @@ class CreateProductsTable extends Migration
 					$table->integer('vendor',)->nullable();
 					$table->string('name');
 					$table->text('description')->nullable();
-					$table->smallInteger('price',);
+					$table->integer('price',);
 					$table->smallInteger('quantity',)->nullable();
 					$table->string('category',24);
 					$table->string('slug')->nullable();
