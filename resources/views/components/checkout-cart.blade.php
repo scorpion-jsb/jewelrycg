@@ -66,6 +66,8 @@
                 <span class="fw-800 text-primary" id="total_price">
                     {{-- ${{number_format(Cart::total() + $shippingPrice/100 + $taxPrice/100/100, 2)}} --}}
                     ${{Cart::total()}}
+
+                    tax {{echo number_format($taxPrice / 100 / 100, 2);}}
             </span>
         </div>
     </div>
