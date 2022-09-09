@@ -83,8 +83,8 @@
     </div>
     <script>
         $(function() {
-            var totalPrice = parseFloat($('#total_price').text().split('$')[1]) * 1 - parseFloat($('#shipping_price').text().split('$')[
-                1]) * 1;
+            var totalPrice = parseFloat($('#total_price').text().split('$')[1].trim().replaceAll(',', '')) * 1 - parseFloat($('#shipping_price').text().split('$')[
+                1].trim().replaceAll(',', '')) * 1;
             $('.shipping_option').click(function() {
                 var shippingPrice = $(this).attr('data-price');
 
