@@ -8,6 +8,7 @@ use App\Models\Attribute;
 use App\Models\AttributeValue;
 use App\Http\Requests\StoreAttributeRequest;
 use App\Models\ProductsVariant;
+use App\Models\Product;
 
 class AttributesController extends Controller
 {
@@ -208,6 +209,12 @@ class AttributesController extends Controller
             $attribute->values()->delete();
             $attribute->delete();
         }
+        Product::where('product_attributes', 'like', '%'.$id.',%')
+                ->orWhere('product_attributes', 'like', '%,'.$id.'%')
+                ->orWhere('product_attributes', $id)
+                ->update([
+                    'status'=>2
+                ]);
         return redirect()->route('backend.products.attributes.list');
     }
 }
