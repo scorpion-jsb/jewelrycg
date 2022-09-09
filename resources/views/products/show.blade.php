@@ -371,7 +371,7 @@
 
                 if (variant.id == selectedAttributeValue.sort().join(',')) {
                     $('#variant_attribute_value').val(variant.id)
-                    $('.product_price').text('$' + number_format((variant.price / 100)))
+                    $('.product_price').text('$' + (variant.price / 100).toLocaleString())
                 }
             })
         })
