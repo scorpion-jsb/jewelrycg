@@ -59,6 +59,6 @@ class SellerRegisterController extends Controller
 
         Auth::login($user);
 
-        return redirect()->route('backend.sellers.list');
+        return redirect()->route('dashboard');
     }    
 }

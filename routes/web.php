@@ -235,7 +235,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 Route::get('/', [AppController::class, 'index'])->name('index');
 
 Route::group(['middleware' => ['auth']], function () {
-	Route::get('/dashboard', [AppController::class, 'dashboard']);
+	Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
 });
 Route::get('/image/{filename}', [AppController::class, 'image']);
 
