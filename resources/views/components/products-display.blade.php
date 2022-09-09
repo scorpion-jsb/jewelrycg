@@ -14,7 +14,7 @@
                                 if (is_numeric($product->price) && floor($product->price) != $product->price) {
                                     echo $product->price;
                                 } else {
-                                    echo number_format($product->price / 100, 2);
+                                    echo number_format(floatval(str_replace(",", "", $product->price)) / 100, 2);
                                 }
                             @endphp
                         </div>
