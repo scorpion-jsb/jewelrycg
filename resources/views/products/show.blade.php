@@ -152,9 +152,9 @@
                                     <div class="">
                                         <strong class="h2 fw-400 text-black product_price">
                                             @if (count($variants))
-                                                ${{ $minPrice }} ~ ${{ $maxPrice }}
+                                                ${{ number_format($minPrice, 2, ".", ",") }} ~ ${{ number_format($maxPrice, 2, ".", ",") }}
                                             @else
-                                                ${{ $product->price }}
+                                                ${{ number_format($product->price, 2, ".", ",") }}
                                             @endif
                                         </strong>
                                     </div>
@@ -344,7 +344,13 @@
                 price: '{{ $variant->variant_price }}'
             })
         @endforeach
-
+        const number_format = (d)=> {
+            var n = this;
+            var c = isNaN(d = Math.abs(d)) ? 2 : d;
+            var s = n < 0 ? "-" : "";
+            var i = parseInt(n = Math.abs(+n || 0).toFixed(c)) + "", j = (j = i.length) > 3 ? j % 3 : 0;
+            return s + (j ? i.substr(0, j) + ',' : "") + i.substr(j).replace(/(\d{3})(?=\d)/g, "$1" + ',') + (c ? '.' + Math.abs(n - i).toFixed(c).slice(2) : "");
+        }
         $('.attribute-radio').click(function() {
             var selectedAttributeValue = [];
             var selectedAttributeCount = 0;
@@ -365,7 +371,7 @@
 
                 if (variant.id == selectedAttributeValue.sort().join(',')) {
                     $('#variant_attribute_value').val(variant.id)
-                    $('.product_price').text('$' + (variant.price / 100))
+                    $('.product_price').text('$' + number_format((variant.price / 100)))
                 }
             })
         })
