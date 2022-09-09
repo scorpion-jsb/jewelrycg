@@ -18,6 +18,7 @@ return new class extends Migration
             $table->boolean('role')->default(false); // 0 Customer , 1 Admin , 2 Seller 
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('username')->nullable();
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
