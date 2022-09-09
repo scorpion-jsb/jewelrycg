@@ -339,27 +339,27 @@
         }, 500);
     }
 
-    $.ajax({
-        url: "{{ route('backend.products.attributes.getproductattribute') }}",
-        data: {
-            product_id: {{ $product_id }}
-        },
-        success: function(variants) {
-            var asset = "{{ asset('/uploads/all') }}";
+    // $.ajax({
+    //     url: "{{ route('backend.products.attributes.getproductattribute') }}",
+    //     data: {
+    //         product_id: {{ $product_id }}
+    //     },
+    //     success: function(variants) {
+    //         var asset = "{{ asset('/uploads/all') }}";
 
-            variants.map(function(variant) {
-                var attribute = variant.variant_attribute_value.replace(',', '_');
+    //         variants.map(function(variant) {
+    //             var attribute = variant.variant_attribute_value.replace(',', '_');
 
-                $(`#variant_price_${attribute}`).val(variant.variant_price / 100);
-                $(`#variant_sku_${attribute}`).val(variant.variant_sku);
-                $(`#variant_id_${attribute}`).val(variant.id);
-                $(`#variant_quantity_${attribute}`).val(variant.variant_quantity ? variant
-                    .variant_quantity : 1);
-                $(`.variant_thumbnail_${attribute}`).val(variant.variant_thumbnail);
-                $(`.variant_thumbnail_${attribute}`).next().html(
-                    `<img src='${asset + '/' + variant.uploads.file_name}' style='width:150px;height:100px;'/>`
-                    );
-            })
-        }
-    })
+    //             $(`#variant_price_${attribute}`).val(variant.variant_price / 100);
+    //             $(`#variant_sku_${attribute}`).val(variant.variant_sku);
+    //             $(`#variant_id_${attribute}`).val(variant.id);
+    //             $(`#variant_quantity_${attribute}`).val(variant.variant_quantity ? variant
+    //                 .variant_quantity : 1);
+    //             $(`.variant_thumbnail_${attribute}`).val(variant.variant_thumbnail);
+    //             $(`.variant_thumbnail_${attribute}`).next().html(
+    //                 `<img src='${asset + '/' + variant.uploads.file_name}' style='width:150px;height:100px;'/>`
+    //                 );
+    //         })
+    //     }
+    // })
 </script>
