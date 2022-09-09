@@ -31,6 +31,8 @@ use App\Http\Controllers\Backend\ShippingOptionController;
 use App\Http\Controllers\Backend\SettingGeneralController;
 use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\TaxOptionController;
+// seller register
+use App\Http\Controllers\Auth\SellerRegisterController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -338,6 +340,9 @@ Route::group(['middleware' => 'auth'], function ()
 
 // track order page
 Route::get('trackorder', [OrderController::class, 'trackOrder'])->name('track.order');
+Route::get('seller/signup', [SellerRegisterController::class, 'create'])->name('seller.signup.create');
+Route::post('seller/signup', [SellerRegisterController::class, 'store'])->name('seller.signup.store');
+// seller signup
 
 require __DIR__ . '/auth.php';
 
