@@ -154,7 +154,7 @@
                                             @if (count($variants))
                                                 ${{ number_format($minPrice, 2, ".", ",") }} ~ ${{ number_format($maxPrice, 2, ".", ",") }}
                                             @else
-                                                ${{ number_format(floatval(str_replace(",","",$product->price)), 2, ".", ",") }}
+                                                ${{ $product->price }}
                                             @endif
                                         </strong>
                                     </div>
