@@ -42,6 +42,11 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasOne(UserAddress::class, 'user_id');
     }
 
+    public function seller() 
+    {
+        return $this->hasOne(SellersProfile::class, 'user_id');
+    }
+
     public function getAttributeName() {
         return $this->first_name . " " . $this->last_name;
     }
