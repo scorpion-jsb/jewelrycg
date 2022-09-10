@@ -17,7 +17,7 @@
                         @endphp
                     </div>
                     <div class="item-meta mb-2">
-                        <span class="text-primary fw-800 mb-2" id="price{{ $product->rowId }}">${{ number_format(floatval(str_replace(",","",$product->price)), 2, ".", ",") }}</span>
+                        <span class="text-primary fw-800 mb-2" id="price{{ $product->rowId }}">${{ $product->price }}</span>
                     </div>
                     @if ($locale == 'wishlist')
                     <div class="item-meta mb-2">
