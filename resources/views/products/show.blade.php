@@ -30,7 +30,7 @@
                             <div class="w-100">
                                 <a class="btn btn-primary product_price" href="#">
                                     <i class="bi bi-cart-plus p-1"></i>
-                                    @if (count($variants))
+                                    @if (count($variants) && $minPrice != $maxPrice)
                                         ${{ $minPrice }} ~ ${{ $maxPrice }}
                                     @else
                                         ${{ $product->price }}
@@ -152,7 +152,11 @@
                                     <div class="">
                                         <strong class="h2 fw-400 text-black product_price">
                                             @if (count($variants))
-                                                ${{ number_format($minPrice, 2, ".", ",") }} ~ ${{ number_format($maxPrice, 2, ".", ",") }}
+                                                @if($minPrice != $maxPrice)
+                                                    ${{ number_format($minPrice, 2, ".", ",") }} ~ ${{ number_format($maxPrice, 2, ".", ",") }}
+                                                @else
+                                                    ${{ number_format($minPrice, 2, ".", ",") }}
+                                                @endif
                                             @else
                                                 ${{ $product->price }}
                                             @endif
@@ -371,7 +375,7 @@
 
                 if (variant.id == selectedAttributeValue.sort().join(',')) {
                     $('#variant_attribute_value').val(variant.id)
-                    $('.product_price').text('$' + (variant.price / 100).toLocaleString())
+                    $('.product_price').text('$' + (variant.price / 100).toFixed(2).toLocaleString())
                 }
             })
         })
