@@ -3,7 +3,7 @@
     role="grid" aria-describedby="datatable_info">
     <thead class="thead-light">
         <tr role="row">
-            <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
+            <th class="table-column-ps-0 sorting" valign="middle" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                 aria-label="Color: activate to sort column ascending">Value</th>
             <th class="table-column-ps-0 sorting" tabindex="0" aria-controls="datatable" rowspan="1" colspan="1"
                 aria-label="Price: activate to sort column ascending">Price</th>

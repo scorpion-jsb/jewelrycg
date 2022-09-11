@@ -1,10 +1,16 @@
 <x-app-layout>
+    @section('css')
+
     <style>
         .pur {
             width: 100%;
             margin-bottom: 8px;
-        }
+        }     
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />    
+    <link rel="stylesheet" href="{{ asset('assets/css/backend/app.css') }}" data-hs-appearance="default" as="style">
+    @endsection
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -63,7 +69,7 @@
                                 <!-- Body -->
                                 <div class="card-body">
                                     <!-- Gallery -->
-                                    <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-3">
+                                    <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-start gx-3">
             
                                     </div>
                                     <!-- End Gallery -->
@@ -82,7 +88,7 @@
                                 <div class="card-body">
                                     <div class="mb-4">
                                         <label for="name">Attributes:</label>
-                                        <select name="attributes[]" id="attributes" value="" class="form-control select2"
+                                        <select name="attributes[]" id="attributes" value="" class="form-control form-control-sm select2"
                                             multiple="multiple" style="width: 100%;">
                                             @foreach ($attributes as $attribute)
                                             <option value="{{ $attribute->id }}" data-tokens="{{ $attribute->name }}">
@@ -92,7 +98,7 @@
                                     </div>
                                     <div class="mb-4">
                                         <label for="name">Attributes values:</label>
-                                        <select name="values[]" id="product_attribute_values" value="" class="form-control select2"
+                                        <select name="values[]" id="product_attribute_values" value="" class="form-control form-control-sm select2"
                                             multiple="multiple" style="width: 100%;">
                                         </select>
                                     </div>
@@ -159,7 +165,7 @@
                                             <span class="text-dark" cla>Status</span>
                                         </div>
                                         <div class="col-12">
-                                            <select class="selectpicker w-100" name="status">
+                                            <select class="selectpicker w-100 form-control form-control-sm" name="status">
                                                 <option value="1" selected>Published</option>
                                                 <option value="2" >Draft</option>
                                                 <option value="3" >Pending Review</option>
@@ -228,7 +234,7 @@
                                 <div class="card-body">
                                     <div class="mb-4">
                                         <label for="category" class="mb-2">Category:</label>
-                                        <select class="selectpicker w-100" name="category" data-live-search="true">
+                                        <select class="selectpicker w-100 form-control form-control-sm" name="category" data-live-search="true">
                                             <option disabled selected>Select category</option>
                                             @foreach ($categories as $categorie)
                                                 <option value="{{ $categorie->id }}" {{ old('category') == $categorie->id ? 'selected' : '' }} data-tokens="{{ $categorie->category_name }}">
@@ -238,7 +244,7 @@
                                     </div>
                                     <div class="mb-4">
                                         <label for="name" class="mb-2">Tags:</label>
-                                        <select name="tags[]" id="tags" value="" class="form-control select2"
+                                        <select name="tags[]" id="tags" value="" class="form-control form-control-sm select2"
                                             multiple="multiple" style="width: 100%;">
                                             @foreach ($tags as $tag)
                                                 <option value='{{ $tag->id }}'> {{ $tag->name }} </option>
@@ -309,7 +315,7 @@
                                 <!-- Body -->
                                 <div class="card-body">
                                     <label for="tax_option_id">Tax</label>
-                                    <select name="tax_option_id" id="tax_option_id" class="form-control">
+                                    <select name="tax_option_id" id="tax_option_id" class="selectpicker form-control form-control-sm">
                                         <option value="0" {{ old('tax_option_id') == 0 ? 'selected' : '' }}>Not Taxable</option>
                                         @foreach ($taxes as $tax)
                                             <option {{ old('tax_option_id') == $tax->id ? 'selected' : '' }} value="{{ $tax->id }}">{{ $tax->name }} - {{ $tax->price / 100 }} ({{ $tax->type }})</option>
@@ -323,6 +329,224 @@
                     </div>
                 </div>
             </div>
+            <div id="fileManagerContainer"></div>
+
+            <div id='ajaxCalls'>
+            </div>            
         </div>
     </div>
+    @section('js')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
+        <script>
+            $(function(){
+                $('.select2').select2({
+                    tags: true,
+                    maximumSelectionLength: 10,
+                    tokenSeparators: [','],
+                    placeholder: "Select or type keywords",
+                });
+                $('#attributes').on('change', function() {
+                    var attributes = $(this).val()
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('backend.products.attributes.ajaxcall') }}",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "attributes": attributes
+                        },
+                        success: (data) => {
+                            $('#product_attribute_values').html(data);
+                        }
+                    })
+                })
+
+                var getVariants = function(isDigital, productId) {
+                    var values_selected = $('#product_attribute_values').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('backend.products.attributes.combinations') }}",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "values": values_selected,
+                            'isDigital': isDigital,
+                            product_id: productId
+                        },
+                        success: function(result) {
+                            $('#variantsbody').html(result)
+                        }
+                    })
+                }
+
+                $('#generatevariants').on('click', function() {
+                    getVariants($('#availabilitySwitch1').prop('checked') * 1, $(this).attr('data-product-id'));
+                })                
+                var createChecks = [];
+                function removepreviewappended(id) {
+                    createChecks = jQuery.grep(createChecks, function(value) {
+                        return value != id;
+                    });
+                    $('#fileappend-' + id).remove();
+                    $('#all_checks').val(createChecks);
+                }
+
+                function selectFileFromManagerMultiple(id, preview) {
+                    if ($('#file-' + id).hasClass('selected')) {
+                        $('#file-' + id).removeClass('selected')
+                        $('#file-' + id).find('.check-this').fadeOut()
+                        removepreviewappended(id);
+                    } else {
+                        $('#file-' + id).addClass('selected')
+                        $('#file-' + id).find('.check-this').fadeIn()
+                        createChecks.push(id)
+                        $('#fancyboxGallery').prepend(productImageDiv(id, preview))
+                    }
+                    $('#all_checks').val(createChecks);
+                }     
+                function productImageDiv(id, preview) {
+                    var div = '<div id="fileappend-' + id + '" class="col-6 col-sm-4 col-md-3 mb-3 mb-lg-5">' +
+                        '<div class="card card-sm">' +
+                        '<img class="card-img-top" src="' + preview + '" alt="Image Description">' +
+
+                        '<div class="card-body">' +
+                        '<div class="row col-divider text-center">' +
+                        '<div class="col">' +
+                        '<a class="text-body" href="./assets/img/1920x1080/img3.jpg" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-fslightbox="gallery" data-bs-original-title="View">' +
+                        '<i class="bi-eye"></i>' +
+                        '</a>' +
+                        '</div>' +
+
+
+                        '<div class="col">' +
+                        '<a onclick="removepreviewappended(' + id +
+                        ')" class="text-danger" href="javascript:;" data-bs-toggle="tooltip" data-bs-placement="top" title="" data-bs-original-title="Delete">' +
+                        '<i class="bi-trash"></i>' +
+                        '</a>' +
+                        '</div>' +
+                        '</div>' +
+
+                        '</div>' +
+                        '</div>' +
+                        '</div>';
+                    return div;
+                }                           
+                $('#getFileManagerForProducts').click(function () {
+                    $.ajax({
+                        url: "{{ route('backend.file.show') }}",
+                        success: function (data) {
+                            if (!$.trim($('#fileManagerContainer').html()))
+                                $('#fileManagerContainer').html(data);
+
+                            $('#fileManagerModal').modal('show');
+
+                            const getSelectedItem = function (selectedId, filePath) {
+                                $('#fancyboxGallery').empty();
+
+                                createChecks = selectedId;
+                                $('#all_checks').val(createChecks);
+
+                                selectedId.map(function (id, i) {
+                                    $('#fancyboxGallery').prepend(productImageDiv(id, filePath[i]));
+                                });
+                            }
+
+                            setSelectedItemsCB(getSelectedItem, createChecks);
+                        }
+                    })
+                });     
+                // check the digital setting turn on
+                $('#availabilitySwitch1').click(function () {
+                    if ($('#availabilitySwitch1').prop('checked')) {
+                        $('#digital_download_assets').val(0);
+                        $('#digital_download_assets').parent().parent().show();
+                    } else {
+                        $('#digital_download_assets').parent().parent().hide();
+                    }
+
+                    if ($('#variantsbody').html() != '') {
+                        var values_selected = $('#product_attribute_values').val()
+                        $.ajax({
+                            type: 'POST',
+                            url: "{{ route('backend.products.attributes.combinations') }}",
+                            data: {
+                                "_token": "{{ csrf_token() }}",
+                                "values": values_selected,
+                                'isDigital': $('#availabilitySwitch1').prop('checked') * 1
+                            },
+                            success: function(result) {
+                                $('#variantsbody').html(result)
+                            }
+                        })
+                    }
+                })      
+                $('#availabilitySwitch5').click(function () {
+                    var isTrackQuantity = $('#availabilitySwitch5').prop('checked');
+
+                    if (!isTrackQuantity) {
+                        $('#quantity').attr('disabled', 'true');
+                    } else {
+                        $('#quantity').removeAttr('disabled');
+                    }
+                })                                     
+                var digital_download_assets = [];
+                $('#getFileManagerModel').click(function () {
+                    $.ajax({
+                        url: "{{ route('backend.file.show') }}",
+                        success: function (data) {
+                            if (!$.trim($('#fileManagerContainer').html()))
+                                $('#fileManagerContainer').html(data);
+
+                            $('#fileManagerModal').modal('show');
+
+                            const getSelectedItem = function (selectedId, filePath) {
+
+                                digital_download_assets = selectedId;
+                                $('#fileManagerModelId').val(digital_download_assets);
+                            }
+
+                            setSelectedItemsCB(getSelectedItem, digital_download_assets, false);
+                        }
+                    })
+                });    
+                $('#getFileManagerAsset').click(function () {
+                    $.ajax({
+                        url: "{{ route('backend.file.show') }}",
+                        success: function (data) {
+                            if (!$.trim($('#fileManagerContainer').html()))
+                                $('#fileManagerContainer').html(data);
+
+                            $('#fileManagerModal').modal('show');
+
+                            const getSelectedItem = function (selectedId, filePath) {
+
+                                $('#digital_download_assets').val(selectedId);
+                            }
+
+                            setSelectedItemsCB(getSelectedItem, $('#digital_download_assets').val() == '' ? [] : [$('#digital_download_assets').val()], false);
+                        }
+                    })
+                });
+
+                $('#getFileManager').click(function () {
+                    $.ajax({
+                        url: "{{ route('backend.file.show') }}",
+                        success: function (data) {
+                            if (!$.trim($('#fileManagerContainer').html()))
+                                $('#fileManagerContainer').html(data);
+
+                            $('#fileManagerModal').modal('show');
+
+                            const getSelectedItem = function (selectedId, filePath) {
+
+                                $('#fileManagerId').val(selectedId);
+                            }
+
+                            setSelectedItemsCB(getSelectedItem, $('#fileManagerId').val() == '' ? [] : [$('#fileManagerId').val()], false);
+                        }
+                    })
+                });                            
+            })
+        </script>
+    @endsection
 </x-app-layout>
