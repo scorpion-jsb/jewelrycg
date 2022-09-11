@@ -94,7 +94,7 @@ class ProductController extends Controller
                             $query->where('products.product_attribute_values', 'like', $attribute_query)
                             ->orWhere('products_variants.variant_attribute_value', 'like', $attribute_query);
                         })
-                        ->orderBy('products.id', 'DESC')->paginate(24);
+                        ->orderBy('products.id', 'DESC')->distinct()->paginate(24);
         }else{
             $products = Product::orderBy('id', 'DESC')->paginate(24);            
         }
