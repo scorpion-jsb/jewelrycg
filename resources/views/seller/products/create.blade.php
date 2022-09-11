@@ -68,7 +68,7 @@
                                 <!-- Body -->
                                 <div class="card-body">
                                     <!-- Gallery -->
-                                    <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-3">
+                                    <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-start gx-3">
             
                                     </div>
                                     <!-- End Gallery -->
