@@ -151,8 +151,12 @@
                                 <div class="w-100">
                                     <div class="">
                                         <strong class="h2 fw-400 text-black product_price">
-                                            @if (count($variants) && $minPrice != $maxPrice)
-                                                ${{ number_format($minPrice, 2, ".", ",") }} ~ ${{ number_format($maxPrice, 2, ".", ",") }}
+                                            @if (count($variants))
+                                                @if($minPrice != $maxPrice)
+                                                    ${{ number_format($minPrice, 2, ".", ",") }} ~ ${{ number_format($maxPrice, 2, ".", ",") }}
+                                                @else
+                                                    ${{ number_format($minPrice, 2, ".", ",") }}
+                                                @endif
                                             @else
                                                 ${{ $product->price }}
                                             @endif
