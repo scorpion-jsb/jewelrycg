@@ -4,9 +4,9 @@
             <div class="mt-1 mb-4 col">
                 <a href="{{ route('products.show', $product->slug) }}">
                     <div class="mb-2 card">
-                        <img src="{{ $product->uploads->getImageOptimizedFullName(400) }}" alt="{{ $product->name }}"/>
-                        {{-- <img src="http://localhost:8000/image/none.png?width=400&height=0" alt="{{ $product->name }}"
-                            class="rounded w-100 lazyloaded"> --}}
+                        {{-- <img src="{{ $product->uploads->getImageOptimizedFullName(400) }}" alt="{{ $product->name }}" --}}
+                        <img src="http://localhost:8000/image/none.png?width=400&height=0" alt="{{ $product->name }}"
+                            class="rounded w-100 lazyloaded">
                     </div>
                     <div class="text-left px-2">
                         <div class="fw-700 fs-16 text-primary col-4">

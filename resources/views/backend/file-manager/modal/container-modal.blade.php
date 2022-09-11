@@ -57,6 +57,9 @@
                                 <div class="form-group">
                                     <input type="file" name="file_upload_input" id="file_upload_input">
                                 </div>
+                                <div class="progress mb-3 d-none" id="file_upload_progressbar">
+                                    <div class="progress-bar" style="width:0%"></div>
+                                </div>
                                 <div class="form-group mb-0">
                                     <button type="submit" class="btn btn-primary upload-btn">
                                         <span class="spinner-border spinner-border-sm upload-btn-loading" role="status"
@@ -95,12 +98,29 @@
         });
 
         $('.upload-btn-loading-text, .upload-btn-loading').hide();
+        function uploadProgressHandler(event) {
+            var percent = (event.loaded / event.total) * 100;
+            var progress = Math.round(percent);
+            $("#uploadProgressBar").css("width", progress + "%");
+            $('#file_upload_progressbar .progress-bar').css("width", progress + "%");
+            $('#file_upload_progressbar .progress-bar').html(progress + "%");
+        }
+
+        function loadHandler(event) {
+            $('#file_upload_progressbar').addClass('d-none');
+        }
+
+        function errorHandler(event) {
+        }
+
+        function abortHandler(event) {
+        }        
         document.file_upload_form.onsubmit = function() {
             if (document.getElementById('file_upload_input').files.length) {
                 var formData = new FormData();
                 formData.append('file', document.getElementById('file_upload_input').files[0]);
                 formData.append('_token', "{{ csrf_token() }}");
-
+                $('#file_upload_progressbar').removeClass('d-none');
                 $('.upload-btn-loading-text, .upload-btn-loading').show();
                 $('.upload-btn-text').hide();
                 $('.upload-btn').attr('disable', true);
@@ -118,7 +138,16 @@
 
                         $('#file_explorer').click();
                         loadFiles();
-                    }
+                    },
+                    xhr: function () {
+                        var xhr = new window.XMLHttpRequest();
+                        xhr.upload.addEventListener("progress", uploadProgressHandler, false);
+                        xhr.addEventListener("load", loadHandler, false);
+                        xhr.addEventListener("error", errorHandler, false);
+                        xhr.addEventListener("abort", abortHandler, false);
+
+                        return xhr;
+                    }                    
                 });
             }
 

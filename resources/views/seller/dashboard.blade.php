@@ -23,7 +23,7 @@
                 </ul>
             </div>
             <div class="card">
-                <div class="card-header"><a class="btn btn-primary" href="">Add Product</a></div>
+                <div class="card-header"><a class="btn btn-primary" href="{{ route('seller.product.create') }}">Add Product</a></div>
                 <div class="card-body">
                 </div>
             </div>
