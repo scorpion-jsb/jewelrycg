@@ -151,7 +151,7 @@
                                 <div class="w-100">
                                     <div class="">
                                         <strong class="h2 fw-400 text-black product_price">
-                                            @if (count($variants))
+                                            @if (count($variants) && $minPrice != $maxPrice)
                                                 ${{ number_format($minPrice, 2, ".", ",") }} ~ ${{ number_format($maxPrice, 2, ".", ",") }}
                                             @else
                                                 ${{ $product->price }}
@@ -371,7 +371,7 @@
 
                 if (variant.id == selectedAttributeValue.sort().join(',')) {
                     $('#variant_attribute_value').val(variant.id)
-                    $('.product_price').text('$' + (variant.price / 100).toLocaleString())
+                    $('.product_price').text('$' + (variant.price / 100).toFixed(2).toLocaleString())
                 }
             })
         })

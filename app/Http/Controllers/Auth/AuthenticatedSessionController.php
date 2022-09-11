@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Auth;
 
 class AuthenticatedSessionController extends Controller
 {
+    const ADMIN_LOGGED_URL = '/backend';
+    const SELLER_LOGGED_URL = '/seller/dashboard';
+    const USER_LOGGED_URL = '/dashboard';
     /**
      * Display the login view.
      *
@@ -32,7 +35,14 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
+        $role = auth()->user()->role;
+        if($role == 1){
+            return redirect()->intended(self::ADMIN_LOGGED_URL);
+        }else if($role == 2){
+            return redirect()->intended(self::SELLER_LOGGED_URL);
+        }else{
+            return redirect()->intended(self::USER_LOGGED_URL);
+        }
         return redirect()->intended(RouteServiceProvider::HOME);
     }
 
