@@ -6,6 +6,10 @@
     .modal-body{
         overflow: auto;
     }    
+    .check-option {
+        right: 4px;
+        top: 4px;
+    }
 </style>
 <div class="modal fade" id="fileManagerModal" tabindex="-1" aria-labelledby="fileManagerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
