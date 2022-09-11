@@ -17,7 +17,7 @@ class ProductController extends Controller
 {
     public function searchCategory(Request $req)
     {
-        $products = Product::searchWithImages($req->q, $req->category);
+        $products = Product::where('status', 1)->searchWithImages($req->q, $req->category);
         $categories = ProductsCategorie::whereNull('parent_id')->get();
 
         $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();            
@@ -37,7 +37,7 @@ class ProductController extends Controller
             $search->save();
         }
 
-        $products = Product::searchWithImages($req->q, $req->category);
+        $products = Product::where('status', 1)->searchWithImages($req->q, $req->category);
         $categories = ProductsCategorie::whereNull('parent_id')->get();
 
         $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();        
@@ -54,7 +54,7 @@ class ProductController extends Controller
 
     public function products_index()
     {
-        $products = Product::orderBy('id', 'DESC')->paginate(24);
+        $products = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(24);
         $products->each(function($product){
             $product->setPriceToFloat();
         });
@@ -79,6 +79,7 @@ class ProductController extends Controller
             $attribute_query = '%'.implode(",", $request->attrs).'%';
             $products = Product::join('products_variants', 'products.id', '=', 'products_variants.product_id')
                         ->whereIn('category', $request->categories)
+                        ->where('status', 1)
                         ->where(function($query) use($attribute_query){
                             $query->where('products.product_attribute_values', 'like', $attribute_query)
                             ->orWhere('products_variants.variant_attribute_value', 'like', $attribute_query);
@@ -89,10 +90,12 @@ class ProductController extends Controller
                         ->orderBy('products.id', 'DESC')->distinct('products.id')->paginate(24);
         }else if($request->categories && count($request->categories)){
             $products = Product::whereIn('category', $request->categories)
+                        ->where('status', 1)
                         ->orderBy('id', 'DESC')->paginate(24);
         }else if($request->attrs && count($request->attrs)){
             $attribute_query = '%'.implode(",", $request->attrs).'%';
             $products = Product::join('products_variants', 'products.id', '=', 'products_variants.product_id')
+                        ->where('status', 1)
                         ->where(function($query) use($attribute_query){
                             $query->where('products.product_attribute_values', 'like', $attribute_query)
                             ->orWhere('products_variants.variant_attribute_value', 'like', $attribute_query);
@@ -102,7 +105,7 @@ class ProductController extends Controller
                         )                        
                         ->orderBy('products.id', 'DESC')->distinct('products.id')->paginate(24);
         }else{
-            $products = Product::orderBy('id', 'DESC')->paginate(24);
+            $products = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(24);
         }
         $products->each(function($product){
             $product->setPriceToFloat();

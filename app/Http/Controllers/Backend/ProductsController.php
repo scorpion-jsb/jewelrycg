@@ -28,7 +28,7 @@ class ProductsController extends Controller
     public function index()
     {
         return view('backend.products.list', [
-            'products' => Product::with('product_category')->orderBy('id', 'DESC')->get()
+            'products' => Product::where('status', 1)->with('product_category')->orderBy('id', 'DESC')->get()
         ]);
     }
 
