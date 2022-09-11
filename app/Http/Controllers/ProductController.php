@@ -77,27 +77,36 @@ class ProductController extends Controller
     public function filterProduct(Request $request){
         if( $request->attrs && count($request->attrs) && $request->categories && count($request->categories)){
             $attribute_query = '%'.implode(",", $request->attrs).'%';
-            $products = Product::leftJoin('products_variants', 'products.id', '=', 'products_variants.product_id')
+            $products = Product::join('products_variants', 'products.id', '=', 'products_variants.product_id')
                         ->whereIn('category', $request->categories)
                         ->where(function($query) use($attribute_query){
                             $query->where('products.product_attribute_values', 'like', $attribute_query)
                             ->orWhere('products_variants.variant_attribute_value', 'like', $attribute_query);
                         })
-                        ->orderBy('products.id', 'DESC')->paginate(24);
+                        ->select('products.id', 'products.name', 'products.product_thumbnail', 'products.product_images',
+                            'products.product_3dpreview', 'products.slug', 'products.price'
+                        )
+                        ->orderBy('products.id', 'DESC')->distinct('products.id')->paginate(24);
         }else if($request->categories && count($request->categories)){
             $products = Product::whereIn('category', $request->categories)
                         ->orderBy('id', 'DESC')->paginate(24);
         }else if($request->attrs && count($request->attrs)){
             $attribute_query = '%'.implode(",", $request->attrs).'%';
-            $products = Product::leftJoin('products_variants', 'products.id', '=', 'products_variants.product_id')
+            $products = Product::join('products_variants', 'products.id', '=', 'products_variants.product_id')
                         ->where(function($query) use($attribute_query){
                             $query->where('products.product_attribute_values', 'like', $attribute_query)
                             ->orWhere('products_variants.variant_attribute_value', 'like', $attribute_query);
                         })
-                        ->orderBy('products.id', 'DESC')->distinct()->paginate(24);
+                        ->select('products.id', 'products.name', 'products.product_thumbnail', 'products.product_images',
+                            'products.product_3dpreview', 'products.slug', 'products.price'
+                        )                        
+                        ->orderBy('products.id', 'DESC')->distinct('products.id')->paginate(24);
         }else{
-            $products = Product::orderBy('id', 'DESC')->paginate(24);            
+            $products = Product::orderBy('id', 'DESC')->paginate(24);
         }
+        $products->each(function($product){
+            $product->setPriceToFloat();
+        });
         $products->withPath('/3d-models');
         $categories = ProductsCategorie::whereNull('parent_id')->get();
 
