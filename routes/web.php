@@ -240,8 +240,9 @@ Route::group(['middleware' => ['auth']], function () {
 	Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
 });
 // Seller Dashboard
-Route::group(['middleware' => ['auth'], 'prefix'=>'seller', 'as'=>'seller'], function () {
+Route::group(['middleware' => ['auth'], 'prefix'=>'seller', 'as'=>'seller.'], function () {
 	Route::get('/dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
+	Route::get('/product/create', [SellerController::class, 'productCreate'])->name('product.create');
 });
 
 Route::get('/image/{filename}', [AppController::class, 'image']);
