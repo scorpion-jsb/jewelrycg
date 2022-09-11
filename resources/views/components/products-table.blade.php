@@ -9,15 +9,15 @@
                     <div class="item-meta mb-3 fw-800 fs-18">
                         @php
                             if (count($product->options)) {
-                                // echo $product->name . ' - ' . $product->options->name;
-                                echo $product->name;
+                                echo $product->name . ' ( ' . $product->options->name.' )';
+                                // echo $product->name;
                             } else {
                                 echo $product->name;
                             }
                         @endphp
                     </div>
                     <div class="item-meta mb-2">
-                        <span class="text-primary fw-800 mb-2" id="price{{ $product->rowId }}">${{ $product->price }}</span>
+                        <span class="text-primary fw-800 mb-2" id="price{{ $product->rowId }}">${{ number_format($product->price, 2, ".", ",") }}</span>
                     </div>
                     @if ($locale == 'wishlist')
                     <div class="item-meta mb-2">

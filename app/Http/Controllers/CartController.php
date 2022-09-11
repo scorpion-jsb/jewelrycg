@@ -18,7 +18,6 @@ class CartController extends Controller
         // Cart::instance('default')->erase(auth()->id());
         // Cart::instance('default')->destroy();
         // dd(Cart::content());
-
         if (Auth::check()) {
             Cart::restore(auth()->id());
             foreach (Cart::content() as $item) {
