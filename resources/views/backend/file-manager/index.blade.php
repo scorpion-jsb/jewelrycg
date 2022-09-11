@@ -116,7 +116,7 @@
                                 @endif
                                 <div class="card-body">
                                     <h5 class="card-title text-center">{{ $file->getOriginalFileFullName() }}</h5>
-                                    <span class="file-size">{{ $file->file_size }} KB</span>
+                                    <span class="file-size">{{ number_format($file->file_size/(1024*1024), 2, '.', ',') }} MB</span>
                                 </div>
                             </div>
                         </div>
