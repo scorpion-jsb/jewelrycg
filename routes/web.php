@@ -33,6 +33,7 @@ use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\TaxOptionController;
 // seller register
 use App\Http\Controllers\Auth\SellerRegisterController;
+use App\Http\Controllers\SellerController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
@@ -235,8 +236,14 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 Route::get('/', [AppController::class, 'index'])->name('index');
 
 Route::group(['middleware' => ['auth']], function () {
+	// User Dashboard
 	Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
 });
+// Seller Dashboard
+Route::group(['middleware' => ['auth'], 'prefix'=>'seller', 'as'=>'seller'], function () {
+	Route::get('/dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
+});
+
 Route::get('/image/{filename}', [AppController::class, 'image']);
 
 // Blog
