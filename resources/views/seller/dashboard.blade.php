@@ -12,6 +12,16 @@
     </x-slot>
     <div class="py-9">
         <div class="container">
+            <div class="header mb-3">
+                <ul class="nav nav-pills">
+                    <li class="nav-item">
+                        <a class="nav-link {{ \Route::currentRouteName() == 'seller.dashboard' ? 'active' :'' }}" href="\seller\dashboard">Seller Dashboard</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link {{ \Route::currentRouteName() == 'dashboard' ? 'active' :'' }}" href="\dashboard">User Dashboard</a>
+                    </li>
+                </ul>
+            </div>
             <div class="card">
                 <div class="card-header">Your Purchases</div>
                 <div class="card-body">
