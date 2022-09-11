@@ -7,6 +7,7 @@
             margin-bottom: 8px;
         }     
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />    
     <link rel="stylesheet" href="{{ asset('assets/css/backend/app.css') }}" data-hs-appearance="default" as="style">
     @endsection
@@ -314,7 +315,7 @@
                                 <!-- Body -->
                                 <div class="card-body">
                                     <label for="tax_option_id">Tax</label>
-                                    <select name="tax_option_id" id="tax_option_id" class="form-control form-control-sm">
+                                    <select name="tax_option_id" id="tax_option_id" class="selectpicker form-control form-control-sm">
                                         <option value="0" {{ old('tax_option_id') == 0 ? 'selected' : '' }}>Not Taxable</option>
                                         @foreach ($taxes as $tax)
                                             <option {{ old('tax_option_id') == $tax->id ? 'selected' : '' }} value="{{ $tax->id }}">{{ $tax->name }} - {{ $tax->price / 100 }} ({{ $tax->type }})</option>
@@ -335,6 +336,8 @@
         </div>
     </div>
     @section('js')
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.14.0-beta3/dist/js/bootstrap-select.min.js"></script>
         <script>
             $(function(){
                 $('.select2').select2({
