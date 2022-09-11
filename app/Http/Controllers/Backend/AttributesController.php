@@ -210,6 +210,7 @@ class AttributesController extends Controller
             $attribute->delete();
         }
         Product::where('product_attributes', 'like', '%'.$id.',%')
+                ->where('status', 1)
                 ->orWhere('product_attributes', 'like', '%,'.$id.'%')
                 ->orWhere('product_attributes', $id)
                 ->update([
