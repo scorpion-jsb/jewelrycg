@@ -729,3 +729,17 @@ hr { border-color: #eeeeee !important; }
 .select2-container--default.select2-container--focus .select2-selection--multiple {
     border: 1px solid #ced4da;
 }
+/* added css for scroll bar layout */
+/* width */
+::-webkit-scrollbar {
+    width: 9px;
+}
+/* Track */
+::-webkit-scrollbar-track {
+    background: #E0E0E0; 
+}
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #47454B; 
+    border-radius: 6px;
+}   

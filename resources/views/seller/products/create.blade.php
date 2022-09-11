@@ -5,7 +5,7 @@
         .pur {
             width: 100%;
             margin-bottom: 8px;
-        }
+        }     
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/css/select2.min.css" />    
     <link rel="stylesheet" href="{{ asset('assets/css/backend/app.css') }}" data-hs-appearance="default" as="style">
@@ -343,6 +343,42 @@
                     tokenSeparators: [','],
                     placeholder: "Select or type keywords",
                 });
+                $('#attributes').on('change', function() {
+                    var attributes = $(this).val()
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('backend.products.attributes.ajaxcall') }}",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "attributes": attributes
+                        },
+                        success: (data) => {
+                            $('#product_attribute_values').html(data);
+                        }
+                    })
+                })
+
+                var getVariants = function(isDigital, productId) {
+                    var values_selected = $('#product_attribute_values').val();
+
+                    $.ajax({
+                        type: 'POST',
+                        url: "{{ route('backend.products.attributes.combinations') }}",
+                        data: {
+                            "_token": "{{ csrf_token() }}",
+                            "values": values_selected,
+                            'isDigital': isDigital,
+                            product_id: productId
+                        },
+                        success: function(result) {
+                            $('#variantsbody').html(result)
+                        }
+                    })
+                }
+
+                $('#generatevariants').on('click', function() {
+                    getVariants($('#availabilitySwitch1').prop('checked') * 1, $(this).attr('data-product-id'));
+                })                
                 var createChecks = [];
                 function removepreviewappended(id) {
                     createChecks = jQuery.grep(createChecks, function(value) {

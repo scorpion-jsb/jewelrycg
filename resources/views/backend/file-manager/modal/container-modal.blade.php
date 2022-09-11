@@ -1,4 +1,12 @@
 <link rel="stylesheet" href="{{ asset('dropzone/css/bs-dropzone.css') }}">
+<style>
+    .modal-content{
+        overflow: hidden;
+    }
+    .modal-body{
+        overflow: auto;
+    }    
+</style>
 <div class="modal fade" id="fileManagerModal" tabindex="-1" aria-labelledby="fileManagerModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
@@ -58,7 +66,7 @@
                                     <input type="file" name="file_upload_input" id="file_upload_input">
                                 </div>
                                 <div class="progress mb-3 d-none" id="file_upload_progressbar">
-                                    <div class="progress-bar" style="width:0%"></div>
+                                    <div class="progress-bar" style="width:10%">10%</div>
                                 </div>
                                 <div class="form-group mb-0">
                                     <button type="submit" class="btn btn-primary upload-btn">
