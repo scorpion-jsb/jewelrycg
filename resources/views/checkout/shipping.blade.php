@@ -91,7 +91,7 @@
                 $('#shipping_price').text(`$${shippingPrice}`);
 
                 $('#total_price').text(
-                    `$${(Math.round((totalPrice + shippingPrice * 1) * 100) / 100).toFixed(2)}`);
+                    `$${parseFloat((Math.round((totalPrice + shippingPrice * 1) * 100) / 100).toFixed(2)).toLocaleString()}`);
             })
 
             $('#option0').click();

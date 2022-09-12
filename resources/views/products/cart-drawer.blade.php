@@ -12,8 +12,8 @@
             </div>
             <div class="d-flex justify-content-between cart-drawer-item-meta align-items-baseline mb-2">
                 <input type="number" class="product-quantity p-1" value="{{ $item->qty }}" data-row-id="{{ $item->rowId }}" style="width: 60px;">
-                <span class="product-price d-none">${{ $item->price }}</span>
-                <span class="total-price">${{ $item->qty * $item->price }}</span>
+                <span class="product-price d-none">${{ number_format($item->price, 2, ".", ",") }}</span>
+                <span class="total-price">${{ number_format($item->qty * $item->price, 2, ".", ",") }}</span>
             </div>
             <div class="cart-drawer-item-meta">
                 <a href="javascript:;" data-row-id="{{ $item->rowId }}" class="text-danger remove-item-btn " title="Remove from chat">Remove</a>
@@ -77,7 +77,7 @@
                 quantity: quantity
             },
             success: function(data) {
-              $(_this).next().next().text('$' + (Math.round(total * 100) / 100).toFixed(2));
+              $(_this).next().next().text('$' + parseFloat((Math.round(total * 100) / 100).toFixed(2)).toLocaleString());
             }
         })
 
