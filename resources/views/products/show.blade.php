@@ -237,8 +237,8 @@
 
                                 <input type="hidden" name="id_product" value="{{ $product->id }}">
 
-                                <button class="btn btn-primary shadow-md mt-4" type="submit"
-                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }} class="add-to-cart" id="add_to_cart_btn">
+                                <button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"
+                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}  id="add_to_cart_btn">
                                     <div class="loader-container">
                                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         Adding ...
