@@ -512,6 +512,7 @@
                         }
                     })
                 });    
+                var digital_assets = [];
                 $('#getFileManagerAsset').click(function () {
                     $.ajax({
                         url: "{{ route('backend.file.show') }}",
@@ -524,11 +525,11 @@
                             const getSelectedItem = function (selectedId, filePath) {
                                 $('#digitalAssetPreview').removeClass('d-none');
                                 $('#digitalAssetPreview').attr('src', filePath);                                
-                                digitalAssetPreview
-                                $('#digital_download_assets').val(selectedId);
+                                digital_assets = selectedId;
+                                $('#digital_download_assets').val(digital_assets);
                             }
 
-                            setSelectedItemsCB(getSelectedItem, $('#digital_download_assets').val() == '' ? [] : [$('#digital_download_assets').val()], false);
+                            setSelectedItemsCB(getSelectedItem, digital_assets, false);
                         }
                     })
                 });

@@ -142,7 +142,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::put('/update/{product}', [AttributesController::class, 'update'])->name('update');
 		Route::post('/store', [AttributesController::class, 'store'])->name('store');
 		Route::get('/delete/{id}', [AttributesController::class, 'destroy'])->name('delete');
-		Route::post('/get_for_variants', [AttributesController::class, 'ajaxcall'])->name('ajaxcall');
+		Route::post('/get_for_variants', [AttributesController::class, 'ajaxcall'])->withoutMiddleware(['admin'])->name('ajaxcall');
 		Route::post('/get_combinations', [AttributesController::class, 'combinations'])->withoutMiddleware(['admin'])->name('combinations');
 		Route::get('/get', [AttributesController::class, 'get'])->name('get');
 		Route::post('/get/values', [AttributesController::class, 'getvalues'])->name('getvalues');
