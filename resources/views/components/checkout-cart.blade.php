@@ -5,19 +5,17 @@
                 <img src="{{ $product->model->uploads->getImageOptimizedFullName() }}" alt=""
                     class="thumbnail border rounded w-100">
             </div>
-            <div class="col-7">
-                <div class="item-meta mb-2">
-                    @php
-                        if (count($product->options)) {
-                            echo $product->name . ' - ' . $product->options->name;
-                        } else {
-                            echo $product->name;
-                        }
-                    @endphp
+            <div class="col-8">
+                <div class="item-meta text-nowrap mb-2">
+                    @if(count($product->options))
+                        {{$product->name}} ( {{$product->options->name}} )
+                    @else
+                        {{$product->name}}
+                    @endif
                 </div>
                 <div class="item-meta mb-2"><span class="fw-800">Quantity:</span> {{ $product->qty }}</div>
             </div>
-            <div class="col-2 text-right">
+            <div class="col-1 text-right">
                 <span class="text-primary fw-800">${{ number_format($product->price, 2, ".", ",") }}</span>
             </div>
         </div>

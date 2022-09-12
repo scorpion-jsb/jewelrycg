@@ -8,7 +8,13 @@
         </div>
         <div class="col-8">
             <div class="cart-drawer-item-meta mb-2">
-                <div class="product-title">{{ $item->name }}</div>
+                <div class="product-title">
+                  @if (count($item->options))
+                    {{$product->name}} ( {{$item->options->name}} )
+                  @else
+                      {{ $product->name }}
+                  @endif
+                </div>
             </div>
             <div class="d-flex justify-content-between cart-drawer-item-meta align-items-baseline mb-2">
                 <input type="number" class="product-quantity p-1" value="{{ $item->qty }}" data-row-id="{{ $item->rowId }}" style="width: 60px;">
