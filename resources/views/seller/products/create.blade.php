@@ -263,7 +263,7 @@
                                 <!-- End Card -->
                 
                                 <!-- Card -->
-                                <div class="card mb-3 mb-4" @if (!old('is_digital')) style="display: none;" @endif>
+                                <div class="card mb-3 mb-4">
                                     <!-- Header -->
                                     <div class="card-header">
                                         <h4 class="card-header-title mb-0">Digital Asset File</h4>
