@@ -263,7 +263,7 @@
                                 <!-- End Card -->
                 
                                 <!-- Card -->
-                                <div class="card mb-3 mb-4" @if (!old('is_digital')) style="display: none;" @endif>
+                                <div class="card mb-3 mb-4">
                                     <!-- Header -->
                                     <div class="card-header">
                                         <h4 class="card-header-title mb-0">Digital Asset File</h4>
@@ -272,6 +272,11 @@
                 
                                     <!-- Body -->
                                     <div class="card-body">
+                                        <div class="imagePreview img-thumbnail p-2">
+                                            <img id="digitalAssetPreview"
+                                                src=""
+                                                style="width: 100%">
+                                        </div>                                        
                                         <label class="btn text-primary mt-2 p-0" id="getFileManagerAsset">Select asset</label>
                                         <input type="hidden" id="digital_download_assets" name="digital_download_assets" value="{{ old('digital_download_assets') }}" >
                                     </div>
@@ -507,6 +512,7 @@
                         }
                     })
                 });    
+                var digital_assets = [];
                 $('#getFileManagerAsset').click(function () {
                     $.ajax({
                         url: "{{ route('backend.file.show') }}",
@@ -517,11 +523,13 @@
                             $('#fileManagerModal').modal('show');
 
                             const getSelectedItem = function (selectedId, filePath) {
-
-                                $('#digital_download_assets').val(selectedId);
+                                $('#digitalAssetPreview').removeClass('d-none');
+                                $('#digitalAssetPreview').attr('src', filePath);                                
+                                digital_assets = selectedId;
+                                $('#digital_download_assets').val(digital_assets);
                             }
 
-                            setSelectedItemsCB(getSelectedItem, $('#digital_download_assets').val() == '' ? [] : [$('#digital_download_assets').val()], false);
+                            setSelectedItemsCB(getSelectedItem, digital_assets, false);
                         }
                     })
                 });

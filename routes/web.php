@@ -83,7 +83,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 
 	Route::group(['prefix' => 'file', 'as' => 'file.'], function() {
 		Route::get('/', [FileManagerController::class, 'index'])->name('index');
-		Route::get('/show', [FileManagerController::class, 'show'])->name('show');
+		Route::get('/show', [FileManagerController::class, 'show'])->withoutMiddleware(['admin'])->name('show');
 		Route::post('/store', [FileManagerController::class, 'store'])->name('store');
 		Route::post('/destroy/{id}', [FileManagerController::class, 'destroy'])->name('destroy');
 	});
@@ -142,8 +142,8 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::put('/update/{product}', [AttributesController::class, 'update'])->name('update');
 		Route::post('/store', [AttributesController::class, 'store'])->name('store');
 		Route::get('/delete/{id}', [AttributesController::class, 'destroy'])->name('delete');
-		Route::post('/get_for_variants', [AttributesController::class, 'ajaxcall'])->name('ajaxcall');
-		Route::post('/get_combinations', [AttributesController::class, 'combinations'])->name('combinations');
+		Route::post('/get_for_variants', [AttributesController::class, 'ajaxcall'])->withoutMiddleware(['admin'])->name('ajaxcall');
+		Route::post('/get_combinations', [AttributesController::class, 'combinations'])->withoutMiddleware(['admin'])->name('combinations');
 		Route::get('/get', [AttributesController::class, 'get'])->name('get');
 		Route::post('/get/values', [AttributesController::class, 'getvalues'])->name('getvalues');
 		Route::get('/get_product_attribute', [AttributesController::class, 'getProductAttribute'])->name('getproductattribute');
