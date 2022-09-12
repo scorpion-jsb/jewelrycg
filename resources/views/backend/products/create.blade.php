@@ -166,8 +166,8 @@
                             <div class="col-12">
                                 <select class="selectpicker w-100" name="status">
                                     <option value="1" selected>Published</option>
-                                    <option value="2" >Draft</option>
-                                    <option value="3" >Pending Review</option>
+                                    <option value="2" >Pending Review</option>
+                                    <option value="3" >Draft</option>
                                 </select>
                             </div>
                         </label>

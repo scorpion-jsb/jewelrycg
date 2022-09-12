@@ -222,8 +222,9 @@
                             <span class="col-12">
                             <select class="selectpicker w-100" name="status">
                                 <option value="1" @if($product->status == 1) selected @endif>Published</option>
-                                <option value="2" @if($product->status == 2) selected @endif>Draft</option>
-                                <option value="3" @if($product->status == 3) selected @endif>Pending Review</option>
+                                <option value="2" @if($product->status == 2) selected @endif>Pending Review</option>
+                                <option value="3" @if($product->status == 3) selected @endif>Draft</option>
+                                <option value="4" @if($product->status == 4) selected @endif>Denied</option>
                             </select>
                             </span>
                         </label>
