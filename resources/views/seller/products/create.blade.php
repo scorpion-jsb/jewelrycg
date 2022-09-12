@@ -272,6 +272,11 @@
                 
                                     <!-- Body -->
                                     <div class="card-body">
+                                        <div class="imagePreview img-thumbnail p-2">
+                                            <img id="digitalAssetPreview"
+                                                src=""
+                                                style="width: 100%">
+                                        </div>                                        
                                         <label class="btn text-primary mt-2 p-0" id="getFileManagerAsset">Select asset</label>
                                         <input type="hidden" id="digital_download_assets" name="digital_download_assets" value="{{ old('digital_download_assets') }}" >
                                     </div>
@@ -517,7 +522,9 @@
                             $('#fileManagerModal').modal('show');
 
                             const getSelectedItem = function (selectedId, filePath) {
-
+                                $('#digitalAssetPreview').removeClass('d-none');
+                                $('#digitalAssetPreview').attr('src', filePath);                                
+                                digitalAssetPreview
                                 $('#digital_download_assets').val(selectedId);
                             }
 
