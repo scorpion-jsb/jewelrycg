@@ -43,9 +43,7 @@
                                                 <h6>{{ $product->name }} -( {{ $product->product_variant_name }} )</h6>
                                             </a>
                                         @endif
-                                        <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $product->id }}">
-                                            <i class="bi bi-download"></i> Download
-                                        </a>
+                                        <div class="fw-bold mb-2">Status : {{ $product->status == 1 ? 'Published' : 'Pending Review' }}</div>
                                         <button class="btn btn-danger pur">
                                             <i class="bi bi-pencil"></i> Edit
                                         </button>
