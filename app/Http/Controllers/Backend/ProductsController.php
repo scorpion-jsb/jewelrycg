@@ -32,6 +32,15 @@ class ProductsController extends Controller
         ]);
     }
 
+    /**
+     * 
+     * Display pending products that its status is 2
+     */
+    public function pending(){
+        return view('backend.products.pending', [
+            'products' => Product::where('status', 2)->with('product_category')->orderBy('id', 'DESC')->get()
+        ]);        
+    }
     public function trash()
     {
         return view('backend.products.trash', [
