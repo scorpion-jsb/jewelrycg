@@ -1,8 +1,5 @@
 <x-app-layout page-title="{{$product->meta_title?$product->meta_title:$product->name}}" page-description="{{$product->meta_description}}">
     <style>
-        #add_to_cart_btn {
-            width: 120px;
-        }
 
         .btn-check:active+.btn, .btn-check:checked+.btn, .btn.active, .btn.show, .btn:active {
             border: solid 1px white !important;
@@ -241,7 +238,7 @@
                                 <input type="hidden" name="id_product" value="{{ $product->id }}">
 
                                 <button class="btn btn-primary shadow-md mt-4" type="submit"
-                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }} id="add_to_cart_btn">
+                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }} class="add-to-cart" id="add_to_cart_btn">
                                     <div class="loader-container">
                                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         Adding ...
