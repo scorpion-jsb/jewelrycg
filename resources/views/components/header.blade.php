@@ -65,7 +65,7 @@
             <ul class="mb-2 ml-auto navbar-nav mb-lg-0">
                 <li class="nav-item dropdown menu-area">
                     <a href="{{route('cart.index')}}" class="nav-link">
-                        <i class="bi bi-cart2"></i>
+                        <i class="bi bi-bag-fill"></i>
                         <?php
                             if(Cart::instance('default')->content()->count() == 0
                                 && auth()->check()
