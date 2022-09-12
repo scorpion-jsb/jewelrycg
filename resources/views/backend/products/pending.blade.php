@@ -1,17 +1,11 @@
-@extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'All Products', 'navName' => 'allproducts', 'activeButton' => 'catalogue'])
+@extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'Pending Products', 'navName' => 'pendingproducts', 'activeButton' => 'catalogue'])
 
 @section('content')
     <div class="page-header">
         <div class="row align-items-center mb-3">
             <div class="col-sm mb-2 mb-sm-0">
-                <h1 class="page-header-title">Products <span class="badge bg-soft-dark text-dark ms-2">{{ $products->count() }}</span></h1>
+                <h1 class="page-header-title">Pending Products <span class="badge bg-soft-dark text-dark ms-2">{{ $products->count() }}</span></h1>
             </div>
-            <!-- End Col -->
-
-            <div class="col-sm-auto">
-                <a class="btn btn-primary" href="{{ route('backend.products.create') }}">Create product</a>
-            </div>
-            <!-- End Col -->
         </div>
         <!-- End Row -->
     </div>

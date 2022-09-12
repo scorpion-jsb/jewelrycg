@@ -30,7 +30,7 @@
             <span class="fw-800" id="shipping_price">
                 $@php
                     $shippingPrice = Session::get('shipping_price', 0);
-                    echo number_format($shippingPrice / 100, 2);
+                    echo number_format($shippingPrice / 100, 2, ".", ",");
                 @endphp
             </span>
         </div>
@@ -48,7 +48,7 @@
                     foreach ($products as $product) {
                         $taxPrice += $product->qty * $product->price * $product->model->taxPrice();
                     }
-                    echo number_format($taxPrice / 100 / 100, 2);
+                    echo number_format($taxPrice / 100 / 100, 2, ".", ",");
                 @endphp
             </span>
         </div>
@@ -62,7 +62,7 @@
         <div class="col-auto ml-auto text-right">
             <span>
                 <span class="fw-800 text-primary" id="total_price">
-                    ${{number_format(Cart::total(2, '.', '') + $shippingPrice/100 + $taxPrice/100/100, 2)}}
+                    ${{number_format(Cart::total(2, '.', '') + $shippingPrice/100 + $taxPrice/100/100, 2, ".", ",")}}
             </span>
         </div>
     </div>
