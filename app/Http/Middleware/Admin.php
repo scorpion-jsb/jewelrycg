@@ -16,7 +16,11 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        abort_if(! auth()->user()->role, 401);
-        return $next($request);
+        if(auth()->user()->role == 1){
+            return $next($request);
+        }else{
+            return redirect()->back();
+            abort_if(! auth()->user()->role, 401);
+        }
     }
 }
