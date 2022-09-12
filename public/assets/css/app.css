@@ -270,17 +270,7 @@ filter: grayscale(0);
   height: 100%;
   width: 100%;
 }
-.add-to-cart {
-    width: 100%;
-    padding: 15px;
-    background: #000;
-    border: 1px solid #000000;
-}
-.add-to-cart:hover {
-    background: #FFFFFF;
-    border: 1px solid #000000;
-    color: #000000;
-}
+
 /* Footer */
 .footer .footer-logo {
   height:20px;
