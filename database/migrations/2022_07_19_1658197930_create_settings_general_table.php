@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('recaptcha_site_key')->nullable();
             $table->string('recaptcha_secret_key')->nullable();
             $table->tinyInteger('guest_checkout')->nullable();
+            $table->integer('default_sales_commission_rate')->nullable();
             $table->timestamps();
         });
     }
