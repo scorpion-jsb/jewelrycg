@@ -263,7 +263,7 @@
                                 <!-- End Card -->
                 
                                 <!-- Card -->
-                                <div class="card mb-3 mb-4">
+                                <div class="card mb-3 mb-4" id="digitalAssetPanel">
                                     <!-- Header -->
                                     <div class="card-header">
                                         <h4 class="card-header-title mb-0">Digital Asset File</h4>
@@ -382,6 +382,7 @@
                 }
 
                 $('#generatevariants').on('click', function() {
+                    $('#digitalAssetPanel').addClass('d-none');
                     getVariants($('#availabilitySwitch1').prop('checked') * 1, $(this).attr('data-product-id'));
                 })                
                 var createChecks = [];
