@@ -23,6 +23,25 @@
                 </ul>
             </div>
             <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="card m-0">
+                                <div class="card-body">
+                                    <h5 class="blance-title">Sold Amount ( $ {{ number_format($seller->wallet/100, 2, ".", ",") }} )</h5>
+                                    <p class="fw-bold">Your sold amount (current month)</p>
+                                    <h5 class="blance-title">$ {{ $soldCurrentMonth }}</h5>
+                                    <p class="fw-bold">Last month: ${{ $soldLastMonth }}</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3"></div>
+                        <div class="col-md-3"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
                 <div class="card-header"><a class="btn btn-primary" href="{{ route('seller.product.create') }}">Add Product</a></div>
                 <div class="card-body">
                     <div class="row">
@@ -56,4 +75,11 @@
             </div>
         </div>
     </div>
+    <style>
+        .blance-title{
+            color: rgb(1, 119, 189);
+            font-size: 24px;
+            font-weight: bold;
+        }
+    </style>
 </x-app-layout>

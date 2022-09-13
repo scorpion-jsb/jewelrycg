@@ -235,4 +235,8 @@ class Product extends Model
     public function digitalImage() {
         return $this->belongsTo(Upload::class, 'digital_download_assets');
     }
+    // get user
+    public function user(){
+        return $this->belongsTo(User::class, 'vendor');
+    }
 }
