@@ -89,7 +89,7 @@ class CheckoutController extends Controller
                     $orderItem->product_variant = 0;
 
                     $total = $orderItem->price * $orderItem->quantity;
-
+                    
                     if (isset($item->options['id'])) {
                         $orderItem->product_variant = $item->options['id'];
 
@@ -293,6 +293,20 @@ class CheckoutController extends Controller
         $order->status_payment = 2; // paid
         $order->payment_intent = $request->get('payment_intent');
         $order->save();
+
+        // set seller balance
+        $orderItems = OrderItem::where('order_id', $orderId)->get();
+        foreach ($orderItems as $orderItem) {
+            $seller = $orderItem->product->user->seller;
+            if($seller){
+                if($seller->sales_commission_rate){
+                    $seller->wallet +=  $orderItem->price * $orderItem->quantity * $seller->sales_commission_rate/100;
+                }else{
+                    $seller->wallet +=  $orderItem->price * $orderItem->quantity * SettingGeneral::value('default_sales_commission_rate')/100;
+                }
+                $seller->save();
+            }
+        }
         // Send order placed email to customer
         if(auth()->user()){
             Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
