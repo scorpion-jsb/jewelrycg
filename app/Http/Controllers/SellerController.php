@@ -14,7 +14,7 @@ use App\Models\ProductsTaxOption;
 use App\Models\ProductsVariant;
 use App\Models\ProductTagsRelationship;
 use App\Models\SellersProfile;
-use App\Models\SellerWalletHistory;
+use App\Models\SellersWalletHistory;
 use App\Models\SettingGeneral;
 use Carbon\Carbon;
 
@@ -25,7 +25,7 @@ class SellerController extends Controller
 
         $products = Product::where('vendor', auth()->id())->get();
         $seller = SellersProfile::where('user_id', auth()->id())->first();
-        $pendingBalance = SellerWalletHistory::where('user_id', auth()->id())->where('status', 0)->select('amount')->get()->sum('amount');
+        $pendingBalance = SellersWalletHistory::where('user_id', auth()->id())->where('status', 0)->select('amount')->get()->sum('amount');
         return view('seller.dashboard')->with([
             'products' => $products, 
             'seller'=>$seller, 
