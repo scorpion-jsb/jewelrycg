@@ -28,21 +28,29 @@
                         <div class="col-md-3">
                             <div class="card m-0">
                                 <div class="card-body">
-                                    <h5 class="blance-title">Sold Amount ( $ {{ number_format($seller->wallet/100, 2, ".", ",") }} )</h5>
-                                    <p class="fw-bold">Your sold amount (current month)</p>
-                                    <h5 class="blance-title">$ {{ $soldCurrentMonth }}</h5>
-                                    <p class="fw-bold">Last month: ${{ $soldLastMonth }}</p>
+                                    {{-- <h5 class="blance-title">Sold Amount ( $ {{ number_format($seller->wallet/100, 2, ".", ",") }} )</h5> --}}
+                                    <h5 class="blance-title">Available To Withdraw</h5>
+                                    <p class="fw-bold">$ 80.00</p>
+                                    <a href="" class="btn btn-sm btn-primary">Withdraw</a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <div class="card m-0 h-100">
+                                <div class="card-body">
+                                    {{-- <h5 class="blance-title">Sold Amount ( $ {{ number_format($seller->wallet/100, 2, ".", ",") }} )</h5> --}}
+                                    <h5 class="blance-title">Pending Balance</h5>
+                                    <p class="fw-bold">$ 20</p>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-3"></div>
                         <div class="col-md-3"></div>
                     </div>
                 </div>
             </div>
             <div class="card">
-                <div class="card-header"><a class="btn btn-primary" href="{{ route('seller.product.create') }}">Add Product</a></div>
+                <div class="card-header"><a class="btn btn-sm btn-primary" href="{{ route('seller.product.create') }}">Add Product</a></div>
                 <div class="card-body">
                     <div class="row">
                         @foreach ($products as $product)

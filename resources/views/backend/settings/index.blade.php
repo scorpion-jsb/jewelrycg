@@ -195,7 +195,24 @@
                         <label class="form-check-label ms-3" for="guest_checkout">Guest Checkout</label>
                     </div>                    
                 </div>
-            </div>            
+            </div>
+            <div class="card col-md-12">
+                <!-- Header -->
+                <div class="card-header">
+                    <h4 class="card-header-title mb-0">Commission Setting</h4>
+                </div>
+                <!-- End Header -->
+                <div class="card-body">
+                    <div class="mb-2">
+                        <label for="recaptcha_site_key" class="w-100 mb-2">Commission Rate:</label>
+                        @if ($data && $data->default_sales_commission_rate)
+                        <input type="text" name="default_sales_commission_rate" id="default_sales_commission_rate" value="{{ $data->default_sales_commission_rate }}" class="form-control">
+                        @else
+                        <input type="text" name="default_sales_commission_rate" id="default_sales_commission_rate" value="{{ old('default_sales_commission_rate') }}" class="form-control">
+                        @endif
+                    </div>
+                </div>
+            </div>
             <div class="card col-md-12">
                 <!-- Header -->
                 <div class="card-header">
