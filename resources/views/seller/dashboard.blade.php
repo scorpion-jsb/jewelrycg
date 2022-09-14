@@ -46,7 +46,7 @@
                             <div class="card m-0 h-100">
                                 <div class="card-body">
                                     <h5 class="blance-title">Total Earned</h5>
-                                    <p class="fw-bold">$ {{ number_format($totalEarned, 2, ".", ",") }}</p>
+                                    <p class="fw-bold">$ {{ number_format($totalEarned/100, 2, ".", ",") }}</p>
                                     <a href="{{ route('seller.transaction.history') }}" class="btn btn-sm btn-primary">View History</a>
                                 </div>
                             </div>
