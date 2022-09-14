@@ -87,6 +87,7 @@
 
                 <div id="navbarVerticalMenuAllProductsMenu" class="nav-collapse collapse @if($activePage == 'products') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link @if($navName == 'allproducts') active @endif" href="{{ route('backend.products.list') }}">{{ __("All Products") }}</a>
+                  <a class="nav-link @if($navName == 'activeproducts') active @endif" href="{{ route('backend.products.active.list') }}">{{ __("Active Products") }}</a>
                   <a class="nav-link @if($navName == 'pendingproducts') active @endif" href="{{ route('backend.products.pending.list') }}">
                     <span class="nav-link-title">{{ __("Pending Products") }} 
                       @if (pending_count())

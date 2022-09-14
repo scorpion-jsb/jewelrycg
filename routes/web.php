@@ -93,6 +93,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 	{
 		Route::get('/', [ProductsController::class, 'index'])->name('list');
 		Route::get('/pending', [ProductsController::class, 'pending'])->name('pending.list');
+		Route::get('/active', [ProductsController::class, 'active'])->name('active.list');
 		Route::get('/trash', [ProductsController::class, 'trash'])->name('trash');
 		Route::get('/trash/recover/{id}', [ProductsController::class, 'recover'])->name('recover');
 		Route::get('/create', [ProductsController::class, 'create'])->name('create');

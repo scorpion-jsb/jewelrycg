@@ -23,7 +23,7 @@ class SellerController extends Controller
     //
     public function dashboard(){
 
-        $products = Product::where('vendor', auth()->id())->where('status', 2)->get();
+        $products = Product::where('vendor', auth()->id())->get();
         $seller = SellersProfile::where('user_id', auth()->id())->first();
         $pendingBalance = SellerWalletHistory::where('user_id', auth()->id())->where('status', 0)->select('amount')->get()->sum('amount');
         return view('seller.dashboard')->with([

@@ -68,7 +68,18 @@
                                                 <h6>{{ $product->name }} -( {{ $product->product_variant_name }} )</h6>
                                             </a>
                                         @endif
-                                        <div class="fw-bold mb-2">Status : {{ $product->status == 1 ? 'Published' : 'Pending Review' }}</div>
+                                        @if ($product->status == 1)
+                                            <div class="fw-bold mb-2">Status : Active</div>
+                                        @endif
+                                        @if ($product->status == 2)
+                                            <div class="fw-bold mb-2">Status : Pending</div>
+                                        @endif
+                                        @if ($product->status == 3)
+                                            <div class="fw-bold mb-2">Status : Draft</div>
+                                        @endif
+                                        @if ($product->status == 4)
+                                            <div class="fw-bold mb-2">Status : Denied</div>
+                                        @endif
                                         <button class="btn btn-danger pur">
                                             <i class="bi bi-pencil"></i> Edit
                                         </button>
