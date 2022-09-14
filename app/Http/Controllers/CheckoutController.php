@@ -13,6 +13,7 @@ use App\Models\ShippingOption;
 use App\Models\ProductsTaxOption;
 use App\Models\User;
 use App\Models\UserAddress;
+use App\Models\SellerWalletHistory;
 use Auth;
 use Error;
 use Exception;
@@ -295,16 +296,20 @@ class CheckoutController extends Controller
         $order->save();
 
         // set seller balance
-        $orderItems = OrderItem::where('order_id', $orderId)->get();
-        foreach ($orderItems as $orderItem) {
+        $amount = 0;
+        foreach ($order->items as $orderItem) {
             $seller = $orderItem->product->user->seller;
             if($seller){
                 if($seller->sales_commission_rate){
-                    $seller->wallet +=  $orderItem->price * $orderItem->quantity * $seller->sales_commission_rate/100;
+                    $amount = $orderItem->price * $orderItem->quantity * $seller->sales_commission_rate/100;
                 }else{
-                    $seller->wallet +=  $orderItem->price * $orderItem->quantity * SettingGeneral::value('default_sales_commission_rate')/100;
+                    $amount = $orderItem->price * $orderItem->quantity * SettingGeneral::value('default_sales_commission_rate')/100;
                 }
-                $seller->save();
+                SellerWalletHistory::create([
+                    'user_id'   =>  $seller->user_id,
+                    'amount'    =>  $amount,
+                    'type'      =>  'add',
+                ]);
             }
         }
         // Send order placed email to customer

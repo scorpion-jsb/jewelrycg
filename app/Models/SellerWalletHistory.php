@@ -8,4 +8,10 @@ use Illuminate\Database\Eloquent\Model;
 class SellerWalletHistory extends Model
 {
     use HasFactory;
+
+    protected $fillable = [
+        'user_id',
+        'amount',
+        'type',
+    ];
 }

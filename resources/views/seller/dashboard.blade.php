@@ -28,9 +28,8 @@
                         <div class="col-md-3">
                             <div class="card m-0">
                                 <div class="card-body">
-                                    {{-- <h5 class="blance-title">Sold Amount ( $ {{ number_format($seller->wallet/100, 2, ".", ",") }} )</h5> --}}
                                     <h5 class="blance-title">Available To Withdraw</h5>
-                                    <p class="fw-bold">$ 80.00</p>
+                                    <p class="fw-bold">$ {{ number_format($seller->wallet/100, 2, ".", ",") }}</p>
                                     <a href="" class="btn btn-sm btn-primary">Withdraw</a>
                                 </div>
                             </div>
@@ -38,9 +37,8 @@
                         <div class="col-md-3">
                             <div class="card m-0 h-100">
                                 <div class="card-body">
-                                    {{-- <h5 class="blance-title">Sold Amount ( $ {{ number_format($seller->wallet/100, 2, ".", ",") }} )</h5> --}}
                                     <h5 class="blance-title">Pending Balance</h5>
-                                    <p class="fw-bold">$ 20</p>
+                                    <p class="fw-bold">$ {{ number_format($pendingBalance/100, 2, ".", ",") }}</p>
                                 </div>
                             </div>
                         </div>

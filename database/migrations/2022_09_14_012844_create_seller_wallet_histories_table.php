@@ -18,6 +18,7 @@ return new class extends Migration
             $table->bigInteger('user_id');
             $table->integer('amount');
             $table->string('type', 10)->default('add')->comment('add, withdraw');
+            $table->tinyInteger('status')->default(0)->comment('0: pending, 1: balanced');
             $table->timestamps();
         });
     }
