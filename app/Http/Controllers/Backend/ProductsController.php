@@ -116,6 +116,10 @@ class ProductsController extends Controller
         $data['product_attributes'] = $attributes;
         $data['product_attribute_values'] = $values;
         $data['slug'] = str_replace(" ","-", strtolower($req->name));
+        $slug_count = Product::where('slug', $data['slug'])->count();
+        if($slug_count){
+            $data['slug'] = $data['slug'].'-'.($slug_count+1);
+        }
         $product = Product::create($data);
         $id_product = $product->id;
 
