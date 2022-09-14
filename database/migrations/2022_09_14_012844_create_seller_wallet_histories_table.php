@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->integer('amount');
-            $table->string('type')->default('add')->comment('add, withdraw');
+            $table->string('type', 10)->default('add')->comment('add, withdraw');
             $table->timestamps();
         });
     }
