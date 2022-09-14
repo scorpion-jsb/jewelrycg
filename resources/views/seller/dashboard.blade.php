@@ -42,7 +42,15 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-3"></div>
+                        <div class="col-md-3">
+                            <div class="card m-0 h-100">
+                                <div class="card-body">
+                                    <h5 class="blance-title">Total Earned</h5>
+                                    <p class="fw-bold">$ 1000</p>
+                                    <a href="{{ route('seller.transaction.history') }}" class="btn btn-sm btn-primary">View History</a>
+                                </div>
+                            </div>
+                        </div>
                         <div class="col-md-3"></div>
                     </div>
                 </div>

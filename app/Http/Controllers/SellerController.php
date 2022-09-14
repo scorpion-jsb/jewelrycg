@@ -95,4 +95,12 @@ class SellerController extends Controller
 
         return redirect()->route('seller.dashboard');
     }    
+
+    /**
+     * Transaction History
+     */
+    public function transactionHistory(){
+        $transactions = SellersWalletHistory::where('user_id', auth()->id())->orderBy('created_at', 'DESC')->get();
+        return view('seller.history', ['transactions'=> $transactions]);
+    }
 }
