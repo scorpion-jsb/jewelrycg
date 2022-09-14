@@ -15,10 +15,10 @@
             <div class="header mb-3">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link {{ \Route::currentRouteName() == 'seller.dashboard' ? 'active' :'' }}" href="{{ route('seller.dashboard') }}">Seller Dashboard</a>
+                        <a class="nav-link" href="{{ route('seller.dashboard') }}">Seller Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link {{ \Route::currentRouteName() == 'dashboard' ? 'active' :'' }}" href="{{ route('dashboard') }}">User Dashboard</a>
+                        <a class="nav-link" href="{{ route('dashboard') }}">User Dashboard</a>
                     </li>
                 </ul>
             </div>
