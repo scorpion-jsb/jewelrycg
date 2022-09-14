@@ -150,7 +150,7 @@ class FileManagerController extends Controller
     {
         $search = $request->has('search') ? $request->search : '';
 
-        $files = Upload::where('file_original_name', 'LIKE' ,'%' . $search . '%')->orderby('id', 'desc')->paginate(16);
+        $files = Upload::where('user_id', auth()->id())->where('file_original_name', 'LIKE' ,'%' . $search . '%')->orderby('id', 'desc')->paginate(16);
 
         if ($request->ajax() && $request->has('page')) {
             return view('backend.file-manager.modal.files-pagination', ['files' => $files]);
