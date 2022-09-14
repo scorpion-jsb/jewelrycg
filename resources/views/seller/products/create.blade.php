@@ -287,7 +287,7 @@
                                 <!-- End Card -->
                 
                                 <!-- Card -->
-                                <div class="card mb-3 mb-4">
+                                {{-- <div class="card mb-3 mb-4">
                                     <!-- Header -->
                                     <div class="card-header">
                                         <h4 class="card-header-title mb-0">Tax</h4>
@@ -304,7 +304,7 @@
                                             @endforeach
                                         </select>
                                     </div>
-                                </div>
+                                </div> --}}
                                 <!-- End Card -->
                 
                             </div>

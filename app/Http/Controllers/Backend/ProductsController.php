@@ -34,6 +34,15 @@ class ProductsController extends Controller
 
     /**
      * 
+     * Display pending products that its status is 1
+     */
+    public function active(){
+        return view('backend.products.active', [
+            'products' => Product::where('status', 1)->with('product_category')->orderBy('id', 'DESC')->get()
+        ]);        
+    }
+    /**
+     * 
      * Display pending products that its status is 2
      */
     public function pending(){
