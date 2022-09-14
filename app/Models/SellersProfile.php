@@ -19,5 +19,9 @@ class SellersProfile extends Model
         'user_id',
         'slogan',
         'about'
-    ];    
+    ];
+
+    public function user(){
+        $this->belongsTo(User::class, 'user_id');
+    }
 }

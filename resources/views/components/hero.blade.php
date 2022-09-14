@@ -4,8 +4,8 @@
             <div class="row">
                 <div class="col-12 hero-content-container">
                     <div class="hero-categories filter-categories pb-4">
-                        <ul class="mb-3 category-container">
-                            <li class="category active" data-category="all"><a href="#">Explore</a></li>
+                        <ul class="category-container">
+                            <li class="mb-3 category active" data-category="all"><a href="#">Explore</a></li>
                             @foreach (\App\Models\ProductsCategorie::all() as $category)
                                 <li class="category" data-category="{{ $category->category_name }}"><a
                                         href="#">{{ $category->category_name }}</a></li>

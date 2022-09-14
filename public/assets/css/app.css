@@ -219,8 +219,8 @@ button.navbar-toggler {
   line-height: 20px;
 }
 .filter-categories:not(.allow-overflow) {
-  overflow-x: hidden;
-  /* overflow-y: hidden; */
+  overflow-x: auto;
+  overflow-y: hidden;
 }
 .filter-categories ul {
   padding: 0 2px;

@@ -7,7 +7,6 @@ use App\Models\Order;
 use App\Models\SettingGeneral;
 use App\Models\ProductsCategorie;
 use App\Models\Attribute;
-use App\Models\OrderItem;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Auth;
 use Intervention\Image\Facades\Image;
@@ -19,7 +18,7 @@ use function PHPSTORM_META\type;
 class AppController extends Controller
 {
     public function index()
-    {
+    {    
         //$products = cache()->remember('todays-deals', 60*60*24, fn() => Product::getTodaysDeals());
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(24);
         $products->each(function($product) {

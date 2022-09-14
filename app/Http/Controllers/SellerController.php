@@ -14,6 +14,7 @@ use App\Models\ProductsTaxOption;
 use App\Models\ProductsVariant;
 use App\Models\ProductTagsRelationship;
 use App\Models\SellersProfile;
+use App\Models\SellerWalletHistory;
 use App\Models\SettingGeneral;
 use Carbon\Carbon;
 
@@ -23,25 +24,12 @@ class SellerController extends Controller
     public function dashboard(){
 
         $products = Product::where('vendor', auth()->id())->where('status', 2)->get();
-        $this_month_period = [ Carbon::now()->startOfMonth()->toDateTimeString(), Carbon::now()->endOfDay()->toDateTimeString()];
-        $soldCurrentMonth = Order::where('user_id', auth()->id())->whereBetween('created_at', $this_month_period)->select('total')
-                            ->get()->sum('total');
-        $last_month_period = [ Carbon::now()->subMonth(1)->startOfMonth()->toDateTimeString(), Carbon::now()->subMonth(1)->endOfMonth()->toDateTimeString()];
-        $soldLastMonth = Order::where('user_id', auth()->id())->whereBetween('created_at', $last_month_period)->select('total')
-                            ->get()->sum('total');
-        if(auth()->user()->seller->sales_commission_rate){
-            $soldCurrentMonth = $soldCurrentMonth*auth()->user()->seller->sales_commission_rate/100;
-            $soldLastMonth = $soldLastMonth*auth()->user()->seller->sales_commission_rate/100;
-        }else{
-            $soldCurrentMonth = $soldCurrentMonth*SettingGeneral::value('default_sales_commission_rate')/100;
-            $soldLastMonth = $soldLastMonth*SettingGeneral::value('default_sales_commission_rate')/100;
-        }
         $seller = SellersProfile::where('user_id', auth()->id())->first();
+        $pendingBalance = SellerWalletHistory::where('user_id', auth()->id())->where('status', 0)->select('amount')->get()->sum('amount');
         return view('seller.dashboard')->with([
             'products' => $products, 
             'seller'=>$seller, 
-            'soldCurrentMonth'=>$soldCurrentMonth,
-            'soldLastMonth'=>$soldLastMonth
+            'pendingBalance'=>$pendingBalance
         ]);        
     }
     /**
@@ -80,7 +68,10 @@ class SellerController extends Controller
         $data['product_attributes'] = $attributes;
         $data['product_attribute_values'] = $values;
         $data['slug'] = str_replace(" ","-", strtolower($req->name));
-
+        $slug_count = Product::where('slug', $data['slug'])->count();
+        if($slug_count){
+            $data['slug'] = $data['slug'].'-'.($slug_count+1);
+        }
         $product = Product::create($data);
         $id_product = $product->id;
 
