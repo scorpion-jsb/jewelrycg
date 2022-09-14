@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\Models\SellerWalletHistory;
+use App\Models\SellersWalletHistory;
 use App\Models\SellersProfile;
 use App\Models\User;
 use Carbon\Carbon;
@@ -30,7 +30,7 @@ class CheckPendingBalance extends Command
      */
     public function handle()
     {
-        $pendingBalances = SellerWalletHistory::where('type', 'add')->where('status', 0)->get();
+        $pendingBalances = SellersWalletHistory::where('type', 'add')->where('status', 0)->get();
         foreach ($pendingBalances as $pending) {
             if(Carbon::now()->diffInDays($pending->created_at->startOfDay()) == 14){
                 $wallet = SellersProfile::where('user_id', $pending->user_id)->first();

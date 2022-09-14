@@ -13,7 +13,7 @@ use App\Models\ShippingOption;
 use App\Models\ProductsTaxOption;
 use App\Models\User;
 use App\Models\UserAddress;
-use App\Models\SellerWalletHistory;
+use App\Models\SellersWalletHistory;
 use Auth;
 use Error;
 use Exception;
@@ -305,7 +305,7 @@ class CheckoutController extends Controller
                 }else{
                     $amount = $orderItem->price * $orderItem->quantity * SettingGeneral::value('default_sales_commission_rate')/100;
                 }
-                SellerWalletHistory::create([
+                SellersWalletHistory::create([
                     'user_id'   =>  $seller->user_id,
                     'amount'    =>  $amount,
                     'type'      =>  'add',
