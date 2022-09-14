@@ -34,6 +34,7 @@
                                 </th>
                                 <th class="sorting">ID</th>
                                 <th>Name</th>
+                                <th>Status</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Category</th>
@@ -51,6 +52,18 @@
                                         </td>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->name }}</td>
+                                        @if($product->status == 1)
+                                            <td>Active</td>
+                                        @endif
+                                        @if($product->status == 2)
+                                            <td>Pending Review</td>
+                                        @endif
+                                        @if($product->status == 3)
+                                            <td>Draft</td>
+                                        @endif
+                                        @if($product->status == 4)
+                                            <td>Denied</td>
+                                        @endif
                                         <td>${{ number_format($product->price / 100, 2) }}</td>
                                         <td>{{ $product->quantity }}</td>
                                         <td>{{ $product->product_category ? $product->product_category->category_name : '' }}
