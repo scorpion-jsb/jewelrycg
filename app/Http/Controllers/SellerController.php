@@ -24,7 +24,7 @@ class SellerController extends Controller
     public function dashboard(){
         $pendingBalances = SellersWalletHistory::where('type', 'add')->where('status', 0)->get();
         foreach ($pendingBalances as $pending) {
-            if(Carbon::now()->diffInDays($pending->created_at->startOfDay()) == 14){
+            if(Carbon::now()->diffInDays($pending->created_at->startOfDay()) >= 14){
                 $wallet = SellersProfile::where('user_id', $pending->user_id)->first();
                 if($wallet){
                     $wallet->wallet +=  $pending->amount;
