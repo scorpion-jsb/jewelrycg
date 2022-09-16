@@ -393,7 +393,7 @@
                         method: 'get',
                         success: function(count) {
                             $('.cart-count').html(
-                                '<span class="rounded-pill pill badge bg-primary text-light">' +
+                                '<span class="cart-count-number">' +
                                 count + '</span>');
                         }
                     });
