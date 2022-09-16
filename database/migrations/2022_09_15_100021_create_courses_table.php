@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('name');
             $table->integer('price');
             $table->integer('category_id');
+            $table->integer('thumbnail');
             $table->timestamps();
         });
     }
