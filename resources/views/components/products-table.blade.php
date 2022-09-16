@@ -56,20 +56,18 @@
     @endforeach
 </div>
 
-<div class="row">
-    <div class="col-auto ml-auto">
+<div class="rowf">
+    <div class="row">
         @if ($locale == 'cart')
-        Total: 
-            <span class="total-price mr-10px">
-                ${{ Cart::total() }}
-            </span>
+        <div class="col-2 fw-700">Total:</div>
+        <div class="col-10"><span class="total-price">${{ Cart::total() }}</span></div>
         @else
             <span class="total-price mr-10px">
                 {{-- number_format(Cart::total() + $shippingPrice / 100 + $taxPrice / 10000, 2) --}}
             </span>
         @endif
         @if ($locale == 'cart' && $products->count() > 0)
-            <a href="{{ route('checkout.index') }}" class="btn btn-primary float-right {{ isset($out_of_stock) && in_array(true, $out_of_stock) ? 'disabled' : null }}">Proceed to Checkout</a>
+            <a href="{{ route('checkout.index') }}" class="btn btn-primary float-right mt-4 w-100 {{ isset($out_of_stock) && in_array(true, $out_of_stock) ? 'disabled' : null }}">Proceed to Checkout</a>
         @endif
 
     </div>
