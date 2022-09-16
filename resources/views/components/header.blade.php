@@ -76,7 +76,7 @@
                         ?>
                         <span class="cart-count">
                             @if ($cart_items = Cart::content()->count())
-                                <span>
+                                <span class="cart-count-number">
                                     Cart ({{$cart_items}})
                                 </span>
                             @endif
