@@ -12,7 +12,7 @@
     </x-slot>
     <div class="py-9">
         <div class="container">
-            <div class="header mb-3">
+            <div class="seller-dash-nav mb-4">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
                         <a class="nav-link {{ \Route::currentRouteName() == 'seller.dashboard' ? 'active' :'' }}" href="{{ route('seller.dashboard') }}">Seller Dashboard</a>
