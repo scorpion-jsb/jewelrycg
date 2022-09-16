@@ -22,7 +22,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="seller-stats">
+            <div class="seller-stats mb-4">
                 <div class="seller-stats-card-body">
                     <div class="row">
                         <div class="col-md-3">
