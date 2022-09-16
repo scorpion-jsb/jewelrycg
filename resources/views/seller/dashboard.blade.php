@@ -22,13 +22,13 @@
                     </li>
                 </ul>
             </div>
-            <div class="card">
-                <div class="card-body">
+            <div class="seller-stats">
+                <div class="seller-stats-card-body">
                     <div class="row">
                         <div class="col-md-3">
                             <div class="card m-0">
+                                <div class="card-header blance-title">Available To Withdraw</div>
                                 <div class="card-body">
-                                    <h5 class="blance-title">Available To Withdraw</h5>
                                     <p class="fw-bold">$ {{ number_format($seller->wallet/100, 2, ".", ",") }}</p>
                                     <a href="" class="btn btn-sm btn-primary">Withdraw</a>
                                 </div>
@@ -36,8 +36,8 @@
                         </div>
                         <div class="col-md-3">
                             <div class="card m-0 h-100">
+                                <div class="card-header blance-title">Pending Balance</div>
                                 <div class="card-body">
-                                    <h5 class="blance-title">Pending Balance</h5>
                                     <p class="fw-bold">$ {{ number_format($pendingBalance/100, 2, ".", ",") }}</p>
                                 </div>
                             </div>
@@ -45,7 +45,7 @@
                         <div class="col-md-3">
                             <div class="card m-0 h-100">
                                 <div class="card-body">
-                                    <h5 class="blance-title">Total Earned</h5>
+                                    <div class="card-header blance-title">Total Earned</div>
                                     <p class="fw-bold">$ {{ number_format($totalEarned/100, 2, ".", ",") }}</p>
                                     <a href="{{ route('seller.transaction.history') }}" class="btn btn-sm btn-primary">View History</a>
                                 </div>
