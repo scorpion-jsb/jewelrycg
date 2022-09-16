@@ -37,7 +37,7 @@
                     <a class="btn btn-primary" role="button" data-bs-toggle="collapse" href="#filterPanel" aria-expanded="false" aria-controls="filterPanel">Filter</a>
                 </div>
                 <div class="collapse" id="filterPanel">
-                    <div class="card">
+                    <div class="card mb-4">
                         <div class="card-body d-flex justify-content-between p-2">
                             <div class="col-md-3 p-3">
                                 <label for="imageAttributeFilter" class="form-label fw-bold">CATEGORY</label>
