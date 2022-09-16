@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-12 hero-content-container">
-                    <div class="hero-categories filter-categories pb-4">
+                    <div class="hero-categories filter-categories pb-4 d-none">
                         <ul class="category-container">
                             <li class="mb-3 category active" data-category="all"><a href="#">Explore</a></li>
                             @foreach (\App\Models\ProductsCategorie::all() as $category)
@@ -33,8 +33,8 @@
     <main class="py-6">
         <div class="container">
             <div class="filter-panel">
-                <div class="d-flex justify-content-end mb-2">
-                    <a class="btn btn-sm btn-primary" role="button" data-bs-toggle="collapse" href="#filterPanel" aria-expanded="false" aria-controls="filterPanel">Filter</a>
+                <div class="d-flex justify-content-end mb-4">
+                    <a class="btn btn-primary" role="button" data-bs-toggle="collapse" href="#filterPanel" aria-expanded="false" aria-controls="filterPanel">Filter</a>
                 </div>
                 <div class="collapse" id="filterPanel">
                     <div class="card">
