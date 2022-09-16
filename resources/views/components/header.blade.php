@@ -78,7 +78,7 @@
                         <span class="cart-count">
                             @if ($cart_items = Cart::content()->count())
                                 <span class="rounded-pill pill badge bg-primary text-light">
-                                    ({{$cart_items}})
+                                    ( {{$cart_items}} )
                                 </span>
                             @endif
                         </span>
