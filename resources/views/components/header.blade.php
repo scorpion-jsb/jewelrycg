@@ -74,15 +74,13 @@
                                 Cart::merge(auth()->id());
                             }
                         ?>
-                        Cart (
-                        <span class="cart-count">
+                        Cart (<span class="cart-count">
                             @if ($cart_items = Cart::content()->count())
                                 <span class="cart-count-number">
                                     {{$cart_items}}
                                 </span>
                             @endif
-                        </span>
-                        )
+                        </span>)
                     </a>
                 </li>
                 @auth
