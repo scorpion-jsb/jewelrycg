@@ -65,6 +65,7 @@
                 <div id="navbarVerticalMenuAllCourseMenu" class="nav-collapse collapse @if($activePage == 'courses') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link @if($navName == 'allcourse') active @endif" href="{{ route('backend.courses.list') }}">{{ __("All Course") }}</a>
                   <a class="nav-link @if($navName == 'addcourse') active @endif" href="{{ route('backend.courses.create') }}">{{ __("Create Course") }}</a>
+                  <a class="nav-link @if($navName == 'coursecategories') active @endif" href="{{ route('backend.courses.categories.list') }}">{{ __("Categories") }}</a>
                 </div>
               </div>
               <!-- End Collapse -->
