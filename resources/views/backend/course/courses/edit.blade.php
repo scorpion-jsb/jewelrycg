@@ -58,7 +58,7 @@
                         <img id="fileManagerPreview" src="{{ $course->uploads->getImageOptimizedFullName(400) }}" style="width: 100%">
                     </div>
                     <label class="btn text-primary mt-2 p-0" id="getFileManager">Select thumbnail image</label>
-                    <input type="hidden" id="fileManagerId" name="thumbnail">
+                    <input type="hidden" value="{{ $course->uploads->id}}" id="fileManagerId" name="thumbnail">
                 </div>
             </div>
             <!-- End Card -->
