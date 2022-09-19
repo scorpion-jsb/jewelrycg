@@ -20,6 +20,7 @@ use App\Http\Controllers\Backend\VendorsController;
 use App\Http\Controllers\Backend\BlogsController;
 use App\Http\Controllers\Backend\BlogcategoriesController;
 use App\Http\Controllers\Backend\BlogtagsController;
+use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\ProducttagsController;
 use App\Http\Controllers\Backend\AttributesController;
 use App\Http\Controllers\Backend\AttributesvaluesController;
@@ -207,6 +208,22 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 		Route::post('/store', [BlogtagsController::class, 'store'])->name('store');
 		Route::get('/get', [BlogtagsController::class, 'get'])->name('get');
 	});
+	
+	////////////////////////////////////////////////////////////////////////////////////////////////
+	// Courses Routes
+	Route::group(['prefix' => 'courses', 'as' => 'courses.'], function ()
+	{
+		Route::get('/', [CourseController::class, 'index'])->name('list');
+		Route::get('/create', [CourseController::class, 'create'])->name('create');
+		Route::post('/store', [CourseController::class, 'store'])->name('store');
+		Route::get('/edit/{id}', [CourseController::class, 'edit'])->name('edit');
+		Route::put('/update/{course}', [CourseController::class, 'update'])->name('update');
+		Route::get('/delete/{id}', [CourseController::class, 'destroy'])->name('delete');
+		Route::get('/get', [CourseController::class, 'get'])->name('get');
+	});
+	//
+	////////////////////////////////////////////////////////////////////////////////////////////////
+
 
 	Route::group(['prefix' => 'products/tags', 'as' => 'products.tags.'], function ()
 	{

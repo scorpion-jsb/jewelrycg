@@ -57,6 +57,20 @@
 
               <!-- Collapse -->
               <div class="nav-item">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllCourseMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllCourseMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllCourseMenu">
+                  <i class="bi bi-pin-angle-fill nav-icon"></i>
+                  <span class="nav-link-title">{{ __("Course") }}</span>
+                </a>
+
+                <div id="navbarVerticalMenuAllCourseMenu" class="nav-collapse collapse @if($activePage == 'courses') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link @if($navName == 'allcourse') active @endif" href="{{ route('backend.courses.list') }}">{{ __("All Course") }}</a>
+                  <a class="nav-link @if($navName == 'addcourse') active @endif" href="{{ route('backend.courses.create') }}">{{ __("Create Course") }}</a>
+                </div>
+              </div>
+              <!-- End Collapse -->
+
+              <!-- Collapse -->
+              <div class="nav-item">
                 <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllPagesMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllPagesMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllPagesMenu">
                   <i class="bi-stickies nav-icon"></i>
                   <span class="nav-link-title">{{ __("Pages") }}</span>
