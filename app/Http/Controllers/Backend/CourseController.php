@@ -49,6 +49,7 @@ class CourseController extends Controller
     {
         $data = $request->input();
         $data['user_id'] = Auth::id();
+        $data['price'] = Course::stringPriceToCents($request->price);
         $course_id = Course::create($data)->id;
         
         return redirect()->route('backend.courses.edit', $course_id);
@@ -62,6 +63,7 @@ class CourseController extends Controller
      */
     public function edit(Course $course)
     {
+        $course->setPriceToFloat();
         $arrCategories = CourseCategory::get();
 
         return view('backend.course.courses.edit', compact(
@@ -80,6 +82,7 @@ class CourseController extends Controller
     {
         $data = $request->input();
         $data['user_id'] = Auth::id();
+        $data['price'] = Course::stringPriceToCents($request->price);
 
         $course->update($data);
 
