@@ -59,4 +59,12 @@ class Course extends Model
     public function lessons(){
         return $this->hasMany(CourseLesson::class, 'course_id');
     }
+    
+    public function uploads()
+    {
+        return $this->belongsTo(Upload::class, 'thumbnail' , 'id')->withDefault([
+            'file_name' => "none.png",
+            'id' => null
+        ]);
+    }
 }
