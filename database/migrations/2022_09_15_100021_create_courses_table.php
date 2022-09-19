@@ -16,10 +16,10 @@ return new class extends Migration
         Schema::create('courses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
-            $table->integer('name');
+            $table->string('name');
             $table->integer('price');
             $table->integer('category_id');
-            $table->integer('thumbnail');
+            $table->text('thumbnail');
             $table->timestamps();
         });
     }

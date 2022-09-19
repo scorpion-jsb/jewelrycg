@@ -19,6 +19,6 @@ class CourseLesson extends Model
      * Get content associate with lesson
      */
     public function contents(){
-        $this->hasMany(CourseLessonContent::class, 'lesson_id');
+        return $this->hasMany(CourseLessonContent::class, 'lesson_id');
     }    
 }
