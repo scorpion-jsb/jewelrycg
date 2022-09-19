@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use App\Models\Traits\FormatPrices;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Course extends Model
 {
-    use HasFactory;
+    use HasFactory, FormatPrices;
 
     protected $fillable= [
         'user_id', 'name', 'price', 'category_id', 'thumbnail'

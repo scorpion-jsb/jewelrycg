@@ -25,7 +25,7 @@ class CourseStoreRequest extends FormRequest
     {
         return [
             'name'          => 'required|string|max:255',
-            'price'         => 'required|numeric',
+            'price'         => 'required|string',
             'category_id'   => 'required|integer',
         ];
     }

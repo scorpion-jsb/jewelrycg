@@ -7,6 +7,13 @@ trait FormatPrices
     public function setPriceToFloat()
     {
         $this->price = number_format($this->price / 100, 2);
-        return $this;        
+        return $this;
+    }
+
+    public static function stringPriceToCents(string $price)
+    {
+        $price = str_replace('.', '', $price);
+        $price = str_replace(',', '', $price);
+        return (int) $price;
     }
 }
