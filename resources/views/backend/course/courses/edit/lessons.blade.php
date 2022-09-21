@@ -40,7 +40,7 @@ $lessons = CourseLesson::where('course_id', $course->id)
 @include('backend.course.courses.edit.edit_lesson')
 @include('backend.course.courses.edit.edit_lesson_content')
 
-@section('js_content')
+@push('lesson_content')
 <script>
 
 var course_id = {{ $course->id }};
@@ -121,5 +121,4 @@ var replaceLessonsHtml = function(lessons_html) {
 
 </script>
 
-@stack('lesson_scripts')
-@endsection
+@endpush
