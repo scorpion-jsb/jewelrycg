@@ -40,15 +40,26 @@ $lessons = CourseLesson::where('course_id', $course->id)
 @include('backend.course.courses.edit.edit_lesson')
 @include('backend.course.courses.edit.edit_lesson_content')
 
-@push('lesson_content')
+@push('lesson_scripts')
 <script>
 
 var course_id = {{ $course->id }};
 var cur_lesson_id = 0;
 var cur_lesson_content_id = 0;
+var isButtonClicked = false;
 
 $(document).ready(function() {
+    $('body').on('click', '.accordion-button', function() {
+        if (isButtonClicked) {
+            isButtonClicked = false;
+            return;
+        }
+
+        $('.btn-collapse', $(this).parents('.accordion-header')).trigger('click');
+    });
+
     $('body').on('click', '.btn-delete-lesson', function() {
+        isButtonClicked = true;
         var lesson_id = $(this).data('id');
 
         if (confirm('Do you want to delete this lesson really?')) {

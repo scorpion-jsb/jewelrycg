@@ -27,8 +27,10 @@
 
 @push('lesson_scripts')
 <script>
+
 $(document).ready(function() {
     $('body').on('click', '.btn-edit-lesson', function() {
+        isButtonClicked = true;
         cur_lesson_id = $(this).data('id');
         var lesson_name = $(this).data('name');
         $('#modalEditLesson #txtLessonName').val(lesson_name);

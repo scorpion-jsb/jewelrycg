@@ -1,15 +1,21 @@
 @forelse ($lessons as $lesson)
     <div class="accordion-item">
         <h2 class="accordion-header">
+            <div class="hidden btn-collapse" data-bs-toggle="collapse"
+                data-bs-target="#divLessonContent{{ $lesson->id }}"
+            ></div>
+
             <div class="col-md-9 accordion-button" type="button">
-                <div class="col-md-9" data-bs-toggle="collapse"
-                    data-bs-target="#divLessonContent{{ $lesson->id }}"
-                >
+                <div class="col-md-6">
                     {{ $lesson->name }}
                 </div>
 
-                <div class="col-md-3 text-right">
-                    <button type="button" class="btn btn-sm btn-info me-1 btn-edit-lesson"
+                <div class="col-md-6 text-right">
+                    <button type="button" class="btn btn-sm btn-primary btn-add-lesson-content-modal"
+                        data-bs-toggle="modal" data-bs-target="#modalAddLessonContent" data-id="{{ $lesson->id }}"
+                    >Add Lesson Content</button>
+
+                    <button type="button" class="btn btn-sm btn-info btn-edit-lesson"
                         data-bs-toggle="modal" data-bs-target="#modalEditLesson"
                         data-id="{{ $lesson->id }}" data-name="{{ $lesson->name }}"
                     >Edit</button>
@@ -22,12 +28,6 @@
         </h2>
         <div id="divLessonContent{{ $lesson->id }}" class="accordion-collapse collapse">
             <div class="accordion-body">
-                <div class="mb-2">
-                    <button type="button" class="btn btn-sm btn-primary btn-add-lesson-content-modal"
-                        data-bs-toggle="modal" data-bs-target="#modalAddLessonContent" data-id="{{ $lesson->id }}"
-                    >Add Lesson Content</button>
-                </div>
-
                 <table class="table table-thead-bordered table-nowrap table-align-middle card-table table-responsive no-footer">
                     <thead>
                         <tr>
