@@ -20,8 +20,8 @@
                 <div class="card-header">
                     <h4 class="card-header-title mb-0">Course information</h4>
                 </div>
-
                 <!-- End Header -->
+
                 <div class="card-body row">
                     @include('includes.validation-form')
                     <div class="mb-2">
@@ -45,6 +45,8 @@
                     </div>
                 </div>
             </div>
+
+            @include('backend.course.courses.edit.lessons')
         </div>
 
         <div class="col-md-4">
@@ -92,6 +94,7 @@
 <div id="fileManagerContainer"></div>
 
 <div id='ajaxCalls'></div>
+
 @endsection
 
 @section('js_content')
@@ -99,7 +102,12 @@
 $(document).ready(function() {
     $(".imgAdd").click(function() {
         $(this).closest(".row").find('.imgAdd').before(
-            '<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>'
+            '<div class="col-sm-2 imgUp">'
+            + '<div class="imagePreview"></div>'
+            + '<label class="btn btn-primary">Upload<input type="file"'
+            + ' class="uploadFile img" value="Upload Photo" '
+            + 'style="width:0px;height:0px;overflow:hidden;"></label>'
+            + '<i class="fa fa-times del"></i></div>'
         );
     });
 

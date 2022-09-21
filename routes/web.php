@@ -35,6 +35,7 @@ use App\Http\Controllers\Backend\TaxOptionController;
 // seller register
 use App\Http\Controllers\Auth\SellerRegisterController;
 use App\Http\Controllers\Backend\CourseCategoriesController;
+use App\Http\Controllers\Backend\CourseLessonsController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -232,6 +233,17 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::put('/update/{category}', [CourseCategoriesController::class, 'update'])->name('update');
         Route::get('/delete/{category}', [CourseCategoriesController::class, 'destroy'])->name('delete');
         Route::get('/get', [CourseCategoriesController::class, 'get'])->name('get');
+    });
+    
+    Route::group(['prefix' => 'courses/lessons', 'as' => 'courses.lessons.'], function ()
+    {
+        Route::post('/store', [CourseLessonsController::class, 'store'])->name('store');
+        Route::put('/update', [CourseLessonsController::class, 'update'])->name('update');
+        Route::delete('/delete', [CourseLessonsController::class, 'destroy'])->name('delete');
+
+        Route::post('/store_content', [CourseLessonsController::class, 'store_content'])->name('store_content');
+        Route::put('/update_content', [CourseLessonsController::class, 'update_content'])->name('update_content');
+        Route::delete('/delete_content', [CourseLessonsController::class, 'destroy_content'])->name('delete_content');
     });
     //
     ////////////////////////////////////////////////////////////////////////////////////////////////
