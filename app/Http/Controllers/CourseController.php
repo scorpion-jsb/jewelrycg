@@ -26,13 +26,31 @@ class CourseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function category(CourseCategory $category)
+    public function category($slug)
     {
+        $category = CourseCategory::where('slug', $slug)
+            ->firstOrFail();
+
         $arrCourses = Course::where('category_id', $category->id)
             ->with('category')->get();
 
         return view('courses.category', compact(
             'arrCourses', 'category'
+        ));
+    }
+    
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function show($slug)
+    {
+        $course = Course::where('slug', $slug)
+            ->firstOrFail();
+
+        return view('courses.show', compact(
+            'course'
         ));
     }
 }
