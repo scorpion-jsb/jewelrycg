@@ -133,7 +133,7 @@ $(document).ready(function() {
         }
     });
 
-    $('#getFileManager').click(function () {
+    $('body').on('click', '#getFileManager', function () {
         $.ajax({
             url: "{{ route('backend.file.show') }}",
             success: function (data) {
@@ -166,4 +166,5 @@ $(document).ready(function() {
 });
 </script>
 
+@stack('lesson_scripts')
 @endsection
