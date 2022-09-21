@@ -4,6 +4,7 @@ use App\Http\Controllers\AppController;
 use App\Http\Controllers\Auth\EmailVerificationNotificationController;
 use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
@@ -20,7 +21,7 @@ use App\Http\Controllers\Backend\VendorsController;
 use App\Http\Controllers\Backend\BlogsController;
 use App\Http\Controllers\Backend\BlogcategoriesController;
 use App\Http\Controllers\Backend\BlogtagsController;
-use App\Http\Controllers\Backend\CourseController;
+use App\Http\Controllers\Backend\CourseController as BackendCourseController;
 use App\Http\Controllers\Backend\ProducttagsController;
 use App\Http\Controllers\Backend\AttributesController;
 use App\Http\Controllers\Backend\AttributesvaluesController;
@@ -215,13 +216,13 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
     // Courses Routes
     Route::group(['prefix' => 'courses', 'as' => 'courses.'], function ()
     {
-        Route::get('/', [CourseController::class, 'index'])->name('list');
-        Route::get('/create', [CourseController::class, 'create'])->name('create');
-        Route::post('/store', [CourseController::class, 'store'])->name('store');
-        Route::get('/edit/{course}', [CourseController::class, 'edit'])->name('edit');
-        Route::put('/update/{course}', [CourseController::class, 'update'])->name('update');
-        Route::get('/delete/{course}', [CourseController::class, 'destroy'])->name('delete');
-        Route::get('/get', [CourseController::class, 'get'])->name('get');
+        Route::get('/', [BackendCourseController::class, 'index'])->name('list');
+        Route::get('/create', [BackendCourseController::class, 'create'])->name('create');
+        Route::post('/store', [BackendCourseController::class, 'store'])->name('store');
+        Route::get('/edit/{course}', [BackendCourseController::class, 'edit'])->name('edit');
+        Route::put('/update/{course}', [BackendCourseController::class, 'update'])->name('update');
+        Route::get('/delete/{course}', [BackendCourseController::class, 'destroy'])->name('delete');
+        Route::get('/get', [BackendCourseController::class, 'get'])->name('get');
     });
 
     Route::group(['prefix' => 'courses/categories', 'as' => 'courses.categories.'], function ()
@@ -324,6 +325,14 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
     Route::get('/count', 'getCount')->name('count');
     Route::post('/edit', 'editQty')->name('edit.qty');
     Route::get('/remove/{id}', 'removeProduct')->name('remove.product');
+});
+
+// Course
+Route::group(['controller' => CourseController::class, 'prefix' => 'courses', 'as' => 'courses.'], function ()
+{
+    Route::get('/', 'index')->name('index');
+    Route::post('/category/{category}', 'editQty')->name('category');
+    Route::get('/course/{course}', 'show')->name('show');
 });
 
 
