@@ -16,8 +16,8 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="txtLessonContentContent" class="col-form-label">Content:</label>
-                    <textarea class="form-control" id="txtLessonContentContent"></textarea>
+                    <label for="txaLessonContentContent" class="col-form-label">Content:</label>
+                    <textarea class="form-control" id="txaLessonContentContent"></textarea>
                 </div>
             </div>
 
@@ -34,15 +34,17 @@
 @push('lesson_scripts')
 <script>
 $(document).ready(function() {
+    var wyg = $('#modalAddLessonContent #txaLessonContentContent').trumbowyg();
+
     $('body').on('click', '.btn-add-lesson-content-modal', function() {
         $('#modalAddLessonContent #txtLessonContentName').val('');
-        $('#modalAddLessonContent #txtLessonContentContent').val('');
+        wyg.trumbowyg('html', '');
         cur_lesson_id = $(this).data('id');
     });
 
     $('body').on('click', '#btnAddLessonContent', function() {
         var lesson_content_name = $('#modalAddLessonContent #txtLessonContentName').val();
-        var lesson_content_content = $('#modalAddLessonContent #txtLessonContentContent').val();
+        var lesson_content_content = $('#modalAddLessonContent #txaLessonContentContent').val();
 
         $.ajax({
             type: 'POST',

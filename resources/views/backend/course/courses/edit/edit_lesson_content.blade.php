@@ -33,6 +33,8 @@
 @push('lesson_scripts')
 <script>
 $(document).ready(function() {
+    var wyg = $('#modalEditLessonContent #txaLessonContentContent').trumbowyg();
+
     $('body').on('click', '.btn-edit-content', function() {
         cur_lesson_id = $(this).data('lesson-id');
         cur_lesson_content_id = $(this).data('id');
@@ -40,7 +42,7 @@ $(document).ready(function() {
         var lesson_content_content = $(this).data('content');
 
         $('#modalEditLessonContent #txtLessonContentName').val(lesson_content_name);
-        $('#modalEditLessonContent #txaLessonContentContent').val(lesson_content_content);
+        wyg.trumbowyg('html', lesson_content_content);
     });
 
     $('body').on('click', '#btnUpdateLessonContent', function() {
