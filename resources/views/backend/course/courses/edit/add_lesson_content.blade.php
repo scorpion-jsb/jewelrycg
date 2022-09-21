@@ -1,7 +1,7 @@
 <!-- Add Lesson Modal -->
 <div class="modal fade" id="modalAddLessonContent" tabindex="-1" aria-labelledby="momdalAddLessonContentLabel"
     aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title" id="momdalAddLessonContentLabel">Add Lesson Content</h5>
@@ -37,6 +37,7 @@ $(document).ready(function() {
     var wyg = $('#modalAddLessonContent #txaLessonContentContent').trumbowyg();
 
     $('body').on('click', '.btn-add-lesson-content-modal', function() {
+        isButtonClicked = true;
         $('#modalAddLessonContent #txtLessonContentName').val('');
         wyg.trumbowyg('html', '');
         cur_lesson_id = $(this).data('id');

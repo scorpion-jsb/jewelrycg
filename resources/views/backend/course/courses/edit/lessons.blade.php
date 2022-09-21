@@ -14,6 +14,11 @@ $lessons = CourseLesson::where('course_id', $course->id)
 .action {
     max-width: 75px !important;
 }
+
+.trumbowyg-box,
+.trumbowyg-editor {
+    min-height: 180px;
+}
 </style>
 
 <div class="card col-md-12 mb-6">
