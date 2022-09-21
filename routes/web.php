@@ -331,7 +331,7 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 Route::group(['controller' => CourseController::class, 'prefix' => 'courses', 'as' => 'courses.'], function ()
 {
     Route::get('/', 'index')->name('index');
-    Route::post('/category/{category}', 'editQty')->name('category');
+    Route::get('/category/{category}', 'category')->name('category');
     Route::get('/course/{course}', 'show')->name('show');
 });
 
