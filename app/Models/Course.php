@@ -11,7 +11,7 @@ class Course extends Model
     use HasFactory, FormatPrices;
 
     protected $fillable= [
-        'user_id', 'name', 'price', 'category_id', 'thumbnail'
+        'user_id', 'name', 'slug', 'price', 'category_id', 'thumbnail'
     ];
 
     protected $appends = [

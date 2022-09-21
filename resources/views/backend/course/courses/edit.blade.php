@@ -30,6 +30,11 @@
                     </div>
 
                     <div class="mb-2">
+                        <label for="name">Slug:</label>
+                        <input type="text" value="{{ $course->slug }}" name="slug" id="slug" class="form-control">
+                    </div>
+
+                    <div class="mb-2">
                         <label for="txtPrice" class="w-100 mb-2">Price:</label>
                         <input type="text" name="price" id="txtPrice" value="{{ $course->price }}" class="form-control">
                     </div>

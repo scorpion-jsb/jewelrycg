@@ -50,6 +50,16 @@ class CourseController extends Controller
         $data = $request->input();
         $data['user_id'] = Auth::id();
         $data['price'] = Course::stringPriceToCents($request->price);
+        
+        $slug = $this->slugify($request->slug);
+        if ($request->slug == '')
+            $slug = $this->slugify($request->name);
+
+        if (CourseCategory::where('slug', $slug)->count()) {
+            $slug .= "-1";
+        }
+        $data['slug'] = $slug;
+
         $course_id = Course::create($data)->id;
         
         return redirect()->route('backend.courses.edit', $course_id);
@@ -84,6 +94,15 @@ class CourseController extends Controller
         $data['user_id'] = Auth::id();
         $data['price'] = Course::stringPriceToCents($request->price);
 
+        $slug = $this->slugify($request->slug);
+        if ($request->slug == '')
+            $slug = $this->slugify($request->name);
+
+        if (CourseCategory::where('slug', $slug)->count()) {
+            $slug .= "-1";
+        }
+        $data['slug'] = $slug;
+
         $course->update($data);
 
         return redirect()->route('backend.courses.edit', $course->id);
@@ -99,5 +118,32 @@ class CourseController extends Controller
     {
         $course->delete();
         return redirect()->route('backend.courses.list');
+    }
+
+    protected function slugify($text, string $divider = '-')
+    {
+        // replace non letter or digits by divider
+        $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
+
+        // trim
+        $text = trim($text, $divider);
+
+        // remove duplicate divider
+        $text = preg_replace('~-+~', $divider, $text);
+
+        // lowercase
+        $text = strtolower($text);
+
+        if (empty($text)) {
+            return 'n-a';
+        }
+
+        return $text;
     }
 }

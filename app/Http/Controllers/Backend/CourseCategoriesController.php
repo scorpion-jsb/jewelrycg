@@ -121,7 +121,7 @@ class CourseCategoriesController extends Controller
 
         return redirect()->route('backend.courses.categories.list');
     }
-    
+
     protected function slugify($text, string $divider = '-')
     {
         // replace non letter or digits by divider
