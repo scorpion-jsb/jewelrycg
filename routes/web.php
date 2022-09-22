@@ -310,6 +310,8 @@ Route::get('/filter-product', [ProductController::class, 'filterProduct'])->name
 Route::middleware(['auth', 'admin'])->resource('products', ProductController::class)->except(['index', 'show']);
 Route::get('product/{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('products', [ProductController::class, 'index'])->name('products.index');
+Route::post('products/add_review', [ProductController::class, 'addReview'])->name('products.add_review');
+
 
 // Products Shop Page
 Route::get('/3d-models', [ProductController::class, 'products_index'])->name('shop_index');
@@ -380,7 +382,6 @@ Route::group(['middleware' => 'auth'], function ()
     Route::post('checkout/billing', [CheckoutController::class, 'postBilling'])->name('checkout.billing.post');
     Route::get('checkout/payment', [CheckoutController::class, 'getPayment'])->name('checkout.payment.get');
     Route::post('checkout/payment', [CheckoutController::class, 'postPayment'])->name('checkout.payment.post');
-        
 
     Route::resource('orders', OrderController::class)->only(['index', 'show', 'update']);
 

@@ -1,9 +1,47 @@
 <x-app-layout page-title="{{$product->meta_title?$product->meta_title:$product->name}}" page-description="{{$product->meta_description}}">
     <style>
-
         .btn-check:active+.btn, .btn-check:checked+.btn, .btn.active, .btn.show, .btn:active {
             border: solid 1px white !important;
             outline: solid 2px #007bff !important;
+        }
+
+        .rate {
+            float: left;
+            margin-right: 15px;
+        }
+        .rate:not(:checked) > input {
+            position:absolute;
+            display: none;
+        }
+        .rate:not(:checked) > label {
+            float:right;
+            width:1em;
+            overflow:hidden;
+            white-space:nowrap;
+            cursor:pointer;
+            font-size:30px;
+            color:#ccc;
+        }
+        .rate:not(:checked) > label:before {
+            content: '★ ';
+        }
+        .rate > input:checked ~ label {
+            color: #ffc700;
+        }
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+            color: #deb217;
+        }
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+            color: #c59b08;
+        }
+
+        .rated_date {
+            margin-top: 12px;
         }
     </style>
 
@@ -313,6 +351,50 @@
                         </div>
                     </div>
                 </div>
+
+                @if ($product_reviewable)
+                    <div class="card">
+                        <form id="frmRate" method="POST" action="{{ route('products.add_review') }}">
+                            @csrf
+                            <div class="fs-18 py-2 fw-600 card-header">Rating</div>
+                                <div class="card-body">
+                                    <div class="rate pb-3">
+                                        @for ($i = 5; $i > 0; $i--)
+                                            <input
+                                                type="radio" id="star{!! $i !!}" class="rate" name="rating" value="{!! $i !!}"
+                                                {{ $product_review?->rating == $i ? "checked" : "" }}
+                                            />
+                                            <label for="star{!! $i !!}">{{ $i }}</label>
+                                        @endfor
+                                    </div>
+                                    <div class="rated_date">
+                                        @if ($product_review)
+                                            Rated at {{ $product_review->updated_at }}
+                                        @endif
+                                    </div>
+                                    
+                                    <div class="clearfix"></div>
+
+                                    <div>
+                                        <label>Review Comment</label>
+                                        <textarea name="review" id="txtReview" rows="4" class="form-control" required
+                                        >{{ $product_review?->review }}</textarea>
+                                    </div>
+
+                                    <div class="text-right py-3">
+                                        @if ($product_review)
+                                            <button type="submit" class="btn btn-sm btn-primary">Update Review</button>
+                                        @else
+                                            <button type="submit" class="btn btn-sm btn-primary">Add Review</button>
+                                        @endif
+                                    </div>
+                                </div>
+                            </div>
+
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        </form>
+                    </div>
+                @endif
             </div>
         </div>
     </section>
@@ -337,6 +419,15 @@
 
     <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
     <script>
+        $(document).ready(function() {
+            $('#frmRate').submit(function() {
+                if ($('.rate:checked').length == 0) {
+                    alert('Please rate the product');
+                    return false;
+                }
+            });
+        });
+
         var variants = [];
         $('.loader-container').hide();
 
