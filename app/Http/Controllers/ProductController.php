@@ -67,7 +67,6 @@ class ProductController extends Controller
             'categories'=> $categories, 
             'attrs'     => $attributes
         ]);
-
     }
 
     /**
@@ -120,6 +119,7 @@ class ProductController extends Controller
             'attrs'     => $attributes
         ]);
     }
+
     public function show($slug)
     {
         try {

@@ -452,3 +452,47 @@ button.remove-item-btn:after {
 .color-attribute+.color-attribute{
   margin-left: .5rem;
 }
+
+/*file manager */
+.file-manager-item {
+  cursor: pointer;
+  align-items: center;
+}
+
+.file-manager-item>img {
+  width: 100px;
+}
+
+.file-manager-item>.card-body {
+  width: 100%;
+}
+
+.file-manager-item-checked>.check-option {
+  display: block !important;
+}
+
+.check-option {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  padding-top: 3px;
+  background-color: #007593;
+  color: white;
+  width: 24px;
+  height: 24px;
+  text-align: center;
+  border-radius: 50%;
+}
+
+.file-size {
+  color: grey;
+  position: absolute;
+  right: 16px;
+  bottom: 16px;
+}
+
+.file-created-at {
+  color: rgb(158, 154, 154);
+  text-align: center;
+  margin-bottom: 4px;
+}

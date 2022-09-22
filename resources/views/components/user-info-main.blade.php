@@ -27,6 +27,24 @@
         </div>
     </div>
 </div>
+
+<div class="card mb-4 p-0">
+    <div class="card-header">Avatar</div>
+    <div class="card-body">
+        <div class="col-md-6">
+            <!-- Card -->
+            <div class="imagePreview pt-2 img-thumbnail">
+                <img id="fileManagerPreview" src="{{ $user->uploads->getImageOptimizedFullName(400) }}" style="width: 100%">
+            </div>
+            @if ($edit)
+                <label class="btn text-primary mt-2 p-0" id="getFileManager">Select avatar image</label>
+                <input type="hidden" value="{{ $user->uploads->id}}" id="fileManagerId" name="avatar">
+            @endif
+            <!-- End Card -->
+        </div>
+    </div>
+</div>
+
 <div class="card mb-4 p-0">
     <div class="card-header">Shipping Address</div>
     <div class="card-body">
@@ -66,7 +84,6 @@
                 value="{{ old('country') ?? ($shipping->country ?? '') }}"
                 placeholder="{{ $shipping->country ?? '' }}" class="form-control">
         </div>
-        
     </div>
 </div><!-- end shipping-address-->
 <div class="card p-0">
@@ -110,3 +127,33 @@
         </div>
     </div>
 </div><!-- end billing-address-->
+
+<div id="fileManagerContainer"></div>
+
+<div id='ajaxCalls'></div>
+
+@section('js')
+<script>
+$(document).ready(function() {
+    $('body').on('click', '#getFileManager', function () {
+        $.ajax({
+            url: "{{ route('backend.file.show') }}",
+            success: function (data) {
+                if (!$.trim($('#fileManagerContainer').html()))
+                    $('#fileManagerContainer').html(data);
+
+                $('#fileManagerModal').modal('show');
+
+                const getSelectedItem = function (selectedId, filePath) {
+
+                    $('#fileManagerId').val(selectedId);
+                    $('#fileManagerPreview').attr('src', filePath);
+                }
+
+                setSelectedItemsCB(getSelectedItem, $('#fileManagerId').val() == '' ? [] : [$('#fileManagerId').val()], false);
+            }
+        })
+    });
+});
+</script>
+@endsection

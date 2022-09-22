@@ -21,6 +21,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'address_shipping',
         'address_billing',
         'role',
+        'avatar',
     ];
 
     protected $hidden = [
@@ -49,5 +50,12 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function getAttributeName() {
         return $this->first_name . " " . $this->last_name;
+    }
+    
+    public function uploads() {
+        return $this->belongsTo(Upload::class, 'avatar', 'id')->withDefault([
+            'file_name' => "avatar.png",
+            'id' => null
+        ]);
     }
 }
