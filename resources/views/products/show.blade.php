@@ -13,7 +13,11 @@
                 <div class="product-details-meta-block align-items-center mb-4 col-lg-10 mx-auto row">
                     <div class="col-lg-8 col-12 px-0 py-3">
                         <div class="d-flex align-items-center">
-                            <img src="https://jewelrycg.com/assets/img/avatar.png" class="product-seller rounded-circle h-60px mr-5px" />
+                            <img id="fileManagerPreview" src="{{ $product->user->uploads->getImageOptimizedFullName(50) }}"
+                                class="product-seller rounded-circle h-60px mr-5px"
+                            >
+
+                            {{-- <img src="https://jewelrycg.com/assets/img/avatar.png" class="product-seller rounded-circle h-60px mr-5px" /> --}}
                             <div class="product-details-title px-2">
                                 <div class="fs-20 fw-600">{{ $product->name }}</div>
                                 <div class="link">

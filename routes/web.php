@@ -331,16 +331,14 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 Route::group(['controller' => CourseController::class, 'prefix' => 'courses', 'as' => 'courses.'], function ()
 {
     Route::get('/', 'index')->name('index');
-    Route::get('/category/{category}', 'category')->name('category');
-    Route::get('/course/{course}', 'show')->name('show');
+    Route::get('/category/{slug}', 'category')->name('category');
+    Route::get('/course/{slug}', 'show')->name('show');
 });
-
 
 Route::group(['controller' => CartController::class], function ()
 {
     Route::group(['middleware' => 'auth'], function ()
     {
-
         Route::group(['prefix' => 'wishlist', 'as' => 'wishlist'], function ()
         {
             Route::get('/', 'wishlist');
@@ -348,11 +346,8 @@ Route::group(['controller' => CartController::class], function ()
             Route::put('/', 'wishlistToCart');
             Route::delete('/', 'removeFromWishlist');
         });
-
     });
 });
-
-
 
 Route::resource('cart', CartController::class)->only(['index', 'store', 'destroy']);
 
