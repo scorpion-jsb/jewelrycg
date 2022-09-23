@@ -43,6 +43,34 @@
         .rated_date {
             margin-top: 12px;
         }
+
+
+        /* Rate Star*/        
+        .result-container{
+            width: 100px; height: 22px;
+            background-color: #ccc;
+            vertical-align:middle;
+            display:inline-block;
+            position: relative;
+            top: -4px;
+        }
+        .rate-stars{
+            width: 100px; height: 22px;
+            background: url(img/rate-stars.png) no-repeat;
+            background-size: cover;
+            position: absolute;
+        }
+        .rate-bg{
+            height: 22px;
+            background-color: #ffbe10;
+            position: absolute;
+        }
+        /* Rate Star Ends*/
+        
+        /* Display rate count */    
+        .reviewCount, .reviewScore {font-size: 14px; color: #666666; margin-left: 5px;}
+        .reviewScore {font-weight: 600;}
+        /* Display rate count Ends*/
     </style>
 
     <section class="product_detail_single">
@@ -357,37 +385,36 @@
                         <form id="frmRate" method="POST" action="{{ route('products.add_review') }}">
                             @csrf
                             <div class="fs-18 py-2 fw-600 card-header">Rating</div>
-                                <div class="card-body">
-                                    <div class="rate pb-3">
-                                        @for ($i = 5; $i > 0; $i--)
-                                            <input
-                                                type="radio" id="star{!! $i !!}" class="rate" name="rating" value="{!! $i !!}"
-                                                {{ $product_review?->rating == $i ? "checked" : "" }}
-                                            />
-                                            <label for="star{!! $i !!}">{{ $i }}</label>
-                                        @endfor
-                                    </div>
+                            <div class="card-body">
+                                <div class="rate pb-3">
+                                    @for ($i = 5; $i > 0; $i--)
+                                        <input
+                                            type="radio" id="star{!! $i !!}" class="rate" name="rating" value="{!! $i !!}"
+                                            {{ $user_product_review?->rating == $i ? "checked" : "" }}
+                                        />
+                                        <label for="star{!! $i !!}">{{ $i }}</label>
+                                    @endfor
+                                </div>
+                                @if ($user_product_review)
                                     <div class="rated_date">
-                                        @if ($product_review)
-                                            Rated at {{ $product_review->updated_at }}
-                                        @endif
+                                        Rated at {{ $user_product_review->updated_at }}
                                     </div>
-                                    
-                                    <div class="clearfix"></div>
+                                @endif
+                                
+                                <div class="clearfix"></div>
 
-                                    <div>
-                                        <label>Review Comment</label>
-                                        <textarea name="review" id="txtReview" rows="4" class="form-control" required
-                                        >{{ $product_review?->review }}</textarea>
-                                    </div>
+                                <div>
+                                    <label>Review Comment</label>
+                                    <textarea name="review" id="txtReview" rows="4" class="form-control" required
+                                    >{{ $user_product_review?->review }}</textarea>
+                                </div>
 
-                                    <div class="text-right py-3">
-                                        @if ($product_review)
-                                            <button type="submit" class="btn btn-sm btn-primary">Update Review</button>
-                                        @else
-                                            <button type="submit" class="btn btn-sm btn-primary">Add Review</button>
-                                        @endif
-                                    </div>
+                                <div class="text-right py-3">
+                                    @if ($user_product_review)
+                                        <button type="submit" class="btn btn-sm btn-primary">Update Review</button>
+                                    @else
+                                        <button type="submit" class="btn btn-sm btn-primary">Add Review</button>
+                                    @endif
                                 </div>
                             </div>
 
@@ -395,6 +422,33 @@
                         </form>
                     </div>
                 @endif
+
+                <div class="card">
+                    <div class="fs-18 py-2 fw-600 card-header">Rating List</div>
+                    <div class="card-body">
+                        @if ($review_count > 0)
+                            <div class="star-ratings">
+                                <div class="fill-ratings" style="width: {{ $average_rating * 100 / 5 }}%;">
+                                    <span>★★★★★</span>
+                                </div>
+                                <div class="empty-ratings">
+                                    <span>★★★★★</span>
+                                </div>
+                            </div>
+
+                            <div class="rated_date">
+                                {{ $average_rating }} out of 5 stars (based on {{ $review_count }} reviews)
+                            </div>
+
+                            <div id="review_listing">
+                                @include('products.show_reviews')
+                            </div>
+                        @else
+                            <h6 class="text-center">No Reviews</h6>
+                        @endif
+
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -425,6 +479,17 @@
                     alert('Please rate the product');
                     return false;
                 }
+            });
+
+            $('body').on('click', '.pagination a', function(e) {
+                var url = $(this).attr('href');
+                $.ajax({
+                    url: url,
+                    success: function (result) {
+                        $('#review_listing').html(result);
+                    }
+                });
+                e.preventDefault();
             });
         });
 
@@ -457,7 +522,6 @@
                 $('#buy_now_btn, #add_to_cart_btn').removeAttr('disabled');
             }
             variants.forEach(function(variant) {
-
                 if (variant.id == selectedAttributeValue.sort().join(',')) {
                     $('#variant_attribute_value').val(variant.id)
                     $('.product_price').text('$' + parseFloat((variant.price / 100).toFixed(2)).toLocaleString())
