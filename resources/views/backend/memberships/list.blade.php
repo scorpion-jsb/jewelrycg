@@ -41,7 +41,9 @@
                         <th>Name</th>
                         <th>Slug</th>
                         <th>Price</th>
+                        <th>Price Monthly</th>
                         <th>Included Downloads</th>
+                        <th>Included Downloads Monthly</th>
                         <th>Unlimited Downloads</th>
                         <th>Actions</th>
                     </thead>
@@ -49,7 +51,7 @@
                     <tbody>
                         @foreach ($memberships as $membership)
                             @php
-                                $membership->setPriceToFloat();
+                                $membership->setPricesToFloat();
                             @endphp
 
                             <tr>
@@ -63,7 +65,9 @@
                                 <td>{{ $membership->name }}</td>
                                 <td>{{ $membership->slug }}</td>
                                 <td>{{ $membership->price }}</td>
+                                <td>{{ $membership->price_monthly }}</td>
                                 <td>{{ $membership->included_downloads }}</td>
+                                <td>{{ $membership->included_downloads_monthly }}</td>
                                 <td>{{ $membership->unlimited_downloads == 0 ? 'No' : 'Yes'}}</td>
                                 <td>
                                     <div class="btn-group" role="group">

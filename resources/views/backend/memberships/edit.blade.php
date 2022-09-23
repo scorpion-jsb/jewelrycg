@@ -40,9 +40,20 @@
                     </div>
 
                     <div class="mb-2">
+                        <label for="txtPriceMonthly" class="w-100 mb-2">Price Monthly:</label>
+                        <input type="text" name="price_monthly" id="txtPriceMonthly" value="{{ $membership->price_monthly }}" class="form-control">
+                    </div>
+
+                    <div class="mb-2">
                         <label for="txtIncludedDownloads" class="w-100 mb-2">Included Downloads:</label>
                         <input type="text" name="included_downloads" id="txtIncludedDownloads"
                             value="{{ $membership->included_downloads }}" class="form-control">
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="txtIncludedDownloadsMonthly" class="w-100 mb-2">Included Downloads Monthly:</label>
+                        <input type="text" name="included_downloads_monthly" id="txtIncludedDownloadsMonthly"
+                            value="{{ $membership->included_downloads_monthly }}" class="form-control">
                     </div>
 
                     <div class="mb-2">
