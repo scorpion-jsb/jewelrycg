@@ -55,7 +55,7 @@ class MembershipsController extends Controller
         }
         $data['slug'] = $slug;
 
-        $membership_id = Membership::create($data)->id;
+        Membership::create($data)->id;
         
         return redirect()->route('backend.memberships.list');
     }
@@ -93,7 +93,11 @@ class MembershipsController extends Controller
         if ($request->slug == '')
             $slug = $this->slugify($request->name);
 
-        if (Membership::where('slug', $slug)->count()) {
+        $slug_count = Membership::where('slug', $slug)
+            ->whereNot('id', $membership->id)
+            ->count();
+
+        if ($slug_count) {
             $slug .= "-1";
         }
         $data['slug'] = $slug;
