@@ -137,7 +137,8 @@ class ProductController extends Controller
         $maxPrice = ProductsVariant::where('product_id', $product->id)->max('variant_price') / 100;
         $minPrice = ProductsVariant::where('product_id', $product->id)->min('variant_price') / 100;
 
-        $user_id = Auth::user()->id;
+        $user = Auth::user();
+        $user_id = $user?->id;
         $purchase_count = Order::with('items')
             ->where('user_id', $user_id)
             ->where('status_payment', 2)
