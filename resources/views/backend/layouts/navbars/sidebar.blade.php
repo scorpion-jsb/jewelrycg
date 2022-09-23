@@ -32,6 +32,7 @@
                   <a class="nav-link {{ \Route::currentRouteName() == 'backend.customers.list' ? 'active' : ''}}" href="{{ route('backend.customers.list') }}">{{ __("Customers") }}</a>
                   <a class="nav-link {{ \Route::currentRouteName() == 'backend.sellers.list' ? 'active' : ''}}" href="{{ route('backend.sellers.list') }}">{{ __("Sellers") }} <span class="badge bg-primary rounded-pill ms-1">5</span></a>
                   <a class="nav-link " href="#">{{ __("Profile") }}</a>
+                  <a class="nav-link {{ strpos('backend.memberships', \Route::currentRouteName()) == 0 ? 'active' : ''}}" href="{{ route('backend.memberships.list') }}">{{ __("Membershpis") }}</a>
                 </div>
               </div>
               <!-- End Collapse -->

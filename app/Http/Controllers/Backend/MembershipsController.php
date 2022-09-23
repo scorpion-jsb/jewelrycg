@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\CourseStoreRequest;
-use App\Models\Course;
-use App\Models\CourseCategory;
+use App\Http\Requests\MembershipStoreRequest;
+use App\Models\Membership;
 use Illuminate\Support\Facades\Auth;
 
-class CourseController extends Controller
+class MembershipsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,11 +16,10 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with(['category', 'author'])
-            ->orderBy('id', 'DESC')->get();
+        $memberships = Membership::orderBy('id', 'DESC')->get();
 
-        return view('backend.course.courses.list', compact(
-            'courses'
+        return view('backend.memberships.list', compact(
+            'memberships'
         ));
     }
 
@@ -32,11 +30,7 @@ class CourseController extends Controller
      */
     public function create()
     {
-        $arrCategories = CourseCategory::get();
-
-        return view('backend.course.courses.create', compact(
-            'arrCategories'
-        ));
+        return view('backend.memberships.create');
     }
 
     /**
@@ -45,24 +39,24 @@ class CourseController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CourseStoreRequest $request)
+    public function store(MembershipStoreRequest $request)
     {
         $data = $request->input();
         $data['user_id'] = Auth::id();
-        $data['price'] = Course::stringPriceToCents($request->price);
+        $data['price'] = Membership::stringPriceToCents($request->price);
         
         $slug = $this->slugify($request->slug);
         if ($request->slug == '')
             $slug = $this->slugify($request->name);
 
-        if (Course::where('slug', $slug)->count()) {
+        if (Membership::where('slug', $slug)->count()) {
             $slug .= "-1";
         }
         $data['slug'] = $slug;
 
-        $course_id = Course::create($data)->id;
+        $membership_id = Membership::create($data)->id;
         
-        return redirect()->route('backend.courses.edit', $course_id);
+        return redirect()->route('backend.memberships.list');
     }
 
     /**
@@ -71,13 +65,12 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Course $course)
+    public function edit(Membership $membership)
     {
-        $course->setPriceToFloat();
-        $arrCategories = CourseCategory::get();
+        $membership->setPriceToFloat();
 
-        return view('backend.course.courses.edit', compact(
-            'course', 'arrCategories'
+        return view('backend.memberships.edit', compact(
+            'membership'
         ));
     }
 
@@ -88,24 +81,24 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Course $course, CourseStoreRequest $request)
+    public function update(Membership $membership, MembershipStoreRequest $request)
     {
         $data = $request->input();
         $data['user_id'] = Auth::id();
-        $data['price'] = Course::stringPriceToCents($request->price);
+        $data['price'] = Membership::stringPriceToCents($request->price);
 
         $slug = $this->slugify($request->slug);
         if ($request->slug == '')
             $slug = $this->slugify($request->name);
 
-        if (Course::where('slug', $slug)->count()) {
+        if (Membership::where('slug', $slug)->count()) {
             $slug .= "-1";
         }
         $data['slug'] = $slug;
 
-        $course->update($data);
+        $membership->update($data);
 
-        return redirect()->route('backend.courses.edit', $course->id);
+        return redirect()->route('backend.memberships.edit', $membership->id);
     }
     
     /**
@@ -114,10 +107,10 @@ class CourseController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Course $course)
+    public function destroy(Membership $membership)
     {
-        $course->delete();
-        return redirect()->route('backend.courses.list');
+        $membership->delete();
+        return redirect()->route('backend.memberships.list');
     }
 
     protected function slugify($text, string $divider = '-')
