@@ -44,6 +44,7 @@ class MembershipsController extends Controller
         $data = $request->input();
         $data['user_id'] = Auth::id();
         $data['price'] = Membership::stringPriceToCents($request->price);
+        $data['price_monthly'] = Membership::stringPriceToCents($request->price_monthly);
         
         $slug = $this->slugify($request->slug);
         if ($request->slug == '')
@@ -67,7 +68,7 @@ class MembershipsController extends Controller
      */
     public function edit(Membership $membership)
     {
-        $membership->setPriceToFloat();
+        $membership->setPricesToFloat();
 
         return view('backend.memberships.edit', compact(
             'membership'
@@ -86,6 +87,7 @@ class MembershipsController extends Controller
         $data = $request->input();
         $data['user_id'] = Auth::id();
         $data['price'] = Membership::stringPriceToCents($request->price);
+        $data['price_monthly'] = Membership::stringPriceToCents($request->price_monthly);
 
         $slug = $this->slugify($request->slug);
         if ($request->slug == '')

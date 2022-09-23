@@ -24,10 +24,12 @@ class MembershipStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'                  => 'required|string|max:255',
-            'price'                 => 'required|numeric',
-            'included_downloads'    => 'required|numeric',
-            'unlimited_downloads'   => 'required|numeric',
+            'name'                          => 'required|string|max:255',
+            'price'                         => 'required',
+            'price_monthly'                 => 'required',
+            'included_downloads'            => 'required',
+            'included_downloads_monthly'    => 'required',
+            'unlimited_downloads'           => 'required|numeric',
         ];
     }
     
