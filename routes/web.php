@@ -37,6 +37,8 @@ use App\Http\Controllers\Backend\TaxOptionController;
 use App\Http\Controllers\Auth\SellerRegisterController;
 use App\Http\Controllers\Backend\CourseCategoriesController;
 use App\Http\Controllers\Backend\CourseLessonsController;
+use App\Http\Controllers\Backend\MembershipsController;
+use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
@@ -173,6 +175,17 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::put('/update/{product}', [VendorsController::class, 'update'])->name('update');
         Route::post('/store', [VendorsController::class, 'store'])->name('store');
         Route::get('/get', [VendorsController::class, 'get'])->name('get');
+    });
+    
+    Route::group(['prefix' => 'memberships', 'as' => 'memberships.'], function ()
+    {
+        Route::get('/', [MembershipsController::class, 'index'])->name('list');
+        Route::get('/create', [MembershipsController::class, 'create'])->name('create');
+        Route::get('/edit/{membership}', [MembershipsController::class, 'edit'])->name('edit');
+        Route::put('/update/{membership}', [MembershipsController::class, 'update'])->name('update');
+        Route::post('/store', [MembershipsController::class, 'store'])->name('store');
+        Route::get('/delete/{membership}', [MembershipsController::class, 'destroy'])->name('delete');
+        Route::get('/get', [MembershipsController::class, 'get'])->name('get');
     });
 
     //posts routes
@@ -311,6 +324,9 @@ Route::middleware(['auth', 'admin'])->resource('products', ProductController::cl
 Route::get('product/{slug}', [ProductController::class, 'show'])->name('products.show');
 Route::get('products', [ProductController::class, 'index'])->name('products.index');
 Route::post('products/add_review', [ProductController::class, 'addReview'])->name('products.add_review');
+
+// Memberships
+Route::get('/memberships', [MembershipController::class, 'index'])->name('memberships.index');
 
 
 // Products Shop Page
