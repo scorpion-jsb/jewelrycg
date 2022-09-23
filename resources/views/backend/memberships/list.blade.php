@@ -64,7 +64,7 @@
                                 <td>{{ $membership->slug }}</td>
                                 <td>{{ $membership->price }}</td>
                                 <td>{{ $membership->included_downloads }}</td>
-                                <td>{{ $membership->unlimited_downloads }}</td>
+                                <td>{{ $membership->unlimited_downloads == 0 ? 'No' : 'Yes'}}</td>
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-dark btn-sm" href="{{ route('backend.memberships.edit', $membership->id) }}">Edit</a>

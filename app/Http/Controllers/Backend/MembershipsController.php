@@ -98,7 +98,7 @@ class MembershipsController extends Controller
 
         $membership->update($data);
 
-        return redirect()->route('backend.memberships.edit', $membership->id);
+        return redirect()->route('backend.memberships.list');
     }
     
     /**

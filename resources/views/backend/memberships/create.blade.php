@@ -37,9 +37,11 @@
                     </div>
 
                     <div class="mb-2">
-                        <label for="txtUnlimitedDownloads" class="w-100 mb-2">Unlimited Downloads:</label>
-                        <input type="text" name="unlimited_downloads" id="txtUnlimitedDownloads"
-                            value="{{ old('unlimited_downloads') }}" class="form-control">
+                        <label for="selUnlimitedDownloads" class="w-100 mb-2">Unlimited Downloads:</label>
+                        <select name="unlimited_downloads" id="selUnlimitedDownloads" class="form-control">
+                            <option value="0" {{ old('unlimited_downloads') == 0 ? "selected" : "" }}>No</option>
+                            <option value="1" {{ old('unlimited_downloads') == 1 ? "selected" : "" }}>Yes</option>
+                        </select>
                     </div>
                 </div>
             </div>
