@@ -11,7 +11,7 @@ class Membership extends Model
 
     protected $fillable = [
         'name', 'slug', 'price', 'price_monthly', 'included_downloads',
-        'included_downloads_monthly', 'unlimited_downloads'
+        'included_downloads_monthly', 'unlimited_downloads', 'thumbnail'
     ];
 
     public function setPricesToFloat()
