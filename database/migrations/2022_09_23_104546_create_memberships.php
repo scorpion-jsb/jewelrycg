@@ -19,7 +19,9 @@ return new class extends Migration
             $table->string('slug');
             $table->integer('thumbnail');
             $table->integer('price');
+            $table->integer('price_monthly');
             $table->integer('included_downloads');
+            $table->integer('included_downloads_monthly');
             $table->integer('unlimited_downloads');
             $table->timestamps();
             $table->softDeletes();
