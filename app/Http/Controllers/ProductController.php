@@ -9,6 +9,8 @@ use App\Models\UserSearch;
 use App\Models\ProductsVariant;
 use App\Models\ProductsCategorie;
 use App\Models\Attribute;
+use App\Models\Order;
+use App\Models\ProductsReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
@@ -134,7 +136,23 @@ class ProductController extends Controller
         $variants = ProductsVariant::where('product_id', $product->id)->get();
         $maxPrice = ProductsVariant::where('product_id', $product->id)->max('variant_price') / 100;
         $minPrice = ProductsVariant::where('product_id', $product->id)->min('variant_price') / 100;
-        return view('products.show', compact('product', 'uploads', 'variants', 'maxPrice', 'minPrice'));
+
+        $user_id = Auth::user()->id;
+        $purchase_count = Order::with('items')
+            ->where('user_id', $user_id)
+            ->where('status_payment', 2)
+            ->whereRelation('items', 'product_id', $product->id)
+            ->count();
+        $product_reviewable = ($purchase_count > 0) ? true : false;
+
+        $product_review = ProductsReview::where('product_id', $product->id)
+            ->where('user_id', $user_id)
+            ->first();
+
+        return view('products.show', compact(
+            'product', 'uploads', 'variants', 'maxPrice', 'minPrice',
+            'product_reviewable', 'product_review'
+        ));
     }
 
     public function download(Request $request)
@@ -148,6 +166,28 @@ class ProductController extends Controller
 
             return response()->download(public_path('uploads/all/') . $productVariant->asset->file_name, $productVariant->getAssetOriginalFileName());
         }
+    }
 
+    public function addReview(Request $request) {
+        $user_id = Auth::user()->id;
+        $data = $request->all();
+        $data['user_id'] = $user_id;
+        unset($data['_token']);
+
+        $review_count = ProductsReview::where('user_id', $user_id)
+            ->where('product_id', $data['product_id'])
+            ->count();
+
+        if ($review_count == 0) {
+            ProductsReview::create($data);
+        } else {
+            ProductsReview::where('user_id', $user_id)
+                ->where('product_id', $data['product_id'])
+                ->update($data);
+        }
+
+        $product = Product::findOrFail($data['product_id']);
+
+        return redirect()->route('products.show', $product->slug);
     }
 }
