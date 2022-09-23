@@ -14,6 +14,7 @@ use App\Models\ProductsReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -122,7 +123,7 @@ class ProductController extends Controller
         ]);
     }
 
-    public function show($slug)
+    public function show($slug, Request $request)
     {
         try {
             $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
@@ -137,8 +138,11 @@ class ProductController extends Controller
         $maxPrice = ProductsVariant::where('product_id', $product->id)->max('variant_price') / 100;
         $minPrice = ProductsVariant::where('product_id', $product->id)->min('variant_price') / 100;
 
+        ////////////////////////////////////////////////////////////////////////////////////////////////
+        // Product Review Info
         $user = Auth::user();
         $user_id = $user?->id;
+
         $purchase_count = Order::with('items')
             ->where('user_id', $user_id)
             ->where('status_payment', 2)
@@ -146,13 +150,33 @@ class ProductController extends Controller
             ->count();
         $product_reviewable = ($purchase_count > 0) ? true : false;
 
-        $product_review = ProductsReview::where('product_id', $product->id)
+        $user_product_review = ProductsReview::where('product_id', $product->id)
             ->where('user_id', $user_id)
             ->first();
 
+        $review_count = ProductsReview::where('product_id', $product->id)
+            ->count();
+
+        $average_rating = ProductsReview::select(
+                DB::raw('AVG(rating) as average_rating')
+            )->where('product_id', $product->id)
+            ->first()->average_rating;
+        $average_rating = number_format($average_rating?: 0, 1);
+        $arrReviewListing = ProductsReview::with('user')
+            ->where('product_id', $product->id)
+            ->orderBy('updated_at', 'DESC')
+            ->paginate(10);
+
+        if ($request->ajax() && $request->page){
+            return view('products.show_reviews', compact(
+                'arrReviewListing'
+            )); 
+        }
+
         return view('products.show', compact(
             'product', 'uploads', 'variants', 'maxPrice', 'minPrice',
-            'product_reviewable', 'product_review'
+            'product_reviewable', 'user_product_review', 'review_count',
+            'average_rating', 'arrReviewListing'
         ));
     }
 
