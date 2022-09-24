@@ -53,7 +53,7 @@
     <div class="rate-item pb-2 mb-4">
         <div class="d-flex align-items-center">
             <img class="reviewer_avatar rounded-circle h-40px mr-5px"
-                src="{{ $review->user->uploads->getImageOptimizedFullName(50) }}"
+                src="{{ $review->user->uploads->getImageOptimizedFullName(100,100) }}"
             />
             <div class="reviewer_name">
                 {{ $review->user->first_name }} {{ $review->user->last_name }}
