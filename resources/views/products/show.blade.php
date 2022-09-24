@@ -422,7 +422,7 @@
                 @endif
 
                 <div class="card">
-                    <div class="fs-18 py-2 fw-600 card-header">Rating List</div>
+                    <div class="fs-18 py-2 fw-600 card-header">Reviews</div>
                     <div class="card-body">
                         @if ($review_count > 0)
                             <div class="star-ratings">
