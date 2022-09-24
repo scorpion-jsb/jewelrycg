@@ -442,7 +442,7 @@
                                 @include('products.show_reviews')
                             </div>
                         @else
-                            <h6 class="text-center">No reviews has been posted.</h6>
+                            <h6 class="text-left">No reviews posted.</h6>
                         @endif
 
                     </div>
