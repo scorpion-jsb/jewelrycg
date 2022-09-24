@@ -421,32 +421,38 @@
                     </div>
                 @endif
 
+                @if ($review_count > 0)
                 <div class="card">
                     <div class="fs-18 py-2 fw-600 card-header">Reviews</div>
                     <div class="card-body">
-                        @if ($review_count > 0)
-                            <div class="star-ratings">
-                                <div class="fill-ratings" style="width: {{ $average_rating * 100 / 5 }}%;">
-                                    <span>★★★★★</span>
-                                </div>
-                                <div class="empty-ratings">
-                                    <span>★★★★★</span>
-                                </div>
+                        <div class="star-ratings">
+                            <div class="fill-ratings" style="width: {{ $average_rating * 100 / 5 }}%;">
+                                <span>★★★★★</span>
                             </div>
-
-                            <div class="rated_date">
-                                {{ $average_rating }} out of 5 stars (based on {{ $review_count }} reviews)
+                            <div class="empty-ratings">
+                                <span>★★★★★</span>
                             </div>
-
-                            <div id="review_listing">
-                                @include('products.show_reviews')
-                            </div>
-                        @else
-                            <h6 class="text-left">No reviews posted.</h6>
-                        @endif
-
+                        </div>
+                        <div class="rated_date">
+                            {{ $average_rating }} out of 5 stars (based on {{ $review_count }} reviews)
+                        </div>
                     </div>
                 </div>
+                <div class="card">
+                    <div class="card-body">
+                        <div id="review_listing">
+                            @include('products.show_reviews')
+                        </div>
+                    </div>
+                </div>
+                @else
+                <div class="card">
+                    <div class="fs-18 py-2 fw-600 card-header">Reviews</div>
+                    <div class="card-body">
+                        <p class="text-left">No reviews posted.</p>
+                    </div>
+                </div>
+                @endif
             </div>
         </div>
     </section>
