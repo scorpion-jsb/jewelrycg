@@ -135,10 +135,15 @@
               <!-- End Collapse -->
 
               <div class="nav-item">
-                <a class="nav-link nav-link-main " href="#" data-placement="left">
+                <a class="nav-link nav-link-main" href="{{ route('backend.coupons.list') }}">
                   <i class="bi-folder2-open nav-icon"></i>
-                  <span class="nav-link-title">Coupons</span>
+                  {{ __("Coupons") }}
                 </a>
+
+                <div id="navbarVerticalMenuAllCouponMenu" class="nav-collapse collapse @if($activePage == 'coupons') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link @if($navName == 'allcoupon') active @endif" href="{{ route('backend.coupons.list') }}">{{ __("All coupon") }}</a>
+                  <a class="nav-link @if($navName == 'addcoupon') active @endif" href="{{ route('backend.coupons.create') }}">{{ __("Create coupon") }}</a>
+                </div>
               </div>
 
               <div class="nav-item">
