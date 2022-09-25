@@ -35,6 +35,7 @@ use App\Http\Controllers\Backend\PageController;
 use App\Http\Controllers\Backend\TaxOptionController;
 // seller register
 use App\Http\Controllers\Auth\SellerRegisterController;
+use App\Http\Controllers\Backend\CouponsController;
 use App\Http\Controllers\Backend\CourseCategoriesController;
 use App\Http\Controllers\Backend\CourseLessonsController;
 use App\Http\Controllers\Backend\MembershipsController;
@@ -186,6 +187,17 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::post('/store', [MembershipsController::class, 'store'])->name('store');
         Route::get('/delete/{membership}', [MembershipsController::class, 'destroy'])->name('delete');
         Route::get('/get', [MembershipsController::class, 'get'])->name('get');
+    });
+
+    Route::group(['prefix' => 'coupons', 'as' => 'coupons.'], function ()
+    {
+        Route::get('/', [CouponsController::class, 'index'])->name('list');
+        Route::get('/create', [CouponsController::class, 'create'])->name('create');
+        Route::get('/edit/{coupon}', [CouponsController::class, 'edit'])->name('edit');
+        Route::put('/update/{coupon}', [CouponsController::class, 'update'])->name('update');
+        Route::post('/store', [CouponsController::class, 'store'])->name('store');
+        Route::get('/delete/{coupon}', [CouponsController::class, 'destroy'])->name('delete');
+        Route::get('/get', [CouponsController::class, 'get'])->name('get');
     });
 
     //posts routes

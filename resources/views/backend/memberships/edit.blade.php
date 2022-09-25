@@ -57,7 +57,7 @@
                     </div>
 
                     <div class="mb-2">
-                        <label for="txtUnlimitedDownloads" class="w-100 mb-2">Unlimited Downloads:</label>
+                        <label for="selUnlimitedDownloads" class="w-100 mb-2">Unlimited Downloads:</label>
                         <select name="unlimited_downloads" id="selUnlimitedDownloads" class="form-control">
                             <option value="0" {{ $membership->unlimited_downloads == 0 ? "selected" : "" }}>No</option>
                             <option value="1" {{ $membership->unlimited_downloads == 1 ? "selected" : "" }}>Yes</option>
