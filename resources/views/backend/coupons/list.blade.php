@@ -46,10 +46,6 @@
 
                     <tbody>
                         @foreach ($coupons as $coupon)
-                            @php
-                                $coupon->setValuesToFloat();
-                            @endphp
-
                             <tr>
                                 <td class="table-column-pe-0">
                                     <div class="form-check">
