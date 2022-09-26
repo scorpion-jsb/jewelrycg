@@ -12,12 +12,4 @@ class Coupon extends Model
     protected $fillable = [
         'name', 'type', 'amount', 'limit'
     ];
-
-    public function setValuesToFloat()
-    {
-        $this->amount = number_format($this->amount / 100, 2);
-        $this->limit = number_format($this->limit / 100, 2);
-        return $this;
-    }
-
 }
