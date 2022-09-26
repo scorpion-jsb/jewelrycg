@@ -40,13 +40,14 @@
                         <th>ID</th>
                         <th>Name</th>
                         <th>Type</th>
+                        <th>Amount</th>
                         <th>Limit</th>
                     </thead>
 
                     <tbody>
                         @foreach ($coupons as $coupon)
                             @php
-                                $coupon->setLimitToFloat();
+                                $coupon->setValuesToFloat();
                             @endphp
 
                             <tr>
@@ -58,7 +59,8 @@
                                 </td>
                                 <td>{{ $coupon->id }}</td>
                                 <td>{{ $coupon->name }}</td>
-                                <td>{{ $coupon->type == 0 ? 'Fiat' : 'Percentage'}}</td>
+                                <td>{{ $coupon->type == 0 ? 'Flat' : 'Percentage'}}</td>
+                                <td>{{ $coupon->amount }}</td>
                                 <td>{{ $coupon->limit }}</td>
                                 <td>
                                     <div class="btn-group" role="group">

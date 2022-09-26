@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('type');
+            $table->integer('amount');
             $table->integer('limit');
             $table->timestamps();
         });

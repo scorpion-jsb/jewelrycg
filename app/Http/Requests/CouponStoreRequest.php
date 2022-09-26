@@ -26,6 +26,7 @@ class CouponStoreRequest extends FormRequest
         return [
             'name'  => 'required|string|max:255',
             'type'  => 'required|numeric',
+            'amount' => 'required',
             'limit' => 'required',
         ];
     }

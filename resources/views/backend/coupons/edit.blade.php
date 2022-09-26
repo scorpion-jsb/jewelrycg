@@ -32,9 +32,14 @@
                     <div class="mb-2">
                         <label for="selType" class="w-100 mb-2">Type:</label>
                         <select name="type" id="selType" class="form-control">
-                            <option value="0" {{ $coupon->type == 0 ? "selected" : "" }}>Fiat</option>
+                            <option value="0" {{ $coupon->type == 0 ? "selected" : "" }}>Flat</option>
                             <option value="1" {{ $coupon->type == 1 ? "selected" : "" }}>Percentage</option>
                         </select>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="txtAmouont" class="w-100 mb-2">Amount:</label>
+                        <input type="text" name="amount" id="txtAmouont" value="{{ $coupon->amount }}" class="form-control">
                     </div>
 
                     <div class="mb-2">

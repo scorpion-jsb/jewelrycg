@@ -41,6 +41,7 @@ class CouponsController extends Controller
     public function store(CouponStoreRequest $request)
     {
         $data = $request->input();
+        $data['amount'] = Coupon::stringPriceToCents($request->amount);
         $data['limit'] = Coupon::stringPriceToCents($request->limit);
         Coupon::create($data);
         
@@ -55,7 +56,7 @@ class CouponsController extends Controller
      */
     public function edit(Coupon $coupon)
     {
-        $coupon->setLimitToFloat();
+        $coupon->setValuesToFloat();
 
         return view('backend.coupons.edit', compact(
             'coupon'
@@ -72,6 +73,7 @@ class CouponsController extends Controller
     public function update(Coupon $coupon, CouponStoreRequest $request)
     {
         $data = $request->input();
+        $data['amount'] = Coupon::stringPriceToCents($request->amount);
         $data['limit'] = Coupon::stringPriceToCents($request->limit);
     
         $coupon->update($data);
