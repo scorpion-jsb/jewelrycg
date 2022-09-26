@@ -10,11 +10,12 @@ class Coupon extends Model
     use FormatPrices;
 
     protected $fillable = [
-        'name', 'type', 'limit'
+        'name', 'type', 'amount', 'limit'
     ];
 
-    public function setLimitToFloat()
+    public function setValuesToFloat()
     {
+        $this->amount = number_format($this->amount / 100, 2);
         $this->limit = number_format($this->limit / 100, 2);
         return $this;
     }

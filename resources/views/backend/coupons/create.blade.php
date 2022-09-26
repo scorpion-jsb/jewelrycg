@@ -28,9 +28,14 @@
                     <div class="mb-2">
                         <label for="selType" class="w-100 mb-2">Type:</label>
                         <select name="type" id="selType" class="form-control">
-                            <option value="0" {{ old('type') == 0 ? "selected" : "" }}>Fiat</option>
+                            <option value="0" {{ old('type') == 0 ? "selected" : "" }}>Flat</option>
                             <option value="1" {{ old('type') == 1 ? "selected" : "" }}>Percentage</option>
                         </select>
+                    </div>
+                    
+                    <div class="mb-2">
+                        <label for="txtAmount" class="w-100 mb-2">Amount:</label>
+                        <input type="text" name="amount" id="txtAmount" value="{{ old('amount') }}" class="form-control">
                     </div>
 
                     <div class="mb-2">
