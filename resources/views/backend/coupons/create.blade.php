@@ -42,6 +42,11 @@
                         <label for="txtLimit" class="w-100 mb-2">Limit:</label>
                         <input type="text" name="limit" id="txtLimit" value="{{ old('limit') }}" class="form-control">
                     </div>
+
+                    <div class="mb-2">
+                        <label for="txtEndDate" class="w-100 mb-2">End Date:</label>
+                        <input type="text" name="end_date" id="txtEndDate" value="{{ old('end_date') }}" class="form-control date-picker">
+                    </div>
                 </div>
             </div>
         </div>
@@ -76,7 +81,13 @@
 <script src="{{ asset('assets/vendor/quill/dist/quill.min.js') }}"></script>
 <script src="{{ asset('assets/js/hs.quill.js') }}"></script>
 
-<script>
+<script type="text/javascript">
+$(document).ready(function() {
+    $('.date-picker').datepicker({  
+       format: 'mm/dd/yyyy'
+    });  
+});
+
 (function() {
     // INITIALIZATION OF QUILLJS EDITOR
     // =======================================================

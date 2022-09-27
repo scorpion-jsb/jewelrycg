@@ -10,6 +10,6 @@ class Coupon extends Model
     use FormatPrices;
 
     protected $fillable = [
-        'name', 'type', 'amount', 'limit'
+        'name', 'type', 'amount', 'limit', 'end_date'
     ];
 }
