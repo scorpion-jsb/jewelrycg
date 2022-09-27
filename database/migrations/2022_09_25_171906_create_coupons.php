@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('type');
             $table->integer('amount');
             $table->integer('limit');
+            $table->date('end_date');
             $table->timestamps();
         });
     }

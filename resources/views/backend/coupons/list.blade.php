@@ -42,6 +42,8 @@
                         <th>Type</th>
                         <th>Amount</th>
                         <th>Limit</th>
+                        <th>End Date</th>
+                        <th></th>
                     </thead>
 
                     <tbody>
@@ -58,6 +60,7 @@
                                 <td>{{ $coupon->type == 0 ? 'Flat' : 'Percentage'}}</td>
                                 <td>{{ $coupon->amount }}</td>
                                 <td>{{ $coupon->limit }}</td>
+                                <td>{{ $coupon->end_date }}</td>
                                 <td>
                                     <div class="btn-group" role="group">
                                         <a class="btn btn-dark btn-sm" href="{{ route('backend.coupons.edit', $coupon->id) }}">Edit</a>

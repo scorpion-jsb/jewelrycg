@@ -41,6 +41,7 @@ class CouponsController extends Controller
     public function store(CouponStoreRequest $request)
     {
         $data = $request->input();
+        $data['end_date'] = date('Y-m-d', strtotime($data['end_date']));
         Coupon::create($data);
         
         return redirect()->route('backend.coupons.list');
@@ -69,6 +70,7 @@ class CouponsController extends Controller
     public function update(Coupon $coupon, CouponStoreRequest $request)
     {
         $data = $request->input();
+        $data['end_date'] = date('Y-m-d', strtotime($data['end_date']));
         $coupon->update($data);
 
         return redirect()->route('backend.coupons.list');
