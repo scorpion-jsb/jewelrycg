@@ -1,4 +1,11 @@
+@php
+$subTotal = 0;
+@endphp
+
 @foreach ($products as $key => $product)
+    @php
+        $subTotal += $product->qty * $product->price;
+    @endphp
     <div class="cart-item mb-3">
         <div class="row">
             <div class="col-3">
@@ -21,9 +28,34 @@
         </div>
     </div>
 @endforeach
+
+@php
+use App\Models\Coupon;
+$coupon = Coupon::find(1);
+if (isset($coupon) && $coupon != null) {
+    if ($coupon->type == 0) {
+        $subTotal = $subTotal - $coupon->amount;
+    } else {
+        $subTotal = $subTotal * (100 - $coupon->amount) / 100;
+    }
+}
+@endphp
+
 <div class="cart-item mb-3 pt-3">
     <div class="row">
-        <div class="col-2">
+        <div class="col-4">
+            <span class="fw-800">Sub Total</span>
+        </div>
+        <div class="col-auto ml-auto text-right">
+            <span class="fw-800" id="shipping_price">
+                $ {{ $subTotal }}
+            </span>
+        </div>
+    </div>
+</div>
+<div class="cart-item mb-3">
+    <div class="row">
+        <div class="col-4">
             <span class="fw-800">Shipping</span>
         </div>
         <div class="col-auto ml-auto text-right">
@@ -38,7 +70,7 @@
 </div>
 <div class="cart-item mb-3">
     <div class="row">
-        <div class="col-2">
+        <div class="col-4">
             <span class="fw-800">Tax</span>
         </div>
         <div class="col-auto ml-auto text-right">
@@ -56,13 +88,13 @@
 </div>
 <div class="cart-item mb-3">
     <div class="row">
-        <div class="col-2">
+        <div class="col-4">
             <span class="fw-800">Total</span>
         </div>
         <div class="col-auto ml-auto text-right">
             <span>
                 <span class="fw-800 text-primary" id="total_price">
-                    ${{number_format(Cart::total(2, '.', '') + $shippingPrice/100 + $taxPrice/100/100, 2, ".", ",")}}
+                    ${{number_format($subTotal + $shippingPrice/100 + $taxPrice/100/100, 2, ".", ",")}}
             </span>
         </div>
     </div>
