@@ -32,11 +32,12 @@ $subTotal = 0;
 @php
 use App\Models\Coupon;
 $coupon = Coupon::find(1);
+$discount = 0;
 if (isset($coupon) && $coupon != null) {
     if ($coupon->type == 0) {
-        $subTotal = $subTotal - $coupon->amount;
+        $discount = $coupon->amount;
     } else {
-        $subTotal = $subTotal * (100 - $coupon->amount) / 100;
+        $discount = $subTotal * (100 - $coupon->amount) / 100;
     }
 }
 @endphp
@@ -47,12 +48,26 @@ if (isset($coupon) && $coupon != null) {
             <span class="fw-800">Sub Total</span>
         </div>
         <div class="col-auto ml-auto text-right">
-            <span class="fw-800" id="shipping_price">
-                $ {{ $subTotal }}
+            <span class="fw-800" id="sub_total_price">
+                ${{ number_format($subTotal, 2, '.', ',') }}
             </span>
         </div>
     </div>
 </div>
+@if ($discount > 0)
+<div class="cart-item mb-3">
+    <div class="row">
+        <div class="col-4">
+            <span class="fw-800">Discount</span>
+        </div>
+        <div class="col-auto ml-auto text-right">
+            <span class="fw-800" id="discount_price">
+                -${{ number_format($discount, 2, '.', ',') }}
+            </span>
+        </div>
+    </div>
+</div>
+@endif
 <div class="cart-item mb-3">
     <div class="row">
         <div class="col-4">
