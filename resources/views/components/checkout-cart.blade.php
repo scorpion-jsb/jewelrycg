@@ -93,10 +93,13 @@ if (isset($coupon) && $coupon != null) {
                     foreach ($products as $product) {
                         $taxPrice += $product->qty * $product->price * $product->model->taxPrice();
                     }
-                    if ($subTotal < $discount) {
-                        $taxPrice = 0;
-                    } else {
-                        $taxPrice = $taxPrice * ($subTotal - $discount) / $subTotal;
+
+                    if (isset($coupon) && $coupon != null) {
+                        if ($subTotal < $discount) {
+                            $taxPrice = 0;
+                        } else {
+                            $taxPrice = $taxPrice * ($subTotal - $discount) / $subTotal;
+                        }
                     }
                     echo number_format($taxPrice / 100 / 100, 2, ".", ",");
                 @endphp
