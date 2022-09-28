@@ -21,7 +21,7 @@
                                 <div class="checkout-card-body">
                                     <h3 class="mb-3 fs-20">Billing Address</h3>
                                     @include('includes.validation-form')
-                                    <x-user-info :countries="$countries" :billing="$billing" :location="$location" :has-coupon="$has_coupon"/>
+                                    <x-user-info :countries="$countries" :billing="$billing" :location="$location" :has-coupon="true"/>
                                     <div class="row mb-3">
                                         <div class="col-12">
                                             @if (auth()->id())
