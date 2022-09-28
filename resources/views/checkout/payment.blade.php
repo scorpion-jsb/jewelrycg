@@ -59,7 +59,11 @@
                             <div class="cart-items-card">
                                 <div class="card-body">
                                     <div class="py-4 fw-800 fs-24">Order Details</div>
-                                    <x-checkout-cart locale="checkout" :instance="isset($buy_now_mode) && $buy_now_mode == 1 ? 'buy_now' : 'default'" />
+                                    <x-checkout-cart
+                                        locale="checkout1"
+                                        :coupon-id="$coupon_id"
+                                        :instance="isset($buy_now_mode) && $buy_now_mode == 1 ? 'buy_now' : 'default'"
+                                    />
                                 </div>
                             </div>
                         </div>

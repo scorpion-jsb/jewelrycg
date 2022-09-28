@@ -30,8 +30,6 @@ $subTotal = 0;
 @endforeach
 
 @php
-use App\Models\Coupon;
-$coupon = Coupon::find(1);
 $discount = 0;
 if (isset($coupon) && $coupon != null) {
     if ($coupon->type == 0) {
@@ -54,11 +52,11 @@ if (isset($coupon) && $coupon != null) {
         </div>
     </div>
 </div>
-@if ($discount > 0)
+@if (isset($coupon) && $coupon && $discount > 0)
 <div class="cart-item mb-3">
     <div class="row">
         <div class="col-4">
-            <span class="fw-800">Discount</span>
+            <span class="fw-800">Discount ({{$coupon->name}})</span>
         </div>
         <div class="col-auto ml-auto text-right">
             <span class="fw-800" id="discount_price">
@@ -95,6 +93,11 @@ if (isset($coupon) && $coupon != null) {
                     foreach ($products as $product) {
                         $taxPrice += $product->qty * $product->price * $product->model->taxPrice();
                     }
+                    if ($subTotal < $discount) {
+                        $taxPrice = 0;
+                    } else {
+                        $taxPrice = $taxPrice * ($subTotal - $discount) / $subTotal;
+                    }
                     echo number_format($taxPrice / 100 / 100, 2, ".", ",");
                 @endphp
             </span>
@@ -109,7 +112,14 @@ if (isset($coupon) && $coupon != null) {
         <div class="col-auto ml-auto text-right">
             <span>
                 <span class="fw-800 text-primary" id="total_price">
-                    ${{number_format($subTotal + $shippingPrice/100 + $taxPrice/100/100, 2, ".", ",")}}
+                @php
+                    if ($subTotal < $discount) {
+                        $total = $shippingPrice / 100;
+                    } else {
+                        $total = $subTotal - $discount + $shippingPrice / 100 + $taxPrice / 100 / 100;
+                    }
+                @endphp
+                ${{number_format($total, 2, ".", ",")}}
             </span>
         </div>
     </div>

@@ -21,6 +21,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 use App\Mail\OrderPlacedMail;
+use App\Models\Coupon;
 use GeoIP;
 
 use App\Models\SettingGeneral;
@@ -413,7 +414,14 @@ class CheckoutController extends Controller
         }
         $user_ip = request()->ip();
         $location = geoip()->getLocation($user_ip);
-        return view('checkout.billing')->with(['countries' => $countries, 'products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping, 'billing'=> $billing_address, 'location'=> $location]);
+        return view('checkout.billing')->with([
+            'countries' => $countries,
+            'products' => $products,
+            'locale' => 'checkout',
+            'isIncludeShipping' => $isIncludeShipping,
+            'billing'=> $billing_address,
+            'location'=> $location
+        ]);
     }
 
     public function postBilling(Request $request)
@@ -427,6 +435,7 @@ class CheckoutController extends Controller
         $request->session()->put('billing_phonenumber', $request->phone);
         $request->session()->put('billing_firstname', $request->first_name);
         $request->session()->put('billing_lastname', $request->last_name);
+        $request->session()->put('coupon_id', $request->coupon_id);
         if (! auth()->user()) {
             $request->session()->put('billing_email', $request->email);
         }
@@ -465,7 +474,7 @@ class CheckoutController extends Controller
                 $user->save();
             }
         }
-          
+
         return redirect()->route('checkout.payment.get');
     }
 
@@ -483,7 +492,42 @@ class CheckoutController extends Controller
             }
         }
 
+        $coupon_id = $request->session()->get('coupon_id', 0);
+        $coupon_id = $coupon_id ?? 0;
+
         $products = Cart::instance($instance)->content();
-        return view('checkout.payment')->with(['products' => $products, 'locale' => 'checkout', 'isIncludeShipping' => $isIncludeShipping]);;
+        return view('checkout.payment')->with([
+            'products'          => $products,
+            'locale'            => 'checkout',
+            'isIncludeShipping' => $isIncludeShipping,
+            'coupon_id'         => $coupon_id
+        ]);
+    }
+
+    public function checkCoupon(Request $request) {
+        $coupon_code = $request->coupon_code;
+        $today = date('Y-m-d');
+        $arrCoupons = Coupon::where('name', $coupon_code)
+            ->where('end_date', '>=', $today)
+            ->limit(1)
+            ->get();
+
+        if (count($arrCoupons) == 0) {
+            $result = array(
+                'result'    => false,
+                'message'   => 'No Coupon Code : ' . $coupon_code
+            );
+
+            return $result;
+        }
+
+        $coupon = $arrCoupons[0];
+
+        $result = array(
+            'coupon_id' => $coupon->id,
+            'result'    => true
+        );
+
+        return $result;
     }
 }
