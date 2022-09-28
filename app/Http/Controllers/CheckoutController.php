@@ -524,8 +524,8 @@ class CheckoutController extends Controller
         $coupon = $arrCoupons[0];
 
         $result = array(
-            'coupon_id' => $coupon->id,
-            'result'    => true
+            'coupon' => $coupon,
+            'result' => true
         );
 
         return $result;
