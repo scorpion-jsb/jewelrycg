@@ -48,4 +48,5 @@
                 </div>
             </form>
         </div>
+    </x-slot:scripts>
 </x-app-layout>

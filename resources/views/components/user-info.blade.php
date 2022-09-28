@@ -1,15 +1,15 @@
 <div class="row">
     <div class="col-6">
         <div class="form-floating mb-3">
-            <label for="floatingAddress">First name</label>
-            <input type="text" name="first_name" value="{{ $billing->first_name ?? old('first_name') }}" id="floatingAddress first_name"
+            <label for="floatingFirstName">First name</label>
+            <input type="text" name="first_name" value="{{ $billing->first_name ?? old('first_name') }}" id="floatingFirstName"
                 class="form-control" required placeholder="Enter Ffirst name">
         </div>
     </div>
     <div class="col-6">
         <div class="form-floating mb-3">
-            <label for="floatingAddress">Last name</label>
-            <input type="text" name="last_name" value="{{ $billing->last_name ?? old('last_name') }}" id="floatingAddress last_name"
+            <label for="floatingLastName">Last name</label>
+            <input type="text" name="last_name" value="{{ $billing->last_name ?? old('last_name') }}" id="floatingLastName"
                 class="form-control" required placeholder="Enter last name">
         </div>
     </div>
@@ -25,7 +25,7 @@
 @endif
 <div class="form-floating mb-3">
     <label for="floatingAddress">Address</label>
-    <input type="text" name="address1" value="{{ $billing->address ?? old('address1') }}" id="floatingAddress address1"
+    <input type="text" name="address1" value="{{ $billing->address ?? old('address1') }}" id="floatingAddress"
         class="form-control" required placeholder="Enter Address">
 </div>
 <div class="form-floating mb-3">
@@ -35,12 +35,12 @@
 </div>
 <div class="form-floating mb-3">
     <label for="floatingCity">City</label>
-    <input type="text" name="city" value="{{ $billing->city ?? old('city') }}" id="floatingCity city"
+    <input type="text" name="city" value="{{ $billing->city ?? old('city') }}" id="floatingCity"
         class="form-control" required placeholder="Enter City">
 </div>
 <div class="form-floating mb-3">
     <label for="floatingState">State</label>
-    <input type="text" name="state" value="{{ $billing->state ?? old('state') }}" id="floatingState state"
+    <input type="text" name="state" value="{{ $billing->state ?? old('state') }}" id="floatingState"
         class="form-control" required placeholder="Enter State">
 </div>
 <div class="form-floating mb-3">
@@ -62,5 +62,14 @@
 </div>
 <div class="form-floating mb-3">
     <label for="floatingPhonenumber">Phone Number</label>
-    <input type="tel" name="phone" value="{{ $billing->phone ?? old('pin_code') }}" id="floatingPhonenumber phone" class="form-control" placeholder="Enter Phone Number">
+    <input type="tel" name="phone" value="{{ $billing->phone ?? old('pin_code') }}" id="floatingPhonenumber" class="form-control" placeholder="Enter Phone Number">
 </div>
+
+@if (isset($hasCoupon) && $hasCoupon == true)
+<div class="form-floating mb-3">
+    <label for="floatingCouponCode">Coupon Code</label>
+    <input type="tel" name="coupon_code" value="{{ old('coupon_code') }}" id="floatingCouponCode" class="form-control" placeholder="Enter Coupon Code">
+    <div id="divCouponErrorMsg" class="hidden mt-2"></div>
+    <input type="hidden" name="coupon_id" value="" id='hidCouponId'>
+</div>
+@endif

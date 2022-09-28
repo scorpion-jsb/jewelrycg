@@ -410,6 +410,7 @@ Route::group(['middleware' => 'auth'], function ()
     Route::post('checkout/billing', [CheckoutController::class, 'postBilling'])->name('checkout.billing.post');
     Route::get('checkout/payment', [CheckoutController::class, 'getPayment'])->name('checkout.payment.get');
     Route::post('checkout/payment', [CheckoutController::class, 'postPayment'])->name('checkout.payment.post');
+    Route::post('checkout/check_coupon', [CheckoutController::class, 'checkCoupon'])->name('checkout.check_coupon');
 
     Route::resource('orders', OrderController::class)->only(['index', 'show', 'update']);
 
