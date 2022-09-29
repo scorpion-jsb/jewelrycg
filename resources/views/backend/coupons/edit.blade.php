@@ -1,6 +1,12 @@
 @extends('backend.layouts.app', ['activePage' => 'coupons', 'title' => 'Edit Coupon', 'navName' => 'editcoupon', 'activeButton' => 'blog'])
 
 @section('content')
+<style>
+#txtName {
+    text-transform: uppercase;
+}
+</style>
+
 <div class="page-header">
     <div class="row align-items-end">
         <h1 class="page-header-title">Edit coupon</h1>
@@ -87,6 +93,10 @@
 
 <script>
 $(document).ready(function() {
+    $('body').on('keydown', '#txtName', function(e) {
+        return (e.which !== 32);
+    });
+
     $('.date-picker').datepicker({  
        format: 'mm/dd/yyyy'
     });  
