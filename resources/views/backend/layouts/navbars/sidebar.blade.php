@@ -86,6 +86,18 @@
               <!-- End Collapse -->
 
               <div class="nav-item">
+                <a class="nav-link nav-link-main" href="{{ route('backend.steps.list') }}">
+                  <i class="bi-folder2-open nav-icon"></i>
+                  {{ __("Steps") }}
+                </a>
+
+                <div id="navbarVerticalMenuAllStepMenu" class="nav-collapse collapse @if($activePage == 'steps') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link @if($navName == 'allstep') active @endif" href="{{ route('backend.steps.list') }}">{{ __("All step") }}</a>
+                  <a class="nav-link @if($navName == 'addstep') active @endif" href="{{ route('backend.steps.create') }}">{{ __("Create step") }}</a>
+                </div>
+              </div>
+
+              <div class="nav-item">
                 <a class="nav-link nav-link-main @if($activePage == 'filemanager') collapse @endif" href="{{ route('backend.file.index')}}" data-placement="left">
                   <i class="bi-folder2-open nav-icon"></i>
                   <span class="nav-link-title">File Manager</span>
