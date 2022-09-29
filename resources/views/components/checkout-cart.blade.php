@@ -29,46 +29,50 @@ $subTotal = 0;
     </div>
 @endforeach
 
-@php
-$discount = 0;
-if (isset($coupon) && $coupon != null) {
-    if ($coupon->type == 0) {
-        $discount = $coupon->amount;
-    } else {
-        $discount = $subTotal * (100 - $coupon->amount) / 100;
-    }
-}
-@endphp
-
 <div class="cart-item mb-3 pt-3">
     <div class="row">
-        <div class="col-4">
+        <div class="col-6">
             <span class="fw-800">Sub Total</span>
         </div>
         <div class="col-auto ml-auto text-right">
-            <span class="fw-800" id="sub_total_price">
+            <span class="fw-800" id="spnSubTotalPrice">
                 ${{ number_format($subTotal, 2, '.', ',') }}
             </span>
         </div>
     </div>
 </div>
-@if (isset($coupon) && $coupon && $discount > 0)
-<div class="cart-item mb-3">
-    <div class="row">
-        <div class="col-4">
-            <span class="fw-800">Discount ({{$coupon->name}})</span>
+
+@if (isset($hasCoupon) && $hasCoupon == true)
+<div class="cart-item">
+    <div class="row mb-3">
+        <span class="fw-800">Coupon Code</span>
+    </div>
+    <div class="row mb-3">
+        <div class="col-10">
+            <input id="txtCouponCode" class="form-control" placeholder="Enter Coupon Code">
+            <div id="divCouponErrorMsg" class="hidden mt-1 ms-2 text-danger fw-bold fs-14"></div>
         </div>
-        <div class="col-auto ml-auto text-right">
-            <span class="fw-800" id="discount_price">
-                -${{ number_format($discount, 2, '.', ',') }}
-            </span>
+        <div class="col-2">
+            <input type="button" id="btnApplyCoupon" class="btn btn-sm btn-primary" value="Apply"/>
         </div>
     </div>
 </div>
 @endif
+
+<div class="cart-item mb-3 hidden" id="divDiscount">
+    <div class="row">
+        <div class="col-6">
+            <span class="fw-800" id="divCouponName"></span>
+        </div>
+        <div class="col-auto ml-auto text-right">
+            <span class="fw-800" id="spnDiscountPrice"></span>
+        </div>
+    </div>
+</div>
+
 <div class="cart-item mb-3">
     <div class="row">
-        <div class="col-4">
+        <div class="col-6">
             <span class="fw-800">Shipping</span>
         </div>
         <div class="col-auto ml-auto text-right">
@@ -81,22 +85,18 @@ if (isset($coupon) && $coupon != null) {
         </div>
     </div>
 </div>
+
 <div class="cart-item mb-3">
     <div class="row">
-        <div class="col-4">
+        <div class="col-6">
             <span class="fw-800">Tax</span>
         </div>
         <div class="col-auto ml-auto text-right">
-            <span class="fw-800" id="tax_price">
+            <span class="fw-800" id="spnTaxPrice">
                 $@php
                     $taxPrice = 0;
                     foreach ($products as $product) {
                         $taxPrice += $product->qty * $product->price * $product->model->taxPrice();
-                    }
-                    if ($subTotal < $discount) {
-                        $taxPrice = 0;
-                    } else {
-                        $taxPrice = $taxPrice * ($subTotal - $discount) / $subTotal;
                     }
                     echo number_format($taxPrice / 100 / 100, 2, ".", ",");
                 @endphp
@@ -104,23 +104,101 @@ if (isset($coupon) && $coupon != null) {
         </div>
     </div>
 </div>
+
+@php
+$total = $subTotal + $shippingPrice / 100 + $taxPrice / 100 / 100;
+@endphp
+
 <div class="cart-item mb-3">
     <div class="row">
-        <div class="col-4">
+        <div class="col-6">
             <span class="fw-800">Total</span>
         </div>
         <div class="col-auto ml-auto text-right">
-            <span>
-                <span class="fw-800 text-primary" id="total_price">
-                @php
-                    if ($subTotal < $discount) {
-                        $total = $shippingPrice / 100;
-                    } else {
-                        $total = $subTotal - $discount + $shippingPrice / 100 + $taxPrice / 100 / 100;
-                    }
-                @endphp
+            <span class="fw-800 text-primary" id="spnTotalPrice">
                 ${{number_format($total, 2, ".", ",")}}
             </span>
         </div>
     </div>
 </div>
+
+<script>
+var taxPrice = {{ $taxPrice / 100 / 100 }};
+var shippingPrice = {{ $shippingPrice / 100 }};
+var subTotal = {{ $subTotal }};
+
+var currencyFormat = function(amount) {
+    return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
+}
+
+$(document).ready(function() {
+    $('body').on('click', '#btnApplyCoupon', function() {
+        var coupon_code = $('#txtCouponCode').val();
+        if (coupon_code) {
+            var data = {
+                "_token": "{{ csrf_token() }}",
+                "coupon_code": coupon_code,
+            };
+
+            $.ajax({
+                url: "{{ route('checkout.check_coupon') }}",
+                type: "POST",
+                data: data,
+                dataType: "json",
+                success: (result) => {
+                    if (result.result == false) {
+                        total = subTotal + shippingPrice + taxPrice ;
+
+                        $('#txtCouponCode').addClass('is-invalid');
+                        $('#divCouponErrorMsg').html(result.message).removeClass('hidden');
+
+                        $('#spnDiscountPrice').html('');
+                        $('#spnTaxPrice').html('$' + currencyFormat(taxPrice));
+                        $('#spnTotalPrice').html('$' + currencyFormat(total));
+
+                        $('#divCouponName').html('');
+                        $('#divDiscount').addClass('hidden');
+
+                        return false;
+                    }
+
+                    $('#txtCouponCode').removeClass('is-invalid');
+                    $('#divCouponErrorMsg').html('').addClass('hidden');
+
+                    var coupon = result.coupon;
+                    var discount = 0;
+                    var tax_price = 0;
+                    if (coupon.type == 0) {
+                        discount = coupon.amount;
+                    } else {
+                        discount = subTotal * coupon.amount / 100;
+                    }
+
+                    var total_price = 0;
+                    if (subTotal < discount) {
+                        tax_price = 0;
+                        total_price = shippingPrice;
+                    } else {
+                        tax_price = taxPrice * (subTotal - discount) / subTotal ;
+                        total_price = subTotal - discount + shippingPrice + tax_price;
+                    }
+                    
+                    $('#spnDiscountPrice').html('- $' + currencyFormat(discount));
+                    $('#divCouponName').html('Discount (' + coupon.name + ')');
+                    $('#divDiscount').removeClass('hidden');
+
+                    $('#spnTaxPrice').html('$' + currencyFormat(tax_price));
+                    $('#spnTotalPrice').html('$' + currencyFormat(total_price));
+                },
+                error: (resp) => {
+                    var result = resp.responseJSON;
+                    if (result.errors && result.message) {
+                        alert(result.message);
+                        return;
+                    }
+                }
+            });
+        }
+    });
+});
+</script>

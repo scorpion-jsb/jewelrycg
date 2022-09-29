@@ -64,12 +64,3 @@
     <label for="floatingPhonenumber">Phone Number</label>
     <input type="tel" name="phone" value="{{ $billing->phone ?? old('pin_code') }}" id="floatingPhonenumber" class="form-control" placeholder="Enter Phone Number">
 </div>
-
-@if (isset($hasCoupon) && $hasCoupon == true)
-<div class="form-floating mb-3">
-    <label for="floatingCouponCode">Coupon Code</label>
-    <input type="tel" name="coupon_code" value="{{ old('coupon_code') }}" id="floatingCouponCode" class="form-control" placeholder="Enter Coupon Code">
-    <div id="divCouponErrorMsg" class="hidden mt-2"></div>
-    <input type="hidden" name="coupon_id" value="" id='hidCouponId'>
-</div>
-@endif

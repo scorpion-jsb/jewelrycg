@@ -19,7 +19,8 @@ class CheckoutCart extends Component
         public string $locale = 'cart',
         public $products = null,
         public string $instance = 'default',
-        public int $couponId = 0
+        public int $couponId = 0,
+        public bool $hasCoupon = false
     )
     {
         $this->products = $products ?? Cart::instance($instance)->content();
