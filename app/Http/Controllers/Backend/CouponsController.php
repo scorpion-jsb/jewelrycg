@@ -41,6 +41,7 @@ class CouponsController extends Controller
     public function store(CouponStoreRequest $request)
     {
         $data = $request->input();
+        $data['name'] = strtoupper(str_replace(' ', '', $data['name']));
         $data['end_date'] = date('Y-m-d', strtotime($data['end_date']));
         Coupon::create($data);
         
@@ -70,6 +71,7 @@ class CouponsController extends Controller
     public function update(Coupon $coupon, CouponStoreRequest $request)
     {
         $data = $request->input();
+        $data['name'] = strtoupper(str_replace(' ', '', $data['name']));
         $data['end_date'] = date('Y-m-d', strtotime($data['end_date']));
         $coupon->update($data);
 
