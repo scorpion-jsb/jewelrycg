@@ -126,6 +126,8 @@ $total = $subTotal + $shippingPrice / 100 + $taxPrice / 100 / 100;
 var taxPrice = {{ $taxPrice / 100 / 100 }};
 var shippingPrice = {{ $shippingPrice / 100 }};
 var subTotal = {{ $subTotal }};
+var old_coupon_code = '';
+var is_coupon_applied = false;
 
 var currencyFormat = function(amount) {
     return amount.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,');
@@ -134,71 +136,90 @@ var currencyFormat = function(amount) {
 $(document).ready(function() {
     $('body').on('click', '#btnApplyCoupon', function() {
         var coupon_code = $('#txtCouponCode').val();
-        if (coupon_code) {
-            var data = {
-                "_token": "{{ csrf_token() }}",
-                "coupon_code": coupon_code,
-            };
 
-            $.ajax({
-                url: "{{ route('checkout.check_coupon') }}",
-                type: "POST",
-                data: data,
-                dataType: "json",
-                success: (result) => {
-                    if (result.result == false) {
-                        total = subTotal + shippingPrice + taxPrice ;
-
-                        $('#txtCouponCode').addClass('is-invalid');
-                        $('#divCouponErrorMsg').html(result.message).removeClass('hidden');
-
-                        $('#spnDiscountPrice').html('');
-                        $('#spnTaxPrice').html('$' + currencyFormat(taxPrice));
-                        $('#spnTotalPrice').html('$' + currencyFormat(total));
-
-                        $('#divCouponName').html('');
-                        $('#divDiscount').addClass('hidden');
-
-                        return false;
-                    }
-
-                    $('#txtCouponCode').removeClass('is-invalid');
-                    $('#divCouponErrorMsg').html('').addClass('hidden');
-
-                    var coupon = result.coupon;
-                    var discount = 0;
-                    var tax_price = 0;
-                    if (coupon.type == 0) {
-                        discount = coupon.amount;
-                    } else {
-                        discount = subTotal * coupon.amount / 100;
-                    }
-
-                    var total_price = 0;
-                    if (subTotal < discount) {
-                        tax_price = 0;
-                        total_price = shippingPrice;
-                    } else {
-                        tax_price = taxPrice * (subTotal - discount) / subTotal ;
-                        total_price = subTotal - discount + shippingPrice + tax_price;
-                    }
-                    
-                    $('#spnDiscountPrice').html('- $' + currencyFormat(discount));
-                    $('#divCouponName').html('Discount (' + coupon.name + ')');
-                    $('#divDiscount').removeClass('hidden');
-
-                    $('#spnTaxPrice').html('$' + currencyFormat(tax_price));
-                    $('#spnTotalPrice').html('$' + currencyFormat(total_price));
-                },
-                error: (resp) => {
-                    var result = resp.responseJSON;
-                    if (result.errors && result.message) {
-                        alert(result.message);
-                        return;
-                    }
-                }
-            });
+        if (old_coupon_code == coupon_code) {
+            return;
         }
+
+        var data = {
+            "_token": "{{ csrf_token() }}",
+            "coupon_code": coupon_code,
+        };
+
+        $.ajax({
+            url: "{{ route('checkout.check_coupon') }}",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            success: (result) => {
+                if (result.result == false) {
+                    total = subTotal + shippingPrice + taxPrice ;
+
+                    if (coupon_code.trim() == '') {
+                        $('#txtCouponCode').removeClass('is-invalid');
+                        $('#divCouponErrorMsg').html('').addClass('hidden');
+                    } else {
+                        $('#txtCouponCode').addClass('is-invalid');
+                        $('#divCouponErrorMsg').html(result.message).removeClass('hidden');    
+                    }
+
+                    $('#spnDiscountPrice').html('');
+                    $('#spnTaxPrice').html('$' + currencyFormat(taxPrice));
+                    $('#spnTotalPrice').html('$' + currencyFormat(total));
+
+                    $('#divCouponName').html('');
+                    $('#divDiscount').addClass('hidden');
+
+                    if (is_coupon_applied == true) {
+                        loadStripeElement();
+                        is_coupon_applied = false;
+                    }
+
+                    return false;
+                }
+
+                is_coupon_applied = true;
+                loadStripeElement();
+
+                $('#txtCouponCode').removeClass('is-invalid');
+                $('#divCouponErrorMsg').html('').addClass('hidden');
+
+                var coupon = result.coupon;
+                var discount = 0;
+                var tax_price = 0;
+                if (coupon.type == 0) {
+                    discount = coupon.amount;
+                } else {
+                    discount = subTotal * coupon.amount / 100;
+                }
+
+                var total_price = 0;
+                if (subTotal < discount) {
+                    tax_price = 0;
+                    total_price = shippingPrice;
+                } else {
+                    tax_price = taxPrice * (subTotal - discount) / subTotal;
+                    total_price = subTotal - discount + shippingPrice + tax_price;
+                }
+                
+                $('#spnDiscountPrice').html('- $' + currencyFormat(discount));
+                $('#divCouponName').html('Discount (' + coupon.name + ')');
+                $('#divDiscount').removeClass('hidden');
+
+                $('#spnTaxPrice').html('$' + currencyFormat(tax_price));
+                $('#spnTotalPrice').html('$' + currencyFormat(total_price));
+            },
+            error: (resp) => {
+                var result = resp.responseJSON;
+                if (result.errors && result.message) {
+                    alert(result.message);
+                    return;
+                }
+            }
+        });
+        
+
+        old_coupon_code = coupon_code;
     });
 });
 </script>

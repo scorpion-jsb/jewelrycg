@@ -110,10 +110,28 @@
                     <div class="card">
                         <div class="fs-18 py-2 fw-600 card-header">Summary</div>
                         <div class="card-body">
-                            <div class="mb-2"><span class="fw-600">Subtotal:</span> ${{ ($order->total / 100) }}</div>
-                            <div class="mb-2"><span class="fw-600">Shipping:</span> ${{ ($order->shipping_total / 100) }}</div>
-                            <div class="mb-2"><span class="fw-600">Tax:</span> ${{ ($order->tax_total / 100) }}</div>
-                            <div class="mb-2"><span class="fw-600">Total:</span> ${{ ($order->grand_total / 100) }}</div>
+                            <div class="mb-2">
+                                <span class="fw-600">Subtotal:</span>
+                                ${{ number_format($order->total / 100, 2, '.', ',') }}
+                            </div>
+                            @if ($order->discount)
+                                <div class="mb-2">
+                                    <span class="fw-600">Discount:</span>
+                                    ${{ number_format($order->discount / 100, 2, '.', ',') }}
+                                </div>
+                            @endif
+                            <div class="mb-2">
+                                <span class="fw-600">Shipping:</span>
+                                ${{ number_format($order->shipping_total / 100, 2, '.', ',') }}
+                            </div>
+                            <div class="mb-2">
+                                <span class="fw-600">Tax:</span>
+                                ${{ number_format($order->tax_total / 100, 2, '.', ',') }}
+                            </div>
+                            <div class="mb-2">
+                                <span class="fw-600">Total:</span>
+                                ${{ number_format($order->grand_total / 100, 2, '.', ',') }}
+                            </div>
                         </div>
                     </div>
                 </div>
