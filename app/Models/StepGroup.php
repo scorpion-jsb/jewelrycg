@@ -10,6 +10,6 @@ class StepGroup extends Model
     use FormatPrices;
 
     protected $fillable = [
-        'name', 'description'
+        'name', 'description', 'steps'
     ];
 }

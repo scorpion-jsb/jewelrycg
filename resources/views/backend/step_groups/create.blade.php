@@ -1,13 +1,27 @@
 @extends('backend.layouts.app', ['activePage' => 'steps', 'title' => 'Create Step Group', 'navName' => 'addstep_group', 'activeButton' => 'blog'])
 
 @section('content')
+<style>
+#srtUnselected li, #srtSelected li {
+    cursor: pointer;
+    list-style-type: none;
+}
+</style>
+
+@php
+$arrSelected = explode(',', old('steps'));
+@endphp
+
 <div class="page-header">
     <div class="row align-items-end">
         <h1 class="page-header-title">Create step group</h1>
     </div>
     <!-- End Row -->
 </div>
-<form action="{{ route('backend.step_groups.store') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('backend.step_groups.store') }}"
+    id="frmCreateStepGroup"
+    method="post" enctype="multipart/form-data"
+>
     @csrf
     <div class="row">
         <div class="col-md-8">
@@ -29,6 +43,36 @@
                         <label for="txaDescription" class="w-100 mb-2">Description:</label>
                         <textarea name="description" id="txaDescription" class="form-control"
                         >{{ old('description') }}</textarea>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="txaLink" class="w-100 mb-2">Steps:</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul id="srtUnselected" class="droptrue w-100 card px-1 py-2">
+                                    @foreach ($arrSteps as $id => $name)
+                                        @if (!in_array($id, $arrSelected))
+                                            <li class="ui-state-default m-1 p-1 fs-16 rounded border-1"
+                                                data-id="{{ $id }}"
+                                            >{{ $name }}</li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                            <div class="col-6">
+                                <ul id="srtSelected" class="droptrue w-100 card px-1 py-2">
+                                    @foreach ($arrSelected as $id)
+                                        @if (array_key_exists($id, $arrSteps))
+                                            <li class="ui-state-default m-1 p-1 fs-16 rounded border-1"
+                                                data-id="{{ $id }}"
+                                            >{{ $arrSteps[$id] }}</li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="hidden" name="steps" id='hidStepIds'/>
                     </div>
                 </div>
             </div>
@@ -65,6 +109,22 @@
 <script src="{{ asset('assets/js/hs.quill.js') }}"></script>
 
 <script type="text/javascript">
+$(document).ready(function() {
+    $("ul.droptrue").sortable({
+      connectWith: "ul"
+    });
+ 
+    $( "#srtUnselected, #srtSelected" ).disableSelection();
+
+    $('body').on('submit', '#frmCreateStepGroup', function() {
+        var step_ids = [];
+        $('#srtSelected li').each(function() {
+            step_ids.push($(this).data('id'));
+        });
+
+        $('#hidStepIds').val(step_ids.join(','));
+    });
+});
 
 (function() {
     // INITIALIZATION OF QUILLJS EDITOR

@@ -2,6 +2,17 @@
 
 @section('content')
 
+<style>
+#srtUnselected li, #srtSelected li {
+    cursor: pointer;
+    list-style-type: none;
+}
+</style>
+
+@php
+$arrSelected = explode(',', $step_group->steps);
+@endphp
+
 <div class="page-header">
     <div class="row align-items-end">
         <h1 class="page-header-title">Edit step group</h1>
@@ -10,6 +21,7 @@
 </div>
 
 <form action="{{ route('backend.step_groups.update', $step_group->id) }}"
+    id="frmUpdateStepGroup"
     method="post" enctype="multipart/form-data"
 >
     @csrf
@@ -34,6 +46,36 @@
                         <label for="txaDescription" class="w-100 mb-2">Description:</label>
                         <textarea type="text" name="description" id="txaDescription" class="form-control"
                         >{{ $step_group->description }}</textarea>
+                    </div>
+
+                    <div class="mb-2">
+                        <label for="txaLink" class="w-100 mb-2">Steps:</label>
+                        <div class="row">
+                            <div class="col-6">
+                                <ul id="srtUnselected" class="droptrue w-100 card px-1 py-2">
+                                    @foreach ($arrSteps as $id => $name)
+                                        @if (!in_array($id, $arrSelected))
+                                            <li class="ui-state-default m-1 p-1 fs-16 rounded border-1"
+                                                data-id="{{ $id }}"
+                                            >{{ $name }}</li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+
+                            <div class="col-6">
+                                <ul id="srtSelected" class="droptrue w-100 card px-1 py-2">
+                                    @foreach ($arrSelected as $id)
+                                        @if (array_key_exists($id, $arrSteps))
+                                            <li class="ui-state-default m-1 p-1 fs-16 rounded border-1"
+                                                data-id="{{ $id }}"
+                                            >{{ $arrSteps[$id] }}</li>
+                                        @endif
+                                    @endforeach
+                                </ul>
+                            </div>
+                        </div>
+                        <input type="hidden" name="steps" id='hidStepIds'/>
                     </div>
                 </div>
             </div>
@@ -70,6 +112,23 @@
 <script src="{{ asset('assets/js/hs.quill.js') }}"></script>
 
 <script>
+$(document).ready(function() {
+    $("ul.droptrue").sortable({
+      connectWith: "ul"
+    });
+ 
+    $( "#srtUnselected, #srtSelected" ).disableSelection();
+
+    $('body').on('submit', '#frmUpdateStepGroup', function() {
+        var step_ids = [];
+        $('#srtSelected li').each(function() {
+            step_ids.push($(this).data('id'));
+        });
+
+        $('#hidStepIds').val(step_ids.join(','));
+    });
+});
+
 (function() {
     // INITIALIZATION OF QUILLJS EDITOR
     // =======================================================

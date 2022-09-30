@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StepGroupStoreRequest;
+use App\Models\Step;
 use App\Models\StepGroup;
 
 class StepGroupsController extends Controller
@@ -29,7 +30,11 @@ class StepGroupsController extends Controller
      */
     public function create()
     {
-        return view('backend.step_groups.create');
+        $arrSteps = Step::pluck('name', 'id')->toArray();
+
+        return view('backend.step_groups.create', compact(
+            'arrSteps'
+        ));
     }
 
     /**
@@ -54,8 +59,10 @@ class StepGroupsController extends Controller
      */
     public function edit(StepGroup $step_group)
     {
+        $arrSteps = Step::pluck('name', 'id')->toArray();
+
         return view('backend.step_groups.edit', compact(
-            'step_group'
+            'step_group', 'arrSteps'
         ));
     }
 
