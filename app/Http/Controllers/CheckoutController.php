@@ -22,6 +22,7 @@ use Illuminate\Http\Request;
 use Stripe\Stripe;
 use App\Mail\OrderPlacedMail;
 use App\Models\Coupon;
+use App\Models\CouponUsageHistory;
 use GeoIP;
 
 use App\Models\SettingGeneral;
@@ -67,6 +68,7 @@ class CheckoutController extends Controller
             $orderId = $request->session()->get('order_id', '');
 
             $order = Order::where('order_id', $orderId)->first();
+            $coupon = null;
 
             if (!$order) {
                 $order = new Order;
@@ -102,8 +104,12 @@ class CheckoutController extends Controller
                     $orderItem->save();
                 }
 
-                // Save order subtotal
-                $order->total = $total;
+                ////////////////////////////////////////////////////////////////////////////////////////////////
+                // Calculate the total and tax
+                $coupon_code = $request->coupon_code;
+                $arrCouponInfo = Coupon::getCouponByUser($coupon_code);
+                $coupon = $arrCouponInfo['coupon'];
+                $sub_total = $total;
 
                 // Find shipping price
                 $shipping_option_id = $request->session()->get('shipping_option_id', 0);
@@ -112,16 +118,42 @@ class CheckoutController extends Controller
                     $order->shipping_total = ShippingOption::find($shipping_option_id)->price;
                 }
 
+                $shipping_price = $order->shipping_total;
+
                 $taxPrice = 0;
                 foreach (Cart::content() as $product) {
                     $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
                 }
-                
+
+                $discount = 0;
+                if ($coupon != null) {
+                    if ($coupon->type == 0) {
+                        $discount = $coupon->amount * 100;
+                    } else {
+                        $discount = floor($sub_total * $coupon->amount / 100 + 0.5);
+                    }
+
+                    if ($sub_total < $discount) {
+                        $sub_total = 0;
+                        $taxPrice = 0;
+                        $total =  $shipping_price;
+                    } else {
+                        $taxPrice = $taxPrice * ($sub_total - $discount) / $sub_total;
+                        $total = $sub_total - $discount + $shipping_price + floor($taxPrice + 0.5);
+                    }
+
+                    $order->coupon_code = $coupon_code;
+                    $order->discount = $discount;
+                }
+
+                // Save order subtotal
+                $order->total = $sub_total;
+
                 // Save tax 
                 $order->tax_total = $taxPrice;
 
                 // Save grand total
-                $order->grand_total = $total+$taxPrice;
+                $order->grand_total = $total;
             }
 
             $order->order_id = $orderId;
@@ -157,6 +189,10 @@ class CheckoutController extends Controller
             $order->shipping_option_id = $request->session()->get('shipping_option_id', 0);
             $order->save();
 
+            if ($coupon != null) {
+                CouponUsageHistory::createCouponUsageHistory($order);
+            }
+
             if(auth()->user()){
                 Cart::erase(auth()->id());
             }else{
@@ -184,7 +220,6 @@ class CheckoutController extends Controller
         }
 
         try {
-
             if(auth()->user()){
                 $orderId = auth()->id() . strtoupper(uniqid());
                 $username = auth()->user()->first_name . " " . auth()->user()->last_name;
@@ -196,21 +231,54 @@ class CheckoutController extends Controller
 
             $description = env('APP_NAME') . ' Order#' . $orderId;
 
-            $total = Cart::total(2, '.', '') * 100;
-            $shipping_option_id = $req->session()->get('shipping_option_id', 0);
+            ////////////////////////////////////////////////////////////////////////////////////////////////
+            // Calculate the total and tax
+            $coupon_code = $req->coupon_code;
+            $arrCouponInfo = Coupon::getCouponByUser($coupon_code);
+            $coupon = $arrCouponInfo['coupon'];
 
-            if ($shipping_option_id)
-                $total += ShippingOption::find($shipping_option_id)->price;
+            $sub_total = Cart::total(2, '.', '') * 100;
+            if ($coupon == null) {
+                $shipping_option_id = $req->session()->get('shipping_option_id', 0);
 
-            $taxPrice = 0;
-            foreach (Cart::content() as $product) {
-                $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
+                if ($shipping_option_id) {
+                    $sub_total += ShippingOption::find($shipping_option_id)->price;
+                }
+
+                $taxPrice = 0;
+                foreach (Cart::content() as $product) {
+                    $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
+                }
+
+                $total = $sub_total + floor($taxPrice + 0.5);
+            } else {
+                $discount = 0;
+                $shipping_price = 0;
+
+                if ($coupon->type == 0) {
+                    $discount = $coupon->amount * 100;
+                } else {
+                    $discount = floor($sub_total * $coupon->amount / 100 + 0.5);
+                }
+
+                $shipping_option_id = $req->session()->get('shipping_option_id', 0);
+                if ($shipping_option_id) {
+                    $shipping_price = ShippingOption::find($shipping_option_id)->price;
+                }
+
+                $taxPrice = 0;
+                if ($sub_total < $discount) {
+                    $total = 0;
+                } else {
+                    foreach (Cart::content() as $product) {
+                        $taxPrice += ($product->price * $product->qty * $product->model->taxPrice() / 100);
+                    }
+                    $taxPrice = $taxPrice * ($sub_total - $discount) / $sub_total;
+                    $total = $sub_total - $discount + $shipping_price + floor($taxPrice + 0.5);
+                }
             }
 
-            $total += floor($taxPrice + 0.5);
-
             // Create a PaymentIntent with amount and currency
-
             $paymentIntent = \Stripe\PaymentIntent::create([
                 'amount' => $total,
                 'currency' => 'usd',
@@ -283,7 +351,6 @@ class CheckoutController extends Controller
 
     public function paymentFinished(Request $request)
     {
-
         $orderId = $request->session()->get('order_id');
 
         $request->session()->forget('order_id');
@@ -506,22 +573,18 @@ class CheckoutController extends Controller
 
     public function checkCoupon(Request $request) {
         $coupon_code = $request->coupon_code;
-        $today = date('Y-m-d');
-        $arrCoupons = Coupon::where('name', $coupon_code)
-            ->where('end_date', '>=', $today)
-            ->limit(1)
-            ->get();
+        $arrCouponInfo = Coupon::getCouponByUser($coupon_code);
+        $coupon = $arrCouponInfo['coupon'];
+        $message = $arrCouponInfo['message'];
 
-        if (count($arrCoupons) == 0) {
+        if ($coupon == null) {
             $result = array(
                 'result'    => false,
-                'message'   => 'No Coupon Code : ' . $coupon_code
+                'message'   => $message
             );
 
             return $result;
         }
-
-        $coupon = $arrCoupons[0];
 
         $result = array(
             'coupon' => $coupon,

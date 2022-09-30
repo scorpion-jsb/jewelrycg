@@ -39,6 +39,7 @@ use App\Http\Controllers\Backend\CouponsController;
 use App\Http\Controllers\Backend\CourseCategoriesController;
 use App\Http\Controllers\Backend\CourseLessonsController;
 use App\Http\Controllers\Backend\MembershipsController;
+use App\Http\Controllers\Backend\StepsController;
 use App\Http\Controllers\MembershipController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\TestController;
@@ -198,6 +199,17 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::post('/store', [CouponsController::class, 'store'])->name('store');
         Route::get('/delete/{coupon}', [CouponsController::class, 'destroy'])->name('delete');
         Route::get('/get', [CouponsController::class, 'get'])->name('get');
+    });
+    
+    Route::group(['prefix' => 'step', 'as' => 'steps.'], function ()
+    {
+        Route::get('/', [StepsController::class, 'index'])->name('list');
+        Route::get('/create', [StepsController::class, 'create'])->name('create');
+        Route::get('/edit/{step}', [StepsController::class, 'edit'])->name('edit');
+        Route::put('/update/{step}', [StepsController::class, 'update'])->name('update');
+        Route::post('/store', [StepsController::class, 'store'])->name('store');
+        Route::get('/delete/{step}', [StepsController::class, 'destroy'])->name('delete');
+        Route::get('/get', [StepsController::class, 'get'])->name('get');
     });
 
     //posts routes
