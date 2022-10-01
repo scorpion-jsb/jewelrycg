@@ -86,7 +86,7 @@
               <!-- End Collapse -->
 
               <div class="nav-item">
-                <a class="nav-link nav-link-main" href="{{ route('backend.steps.list') }}">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllStepMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllStepMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllStepMenu">
                   <i class="bi-folder2-open nav-icon"></i>
                   {{ __("Steps") }}
                 </a>
@@ -94,6 +94,9 @@
                 <div id="navbarVerticalMenuAllStepMenu" class="nav-collapse collapse @if($activePage == 'steps') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
                   <a class="nav-link @if($navName == 'allstep') active @endif" href="{{ route('backend.steps.list') }}">{{ __("All step") }}</a>
                   <a class="nav-link @if($navName == 'addstep') active @endif" href="{{ route('backend.steps.create') }}">{{ __("Create step") }}</a>
+
+                  <a class="nav-link @if($navName == 'allstep_group') active @endif" href="{{ route('backend.step_groups.list') }}">{{ __("All step group") }}</a>
+                  <a class="nav-link @if($navName == 'addstep_group') active @endif" href="{{ route('backend.step_groups.create') }}">{{ __("Create step group") }}</a>
                 </div>
               </div>
 
