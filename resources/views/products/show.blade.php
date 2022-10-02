@@ -421,6 +421,8 @@
                     </div>
                 @endif
 
+                @include('products.show_steps')
+
                 @if ($review_count > 0)
                 <div class="card">
                     <div class="fs-18 py-2 fw-600 card-header">Reviews</div>

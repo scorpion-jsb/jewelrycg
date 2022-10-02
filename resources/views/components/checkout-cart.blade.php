@@ -50,7 +50,7 @@ $subTotal = 0;
     <div class="row mb-3">
         <div class="col-10">
             <input id="txtCouponCode" class="form-control" placeholder="Enter Coupon Code">
-            <div id="divCouponErrorMsg" class="hidden mt-1 ms-2 text-danger fw-bold fs-14"></div>
+            <div id="divCouponErrorMsg" class="d-none mt-1 ms-2 text-danger fw-bold fs-14"></div>
         </div>
         <div class="col-2">
             <input type="button" id="btnApplyCoupon" class="btn btn-sm btn-primary" value="Apply"/>
@@ -59,7 +59,7 @@ $subTotal = 0;
 </div>
 @endif
 
-<div class="cart-item mb-3 hidden" id="divDiscount">
+<div class="cart-item mb-3 d-none" id="divDiscount">
     <div class="row">
         <div class="col-6">
             <span class="fw-800" id="divCouponName"></span>
@@ -157,10 +157,10 @@ $(document).ready(function() {
 
                     if (coupon_code.trim() == '') {
                         $('#txtCouponCode').removeClass('is-invalid');
-                        $('#divCouponErrorMsg').html('').addClass('hidden');
+                        $('#divCouponErrorMsg').html('').addClass('d-none');
                     } else {
                         $('#txtCouponCode').addClass('is-invalid');
-                        $('#divCouponErrorMsg').html(result.message).removeClass('hidden');    
+                        $('#divCouponErrorMsg').html(result.message).removeClass('d-none');    
                     }
 
                     $('#spnDiscountPrice').html('');
@@ -168,7 +168,7 @@ $(document).ready(function() {
                     $('#spnTotalPrice').html('$' + currencyFormat(total));
 
                     $('#divCouponName').html('');
-                    $('#divDiscount').addClass('hidden');
+                    $('#divDiscount').addClass('d-none');
 
                     if (is_coupon_applied == true) {
                         loadStripeElement();
@@ -182,7 +182,7 @@ $(document).ready(function() {
                 loadStripeElement();
 
                 $('#txtCouponCode').removeClass('is-invalid');
-                $('#divCouponErrorMsg').html('').addClass('hidden');
+                $('#divCouponErrorMsg').html('').addClass('d-none');
 
                 var coupon = result.coupon;
                 var discount = 0;
@@ -204,7 +204,7 @@ $(document).ready(function() {
                 
                 $('#spnDiscountPrice').html('- $' + currencyFormat(discount));
                 $('#divCouponName').html('Discount (' + coupon.name + ')');
-                $('#divDiscount').removeClass('hidden');
+                $('#divDiscount').removeClass('d-none');
 
                 $('#spnTaxPrice').html('$' + currencyFormat(tax_price));
                 $('#spnTotalPrice').html('$' + currencyFormat(total_price));
