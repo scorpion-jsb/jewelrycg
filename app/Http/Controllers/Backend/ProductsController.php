@@ -14,6 +14,8 @@ use App\Models\Attribute;
 use App\Models\ProductsTaxOption;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
+use App\Models\Step;
+use App\Models\StepGroup;
 use Illuminate\Support\Facades\Auth;
 use PhpParser\Node\Expr\FuncCall;
 
@@ -80,11 +82,16 @@ class ProductsController extends Controller
      */
     public function create()
     {
+        $arrStepGroups = StepGroup::pluck('name', 'id')->toArray();
+        $arrSteps = Step::pluck('name', 'id')->toArray();
+
         return view('backend.products.create', [
             'attributes' => Attribute::orderBy('id', 'DESC')->get(),
             'categories' => ProductsCategorie::all(),
             'tags' => ProductTag::all(),
-            'taxes' => ProductsTaxOption::all()
+            'taxes' => ProductsTaxOption::all(),
+            'arrStepGroups' => $arrStepGroups,
+            'arrSteps' => $arrSteps,
         ]);
     }
 
@@ -184,6 +191,10 @@ class ProductsController extends Controller
         $selected_attributes = explode(',', $product->product_attributes);
         $prepare_values  = Attribute::whereIn('id', $selected_attributes)->with(['values'])->get();
         $seller = User::query()->find($product->vendor);
+
+        $arrStepGroups = StepGroup::pluck('name', 'id')->toArray();
+        $arrSteps = Step::pluck('name', 'id')->toArray();
+
         return view('backend.products.edit', [
             'product' => $product,
             'variants' => $variants,
@@ -193,7 +204,9 @@ class ProductsController extends Controller
             'uploads' => Upload::whereIn('id', explode(',',$product->product_images))->get(),
             'selected_values' => $prepare_values,
             'seller' => $seller,
-            'taxes' => ProductsTaxOption::all()
+            'taxes' => ProductsTaxOption::all(),
+            'arrSteps' => $arrSteps,
+            'arrStepGroups' => $arrStepGroups,
         ]);
     }
 

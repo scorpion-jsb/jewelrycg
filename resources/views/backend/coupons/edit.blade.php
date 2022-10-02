@@ -108,6 +108,4 @@ $(document).ready(function() {
     HSCore.components.HSQuill.init('.js-quill')
 });
 </script>
-
-@stack('lesson_scripts')
 @endsection

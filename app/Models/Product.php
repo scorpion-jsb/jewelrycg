@@ -40,6 +40,9 @@ class Product extends Model
         'digital_download_assets', 
         'meta_title', 
         'meta_description',
+        'step_type',
+        'step_group',
+        'steps'
     ];
 
     /*

@@ -99,6 +99,21 @@
                   <a class="nav-link @if($navName == 'addstep_group') active @endif" href="{{ route('backend.step_groups.create') }}">{{ __("Create step group") }}</a>
                 </div>
               </div>
+              
+              <div class="nav-item">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllMaterialMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllMaterialMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllMaterialMenu">
+                  <i class="bi-folder2-open nav-icon"></i>
+                  {{ __("Materials") }}
+                </a>
+
+                <div id="navbarVerticalMenuAllMaterialMenu" class="nav-collapse collapse @if($activePage == 'materials') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link @if($navName == 'allmaterial') active @endif" href="{{ route('backend.materials.list') }}">{{ __("All material") }}</a>
+                  <a class="nav-link @if($navName == 'addmaterial') active @endif" href="{{ route('backend.materials.create') }}">{{ __("Create material") }}</a>
+
+                  <a class="nav-link @if($navName == 'allmaterial_type') active @endif" href="{{ route('backend.material_types.list') }}">{{ __("All material type") }}</a>
+                  <a class="nav-link @if($navName == 'addmaterial_type') active @endif" href="{{ route('backend.material_types.create') }}">{{ __("Create material type") }}</a>
+                </div>
+              </div>
 
               <div class="nav-item">
                 <a class="nav-link nav-link-main @if($activePage == 'filemanager') collapse @endif" href="{{ route('backend.file.index')}}" data-placement="left">

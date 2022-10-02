@@ -1,15 +1,15 @@
-@extends('backend.layouts.app', ['activePage' => 'steps', 'title' => 'Edit Step', 'navName' => 'editstep', 'activeButton' => 'blog'])
+@extends('backend.layouts.app', ['activePage' => 'materials', 'title' => 'Edit Material', 'navName' => 'editmaterial', 'activeButton' => 'blog'])
 
 @section('content')
 
 <div class="page-header">
     <div class="row align-items-end">
-        <h1 class="page-header-title">Edit step</h1>
+        <h1 class="page-header-title">Edit material</h1>
     </div>
     <!-- End Row -->
 </div>
 
-<form action="{{ route('backend.steps.update', $step->id) }}"
+<form action="{{ route('backend.materials.update', $material->id) }}"
     method="post" enctype="multipart/form-data"
 >
     @csrf
@@ -19,7 +19,7 @@
             <div class="card col-md-12 mb-4">
                 <!-- Header -->
                 <div class="card-header">
-                    <h4 class="card-header-title mb-0">Step information</h4>
+                    <h4 class="card-header-title mb-0">Material information</h4>
                 </div>
                 <!-- End Header -->
 
@@ -27,19 +27,7 @@
                     @include('includes.validation-form')
                     <div class="mb-2">
                         <label for="txtName" class="w-100 mb-2">Name:</label>
-                        <input type="text" name="name" id="txtName" value="{{ $step->name }}" class="form-control">
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="txaDescription" class="w-100 mb-2">Description:</label>
-                        <textarea type="text" name="description" id="txaDescription" class="form-control"
-                        >{{ $step->description }}</textarea>
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="txaLink" class="w-100 mb-2">Link:</label>
-                        <textarea type="text" name="link" id="txaLink" class="form-control"
-                        >{{ $step->link }}</textarea>
+                        <input type="text" name="name" id="txtName" value="{{ $material->name }}" class="form-control">
                     </div>
                 </div>
             </div>

@@ -1,6 +1,21 @@
 @extends('backend.layouts.app', ['activePage' => 'products', 'title' => 'Add Product', 'navName' => 'addproduct', 'activeButton' => 'catalogue'])
 
 @section('content')
+<style>
+    #srtUnselected li, #srtSelected li {
+        cursor: pointer;
+        list-style-type: none;
+    }
+</style>
+
+@php
+$arrStepTypes = array(
+    0   =>  'Step Group',
+    1   =>  'Steps'
+);
+$arrSelected = explode(',', old('steps'));
+@endphp
+
     <div class="page-header mb-4">
         <div class="row align-items-center">
             <div class="col-sm mb-2 mb-sm-0">
@@ -28,7 +43,10 @@
         <!-- End Row -->
     </div>
 
-    <form action="{{ route('backend.products.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('backend.products.store') }}"
+        id="frmCreateProduct"
+        method="post" enctype="multipart/form-data"
+    >
         @csrf
         <div class="row">
             <div class="col-lg-8 mb-3 mb-lg-0">
@@ -129,10 +147,75 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="card col-md-12 mb-6">
+                    <!-- Header -->
+                    <div class="card-header">
+                       <h4 class="card-header-title mb-0">Steps information</h4>
+                    </div>
+                    <!-- End Header -->
+                    <div class="card-body">
+                        @include('includes.validation-form')
+                        <div class="mb-2">
+                            <label for="selStepType">Step Type</label>
+                            <select name="step_type" id="selStepType" class="form-control">
+                                @foreach ($arrStepTypes as $id => $name)
+                                    <option
+                                        value="{{ $id }}"
+                                        {{ $id == old('step_type') ? "selected" : "" }}
+                                    >{{ $name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div id="divStepGroups" class="{{ old('step_type') == 0 ? "" : "d-none" }}">
+                            <div class="mb-2">
+                                <label for="selStepGroup">Step Group</label>
+                                <select name="step_group" id="selStepGroup" class="form-control">
+                                    @foreach ($arrStepGroups as $id => $name)
+                                        <option
+                                            value="{{ $id }}"
+                                            {{ $id == old('step_group') ? "selected" : "" }}
+                                        >{{ $name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+
+                        <div id="divSteps" class="{{ old('step_type') == 0 ? "d-none" : "" }}">
+                            <div class="row mb-2">
+                                <label>Steps</label>
+                                <div class="col-6">
+                                    <ul id="srtUnselected" class="droptrue w-100 card px-1 py-2">
+                                        @foreach ($arrSteps as $id => $name)
+                                            @if (!in_array($id, $arrSelected))
+                                                <li class="ui-state-default m-1 p-1 fs-16 rounded border-1"
+                                                    data-id="{{ $id }}"
+                                                >{{ $name }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+
+                                <div class="col-6">
+                                    <ul id="srtSelected" class="droptrue w-100 card px-1 py-2">
+                                        @foreach ($arrSelected as $id)
+                                            @if (array_key_exists($id, $arrSteps))
+                                                <li class="ui-state-default m-1 p-1 fs-16 rounded border-1"
+                                                    data-id="{{ $id }}"
+                                                >{{ $arrSteps[$id] }}</li>
+                                            @endif
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <input type="hidden" name="steps" id='hidStepIds'/>
+                    </div>
+                </div>
             </div>
 
             <div class="col-lg-4">
-
                 <!-- Card -->
                 <div class="card mb-3 mb-4">
                     <!-- Header -->
@@ -361,6 +444,36 @@
 @section('js_content')
     <script>
         var createChecks = [];
+        
+        $(document).ready(function() {
+            $("ul.droptrue").sortable({
+            connectWith: "ul"
+            });
+        
+            $( "#srtUnselected, #srtSelected" ).disableSelection();
+
+            $('body').on('submit', '#frmCreateProduct', function() {
+                var step_ids = [];
+                $('#srtSelected li').each(function() {
+                    step_ids.push($(this).data('id'));
+                });
+
+                $('#hidStepIds').val(step_ids.join(','));
+            });
+
+            $('body').on('change', '#selStepType', function() {
+                var step_type = $(this).val();
+                debugger;
+
+                if (step_type == 0) {
+                    $('#divStepGroups').removeClass('d-none');
+                    $('#divSteps').addClass('d-none');
+                } else {
+                    $('#divStepGroups').addClass('d-none');
+                    $('#divSteps').removeClass('d-none');
+                }
+            });
+        });
 
         function removepreviewappended(id) {
             createChecks = jQuery.grep(createChecks, function(value) {
