@@ -1,15 +1,15 @@
-@extends('backend.layouts.app', ['activePage' => 'steps', 'title' => 'Edit Step', 'navName' => 'editstep', 'activeButton' => 'blog'])
+@extends('backend.layouts.app', ['activePage' => 'materials', 'title' => 'Edit Material Type', 'navName' => 'editmaterial_type', 'activeButton' => 'blog'])
 
 @section('content')
 
 <div class="page-header">
     <div class="row align-items-end">
-        <h1 class="page-header-title">Edit step</h1>
+        <h1 class="page-header-title">Edit material type</h1>
     </div>
     <!-- End Row -->
 </div>
 
-<form action="{{ route('backend.steps.update', $step->id) }}"
+<form action="{{ route('backend.material_types.update', $material_type->id) }}"
     method="post" enctype="multipart/form-data"
 >
     @csrf
@@ -19,27 +19,28 @@
             <div class="card col-md-12 mb-4">
                 <!-- Header -->
                 <div class="card-header">
-                    <h4 class="card-header-title mb-0">Step information</h4>
+                    <h4 class="card-header-title mb-0">Material Type information</h4>
                 </div>
                 <!-- End Header -->
 
                 <div class="card-body row">
                     @include('includes.validation-form')
+
                     <div class="mb-2">
-                        <label for="txtName" class="w-100 mb-2">Name:</label>
-                        <input type="text" name="name" id="txtName" value="{{ $step->name }}" class="form-control">
+                        <label for="selMaterial">Material</label>
+                        <select name="material_id" id="selMaterial" class="form-control">
+                            @foreach ($arrMaterials as $id => $name)
+                                <option
+                                    value="{{ $id }}"
+                                    {{ $id == $material_type->material_id ? "selected" : "" }}
+                                >{{ $name }}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                     <div class="mb-2">
-                        <label for="txaDescription" class="w-100 mb-2">Description:</label>
-                        <textarea type="text" name="description" id="txaDescription" class="form-control"
-                        >{{ $step->description }}</textarea>
-                    </div>
-
-                    <div class="mb-2">
-                        <label for="txaLink" class="w-100 mb-2">Link:</label>
-                        <textarea type="text" name="link" id="txaLink" class="form-control"
-                        >{{ $step->link }}</textarea>
+                        <label for="txtType" class="w-100 mb-2">Type:</label>
+                        <input type="text" name="type" id="txtType" value="{{ $material_type->type }}" class="form-control">
                     </div>
                 </div>
             </div>

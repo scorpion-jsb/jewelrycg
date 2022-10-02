@@ -18,7 +18,9 @@ class DatabaseSeeder extends Seeder
             // ProductSeeder::class,
             // UserSeeder::class,
             // CountrySeeder::class,
-            StepSeeder::class,
+            // StepSeeder::class,
+            MaterialSeeder::class,
+            MaterialTypeSeeder::class,
         ]);
     }
 }

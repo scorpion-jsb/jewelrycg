@@ -38,6 +38,8 @@ use App\Http\Controllers\Auth\SellerRegisterController;
 use App\Http\Controllers\Backend\CouponsController;
 use App\Http\Controllers\Backend\CourseCategoriesController;
 use App\Http\Controllers\Backend\CourseLessonsController;
+use App\Http\Controllers\Backend\MaterialsController;
+use App\Http\Controllers\Backend\MaterialTypesController;
 use App\Http\Controllers\Backend\MembershipsController;
 use App\Http\Controllers\Backend\StepGroupsController;
 use App\Http\Controllers\Backend\StepsController;
@@ -222,6 +224,28 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::post('/store', [StepGroupsController::class, 'store'])->name('store');
         Route::get('/delete/{step_group}', [StepGroupsController::class, 'destroy'])->name('delete');
         Route::get('/get', [StepGroupsController::class, 'get'])->name('get');
+    });
+
+    Route::group(['prefix' => 'material', 'as' => 'materials.'], function ()
+    {
+        Route::get('/', [MaterialsController::class, 'index'])->name('list');
+        Route::get('/create', [MaterialsController::class, 'create'])->name('create');
+        Route::get('/edit/{material}', [MaterialsController::class, 'edit'])->name('edit');
+        Route::put('/update/{material}', [MaterialsController::class, 'update'])->name('update');
+        Route::post('/store', [MaterialsController::class, 'store'])->name('store');
+        Route::get('/delete/{material}', [MaterialsController::class, 'destroy'])->name('delete');
+        Route::get('/get', [MaterialsController::class, 'get'])->name('get');
+    });
+    
+    Route::group(['prefix' => 'material_type', 'as' => 'material_types.'], function ()
+    {
+        Route::get('/', [MaterialTypesController::class, 'index'])->name('list');
+        Route::get('/create', [MaterialTypesController::class, 'create'])->name('create');
+        Route::get('/edit/{material_type}', [MaterialTypesController::class, 'edit'])->name('edit');
+        Route::put('/update/{material_type}', [MaterialTypesController::class, 'update'])->name('update');
+        Route::post('/store', [MaterialTypesController::class, 'store'])->name('store');
+        Route::get('/delete/{material_type}', [MaterialTypesController::class, 'destroy'])->name('delete');
+        Route::get('/get', [MaterialTypesController::class, 'get'])->name('get');
     });
 
     //posts routes
