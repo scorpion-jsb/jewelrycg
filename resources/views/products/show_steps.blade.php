@@ -12,25 +12,42 @@ if ($product->step_type == 0) {
 } else {
     $strStepId = $product->steps;
 }
-$arrStepIds = explode(',', $strStepId);
-$arrSteps = Step::whereIn('id', $arrStepIds)->get();
+
+$arrSteps = array();
+if (trim($strStepId) != '') {
+    $arrStepIds = explode(',', $strStepId);
+    $arrStepsTemp = Step::whereIn('id', $arrStepIds)->get();
+    $arrSteps = array_fill_keys($arrStepIds, null);
+
+    foreach ($arrStepsTemp as $step) {
+        $arrSteps[$step->id] = $step;
+    }
+}
 @endphp
 
 @if (count($arrSteps))
 <div class="card">
     <div class="fs-18 py-2 fw-600 card-header">Steps</div>
     <div class="card-body">
-        @foreach ($arrSteps as $step)
-            <div class="step-item my-2">
-                <h5>
-                    {{ $step->name }}
-                </h5>
-                <div>
-                    {{ $step->description }}
+        <div class="accordion">
+            @foreach ($arrSteps as $step)
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="accHeading{{ $step->id }}">
+                        <button class="accordion-button collapsed" type="button"
+                            data-bs-toggle="collapse" data-bs-target="#accContent{{ $step->id }}"
+                            aria-expanded="false" aria-controls="accContent{{ $step->id }}">
+                            {{ $step->name }}
+                        </button>
+                    </h2>
+                    <div id="accContent{{ $step->id }}" class="accordion-collapse collapse"
+                        aria-labelledby="accHeading{{ $step->id }}">
+                        <div class="accordion-body">
+                            {{ $step->description }}
+                        </div>
+                    </div>
                 </div>
-            </div>
-        @endforeach
-
+            @endforeach
+        </div>
     </div>
 </div>
 @endif
