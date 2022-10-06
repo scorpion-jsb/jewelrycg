@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('material_id');
             $table->integer('material_type_id');
             $table->string('mm_size');
-            $table->string('xy_size');
+            $table->string('xy_size')->nullable();
             $table->float('carat_weight');
             $table->timestamps();
         });
