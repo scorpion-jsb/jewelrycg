@@ -11,6 +11,8 @@ use App\Models\ProductsCategorie;
 use App\Models\ProductTag;
 use App\Models\ProductsVariant;
 use App\Models\Attribute;
+use App\Models\Material;
+use App\Models\ProductMaterial;
 use App\Models\ProductsTaxOption;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
@@ -192,6 +194,9 @@ class ProductsController extends Controller
         $prepare_values  = Attribute::whereIn('id', $selected_attributes)->with(['values'])->get();
         $seller = User::query()->find($product->vendor);
 
+        $arrMaterials = Material::with('types')->get();
+        $arrProductMaterials = ProductMaterial::getMaterialsByProduct($product->id);
+
         $arrStepGroups = StepGroup::pluck('name', 'id')->toArray();
         $arrSteps = Step::pluck('name', 'id')->toArray();
 
@@ -205,6 +210,8 @@ class ProductsController extends Controller
             'selected_values' => $prepare_values,
             'seller' => $seller,
             'taxes' => ProductsTaxOption::all(),
+            'arrProductMaterials' => $arrProductMaterials,
+            'arrMaterials' => $arrMaterials,
             'arrSteps' => $arrSteps,
             'arrStepGroups' => $arrStepGroups,
         ]);
