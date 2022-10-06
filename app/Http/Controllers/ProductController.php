@@ -10,6 +10,7 @@ use App\Models\ProductsVariant;
 use App\Models\ProductsCategorie;
 use App\Models\Attribute;
 use App\Models\Order;
+use App\Models\ProductMaterial;
 use App\Models\ProductsReview;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -173,10 +174,15 @@ class ProductController extends Controller
             )); 
         }
 
+        $arrProductMaterials = ProductMaterial::where('product_id', $product->id)
+            ->where('material_id', 2)
+            ->with('material_type')
+            ->get();
+
         return view('products.show', compact(
             'product', 'uploads', 'variants', 'maxPrice', 'minPrice',
             'product_reviewable', 'user_product_review', 'review_count',
-            'average_rating', 'arrReviewListing'
+            'average_rating', 'arrReviewListing', 'arrProductMaterials'
         ));
     }
 
