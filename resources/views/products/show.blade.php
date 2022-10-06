@@ -321,60 +321,7 @@
                             </form>
                         </div>
 
-                        <!--End .bg-white product card-->
-                        <div class="show-model-specs">
-                            <div class="show-specs-btn d-none d-lg-block mb-3 text-uppercase fw-700 border p-3">Metal
-                                Weight</div>
-                            <a class="show-specs-btn d-lg-none mb-4 pb-2 d-block text-uppercase fw-700 card p-3"
-                                data-toggle="collapse" href="#showGold" role="button" aria-expanded="false"
-                                aria-controls="showGold">Metal Weight <span class="las la-angle-down"></span></a>
-                        </div>
-
-                        <div class="collapse multi-collapse d-lg-block" id="showGold">
-                            <div class="row">
-                                {{-- if 10k_gold --}}
-                                <div class="col-lg-4 col-6">
-                                    <div class="border p-3 item-value-card mb-3">
-                                        <div class="item-value-card-body">
-                                            <div class="value-title pb-2 mb-2 text-uppercase fw-700">10k</div>
-                                            <div class="py-1">
-                                                <span class="value-price">$726</span>
-                                                <span class="value-price-change">2.79</span>
-                                            </div>
-                                            <div class="py-1 fw-700 fs-24">55 Grams</div>
-                                            <div class="py-1 fw-700 fs-14">2.43 DWT</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                {{-- /if --}}
-                                <div class="col-lg-4 col-6">
-                                    <div class="border p-3 item-value-card mb-3">
-                                        <div class="item-value-card-body">
-                                            <div class="value-title pb-2 mb-2 text-uppercase fw-700">14k</div>
-                                            <div class="py-1">
-                                                <span class="value-price">$726</span>
-                                                <span class="value-price-change">2.79</span>
-                                            </div>
-                                            <div class="py-1 fw-700 fs-24">55 Grams</div>
-                                            <div class="py-1 fw-700 fs-14">2.43 DWT</div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-4 col-6">
-                                    <div class="border p-3 item-value-card mb-3">
-                                        <div class="item-value-card-body">
-                                            <div class="value-title pb-2 mb-2 text-uppercase fw-700">18k</div>
-                                            <div class="py-1">
-                                                <span class="value-price">$726</span>
-                                                <span class="value-price-change">2.79</span>
-                                            </div>
-                                            <div class="py-1 fw-700 fs-24">55 Grams</div>
-                                            <div class="py-1 fw-700 fs-14">2.43 DWT</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                        @include('products.show_materials')
                     </div>
                 </div>
 
