@@ -9,7 +9,7 @@ class CourseLesson extends Model
 {
     use HasFactory;
     /**
-     * Get the course that owns the lession.
+     * Get the course that owns the lesson.
      */
     public function course()
     {

@@ -188,6 +188,8 @@ $arrSelected = explode(',', $product->steps);
                     </div>
                 </div>
 
+                @include('backend.products.materials.list')
+                
                 <div class="card col-md-12 mb-6">
                     <!-- Header -->
                     <div class="card-header">
@@ -195,7 +197,6 @@ $arrSelected = explode(',', $product->steps);
                     </div>
                     <!-- End Header -->
                     <div class="card-body">
-                        @include('includes.validation-form')
                         <div class="mb-2">
                             <label for="selStepType">Step Type</label>
                             <select name="step_type" id="selStepType" class="form-control">
@@ -522,193 +523,196 @@ $arrSelected = explode(',', $product->steps);
     <div id='ajaxCalls'>
     </div>
 @endsection
+
 @section('js_content')
-    <script>
-        var createChecks = $('#all_checks').val() === '' ? [] : $('#all_checks').val().split(",");
+<script>
+    var createChecks = $('#all_checks').val() === '' ? [] : $('#all_checks').val().split(",");
 
-        $(document).ready(function() {
-            $("ul.droptrue").sortable({
-            connectWith: "ul"
-            });
-        
-            $( "#srtUnselected, #srtSelected" ).disableSelection();
+    $(document).ready(function() {
+        $("ul.droptrue").sortable({
+        connectWith: "ul"
+        });
+    
+        $( "#srtUnselected, #srtSelected" ).disableSelection();
 
-            $('body').on('submit', '#frmUpdateProduct', function() {
-                var step_ids = [];
-                $('#srtSelected li').each(function() {
-                    step_ids.push($(this).data('id'));
-                });
-
-                $('#hidStepIds').val(step_ids.join(','));
+        $('body').on('submit', '#frmUpdateProduct', function() {
+            var step_ids = [];
+            $('#srtSelected li').each(function() {
+                step_ids.push($(this).data('id'));
             });
 
-            $('body').on('change', '#selStepType', function() {
-                var step_type = $(this).val();
-                debugger;
-
-                if (step_type == 0) {
-                    $('#divStepGroups').removeClass('d-none');
-                    $('#divSteps').addClass('d-none');
-                } else {
-                    $('#divStepGroups').addClass('d-none');
-                    $('#divSteps').removeClass('d-none');
-                }
-            });
+            $('#hidStepIds').val(step_ids.join(','));
         });
 
-        function removepreviewappended(id) {
-            createChecks = jQuery.grep(createChecks, function(value) {
-                return value != id;
-            });
-            $('#fileappend-' + id).remove();
-            $('#all_checks').val(createChecks);
+        $('body').on('change', '#selStepType', function() {
+            var step_type = $(this).val();
+            debugger;
+
+            if (step_type == 0) {
+                $('#divStepGroups').removeClass('d-none');
+                $('#divSteps').addClass('d-none');
+            } else {
+                $('#divStepGroups').addClass('d-none');
+                $('#divSteps').removeClass('d-none');
+            }
+        });
+    });
+
+    function removepreviewappended(id) {
+        createChecks = jQuery.grep(createChecks, function(value) {
+            return value != id;
+        });
+        $('#fileappend-' + id).remove();
+        $('#all_checks').val(createChecks);
+    }
+
+    function selectFileFromManagerMultiple(id, preview) {
+        if ($('#file-' + id).hasClass('selected')) {
+            $('#file-' + id).removeClass('selected')
+            $('#file-' + id).find('.check-this').fadeOut()
+            removepreviewappended(id);
+        } else {
+            $('#file-' + id).addClass('selected')
+            $('#file-' + id).find('.check-this').fadeIn()
+            createChecks.push(id)
+            $('#fancyboxGallery').prepend(productImageDiv(id, preview))
+        }
+        $('#all_checks').val(createChecks);
+    }
+    $(document).ready(function() {
+        $('.select2').select2({
+
+            tags: true,
+            maximumSelectionLength: 100,
+            tokenSeparators: [','],
+            placeholder: "Select or type keywords",
+        })
+    });
+
+    // check the digital setting turn on
+    $('#availabilitySwitch1').click(function () {
+        if ($('#availabilitySwitch1').prop('checked')) {
+            $('#digital_download_assets').val(0);
+            $('#digital_download_assets').parent().parent().show();
+        } else {
+            $('#digital_download_assets').parent().parent().hide();
         }
 
-        function selectFileFromManagerMultiple(id, preview) {
-            if ($('#file-' + id).hasClass('selected')) {
-                $('#file-' + id).removeClass('selected')
-                $('#file-' + id).find('.check-this').fadeOut()
-                removepreviewappended(id);
-            } else {
-                $('#file-' + id).addClass('selected')
-                $('#file-' + id).find('.check-this').fadeIn()
-                createChecks.push(id)
-                $('#fancyboxGallery').prepend(productImageDiv(id, preview))
-            }
-            $('#all_checks').val(createChecks);
+        if ($('#variantsbody').html() != '') {
+            var values_selected = $('#product_attribute_values').val()
+            $.ajax({
+                type: 'POST',
+                url: "{{ route('backend.products.attributes.combinations') }}",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    "values": values_selected,
+                    'isDigital': $('#availabilitySwitch1').prop('checked') * 1
+                },
+                success: function(result) {
+                    $('#variantsbody').html(result)
+                }
+            })
         }
-        $(document).ready(function() {
-            $('.select2').select2({
+        // getVariants($('#availabilitySwitch1').prop('checked') * 1);
+    })
 
-                tags: true,
-                maximumSelectionLength: 100,
-                tokenSeparators: [','],
-                placeholder: "Select or type keywords",
-            })
-        });
+    $('#availabilitySwitch5').click(function () {
+        var isTrackQuantity = $('#availabilitySwitch5').prop('checked');
 
-        // check the digital setting turn on
-        $('#availabilitySwitch1').click(function () {
-            if ($('#availabilitySwitch1').prop('checked')) {
-                $('#digital_download_assets').val(0);
-                $('#digital_download_assets').parent().parent().show();
-            } else {
-                $('#digital_download_assets').parent().parent().hide();
-            }
+        if (!isTrackQuantity) {
+            // $('#quantity').val(0);
+            $('#quantity').attr('disabled', 'true');
+        } else {
+            $('#quantity').removeAttr('disabled');
+        }
+    })
 
-            if ($('#variantsbody').html() != '') {
-                var values_selected = $('#product_attribute_values').val()
-                $.ajax({
-                    type: 'POST',
-                    url: "{{ route('backend.products.attributes.combinations') }}",
-                    data: {
-                        "_token": "{{ csrf_token() }}",
-                        "values": values_selected,
-                        'isDigital': $('#availabilitySwitch1').prop('checked') * 1
-                    },
-                    success: function(result) {
-                        $('#variantsbody').html(result)
-                    }
-                })
-            }
-            // getVariants($('#availabilitySwitch1').prop('checked') * 1);
-        })
+    $('#getFileManagerForProducts').click(function () {
+        $.ajax({
+            url: "{{ route('backend.file.show') }}",
+            success: function (data) {
+                if (!$.trim($('#fileManagerContainer').html()))
+                    $('#fileManagerContainer').html(data);
 
-        $('#availabilitySwitch5').click(function () {
-            var isTrackQuantity = $('#availabilitySwitch5').prop('checked');
+                $('#fileManagerModal').modal('show');
 
-            if (!isTrackQuantity) {
-                // $('#quantity').val(0);
-                $('#quantity').attr('disabled', 'true');
-            } else {
-                $('#quantity').removeAttr('disabled');
+                const getSelectedItem = function (selectedId, filePath) {
+                    $('#fancyboxGallery').empty();
+
+                    createChecks = selectedId;
+                    $('#all_checks').val(createChecks);
+
+                    selectedId.map(function (id, i) {
+                        $('#fancyboxGallery').prepend(productImageDiv(id, filePath[i]));
+                    });
+                }
+
+                setSelectedItemsCB(getSelectedItem, createChecks);
             }
         })
+    });
 
-        $('#getFileManagerForProducts').click(function () {
-            $.ajax({
-                url: "{{ route('backend.file.show') }}",
-                success: function (data) {
-                    if (!$.trim($('#fileManagerContainer').html()))
-                        $('#fileManagerContainer').html(data);
+    var digital_download_assets = [];
+    $('#getFileManagerModel').click(function () {
+        $.ajax({
+            url: "{{ route('backend.file.show') }}",
+            success: function (data) {
+                if (!$.trim($('#fileManagerContainer').html()))
+                    $('#fileManagerContainer').html(data);
 
-                    $('#fileManagerModal').modal('show');
+                $('#fileManagerModal').modal('show');
 
-                    const getSelectedItem = function (selectedId, filePath) {
-                        $('#fancyboxGallery').empty();
+                const getSelectedItem = function (selectedId, filePath) {
 
-                        createChecks = selectedId;
-                        $('#all_checks').val(createChecks);
-
-                        selectedId.map(function (id, i) {
-                            $('#fancyboxGallery').prepend(productImageDiv(id, filePath[i]));
-                        });
-                    }
-
-                    setSelectedItemsCB(getSelectedItem, createChecks);
+                    digital_download_assets = selectedId;
+                    $('#fileManagerModelId').val(digital_download_assets);
                 }
-            })
-        });
 
-        var digital_download_assets = [];
-        $('#getFileManagerModel').click(function () {
-            $.ajax({
-                url: "{{ route('backend.file.show') }}",
-                success: function (data) {
-                    if (!$.trim($('#fileManagerContainer').html()))
-                        $('#fileManagerContainer').html(data);
+                setSelectedItemsCB(getSelectedItem, digital_download_assets, false);
+            }
+        })
+    });
 
-                    $('#fileManagerModal').modal('show');
+    $('#getFileManagerAsset').click(function () {
+        $.ajax({
+            url: "{{ route('backend.file.show') }}",
+            success: function (data) {
+                if (!$.trim($('#fileManagerContainer').html()))
+                    $('#fileManagerContainer').html(data);
 
-                    const getSelectedItem = function (selectedId, filePath) {
+                $('#fileManagerModal').modal('show');
 
-                        digital_download_assets = selectedId;
-                        $('#fileManagerModelId').val(digital_download_assets);
-                    }
+                const getSelectedItem = function (selectedId, filePath) {
 
-                    setSelectedItemsCB(getSelectedItem, digital_download_assets, false);
+                    $('#digital_download_assets').val(selectedId);
                 }
-            })
-        });
 
-        $('#getFileManagerAsset').click(function () {
-            $.ajax({
-                url: "{{ route('backend.file.show') }}",
-                success: function (data) {
-                    if (!$.trim($('#fileManagerContainer').html()))
-                        $('#fileManagerContainer').html(data);
+                setSelectedItemsCB(getSelectedItem, $('#digital_download_assets').val() == '' ? [] : [$('#digital_download_assets').val()], false);
+            }
+        })
+    });
 
-                    $('#fileManagerModal').modal('show');
+    $('#getFileManager').click(function () {
+        $.ajax({
+            url: "{{ route('backend.file.show') }}",
+            success: function (data) {
+                if (!$.trim($('#fileManagerContainer').html()))
+                    $('#fileManagerContainer').html(data);
 
-                    const getSelectedItem = function (selectedId, filePath) {
+                $('#fileManagerModal').modal('show');
 
-                        $('#digital_download_assets').val(selectedId);
-                    }
+                const getSelectedItem = function (selectedId, filePath) {
 
-                    setSelectedItemsCB(getSelectedItem, $('#digital_download_assets').val() == '' ? [] : [$('#digital_download_assets').val()], false);
+                    $('#fileManagerId').val(selectedId);
+                    $('#fileManagerPreview').attr('src', filePath);
                 }
-            })
-        });
 
-        $('#getFileManager').click(function () {
-            $.ajax({
-                url: "{{ route('backend.file.show') }}",
-                success: function (data) {
-                    if (!$.trim($('#fileManagerContainer').html()))
-                        $('#fileManagerContainer').html(data);
+                setSelectedItemsCB(getSelectedItem, $('#fileManagerId').val() == '' ? [] : [$('#fileManagerId').val()], false);
+            }
+        })
+    });
 
-                    $('#fileManagerModal').modal('show');
+</script>
 
-                    const getSelectedItem = function (selectedId, filePath) {
-
-                        $('#fileManagerId').val(selectedId);
-                        $('#fileManagerPreview').attr('src', filePath);
-                    }
-
-                    setSelectedItemsCB(getSelectedItem, $('#fileManagerId').val() == '' ? [] : [$('#fileManagerId').val()], false);
-                }
-            })
-        });
-
-    </script>
+@stack('material_scripts')
 @endsection

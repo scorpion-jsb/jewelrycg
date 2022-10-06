@@ -41,6 +41,7 @@ use App\Http\Controllers\Backend\CourseLessonsController;
 use App\Http\Controllers\Backend\MaterialsController;
 use App\Http\Controllers\Backend\MaterialTypesController;
 use App\Http\Controllers\Backend\MembershipsController;
+use App\Http\Controllers\Backend\ProductMaterialsController;
 use App\Http\Controllers\Backend\StepGroupsController;
 use App\Http\Controllers\Backend\StepsController;
 use App\Http\Controllers\MembershipController;
@@ -308,7 +309,7 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::get('/delete/{category}', [CourseCategoriesController::class, 'destroy'])->name('delete');
         Route::get('/get', [CourseCategoriesController::class, 'get'])->name('get');
     });
-    
+
     Route::group(['prefix' => 'courses/lessons', 'as' => 'courses.lessons.'], function ()
     {
         Route::post('/store', [CourseLessonsController::class, 'store'])->name('store');
@@ -332,6 +333,13 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::put('/update/{product}', [ProducttagsController::class, 'update'])->name('update');
         Route::post('/store', [ProducttagsController::class, 'store'])->name('store');
         Route::get('/get', [ProducttagsController::class, 'get'])->name('get');
+    });
+
+    Route::group(['prefix' => 'products/materials', 'as' => 'products.materials.'], function ()
+    {
+        Route::post('/store', [ProductMaterialsController::class, 'store'])->name('store');
+        Route::put('/update', [ProductMaterialsController::class, 'update'])->name('update');
+        Route::delete('/delete', [ProductMaterialsController::class, 'destroy'])->name('delete');
     });
 
     Route::group(['prefix' => 'orders', 'as' => 'orders.'], function ()
