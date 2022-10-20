@@ -16,6 +16,7 @@ use App\Models\ProductMaterial;
 use App\Models\ProductsTaxOption;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
+use App\Models\MaterialTypeDiamonds;
 use App\Models\Step;
 use App\Models\StepGroup;
 use Illuminate\Support\Facades\Auth;
@@ -196,6 +197,7 @@ class ProductsController extends Controller
 
         $arrMaterials = Material::with('types')->get();
         $arrProductMaterials = ProductMaterial::getMaterialsByProduct($product->id);
+        $arrDiamondTypes = MaterialTypeDiamonds::where('material_id','=', '1')->get();
 
         $arrStepGroups = StepGroup::pluck('name', 'id')->toArray();
         $arrSteps = Step::pluck('name', 'id')->toArray();
@@ -211,6 +213,7 @@ class ProductsController extends Controller
             'seller' => $seller,
             'taxes' => ProductsTaxOption::all(),
             'arrProductMaterials' => $arrProductMaterials,
+            'arrDiamondTypes' => $arrDiamondTypes,
             'arrMaterials' => $arrMaterials,
             'arrSteps' => $arrSteps,
             'arrStepGroups' => $arrStepGroups,

@@ -9,9 +9,7 @@ $materials = ProductMaterial::where('product_id', $product->id)
     @include('backend.products.materials.items')
 </div>
 
-@push('material_scripts')
 <script>
-
 var product_id = {{ $product->id }};
 var cur_product_material_id = 0;
 
@@ -44,16 +42,21 @@ $(document).ready(function() {
         }
     });
 
-    $('body').on('click', '.btn-add-material-modal', function() {
-        var modal = $(this).data('bs-target');
-        $(modal + ' #selMaterialType').val('');
-        $(modal + ' #txtMaterialWeight').val('');
-    });
-
     $('body').on('click', '.btn-add-material', function() {
         var material_id = $(this).data('material-id');
         var material_type_id = $('#modalAddMaterial' + material_id +  ' #selMaterialType').val();
         var material_weight = $('#modalAddMaterial' + material_id + ' #txtMaterialWeight').val();
+        if (material_id == 1) {
+            var diamond_ids = $('#DiamondSize').val();
+            var diamond_amount = $('#modalAddMaterial' + material_id + ' #diamondAmount').val();
+        } else {
+            var diamond_amount = '';
+            var diamond_ids = [];
+        }
+        $('#modalAddMaterial' + material_id + ' #txtMaterialWeight').val('');
+        $('#modalAddMaterial' + material_id +  ' #selMaterialType').val('')
+        $('#modalAddMaterial' + material_id + ' #diamondAmount').val('')
+
 
         $.ajax({
             type: 'POST',
@@ -62,7 +65,9 @@ $(document).ready(function() {
                 "_token": "{{ csrf_token() }}",
                 "product_id": product_id,
                 "material_type_id": material_type_id,
-                "material_weight": material_weight
+                "material_weight": material_weight,
+                "diamond_amount": diamond_amount,
+                "diamond_ids": diamond_ids
             },
             dataType: "json",
             success: (result) => {
@@ -122,10 +127,7 @@ $(document).ready(function() {
         });
     });
 });
-
 var replaceMaterialsHtml = function(materials_html) {
     $('#divMaterials').html(materials_html);
 }
 </script>
-
-@endpush

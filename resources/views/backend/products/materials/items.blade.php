@@ -24,7 +24,7 @@
                 @if (isset($arrProductMaterials[$material->id]) && count($arrProductMaterials[$material->id]) > 0)
                     @foreach ($arrProductMaterials[$material->id] as $product_material)
                         <tr>
-                            {{-- <td>{{ $product_material->material_type }}</td> --}}
+                            <!-- {{-- <td>{{ $product_material->material_type }}</td> --}} -->
                             <td>{{ $product_material->material_type_name }}</td>
                             <td>{{ $product_material->material_weight }}</td>
                             <td class='text-center action'>
@@ -42,7 +42,7 @@
                     @endforeach
                 @else
                     <tr>
-                        <td colspan="2" class="text-center">No Materials</td>
+                        <td colspan="3" class="text-center">No Materials</td>
                     </tr>
                 @endif
             </tbody>
