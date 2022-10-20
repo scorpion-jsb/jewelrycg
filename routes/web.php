@@ -39,6 +39,7 @@ use App\Http\Controllers\Backend\CouponsController;
 use App\Http\Controllers\Backend\CourseCategoriesController;
 use App\Http\Controllers\Backend\CourseLessonsController;
 use App\Http\Controllers\Backend\MaterialsController;
+use App\Http\Controllers\Backend\DiamondsController;
 use App\Http\Controllers\Backend\MaterialTypesController;
 use App\Http\Controllers\Backend\MembershipsController;
 use App\Http\Controllers\Backend\ProductMaterialsController;
@@ -236,6 +237,18 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::post('/store', [MaterialsController::class, 'store'])->name('store');
         Route::get('/delete/{material}', [MaterialsController::class, 'destroy'])->name('delete');
         Route::get('/get', [MaterialsController::class, 'get'])->name('get');
+    });
+
+    
+    Route::group(['prefix' => 'diamond', 'as' => 'diamonds.'], function ()
+    {
+        Route::get('/', [DiamondsController::class, 'index'])->name('list');
+        Route::get('/create', [DiamondsController::class, 'create'])->name('create');
+        Route::get('/edit/{diamond}', [DiamondsController::class, 'edit'])->name('edit');
+        Route::put('/update/{diamond}', [DiamondsController::class, 'update'])->name('update');
+        Route::post('/store', [DiamondsController::class, 'store'])->name('store');
+        Route::get('/delete/{diamond}', [DiamondsController::class, 'destroy'])->name('delete');
+        Route::get('/get', [DiamondsController::class, 'get'])->name('get');
     });
     
     Route::group(['prefix' => 'material_type', 'as' => 'material_types.'], function ()

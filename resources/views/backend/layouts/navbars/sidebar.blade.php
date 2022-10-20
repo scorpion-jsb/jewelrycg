@@ -116,6 +116,18 @@
               </div>
 
               <div class="nav-item">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllDiamondMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllDiamondMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllDiamondMenu">
+                  <i class="bi-folder2-open nav-icon"></i>
+                  {{ __("Diamonds") }}
+                </a>
+
+                <div id="navbarVerticalMenuAllDiamondMenu" class="nav-collapse collapse @if($activePage == 'diamonds') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link @if($navName == 'alldiamond') active @endif" href="{{ route('backend.diamonds.list') }}">{{ __("All diamond") }}</a>
+                  <a class="nav-link @if($navName == 'adddiamond') active @endif" href="{{ route('backend.diamonds.create') }}">{{ __("Create diamond") }}</a>
+                </div>
+              </div>
+
+              <div class="nav-item">
                 <a class="nav-link nav-link-main @if($activePage == 'filemanager') collapse @endif" href="{{ route('backend.file.index')}}" data-placement="left">
                   <i class="bi-folder2-open nav-icon"></i>
                   <span class="nav-link-title">File Manager</span>
