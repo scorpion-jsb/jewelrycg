@@ -13,4 +13,8 @@ class Material extends Model
     public function types() {
     	return $this->hasMany(MaterialType::class);
     }
+
+    public function materialtypediamond() {
+        return $this->hasMany('App\Models\MaterialTypeDiamonds');
+    }
 }
