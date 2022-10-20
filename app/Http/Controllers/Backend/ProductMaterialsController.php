@@ -40,6 +40,7 @@ class ProductMaterialsController extends Controller
             $temp['material_id'] = $data['material_id'];
             $temp['material_type_id'] = $data['material_type_id'];
             $temp['diamond_id'] = '';
+            $temp['material_weight'] = $data['material_weight'];
             ProductMaterial::create($temp);
         }
         

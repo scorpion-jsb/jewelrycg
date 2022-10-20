@@ -13,11 +13,19 @@
     <div class="card-body row">
         <table class="table table-thead-bordered table-nowrap table-align-middle card-table table-responsive no-footer">
             <thead>
+                @if($material->id == 1)
+                <tr>
+                    <th>Diamond</th>
+                    <th>Diamond amount</th>
+                    <th class='text-center action'>Action</th>
+                </tr>
+                @else
                 <tr>
                     <th>Material</th>
                     <th>Material Weight</th>
                     <th class='text-center action'>Action</th>
                 </tr>
+                @endif
             </thead>
         
             <tbody>
@@ -26,7 +34,12 @@
                         <tr>
                             <!-- {{-- <td>{{ $product_material->material_type }}</td> --}} -->
                             <td>{{ $product_material->material_type_name }}</td>
+                            
+                            @if($material->id == 1)
+                            <td>{{ $product_material->diamond_amount }}</td>
+                            @else
                             <td>{{ $product_material->material_weight }}</td>
+                            @endif
                             <td class='text-center action'>
                                 <button type="button" class="btn btn-sm btn-info me-1 btn-edit-material"
                                     data-bs-toggle="modal" data-bs-target="#modalEditMaterial{{ $material->id }}"
