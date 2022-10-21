@@ -3,7 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use App\Models\MaterialTypeDiamonds;
 class ProductMaterial extends Model
 {
     protected $fillable = [
@@ -33,8 +33,10 @@ class ProductMaterial extends Model
 
     public static function getMaterialsByProduct($product_id) {
         $result = [];
-
-        $arrMaterials = self::where('product_id', $product_id)
+        
+        $arrMaterials = self::leftjoin('material_type_diamonds', 'diamond_id', '=', 'material_type_diamonds.id')
+            ->select('material_type_diamonds.mm_size', 'product_materials.*')
+            ->where('product_id', $product_id)
             ->get();
 
         foreach ($arrMaterials as $material) {
@@ -50,9 +52,10 @@ class ProductMaterial extends Model
             ->orderBy('id')
             ->get();
         $arrProductMaterials = self::getMaterialsByProduct($product_id);
+        $arrDiamondTypes = MaterialTypeDiamonds::where('material_id','=', '1')->get();
 
         $materials_html = view('backend.products.materials.items', compact(
-            'arrMaterials', 'arrProductMaterials', 'materials'
+            'arrMaterials', 'arrProductMaterials', 'materials', 'arrDiamondTypes'
         ))->render();
 
         return $materials_html;

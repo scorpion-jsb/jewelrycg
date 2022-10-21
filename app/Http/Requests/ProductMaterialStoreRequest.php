@@ -25,10 +25,10 @@ class ProductMaterialStoreRequest extends FormRequest
     {
         return [
             'product_id'        => 'required|integer',
-            'material_type_id'  => 'required|integer',
+            'material_type_id'  => 'required|string',
             'material_weight'   => 'string|max:100',
-            'diamond_id'   => 'nullable',
-            'diamond_amount'   => 'nullable|string',
+            'diamond_ids'   => 'nullable',
+            'diamond_amount'   => 'nullable',
         ];
     }
 }
