@@ -1,7 +1,7 @@
 <!-- Add Material Modal -->
 <style>
-    .select2-dropdown {
-        z-index: 9999;
+    .select2-dropdown{
+        z-index: 99999;
     }
 </style>
 <div class="modal fade" id="modalAddMaterial{{ $material->id }}" tabindex="-1" aria-labelledby="momdalAddMaterialLabel"
@@ -27,8 +27,8 @@
 
                 <div class="mb-3">
                     <label for="DiamondSize" class="col-form-label">Diamond Size:</label>
-                    <select id="DiamondSize" name="DiamondSize" multiple class="select2-multiple form-control">
-                        @if(isset($arrDiamondTypes))
+                    <select id="DiamondSize" name="DiamondSize" value="" class="form-control select2" multiple="multiple" style="width: 100%;">
+                        @if(isset($arrDiamondTypes) && count($arrDiamondTypes) > 0)
                             @foreach ($arrDiamondTypes as $diamondType)
                                 <option value="{{ $diamondType->id }}">{{ $diamondType->mm_size }} mm</option>
                             @endforeach
@@ -36,9 +36,7 @@
                     </select>
                 </div>
 
-                <div class="mb-3">
-                    <label for="diamondAmount" class="col-form-label">Diamond amount:</label>
-                    <input type="text" class="form-control" id="diamondAmount">
+                <div class="mb-3" id="sizeSetValues">
                 </div>
             </div>
             @else
@@ -59,7 +57,6 @@
                 </div>
             </div>
             @endif
-
             <!-- Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
@@ -68,19 +65,15 @@
         </div>
     </div>
 </div>
-
-
-@section('js_content')
-<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
-
 <script>
+    
     $(document).ready(function() {
-        // Select2 Multiple
-        $('.select2-multiple').select2({
-            width: '100%',
-            placeholder: "Select",
-            allowClear: true
-        });
+        $('#DiamondSize').select2({
+
+            tags: true,
+            maximumSelectionLength: 100,
+            tokenSeparators: [','],
+            placeholder: "Select or type keywords",
+        })
     });
 </script>
-@endsection

@@ -46,6 +46,9 @@
                                     data-id="{{ $product_material->id }}"
                                     data-material-type-id="{{ $product_material->material_type_id }}"
                                     data-material-weight="{{ $product_material->material_weight }}"
+                                    data-diamond-size="{{ $product_material->diamond_id }}"
+                                    data-diamond-sizename="{{ $product_material->mm_size }}"
+                                    data-diamond-amount="{{ $product_material->diamond_amount }}"
                                 >Edit</button>
                                 <button type="button" class="btn btn-sm btn-danger btn-delete-material"
                                     data-id="{{ $product_material->id }}"

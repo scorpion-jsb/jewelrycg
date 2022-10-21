@@ -9,7 +9,9 @@ $materials = ProductMaterial::where('product_id', $product->id)
     @include('backend.products.materials.items')
 </div>
 
+@push('material_scripts')
 <script>
+
 var product_id = {{ $product->id }};
 var cur_product_material_id = 0;
 
@@ -42,13 +44,39 @@ $(document).ready(function() {
         }
     });
 
+    $('body').on('click', '.btn-add-material-modal', function() {
+        var modal = $(this).data('bs-target');
+        $(modal + ' #selMaterialType').val('');
+        $(modal + ' #txtMaterialWeight').val('');
+    });
+
+    
+    $('#DiamondSize').on('select2:select', function (e) {
+        var data = e.params.data;
+        console.log(data);
+        var tempelement =   '<div class="row">' + 
+                                '<div class="col-4">'+
+                                    '<label for="diamondSizeId" class="col-form-label">Value</label>'+
+                                    '<input type="hidden" class="form-control" name="diamondId[]" value="' + data.id + '">'+
+                                    '<h6 id="diamondSizeId">' + data.text + '</h6>'+
+                                '</div>'+
+                                '<div class="col-8">'+
+                                    '<label for="diamondAmount" class="col-form-label">Amount</label>'+
+                                    '<input type="text" class="form-control" name="diamondAmount[]">'+
+                                '</div>'+
+                           ' </div>';
+        $('#sizeSetValues').append(tempelement)
+    });
+
     $('body').on('click', '.btn-add-material', function() {
         var material_id = $(this).data('material-id');
         var material_type_id = $('#modalAddMaterial' + material_id +  ' #selMaterialType').val();
         var material_weight = $('#modalAddMaterial' + material_id + ' #txtMaterialWeight').val();
         if (material_id == 1) {
             var diamond_ids = $('#DiamondSize').val();
-            var diamond_amount = $('#modalAddMaterial' + material_id + ' #diamondAmount').val();
+            var diamond_amount = $("input[name^='diamondAmount']").map(function (idx, ele) {
+                return $(ele).val();
+            }).get();
         } else {
             var diamond_amount = '';
             var diamond_ids = [];
@@ -56,7 +84,6 @@ $(document).ready(function() {
         $('#modalAddMaterial' + material_id + ' #txtMaterialWeight').val('');
         $('#modalAddMaterial' + material_id +  ' #selMaterialType').val('')
         $('#modalAddMaterial' + material_id + ' #diamondAmount').val('')
-
 
         $.ajax({
             type: 'POST',
@@ -90,16 +117,22 @@ $(document).ready(function() {
         cur_product_material_id = $(this).data('id');
         var material_type_id = $(this).data('material-type-id');
         var material_weight = $(this).data('material-weight');
+        var diamond_size = $(this).data('diamond-size');
+        var diamond_sizename = $(this).data('diamond-sizename');
+        var diamond_amount = $(this).data('diamond-amount');
 
         $(modal + ' #selMaterialType').val(material_type_id);
         $(modal + ' #txtMaterialWeight').val(material_weight);
+        $(modal + ' #editDiamondSizeId').val(diamond_size);
+        $(modal + ' #editDiamondSizeName').html(diamond_sizename+"mm");
+        $(modal + ' #editDiamondAmount').val(diamond_amount);
     });
 
     $('body').on('click', '.btn-update-material', function() {
         var material_id = $(this).data('material-id');
         var material_type_id = $('#modalEditMaterial' + material_id + ' #selMaterialType').val();
         var material_weight = $('#modalEditMaterial' + material_id + ' #txtMaterialWeight').val();
-
+        var diamond_amount = $('#modalEditMaterial' + material_id + ' #editDiamondAmount').val();
         $.ajax({
             type: 'POST',
             url: "{{ route('backend.products.materials.update') }}",
@@ -109,7 +142,8 @@ $(document).ready(function() {
                 "id": cur_product_material_id,
                 "product_id": product_id,
                 "material_type_id": material_type_id,
-                "material_weight": material_weight
+                "material_weight": material_weight,
+                "diamond_amount": diamond_amount,
             },
             dataType: "json",
             success: (result) => {
@@ -127,7 +161,10 @@ $(document).ready(function() {
         });
     });
 });
+
 var replaceMaterialsHtml = function(materials_html) {
     $('#divMaterials').html(materials_html);
 }
 </script>
+
+@endpush

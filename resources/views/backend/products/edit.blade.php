@@ -7,7 +7,6 @@
         list-style-type: none;
     }
 </style>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/css/select2.min.css" rel="stylesheet"/>
 
 @php
 $arrStepTypes = array(
@@ -188,7 +187,7 @@ $arrSelected = explode(',', $product->steps);
                         </div>
                     </div>
                 </div>
-                
+
                 @include('backend.products.materials.list')
                 
                 <div class="card col-md-12 mb-6">

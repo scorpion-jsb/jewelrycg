@@ -9,6 +9,36 @@
             </div>
 
             <!-- Body -->
+            @if ($material->id == 1)
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="selMaterialType" class="col-form-label">Diamond Types:</label>
+                    <select id="selMaterialType" class="form-control">
+                        @foreach ($material->types as $material_type)
+                            <option value="{{ $material_type->id }}">{{ $material_type->type }}</option>
+                        @endforeach
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <div class="row">  
+                        <div class="col-4">
+                            <label for="editDiamondSizeName" class="col-form-label">Value</label>
+                            <h6 id="editDiamondSizeName"></h6>
+                        </div>
+                        <div class="col-8">
+                            <label for="editDiamondAmount" class="col-form-label">Amount</label>
+                            <input type="text" class="form-control" id="editDiamondAmount">
+                            <input type="hidden" class="form-control" id="editDiamondSizeId">
+                        </div>
+                     </div>
+                </div>
+
+                <div class="mb-3" id="sizeSetValues">
+                </div>
+            </div>
+            @else
+            
             <div class="modal-body">
                 <div class="mb-3">
                     <label for="selMaterialType" class="col-form-label">Material Types:</label>
@@ -24,6 +54,7 @@
                     <input type="text" class="form-control" id="txtMaterialWeight">
                 </div>
             </div>
+            @endif
 
             <!-- Footer -->
             <div class="modal-footer">
