@@ -22,8 +22,29 @@ class ProductMaterialsController extends Controller
         $material_type_id = $data['material_type_id'];
         $material_type = MaterialType::find($material_type_id);
         $data['material_id'] = $material_type->material_id;
+        if($data['material_id'] == 1) {
+            if(isset($data['diamond_ids'])) {
+                foreach($data['diamond_ids'] as $item){
+                    $temp['product_id'] = $data['product_id'];
+                    $temp['material_id'] = $data['material_id'];
+                    $temp['material_type_id'] = $data['material_type_id'];
+                    $temp['diamond_id'] = $item;
+                    $temp['is_diamond'] = 1;
+                    $temp['diamond_amount'] = $data['diamond_amount'];
+                    ProductMaterial::create($temp);
+                }
+            }
+        } else {
+            
+            $temp['product_id'] = $data['product_id'];
+            $temp['material_id'] = $data['material_id'];
+            $temp['material_type_id'] = $data['material_type_id'];
+            $temp['diamond_id'] = '';
+            $temp['material_weight'] = $data['material_weight'];
+            ProductMaterial::create($temp);
+        }
+        
 
-        ProductMaterial::create($data);
         $product_id = $data['product_id'];
         $materials_html = ProductMaterial::getMaterialsHtml($product_id);
 
