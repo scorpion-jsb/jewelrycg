@@ -3,9 +3,6 @@
     .select2-dropdown{
         z-index: 99999;
     }
-    .modal-dialog {
-        max-width: 700px !important;
-    }
 </style>
 <div class="modal fade" id="modalAddMaterial{{ $material->id }}" data-material_id="{{ $material->id }}" tabindex="-1" aria-labelledby="momdalAddMaterialLabel"
     aria-hidden="true">
