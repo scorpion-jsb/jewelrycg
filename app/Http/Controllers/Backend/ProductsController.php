@@ -17,6 +17,7 @@ use App\Models\ProductsTaxOption;
 use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
 use App\Models\MaterialTypeDiamonds;
+use App\Models\MaterialType;
 use App\Models\Step;
 use App\Models\StepGroup;
 use Illuminate\Support\Facades\Auth;
@@ -245,7 +246,6 @@ class ProductsController extends Controller
         $data['product_attributes'] = $attributes;
         $data['product_attribute_values'] = $values;
         $data['category'] = $req->get('category');
-
         if($req->slug == "")
         {
             $data['slug'] = str_replace(" ","-", strtolower($req->name)).$sep;
@@ -253,6 +253,62 @@ class ProductsController extends Controller
         $product = Product::findOrFail($product);
         $product->update($data);
         ProductTagsRelationship::where('id_product', $product->id)->delete();
+
+        // product material 
+        $material_type_id = $data['material_type_id'];
+        $product_material_id = $data['product_material_id'];
+        if(isset($data['deleted_material_ids'])) {
+            foreach($data['deleted_material_ids'] as $deleted_item){
+                $material = ProductMaterial::findOrFail($deleted_item);
+                $material->delete();
+            }
+        }
+        if(isset($data['diamond_id'])) {
+            $i = 0;
+            foreach($data['diamond_id'] as $item){
+                if($data['material_id'][$i] == 1) {
+                    if(!$product_material_id[$i]) {
+                        $temp['product_id'] = $product->id;
+                        $temp['material_id'] = $data['material_id'][$i];
+                        $temp['material_type_id'] = $data['material_type_id'][$i];
+                        $temp['diamond_id'] = $item;
+                        $temp['is_diamond'] = 1;
+                        $temp['diamond_amount'] = $data['diamond_amount'][$i];            
+                        $temp['material_weight'] = '';
+                        ProductMaterial::create($temp);
+                    } else {
+                        $product_material = ProductMaterial::find($product_material_id[$i]);
+                        $temp['product_id'] = $product->id;
+                        $temp['material_id'] = $data['material_id'][$i];
+                        $temp['material_type_id'] = $data['material_type_id'][$i];
+                        $temp['diamond_id'] = $item;
+                        $temp['is_diamond'] = 1;
+                        $temp['diamond_amount'] = $data['diamond_amount'][$i];            
+                        $temp['material_weight'] = '';
+                        $product_material->update($temp);
+                    }
+                } else {        
+                    if(!$product_material_id[$i]) {            
+                        $temp['product_id'] = $product->id;
+                        $temp['material_id'] = $data['material_id'][$i];
+                        $temp['material_type_id'] = $data['material_type_id'][$i];
+                        $temp['diamond_id'] = '';
+                        $temp['material_weight'] = $data['material_weight'][$i];
+                        ProductMaterial::create($temp);
+                    } else {
+                        $product_material = ProductMaterial::find($product_material_id[$i]);            
+                        $temp['product_id'] = $product->id;
+                        $temp['material_id'] = $data['material_id'][$i];
+                        $temp['material_type_id'] = $data['material_type_id'][$i];
+                        $temp['diamond_id'] = '';
+                        $temp['material_weight'] = $data['material_weight'][$i];
+                        $product_material->update($temp);
+                    }
+                }
+                $i++;
+            }
+        }
+
 
         // product variant
 

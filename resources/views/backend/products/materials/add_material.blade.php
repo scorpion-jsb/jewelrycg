@@ -3,8 +3,11 @@
     .select2-dropdown{
         z-index: 99999;
     }
+    .modal-dialog {
+        max-width: 700px !important;
+    }
 </style>
-<div class="modal fade" id="modalAddMaterial{{ $material->id }}" tabindex="-1" aria-labelledby="momdalAddMaterialLabel"
+<div class="modal fade" id="modalAddMaterial{{ $material->id }}" data-material_id="{{ $material->id }}" tabindex="-1" aria-labelledby="momdalAddMaterialLabel"
     aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -60,7 +63,7 @@
             <!-- Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-                <button type="button" class="btn btn-primary btn-add-material" data-material-id={{ $material->id }}>Add</button>
+                <button type="button" class="btn btn-primary btn-add-material" data-material-id="{{ $material->id }}">Add</button>
             </div>
         </div>
     </div>
@@ -75,5 +78,14 @@
             tokenSeparators: [','],
             placeholder: "Select or type keywords",
         })
+        
+        
+        var diamond_ids = $("input[name^='diamond_id']").map(function (idx, ele) {
+                return $(ele).val();
+            }).get();
+        for (let index = 0; index < diamond_ids.length; index++) {
+            const element = diamond_ids[index];
+            $("#DiamondSize option[value='"+element+"']").remove();
+        }
     });
 </script>

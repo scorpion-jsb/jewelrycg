@@ -18,33 +18,37 @@ var cur_product_material_id = 0;
 $(document).ready(function() {
     $('body').on('click', '.btn-delete-material', function() {
         isButtonClicked = true;
-        var material_id = $(this).data('id');
-
+        var product_material_id = $(this).data('id');
+        var material_id = $(this).data('material_id');
+        var deletedItem = '<input type="hidden" class="form-control" id="deleted_material_ids[]" name="deleted_material_ids[]" value="'+product_material_id+'" />'
+        $(".meterial_list_"+material_id).append(deletedItem);
         if (confirm('Do you want to delete this material really?')) {
-            $.ajax({
-                type: 'DELETE',
-                url: "{{ route('backend.products.materials.delete') }}",
-                data: {
-                    "_token": "{{ csrf_token() }}",
-                    "material_id": material_id,
-                },
-                dataType: "json",
-                success: (result) => {
-                    var materials_html = result.materials_html;
-                    replaceMaterialsHtml(materials_html);
-                },
-                error: (resp) => {
-                    var result = resp.responseJSON;
-                    if (result.errors && result.message) {
-                        alert(result.message);
-                        return;
-                    }
-                }
-            });
+            // $.ajax({
+            //     type: 'DELETE',
+            //     url: "{{ route('backend.products.materials.delete') }}",
+            //     data: {
+            //         "_token": "{{ csrf_token() }}",
+            //         "material_id": material_id,
+            //     },
+            //     dataType: "json",
+            //     success: (result) => {
+            //         var materials_html = result.materials_html;
+            //         replaceMaterialsHtml(materials_html);
+            //     },
+            //     error: (resp) => {
+            //         var result = resp.responseJSON;
+            //         if (result.errors && result.message) {
+            //             alert(result.message);
+            //             return;
+            //         }
+            //     }
+            // });
+            $(this).parent().parent('tr').remove();
         }
     });
 
     $('body').on('click', '.btn-add-material-modal', function() {
+        var material_id = $(this).data('material_id');
         var modal = $(this).data('bs-target');
         $(modal + ' #selMaterialType').val('');
         $(modal + ' #txtMaterialWeight').val('');
@@ -52,13 +56,12 @@ $(document).ready(function() {
 
     
     $('#DiamondSize').on('select2:select', function (e) {
-        var data = e.params.data;
-        console.log(data);
-        var tempelement =   '<div class="row">' + 
+        let data = e.params.data;
+        let tempelement =   '<div class="row" id="add_diamond_'+data.id+'">' + 
                                 '<div class="col-4">'+
                                     '<label for="diamondSizeId" class="col-form-label">Value</label>'+
                                     '<input type="hidden" class="form-control" name="diamondId[]" value="' + data.id + '">'+
-                                    '<h6 id="diamondSizeId">' + data.text + '</h6>'+
+                                    '<h6 id="diamondSizeId" name="diamond_sizename[]">' + data.text + '</h6>'+
                                 '</div>'+
                                 '<div class="col-8">'+
                                     '<label for="diamondAmount" class="col-form-label">Amount</label>'+
@@ -68,48 +71,127 @@ $(document).ready(function() {
         $('#sizeSetValues').append(tempelement)
     });
 
+    $('#DiamondSize').on('select2:unselect', function(e) {
+        let data = e.params.data;
+        $("#add_diamond_"+ data.id+"").remove();
+    })
+
     $('body').on('click', '.btn-add-material', function() {
         var material_id = $(this).data('material-id');
         var material_type_id = $('#modalAddMaterial' + material_id +  ' #selMaterialType').val();
         var material_weight = $('#modalAddMaterial' + material_id + ' #txtMaterialWeight').val();
+        var material_typename = $("#modalAddMaterial" + material_id + " #selMaterialType option:selected" ).text();
         if (material_id == 1) {
             var diamond_ids = $('#DiamondSize').val();
-            var diamond_amount = $("input[name^='diamondAmount']").map(function (idx, ele) {
+            var diamond_amounts = $("input[name^='diamondAmount']").map(function (idx, ele) {
                 return $(ele).val();
             }).get();
+            var diamond_sizenames = $("h6[name^='diamond_sizename']").map(function (idx, ele) {
+                return $(ele).html();
+            }).get();
         } else {
-            var diamond_amount = '';
+            var diamond_amounts = '';
             var diamond_ids = [];
         }
         $('#modalAddMaterial' + material_id + ' #txtMaterialWeight').val('');
         $('#modalAddMaterial' + material_id +  ' #selMaterialType').val('')
         $('#modalAddMaterial' + material_id + ' #diamondAmount').val('')
 
-        $.ajax({
-            type: 'POST',
-            url: "{{ route('backend.products.materials.store') }}",
-            data: {
-                "_token": "{{ csrf_token() }}",
-                "product_id": product_id,
-                "material_type_id": material_type_id,
-                "material_weight": material_weight,
-                "diamond_amount": diamond_amount,
-                "diamond_ids": diamond_ids
-            },
-            dataType: "json",
-            success: (result) => {
-                $('#modalAddMaterial' + material_id).modal('hide');
-                var materials_html = result.materials_html;
-                replaceMaterialsHtml(materials_html);
-            },
-            error: (resp) => {
-                var result = resp.responseJSON;
-                if (result.errors && result.message) {
-                    alert(result.message);
-                    return;
-                }
+        var trItemdata = '';
+        if (material_id == 1) {
+            for (let index = 0; index < diamond_amounts.length; index++) {
+                let diamond_amount = diamond_amounts[index];
+                let diamond_sizename = diamond_sizenames[index];
+                let diamond_id = diamond_ids[index];
+                trItemdata += '<tr>'+
+                            '<td>' + material_typename + '</td>'+
+                            '<input type="hidden" class="form-control" id="product_material_id" name="product_material_id[]" value="" />';
+                            if(material_id == 1) {
+                                trItemdata += '<td>'+diamond_sizename+'</td>'+
+                                '<td><input type="number" name="diamond_amount[]" class="form-control" value="'+diamond_amount+'" /></td>'+
+                                '<input type="hidden" name="material_weight[]" class="form-control" value="" />';
+                            } else {
+                                trItemdata += '<input type="hidden" name="diamond_amount[]" class="form-control" value="" />'+
+                                '<td><input type="number" name="material_weight[]" class="form-control" value="'+material_weight+'" /></td>';
+                            }
+                            trItemdata += '<td class="text-center action">'+
+                                '<input type="hidden" class="form-control" id="diamond_id" name="diamond_id[]" value="'+diamond_id+'" />'+
+                                '<input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="'+material_type_id+'" />'+
+                                '<input type="hidden" class="form-control" id="material_id" name="material_id[]" value="'+material_id+'" />'+
+                                '<input type="hidden" class="form-control" id="is_diamond" name="is_diamond[]" value="' + (material_id == 1 ? 1 : 0) + '" />'+
+                                '<button type="button" class="btn btn-sm btn-danger btn-delete-material" data-id="" >Delete</button>'+
+                            '</td>'+
+                        '</tr>';
             }
-        });
+        } else {
+            trItemdata += '<tr>'+
+                        '<td>' + material_typename + '</td>'+
+                        '<input type="hidden" class="form-control" id="product_material_id" name="product_material_id[]" value="" />';
+                        if(material_id == 1) {
+                            trItemdata += '<td>'+diamond_sizename+'</td>'+
+                            '<td><input type="number" name="diamond_amount[]" class="form-control" value="'+diamond_amount+'" /></td>'+
+                            '<input type="hidden" name="material_weight[]" class="form-control" value="" />';
+                        } else {
+                            trItemdata += '<input type="hidden" name="diamond_amount[]" class="form-control" value="" />'+
+                            '<td><input type="number" name="material_weight[]" class="form-control" value="'+material_weight+'" /></td>';
+                        }
+                        trItemdata += '<td class="text-center action">'+
+                            '<input type="hidden" class="form-control" id="diamond_id" name="diamond_id[]" value="'+diamond_id+'" />'+
+                            '<input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="'+material_type_id+'" />'+
+                            '<input type="hidden" class="form-control" id="material_id" name="material_id[]" value="'+material_id+'" />'+
+                            '<input type="hidden" class="form-control" id="is_diamond" name="is_diamond[]" value="' + (material_id == 1 ? 1 : 0) + '" />'+
+                            '<button type="button" class="btn btn-sm btn-danger btn-delete-material" data-id="" >Delete</button>'+
+                        '</td>'+
+                    '</tr>';
+        }
+        if(material_id == 1) {
+            if($('.none-material-message'+material_id).length){
+                $('.none-material-message'+material_id).remove()
+            }
+            $(".meterial_list_"+material_id).append(trItemdata);
+            $('#DiamondSize').val(null).trigger('change');
+            $('#modalAddMaterial' + material_id).modal('hide');        
+            $('#sizeSetValues').html('');
+        } else {
+            if($('.none-material-message'+material_id).length){
+                $('.none-material-message'+material_id).remove()
+            }
+            $(".meterial_list_"+material_id).append(trItemdata);
+            $('#modalAddMaterial' + material_id).modal('hide');
+        }
+        
+        var diamond_ids = $("input[name^='diamond_id']").map(function (idx, ele) {
+                return $(ele).val();
+            }).get();
+        for (let index = 0; index < diamond_ids.length; index++) {
+            const element = diamond_ids[index];
+            $("#DiamondSize option[value='"+element+"']").remove();
+        }
+        // $.ajax({
+        //     type: 'POST',
+        //     url: "{{ route('backend.products.materials.store') }}",
+        //     data: {
+        //         "_token": "{{ csrf_token() }}",
+        //         "product_id": product_id,
+        //         "material_type_id": material_type_id,
+        //         "material_weight": material_weight,
+        //         "diamond_amount": diamond_amount,
+        //         "diamond_ids": diamond_ids
+        //     },
+        //     dataType: "json",
+        //     success: (result) => {
+        //         $('#modalAddMaterial' + material_id).modal('hide');
+        //         var materials_html = result.materials_html;
+        //         replaceMaterialsHtml(materials_html);
+        //     },
+        //     error: (resp) => {
+        //         var result = resp.responseJSON;
+        //         if (result.errors && result.message) {
+        //             alert(result.message);
+        //             return;
+        //         }
+        //     }
+        // });
     });
 
     $('body').on('click', '.btn-edit-material', function() {
