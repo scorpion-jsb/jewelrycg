@@ -292,16 +292,20 @@ class ProductsController extends Controller
                         $temp['product_id'] = $product->id;
                         $temp['material_id'] = $data['material_id'][$i];
                         $temp['material_type_id'] = $data['material_type_id'][$i];
-                        $temp['diamond_id'] = '';
+                        $temp['diamond_id'] = 0;
+                        $temp['is_diamond'] = 0;
                         $temp['material_weight'] = $data['material_weight'][$i];
+                        $temp['diamond_amount'] = '';
                         ProductMaterial::create($temp);
                     } else {
                         $product_material = ProductMaterial::find($product_material_id[$i]);            
                         $temp['product_id'] = $product->id;
                         $temp['material_id'] = $data['material_id'][$i];
                         $temp['material_type_id'] = $data['material_type_id'][$i];
-                        $temp['diamond_id'] = '';
+                        $temp['diamond_id'] = 0;
+                        $temp['is_diamond'] = 0;
                         $temp['material_weight'] = $data['material_weight'][$i];
+                        $temp['diamond_amount'] = '';
                         $product_material->update($temp);
                     }
                 }
