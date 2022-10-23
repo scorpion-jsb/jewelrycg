@@ -68,21 +68,14 @@
 <script>
     
     $(document).ready(function() {
-        $('#DiamondSize').select2({
-
-            tags: true,
-            maximumSelectionLength: 100,
-            tokenSeparators: [','],
-            placeholder: "Select or type keywords",
-        })
         
         
-        var diamond_ids = $("input[name^='diamond_id']").map(function (idx, ele) {
-                return $(ele).val();
-            }).get();
-        for (let index = 0; index < diamond_ids.length; index++) {
-            const element = diamond_ids[index];
-            $("#DiamondSize option[value='"+element+"']").remove();
-        }
+        // var diamond_ids = $("input[name^='diamond_id']").map(function (idx, ele) {
+        //         return $(ele).val();
+        //     }).get();
+        // for (let index = 0; index < diamond_ids.length; index++) {
+        //     const element = diamond_ids[index];
+        //     $("#DiamondSize option[value='"+element+"']").remove();
+        // }
     });
 </script>

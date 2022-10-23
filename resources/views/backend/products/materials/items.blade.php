@@ -4,7 +4,7 @@
     <div class="card-header">
         <h4 class="card-header-title mb-0">{{ $material->name }}</h4>
 
-        <button type="button" class="btn btn-sm btn-primary" class="btn-add-material-modal"
+        <button type="button" class="btn btn-sm btn-primary btn-add-material-modal"
             data-bs-toggle="modal" data-bs-target="#modalAddMaterial{{ $material->id }}" data-material_id="{{ $material->id }}"
         >Add {{ $material->name}}</button>
     </div>
@@ -49,6 +49,8 @@
                                 <input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="{{ $product_material->material_type_id }}" />
                                 <input type="hidden" class="form-control" id="material_id" name="material_id[]" value="{{ $material->id }}" />
                                 <input type="hidden" class="form-control" id="is_diamond" name="is_diamond[]" value="{{ $material->id == 1 ? 1: 0 }}" />
+                                <input type="hidden" class="form-control" name="diamond_mmsize[]" value="{{ $product_material->mm_size }}" />
+                                <input type="hidden" class="form-control" name="material_typename[]" value="{{ $product_material->material_type_name }}" />
                                 
                                 <!-- <button type="button" class="btn btn-sm btn-info me-1 btn-edit-material"
                                     data-bs-toggle="modal" data-bs-target="#modalEditMaterial{{ $material->id }}"
