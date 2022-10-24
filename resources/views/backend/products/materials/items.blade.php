@@ -32,7 +32,7 @@
             <tbody class="meterial_list_{{$material->id}}">
                 @if (isset($arrProductMaterials[$material->id]) && count($arrProductMaterials[$material->id]) > 0)
                     @foreach ($arrProductMaterials[$material->id] as $product_material)
-                        <tr>
+                        <tr class="pm{{$product_material->diamond_id}}_pmt{{$product_material->material_type_id}}_m{{$material->id}}">
                             <!-- {{-- <td>{{ $product_material->material_type }}</td> --}} -->
                             <td>{{ $product_material->material_type_name }}</td>
                             <input type="hidden" class="form-control" id="product_material_id" name="product_material_id[]" value="{{ $product_material->id }}" />
@@ -40,27 +40,17 @@
                             <td>{{ $product_material->mm_size }} mm</td>
                             <td><input type="number" name="diamond_amount[]" class="form-control" value="{{ $product_material->diamond_amount }}" /></td>
                             <input type="hidden" name="material_weight[]" class="form-control" value="{{ $product_material->material_weight }}" />
+                            <input type="hidden" class="form-control" id="diamond_id" name="diamond_id[]" value="{{ $product_material->diamond_id }}" />
+                            <input type="hidden" class="form-control" name="diamond_mmsize[]" value="{{ $product_material->mm_size }} mm" />
+                            <input type="hidden" class="form-control" name="material_typename[]" value="{{ $product_material->material_type_name }}" />
+                            <input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="{{ $product_material->material_type_id }}" />
                             @else
                             <input type="hidden" name="diamond_amount[]" class="form-control" value="{{ $product_material->diamond_amount }}" />
                             <td><input type="number" name="material_weight[]" class="form-control" value="{{ $product_material->material_weight }}" /></td>
                             @endif
                             <td class='text-center action'>
-                                <input type="hidden" class="form-control" id="diamond_id" name="diamond_id[]" value="{{ $product_material->diamond_id }}" />
-                                <input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="{{ $product_material->material_type_id }}" />
                                 <input type="hidden" class="form-control" id="material_id" name="material_id[]" value="{{ $material->id }}" />
                                 <input type="hidden" class="form-control" id="is_diamond" name="is_diamond[]" value="{{ $material->id == 1 ? 1: 0 }}" />
-                                <input type="hidden" class="form-control" name="diamond_mmsize[]" value="{{ $product_material->mm_size }} mm" />
-                                <input type="hidden" class="form-control" name="material_typename[]" value="{{ $product_material->material_type_name }}" />
-                                
-                                <!-- <button type="button" class="btn btn-sm btn-info me-1 btn-edit-material"
-                                    data-bs-toggle="modal" data-bs-target="#modalEditMaterial{{ $material->id }}"
-                                    data-id="{{ $product_material->id }}"
-                                    data-material-type-id="{{ $product_material->material_type_id }}"
-                                    data-material-weight="{{ $product_material->material_weight }}"
-                                    data-diamond-size="{{ $product_material->diamond_id }}"
-                                    data-diamond-sizename="{{ $product_material->mm_size }}"
-                                    data-diamond-amount="{{ $product_material->diamond_amount }}"
-                                >Edit</button> -->
                                 <button type="button" class="btn btn-sm btn-danger btn-delete-material"
                                     data-id="{{ $product_material->id }}" data-material_id="{{$material->id}}"
                                 >Delete</button>
