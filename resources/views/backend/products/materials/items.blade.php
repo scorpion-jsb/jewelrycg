@@ -43,12 +43,12 @@
                             <input type="hidden" class="form-control" id="diamond_id" name="diamond_id[]" value="{{ $product_material->diamond_id }}" />
                             <input type="hidden" class="form-control" name="diamond_mmsize[]" value="{{ $product_material->mm_size }} mm" />
                             <input type="hidden" class="form-control" name="material_typename[]" value="{{ $product_material->material_type_name }}" />
-                            <input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="{{ $product_material->material_type_id }}" />
                             @else
                             <input type="hidden" name="diamond_amount[]" class="form-control" value="{{ $product_material->diamond_amount }}" />
                             <td><input type="number" name="material_weight[]" class="form-control" value="{{ $product_material->material_weight }}" /></td>
                             @endif
                             <td class='text-center action'>
+                                <input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="{{ $product_material->material_type_id }}" />
                                 <input type="hidden" class="form-control" id="material_id" name="material_id[]" value="{{ $material->id }}" />
                                 <input type="hidden" class="form-control" id="is_diamond" name="is_diamond[]" value="{{ $material->id == 1 ? 1: 0 }}" />
                                 <button type="button" class="btn btn-sm btn-danger btn-delete-material"
