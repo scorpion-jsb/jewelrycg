@@ -49,7 +49,7 @@
                                 <input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="{{ $product_material->material_type_id }}" />
                                 <input type="hidden" class="form-control" id="material_id" name="material_id[]" value="{{ $material->id }}" />
                                 <input type="hidden" class="form-control" id="is_diamond" name="is_diamond[]" value="{{ $material->id == 1 ? 1: 0 }}" />
-                                <input type="hidden" class="form-control" name="diamond_mmsize[]" value="{{ $product_material->mm_size }}" />
+                                <input type="hidden" class="form-control" name="diamond_mmsize[]" value="{{ $product_material->mm_size }} mm" />
                                 <input type="hidden" class="form-control" name="material_typename[]" value="{{ $product_material->material_type_name }}" />
                                 
                                 <!-- <button type="button" class="btn btn-sm btn-info me-1 btn-edit-material"

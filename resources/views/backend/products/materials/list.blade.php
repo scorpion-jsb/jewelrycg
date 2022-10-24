@@ -91,7 +91,7 @@ $(document).ready(function() {
                                             '<input type="hidden" class="form-control" name="diamondId[]" value="' + diamond_id + '">'+
                                             '<input type="hidden" class="form-control" name="product_materialid[]" value="' + product_material_id + '">'+
                                             '<input type="hidden" class="form-control" name="diamond_mmsize[]" value="' + diamond_mmsize + '">'+
-                                            '<h6 id="diamondSizeId" name="diamond_sizename[]">' + diamond_mmsize + ' mm</h6>'+
+                                            '<h6 id="diamondSizeId" name="diamond_sizename[]">' + diamond_mmsize + '</h6>'+
                                         '</div>'+
                                         '<div class="col-8">'+
                                             '<label for="diamondAmount" class="col-form-label">Amount</label>'+
