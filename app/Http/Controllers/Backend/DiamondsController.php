@@ -18,8 +18,10 @@ class DiamondsController extends Controller
     public function index()
     {
         // $diamonds = MaterialTypeDiamonds::orderBy('id', 'DESC')->get();
-        $diamonds = MaterialTypeDiamonds::with(['material'])->orderBy('id', 'DESC')->get();
-
+        $diamonds = MaterialTypeDiamonds::with(['material'])
+                ->leftjoin('material_types', 'material_types.id', '=', 'material_type_id')
+                ->select('material_types.type', 'material_type_diamonds.*')
+                ->orderBy('id', 'DESC')->get();
         return view('backend.diamonds.list', compact(
             'diamonds'
         ));

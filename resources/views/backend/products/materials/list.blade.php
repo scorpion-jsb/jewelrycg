@@ -7,6 +7,7 @@ $materials = ProductMaterial::where('product_id', $product->id)
 
 <div id="divMaterials">
     @include('backend.products.materials.items')
+
 </div>
 
 @push('material_scripts')
@@ -154,6 +155,17 @@ $(document).ready(function() {
     $('#selMaterialType').on('change', function(e){
         console.log(e.target.value)
         let newValue = e.target.value;
+
+
+        let diamond_sizes = [];
+        let total_diamond_sizes = {!! json_encode($arrDiamondTypes) !!};
+        let optiondata = '';
+        total_diamond_sizes.map(function(item) {
+            if(item['material_type_id'] == newValue) {
+                optiondata += '<option value="'+item['id']+'">'+item['mm_size']+' mm</option>';
+            }
+        })
+        $('#DiamondSize').html(optiondata);
 
         let tempelement = '';
         let selectedValues = [];
