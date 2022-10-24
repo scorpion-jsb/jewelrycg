@@ -39,6 +39,7 @@
                         </th>
                         <th>ID</th>
                         <th>Name</th>
+                        <th>Diamond Type</th>
                         <th>mm Size</th>
                         <th>Carat Weight</th>
                         <th></th>
@@ -55,6 +56,7 @@
                                 </td>
                                 <td>{{ $diamond->id }}</td>
                                 <td>{{ $diamond->material->name }}</td>
+                                <td>{{ $diamond->type }}</td>
                                 <td>{{ $diamond->mm_size }}</td>
                                 <td>{{ $diamond->carat_weight }}</td>
                                 <td>

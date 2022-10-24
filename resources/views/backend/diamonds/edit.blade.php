@@ -30,7 +30,7 @@
                         <label for="selectMaterialType" class="w-100 mb-2">Material Type:</label>
                         <select name="material_type_id" id="selectMaterialType" class="form-control">
                             @foreach ($material_types as $material_type)
-                                <option value="{{$material_type->id}}" {{$material_type->id == $diamond->id ? "selected": ""}}>{{$material_type->type}}</option>
+                                <option value="{{$material_type->id}}" {{$material_type->id == $diamond->material_type_id ? "selected": ""}}>{{$material_type->type}}</option>
                             @endforeach
                         </select>
                     </div>
