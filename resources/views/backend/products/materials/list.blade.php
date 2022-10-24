@@ -56,52 +56,55 @@ $(document).ready(function() {
 
     $('body').on('click', '.btn-add-material-modal', function() {
         var material_id = $(this).data('material_id');
-        var modal = $(this).data('bs-target');
-        $(modal + ' #txtMaterialWeight').val('');
-        
-        var diamond_ids = $("input[name^='diamond_id']").map(function (idx, ele) {
-                return $(ele).val();
-            }).get();
-        var diamond_mmsizes = $("input[name^='diamond_mmsize']").map(function (idx, ele) {
-                return $(ele).val();
-            }).get();
-        var diamond_amounts = $("input[name^='diamond_amount']").map(function (idx, ele) {
-                return $(ele).val();
-            }).get();
-        var material_type_ids = $("input[name^='material_type_id']").map(function (idx, ele) {
-                return $(ele).val();
-            }).get();
-        var product_material_ids = $("input[name^='product_material_id']").map(function (idx, ele) {
-                return $(ele).val();
-            }).get();
+        if (material_id) {
+            var modal = $(this).data('bs-target');
+            $(modal + ' #txtMaterialWeight').val('');
             
-        var selectedValues = [];
-        let tempelement = '';
-        for (let index = 0; index < diamond_ids.length; index++) {
-            const diamond_id = diamond_ids[index];
-            const diamond_mmsize = diamond_mmsizes[index];
-            const diamond_amount = diamond_amounts[index];
-            const product_material_id = product_material_ids[index];
-            if(diamond_id != 0){
-                selectedValues.push(diamond_id);
-                tempelement +=   '<div class="row" id="add_diamond_'+diamond_id+'">' + 
-                                    '<div class="col-4">'+
-                                        '<label for="diamondSizeId" class="col-form-label">Value</label>'+
-                                        '<input type="hidden" class="form-control" name="diamondId[]" value="' + diamond_id + '">'+
-                                        '<input type="hidden" class="form-control" name="product_materialid[]" value="' + product_material_id + '">'+
-                                        '<h6 id="diamondSizeId" name="diamond_sizename[]">' + diamond_mmsize + ' mm</h6>'+
-                                    '</div>'+
-                                    '<div class="col-8">'+
-                                        '<label for="diamondAmount" class="col-form-label">Amount</label>'+
-                                        '<input type="text" class="form-control" name="diamondAmount[]" value="'+ diamond_amount +'">'+
-                                    '</div>'+
-                                ' </div>';
+            var diamond_ids = $("input[name^='diamond_id']").map(function (idx, ele) {
+                    return $(ele).val();
+                }).get();
+            var diamond_mmsizes = $("input[name^='diamond_mmsize']").map(function (idx, ele) {
+                    return $(ele).val();
+                }).get();
+            var diamond_amounts = $("input[name^='diamond_amount']").map(function (idx, ele) {
+                    return $(ele).val();
+                }).get();
+            var material_type_ids = $("input[name^='material_type_id']").map(function (idx, ele) {
+                    return $(ele).val();
+                }).get();
+            var product_material_ids = $("input[name^='product_material_id']").map(function (idx, ele) {
+                    return $(ele).val();
+                }).get();
+                
+            var selectedValues = [];
+            let tempelement = '';
+            for (let index = 0; index < diamond_ids.length; index++) {
+                const diamond_id = diamond_ids[index];
+                const diamond_mmsize = diamond_mmsizes[index];
+                const diamond_amount = diamond_amounts[index];
+                const product_material_id = product_material_ids[index];
+                if(diamond_id > 0){
+                    selectedValues.push(diamond_id);
+                    tempelement +=   '<div class="row" id="add_diamond_'+diamond_id+'">' + 
+                                        '<div class="col-4">'+
+                                            '<label for="diamondSizeId" class="col-form-label">Value</label>'+
+                                            '<input type="hidden" class="form-control" name="diamondId[]" value="' + diamond_id + '">'+
+                                            '<input type="hidden" class="form-control" name="product_materialid[]" value="' + product_material_id + '">'+
+                                            '<input type="hidden" class="form-control" name="diamond_mmsize[]" value="' + diamond_mmsize + '">'+
+                                            '<h6 id="diamondSizeId" name="diamond_sizename[]">' + diamond_mmsize + '</h6>'+
+                                        '</div>'+
+                                        '<div class="col-8">'+
+                                            '<label for="diamondAmount" class="col-form-label">Amount</label>'+
+                                            '<input type="text" class="form-control" name="diamondAmount[]" value="'+ diamond_amount +'">'+
+                                        '</div>'+
+                                    ' </div>';
+                }
             }
+            DiamondSize.val(selectedValues).trigger("change");
+            
+            $("#selMaterialType").val(material_type_ids[0]);
+            $('#sizeSetValues').html(tempelement)
         }
-        DiamondSize.val(selectedValues).trigger("change");
-        
-        $("#selMaterialType").val(material_type_ids[0]);
-        $('#sizeSetValues').html(tempelement)
     });
 
     
@@ -158,7 +161,6 @@ $(document).ready(function() {
                 let diamond_sizename = diamond_sizenames[index];
                 let diamond_id = diamond_ids[index];
                 let product_material_id = product_material_ids[index];
-                console.log(product_material_id)
                 trItemdata += '<tr>'+
                             '<td>' + material_typename + '</td>'+
                             '<input type="hidden" class="form-control" id="product_material_id" name="product_material_id[]" value="'+(product_material_id != undefined ? product_material_id: '' )+'" />';
@@ -175,6 +177,7 @@ $(document).ready(function() {
                                 '<input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="'+material_type_id+'" />'+
                                 '<input type="hidden" class="form-control" id="material_id" name="material_id[]" value="'+material_id+'" />'+
                                 '<input type="hidden" class="form-control" id="is_diamond" name="is_diamond[]" value="' + (material_id == 1 ? 1 : 0) + '" />'+
+                                '<input type="hidden" class="form-control" name="diamond_mmsize[]" value="'+diamond_sizename+'" />'+
                                 '<button type="button" class="btn btn-sm btn-danger btn-delete-material" data-id="" >Delete</button>'+
                             '</td>'+
                         '</tr>';
@@ -192,7 +195,6 @@ $(document).ready(function() {
                             '<td><input type="number" name="material_weight[]" class="form-control" value="'+material_weight+'" /></td>';
                         }
                         trItemdata += '<td class="text-center action">'+
-                            '<input type="hidden" class="form-control" id="diamond_id" name="diamond_id[]" value="'+diamond_id+'" />'+
                             '<input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="'+material_type_id+'" />'+
                             '<input type="hidden" class="form-control" id="material_id" name="material_id[]" value="'+material_id+'" />'+
                             '<input type="hidden" class="form-control" id="is_diamond" name="is_diamond[]" value="' + (material_id == 1 ? 1 : 0) + '" />'+
