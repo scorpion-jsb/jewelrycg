@@ -89,6 +89,7 @@ $(document).ready(function() {
                                         '<label for="diamondSizeId" class="col-form-label">Value</label>'+
                                         '<input type="hidden" class="form-control" name="diamondId[]" value="' + diamond_id + '">'+
                                         '<input type="hidden" class="form-control" name="product_materialid[]" value="' + product_material_id + '">'+
+                                        '<input type="hidden" class="form-control" name="diamond_mmsize[]" value="' + diamond_mmsize + '">'+
                                         '<h6 id="diamondSizeId" name="diamond_sizename[]">' + diamond_mmsize + ' mm</h6>'+
                                     '</div>'+
                                     '<div class="col-8">'+
@@ -196,6 +197,7 @@ $(document).ready(function() {
                             '<input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="'+material_type_id+'" />'+
                             '<input type="hidden" class="form-control" id="material_id" name="material_id[]" value="'+material_id+'" />'+
                             '<input type="hidden" class="form-control" id="is_diamond" name="is_diamond[]" value="' + (material_id == 1 ? 1 : 0) + '" />'+
+                            '<input type="hidden" class="form-control" name="diamond_mmsize[]" value="'+diamond_sizename+'" />'+
                             '<button type="button" class="btn btn-sm btn-danger btn-delete-material" data-id="" >Delete</button>'+
                         '</td>'+
                     '</tr>';
