@@ -35,7 +35,7 @@ class ProductMaterial extends Model
         $result = [];
         
         $arrMaterials = self::leftjoin('material_type_diamonds', 'diamond_id', '=', 'material_type_diamonds.id')
-            ->select('material_type_diamonds.mm_size', 'product_materials.*')
+            ->select('material_type_diamonds.mm_size', 'material_type_diamonds.carat_weight', 'product_materials.*')
             ->where('product_id', $product_id)
             ->get();
 
@@ -45,6 +45,20 @@ class ProductMaterial extends Model
 
         return $result;
     }
+    
+    public static function getDiamondsByProduct($product_id) {
+        
+        $arrMaterials = self::leftjoin('material_type_diamonds', 'diamond_id', '=', 'material_type_diamonds.id')
+            ->leftjoin('material_types', 'material_type_diamonds.material_type_id', '=', 'material_types.id')
+            ->select('material_type_diamonds.mm_size', 'material_type_diamonds.carat_weight', 'product_materials.*', 'material_types.type as typename')
+            ->selectRaw('ROUND(material_type_diamonds.`carat_weight` * product_materials.`diamond_amount`, 2) AS tcw')
+            ->where('product_id', $product_id)
+            ->where('is_diamond','1')
+            ->get();
+
+        return $arrMaterials;
+    }
+
 
     public static function getMaterialsHtml($product_id) {
         $arrMaterials = Material::with('types')->get();

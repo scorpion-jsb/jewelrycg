@@ -367,7 +367,9 @@
                         </form>
                     </div>
                 @endif
-
+                @if(isset($arrProductDiamonds) && count($arrProductDiamonds) > 0)
+                    @include('products.show_calculator')
+                @endif
                 @include('products.show_steps')
 
                 @if ($review_count > 0)

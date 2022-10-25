@@ -179,10 +179,13 @@ class ProductController extends Controller
             ->with('material_type')
             ->get();
 
+        $arrProductDiamonds = ProductMaterial::getDiamondsByProduct($product->id);
+        // var_dump(($arrProductDiamonds));exit;
+
         return view('products.show', compact(
             'product', 'uploads', 'variants', 'maxPrice', 'minPrice',
             'product_reviewable', 'user_product_review', 'review_count',
-            'average_rating', 'arrReviewListing', 'arrProductMaterials'
+            'average_rating', 'arrReviewListing', 'arrProductMaterials', 'arrProductDiamonds'
         ));
     }
 
