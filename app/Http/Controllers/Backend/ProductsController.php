@@ -281,7 +281,7 @@ class ProductsController extends Controller
                         $temp['product_id'] = $product->id;
                         $temp['material_id'] = $data['material_id'][$i];
                         $temp['material_type_id'] = $data['material_type_id'][$i];
-                        $temp['diamond_id'] = $item;
+                        $temp['diamond_id'] = $data['diamond_id'][$i];
                         $temp['is_diamond'] = 1;
                         $temp['diamond_amount'] = $data['diamond_amount'][$i];            
                         $temp['material_weight'] = '';

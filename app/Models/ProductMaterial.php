@@ -35,14 +35,13 @@ class ProductMaterial extends Model
         $result = [];
         
         $arrMaterials = self::leftjoin('material_type_diamonds', 'diamond_id', '=', 'material_type_diamonds.id')
-            ->select('material_type_diamonds.mm_size', 'material_type_diamonds.carat_weight', 'product_materials.*')
+            ->select('material_type_diamonds.mm_size', 'product_materials.*')
             ->where('product_id', $product_id)
             ->get();
 
         foreach ($arrMaterials as $material) {
             $result[$material->material_id][] = $material;
         }
-
         return $result;
     }
     
