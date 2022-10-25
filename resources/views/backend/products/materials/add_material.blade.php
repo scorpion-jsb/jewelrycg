@@ -60,7 +60,7 @@
             <!-- Footer -->
             <div class="modal-footer">
                 <button type="button" class="btn btn-white" data-bs-dismiss="modal" aria-label="Close">Cancel</button>
-                <button type="button" class="btn btn-primary btn-add-material" data-material-id="{{ $material->id }}">Add</button>
+                <button type="button" class="btn btn-primary btn-add-material" data-material-id="{{ $material->id }}">Update</button>
             </div>
         </div>
     </div>
