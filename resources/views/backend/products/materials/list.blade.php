@@ -149,14 +149,17 @@ $(document).ready(function() {
 
     $('#DiamondSize').on('select2:unselect', function(e) {
         let data = e.params.data;
+        material_id = 1;
+        let deleted_item = $("#add_diamond_"+ data.id).children().children('input[name^="product_materialid"]').val();
+        if(deleted_item) {
+            let deletedItem = '<input type="hidden" class="form-control" id="deleted_material_ids[]" name="deleted_material_ids[]" value="'+deleted_item+'" />'
+            $(".meterial_list_"+material_id).append(deletedItem);
+        }
         $("#add_diamond_"+ data.id+"").remove();
     })
 
     $('#selMaterialType').on('change', function(e){
-        console.log(e.target.value)
         let newValue = e.target.value;
-
-
         let diamond_sizes = [];
         let total_diamond_sizes = {!! json_encode($arrDiamondTypes) !!};
         let optiondata = '';
@@ -221,6 +224,15 @@ $(document).ready(function() {
             var diamond_sizenames = $("h6[name^='diamond_sizename']").map(function (idx, ele) {
                 return $(ele).html();
             }).get();
+            var deleted_material_ids = $("input[name^='deleted_material_ids']").map(function (idx, ele) {
+                return $(ele).val();
+            }).get();
+            var product_mids = $("input[name^='product_material_id']").map(function (idx, ele) {
+                return $(ele).val();
+            }).get();            
+            var diamondIds = $("input[name^='diamond_id']").map(function (idx, ele) {
+                return $(ele).val();
+            }).get();            
         } else {
             var diamond_amounts = '';
             var diamond_ids = [];
@@ -228,9 +240,18 @@ $(document).ready(function() {
         $('#modalAddMaterial' + material_id + ' #txtMaterialWeight').val('');
         $('#modalAddMaterial' + material_id +  ' #selMaterialType').val('');
         $('#modalAddMaterial' + material_id + ' #diamondAmount').val('');
-
         var trItemdata = '';
         if (material_id == 1) {
+            product_mids.map(function(product_mid, key){
+                for (let i = 0; i < deleted_material_ids.length; i++) {
+                    const element = deleted_material_ids[i];
+                    if(element == product_mid){
+                        console.log(key, diamondIds)
+                        console.log(".pm"+diamondIds[key]+"_pmt"+material_type_id+"_m"+material_id)
+                        $(".pm"+diamondIds[key]+"_pmt"+material_type_id+"_m"+material_id).remove()
+                    }
+                }
+            })
             for (let index = 0; index < diamond_amounts.length; index++) {
                 let diamond_amount = diamond_amounts[index];
                 let diamond_sizename = diamond_sizenames[index];

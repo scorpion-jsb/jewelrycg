@@ -6,7 +6,7 @@
 
         <button type="button" class="btn btn-sm btn-primary btn-add-material-modal"
             data-bs-toggle="modal" data-bs-target="#modalAddMaterial{{ $material->id }}" data-material_id="{{ $material->id }}"
-        >Add {{ $material->name}}</button>
+        >Update {{ $material->name}}</button>
     </div>
     <!-- End Header -->
 
