@@ -265,13 +265,13 @@ class ProductsController extends Controller
         }
         if(isset($data['diamond_id'])) {
             $i = 0;
-            foreach($data['diamond_id'] as $item){
+            foreach ($data['product_material_id'] as $item) {
                 if($data['material_id'][$i] == 1) {
                     if(!$product_material_id[$i]) {
                         $temp['product_id'] = $product->id;
                         $temp['material_id'] = $data['material_id'][$i];
                         $temp['material_type_id'] = $data['material_type_id'][$i];
-                        $temp['diamond_id'] = $item;
+                        $temp['diamond_id'] = $data['diamond_id'][$i];
                         $temp['is_diamond'] = 1;
                         $temp['diamond_amount'] = $data['diamond_amount'][$i];            
                         $temp['material_weight'] = '';
@@ -281,13 +281,13 @@ class ProductsController extends Controller
                         $temp['product_id'] = $product->id;
                         $temp['material_id'] = $data['material_id'][$i];
                         $temp['material_type_id'] = $data['material_type_id'][$i];
-                        $temp['diamond_id'] = $item;
+                        $temp['diamond_id'] = $data['diamond_id'][$i];
                         $temp['is_diamond'] = 1;
                         $temp['diamond_amount'] = $data['diamond_amount'][$i];            
                         $temp['material_weight'] = '';
                         $product_material->update($temp);
                     }
-                } else {        
+                } else {    
                     if(!$product_material_id[$i]) {            
                         $temp['product_id'] = $product->id;
                         $temp['material_id'] = $data['material_id'][$i];

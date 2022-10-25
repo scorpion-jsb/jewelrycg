@@ -306,6 +306,7 @@ $(document).ready(function() {
                             '<td><input type="number" name="material_weight[]" class="form-control" value="'+material_weight+'" /></td>';
                         }
                         trItemdata += '<td class="text-center action">'+
+                            '<input type="hidden" class="form-control" id="diamond_id" name="diamond_id[]" value="" />'+
                             '<input type="hidden" class="form-control" id="material_type_id" name="material_type_id[]" value="'+material_type_id+'" />'+
                             '<input type="hidden" class="form-control" id="material_id" name="material_id[]" value="'+material_id+'" />'+
                             '<input type="hidden" class="form-control" id="is_diamond" name="is_diamond[]" value="' + (material_id == 1 ? 1 : 0) + '" />'+
