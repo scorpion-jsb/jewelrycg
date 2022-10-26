@@ -256,6 +256,9 @@ $(document).ready(function() {
                 let diamond_amount = diamond_amounts[index];
                 let diamond_sizename = diamond_sizenames[index];
                 let diamond_id = diamond_ids[index];
+                let diamondPrices = {!! json_encode($diamondPrices) !!};
+                let clarities = {!! json_encode($arrDiamondTypeClarity) !!};
+                let colors = {!! json_encode($arrDiamondTypeColors) !!};
                 let product_material_id = product_material_ids[index];
                 if($('.pm'+diamond_id+'_pmt'+material_type_id+'_m'+material_id).length) {
 
@@ -263,6 +266,34 @@ $(document).ready(function() {
                                 '<input type="hidden" class="form-control" id="product_material_id" name="product_material_id[]" value="'+(product_material_id != undefined ? product_material_id: '' )+'" />'+
                                 '<td>'+diamond_sizename+'</td>'+
                                 '<td><input type="number" name="diamond_amount[]" class="form-control" value="'+diamond_amount+'" /></td>'+
+                                '<td>'+
+                                    '<select class="form-control" name="diamond_clarity[]">';
+                                    if (typeof(clarities)) {
+                                        clarities.map(function(clarity){
+                                            if(typeof(diamondPrices[diamond_id])){
+                                                rowdata += '<option value="'+ clarity["id"] +'" '+ (clarity["id"] == diamondPrices[diamond_id]["clarity"] ? "selected" : "")+'>'+ clarity["name"] +'('+ clarity["letters"] +')</option>';
+                                            } else {
+                                                rowdata += '<option value="'+ clarity["id"] +'">'+ clarity["name"] +'('+ clarity["letters"] +')</option>';
+                                            }
+                                        })
+                                    }
+                                rowdata += '</select>'+
+                                '</td>'+
+                                '<td>'+
+                                    '<select class="form-control" name="diamond_color[]">';
+                                    if (typeof(colors)){
+                                        colors.map(function(color){
+                                            if(typeof(diamondPrices[diamond_id])){
+                                                rowdata += '<option value="'+ color["id"] +'" '+ (color["id"] == diamondPrices[diamond_id]["color"] ? "selected" : "")+'>'+ color["name"] +'('+ color["letters"] +')</option>';
+                                            } else {
+                                                rowdata += '<option value="'+ color["id"] +'">'+ color["name"] +'('+ color["letters"] +')</option>';
+                                            }
+                                        })
+                                    }
+                                rowdata += '</select>'+
+                                '</td>'+
+                                '<td><input type="text" name="lab_price[]" class="form-control" value="'+ diamondPrices[diamond_id]["lab_price"] +'" /></td>'+
+                                '<td><input type="text" name="natural_price[]" class="form-control" value="'+ diamondPrices[diamond_id]["natural_price"] +'" /></td>'+
                                 '<input type="hidden" name="material_weight[]" class="form-control" value="" />'+
                                 '<td class="text-center action">'+
                                     '<input type="hidden" class="form-control" id="diamond_id" name="diamond_id[]" value="'+diamond_id+'" />'+
@@ -280,6 +311,26 @@ $(document).ready(function() {
                                 '<input type="hidden" class="form-control" id="product_material_id" name="product_material_id[]" value="'+(product_material_id != undefined ? product_material_id: '' )+'" />'+
                                 '<td>'+diamond_sizename+'</td>'+
                                 '<td><input type="number" name="diamond_amount[]" class="form-control" value="'+diamond_amount+'" /></td>'+
+                                '<td>'+
+                                    '<select class="form-control" name="diamond_clarity[]">';
+                                    if (typeof(clarities)){
+                                        clarities.map(function(clarity){
+                                            rowdata += '<option value="'+ clarity["id"] +'">'+ clarity["name"] +'('+ clarity["letters"] +')</option>';
+                                        })
+                                    }
+                                rowdata += '</select>'+
+                                '</td>'+
+                                '<td>'+
+                                    '<select class="form-control" name="diamond_color[]">';
+                                    if (typeof(colors)){
+                                        colors.map(function(color){
+                                            rowdata += '<option value="'+ color["id"] +'">'+ color["name"] +'('+ color["letters"] +')</option>';
+                                        })
+                                    }
+                                rowdata += '</select>'+
+                                '</td>'+
+                                '<td><input type="text" name="lab_price[]" class="form-control" value="" /></td>'+
+                                '<td><input type="text" name="natural_price[]" class="form-control" value="" /></td>'+
                                 '<input type="hidden" name="material_weight[]" class="form-control" value="" />'+
                                 '<td class="text-center action">'+
                                     '<input type="hidden" class="form-control" id="diamond_id" name="diamond_id[]" value="'+diamond_id+'" />'+

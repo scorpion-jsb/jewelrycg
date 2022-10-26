@@ -18,6 +18,9 @@ use App\Models\Upload;
 use App\Models\ProductTagsRelationship;
 use App\Models\MaterialTypeDiamonds;
 use App\Models\MaterialType;
+use App\Models\MaterialTypeDiamondsColor;
+use App\Models\MaterialTypeDiamondsClarity;
+use App\Models\MaterialTypeDiamondsPrices;
 use App\Models\Step;
 use App\Models\StepGroup;
 use Illuminate\Support\Facades\Auth;
@@ -199,6 +202,14 @@ class ProductsController extends Controller
         $arrMaterials = Material::with('types')->get();
         $arrProductMaterials = ProductMaterial::getMaterialsByProduct($product->id);
         $arrDiamondTypes = MaterialTypeDiamonds::where('material_id','=', '1')->get();
+        $arrDiamondTypeColors = MaterialTypeDiamondsColor::all();
+        $arrDiamondTypeClarity = MaterialTypeDiamondsClarity::all();
+        $user_id = Auth::id();
+        $arrDiamondTypePrices = MaterialTypeDiamondsPrices::where('user_id',$user_id)->get()->toArray();
+        $diamondPrices = [];
+        foreach ($arrDiamondTypePrices as $key => $value) {
+            $diamondPrices[$value['diamond_id']] = $value;
+        }
 
         $arrStepGroups = StepGroup::pluck('name', 'id')->toArray();
         $arrSteps = Step::pluck('name', 'id')->toArray();
@@ -218,6 +229,9 @@ class ProductsController extends Controller
             'arrMaterials' => $arrMaterials,
             'arrSteps' => $arrSteps,
             'arrStepGroups' => $arrStepGroups,
+            'arrDiamondTypeColors' => $arrDiamondTypeColors,
+            'arrDiamondTypeClarity' => $arrDiamondTypeClarity,
+            'diamondPrices' => $diamondPrices,
         ]);
     }
 
@@ -250,6 +264,7 @@ class ProductsController extends Controller
         {
             $data['slug'] = str_replace(" ","-", strtolower($req->name)).$sep;
         }
+        $user_id = Auth::id();
         $product = Product::findOrFail($product);
         $product->update($data);
         ProductTagsRelationship::where('id_product', $product->id)->delete();
@@ -286,6 +301,23 @@ class ProductsController extends Controller
                         $temp['diamond_amount'] = $data['diamond_amount'][$i];            
                         $temp['material_weight'] = '';
                         $product_material->update($temp);
+                    }
+                    $diamond_prices = MaterialTypeDiamondsPrices::where('user_id',$user_id)->where('diamond_id',$data['diamond_id'][$i])->first();
+                    if(isset($diamond_prices)){
+                        $price['diamond_id'] = $data['diamond_id'][$i];
+                        $price['color'] = $data['diamond_color'][$i];
+                        $price['clarity'] = $data['diamond_clarity'][$i];
+                        $price['lab_price'] = $data['lab_price'][$i];
+                        $price['natural_price'] = $data['natural_price'][$i];
+                        $diamond_prices->update($price);
+                    } else {
+                        $price['user_id'] = $user_id;
+                        $price['diamond_id'] = $data['diamond_id'][$i];
+                        $price['color'] = $data['diamond_color'][$i];
+                        $price['clarity'] = $data['diamond_clarity'][$i];
+                        $price['lab_price'] = $data['lab_price'][$i];
+                        $price['natural_price'] = $data['natural_price'][$i];
+                        MaterialTypeDiamondsPrices::create($price);
                     }
                 } else {    
                     if(!$product_material_id[$i]) {            
