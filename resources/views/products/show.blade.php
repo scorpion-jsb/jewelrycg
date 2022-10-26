@@ -328,9 +328,13 @@
                 @if(isset($arrProductDiamonds) && count($arrProductDiamonds) > 0)
                     @include('products.show_calculator')
                 @endif
+                    
+                @if (count($arrProductMaterials))    
+                    @include('products.show_step_cal')
+                @endif
 
                 @include('products.show_steps')
-                
+
                 @if ($product_reviewable)
                     <div class="card">
                         <form id="frmRate" method="POST" action="{{ route('products.add_review') }}">
