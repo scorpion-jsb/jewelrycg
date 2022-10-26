@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id');
             $table->integer('diamond_id');
-            $table->string('color');
-            $table->string('clarity');
+            $table->integer('color');
+            $table->integer('clarity');
             $table->string('natural_price');
             $table->string('lab_price');
             $table->timestamps();
