@@ -39,6 +39,10 @@ $current_rate = CurrentRate::getLastRate();
                                     $type_id = $product_material->material_type_id;
                                     $material_weight = $product_material->material_weight;
                                     $material_dwt = $material_weight * 0.64301;
+                                    $diamond_tamount = 0;
+                                    foreach($arrProductDiamonds as $diamond) {
+                                        $diamond_tamount += $diamond->diamond_amount;
+                                    }
 
                                     if ($current_rate == null) {
                                         $price = 0;
@@ -138,6 +142,20 @@ $current_rate = CurrentRate::getLastRate();
                                                 <td class="product_diamond_price">${{ ($diamond->tcw * $diamond->lab_price) }}</td>
                                             </tr>
                                         @endforeach
+                                        <tr class="printing_cost">
+                                            <td class="printing_cost_title">3D Printing Cost</td>
+                                            <td class="printing_cost_amount"></td>
+                                        </tr>
+                                        @if($diamond_tamount > 0)
+                                        <tr class="diamond_setting_cost">
+                                            <td class="diamond_setting_cost_title">Diamond Setting Cost ({{ $diamond_tamount }} x $1.5)</td>
+                                            <td class="diamond_setting_cost_amount">${{ round($diamond_tamount * 1.5, 2) }}</td>
+                                        </tr>
+                                        @endif
+                                        <tr class="casting_cost">
+                                            <td>Casting Cost</td>
+                                            <td class="casting_cost_amount"></td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -202,6 +220,20 @@ $current_rate = CurrentRate::getLastRate();
     function getEstimatePrice(){
         var estimatedPrice = 0;
         var metal_price = Number(($('.cal-select-item.active .value-price').html()).replace('$','').replace(',',''))
+        var metal_weight = Number($('.cal-select-item.active .metal_weight').val())
+        var print_cost = metal_weight * 2.5;
+        if (print_cost > 24.99){
+            goldWeightConst = print_cost.toFixed(2);
+            goldWeightConstText = '3D Printing Cost - ($2.50 x '+metal_weight.toFixed(2)+')';
+        }else{
+            goldWeightConst = 25;
+            goldWeightConstText = '3D Printing Cost';
+        }
+        $('.printing_cost_title').html(goldWeightConstText)
+        $('.printing_cost_amount').html("$"+goldWeightConst)
+        $('.casting_cost_amount').html("$"+(metal_price*0.15).toFixed(2))
+        var diamond_setting_cost = Number(($('.diamond_setting_cost_amount').html()).replace('$', ''))
+        
         estimatedPrice += metal_price
         diamondtype_id = $('.diamondtype-select-item.active').data('diamondtype_id')
         if(diamondtype_id == 1) {
@@ -213,6 +245,10 @@ $current_rate = CurrentRate::getLastRate();
                 estimatedPrice += Number(($(ele).html()).replace('$', ''))
             })
         }
+        estimatedPrice += Number(goldWeightConst);
+        estimatedPrice += Number((metal_price*0.15).toFixed(2));
+        estimatedPrice += diamond_setting_cost;
+
         $('#total_estimate_price').html('$'+estimatedPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'))
     }
 </script>
