@@ -44,7 +44,8 @@ class OrderPlacedMail extends Mailable
         return $this->subject('Your JewelryCG.com order #'.$this->order->order_id.'')
             ->view('emails.orders.placed')
             ->with([
-                'first_name' => $this->order->first_name,
+                //'first_name' => $this->order->first_name,
+                'first_name' => $order->billing_first_name,
                 'orderID' => $this->order->order_id,
                 'sub_total' => ($this->order->total/100),
                 'total_price' => ($this->order->grand_total/100),
