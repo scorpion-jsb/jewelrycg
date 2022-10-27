@@ -174,13 +174,12 @@ class ProductController extends Controller
             )); 
         }
 
-        $arrProductMaterials = ProductMaterial::where('product_id', $product->id)
-            ->where('material_id', 2)
-            ->with('material_type')
+        $arrProductMaterials = ProductMaterial::leftjoin('material_types', 'material_types.id', '=', 'product_materials.material_type_id')
+            ->where('product_id', $product->id)
+            ->where('product_materials.material_id', 2)
             ->get();
 
         $arrProductDiamonds = ProductMaterial::getDiamondsByProduct($product->id);
-        // var_dump(($arrProductDiamonds));exit;
 
         return view('products.show', compact(
             'product', 'uploads', 'variants', 'maxPrice', 'minPrice',
