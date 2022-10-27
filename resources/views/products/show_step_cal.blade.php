@@ -6,6 +6,9 @@ $current_rate = CurrentRate::getLastRate();
     .cal-select-item.active {
         border: 2px solid blue !important;
     }
+    .diamondtype-select-item.active {
+        border: 2px solid blue !important;
+    }
 </style>
 @if (count($arrProductMaterials))
 <div class="show-model-specs">
@@ -65,7 +68,9 @@ $current_rate = CurrentRate::getLastRate();
                                             </div>
                                             <div class="py-1">
                                                 <span class="value-price">${{ $price }}</span>
-                                                {{-- <span class="value-price-change">{{ $price_change}}</span> --}}
+                                                <input type="hidden" name="metal_price" class="metal_price" value="{{ $price }}" />
+                                                <input type="hidden" name="metal_price_rate" class="metal_price_rate" value="{{ round($rate, 2) }}" />
+                                                <input type="hidden" name="metal_weight" class="metal_weight" value="{{ $material_weight }}" />
                                             </div>
                                             <div class="py-1 fw-700 fs-24">{{ $material_weight }} Grams</div>
                                             <div class="py-1 fw-700 fs-14">{{ $material_dwt }} DWT</div>
@@ -83,6 +88,62 @@ $current_rate = CurrentRate::getLastRate();
                         Step2: Select the type of diamond you want to below.
                     </button>
                 </h2>
+                <div>
+                    <div class="accordion-body">
+                        <div class="row">                        
+                            <div class="col-lg-6 col-6">
+                                <div class="border p-3 item-value-card mb-3 diamondtype-select-item" data-diamondtype_id="1">
+                                    <div class="item-value-card-body">
+                                        <div class="py-1 fw-700 fs-24">Natural Diamonds</div>
+                                        <div class="py-1 fw-700 fs-14">Natural Diamonds</div>
+                                    </div>
+                                </div>
+                            </div>                        
+                            <div class="col-lg-6 col-6">
+                                <div class="border p-3 item-value-card mb-3 diamondtype-select-item" data-diamondtype_id="2">
+                                    <div class="item-value-card-body">
+                                        <div class="py-1 fw-700 fs-24">Lab Diamonds</div>
+                                        <div class="py-1 fw-700 fs-14">Lab Diamonds</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-body">
+                    <div class="card strpied-tabled-with-hover rounded-0">
+                        <div class="table-full-width">
+                            <div class="col-md-12">
+                                <table id="product_total_estimate_price" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-responsive no-footer">
+                                    <thead>
+                                        <th>Estimated Cost</th>
+                                        <th id="total_estimate_price"></th>
+                                    </thead>
+                                    <tbody>
+                                        <tr class="metal_price">
+                                            <td class="metal_price_category"></td>
+                                            <td class="metal_total_price"></td>
+                                        </tr>
+                                        
+                                        @foreach ($arrProductDiamonds as $diamond)
+                                            <tr class="natural_price">
+                                                <td class="product_diamond_category">{{ $diamond->mm_size }} mm ({{$diamond->tcw}} * ${{ $diamond->diamond_amount * $diamond->natural_price }})</td>
+                                                <td class="product_diamond_price">${{ ($diamond->tcw * $diamond->diamond_amount * $diamond->natural_price) }}</td>
+                                            </tr>
+                                        @endforeach
+                                        @foreach ($arrProductDiamonds as $diamond)
+                                            <tr class="lab_price">
+                                                <td class="product_diamond_category">{{ $diamond->mm_size }} mm ({{$diamond->tcw}} * ${{ $diamond->diamond_amount * $diamond->lab_price }})</td>
+                                                <td class="product_diamond_price">${{ ($diamond->tcw * $diamond->diamond_amount * $diamond->lab_price) }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -90,9 +151,68 @@ $current_rate = CurrentRate::getLastRate();
 @endif
 
 <script>
+    var diamondtype_id = 1;
+    var estimatedPrice = 0;
+    $('.cal-select-item').first().addClass('active');
+    var metal_category = $('.cal-select-item.active .value-title').html()
+    var metal_price = $('.cal-select-item.active .value-price').html()
+    var metal_price_rate = $('.cal-select-item.active .metal_price_rate').val()
+    var metal_weight = $('.cal-select-item.active .metal_weight').val()
+    var td_data = metal_category + ' - ($' + metal_price_rate + '/gram * ' + metal_weight + 'gram)';
+    $('.metal_price_category').html(td_data)
+    $('.metal_total_price').html(metal_price)
+
+    $('.diamondtype-select-item').first().addClass('active')
+    diamondtype_id = $('.diamondtype-select-item.active').data('diamondtype_id')
+    if(diamondtype_id == 1) {
+        $('.natural_price').show()
+        $('.lab_price').hide()
+    } else {
+        $('.natural_price').hide()
+        $('.lab_price').show()
+    }
+    getEstimatePrice()
+
     $('.cal-select-item').on('click', function(){
         $('.cal-select-item').removeClass('active')
         $(this).addClass('active')
+        var metal_category = $('.cal-select-item.active .value-title').html()
+        var metal_price = $('.cal-select-item.active .value-price').html()
+        var metal_price_rate = $('.cal-select-item.active .metal_price_rate').val()
+        var metal_weight = $('.cal-select-item.active .metal_weight').val()
+        var td_data = metal_category + ' - ($' + metal_price_rate + '/gram * ' + metal_weight + 'gram)';
+        $('.metal_price_category').html(td_data)
+        $('.metal_total_price').html(metal_price)
         var type_id = $(this).data('type_id')
+        getEstimatePrice()
     })
+    $('.diamondtype-select-item').on('click', function(){
+        $('.diamondtype-select-item').removeClass('active')
+        $(this).addClass('active')
+        diamondtype_id = $(this).data('diamondtype_id')
+        if(diamondtype_id == 1) {
+            $('.natural_price').show()
+            $('.lab_price').hide()
+        } else {
+            $('.natural_price').hide()
+            $('.lab_price').show()
+        }
+        getEstimatePrice()
+    })
+    function getEstimatePrice(){
+        var estimatedPrice = 0;
+        var metal_price = Number(($('.cal-select-item.active .value-price').html()).replace('$','').replace(',',''))
+        estimatedPrice += metal_price
+        diamondtype_id = $('.diamondtype-select-item.active').data('diamondtype_id')
+        if(diamondtype_id == 1) {
+            $('.natural_price .product_diamond_price').map(function(idx, ele){
+                estimatedPrice += Number(($(ele).html()).replace('$', ''))
+            })
+        } else {
+            $('.lab_price .product_diamond_price').map(function(idx, ele){
+                estimatedPrice += Number(($(ele).html()).replace('$', ''))
+            })
+        }
+        $('#total_estimate_price').html('$'+estimatedPrice.toFixed(2).replace(/\d(?=(\d{3})+\.)/g, '$&,'))
+    }
 </script>
