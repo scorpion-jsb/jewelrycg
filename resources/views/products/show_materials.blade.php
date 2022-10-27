@@ -26,15 +26,15 @@ $current_rate = CurrentRate::getLastRate();
                         $price = 0;
                         $price_change = 0;
                     } else {
-                        if (strpos('24K', $type_name) != -1) {
+                        if (strpos($type_name ,'24K') !== false) {
                             $rate = $current_rate['24k'];
-                        } else if (strpos('22K', $type_name) != -1) {
+                        } else if (strpos($type_name ,'22K') !== false) {
                             $rate = $current_rate['22k'];
-                        } else if (strpos('18K', $type_name) != -1) {
+                        } else if (strpos($type_name ,'18K') !== false) {
                             $rate = $current_rate['18k'];
-                        } else if (strpos('14K', $type_name) != -1) {
+                        } else if (strpos($type_name ,'14K') !== false) {
                             $rate = $current_rate['14k'];
-                        } else if (strpos('10K', $type_name) != -1) {
+                        } else if (strpos($type_name ,'10K') !== false) {
                             $rate = $current_rate['10k'];
                         }
 

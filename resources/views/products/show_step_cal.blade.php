@@ -35,7 +35,7 @@ $current_rate = CurrentRate::getLastRate();
                         <div class="row">
                             @foreach ($arrProductMaterials as $product_material)
                                 @php
-                                    $type_name = $product_material->material_type_name;
+                                    $type_name = $product_material->type;
                                     $type_id = $product_material->material_type_id;
                                     $material_weight = $product_material->material_weight;
                                     $material_dwt = $material_weight * 0.64301;
@@ -44,15 +44,15 @@ $current_rate = CurrentRate::getLastRate();
                                         $price = 0;
                                         $price_change = 0;
                                     } else {
-                                        if (strpos('24K', $type_name) != -1) {
+                                        if (strpos($type_name ,'24K') !== false) {
                                             $rate = $current_rate['24k'];
-                                        } else if (strpos('22K', $type_name) != -1) {
+                                        } else if (strpos($type_name ,'22K') !== false) {
                                             $rate = $current_rate['22k'];
-                                        } else if (strpos('18K', $type_name) != -1) {
+                                        } else if (strpos($type_name ,'18K') !== false) {
                                             $rate = $current_rate['18k'];
-                                        } else if (strpos('14K', $type_name) != -1) {
+                                        } else if (strpos($type_name ,'14K') !== false) {
                                             $rate = $current_rate['14k'];
-                                        } else if (strpos('10K', $type_name) != -1) {
+                                        } else if (strpos($type_name ,'10K') !== false) {
                                             $rate = $current_rate['10k'];
                                         }
 
@@ -128,14 +128,14 @@ $current_rate = CurrentRate::getLastRate();
                                         
                                         @foreach ($arrProductDiamonds as $diamond)
                                             <tr class="natural_price">
-                                                <td class="product_diamond_category">{{ $diamond->mm_size }} mm ({{$diamond->tcw}} * ${{ $diamond->diamond_amount * $diamond->natural_price }})</td>
-                                                <td class="product_diamond_price">${{ ($diamond->tcw * $diamond->diamond_amount * $diamond->natural_price) }}</td>
+                                                <td class="product_diamond_category">{{ $diamond->mm_size }} mm ({{$diamond->tcw}} * ${{ $diamond->natural_price }})</td>
+                                                <td class="product_diamond_price">${{ ($diamond->tcw * $diamond->natural_price) }}</td>
                                             </tr>
                                         @endforeach
                                         @foreach ($arrProductDiamonds as $diamond)
                                             <tr class="lab_price">
-                                                <td class="product_diamond_category">{{ $diamond->mm_size }} mm ({{$diamond->tcw}} * ${{ $diamond->diamond_amount * $diamond->lab_price }})</td>
-                                                <td class="product_diamond_price">${{ ($diamond->tcw * $diamond->diamond_amount * $diamond->lab_price) }}</td>
+                                                <td class="product_diamond_category">{{ $diamond->mm_size }} mm ({{$diamond->tcw}} * ${{ $diamond->lab_price }})</td>
+                                                <td class="product_diamond_price">${{ ($diamond->tcw * $diamond->lab_price) }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>
