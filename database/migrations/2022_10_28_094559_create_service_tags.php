@@ -13,14 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('service_packages', function (Blueprint $table) {
+        Schema::create('service_tags', function (Blueprint $table) {
             $table->id();
-            $table->integer('service_id');
             $table->string('name');
-            $table->string('description');
-            $table->string('price');
-            $table->string('revisions');
-            $table->timestamp('delivery_time')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_packages');
+        Schema::dropIfExists('service_tags');
     }
 };
