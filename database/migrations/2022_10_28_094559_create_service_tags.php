@@ -13,16 +13,9 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('services', function (Blueprint $table) {
+        Schema::create('service_tags', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('category_id');
-            $table->integer('tags_id')->nullable();
             $table->string('name');
-            $table->string('slug');
-            $table->string('content');
-            $table->string('thumbnail');
-            $table->string('gallery');
             $table->timestamps();
         });
     }
@@ -34,6 +27,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('services');
+        Schema::dropIfExists('service_tags');
     }
 };
