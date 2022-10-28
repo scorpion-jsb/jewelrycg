@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->integer('user_id')->nullable();
             $table->integer('category_id')->nullable();
+            $table->integer('tags_id')->nullable();
             $table->string('name');
             $table->string('slug');
             $table->string('content');
