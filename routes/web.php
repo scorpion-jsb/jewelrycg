@@ -21,6 +21,9 @@ use App\Http\Controllers\Backend\VendorsController;
 use App\Http\Controllers\Backend\BlogsController;
 use App\Http\Controllers\Backend\BlogcategoriesController;
 use App\Http\Controllers\Backend\BlogtagsController;
+use App\Http\Controllers\Backend\ServicesController;
+use App\Http\Controllers\Backend\ServicecategoriesController;
+use App\Http\Controllers\Backend\ServicetagsController;
 use App\Http\Controllers\Backend\CourseController as BackendCourseController;
 use App\Http\Controllers\Backend\ProducttagsController;
 use App\Http\Controllers\Backend\AttributesController;
@@ -298,7 +301,45 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::post('/store', [BlogtagsController::class, 'store'])->name('store');
         Route::get('/get', [BlogtagsController::class, 'get'])->name('get');
     });
-        
+    
+    //services routes
+    Route::group(['prefix' => 'service/services', 'as' => 'services.'], function ()
+    {
+        Route::get('/', [ServicesController::class, 'index'])->name('list');
+        Route::get('/trash', [ServicesController::class, 'trash'])->name('trash');
+        Route::get('/trash/recover/{id}', [ServicesController::class, 'recover'])->name('recover');
+        Route::get('/create/{step?}/{post_id?}', [ServicesController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [ServicesController::class, 'edit'])->name('edit');
+        Route::put('/update/{product}', [ServicesController::class, 'update'])->name('update');
+        Route::post('/store', [ServicesController::class, 'store'])->name('store');
+        Route::post('/package', [ServicesController::class, 'package'])->name('package');
+        Route::get('/delete/{id}', [ServicesController::class, 'destroy'])->name('delete');
+        Route::get('/get', [ServicesController::class, 'get'])->name('get');
+    });
+
+    //services routes
+    Route::group(['prefix' => 'service/categories', 'as' => 'service.categories.'], function ()
+    {
+        Route::get('/', [ServicecategoriesController::class, 'index'])->name('list');
+        Route::get('/create', [ServicecategoriesController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [ServicecategoriesController::class, 'edit'])->name('edit');
+        Route::get('/delete/{id}', [ServicecategoriesController::class, 'destroy'])->name('delete');
+        Route::put('/update/{product}', [ServicecategoriesController::class, 'update'])->name('update');
+        Route::post('/store', [ServicecategoriesController::class, 'store'])->name('store');
+        Route::get('/get', [ServicecategoriesController::class, 'get'])->name('get');
+    });
+
+    Route::group(['prefix' => 'service/tags', 'as' => 'service.tags.'], function ()
+    {
+        Route::get('/', [ServicetagsController::class, 'index'])->name('list');
+        Route::get('/create', [ServicetagsController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [ServicetagsController::class, 'edit'])->name('edit');
+        Route::get('/delete/{id}', [ServicetagsController::class, 'destroy'])->name('delete');
+        Route::put('/update/{product}', [ServicetagsController::class, 'update'])->name('update');
+        Route::post('/store', [ServicetagsController::class, 'store'])->name('store');
+        Route::get('/get', [ServicetagsController::class, 'get'])->name('get');
+    });
+            
     ////////////////////////////////////////////////////////////////////////////////////////////////
     // Courses Routes
     Route::group(['prefix' => 'courses', 'as' => 'courses.'], function ()
