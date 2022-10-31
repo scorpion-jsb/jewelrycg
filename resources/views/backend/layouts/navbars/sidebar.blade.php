@@ -58,6 +58,22 @@
 
               <!-- Collapse -->
               <div class="nav-item">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllserviceMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllserviceMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllserviceMenu">
+                  <i class="bi bi-pin-angle-fill nav-icon"></i>
+                  <span class="nav-link-title">{{ __("Service") }}</span>
+                </a>
+
+                <div id="navbarVerticalMenuAllserviceMenu" class="nav-collapse collapse @if($activePage == 'services') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link @if($navName == 'allservice') active @endif" href="{{ route('backend.services.list') }}">{{ __("All service") }}</a>
+                  <a class="nav-link @if($navName == 'servicecategories') active @endif" href="{{ route('backend.service.categories.list') }}">{{ __("Categories") }}</a>
+                  <a class="nav-link @if($navName == 'servicetags') active @endif" href="{{ route('backend.service.tags.list') }}">{{ __("Tags") }}</a>
+                  <!-- <a class="nav-link @if($navName == 'servicetrash') active @endif" href="{{ route('backend.services.trash') }}">{{ __("Trash") }}</a> -->
+                </div>
+              </div>
+              <!-- End Collapse -->
+
+              <!-- Collapse -->
+              <div class="nav-item">
                 <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllCourseMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllCourseMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllCourseMenu">
                   <i class="bi bi-pin-angle-fill nav-icon"></i>
                   <span class="nav-link-title">{{ __("Course") }}</span>

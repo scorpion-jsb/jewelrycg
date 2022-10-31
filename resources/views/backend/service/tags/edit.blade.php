@@ -1,18 +1,6 @@
-<x-app-layout>
-    <style>
-        .pur {
-            width: 100%;
-            margin-bottom: 8px;
-        }
-    </style>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('backend.layouts.app', ['activePage' => 'services', 'title' => 'Edit Tags', 'navName' => 'servicetags', 'activeButton' => 'catalogue'])
 
-    <div class="py-9">
-        <div class="container">
+@section('content')
             <div class="page-header">
                 <div class="row align-items-end">
                     <h1 class="page-header-title">Edit Tag</h1>
@@ -22,7 +10,7 @@
 
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{route('seller.service.tags.update', $tag->id)}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('backend.service.tags.update', $tag->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                             <div class="card col-md-12">
@@ -70,10 +58,8 @@
                     </form>
                 </div>
             </div>
-        </div>
-    </div>
-</x-app-layout>
 
+    @endsection
 
     @section('js_content')
     

@@ -30,6 +30,9 @@ use App\Http\Controllers\Backend\AttributesController;
 use App\Http\Controllers\Backend\AttributesvaluesController;
 use App\Http\Controllers\Backend\FileManagerController;
 use App\Http\Controllers\Backend\UploadController;
+use App\Http\Controllers\Backend\BServicesController;
+use App\Http\Controllers\Backend\BServicecategoriesController;
+use App\Http\Controllers\Backend\BServicetagsController;
 
 use App\Http\Controllers\Backend\OrderController as BackendOrderController;
 use App\Http\Controllers\Backend\ShippingOptionController;
@@ -186,7 +189,44 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::post('/store', [VendorsController::class, 'store'])->name('store');
         Route::get('/get', [VendorsController::class, 'get'])->name('get');
     });
-    
+    //services routes
+    Route::group(['prefix' => 'service/services', 'as' => 'services.'], function ()
+    {
+        Route::get('/', [BServicesController::class, 'index'])->name('list');
+        Route::get('/trash', [BServicesController::class, 'trash'])->name('trash');
+        Route::get('/trash/recover/{id}', [BServicesController::class, 'recover'])->name('recover');
+        Route::get('/create/{step?}/{post_id?}', [BServicesController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [BServicesController::class, 'edit'])->name('edit');
+        Route::put('/update/{product}', [BServicesController::class, 'update'])->name('update');
+        Route::post('/store', [BServicesController::class, 'store'])->name('store');
+        Route::post('/package', [BServicesController::class, 'package'])->name('package');
+        Route::get('/delete/{id}', [BServicesController::class, 'destroy'])->name('delete');
+        Route::get('/get', [BServicesController::class, 'get'])->name('get');
+    });
+
+    //services routes
+    Route::group(['prefix' => 'service/categories', 'as' => 'service.categories.'], function ()
+    {
+        Route::get('/', [BServicecategoriesController::class, 'index'])->name('list');
+        Route::get('/create', [BServicecategoriesController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [BServicecategoriesController::class, 'edit'])->name('edit');
+        Route::get('/delete/{id}', [BServicecategoriesController::class, 'destroy'])->name('delete');
+        Route::put('/update/{product}', [BServicecategoriesController::class, 'update'])->name('update');
+        Route::post('/store', [BServicecategoriesController::class, 'store'])->name('store');
+        Route::get('/get', [BServicecategoriesController::class, 'get'])->name('get');
+    });
+
+    Route::group(['prefix' => 'service/tags', 'as' => 'service.tags.'], function ()
+    {
+        Route::get('/', [BServicetagsController::class, 'index'])->name('list');
+        Route::get('/create', [BServicetagsController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [BServicetagsController::class, 'edit'])->name('edit');
+        Route::get('/delete/{id}', [BServicetagsController::class, 'destroy'])->name('delete');
+        Route::put('/update/{product}', [BServicetagsController::class, 'update'])->name('update');
+        Route::post('/store', [BServicetagsController::class, 'store'])->name('store');
+        Route::get('/get', [BServicetagsController::class, 'get'])->name('get');
+    });
+                
     Route::group(['prefix' => 'memberships', 'as' => 'memberships.'], function ()
     {
         Route::get('/', [MembershipsController::class, 'index'])->name('list');
@@ -403,28 +443,6 @@ Route::group(['middleware' => ['auth'], 'prefix'=>'seller', 'as'=>'seller.'], fu
         Route::get('/get', [ServicesController::class, 'get'])->name('get');
     });
 
-    //services routes
-    Route::group(['prefix' => 'service/categories', 'as' => 'service.categories.'], function ()
-    {
-        Route::get('/', [ServicecategoriesController::class, 'index'])->name('list');
-        Route::get('/create', [ServicecategoriesController::class, 'create'])->name('create');
-        Route::get('/edit/{id}', [ServicecategoriesController::class, 'edit'])->name('edit');
-        Route::get('/delete/{id}', [ServicecategoriesController::class, 'destroy'])->name('delete');
-        Route::put('/update/{product}', [ServicecategoriesController::class, 'update'])->name('update');
-        Route::post('/store', [ServicecategoriesController::class, 'store'])->name('store');
-        Route::get('/get', [ServicecategoriesController::class, 'get'])->name('get');
-    });
-
-    Route::group(['prefix' => 'service/tags', 'as' => 'service.tags.'], function ()
-    {
-        Route::get('/', [ServicetagsController::class, 'index'])->name('list');
-        Route::get('/create', [ServicetagsController::class, 'create'])->name('create');
-        Route::get('/edit/{id}', [ServicetagsController::class, 'edit'])->name('edit');
-        Route::get('/delete/{id}', [ServicetagsController::class, 'destroy'])->name('delete');
-        Route::put('/update/{product}', [ServicetagsController::class, 'update'])->name('update');
-        Route::post('/store', [ServicetagsController::class, 'store'])->name('store');
-        Route::get('/get', [ServicetagsController::class, 'get'])->name('get');
-    });
 });
 
 Route::get('/image/{filename}', [AppController::class, 'image']);

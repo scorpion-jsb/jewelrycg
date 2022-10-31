@@ -102,7 +102,7 @@
         --bs-btn-disabled-border-color: #f8f9fa;
     }
 </style>
-<form action="{{ route('seller.services.package') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('backend.services.package') }}" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-12">
             @csrf
@@ -274,14 +274,21 @@
         </div>
     </div>
 
-    <div class="row justify-content-center justify-content-sm-between">
-        <div class="col">
-            <button type="button" class="btn btn-danger">Cancel</button>
-        </div>
-        <div class="col-auto">
-            <div class="d-flex gap-3">
-                <button type="button" class="btn btn-light">Save Draft</button>
-                <button type="submit" class="btn btn-primary">Save & Continue</button>
+    <div class="position-fixed start-50 bottom-0 translate-middle-x w-100 zi-99 mb-3" style="max-width: 40rem;">
+        <!-- Card -->
+        <div class="card card-sm bg-dark border-dark mx-2">
+            <div class="card-body">
+                <div class="row justify-content-center justify-content-sm-between">
+                    <div class="col">
+                        <button type="button" class="btn btn-danger">Cancel</button>
+                    </div>
+                    <div class="col-auto">
+                        <div class="d-flex gap-3">
+                            <button type="button" class="btn btn-light">Save Draft</button>
+                            <button type="submit" class="btn btn-primary">Save & Continue</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -14,7 +14,7 @@ use App\Models\ServicePostCategorie;
 use App\Models\ServicePackage;
 use Auth;
 
-class ServicesController extends Controller
+class BServicesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -23,30 +23,28 @@ class ServicesController extends Controller
      */
     public function index()
     {      
-        $user_id = Auth::id();
-        return view('service.services.list', [
-            'services' => ServicePost::with(['categories', 'postauthor'])->where('user_id', $user_id)->orderBy('id', 'DESC')->get()
+        return view('backend.service.services.list', [
+            'services' => ServicePost::with(['categories', 'postauthor'])->orderBy('id', 'DESC')->get()
         ]);
     }
 
     public function trash()
     {
-        return view('service.services.trash', [
+        return view('backend.service.services.trash', [
             'services' => ServicePost::onlyTrashed()->orderBy('id', 'DESC')->get()
         ]);
     }
 
     public function get()
     {
-        $user_id = Auth::id();
-        return datatables()->of(ServicePost::where('user_id', $user_id)->get())
+        return datatables()->of(ServicePost::query())
         ->addIndexColumn()
         ->editColumn('cover_image', function($row) {
             return "<img src='".$row->cover_image."'>"; 
         })
         ->addColumn('action', function($row){
 
-               $btn = '<a href="'.route('seller.services.edit', $row->id).'"  class="edit btn btn-info btn-sm">Edit</a>';
+               $btn = '<a href="'.route('backend.services.edit', $row->id).'"  class="edit btn btn-info btn-sm">Edit</a>';
                $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
 
                 return $btn;
@@ -64,7 +62,7 @@ class ServicesController extends Controller
     public function create($step = 0, $post_id = 0)
     {
         // $step = 1;
-        return view('service.services.create',[
+        return view('backend.service.services.create',[
             'categories' => ServiceCategorie::all(),
             'tags' => ServiceTags::all(),
             'step' => $step,
@@ -153,7 +151,7 @@ class ServicesController extends Controller
              ]);
         }
         
-        return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
+        return redirect()->route('backend.services.create', ['step' => $step, 'post_id' => $post_id]);
     }
 
     /**
@@ -181,7 +179,7 @@ class ServicesController extends Controller
             }
         }
 
-        return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
+        return redirect()->route('backend.services.create', ['step' => $step, 'post_id' => $post_id]);
     }
 
     /**
@@ -203,7 +201,7 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        return view('service.services.edit', [
+        return view('backend.service.services.edit', [
             'service' => ServicePost::whereId($id)->with(['tags', 'categories', 'uploads', 'postauthor'])->firstOrFail(),
             'categories' => ServiceCategorie::all(),
             'tags' => ServiceTags::all()
@@ -262,7 +260,7 @@ class ServicesController extends Controller
                 'id_post' =>  $service->id
              ]);
         }
-        return redirect()->route('seller.services.edit', $service->id);
+        return redirect()->route('backend.services.edit', $service->id);
     }
 
     /**
@@ -274,13 +272,13 @@ class ServicesController extends Controller
     public function destroy($id)
     {
         ServicePost::whereId($id)->delete();
-        return redirect()->route('seller.services.list');
+        return redirect()->route('backend.services.list');
 
     }
 
     public function recover($id)
     {
         ServicePost::withTrashed()->find($id)->restore();
-        return redirect()->route('seller.services.trash');
+        return redirect()->route('backend.services.trash');
     }
 }
