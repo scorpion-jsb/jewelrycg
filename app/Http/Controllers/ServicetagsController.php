@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -16,7 +16,7 @@ class ServicetagsController extends Controller
      */
     public function index()
     {
-        return view('backend.service.tags.list', [
+        return view('service.tags.list', [
             'tags' => ServiceTags::orderBy('id', 'DESC')->paginate(10)
         ]);
     }
@@ -84,7 +84,7 @@ class ServicetagsController extends Controller
         $tag->meta_description = $request->meta_description;
         $tag->save();        
 
-        return redirect()->route('backend.service.tags.list');
+        return redirect()->route('seller.service.tags.list');
     }
 
     /**
@@ -106,7 +106,7 @@ class ServicetagsController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.service.tags.edit', [
+        return view('service.tags.edit', [
             'tag' => ServiceTags::findOrFail($id)
         ]);
     }
@@ -137,7 +137,7 @@ class ServicetagsController extends Controller
         $tag->meta_description = $request->meta_description;
         $tag->save();
 
-        return redirect()->route('backend.service.tags.list');
+        return redirect()->route('seller.service.tags.list');
     }
 
     /**
@@ -150,6 +150,6 @@ class ServicetagsController extends Controller
     {
         $product = ServiceTags::findOrFail($id);
         $product->delete();
-        return redirect()->route('backend.service.tags.list');
+        return redirect()->route('seller.service.tags.list');
     }
 }
