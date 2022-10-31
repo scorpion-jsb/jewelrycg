@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
@@ -23,14 +23,14 @@ class ServicesController extends Controller
      */
     public function index()
     {      
-        return view('backend.service.services.list', [
+        return view('service.services.list', [
             'services' => ServicePost::with(['categories', 'postauthor'])->orderBy('id', 'DESC')->get()
         ]);
     }
 
     public function trash()
     {
-        return view('backend.service.services.trash', [
+        return view('service.services.trash', [
             'services' => ServicePost::onlyTrashed()->orderBy('id', 'DESC')->get()
         ]);
     }
@@ -44,7 +44,7 @@ class ServicesController extends Controller
         })
         ->addColumn('action', function($row){
 
-               $btn = '<a href="'.route('backend.services.edit', $row->id).'"  class="edit btn btn-info btn-sm">Edit</a>';
+               $btn = '<a href="'.route('services.edit', $row->id).'"  class="edit btn btn-info btn-sm">Edit</a>';
                $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
 
                 return $btn;
@@ -62,7 +62,7 @@ class ServicesController extends Controller
     public function create($step = 0, $post_id = 0)
     {
         // $step = 1;
-        return view('backend.service.services.create',[
+        return view('service.services.create',[
             'categories' => ServiceCategorie::all(),
             'tags' => ServiceTags::all(),
             'step' => $step,
@@ -151,7 +151,7 @@ class ServicesController extends Controller
              ]);
         }
         
-        return redirect()->route('backend.services.create', ['step' => $step, 'post_id' => $post_id]);
+        return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
     }
 
     /**
@@ -179,7 +179,7 @@ class ServicesController extends Controller
             }
         }
 
-        return redirect()->route('backend.services.create', ['step' => $step, 'post_id' => $post_id]);
+        return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
     }
 
     /**
@@ -201,7 +201,7 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.service.services.edit', [
+        return view('service.services.edit', [
             'service' => ServicePost::whereId($id)->with(['tags', 'categories', 'uploads', 'postauthor'])->firstOrFail(),
             'categories' => ServiceCategorie::all(),
             'tags' => ServiceTags::all()
@@ -260,7 +260,7 @@ class ServicesController extends Controller
                 'id_post' =>  $service->id
              ]);
         }
-        return redirect()->route('backend.services.edit', $service->id);
+        return redirect()->route('services.edit', $service->id);
     }
 
     /**
@@ -272,13 +272,13 @@ class ServicesController extends Controller
     public function destroy($id)
     {
         ServicePost::whereId($id)->delete();
-        return redirect()->route('backend.services.list');
+        return redirect()->route('services.list');
 
     }
 
     public function recover($id)
     {
         ServicePost::withTrashed()->find($id)->restore();
-        return redirect()->route('backend.services.trash');
+        return redirect()->route('services.trash');
     }
 }

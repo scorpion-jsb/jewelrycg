@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Backend;
+namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -19,7 +19,7 @@ class ServicecategoriesController extends Controller
      */
     public function index()
     {
-        return view('backend.service.categories.list', [
+        return view('service.categories.list', [
             'categories' => ServiceCategorie::all()
         ]);  
     }
@@ -32,7 +32,7 @@ class ServicecategoriesController extends Controller
         ->addColumn('action', function($row){
 
                $btn = '<a href="'.route('products.show', $row->id).'" target="_blank" class="edit btn btn-info btn-sm">View</a>';
-               $btn = $btn.'<a href="'.route('backend.categories.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
+               $btn = $btn.'<a href="'.route('categories.edit', $row->id).'" class="edit btn btn-primary btn-sm">Edit</a>';
                $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
 
                 return $btn;
@@ -47,7 +47,7 @@ class ServicecategoriesController extends Controller
      */
     public function create()
     {
-        return view('backend.service.categories.create', [
+        return view('service.categories.create', [
             'categories' => ServiceCategorie::all()
         ]);  
     }
@@ -78,7 +78,7 @@ class ServicecategoriesController extends Controller
         $category->meta_description = $request->meta_description;
         $category->save();
 
-        return redirect()->route('backend.service.categories.list');
+        return redirect()->route('seller.service.categories.list');
     }
 
     public  function slugify($text, string $divider = '-')
@@ -127,7 +127,7 @@ class ServicecategoriesController extends Controller
      */
     public function edit($id)
     {
-        return view('backend.service.categories.edit',[
+        return view('service.categories.edit',[
             "category" => ServiceCategorie::findOrFail($id),
             'categories' => ServiceCategorie::where('id' ,'!=' , $id)->get()
         ]);
@@ -160,7 +160,7 @@ class ServicecategoriesController extends Controller
         $category->meta_description = $request->meta_description;
         $category->save();
 
-        return redirect()->route('backend.service.categories.list');
+        return redirect()->route('seller.service.categories.list');
     }
 
     /**
@@ -180,6 +180,6 @@ class ServicecategoriesController extends Controller
             ServicePostCategorie::where('id_category', $id)->update(['id_category' => $firstId]);
         }
 
-        return redirect()->route('backend.service.categories.list');
+        return redirect()->route('seller.service.categories.list');
     }
 }

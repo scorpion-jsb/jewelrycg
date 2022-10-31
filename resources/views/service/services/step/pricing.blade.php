@@ -102,7 +102,7 @@
         --bs-btn-disabled-border-color: #f8f9fa;
     }
 </style>
-<form action="{{ route('backend.services.package') }}" method="post" enctype="multipart/form-data">
+<form action="{{ route('seller.services.package') }}" method="post" enctype="multipart/form-data">
     <div class="row">
         <div class="col-md-12">
             @csrf

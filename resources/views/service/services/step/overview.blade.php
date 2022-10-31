@@ -1,4 +1,4 @@
-    <form action="{{ route('backend.services.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('seller.services.store') }}" method="post" enctype="multipart/form-data">
         <div class="row">
             <div class="col-md-12">
                 @csrf
