@@ -85,8 +85,6 @@
                         <li><a class="dropdown-item" href="/dashboard">Dashboard</a></li>
                         @if (auth()->user()->role == 2)
                         <li><a class="dropdown-item" href="{{route('seller.services.list')}}">Services</a></li>
-                        <li><a class="dropdown-item" href="{{route('seller.service.categories.list')}}">Service Category</a></li>
-                        <li><a class="dropdown-item" href="{{route('seller.service.tags.list')}}">Service Tags</a></li>
                         @endif
                         <li><a class="dropdown-item" href="{{route('user.index', auth()->user()->id)}}">My Info</a></li>
                         <li><a class="dropdown-item" href="{{route('orders.index')}}">{{ auth()->user()->role ? 'All Orders' : 'My Orders' }}</a></li>

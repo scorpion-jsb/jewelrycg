@@ -1,29 +1,18 @@
-<x-app-layout>
-    <style>
-        .pur {
-            width: 100%;
-            margin-bottom: 8px;
-        }
-    </style>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
-        </h2>
-    </x-slot>
+@extends('backend.layouts.app', ['activePage' => 'services', 'title' => 'Edit Service Category', 'navName' => 'Table List', 'activeButton' => 'service'])
 
-    <div class="py-9">
-        <div class="container">
+@section('content')
             <div class="page-header">
                 <div class="row align-items-end">
-                    <h1 class="page-header-title">Create Category</h1>
+                    <h1 class="page-header-title">Edit Service Category</h1>
                 </div>
                 <!-- End Row -->
-            </div>   
+            </div>    
 
             <div class="row">
                 <div class="col-md-12">
-                    <form action="{{route('seller.service.categories.store')}}" method="post" enctype="multipart/form-data">
+                    <form action="{{route('backend.service.categories.update', $category->id)}}" method="post" enctype="multipart/form-data">
                         @csrf
+                        @method('PUT')
                             <div class="card col-md-12">
                                 <!-- Header -->
                                 <div class="card-header">
@@ -33,19 +22,18 @@
                                 <div class="card-body row">
                                     @include('includes.validation-form')
                                     <div class="col-md-12 mb-2">
-                                        <label for="name">Name</label>
-                                        <input type="text" name="category_name" id="name" value="{{ old('category_name') }}" class="form-control">
+                                        <label for="name">Name:</label>
+                                        <input type="text" name="category_name" id="name" value="{{ $category->category_name }}" class="form-control">
                                     </div>
                                     <div class="col-md-6 mb-2">
-                                        <label for="name">Parent</label>
+                                        <label for="name">Parent:</label>
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <select class="selectpicker" name="parent_id" data-live-search="true">
-                                                    <option selected disabled>None</option>
+                                                    <option value="">None</option>
                                                     @foreach ($categories as $categorie)
-                                                        <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
+                                                        <option value="{{$categorie->id}}" @if($categorie->id == $category->parent_id) selected @endif data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
                                                     @endforeach
-                                                    
                                                   </select>
                                             </div>
                                         </div>
@@ -54,16 +42,16 @@
                                     </div>
                                     <div class="col-md-6 mb-2">
                                         <label for="name">Slug:</label>
-                                        <input type="text" name="slug" id="slug" value="" class="form-control">
+                                        <input type="text" name="slug" id="slug" value="{{ $category->slug }}" class="form-control">
                                     </div>
                                     <div class="col-md-12 mb-2">
                                         <label for="desc">Description:</label>
                                         <textarea name="category_excerpt" id="desc" rows="3" class="form-control">
-                                            {{ old('category_excerpt') }}
+                                            {{ $category->category_excerpt }}
                                         </textarea>
                                     </div>
                                     <div class="col-md-12 text-center">
-                                        <button type="submit" class="btn btn-lg btn-outline-success">Add</button>
+                                        <button type="submit" class="btn btn-lg btn-outline-success">Save</button>
                                     </div>
                                 </div>
                             </div>
@@ -75,13 +63,13 @@
                                 <!-- End Header -->
                                 <div class="card-body row">
                                     <div class="col-md-12 mb-2">
-                                        <label for="meta_title">Meta Title</label>
-                                        <input type="text" name="meta_title" id="meta_title" value="{{ old('meta_title') }}" class="form-control">
+                                        <label for="meta_title">Meta Title:</label>
+                                        <input type="text" name="meta_title" id="meta_title" value="{{ $category->meta_title }}" class="form-control">
                                     </div>
                                     <div class="col-md-12 mb-2">
-                                        <label for="meta_desc">Meta Description:</label>
-                                        <textarea name="meta_description" id="meta_desc" rows="3" class="form-control">
-                                            {{ old('meta_description') }}
+                                        <label for="meta_description">Meta Description:</label>
+                                        <textarea name="meta_description" id="meta_description" rows="3" class="form-control">
+                                            {{ $category->meta_description }}
                                         </textarea>
                                     </div>
                                 </div>
@@ -90,24 +78,23 @@
                 </div>
             </div>
 
-        </div>
-    </div>
-</x-app-layout>
-@section('js')
+    @endsection
 
-<script>
-        $(document).ready(function(){
-        $('#desc').trumbowyg();
-        $('#meta_desc').trumbowyg();
-        // $('#name').keyup(function(){
-        //     var slug = $(this).val()
-            
-        //     if(slug.charAt(slug.length - 1) != " ")
-        //     {
-        //         $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
-        //     }
-            
-        // })
-        })
-</script> 
-@endsection
+    @section('js_content')
+    
+    <script>
+         $(document).ready(function(){
+            $('#desc').trumbowyg();
+            $('#meta_description').trumbowyg();
+            // $('#name').keyup(function(){
+            //     var slug = $(this).val()
+                
+            //     if(slug.charAt(slug.length - 1) != " ")
+            //     {
+            //         $('#slug').val(slug.replace(/\s+/g, '-').toLowerCase());
+            //     }
+                
+            // })
+         })
+    </script> 
+    @endsection
