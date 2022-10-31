@@ -23,8 +23,9 @@ class ServicesController extends Controller
      */
     public function index()
     {      
+        $user_id = Auth::id();
         return view('service.services.list', [
-            'services' => ServicePost::with(['categories', 'postauthor'])->orderBy('id', 'DESC')->get()
+            'services' => ServicePost::with(['categories', 'postauthor'])->where('user_id', $user_id)->orderBy('id', 'DESC')->get()
         ]);
     }
 
@@ -37,7 +38,8 @@ class ServicesController extends Controller
 
     public function get()
     {
-        return datatables()->of(ServicePost::query())
+        $user_id = Auth::id();
+        return datatables()->of(ServicePost::where('user_id', $user_id)->get())
         ->addIndexColumn()
         ->editColumn('cover_image', function($row) {
             return "<img src='".$row->cover_image."'>"; 
