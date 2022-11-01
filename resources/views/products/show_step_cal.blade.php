@@ -11,14 +11,10 @@ $current_rate = CurrentRate::getLastRate();
     }
 </style>
 @if (count($arrProductMaterials))
-<div class="show-model-specs">
-    <div class="show-specs-btn d-none d-lg-block mb-3 text-uppercase fw-700 border p-3">
-        COST TO MAKE CALCULATOR
-    </div>
-    <a class="show-specs-btn d-lg-none mb-4 pb-2 d-block text-uppercase fw-700 card p-3"
-        data-toggle="collapse" href="#showGold" role="button" aria-expanded="false"
-        aria-controls="showGold">COST TO MAKE CALCULATOR <span class="las la-angle-down"></span></a>
+<div class="section-header">
+    <div class="section-header-title mb-3 text-uppercase fw-700 border p-3">Cost to Make Calculator</div>
 </div>
+
 <div class="card">
     <div class="card-body">
         <div class="accordion">
