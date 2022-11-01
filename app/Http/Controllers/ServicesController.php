@@ -152,7 +152,7 @@ class ServicesController extends Controller
                 'id_post' => $post_id
              ]);
         }
-        
+
         return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
     }
 
@@ -181,7 +181,7 @@ class ServicesController extends Controller
             }
         }
 
-        return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
+        return redirect()->route('seller.services.list');
     }
 
     /**

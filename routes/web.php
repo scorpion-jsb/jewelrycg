@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\UriController;
 use App\Http\Controllers\ServicesController;
+use App\Http\Controllers\FFileManagerController;
 use App\Http\Controllers\ServicecategoriesController;
 use App\Http\Controllers\ServicetagsController;
 
@@ -427,6 +428,12 @@ Route::group(['middleware' => ['auth'], 'prefix'=>'seller', 'as'=>'seller.'], fu
     Route::get('/product/create', [SellerController::class, 'createProduct'])->name('product.create');
     Route::post('/product/create', [SellerController::class, 'storeProduct'])->name('product.store');
     
+    Route::group(['prefix' => 'file', 'as' => 'file.'], function() {
+        Route::get('/', [FFileManagerController::class, 'index'])->name('index');
+        Route::get('/show', [FFileManagerController::class, 'show'])->name('show');
+        Route::post('/store', [FFileManagerController::class, 'store'])->name('store');
+        Route::post('/destroy/{id}', [FFileManagerController::class, 'destroy'])->name('destroy');
+    });
     
     //services routes
     Route::group(['prefix' => 'services', 'as' => 'services.'], function ()

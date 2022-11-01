@@ -276,7 +276,7 @@
 
     <div class="row justify-content-center justify-content-sm-between">
         <div class="col">
-            <button type="button" class="btn btn-danger">Cancel</button>
+            <a type="button" class="btn btn-danger" href="{{route('seller.services.list')}}">Cancel</a>
         </div>
         <div class="col-auto">
             <div class="d-flex gap-3">

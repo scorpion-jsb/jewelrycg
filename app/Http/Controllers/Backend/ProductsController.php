@@ -270,8 +270,9 @@ class ProductsController extends Controller
         ProductTagsRelationship::where('id_product', $product->id)->delete();
 
         // product material 
-        $material_type_id = $data['material_type_id'];
-        $product_material_id = $data['product_material_id'];
+        if (isset($data['product_material_id'])) {
+            $product_material_id = $data['product_material_id'];
+        }
         if(isset($data['deleted_material_ids'])) {
             foreach($data['deleted_material_ids'] as $deleted_item){
                 $material = ProductMaterial::findOrFail($deleted_item);

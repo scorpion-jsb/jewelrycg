@@ -89,8 +89,6 @@
                     <ul class="list-unstyled multi-steps">
                         <li class="{{$step == 0 ? 'is-active': ''}}">Overview</li>
                         <li class="{{$step == 1 ? 'is-active': ''}}">Pricing</li>
-                        <li class="{{$step == 2 ? 'is-active': ''}}">Middle Stage</li>
-                        <li class="{{$step == 3 ? 'is-active': ''}}">Finish</li>
                     </ul>
                 </div>
             </div>
