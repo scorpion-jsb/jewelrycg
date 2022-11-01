@@ -17,13 +17,7 @@ $current_rate = CurrentRate::getLastRate();
 
 <div class="card">
     <div class="card-body">
-        <h2 class="accordion-header" id="">
-            <button class="accordion-button collapsed" type="button"
-                data-bs-toggle="collapse" data-bs-target="#"
-                aria-expanded="true" aria-controls="">
-                Step1: Select the metal below you want to make this item with.
-            </button>
-        </h2>
+        <div class="alert alert-info" role="alert"><strong>Step 1:</strong> Select the metal below you want to make this item with.</div>
         <div id="">
             <div class="accordion-body">
                 <div class="row">
@@ -79,13 +73,7 @@ $current_rate = CurrentRate::getLastRate();
                 </div>
             </div>
         </div>
-        <h2 class="accordion-header" id="">
-            <button class="accordion-button collapsed" type="button"
-                data-bs-toggle="collapse" data-bs-target="#"
-                aria-expanded="true" aria-controls="">
-                Step2: Select the type of diamond you want to below.
-            </button>
-        </h2>
+        <div class="alert alert-info" role="alert"><strong>Step 2:</strong> Select the type of diamond you want to below.</div>
         <div>
             <div class="accordion-body">
                 <div class="row">                        
