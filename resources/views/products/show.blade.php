@@ -378,14 +378,14 @@
                     </div>
                 @endif
 
-                @if ($review_count > 0)
                 <div class="section-header">
                     <div class="section-header-title mb-3 text-uppercase fw-700 border p-3">Reviews</div>
                 </div>
+                @if ($review_count > 0)
                 <div class="card">
                     <div class="card-body">
                         <div class="text-center">
-                            <div class="star-ratings">
+                            <div class="star-ratings me-auto ml-auto">
                                 <div class="fill-ratings" style="width: {{ $average_rating * 100 / 5 }}%;">
                                     <span>★★★★★</span>
                                 </div>
@@ -407,7 +407,6 @@
                 </div>
                 @else
                 <div class="card">
-                    <div class="fs-18 py-2 fw-600 card-header">Reviews</div>
                     <div class="card-body">
                         <p class="text-left">No reviews posted.</p>
                     </div>
