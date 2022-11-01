@@ -17,7 +17,7 @@
                         </div>
                         <div class="mb-2">
                             <label for="desc" class="w-100 mb-2">Service:</label>
-                            <textarea name="service" id="desc" rows="6" class="form-control">{{ old('service') }}</textarea>
+                            <textarea name="content" id="desc" rows="6" class="form-control">{{ old('content') }}</textarea>
                         </div>
                         <!-- <div class="mb-4 col-12">
                             <div class="col-12">
