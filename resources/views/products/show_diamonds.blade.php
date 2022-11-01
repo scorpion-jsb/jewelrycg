@@ -5,31 +5,33 @@
 </div>
 
 <div class="row">
-    <table id="product_diamonds_list" class="table table-lg table-bordered table-nowrap table-align-middle card-table dataTable table-responsive no-footer">
-        <thead>
-            <th>Type</th>
-            <th>Size</th>
-            <th>Amount</th>
-            <th>TCW</th>
-        </thead>
-        <tbody>
-            @foreach ($arrProductDiamonds as $diamond)
-                <tr>
-                    <td>{{ $diamond->typename }}</td>
-                    <td>{{ $diamond->mm_size }} mm</td>
-                    <td class="product_diamond_amount">{{ $diamond->diamond_amount }}</td>
-                    <td class="product_diamond_tcw">{{ $diamond->tcw }}</td>
-                </tr>
-            @endforeach
-            @if(isset($arrProductDiamonds) && count($arrProductDiamonds) > 0)
-                <tr>
-                    <td colspan="2"></td>
-                    <td class="total_amount"></td>
-                    <td class="total_tcw"></td>
-                </tr>
-            @endif
-        </tbody>
-    </table>
+    <div class="col-xl-12 col-lg-12">
+        <table id="product_diamonds_list" class="table table-lg table-bordered table-nowrap table-align-middle card-table dataTable table-responsive no-footer">
+            <thead>
+                <th>Type</th>
+                <th>Size</th>
+                <th>Amount</th>
+                <th>TCW</th>
+            </thead>
+            <tbody>
+                @foreach ($arrProductDiamonds as $diamond)
+                    <tr>
+                        <td>{{ $diamond->typename }}</td>
+                        <td>{{ $diamond->mm_size }} mm</td>
+                        <td class="product_diamond_amount">{{ $diamond->diamond_amount }}</td>
+                        <td class="product_diamond_tcw">{{ $diamond->tcw }}</td>
+                    </tr>
+                @endforeach
+                @if(isset($arrProductDiamonds) && count($arrProductDiamonds) > 0)
+                    <tr>
+                        <td colspan="2"></td>
+                        <td class="total_amount"></td>
+                        <td class="total_tcw"></td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
+    </div>
 </div>
 
 <script>
