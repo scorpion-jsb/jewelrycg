@@ -51,31 +51,51 @@
                     </div>
                 </div>
                 
-            </div>
-            <!-- <div class="col-md-4">
                 <div class="card mb-3 mb-4">
+                    <!-- Header -->
                     <div class="card-header">
-                        <h4 class="card-header-title mb-0">Organization</h4>
+                        <h4 class="card-header-title mb-0">Thumbnail</h4>
                     </div>
-
+                    <!-- End Header -->
+    
+                    <!-- Body -->
                     <div class="card-body">
-                    </div>
-                </div>
-
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <h3 class="card-header-title mb-0">Featured Image</h3>
-                    </div>
-                    <div class="card-body">
-                        <div class="imagePreview pt-2 img-thumbnail">
-                            <img id="fileManagerPreview" src="" style="width: 100%">
+                        <div class="imagePreview1 img-thumbnail p-2">
+                            <img id="fileManagerPreview1" src="" style="width: 100%">
                         </div>
-                        <label class="btn text-primary mt-2 p-0" id="getFileManager">Select featured image</label>
-                        <input type="hidden" id="fileManagerId" name="thumbnail">
+                        <label class="btn text-primary mt-2 p-0" id="getFileManager1">Select thumbnail</label>
+                        <input type="hidden" id="fileManagerId1" name="thumbnail" value="{{ old('thumbnail') }}">
                     </div>
                 </div>
-
-            </div> -->
+                <div class="card mb-3 mb-4">
+                    <!-- Header -->
+                    <div class="card-header card-header-content-between">
+                        <h4 class="card-header-title mb-0">Gallery</h4>
+    
+                        <!-- Gallery link -->
+                        <label class="btn text-primary p-0" id="gallery">
+                            Select Service gallery images
+                            <input type="hidden" id="all_checks" value="{{ old('gallery') }}" name="gallery">
+                        </label>
+                        <!-- Gallery link -->
+                    </div>
+                    <!-- End Header -->
+    
+                    <!-- Body -->
+                    <div class="card-body">
+                        <!-- Gallery -->
+                        <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-3">
+    
+                        </div>
+                        <!-- End Gallery -->
+    
+                        <!-- Dropzone -->
+    
+                        <!-- End Dropzone -->
+                    </div>
+                    <!-- Body -->
+                </div>
+            </div>
         </div>
 
         <div class="row justify-content-center justify-content-sm-between">
@@ -99,3 +119,83 @@
 
     <div id='ajaxCalls'>
     </div>
+
+@section('js')
+    <script>
+        var createChecks = [];
+
+        function removepreviewappended(id) {
+            createChecks = jQuery.grep(createChecks, function(value) {
+                return value != id;
+            });
+            $('#fileappend-' + id).remove();
+            $('#all_checks').val(createChecks);
+        }
+
+        $('.select2').select2({
+            tags: true,
+            maximumSelectionLength: 10,
+            tokenSeparators: [','],
+            placeholder: "Select or type keywords",
+        })
+
+        function selectFileFromManagerMultiple(id, preview) {
+            if ($('#file-' + id).hasClass('selected')) {
+                $('#file-' + id).removeClass('selected')
+                $('#file-' + id).find('.check-this').fadeOut()
+                removepreviewappended(id);
+            } else {
+                $('#file-' + id).addClass('selected')
+                $('#file-' + id).find('.check-this').fadeIn()
+                createChecks.push(id)
+                $('#fancyboxGallery').prepend(productImageDiv(id, preview))
+            }
+            $('#all_checks').val(createChecks);
+        }
+
+        $('#gallery').click(function () {
+            $.ajax({
+                url: "{{ route('seller.file.show') }}",
+                success: function (data) {
+                    if (!$.trim($('#fileManagerContainer').html()))
+                        $('#fileManagerContainer').html(data);
+
+                    $('#fileManagerModal').modal('show');
+
+                    const getSelectedItem = function (selectedId, filePath) {
+                        $('#fancyboxGallery').empty();
+
+                        createChecks = selectedId;
+                        $('#all_checks').val(createChecks);
+
+                        selectedId.map(function (id, i) {
+                            $('#fancyboxGallery').prepend(productImageDiv(id, filePath[i]));
+                        });
+                    }
+
+                    setSelectedItemsCB(getSelectedItem, createChecks);
+                }
+            })
+        });
+
+        $('#getFileManager1').click(function () {
+            $.ajax({
+                url: "{{ route('seller.file.show') }}",
+                success: function (data) {
+                    if (!$.trim($('#fileManagerContainer').html()))
+                        $('#fileManagerContainer').html(data);
+
+                    $('#fileManagerModal').modal('show');
+
+                    const getSelectedItem = function (selectedId, filePath) {
+
+                        $('#fileManagerId1').val(selectedId);
+                    }
+
+                    setSelectedItemsCB(getSelectedItem, $('#fileManagerId1').val() == '' ? [] : [$('#fileManagerId1').val()], false);
+                }
+            })
+        });
+
+    </script>
+@endsection
