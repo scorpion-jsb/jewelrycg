@@ -4,10 +4,10 @@ $current_rate = CurrentRate::getLastRate();
 @endphp
 <style>
     .cal-select-item.active {
-        border: 2px solid #0057ff! !important;
+        border: 2px solid #0057ff !important;
     }
     .diamondtype-select-item.active {
-        border: 2px solid #0057ff! !important;
+        border: 2px solid #0057ff !important;
     }
 </style>
 @if (count($arrProductMaterials))
