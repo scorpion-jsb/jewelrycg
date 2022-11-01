@@ -2,14 +2,7 @@
 use App\Models\CurrentRate;
 $current_rate = CurrentRate::getLastRate();
 @endphp
-<style>
-    .cal-select-item.active {
-        border: 1px solid #0057ff !important;
-    }
-    .diamondtype-select-item.active {
-        border: 1px solid #0057ff !important;
-    }
-</style>
+
 @if (count($arrProductMaterials))
 <div class="section-header">
     <div class="section-header-title mb-3 text-uppercase fw-700 border p-3">Cost to Make Calculator</div>
