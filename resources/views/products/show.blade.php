@@ -326,7 +326,7 @@
                 </div>
 
                 @if(isset($arrProductDiamonds) && count($arrProductDiamonds) > 0)
-                    @include('products.show_calculator')
+                    @include('products.show_diamonds')
                 @endif
                     
                 @if (count($arrProductMaterials))    
