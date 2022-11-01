@@ -9,12 +9,9 @@ $current_rate = CurrentRate::getLastRate();
         <div class="show-specs-btn d-none d-lg-block mb-3 text-uppercase fw-700 border p-3">
             Metal Weight
         </div>
-        <a class="show-specs-btn d-lg-none mb-4 pb-2 d-block text-uppercase fw-700 card p-3"
-            data-toggle="collapse" href="#showGold" role="button" aria-expanded="false"
-            aria-controls="showGold">Metal Weight <span class="las la-angle-down"></span></a>
     </div>
 
-    <div class="collapse multi-collapse d-lg-block" id="showGold">
+    <div class="show-model-data" id="showGold">
         <div class="row">
             @foreach ($arrProductMaterials as $product_material)
                 @php
