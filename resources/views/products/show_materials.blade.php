@@ -6,7 +6,7 @@ $current_rate = CurrentRate::getLastRate();
 @if (count($arrProductMaterials))
     <!--End .bg-white product card-->
     <div class="show-model-specs">
-        <div class="show-specs-btn d-none d-lg-block mb-3 text-uppercase fw-700 border p-3">
+        <div class="show-specs-btn mb-3 text-uppercase fw-700 border p-3">
             Metal Weight
         </div>
     </div>
