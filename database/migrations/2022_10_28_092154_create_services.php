@@ -15,9 +15,8 @@ return new class extends Migration
     {
         Schema::create('services', function (Blueprint $table) {
             $table->id();
+            $table->integer('status');
             $table->integer('user_id');
-            $table->integer('category_id');
-            $table->integer('tags_id')->nullable();
             $table->string('name');
             $table->string('slug');
             $table->string('content');
