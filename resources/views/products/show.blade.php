@@ -26,7 +26,7 @@
             content: '★ ';
         }
         .rate > input:checked ~ label {
-            color: #ffc700;
+            color: #387dff;
         }
         .rate:not(:checked) > label:hover,
         .rate:not(:checked) > label:hover ~ label {
@@ -37,7 +37,7 @@
         .rate > input:checked ~ label:hover,
         .rate > input:checked ~ label:hover ~ label,
         .rate > label:hover ~ input:checked ~ label {
-            color: #c59b08;
+            color: #2358bc;
         }
 
         .rated_date {
