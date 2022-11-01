@@ -270,6 +270,12 @@ filter: grayscale(0);
   height: 100%;
   width: 100%;
 }
+.cal-select-item.active {
+    border: 1px solid #0057ff !important;
+}
+.diamondtype-select-item.active {
+    border: 1px solid #0057ff !important;
+}
 
 /* Footer */
 .footer .footer-logo {
