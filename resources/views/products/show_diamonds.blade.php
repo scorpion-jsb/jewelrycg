@@ -5,37 +5,31 @@
 </div>
 
 <div class="row">
-    <div class="col-md-12">
-        <div class="card strpied-tabled-with-hover rounded-0">
-            <div class="table-full-width">
-                <table id="product_diamonds_list" class="table table-lg table-thead-bordered table-nowrap table-align-middle card-table dataTable table-responsive no-footer">
-                    <thead>
-                        <th>Type</th>
-                        <th>Size</th>
-                        <th>Amount</th>
-                        <th>TCW</th>
-                    </thead>
-                    <tbody>
-                        @foreach ($arrProductDiamonds as $diamond)
-                            <tr>
-                                <td>{{ $diamond->typename }}</td>
-                                <td>{{ $diamond->mm_size }} mm</td>
-                                <td class="product_diamond_amount">{{ $diamond->diamond_amount }}</td>
-                                <td class="product_diamond_tcw">{{ $diamond->tcw }}</td>
-                            </tr>
-                        @endforeach
-                        @if(isset($arrProductDiamonds) && count($arrProductDiamonds) > 0)
-                            <tr>
-                                <td colspan="2"></td>
-                                <td class="total_amount"></td>
-                                <td class="total_tcw"></td>
-                            </tr>
-                        @endif
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
+    <table id="product_diamonds_list" class="table table-lg table-bordered table-nowrap table-align-middle card-table dataTable table-responsive no-footer">
+        <thead>
+            <th>Type</th>
+            <th>Size</th>
+            <th>Amount</th>
+            <th>TCW</th>
+        </thead>
+        <tbody>
+            @foreach ($arrProductDiamonds as $diamond)
+                <tr>
+                    <td>{{ $diamond->typename }}</td>
+                    <td>{{ $diamond->mm_size }} mm</td>
+                    <td class="product_diamond_amount">{{ $diamond->diamond_amount }}</td>
+                    <td class="product_diamond_tcw">{{ $diamond->tcw }}</td>
+                </tr>
+            @endforeach
+            @if(isset($arrProductDiamonds) && count($arrProductDiamonds) > 0)
+                <tr>
+                    <td colspan="2"></td>
+                    <td class="total_amount"></td>
+                    <td class="total_tcw"></td>
+                </tr>
+            @endif
+        </tbody>
+    </table>
 </div>
 
 <script>
