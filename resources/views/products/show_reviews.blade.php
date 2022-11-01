@@ -13,7 +13,7 @@
 }
 
 .star-ratings .fill-ratings {
-    color: #ffc700;
+    color: #387dff;
     padding: 0;
     position: absolute;
     z-index: 1;
