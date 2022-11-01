@@ -22,6 +22,7 @@ class ServicePost extends Model
         "tags_id",
         "categorie_id",
         "thumbnail",
+        "gallery",
     ];
 
     public function storeImages($images)
