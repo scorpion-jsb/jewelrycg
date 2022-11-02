@@ -66,10 +66,10 @@
                     <div class="empty-ratings">
                         <span>★★★★★</span>
                     </div>
-                    <span class="rated_date">
-                        Rated at {{ $review->updated_at }}
-                    </span>
                 </div>
+                <span class="rated_date">
+                        Rated at {{ $review->updated_at }}
+                </span>
                 <div>
                     {{ $review->review }}
                 </div>
