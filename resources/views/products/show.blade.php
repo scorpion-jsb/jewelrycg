@@ -342,7 +342,7 @@
                 @else
                 <div class="card">
                     <div class="card-body">
-                        <p class="text-left">No reviews posted.</p>
+                        <p class="text-left mb-0">No reviews posted.</p>
                     </div>
                 </div>
                 @endif
