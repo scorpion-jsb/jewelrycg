@@ -33,9 +33,7 @@
     z-index: 0;
 }
 
-.rate-item {
-    border-bottom: 1px dotted #AAAAAA;
-}
+
 
 .rate-item .reviewer_name {
     font-size: 16px;
@@ -50,16 +48,16 @@
 
 
 @foreach ($arrReviewListing as $review)
-    <div class="rate-item pb-2 mb-4">
-        <div class="d-flex align-items-center">
-            <img class="reviewer_avatar rounded-circle h-40px mr-5px"
-                src="{{ $review->user->uploads->getImageOptimizedFullName(100,100) }}"
-            />
-            <div class="reviewer_name">
-                {{ $review->user->first_name }} {{ $review->user->last_name }}
+    <div class="user-review-item pb-2 mb-4">
+        <div class="col-2">
+            <div class="d-flex align-items-center">
+                <img id="fileManagerPreview" src="{{ $review->user->uploads->getImageOptimizedFullName(100,100) }}" class="reviewer_avatar rounded-circle h-60px mr-5px">
+                <div class="product-details-title px-2">
+                    <div class="fs-20 fw-600 reviewer_name">{{ $review->user->first_name }} {{ $review->user->last_name }}</div>
+                </div>
             </div>
         </div>
-        <div class="d-flex align-items-center ">
+        <div class="col-10">
             <div class="star-ratings">
                 <div class="fill-ratings" style="width: {{ $review->rating * 100 / 5 }}%;">
                     <span>★★★★★</span>
