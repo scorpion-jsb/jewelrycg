@@ -312,10 +312,6 @@ filter: grayscale(0);
     color: #2358bc;
 }
 
-.rated_date {
-    margin-top: 12px;
-}
-
 .star-ratings {
     unicode-bidi: bidi-override;
     color: #ccc;
