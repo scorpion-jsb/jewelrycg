@@ -11,7 +11,7 @@
                     <div class="review-details-meta">
                         <div class="fs-20 fw-600 reviewer_name w-100">{{ $review->user->first_name }} {{ $review->user->last_name }}</div>
                         <div class="row">
-                            <div class="col-auto">
+                            <div class="col-auto pr-0">
                                 <div class="star-ratings star-ratings-sm">
                                     <div class="fill-ratings" style="width: {{ $review->rating * 100 / 5 }}%;">
                                         <span>★★★★★</span>
