@@ -53,12 +53,12 @@
             <div class="col-auto">
                 <div class="d-flex align-items-center">
                     <img id="fileManagerPreview" src="{{ $review->user->uploads->getImageOptimizedFullName(100,100) }}" class="reviewer_avatar rounded-circle h-60px mr-5px">
+                    <div class="review-details-title">
+                        <div class="fs-20 fw-600 reviewer_name">{{ $review->user->first_name }} {{ $review->user->last_name }}</div>
+                    </div>
                 </div>
             </div>
             <div class="col-10">
-                <div class="review-details-title">
-                    <div class="fs-20 fw-600 reviewer_name">{{ $review->user->first_name }} {{ $review->user->last_name }}</div>
-                </div>
                 <div class="row">
                     <div class="col-auto">
                         <div class="star-ratings">
