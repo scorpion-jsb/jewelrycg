@@ -55,23 +55,25 @@
                     <img id="fileManagerPreview" src="{{ $review->user->uploads->getImageOptimizedFullName(100,100) }}" class="reviewer_avatar rounded-circle h-60px mr-5px">
                     <div class="review-details-meta">
                         <div class="fs-20 fw-600 reviewer_name w-100">{{ $review->user->first_name }} {{ $review->user->last_name }}</div>
-                        <div class="star-ratings">
-                            <div class="fill-ratings" style="width: {{ $review->rating * 100 / 5 }}%;">
-                                <span>★★★★★</span>
+                        <div class="row">
+                            <div class="col-auto">
+                                <div class="star-ratings">
+                                    <div class="fill-ratings" style="width: {{ $review->rating * 100 / 5 }}%;">
+                                        <span>★★★★★</span>
+                                    </div>
+                                    <div class="empty-ratings">
+                                        <span>★★★★★</span>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="empty-ratings">
-                                <span>★★★★★</span>
+                            <div class="col-auto">
+                                <div class="rated_date">Rated at {{ $review->updated_at }}</div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="col-10">
-                <div class="row">
-                    <div class="col-auto">
-                        <div class="rated_date">Rated at {{ $review->updated_at }}</div>
-                    </div>
-                </div>
                 <div>
                     {{ $review->review }}
                 </div>
