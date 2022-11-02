@@ -3,7 +3,7 @@
 </div>
 
 @foreach ($arrReviewListing as $review)
-    <div class="user-review-item pb-2 mb-4">
+    <div class="user-review-item mb-4">
         <div class="row">
             <div class="col-auto">
                 <div class="d-flex align-items-center">
@@ -28,8 +28,8 @@
                     </div>
                 </div>
             </div>
-            <div class="col-10">
-                <div>
+            <div class="col-12">
+                <div class="py-3">
                     {{ $review->review }}
                 </div>
             </div>
