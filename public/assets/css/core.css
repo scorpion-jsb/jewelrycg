@@ -597,6 +597,7 @@ hr { border-color: #eeeeee !important; }
 .pl-11,.px-11,.p-11 { padding-left: 12rem; }
 .pl-12,.px-12,.p-12 { padding-left: 16rem; }
 
+.pr-0 { padding-right: 0; }
 .pr-6,.px-6,.p-6 { padding-right: 4rem; }
 .pr-7,.px-7,.p-7 { padding-right: 5rem; }
 .pr-8,.px-8,.p-8 { padding-right: 6rem; }
@@ -657,6 +658,7 @@ hr { border-color: #eeeeee !important; }
 .ml-11,.mx-11,.m-11 { margin-left: 12rem; }
 .ml-12,.mx-12,.m-12 { margin-left: 16rem; }
 
+.mr-0 { margin-right: 0; }
 .mr-6,.mx-6,.m-6 { margin-right: 4rem; }
 .mr-7,.mx-7,.m-7 { margin-right: 5rem; }
 .mr-8,.mx-8,.m-8 { margin-right: 6rem; }
