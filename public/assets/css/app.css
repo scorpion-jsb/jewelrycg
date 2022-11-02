@@ -277,6 +277,45 @@ filter: grayscale(0);
     border: 1px solid #0057ff !important;
 }
 
+.rate {
+    float: left;
+    margin-right: 15px;
+}
+.rate:not(:checked) > input {
+    position:absolute;
+    display: none;
+}
+.rate:not(:checked) > label {
+    float:right;
+    width:1em;
+    overflow:hidden;
+    white-space:nowrap;
+    cursor:pointer;
+    font-size:30px;
+    color:#ccc;
+}
+.rate:not(:checked) > label:before {
+    content: '★ ';
+}
+.rate > input:checked ~ label {
+    color: #387dff;
+}
+.rate:not(:checked) > label:hover,
+.rate:not(:checked) > label:hover ~ label {
+    color: #deb217;
+}
+.rate > input:checked + label:hover,
+.rate > input:checked + label:hover ~ label,
+.rate > input:checked ~ label:hover,
+.rate > input:checked ~ label:hover ~ label,
+.rate > label:hover ~ input:checked ~ label {
+    color: #2358bc;
+}
+
+.rated_date {
+    margin-top: 12px;
+}
+
 .star-ratings {
     unicode-bidi: bidi-override;
     color: #ccc;
