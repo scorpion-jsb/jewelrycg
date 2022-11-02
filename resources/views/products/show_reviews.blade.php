@@ -5,8 +5,8 @@
 @foreach ($arrReviewListing as $review)
     <div class="user-review-item mb-4">
         <div class="row">
-            <div class="col-auto">
-                <div class="d-flex align-items-center">
+            <div class="col-12">
+                <div class="d-flex align-items-center user-review-item-meta pb-3">
                     <img id="fileManagerPreview" src="{{ $review->user->uploads->getImageOptimizedFullName(100,100) }}" class="reviewer_avatar rounded-circle h-60px mr-15px">
                     <div class="review-details-meta">
                         <div class="fs-20 fw-600 reviewer_name w-100">{{ $review->user->first_name }} {{ $review->user->last_name }}</div>
