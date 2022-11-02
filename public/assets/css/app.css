@@ -347,8 +347,9 @@ filter: grayscale(0);
     font-weight: bold;
 }
 
-.rate-item .rated_date {
-    margin: 4px 0 0 12px !important;
+.review-details-meta .rated_date {
+  padding-left: 15px;
+  border-left: 1px solid #cccccc;
 }
 .star-ratings-sm {
   font-size: 16px !important;
