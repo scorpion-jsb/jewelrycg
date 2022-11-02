@@ -302,7 +302,7 @@ filter: grayscale(0);
 }
 .rate:not(:checked) > label:hover,
 .rate:not(:checked) > label:hover ~ label {
-    color: #deb217;
+    color: #2358bc;
 }
 .rate > input:checked + label:hover,
 .rate > input:checked + label:hover ~ label,
