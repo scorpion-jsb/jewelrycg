@@ -276,7 +276,9 @@ filter: grayscale(0);
 .diamondtype-select-item.active {
     border: 1px solid #0057ff !important;
 }
-
+.user-review-item {
+    border-bottom: 1px solid #eee;
+}
 .rate {
     float: left;
     margin-right: 15px;
