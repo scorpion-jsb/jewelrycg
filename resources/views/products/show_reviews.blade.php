@@ -56,20 +56,18 @@
                     <div class="review-details-title">
                         <div class="fs-20 fw-600 reviewer_name">{{ $review->user->first_name }} {{ $review->user->last_name }}</div>
                     </div>
+                    <div class="star-ratings">
+                        <div class="fill-ratings" style="width: {{ $review->rating * 100 / 5 }}%;">
+                            <span>★★★★★</span>
+                        </div>
+                        <div class="empty-ratings">
+                            <span>★★★★★</span>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="col-10">
                 <div class="row">
-                    <div class="col-auto">
-                        <div class="star-ratings">
-                            <div class="fill-ratings" style="width: {{ $review->rating * 100 / 5 }}%;">
-                                <span>★★★★★</span>
-                            </div>
-                            <div class="empty-ratings">
-                                <span>★★★★★</span>
-                            </div>
-                        </div>
-                    </div>
                     <div class="col-auto">
                         <div class="rated_date">Rated at {{ $review->updated_at }}</div>
                     </div>
