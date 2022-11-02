@@ -49,31 +49,31 @@
 
 @foreach ($arrReviewListing as $review)
     <div class="user-review-item pb-2 mb-4">
-        <div class="col-2">
-            <div class="d-flex align-items-center">
-                <img id="fileManagerPreview" src="{{ $review->user->uploads->getImageOptimizedFullName(100,100) }}" class="reviewer_avatar rounded-circle h-60px mr-5px">
-                <div class="product-details-title px-2">
+        <div class="row">
+            <div class="col-auto">
+                <div class="d-flex align-items-center">
+                    <img id="fileManagerPreview" src="{{ $review->user->uploads->getImageOptimizedFullName(100,100) }}" class="reviewer_avatar rounded-circle h-60px mr-5px">
+                </div>
+            </div>
+            <div class="col-10">
+                <div class="review-details-title px-2">
                     <div class="fs-20 fw-600 reviewer_name">{{ $review->user->first_name }} {{ $review->user->last_name }}</div>
                 </div>
-            </div>
-        </div>
-        <div class="col-10">
-            <div class="star-ratings">
-                <div class="fill-ratings" style="width: {{ $review->rating * 100 / 5 }}%;">
-                    <span>★★★★★</span>
+                <div class="star-ratings">
+                    <div class="fill-ratings" style="width: {{ $review->rating * 100 / 5 }}%;">
+                        <span>★★★★★</span>
+                    </div>
+                    <div class="empty-ratings">
+                        <span>★★★★★</span>
+                    </div>
+                    <span class="rated_date">
+                        Rated at {{ $review->updated_at }}
+                    </span>
                 </div>
-                <div class="empty-ratings">
-                    <span>★★★★★</span>
+                <div>
+                    {{ $review->review }}
                 </div>
             </div>
-
-            <div class="rated_date">
-                Rated at {{ $review->updated_at }}
-            </div>
-        </div>
-
-        <div>
-            {{ $review->review }}
         </div>
     </div>
 @endforeach
