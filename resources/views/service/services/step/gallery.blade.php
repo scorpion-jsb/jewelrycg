@@ -102,8 +102,8 @@
 @section('js')
 <script src="{{ asset('dropzone/js/dropzone.js') }}"></script>
 <script>
-    const galleries = {!! json_encode($data->galleries) !!}
-    const thumbnail = {!! json_encode($data->thumb) !!}
+    var galleries = {!! json_encode($data->galleries) !!}
+    var thumbnail = {!! json_encode($data->thumb) !!}
     var currentFile = null;
     Dropzone.autoDiscover = false;
     var thumbnailDropzone, galleryDropzone;
@@ -137,7 +137,25 @@
                 var last = $("#thumb");
 
                 last.val(response.id)
+                thumbnail = response;
                 // ONLY DO THIS IF YOU KNOW WHAT YOU'RE DOING!
+            },
+            removedfile: function(file) {
+                $.ajax({
+                    url: `/seller/file/destroy/${thumbnail.id}`,
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    success: function(result) {
+                        var last = $("#thumb");
+                        last.val("")
+                        $(file.previewElement).remove();
+                    },
+                    error: function(error) {
+                        return false;
+                    }
+                });
             }
         })
         $("#gallery_dropzone").dropzone({
@@ -147,7 +165,7 @@
             paramName: "file",
             maxFilesize: 2,
             clickable: true,
-            // addRemoveLinks: true,
+            addRemoveLinks: true,
             acceptedFiles: "image/*",
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
@@ -170,12 +188,40 @@
             success: (file, response) => {
                 var inputs = $("#inputs");
                 var last = $("#gallery");
-
                 var lastValue = last.val().split(',');
 
                 lastValue.push(response.id);
-                last = $("#gallery");
+                galleries.push(response);
                 last.val(lastValue);
+                console.log(galleries);
+            },
+            removedfile: function(file) {
+                for(var i=0;i<galleries.length;++i){
+                    if(!galleries[i]) {
+                        continue;
+                    }
+                    if(galleries[i].file_original_name==file.name.split('.')[0]) {
+                        $.ajax({
+                            url: `/seller/file/destroy/${galleries[i].id}`,
+                            type: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                            },
+                            success: function(result) {
+                                galleries = galleries.splice(i, 1)
+                                var last = $("#gallery");
+                                var lastValue = last.val().split(',');
+                                lastValue.splice(i, 1);
+                                last.val(lastValue);
+                                $(file.previewElement).remove();
+                            },
+                            error: function(error) {
+                                return false;
+                            }
+                        });
+                        break;
+                    }
+                }
             }
         })
     });
