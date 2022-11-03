@@ -41,9 +41,11 @@
                             <label for="name" class="w-100 mb-2">Gallery:</label>
                             <div class="row">
                                 @foreach ($data->galleries as $gallery)
+                                    @if($gallery)
                                     <div class="col-3 float-left">
                                         <img class="w-100 shadow-1-strong rounded mb-4" src="/uploads/all/{{$gallery->file_name}}" alt="gallery" />
                                     </div>
+                                    @endif
                                 @endforeach
                             </div>
                         </div>
