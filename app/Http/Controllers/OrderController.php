@@ -10,7 +10,7 @@ class OrderController extends Controller
 {
     public function index()
     {
-        $orders = Order::getBasedOnUser();
+        $orders = Order::getOwnOrder();
         $orders->transform(fn($i) => $i->formatPrice());
 
         return view('orders.index', compact('orders'));
@@ -18,15 +18,15 @@ class OrderController extends Controller
 
     public function show($orderId)
     {
-        if(auth()->user()){
+        if (auth()->user()) {
             $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
-                        ->where('order_id', $orderId)
-                        ->where('user_id', auth()->id())
-                        ->first();
-        }else{
+                ->where('order_id', $orderId)
+                ->where('user_id', auth()->id())
+                ->first();
+        } else {
             $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
-                        ->where('order_id', $orderId)
-                        ->first();
+                ->where('order_id', $orderId)
+                ->first();
         }
 
         return view('orders.show', compact('order'));
@@ -44,14 +44,15 @@ class OrderController extends Controller
     /**
      * Track order page
      */
-    public function trackOrder(Request $request){
-        if($request->query('orderId') && $request->query('email')){
+    public function trackOrder(Request $request)
+    {
+        if ($request->query('orderId') && $request->query('email')) {
             $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
-                        ->where('order_id', $request->query('orderId'))
-                        ->where('email', $request->query('email'))
-                        ->first();
+                ->where('order_id', $request->query('orderId'))
+                ->where('email', $request->query('email'))
+                ->first();
             return view('orders.show', compact('order'));
-        }else{
+        } else {
             return view('trackorder');
         }
     }

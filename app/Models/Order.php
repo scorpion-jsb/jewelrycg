@@ -2,11 +2,10 @@
 
 namespace App\Models;
 
-use App\Http\Requests\UpdateOrderRequest;
+use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Auth;
 
 class Order extends Model
 {
@@ -32,7 +31,7 @@ class Order extends Model
         'shipping_country',
         'shipping_phonenumber',
         'billing_first_name',
-        'billing_last_name',        
+        'billing_last_name',
         'billing_address1',
         'billing_address2',
         'billing_city',
@@ -44,18 +43,22 @@ class Order extends Model
         'status_payment',
         'status_payment_reason',
         'shipping_option_id',
-        'tax_option_id'
+        'tax_option_id',
     ];
 
     protected $keyType = 'string';
 
     public static function getBasedOnUser()
     {
-        if(auth()->user()->role)
-        {
+        if (auth()->user()->role) {
             return Order::withCount('items')->orderBy('created_at', 'DESC')->paginate(10);
         }
-        
+
+        return auth()->user()->orders()->withCount('items')->orderBy('created_at', 'DESC')->paginate(10);
+    }
+
+    public static function getOwnOrder()
+    {
         return auth()->user()->orders()->withCount('items')->orderBy('created_at', 'DESC')->paginate(10);
     }
 
@@ -77,7 +80,8 @@ class Order extends Model
         }
     }
 
-    public function totalPrice() {
+    public function totalPrice()
+    {
         $totalPrice = 0;
 
         foreach ($this->items as $item) {

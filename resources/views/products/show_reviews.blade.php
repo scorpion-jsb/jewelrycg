@@ -22,7 +22,7 @@
                                 </div>
                             </div>
                             <div class="col-auto">
-                                <div class="rated_date fs-16 opacity-70">Rated at {{ $review->updated_at }}</div>
+                                <div class="rated_date fs-16 opacity-70">Rated at {{ date_format($review->updated_at, "F j, Y") }}</div>
                             </div>
                         </div>
                     </div>
