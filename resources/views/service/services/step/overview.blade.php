@@ -49,7 +49,7 @@
                             <label for="name" class="w-100 mb-2">Tags:</label>
                             <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
                                 @foreach ($tags as $tag)
-                                    <option value='{{ $tag->id }}' {{ isset($data->tag_ids) ? (count($data->tag_ids) ? (array_search($tag->id, $data->tag_ids) !== NULL ? "selected" : ""): "") : "" }}> {{ $tag->name }} </option>
+                                    <option value='{{ $tag->id }}' {{ isset($data->tag_ids) ? (count($data->tag_ids) ? (in_array($tag->id, $data->tag_ids) ? "selected" : "" ): "" ) : "" }}> {{ $tag->name }} </option>
                                 @endforeach
                             </select>
                         </div>

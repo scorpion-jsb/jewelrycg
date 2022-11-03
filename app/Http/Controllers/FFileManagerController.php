@@ -140,10 +140,7 @@ class FFileManagerController extends Controller
         $upload->file_size = $size;
         $upload->save();
 
-        return array(
-            "id" => $upload->id,
-            "filename" => $upload->filename,
-        );
+        return $upload;
     }
 
     /**
@@ -198,6 +195,6 @@ class FFileManagerController extends Controller
     {
         Upload::destroy($id);
 
-        return redirect()->route('file.index');
+        return true;
     }
 }
