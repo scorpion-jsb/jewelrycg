@@ -13,11 +13,11 @@
                         @include('includes.validation-form')
                         <div class="mb-2">
                             <label for="name" class="w-100 mb-2">Name:</label>
-                            <input type="text" name="name" id="name" value="{{ old('name') }}" class="form-control">
+                            <input type="text" name="name" id="name" value="{{ null !== old('name') ? old('name') : (isset($data->name) ? $data->name : "") }}" class="form-control">
                         </div>
                         <div class="mb-2">
                             <label for="desc" class="w-100 mb-2">Service:</label>
-                            <textarea name="content" id="desc" rows="6" class="form-control">{{ old('content') }}</textarea>
+                            <textarea name="content" id="desc" rows="6" class="form-control">{{ null !== old('content') ? old('content') : (isset($data->content) ? $data->content : "") }}</textarea>
                         </div>
                         <!-- <div class="mb-4 col-12">
                             <div class="col-12">
@@ -34,8 +34,12 @@
                             <label for="category" class="w-100 mb-2">Category</label>
                             <div class="col-4">
                                 <select class="selectpicker form-control" name="categories[]" data-live-search="true" data-container="body">
-                                    @foreach ($categories as $categorie)
-                                        <option value="{{$categorie->id}}" data-tokens="{{$categorie->category_name}}">{{$categorie->category_name}}</option>
+                                    @foreach ($categories as $category)
+                                        <option 
+                                            value="{{$category->id}}" 
+                                            data-tokens="{{$category->category_name}}" 
+                                            {{ count($data->categories) ? ($data->categories[0]->id_category === $category->id ? "selected" : ""): "" }}
+                                        >{{$category->category_name}}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -44,7 +48,7 @@
                             <label for="name" class="w-100 mb-2">Tags:</label>
                             <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
                                 @foreach ($tags as $tag)
-                                    <option value='{{ $tag->id }}'> {{ $tag->name }} </option>
+                                    <option value='{{ $tag->id }}' {{ count($data->tag_ids) ? (array_search($tag->id, $data->tag_ids) !== NULL ? "selected" : ""): "" }}> {{ $tag->name }} </option>
                                 @endforeach
                             </select>
                         </div>

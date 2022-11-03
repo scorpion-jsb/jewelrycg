@@ -15,13 +15,15 @@
         width: 132px;
         overflow: hidden;
         padding: 4px;
+        background: transparent;
     }
     #thumbnail .dropzone .dz-preview{
         margin: 0;
     }
-    #gallery_container .dropzone {
-        border-radius: 25px;
-        padding: 0;
+    
+    .dz-image img{
+        width: 100%;
+        height: 100%;
     }
 </style>
 <form action="{{ route('seller.services.gallery') }}" method="post" enctype="multipart/form-data">
@@ -37,7 +39,8 @@
                 <div class="card-body">
                     <input type="hidden" name="service_id" id="service_id" value="{{$post_id}}" >
                     <input type="hidden" name="step" id="name" value="{{$step}}" class="form-control">
-                    <div id="inputs"></div>
+                    <input type="hidden" id="thumb" name="thumb" value="{{ null !== old('thumb') ? old('thumb') : (isset($data->thumbnail) ? $data->thumbnail : "") }}">
+                    <input type="hidden" id="gallery" name="gallery" value="{{ null !== old('gallery') ? old('gallery') : (isset($data->gallery) ? $data->gallery : "") }}">
                     @include('includes.validation-form')
                     <div class="card mb-3 mb-4">
                         <!-- Header -->
@@ -63,7 +66,8 @@
                         <!-- Body -->
                         <div class="card-body">
                             <div id="gallery_container">
-                                <div class="dropzone" id="gallery_dropzone"></div>
+                                <div class="dropzone" id="gallery_dropzone">
+                                </div>
                             </div>
                         </div>
                         <!-- Body -->
@@ -98,8 +102,11 @@
 @section('js')
 <script src="{{ asset('dropzone/js/dropzone.js') }}"></script>
 <script>
+    const galleries = {!! json_encode($data->galleries) !!}
+    const thumbnail = {!! json_encode($data->thumb) !!}
     var currentFile = null;
     Dropzone.autoDiscover = false;
+    var thumbnailDropzone, galleryDropzone;
     $(document).ready(function() {
         $("#thumbnail_dropzone").dropzone({
             method:'post',
@@ -114,15 +121,22 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             },
+            init: function () {
+                thumbnailDropzone = this;
+
+                if(thumbnail.id) {
+                    var mockFile = { name: thumbnail.file_original_name, size: thumbnail.file_size };
+
+                    thumbnailDropzone.emit("addedfile", mockFile);
+                    thumbnailDropzone.emit("thumbnail", mockFile, `{{asset("/uploads/all")}}/${thumbnail.file_name}`);
+                    thumbnailDropzone.emit("complete", mockFile);
+                }
+            },
             success: (file, response) => {
                 var inputs = $("#inputs");
                 var last = $("#thumb");
 
-                if(last.length) {
-                    last.val(response)
-                } else {
-                    inputs.append($(`<input type="hidden" id="thumb" name="thumb" value="${response}"></input>`))
-                }
+                last.val(response.id)
                 // ONLY DO THIS IF YOU KNOW WHAT YOU'RE DOING!
             }
         })
@@ -138,23 +152,30 @@
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
             },
+            init: function () {
+                galleryDropzone = this;
+                
+                for (const gallery of galleries) {
+                    if(!gallery) {
+                        continue;
+                    }
+
+                    var mockFile = { name: gallery.file_original_name, size: gallery.file_size };
+
+                    galleryDropzone.emit("addedfile", mockFile);
+                    galleryDropzone.emit("thumbnail", mockFile, `{{asset("/uploads/all")}}/${gallery.file_name}`);
+                    galleryDropzone.emit("complete", mockFile);
+                }
+            },
             success: (file, response) => {
                 var inputs = $("#inputs");
                 var last = $("#gallery");
 
-                var lastValue = [];
-                console.log(last)
-                if(last.length) {
-                    lastValue = [last.val()]
-                } else {
-                    inputs.append($(`<input type="hidden" id="gallery" name="gallery" value=""></input>`))
-                }
+                var lastValue = last.val().split(',');
 
-                console.log(lastValue, response)
-                lastValue.push(response);
+                lastValue.push(response.id);
                 last = $("#gallery");
                 last.val(lastValue);
-                // ONLY DO THIS IF YOU KNOW WHAT YOU'RE DOING!
             }
         })
     });
