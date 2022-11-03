@@ -50,51 +50,7 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="card mb-3 mb-4">
-                    <!-- Header -->
-                    <div class="card-header">
-                        <h4 class="card-header-title mb-0">Thumbnail</h4>
-                    </div>
-                    <!-- End Header -->
-    
-                    <!-- Body -->
-                    <div class="card-body">
-                        <div class="imagePreview1 img-thumbnail p-2">
-                            <img id="fileManagerPreview1" src="" style="width: 100%">
-                        </div>
-                        <label class="btn text-primary mt-2 p-0" id="getFileManager1">Select thumbnail</label>
-                        <input type="hidden" id="fileManagerId1" name="thumbnail" value="{{ old('thumbnail') }}">
-                    </div>
-                </div>
-                <div class="card mb-3 mb-4">
-                    <!-- Header -->
-                    <div class="card-header card-header-content-between">
-                        <h4 class="card-header-title mb-0">Gallery</h4>
-    
-                        <!-- Gallery link -->
-                        <label class="btn text-primary p-0" id="gallery">
-                            Select Service gallery images
-                            <input type="hidden" id="all_checks" value="{{ old('gallery') }}" name="gallery">
-                        </label>
-                        <!-- Gallery link -->
-                    </div>
-                    <!-- End Header -->
-    
-                    <!-- Body -->
-                    <div class="card-body">
-                        <!-- Gallery -->
-                        <div id="fancyboxGallery" class="js-fancybox row justify-content-sm-center gx-3">
-    
-                        </div>
-                        <!-- End Gallery -->
-    
-                        <!-- Dropzone -->
-    
-                        <!-- End Dropzone -->
-                    </div>
-                    <!-- Body -->
-                </div>
+
             </div>
         </div>
 
@@ -115,7 +71,6 @@
         <!-- End Card -->
       </div>
     </form>
-    <div id="fileManagerContainer"></div>
 
     <div id='ajaxCalls'>
     </div>
@@ -152,50 +107,5 @@
             }
             $('#all_checks').val(createChecks);
         }
-
-        $('#gallery').click(function () {
-            $.ajax({
-                url: "{{ route('seller.file.show') }}",
-                success: function (data) {
-                    if (!$.trim($('#fileManagerContainer').html()))
-                        $('#fileManagerContainer').html(data);
-
-                    $('#fileManagerModal').modal('show');
-
-                    const getSelectedItem = function (selectedId, filePath) {
-                        $('#fancyboxGallery').empty();
-
-                        createChecks = selectedId;
-                        $('#all_checks').val(createChecks);
-
-                        selectedId.map(function (id, i) {
-                            $('#fancyboxGallery').prepend(productImageDiv(id, filePath[i]));
-                        });
-                    }
-
-                    setSelectedItemsCB(getSelectedItem, createChecks);
-                }
-            })
-        });
-
-        $('#getFileManager1').click(function () {
-            $.ajax({
-                url: "{{ route('seller.file.show') }}",
-                success: function (data) {
-                    if (!$.trim($('#fileManagerContainer').html()))
-                        $('#fileManagerContainer').html(data);
-
-                    $('#fileManagerModal').modal('show');
-
-                    const getSelectedItem = function (selectedId, filePath) {
-
-                        $('#fileManagerId1').val(selectedId);
-                    }
-
-                    setSelectedItemsCB(getSelectedItem, $('#fileManagerId1').val() == '' ? [] : [$('#fileManagerId1').val()], false);
-                }
-            })
-        });
-
     </script>
 @endsection

@@ -280,7 +280,6 @@
         </div>
         <div class="col-auto">
             <div class="d-flex gap-3">
-                <button type="button" class="btn btn-light">Save Draft</button>
                 <button type="submit" class="btn btn-primary">Save & Continue</button>
             </div>
         </div>

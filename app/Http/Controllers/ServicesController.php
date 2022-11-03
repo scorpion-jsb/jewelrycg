@@ -7,11 +7,13 @@ use Illuminate\Http\Request;
 use App\Models\ServicePost;
 use App\Models\ServiceTags;
 use App\Http\Requests\PostStoreRequest;
+use App\Http\Requests\GalleryRequest;
 use App\Http\Requests\ServicePackageRequest;
 use App\Models\ServiceCategorie;
 use App\Models\ServicePostTag;
 use App\Models\ServicePostCategorie;
 use App\Models\ServicePackage;
+use App\Models\Upload;
 use Auth;
 
 class ServicesController extends Controller
@@ -61,14 +63,27 @@ class ServicesController extends Controller
      * @param  int  $step
      * @return \Illuminate\Http\Response
      */
-    public function create($step = 0, $post_id = 0)
+    public function create($step = 0, $post_id = -1)
     {
+        $data = null;
+        if ($post_id != -1) {
+            $data = ServicePost::with(['thumb'])->where('id', $post_id)->first();
+            $gallery_ids = explode(',', $data->gallery);
+
+            $galleries = [];
+            for ($i=0; $i < count($gallery_ids); $i++) {
+                array_push($galleries, Upload::where('id', $gallery_ids[$i])->first());
+            }
+
+            $data->galleries = $galleries;
+        }
         // $step = 1;
         return view('service.services.create',[
             'categories' => ServiceCategorie::all(),
             'tags' => ServiceTags::all(),
             'step' => $step,
-            'post_id' => $post_id
+            'post_id' => $post_id,
+            'data' => $data,
         ]);
     }
 
@@ -85,31 +100,32 @@ class ServicesController extends Controller
         ]);
         return $servicetag->id;
     }
+
     public function slugify($text, string $divider = '-')
     {
-    // replace non letter or digits by divider
-    $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
+        // replace non letter or digits by divider
+        $text = preg_replace('~[^\pL\d]+~u', $divider, $text);
 
-    // transliterate
-    $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
+        // transliterate
+        $text = iconv('utf-8', 'us-ascii//TRANSLIT', $text);
 
-    // remove unwanted characters
-    $text = preg_replace('~[^-\w]+~', '', $text);
+        // remove unwanted characters
+        $text = preg_replace('~[^-\w]+~', '', $text);
 
-    // trim
-    $text = trim($text, $divider);
+        // trim
+        $text = trim($text, $divider);
 
-    // remove duplicate divider
-    $text = preg_replace('~-+~', $divider, $text);
+        // remove duplicate divider
+        $text = preg_replace('~-+~', $divider, $text);
 
-    // lowercase
-    $text = strtolower($text);
+        // lowercase
+        $text = strtolower($text);
 
-    if (empty($text)) {
-        return 'n-a';
-    }
+        if (empty($text)) {
+            return 'n-a';
+        }
 
-    return $text;
+        return $text;
     }
     /**
      * Store a newly created resource in storage.
@@ -156,6 +172,17 @@ class ServicesController extends Controller
         return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
     }
 
+    public function gallery(GalleryRequest $request) {
+        $step = $request->step + 1;
+        $post_id = $request->service_id;
+        $thumb = $request->thumb;
+        $gallery = $request->gallery;
+
+        ServicePost::where('id', $post_id)->update(['thumbnail' => $thumb, 'gallery' => $gallery]);
+
+        return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -181,9 +208,16 @@ class ServicesController extends Controller
             }
         }
 
-        return redirect()->route('seller.services.list');
+        return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
+        // return redirect()->route('seller.services.list');
     }
 
+    public function review(Request $request) {
+        $step = $request->step + 1;
+        $post_id = $request->service_id;
+
+        return redirect()->route('seller.services.list');
+    }
     /**
      * Display the specified resource.
      *

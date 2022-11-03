@@ -42,13 +42,14 @@ class ServicePost extends Model
         return $this->hasMany(ServicePostCategorie::class, 'id_post' , 'id');
     }
 
-    public function uploads()
+    public function thumb()
     {
         return $this->belongsTo(Upload::class, 'thumbnail' , 'id')->withDefault([
             'file_name' => "none.png",
             'id' => null
         ]);
     }
+    
     public function postauthor()
     {
         return $this->belongsTo(User::class, 'user_id' , 'id')->withDefault([

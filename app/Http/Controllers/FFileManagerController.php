@@ -113,31 +113,33 @@ class FFileManagerController extends Controller
      */
     public function store(Request $request)
     {
-        if($request->hasFile('file')){
-
-            $upload = new Upload;
-            $extension = strtolower($request->file('file')->getClientOriginalExtension());
-
-            if(isset($this->fileTypes[$extension])) {
-
-                $upload->file_original_name = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
-
-                $hash = Str::random(40);
-                $size = $request->file('file')->getSize();
-                $fileName = $hash . '.' . $extension;
-
-                $request->file('file')->move(public_path($this->fileUploadPath), $fileName);
-
-                $upload->extension = $extension;
-                $upload->file_name = $hash . '.' . $extension;
-                $upload->user_id = Auth::user()->id;
-                $upload->type = $this->fileTypes[$extension];
-                $upload->file_size = $size;
-                $upload->save();
-            }
+        if(!$request->hasFile('file')) {
+            return false;
         }
 
-        return true;
+        $upload = new Upload;
+        $extension = strtolower($request->file('file')->getClientOriginalExtension());
+
+        if(!isset($this->fileTypes[$extension])) {
+            return false;
+        }
+
+        $upload->file_original_name = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
+
+        $hash = Str::random(40);
+        $size = $request->file('file')->getSize();
+        $fileName = $hash . '.' . $extension;
+
+        $request->file('file')->move(public_path($this->fileUploadPath), $fileName);
+
+        $upload->extension = $extension;
+        $upload->file_name = $hash . '.' . $extension;
+        $upload->user_id = Auth::user()->id;
+        $upload->type = $this->fileTypes[$extension];
+        $upload->file_size = $size;
+        $upload->save();
+        
+        return $upload->id;
     }
 
     /**

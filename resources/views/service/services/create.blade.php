@@ -1,4 +1,6 @@
 <x-app-layout>
+    <meta name="_token" content="{{csrf_token()}}" />
+    <link rel="stylesheet" href="{{ asset('dropzone/css/dropzone.css') }}">
     <style>
         .pur {
             width: 100%;
@@ -88,15 +90,21 @@
                 <div class="col-md-12">
                     <ul class="list-unstyled multi-steps">
                         <li class="{{$step == 0 ? 'is-active': ''}}">Overview</li>
-                        <li class="{{$step == 1 ? 'is-active': ''}}">Pricing</li>
+                        <li class="{{$step == 1 ? 'is-active': ''}}">Gallery</li>
+                        <li class="{{$step == 2 ? 'is-active': ''}}">Pricing</li>
+                        <li class="{{$step == 3 ? 'is-active': ''}}">Review</li>
                     </ul>
                 </div>
             </div>
+
             @if($step == 0)
                 @include('service.services.step.overview')
             @elseif($step == 1)
-                @include('service.services.step.pricing')
+                @include('service.services.step.gallery')
             @elseif($step == 2)
+                @include('service.services.step.pricing')
+            @elseif($step == 3)
+                @include('service.services.step.review')
             @endif
 
             @section('js')
