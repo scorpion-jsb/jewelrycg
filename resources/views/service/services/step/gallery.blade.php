@@ -85,9 +85,9 @@
         <!-- End Col -->
 
         <div class="col-auto">
-        <div class="d-flex gap-3">
-            <!-- <button type="button" class="btn btn-light">Save Draft</button> -->
+        <div class="d-flex flex-column gap-3">
             <button type="submit" class="btn btn-primary">Save & Continue</button>
+            <a type="button" class="btn btn-light" href="{{"/seller/services/create/".($step-1)."/".$post_id}}">Back</a> 
         </div>
         </div>
         <!-- End Col -->
