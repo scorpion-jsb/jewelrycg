@@ -101,6 +101,12 @@ class ServicesController extends Controller
 
     private function registerNewTag($tag)
     {
+        $last = ServiceTags::where('name', $tage)->first();
+
+        if ($last) {
+            return $last->id;
+        }
+
         $servicetag = ServiceTags::create([
             'name' => $tag,
             'slug' => $this->slugify($tag),
