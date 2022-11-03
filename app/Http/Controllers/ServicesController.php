@@ -164,8 +164,8 @@ class ServicesController extends Controller
 
         $post_id = $service->id;
 
-        ServicePostTag::where('id_service', $service->id)->delete();
-        ServicePostCategorie::where('id_post', $service->id)->delete();
+        ServicePostTag::where('id_service', $post_id)->delete();
+        ServicePostCategorie::where('id_post', $post_id)->delete();
 
         foreach ($tags as $tag) {
             $id_tag = (!is_numeric($tag)) ? $this->registerNewTag($tag) : $tag;

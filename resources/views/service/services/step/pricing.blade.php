@@ -268,7 +268,7 @@
                         </div>
                     </div>
                     @else
-                    <div class="d-flex w-100 justify-content-between">
+                    <div class="d-flex w-100 justify-content-start">
                         <input type="hidden" name="service_id" id="service_id" value="{{$post_id}}" >
                         <input type="hidden" name="step" id="step" value="{{$step}}" >
                         <div class="submission">Revision</div>
@@ -316,7 +316,7 @@
                         </div>
                         @endforeach
                     </div>
-                    <div class="d-flex w-100 justify-content-between">
+                    <div class="d-flex w-100 justify-content-start">
                         <div class="submission">Price ($)</div>
                         @foreach ($data->packages as $package)
                         <div class="w-30">
