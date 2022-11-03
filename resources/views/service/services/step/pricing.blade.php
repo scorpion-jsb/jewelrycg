@@ -114,6 +114,7 @@
                     </div>
                 </div>
                 <div class="card-body ps-relative">
+                    @if (count($data->packages) == 0)
                     <div class="d-flex w-100 justify-content-between">
                         <input type="hidden" name="service_id" id="service_id" value="{{$post_id}}" >
                         <input type="hidden" name="step" id="step" value="{{$step}}" >
@@ -266,6 +267,66 @@
                             <button class="btn btn-primary" type="button" tabindex="-1" onclick="javascript:setofferpk()">Create Packages</button>
                         </div>
                     </div>
+                    @else
+                    <div class="d-flex w-100 justify-content-between">
+                        <input type="hidden" name="service_id" id="service_id" value="{{$post_id}}" >
+                        <input type="hidden" name="step" id="step" value="{{$step}}" >
+                        <div class="submission">Revision</div>
+                        @foreach ($data->packages as $package)
+                        <div class="w-30">
+                            <div class="package-title">BASIC</div>
+                            <input type="hidden" name="type[]" value="{{$package->id}}"/>
+                            <div class="d-flex sub-content">
+                                <textarea type="text" name="name[]" id="name" rows="4" maxlength="35" class="w-100" placeholder="Name your package">{{$package->name}}</textarea>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                </svg>
+                            </div>
+                            <div class="d-flex sub-content">
+                                <textarea type="text" name="description[]" id="description" rows="6" maxlength="35" class="w-100" placeholder="Describe the details of your offering">{{$package->description}}</textarea>
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil" viewBox="0 0 16 16">
+                                    <path d="M12.146.146a.5.5 0 0 1 .708 0l3 3a.5.5 0 0 1 0 .708l-10 10a.5.5 0 0 1-.168.11l-5 2a.5.5 0 0 1-.65-.65l2-5a.5.5 0 0 1 .11-.168l10-10zM11.207 2.5 13.5 4.793 14.793 3.5 12.5 1.207 11.207 2.5zm1.586 3L10.5 3.207 4 9.707V10h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.293l6.5-6.5zm-9.761 5.175-.106.106-1.528 3.821 3.821-1.528.106-.106A.5.5 0 0 1 5 12.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.468-.325z" />
+                                </svg>
+                            </div>
+                            <div class="d-flex sub-content">
+                                <select class="form-select select-none" name="delivery_time[]" aria-label="Default select example">
+                                    <option selected>Delivery Time</option>
+                                    <option value="1">1 day Delivery</option>
+                                    <option value="2">2 day Delivery</option>
+                                    <option value="3">3 day Delivery</option>
+                                    <option value="3">4 day Delivery</option>
+                                    <option value="3">5 day Delivery</option>
+                                    <option value="3">6 day Delivery</option>
+                                    <option value="3">7 day Delivery</option>
+                                    <option value="3" disabled>-</option>
+                                    <option value="3">10 day Delivery</option>
+                                    <option value="3">14 day Delivery</option>
+                                    <option value="3">21 day Delivery</option>
+                                    <option value="3" disabled>-</option>
+                                    <option value="3">30 day Delivery</option>
+                                    <option value="3">45 day Delivery</option>
+                                    <option value="3">60 day Delivery</option>
+                                    <option value="3">75 day Delivery</option>
+                                    <option value="3">90 day Delivery</option>
+                                </select>
+                            </div>
+                            <div class="d-flex sub-content">
+                                <input type="text" name="revisions[]" class="w-100 text-input-package" placeholder="Revision of your package" value="{{$package->revisions}}">
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    <div class="d-flex w-100 justify-content-between">
+                        <div class="submission">Price ($)</div>
+                        @foreach ($data->packages as $package)
+                        <div class="w-30">
+                            <div class="d-flex sub-content">
+                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{$package->price}}">
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
+                    @endif
 
                     @include('includes.validation-form')
                 </div>

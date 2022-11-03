@@ -3,18 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\ServicePost;
-use App\Models\ServiceTags;
-use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\GalleryRequest;
+use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\ServicePackageRequest;
 use App\Models\ServiceCategorie;
-use App\Models\ServicePostTag;
-use App\Models\ServicePostCategorie;
 use App\Models\ServicePackage;
+use App\Models\ServicePost;
+use App\Models\ServicePostCategorie;
+use App\Models\ServicePostTag;
+use App\Models\ServiceTags;
 use App\Models\Upload;
 use Auth;
+use Illuminate\Http\Request;
 
 class ServicesController extends Controller
 {
@@ -24,17 +24,17 @@ class ServicesController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {      
+    {
         $user_id = Auth::id();
         return view('service.services.list', [
-            'services' => ServicePost::with(['categories', 'postauthor'])->where('user_id', $user_id)->orderBy('id', 'DESC')->get()
+            'services' => ServicePost::with(['categories', 'postauthor'])->where('user_id', $user_id)->orderBy('id', 'DESC')->get(),
         ]);
     }
 
     public function trash()
     {
         return view('service.services.trash', [
-            'services' => ServicePost::onlyTrashed()->orderBy('id', 'DESC')->get()
+            'services' => ServicePost::onlyTrashed()->orderBy('id', 'DESC')->get(),
         ]);
     }
 
@@ -42,19 +42,19 @@ class ServicesController extends Controller
     {
         $user_id = Auth::id();
         return datatables()->of(ServicePost::where('user_id', $user_id)->get())
-        ->addIndexColumn()
-        ->editColumn('cover_image', function($row) {
-            return "<img src='".$row->cover_image."'>"; 
-        })
-        ->addColumn('action', function($row){
+            ->addIndexColumn()
+            ->editColumn('cover_image', function ($row) {
+                return "<img src='" . $row->cover_image . "'>";
+            })
+            ->addColumn('action', function ($row) {
 
-               $btn = '<a href="'.route('seller.services.edit', $row->id).'"  class="edit btn btn-info btn-sm">Edit</a>';
-               $btn = $btn.'<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
+                $btn = '<a href="' . route('seller.services.edit', $row->id) . '"  class="edit btn btn-info btn-sm">Edit</a>';
+                $btn = $btn . '<a href="javascript:void(0)" class="edit btn btn-danger btn-sm">Delete</a>';
 
                 return $btn;
-        })
-        ->rawColumns(['action', 'cover_image'])
-        ->make(true);
+            })
+            ->rawColumns(['action', 'cover_image'])
+            ->make(true);
     }
 
     /**
@@ -67,18 +67,25 @@ class ServicesController extends Controller
     {
         $data = null;
         if ($post_id != -1) {
-            $data = ServicePost::with(['thumb'])->where('id', $post_id)->first();
+            $data = ServicePost::with(['thumb', 'tags', 'categories', 'packages'])->where('id', $post_id)->first();
             $gallery_ids = explode(',', $data->gallery);
 
             $galleries = [];
-            for ($i=0; $i < count($gallery_ids); $i++) {
+            for ($i = 0; $i < count($gallery_ids); $i++) {
                 array_push($galleries, Upload::where('id', $gallery_ids[$i])->first());
             }
 
+            $tag_ids = [];
+            for ($i = 0; $i < count($data->tags); $i++) {
+                array_push($tag_ids, $data->tags[$i]->id_tag);
+            }
+
+            $data->tag_ids = $tag_ids;
             $data->galleries = $galleries;
         }
+
         // $step = 1;
-        return view('service.services.create',[
+        return view('service.services.create', [
             'categories' => ServiceCategorie::all(),
             'tags' => ServiceTags::all(),
             'step' => $step,
@@ -137,10 +144,11 @@ class ServicesController extends Controller
     {
         $slug_count = ServicePost::whereName($request->name)->count();
         $step = $request->step + 1;
-        $suffix = ($slug_count == 0) ? '' : '-'.(string)$slug_count+1;
-        $tags = (array)$request->input('tags');
-        $categories = (array)$request->input('categories');
-        $service = new ServicePost();
+        $post_id = $request->service_id;
+        $suffix = ($slug_count == 0) ? '' : '-' . (string) $slug_count + 1;
+        $tags = (array) $request->input('tags');
+        $categories = (array) $request->input('categories');
+
         $data = $request->input();
         $data['user_id'] = Auth::id();
 
@@ -150,29 +158,35 @@ class ServicesController extends Controller
             $data['slug'] = $this->slugify($request->name);
         }
 
-        $post_id = $service->create($data)->id;
-        foreach( $tags as $tag )
-        {
+        $service = ServicePost::firstOrNew(['id' => $post_id]);
+        $service->save($data);
+
+        $post_id = $service->id;
+
+        ServicePostTag::where('id_service', $service->id)->delete();
+        ServicePostCategorie::where('id_post', $service->id)->delete();
+
+        foreach ($tags as $tag) {
             $id_tag = (!is_numeric($tag)) ? $this->registerNewTag($tag) : $tag;
             ServicePostTag::create([
                 'id_tag' => $id_tag,
-                'id_service' => $post_id
-             ]);
+                'id_service' => $post_id,
+            ]);
 
         }
 
-        foreach( $categories as $categorie )
-        {
+        foreach ($categories as $categorie) {
             ServicePostCategorie::create([
                 'id_category' => $categorie,
-                'id_post' => $post_id
-             ]);
+                'id_post' => $post_id,
+            ]);
         }
 
         return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
     }
 
-    public function gallery(GalleryRequest $request) {
+    public function gallery(GalleryRequest $request)
+    {
         $step = $request->step + 1;
         $post_id = $request->service_id;
         $thumb = $request->thumb;
@@ -189,15 +203,16 @@ class ServicesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function package(ServicePackageRequest $request) {
+    public function package(ServicePackageRequest $request)
+    {
         $servicepackage = new ServicePackage();
         $data = $request->input();
         $step = $data['step'] + 1;
         $post_id = $data['service_id'];
         $names = $request->input('name');
 
-        for ($i=0; $i < count($names); $i++) { 
-            if($names[$i]) {
+        for ($i = 0; $i < count($names); $i++) {
+            if ($names[$i]) {
                 $temp['name'] = $data['name'][$i];
                 $temp['service_id'] = $data['service_id'];
                 $temp['description'] = $data['description'][$i];
@@ -212,7 +227,8 @@ class ServicesController extends Controller
         // return redirect()->route('seller.services.list');
     }
 
-    public function review(Request $request) {
+    public function review(Request $request)
+    {
         $step = $request->step + 1;
         $post_id = $request->service_id;
 
@@ -237,11 +253,7 @@ class ServicesController extends Controller
      */
     public function edit($id)
     {
-        return view('service.services.edit', [
-            'service' => ServicePost::whereId($id)->with(['tags', 'categories', 'uploads', 'postauthor'])->firstOrFail(),
-            'categories' => ServiceCategorie::all(),
-            'tags' => ServiceTags::all()
-        ]);
+        return redirect()->route('seller.services.create', ['step' => 0, 'post_id' => $id]);
     }
 
     /**
@@ -254,11 +266,11 @@ class ServicesController extends Controller
     public function update(PostStoreRequest $request, $id)
     {
         $slug_count = ServicePost::whereName($request->name)->count();
-        $suffix = ($slug_count == 0) ? '' : '-'.(string)$slug_count+1;
+        $suffix = ($slug_count == 0) ? '' : '-' . (string) $slug_count + 1;
 
-        $tags = (array)$request->input('tags');
-        $categories = (array)$request->input('categories');
-        
+        $tags = (array) $request->input('tags');
+        $categories = (array) $request->input('categories');
+
         $service = ServicePost::findOrFail($id);
         $data = $request->input();
         $data['user_id'] = Auth::id();
@@ -268,33 +280,31 @@ class ServicesController extends Controller
         if ($slug == '') {
             $slug = $request->name;
         }
-        
+
         if (ServicePost::where('id', '!=', $id)->where('slug', $this->slugify($slug))->count()) {
             $data['slug'] = $this->slugify($slug) . "-1";
         } else {
             $data['slug'] = $this->slugify($slug);
-        }    
+        }
 
         $service->update($data);
 
         ServicePostTag::where('id_post', $service->id)->delete();
         ServicePostCategorie::where('id_post', $service->id)->delete();
 
-        foreach( $tags as $tag )
-        {
+        foreach ($tags as $tag) {
             $id_tag = (!is_numeric($tag)) ? $this->registerNewTag($tag) : $tag;
             ServicePostTag::create([
                 'id_tag' => $id_tag,
-                'id_post' => $service->id
-             ]);
+                'id_post' => $service->id,
+            ]);
         }
 
-        foreach( $categories as $categorie )
-        {
+        foreach ($categories as $categorie) {
             ServicePostCategorie::create([
                 'id_category' => $categorie,
-                'id_post' =>  $service->id
-             ]);
+                'id_post' => $service->id,
+            ]);
         }
         return redirect()->route('seller.services.edit', $service->id);
     }

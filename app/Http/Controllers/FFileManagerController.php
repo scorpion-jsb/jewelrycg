@@ -3,55 +3,55 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Config;
 use App\Models\Upload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Str;
 use Intervention\Image\Facades\Image;
 
 class FFileManagerController extends Controller
 {
     private $fileTypes = array(
-        "jpg"=>"image",
-        "jpeg"=>"image",
-        "png"=>"image",
-        "svg"=>"image",
-        "webp"=>"image",
-        "gif"=>"image",
-        "mp4"=>"video",
-        "mpg"=>"video",
-        "mpeg"=>"video",
-        "webm"=>"video",
-        "ogg"=>"video",
-        "avi"=>"video",
-        "mov"=>"video",
-        "flv"=>"video",
-        "swf"=>"video",
-        "mkv"=>"video",
-        "wmv"=>"video",
-        "wma"=>"audio",
-        "aac"=>"audio",
-        "wav"=>"audio",
-        "mp3"=>"audio",
-        "zip"=>"archive",
-        "rar"=>"archive",
-        "7z"=>"archive",
-        "doc"=>"document",
-        "txt"=>"document",
-        "docx"=>"document",
-        "pdf"=>"document",
-        "csv"=>"document",
-        "xml"=>"document",
-        "ods"=>"document",
-        "xlr"=>"document",
-        "xls"=>"document",
-        "xlsx"=>"document",
+        "jpg" => "image",
+        "jpeg" => "image",
+        "png" => "image",
+        "svg" => "image",
+        "webp" => "image",
+        "gif" => "image",
+        "mp4" => "video",
+        "mpg" => "video",
+        "mpeg" => "video",
+        "webm" => "video",
+        "ogg" => "video",
+        "avi" => "video",
+        "mov" => "video",
+        "flv" => "video",
+        "swf" => "video",
+        "mkv" => "video",
+        "wmv" => "video",
+        "wma" => "audio",
+        "aac" => "audio",
+        "wav" => "audio",
+        "mp3" => "audio",
+        "zip" => "archive",
+        "rar" => "archive",
+        "7z" => "archive",
+        "doc" => "document",
+        "txt" => "document",
+        "docx" => "document",
+        "pdf" => "document",
+        "csv" => "document",
+        "xml" => "document",
+        "ods" => "document",
+        "xlr" => "document",
+        "xls" => "document",
+        "xlsx" => "document",
         "glb" => "cad",
         "gltf" => "cad",
         "usdz" => "cad",
         "3dm" => "Rhinoceros",
-        "stl" => "Stereolithography"
+        "stl" => "Stereolithography",
     );
 
     private $fileUploadPath = '';
@@ -59,7 +59,8 @@ class FFileManagerController extends Controller
     private $fileManagerThumbnailWidth = 100;
     private $fileManagerThumbnailSuffix = '';
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->fileUploadPath = Config::get('constants.file_upload_path');
         $this->fileManagerThumbnailSuffix = Config::get('constants.file_manager_thumbnail_suffix');
     }
@@ -73,7 +74,7 @@ class FFileManagerController extends Controller
     {
         $filename = $request->has('filename') ? $request->filename : '';
 
-        $query = Upload::where('file_original_name', 'LIKE' ,'%' . $filename . '%');
+        $query = Upload::where('file_original_name', 'LIKE', '%' . $filename . '%');
 
         if ($request->has('filesize') && $request->filesize) {
             $query->where('file_size', '<=', $request->filesize);
@@ -113,14 +114,14 @@ class FFileManagerController extends Controller
      */
     public function store(Request $request)
     {
-        if(!$request->hasFile('file')) {
+        if (!$request->hasFile('file')) {
             return false;
         }
 
         $upload = new Upload;
         $extension = strtolower($request->file('file')->getClientOriginalExtension());
 
-        if(!isset($this->fileTypes[$extension])) {
+        if (!isset($this->fileTypes[$extension])) {
             return false;
         }
 
@@ -138,8 +139,11 @@ class FFileManagerController extends Controller
         $upload->type = $this->fileTypes[$extension];
         $upload->file_size = $size;
         $upload->save();
-        
-        return $upload->id;
+
+        return array(
+            "id" => $upload->id,
+            "filename" => $upload->filename,
+        );
     }
 
     /**
@@ -152,7 +156,7 @@ class FFileManagerController extends Controller
     {
         $search = $request->has('search') ? $request->search : '';
 
-        $files = Upload::where('user_id', auth()->id())->where('file_original_name', 'LIKE' ,'%' . $search . '%')->orderby('id', 'desc')->paginate(16);
+        $files = Upload::where('user_id', auth()->id())->where('file_original_name', 'LIKE', '%' . $search . '%')->orderby('id', 'desc')->paginate(16);
 
         if ($request->ajax() && $request->has('page')) {
             return view('file-manager.modal.files-pagination', ['files' => $files]);
