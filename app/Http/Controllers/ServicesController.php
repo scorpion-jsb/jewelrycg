@@ -159,7 +159,8 @@ class ServicesController extends Controller
         }
 
         $service = ServicePost::firstOrNew(['id' => $post_id]);
-        $service->save($data);
+        $service->save();
+        $service->update($data);
 
         $post_id = $service->id;
 
