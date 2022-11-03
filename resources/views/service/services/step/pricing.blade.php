@@ -290,8 +290,9 @@
             <a type="button" class="btn btn-danger" href="{{route('seller.services.list')}}">Cancel</a>
         </div>
         <div class="col-auto">
-            <div class="d-flex gap-3">
+            <div class="d-flex flex-column gap-3">
                 <button type="submit" class="btn btn-primary">Save & Continue</button>
+                <a type="button" class="btn btn-light" href="{{"/seller/services/create/".($step-1)."/".$post_id}}">Back</a> 
             </div>
         </div>
     </div>
