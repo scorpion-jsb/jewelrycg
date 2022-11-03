@@ -10,6 +10,7 @@
                     <!-- End Header -->
                     <div class="card-body">
                         <input type="hidden" name="step" id="name" value="{{$step}}" class="form-control">
+                        <input type="hidden" name="service_id" id="service_id" value="{{$post_id}}" >
                         @include('includes.validation-form')
                         <div class="mb-2">
                             <label for="name" class="w-100 mb-2">Name:</label>
@@ -38,7 +39,7 @@
                                         <option 
                                             value="{{$category->id}}" 
                                             data-tokens="{{$category->category_name}}" 
-                                            {{ count($data->categories) ? ($data->categories[0]->id_category === $category->id ? "selected" : ""): "" }}
+                                            {{ isset($data->categories) ? (count($data->categories) ? ($data->categories[0]->id_category === $category->id ? "selected" : ""): "") : "" }}
                                         >{{$category->category_name}}</option>
                                     @endforeach
                                 </select>
@@ -48,7 +49,7 @@
                             <label for="name" class="w-100 mb-2">Tags:</label>
                             <select  name="tags[]" id="tags" value="" class="form-control select2"  multiple="multiple" style="width: 100%;">
                                 @foreach ($tags as $tag)
-                                    <option value='{{ $tag->id }}' {{ count($data->tag_ids) ? (array_search($tag->id, $data->tag_ids) !== NULL ? "selected" : ""): "" }}> {{ $tag->name }} </option>
+                                    <option value='{{ $tag->id }}' {{ isset($data->tag_ids) ? (count($data->tag_ids) ? (array_search($tag->id, $data->tag_ids) !== NULL ? "selected" : ""): "") : "" }}> {{ $tag->name }} </option>
                                 @endforeach
                             </select>
                         </div>
