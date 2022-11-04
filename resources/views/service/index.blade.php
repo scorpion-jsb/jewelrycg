@@ -51,12 +51,12 @@
                             <div class="chip ms-3">{{ $service->postauthor->avatar }}</div>
                           </li>
                         </ul>
-                        <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
+                        {{-- <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
                           <li>Seller Rate:</li>
                           <li>
                             <div class="chip ms-3">{{ $service->seller->sales_commission_rate }}</div>
                           </li>
-                        </ul>
+                        </ul> --}}
                         <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
                           <li>Start Price:</li>
                           <li>

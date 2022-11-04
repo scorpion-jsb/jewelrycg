@@ -389,7 +389,7 @@ Route::group(['middleware' => ['auth']], function () {
 });
 
 //services
-Route::group(['middleware' => ['auth'], 'prefix' => 'service'], function () {
+Route::group(['prefix' => 'service'], function () {
     Route::get('/', [ServicesController::class, 'all'])->name('all');
 });
 
