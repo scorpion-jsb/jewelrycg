@@ -51,7 +51,7 @@
                         <td>{{$order->created_at}}</td>
                         <td>
                             <a href="{{route('user.index', $order->user_id)}}" class="link-primary">
-                                {{$order->user->email}}
+                                {{$order->email}}
                             </a>
                         </td>
                         <td title="{{ $order->status_payment_reason }}">
