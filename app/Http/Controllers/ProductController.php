@@ -41,7 +41,8 @@ class ProductController extends Controller
             $search->save();
         }
 
-        $products = Product::where('status', 1)->searchWithImages($req->q, $req->category);
+        //$products = Product::where('status', 1)->searchWithImages($req->q, $req->category);
+        $products = Product::where('status', 1);
         $categories = ProductsCategorie::whereNull('parent_id')->get();
 
         $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();        
