@@ -253,6 +253,7 @@ class ServicesController extends Controller
         $post_id = $data['service_id'];
         $names = $request->input('name');
 
+        ServicePackage::where('service_id', $post_id)->delete();
         for ($i = 0; $i < count($names); $i++) {
             if ($names[$i]) {
                 $temp['name'] = $data['name'][$i];
