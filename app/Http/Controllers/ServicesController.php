@@ -35,7 +35,7 @@ class ServicesController extends Controller
     {
         // dd(ServicePost::with(['thumb', 'categories.category', 'postauthor', 'seller', 'packages'])->orderBy('id', 'DESC')->get());
         return view('service.index', [
-            'services' => ServicePost::with(['thumb', 'categories.category', 'postauthor', 'seller', 'packages'])->orderBy('id', 'DESC')->get(),
+            'services' => ServicePost::with(['thumb', 'categories.category', 'postauthor', 'seller', 'packages'])->where('status', 1)->orderBy('id', 'DESC')->get(),
         ]);
     }
 
