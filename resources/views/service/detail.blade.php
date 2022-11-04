@@ -1,6 +1,6 @@
 <x-app-layout>
-  <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}">
-  <script src="{{ asset('assets/js/mdb.min.js') }}"></script>
+  {{-- <link rel="stylesheet" href="{{ asset('assets/css/mdb.min.css') }}"> --}}
+  {{-- <script src="{{ asset('assets/js/mdb.min.js') }}"></script> --}}
   <style>
       .pur {
           width: 100%;
@@ -22,44 +22,24 @@
             <div class="col-md-8">
                 <h3>Service Detail</h3>
             </div>
-            <div class="col-md-12 carousel">
-              <div id="carouselExampleIndicators" class="carousel slide carousel-fade" data-mdb-ride="carousel">
-                <!-- Slides -->
-                <div class="carousel-inner mb-5">
+            <div class="col-md-8 carousel mx-auto">
+              <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+                <div class="carousel-inner">
                   @for ($i = 0; $i < count($service->galleries); ++$i)
                   <div class="carousel-item {{ $i == 0 ? "active" : "" }}">
                     <img src="/uploads/all/{{$service->galleries[$i]->file_name}}" class="d-block w-100" alt="..." />
                   </div>
                   @endfor
                 </div>
-                <!-- Slides -->
-              
-                <!-- Controls -->
-                <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleIndicators"
-                  data-mdb-slide="prev">
+                <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleIndicators"
-                  data-mdb-slide="next">
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="visually-hidden">Next</span>
-                </button>
-                <!-- Controls -->
-              
-                <!-- Thumbnails -->
-                <div class="carousel-indicators" style="margin-bottom: -20px;">
-                  @for ($i = 0; $i < count($service->galleries); ++$i)
-                  <button type="button" data-mdb-target="#carouselExampleIndicators" data-mdb-slide-to="{{$i}}" class="active"
-                    aria-current="true" aria-label="Slide {{$i+1}}" style="width: 100px;">
-                    <img class="d-block w-100"
-                      src="/uploads/all/{{$service->galleries[$i]->file_name}}" class="img-fluid" />
-                  </button>
-                  @endfor
-                </div>
-                <!-- Thumbnails -->
+                  <span class="sr-only">Next</span>
+                </a>
               </div>
-              
             </div>
             <div class="col-md-8 mb-3">
               <h4>{{$service->name}}</h4>
