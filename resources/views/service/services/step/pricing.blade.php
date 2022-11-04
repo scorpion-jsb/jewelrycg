@@ -134,41 +134,43 @@
                                 </svg>
                             </div>
                             <div class="d-flex sub-content">
+                                @php ($value = isset($data->packages) ? (count($data->packages) >= 1 ? $data->packages[0]->delivery_time : 0) : 0)
                                 <select class="form-select select-none" name="delivery_time[]" aria-label="Default select example">
-                                    <option selected>Delivery Time</option>
-                                    <option value="1">1 day Delivery</option>
-                                    <option value="2">2 day Delivery</option>
-                                    <option value="3">3 day Delivery</option>
-                                    <option value="3">4 day Delivery</option>
-                                    <option value="3">5 day Delivery</option>
-                                    <option value="3">6 day Delivery</option>
-                                    <option value="3">7 day Delivery</option>
-                                    <option value="3" disabled>-</option>
-                                    <option value="3">10 day Delivery</option>
-                                    <option value="3">14 day Delivery</option>
-                                    <option value="3">21 day Delivery</option>
-                                    <option value="3" disabled>-</option>
-                                    <option value="3">30 day Delivery</option>
-                                    <option value="3">45 day Delivery</option>
-                                    <option value="3">60 day Delivery</option>
-                                    <option value="3">75 day Delivery</option>
-                                    <option value="3">90 day Delivery</option>
+                                    <option {{$value === 0 ? "selected": ""}}>Delivery Time</option>
+                                    <option value="1" {{$value === 1 ? "selected": ""}}>1 day Delivery</option>
+                                    <option value="2" {{$value === 2 ? "selected": ""}}>2 day Delivery</option>
+                                    <option value="3" {{$value === 3 ? "selected": ""}}>3 day Delivery</option>
+                                    <option value="4" {{$value === 4 ? "selected": ""}}>4 day Delivery</option>
+                                    <option value="5" {{$value === 5 ? "selected": ""}}>5 day Delivery</option>
+                                    <option value="6" {{$value === 6 ? "selected": ""}}>6 day Delivery</option>
+                                    <option value="7" {{$value === 7 ? "selected": ""}}>7 day Delivery</option>
+                                    <option value="" disabled>-</option>
+                                    <option value="10" {{$value === 10 ? "selected": ""}}>10 day Delivery</option>
+                                    <option value="14" {{$value === 14 ? "selected": ""}}>14 day Delivery</option>
+                                    <option value="21" {{$value === 21 ? "selected": ""}}>21 day Delivery</option>
+                                    <option value="" disabled>-</option>
+                                    <option value="30" {{$value === 30 ? "selected": ""}}>30 day Delivery</option>
+                                    <option value="45" {{$value === 45 ? "selected": ""}}>45 day Delivery</option>
+                                    <option value="60" {{$value === 60 ? "selected": ""}}>60 day Delivery</option>
+                                    <option value="75" {{$value === 75 ? "selected": ""}}>75 day Delivery</option>
+                                    <option value="90" {{$value === 90 ? "selected": ""}}>90 day Delivery</option>
                                 </select>
                             </div>
                             <div class="d-flex sub-content">
+                                @php ($value = isset($data->packages) ? (count($data->packages) >= 1 ? $data->packages[0]->revisions : -1) : -1)
                                 <select type="text" name="revisions[]" class="form-select select-none" placeholder="Revision of your package">
-                                    <option selected>Select</option>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="999">UNLIMIT</option>
+                                    <option {{$value === -1 ? "selected": ""}}>Select</option>
+                                    <option value="0" {{$value === "0" ? "selected": ""}}>0</option>
+                                    <option value="1" {{$value === "1" ? "selected": ""}}>1</option>
+                                    <option value="2" {{$value === "2" ? "selected": ""}}>2</option>
+                                    <option value="3" {{$value === "3" ? "selected": ""}}>3</option>
+                                    <option value="4" {{$value === "4" ? "selected": ""}}>4</option>
+                                    <option value="5" {{$value === "5" ? "selected": ""}}>5</option>
+                                    <option value="6" {{$value === "6" ? "selected": ""}}>6</option>
+                                    <option value="7" {{$value === "7" ? "selected": ""}}>7</option>
+                                    <option value="8" {{$value === "8" ? "selected": ""}}>8</option>
+                                    <option value="9" {{$value === "9" ? "selected": ""}}>9</option>
+                                    <option value="999" {{$value === "999" ? "selected": ""}}>UNLIMIT</option>
                                 </select>
                             </div>
                         </div>
@@ -188,41 +190,43 @@
                                 </svg>
                             </div>
                             <div class="d-flex sub-content">
+                                @php ($value = isset($data->packages) ? (count($data->packages) >= 2 ? $data->packages[1]->delivery_time : 0) : 0)
                                 <select class="form-select select-none" name="delivery_time[]" aria-label="Default select example">
-                                    <option selected>Delivery Time</option>
-                                    <option value="1">1 day Delivery</option>
-                                    <option value="2">2 day Delivery</option>
-                                    <option value="3">3 day Delivery</option>
-                                    <option value="3">4 day Delivery</option>
-                                    <option value="3">5 day Delivery</option>
-                                    <option value="3">6 day Delivery</option>
-                                    <option value="3">7 day Delivery</option>
-                                    <option value="3" disabled>-</option>
-                                    <option value="3">10 day Delivery</option>
-                                    <option value="3">14 day Delivery</option>
-                                    <option value="3">21 day Delivery</option>
-                                    <option value="3" disabled>-</option>
-                                    <option value="3">30 day Delivery</option>
-                                    <option value="3">45 day Delivery</option>
-                                    <option value="3">60 day Delivery</option>
-                                    <option value="3">75 day Delivery</option>
-                                    <option value="3">90 day Delivery</option>
+                                    <option {{$value === 0 ? "selected": ""}}>Delivery Time</option>
+                                    <option value="1" {{$value === 1 ? "selected": ""}}>1 day Delivery</option>
+                                    <option value="2" {{$value === 2 ? "selected": ""}}>2 day Delivery</option>
+                                    <option value="3" {{$value === 3 ? "selected": ""}}>3 day Delivery</option>
+                                    <option value="4" {{$value === 4 ? "selected": ""}}>4 day Delivery</option>
+                                    <option value="5" {{$value === 5 ? "selected": ""}}>5 day Delivery</option>
+                                    <option value="6" {{$value === 6 ? "selected": ""}}>6 day Delivery</option>
+                                    <option value="7" {{$value === 7 ? "selected": ""}}>7 day Delivery</option>
+                                    <option value="" disabled>-</option>
+                                    <option value="10" {{$value === 10 ? "selected": ""}}>10 day Delivery</option>
+                                    <option value="14" {{$value === 14 ? "selected": ""}}>14 day Delivery</option>
+                                    <option value="21" {{$value === 21 ? "selected": ""}}>21 day Delivery</option>
+                                    <option value="" disabled>-</option>
+                                    <option value="30" {{$value === 30 ? "selected": ""}}>30 day Delivery</option>
+                                    <option value="45" {{$value === 45 ? "selected": ""}}>45 day Delivery</option>
+                                    <option value="60" {{$value === 60 ? "selected": ""}}>60 day Delivery</option>
+                                    <option value="75" {{$value === 75 ? "selected": ""}}>75 day Delivery</option>
+                                    <option value="90" {{$value === 90 ? "selected": ""}}>90 day Delivery</option>
                                 </select>
                             </div>
                             <div class="d-flex sub-content">
+                                @php ($value = isset($data->packages) ? (count($data->packages) >= 2 ? $data->packages[1]->revisions : -1) : -1)
                                 <select type="text" name="revisions[]" class="form-select select-none" placeholder="Revision of your package">
-                                    <option selected>Select</option>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="999">UNLIMIT</option>
+                                    <option {{$value === -1 ? "selected": ""}}>Select</option>
+                                    <option value="0" {{$value === "0" ? "selected": ""}}>0</option>
+                                    <option value="1" {{$value === "1" ? "selected": ""}}>1</option>
+                                    <option value="2" {{$value === "2" ? "selected": ""}}>2</option>
+                                    <option value="3" {{$value === "3" ? "selected": ""}}>3</option>
+                                    <option value="4" {{$value === "4" ? "selected": ""}}>4</option>
+                                    <option value="5" {{$value === "5" ? "selected": ""}}>5</option>
+                                    <option value="6" {{$value === "6" ? "selected": ""}}>6</option>
+                                    <option value="7" {{$value === "7" ? "selected": ""}}>7</option>
+                                    <option value="8" {{$value === "8" ? "selected": ""}}>8</option>
+                                    <option value="9" {{$value === "9" ? "selected": ""}}>9</option>
+                                    <option value="999" {{$value === "999" ? "selected": ""}}>UNLIMIT</option>
                                 </select>
                             </div>
                         </div>
@@ -242,41 +246,43 @@
                                 </svg>
                             </div>
                             <div class="d-flex sub-content">
+                                @php ($value = isset($data->packages) ? (count($data->packages) >= 3 ? $data->packages[2]->delivery_time : 0) : 0)
                                 <select class="form-select select-none" name="delivery_time[]" aria-label="Default select example">
-                                    <option selected>Delivery Time</option>
-                                    <option value="1">1 day Delivery</option>
-                                    <option value="2">2 day Delivery</option>
-                                    <option value="3">3 day Delivery</option>
-                                    <option value="4">4 day Delivery</option>
-                                    <option value="5">5 day Delivery</option>
-                                    <option value="6">6 day Delivery</option>
-                                    <option value="7">7 day Delivery</option>
-                                    <option disabled>-</option>
-                                    <option value="10">10 day Delivery</option>
-                                    <option value="14">14 day Delivery</option>
-                                    <option value="21">21 day Delivery</option>
-                                    <option disabled>-</option>
-                                    <option value="30">30 day Delivery</option>
-                                    <option value="45">45 day Delivery</option>
-                                    <option value="60">60 day Delivery</option>
-                                    <option value="75">75 day Delivery</option>
-                                    <option value="90">90 day Delivery</option>
+                                    <option {{$value === 0 ? "selected": ""}}>Delivery Time</option>
+                                    <option value="1" {{$value === 1 ? "selected": ""}}>1 day Delivery</option>
+                                    <option value="2" {{$value === 2 ? "selected": ""}}>2 day Delivery</option>
+                                    <option value="3" {{$value === 3 ? "selected": ""}}>3 day Delivery</option>
+                                    <option value="4" {{$value === 4 ? "selected": ""}}>4 day Delivery</option>
+                                    <option value="5" {{$value === 5 ? "selected": ""}}>5 day Delivery</option>
+                                    <option value="6" {{$value === 6 ? "selected": ""}}>6 day Delivery</option>
+                                    <option value="7" {{$value === 7 ? "selected": ""}}>7 day Delivery</option>
+                                    <option value="" disabled>-</option>
+                                    <option value="10" {{$value === 10 ? "selected": ""}}>10 day Delivery</option>
+                                    <option value="14" {{$value === 14 ? "selected": ""}}>14 day Delivery</option>
+                                    <option value="21" {{$value === 21 ? "selected": ""}}>21 day Delivery</option>
+                                    <option value="" disabled>-</option>
+                                    <option value="30" {{$value === 30 ? "selected": ""}}>30 day Delivery</option>
+                                    <option value="45" {{$value === 45 ? "selected": ""}}>45 day Delivery</option>
+                                    <option value="60" {{$value === 60 ? "selected": ""}}>60 day Delivery</option>
+                                    <option value="75" {{$value === 75 ? "selected": ""}}>75 day Delivery</option>
+                                    <option value="90" {{$value === 90 ? "selected": ""}}>90 day Delivery</option>
                                 </select>
                             </div>
                             <div class="d-flex sub-content">
+                                @php ($value = isset($data->packages) ? (count($data->packages) >= 3 ? $data->packages[2]->revisions : -1) : -1)
                                 <select type="text" name="revisions[]" class="form-select select-none" placeholder="Revision of your package">
-                                    <option selected>Select</option>
-                                    <option value="0">0</option>
-                                    <option value="1">1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="999">UNLIMIT</option>
+                                    <option {{$value === -1 ? "selected": ""}}>Select</option>
+                                    <option value="0" {{$value === "0" ? "selected": ""}}>0</option>
+                                    <option value="1" {{$value === "1" ? "selected": ""}}>1</option>
+                                    <option value="2" {{$value === "2" ? "selected": ""}}>2</option>
+                                    <option value="3" {{$value === "3" ? "selected": ""}}>3</option>
+                                    <option value="4" {{$value === "4" ? "selected": ""}}>4</option>
+                                    <option value="5" {{$value === "5" ? "selected": ""}}>5</option>
+                                    <option value="6" {{$value === "6" ? "selected": ""}}>6</option>
+                                    <option value="7" {{$value === "7" ? "selected": ""}}>7</option>
+                                    <option value="8" {{$value === "8" ? "selected": ""}}>8</option>
+                                    <option value="9" {{$value === "9" ? "selected": ""}}>9</option>
+                                    <option value="999" {{$value === "999" ? "selected": ""}}>UNLIMIT</option>
                                 </select>
                             </div>
                         </div>
@@ -285,17 +291,17 @@
                         <div class="submission">Price ($)</div>
                         <div class="w-30">
                             <div class="d-flex sub-content">
-                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($data->packages) ? (count($data->packages) >= 1 ? $data->packages[0]->price : "") : "" }}">
+                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($data->packages) ? (count($data->packages) >= 1 ? $data->packages[0]->price : 0) : 0 }}">
                             </div>
                         </div>
                         <div class="w-30">
                             <div class="d-flex sub-content">
-                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($data->packages) ? (count($data->packages) >= 2 ? $data->packages[1]->price : "") : "" }}">
+                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($data->packages) ? (count($data->packages) >= 2 ? $data->packages[1]->price : 0) : 0 }}">
                             </div>
                         </div>
                         <div class="w-30">
                             <div class="d-flex sub-content">
-                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($data->packages) ? (count($data->packages) >= 3 ? $data->packages[2]->price : "") : "" }}">
+                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($data->packages) ? (count($data->packages) >= 3 ? $data->packages[2]->price : 0) : 0 }}">
                             </div>
                         </div>
                     </div>
