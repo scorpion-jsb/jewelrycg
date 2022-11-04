@@ -36,7 +36,7 @@
                             </a>
                         </li>
                         <li>
-                            <a class="dropdown-item" href="{{ route('blog') }}">
+                            <a class="dropdown-item" href="{{ route('courses') }}">
                                 <div class="row">
                                     <div class="col-auto">
                                         <div class="dropdown-icon-wrap"><i class="bi bi-book"></i></div>
@@ -55,7 +55,7 @@
                     </ul>
                 </li>
                 <li class="nav-item menu-area">
-                    <a class="nav-link" href="#">Hire Designers</a>
+                    <a class="nav-link" href="{{ route('services') }}">Hire a Pro</a>
                 </li>
             </ul>
             <!-- end left navbar-->
