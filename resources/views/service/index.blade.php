@@ -40,12 +40,28 @@
                           @endforeach
                         </ul>
                         <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
-                          <li>Tags:</li>
-                          @foreach ($service->tags as $item)
+                          <li>Seller Name:</li>
                           <li>
-                            <div class="chip ms-3">{{ $item->tag->name }}</div>
+                            <div class="chip ms-3">{{ $service->postauthor->first_name." ".$service->postauthor->last_name }}</div>
                           </li>
-                          @endforeach
+                        </ul>
+                        <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
+                          <li>Seller Avatar:</li>
+                          <li>
+                            <div class="chip ms-3">{{ $service->postauthor->avatar }}</div>
+                          </li>
+                        </ul>
+                        <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
+                          <li>Seller Rate:</li>
+                          <li>
+                            <div class="chip ms-3">{{ $service->seller->sales_commission_rate }}</div>
+                          </li>
+                        </ul>
+                        <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
+                          <li>Start Price:</li>
+                          <li>
+                            <div class="chip ms-3">{{ count($service->packages) ? "$".$service->packages[0]->price : "..." }}</div>
+                          </li>
                         </ul>
                         <a href="#!" class="btn btn-primary">Details</a>
                       </div>

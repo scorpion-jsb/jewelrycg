@@ -59,4 +59,9 @@ class ServicePost extends Model
             'name' => "Undefined",
         ]);
     }
+
+    public function seller()
+    {
+        return $this->hasOne(SellersProfile::class, 'user_id', 'user_id');
+    }
 }
