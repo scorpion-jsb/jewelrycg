@@ -15,15 +15,13 @@ return new class extends Migration
     {
         Schema::create('orders_services', function (Blueprint $table) {
             $table->id();
-            $table->enum('status', ['pending', 'revision', 'canceled', 'delivered'])->default('pending');
+            $table->integer('status')->default(0); // 0-pending, 1-revision, 2-canceled, 3-delivered
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('package_id');
             $table->string('revisions');
             $table->dateTime('orginial_delivery_time');
             $table->dateTime('extended_delivery_time');
-
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
-            $table->foreign('package_id')->references('id')->on('service_packages')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -34,14 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('orders_services')) {
-            Schema::table('orders_services', function (Blueprint $table) {
-                $table->dropForeign('orders_services_service_id_foreign');
-                $table->dropColumn('service_id');
-                $table->dropForeign('orders_services_package_id_foreign');
-                $table->dropColumn('package_id');
-            });
-            Schema::dropIfExists('orders_services');
-        }
+        Schema::dropIfExists('orders_services');
     }
 };
