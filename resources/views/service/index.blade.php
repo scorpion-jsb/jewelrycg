@@ -17,9 +17,6 @@
               <div class="col-md-8">
                   <h3>Services</h3>
               </div>
-              <div class="col-md-4" style="text-align: right;">
-                  <a class="btn btn-primary" type="button" href="{{route('seller.services.create')}}">Create Service</a>
-              </div>
               <div class="col-md-12">
                 <div class="row">
                   @foreach ($services as $service)

@@ -39,6 +39,33 @@ class ServicesController extends Controller
         ]);
     }
 
+    public function detail($id)
+    {
+        $data = ServicePost::with(['thumb', 'categories.category', 'postauthor', 'seller', 'packages', 'tags.tag'])->findOrFail($id);
+        $gallery_ids = explode(',', $data->gallery);
+
+        $galleries = [];
+        for ($i = 0; $i < count($gallery_ids); $i++) {
+            $gallery = Upload::where('id', $gallery_ids[$i])->first();
+            if (!$gallery) {
+                continue;
+            }
+            array_push($galleries, $gallery);
+        }
+
+        $tag_ids = [];
+        for ($i = 0; $i < count($data->tags); $i++) {
+            array_push($tag_ids, $data->tags[$i]->id_tag);
+        }
+
+        $data->tag_ids = $tag_ids;
+        $data->galleries = $galleries;
+
+        return view('service.detail', [
+            'service' => $data,
+        ]);
+    }
+
     public function trash()
     {
         return view('service.services.trash', [

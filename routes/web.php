@@ -391,6 +391,7 @@ Route::group(['middleware' => ['auth']], function () {
 //services
 Route::group(['prefix' => 'service'], function () {
     Route::get('/', [ServicesController::class, 'all'])->name('all');
+    Route::get('/{id}', [ServicesController::class, 'detail'])->name('detail');
 });
 
 // Seller Dashboard
