@@ -70,7 +70,8 @@
               <h4>{{$service->name}}</h4>
             </div>
             <div class="col-md-8">
-              <p>{{$service->content}}</p>
+              <h4>Content</h4>
+              <div>{!! $service->content !!}</div>
             </div>
             <div class="col-md-12 row">
               <h4>Packages</h4>
