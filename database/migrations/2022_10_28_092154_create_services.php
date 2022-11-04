@@ -22,6 +22,9 @@ return new class extends Migration
             $table->text('content')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('gallery')->nullable();
+            $table->dateTime('published_at')->nullable();
+            $table->text('reviewer_notes')->nullable();
+            $table->text('reviewer_notes_private')->nullable();
             $table->timestamps();
         });
     }
