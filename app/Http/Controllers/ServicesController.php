@@ -31,6 +31,14 @@ class ServicesController extends Controller
         ]);
     }
 
+    public function all()
+    {
+        // dd(ServicePost::with(['thumb', 'categories.category', 'postauthor', 'seller', 'packages'])->orderBy('id', 'DESC')->get());
+        return view('service.index', [
+            'services' => ServicePost::with(['thumb', 'categories.category', 'postauthor', 'seller', 'packages'])->orderBy('id', 'DESC')->get(),
+        ]);
+    }
+
     public function trash()
     {
         return view('service.services.trash', [

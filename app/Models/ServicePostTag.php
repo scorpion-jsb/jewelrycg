@@ -13,6 +13,11 @@ class ServicePostTag extends Model
 
     protected $fillable = [
         'id_service',
-        'id_tag'
-    ] ;
+        'id_tag',
+    ];
+
+    public function tag()
+    {
+        return $this->belongsTo(ServiceTags::class, 'id_tag', 'id');
+    }
 }
