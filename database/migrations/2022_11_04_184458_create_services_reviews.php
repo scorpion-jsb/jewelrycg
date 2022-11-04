@@ -19,7 +19,7 @@ return new class extends Migration
             $table->unsignedBigInteger('package_id');
             $table->unsignedBigInteger('user_id');
             $table->integer('rating')->default(0);
-            $table->string('review');
+            $table->text('review');
             $table->timestamps();
             $table->softDeletes();
 
