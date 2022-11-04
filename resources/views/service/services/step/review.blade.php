@@ -18,7 +18,10 @@
                             <label for="desc" class="w-100 mb-2">Service: {{ $data->slug }}</label>
                         </div>
                         <div class="mb-2">
-                            <label for="desc" class="w-100 mb-2">Content: {{ $data->content }}</label>
+                            <label for="desc" class="w-100 mb-2">Content:</label>
+                            <div>
+                            {!! $data->content !!}
+                            </div>
                         </div>
                         <!-- <div class="mb-4 col-12">
                             <div class="col-12">

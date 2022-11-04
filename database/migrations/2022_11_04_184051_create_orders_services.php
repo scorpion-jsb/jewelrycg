@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('orders_services', function (Blueprint $table) {
             $table->id();
-            $table->integer('status')->default(0); // 0-pending, 1-revision, 2-canceled, 3-delivered
+            $table->integer('status')->default(0); // 0-pending, 1-revision, 2-canceled, 3-(physical:delivered, digital:shipped)
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('package_id');
             $table->string('revisions');
