@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->string('name');
             $table->string('slug');
-            $table->string('content');
+            $table->text('content')->nullable();
             $table->string('thumbnail')->nullable();
             $table->string('gallery')->nullable();
             $table->timestamps();
