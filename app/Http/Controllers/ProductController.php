@@ -3,32 +3,32 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\SearchProductRequest;
-use App\Models\Product;
-use App\Models\Upload;
-use App\Models\UserSearch;
-use App\Models\ProductsVariant;
-use App\Models\ProductsCategorie;
 use App\Models\Attribute;
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\ProductMaterial;
+use App\Models\ProductsCategorie;
 use App\Models\ProductsReview;
+use App\Models\ProductsVariant;
+use App\Models\Upload;
+use App\Models\UserSearch;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
     public function searchCategory(Request $req)
     {
-        $products = Product::where('status', 1)->searchWithImages($req->q, $req->category);
+        $products = Product::searchWithImages($req->q, $req->category);
         $categories = ProductsCategorie::whereNull('parent_id')->get();
 
-        $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();            
+        $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();
         return view('components.products-display', [
-            'products'  => $products, 
-            'categories'=>$categories, 
-            'attrs'     => $attributes
+            'products' => $products,
+            'categories' => $categories,
+            'attrs' => $attributes,
         ]);
     }
 
@@ -41,26 +41,26 @@ class ProductController extends Controller
             $search->save();
         }
 
-        //$products = Product::where('status', 1)->searchWithImages($req->q, $req->category);
-        $products = Product::where('status', 1);
+        $products = Product::searchWithImages($req->q, $req->category);
         $categories = ProductsCategorie::whereNull('parent_id')->get();
 
-        $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();        
+        $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();
         return view('search', [
-            'products'  => $products, 
-            'categories'=>$categories, 
-            'attrs'     => $attributes
+            'products' => $products,
+            'categories' => $categories,
+            'attrs' => $attributes,
         ]);
     }
 
-    function index() {
+    public function index()
+    {
         return redirect()->route('shop_index');
     }
 
     public function products_index()
     {
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(24);
-        $products->each(function($product){
+        $products->each(function ($product) {
             $product->setPriceToFloat();
         });
 
@@ -68,50 +68,51 @@ class ProductController extends Controller
 
         $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();
         return view('products.list', [
-            'products'  => $products, 
-            'categories'=> $categories, 
-            'attrs'     => $attributes
+            'products' => $products,
+            'categories' => $categories,
+            'attrs' => $attributes,
         ]);
     }
 
     /**
      * Filter producst by category and attribute_values
-     * 
+     *
      */
-    public function filterProduct(Request $request){
-        if( $request->attrs && count($request->attrs) && $request->categories && count($request->categories)){
-            $attribute_query = '%'.implode(",", $request->attrs).'%';
+    public function filterProduct(Request $request)
+    {
+        if ($request->attrs && count($request->attrs) && $request->categories && count($request->categories)) {
+            $attribute_query = '%' . implode(",", $request->attrs) . '%';
             $products = Product::join('products_variants', 'products.id', '=', 'products_variants.product_id')
-                        ->whereIn('category', $request->categories)
-                        ->where('status', 1)
-                        ->where(function($query) use($attribute_query){
-                            $query->where('products.product_attribute_values', 'like', $attribute_query)
-                            ->orWhere('products_variants.variant_attribute_value', 'like', $attribute_query);
-                        })
-                        ->select('products.id', 'products.name', 'products.product_thumbnail', 'products.product_images',
-                            'products.product_3dpreview', 'products.slug', 'products.price'
-                        )
-                        ->orderBy('products.id', 'DESC')->distinct('products.id')->paginate(24);
-        }else if($request->categories && count($request->categories)){
+                ->whereIn('category', $request->categories)
+                ->where('status', 1)
+                ->where(function ($query) use ($attribute_query) {
+                    $query->where('products.product_attribute_values', 'like', $attribute_query)
+                        ->orWhere('products_variants.variant_attribute_value', 'like', $attribute_query);
+                })
+                ->select('products.id', 'products.name', 'products.product_thumbnail', 'products.product_images',
+                    'products.product_3dpreview', 'products.slug', 'products.price'
+                )
+                ->orderBy('products.id', 'DESC')->distinct('products.id')->paginate(24);
+        } else if ($request->categories && count($request->categories)) {
             $products = Product::whereIn('category', $request->categories)
-                        ->where('status', 1)
-                        ->orderBy('id', 'DESC')->paginate(24);
-        }else if($request->attrs && count($request->attrs)){
-            $attribute_query = '%'.implode(",", $request->attrs).'%';
+                ->where('status', 1)
+                ->orderBy('id', 'DESC')->paginate(24);
+        } else if ($request->attrs && count($request->attrs)) {
+            $attribute_query = '%' . implode(",", $request->attrs) . '%';
             $products = Product::join('products_variants', 'products.id', '=', 'products_variants.product_id')
-                        ->where('status', 1)
-                        ->where(function($query) use($attribute_query){
-                            $query->where('products.product_attribute_values', 'like', $attribute_query)
-                            ->orWhere('products_variants.variant_attribute_value', 'like', $attribute_query);
-                        })
-                        ->select('products.id', 'products.name', 'products.product_thumbnail', 'products.product_images',
-                            'products.product_3dpreview', 'products.slug', 'products.price'
-                        )                        
-                        ->orderBy('products.id', 'DESC')->distinct('products.id')->paginate(24);
-        }else{
+                ->where('status', 1)
+                ->where(function ($query) use ($attribute_query) {
+                    $query->where('products.product_attribute_values', 'like', $attribute_query)
+                        ->orWhere('products_variants.variant_attribute_value', 'like', $attribute_query);
+                })
+                ->select('products.id', 'products.name', 'products.product_thumbnail', 'products.product_images',
+                    'products.product_3dpreview', 'products.slug', 'products.price'
+                )
+                ->orderBy('products.id', 'DESC')->distinct('products.id')->paginate(24);
+        } else {
             $products = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(24);
         }
-        $products->each(function($product){
+        $products->each(function ($product) {
             $product->setPriceToFloat();
         });
         $products->withPath('/3d-models');
@@ -119,9 +120,9 @@ class ProductController extends Controller
 
         $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();
         return view('components.products-display', [
-            'products'  => $products,
-            'categories'=>$categories,
-            'attrs'     => $attributes
+            'products' => $products,
+            'categories' => $categories,
+            'attrs' => $attributes,
         ]);
     }
 
@@ -129,13 +130,13 @@ class ProductController extends Controller
     {
         try {
             $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
-        } catch(ModelNotFoundException $e) {
+        } catch (ModelNotFoundException $e) {
             $product = Product::with(['modelpreview'])->whereId($slug)->firstOrFail();
         }
-        abort_if(! $product, 404);
+        abort_if(!$product, 404);
 
         $product->setPriceToFloat();
-        $uploads = Upload::whereIn('id', explode(',',$product->product_images))->get(); 
+        $uploads = Upload::whereIn('id', explode(',', $product->product_images))->get();
         $variants = ProductsVariant::where('product_id', $product->id)->get();
         $maxPrice = ProductsVariant::where('product_id', $product->id)->max('variant_price') / 100;
         $minPrice = ProductsVariant::where('product_id', $product->id)->min('variant_price') / 100;
@@ -160,19 +161,19 @@ class ProductController extends Controller
             ->count();
 
         $average_rating = ProductsReview::select(
-                DB::raw('AVG(rating) as average_rating')
-            )->where('product_id', $product->id)
+            DB::raw('AVG(rating) as average_rating')
+        )->where('product_id', $product->id)
             ->first()->average_rating;
-        $average_rating = number_format($average_rating?: 0, 1);
+        $average_rating = number_format($average_rating ?: 0, 1);
         $arrReviewListing = ProductsReview::with('user')
             ->where('product_id', $product->id)
             ->orderBy('updated_at', 'DESC')
             ->paginate(10);
 
-        if ($request->ajax() && $request->page){
+        if ($request->ajax() && $request->page) {
             return view('products.show_reviews', compact(
                 'arrReviewListing'
-            )); 
+            ));
         }
 
         $arrProductMaterials = ProductMaterial::leftjoin('material_types', 'material_types.id', '=', 'product_materials.material_type_id')
@@ -202,7 +203,8 @@ class ProductController extends Controller
         }
     }
 
-    public function addReview(Request $request) {
+    public function addReview(Request $request)
+    {
         $user_id = Auth::user()->id;
         $data = $request->all();
         $data['user_id'] = $user_id;

@@ -9,6 +9,22 @@
       .carousel {
         margin-bottom: 70px;
       }
+      .carousel-indicators li {
+        width: 120px;
+        height: 100%;
+        opacity: 0.8;
+        margin: 0px 5px;
+      }
+      .carousel-indicators button[data-bs-target]{
+        width: 120px;
+      }
+      .carousel-indicators button[data-bs-target]:not(.active){
+        opacity: 0.8;
+      }
+      .carousel-indicators {
+          position: static;
+          margin-top: 10px;
+      }
   </style>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -33,12 +49,17 @@
                 </div>
                 <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
                   <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Previous</span>
                 </a>
                 <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
                   <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span class="sr-only">Next</span>
                 </a>
+                <ol class="carousel-indicators">
+                    @for ($i = 0; $i < count($service->galleries); ++$i)
+                    <li data-target="#carouselExampleIndicators" data-slide-to="{{$i}}" class="{{$i == 0 ? "active": "" }}">
+                        <img src="/uploads/all/{{$service->galleries[$i]->file_name}}" class="d-block w-100">
+                    </li>
+                    @endfor
+                </ol>
               </div>
             </div>
             <div class="col-md-8 mb-3">
