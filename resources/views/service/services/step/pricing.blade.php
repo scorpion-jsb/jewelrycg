@@ -156,7 +156,13 @@
                                 </select>
                             </div>
                             <div class="d-flex sub-content">
-                                <input type="text" name="revisions[]" class="w-100 text-input-package" placeholder="Revision of your package" value="{{isset($data->packages) ? (count($data->packages) >= 1 ? $data->packages[0]->revisions : "") : "" }}">
+                                <select type="text" name="revisions[]" class="form-select select-none" placeholder="Revision of your package">
+                                    <option selected>Select</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                         </div>
                         <div class="w-30">
@@ -197,7 +203,13 @@
                                 </select>
                             </div>
                             <div class="d-flex sub-content">
-                                <input type="text" name="revisions[]" class="w-100 text-input-package" placeholder="Revision of your package" value="{{isset($data->packages) ? (count($data->packages) >= 2 ? $data->packages[1]->revisions : "") : "" }}">
+                                <select type="text" name="revisions[]" class="form-select select-none" placeholder="Revision of your package">
+                                    <option selected>Select</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                         </div>
                         <div class="w-30">
@@ -238,7 +250,13 @@
                                 </select>
                             </div>
                             <div class="d-flex sub-content">
-                                <input type="text" name="revisions[]" class="w-100 text-input-package" placeholder="Revision of your package" value="{{isset($data->packages) ? (count($data->packages) >= 3 ? $data->packages[2]->revisions : "") : "" }}">
+                                <select type="text" name="revisions[]" class="form-select select-none" placeholder="Revision of your package">
+                                    <option selected>Select</option>
+                                    <option value="0">0</option>
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
                             </div>
                         </div>
                     </div>
