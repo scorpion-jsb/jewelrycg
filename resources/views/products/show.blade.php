@@ -29,8 +29,12 @@
                             <div class="w-100">
                                 <a class="btn btn-primary product_price" href="#">
                                     <i class="bi bi-cart-plus p-1"></i>
-                                    @if (count($variants) && $minPrice != $maxPrice)
-                                        ${{ $minPrice }} ~ ${{ $maxPrice }}
+                                    @if (count($variants))
+                                        @if($minPrice != $maxPrice)
+                                            ${{ number_format($minPrice, 2, ".", ",") }} ~ ${{ number_format($maxPrice, 2, ".", ",") }}
+                                        @else
+                                            ${{ number_format($minPrice, 2, ".", ",") }}
+                                        @endif
                                     @else
                                         ${{ $product->price }}
                                     @endif
