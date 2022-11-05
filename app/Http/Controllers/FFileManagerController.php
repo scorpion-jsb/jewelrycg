@@ -214,27 +214,6 @@ class FFileManagerController extends Controller
         return $upload;
     }
 
-    public static function get_thumb_path($filename)
-    {
-        $exploded = explode(".", $filename);
-        $extension = array_pop($exploded);
-        $hash = join(".", $exploded);
-
-        if (count(explode("_", $hash)) > 1) {
-            return $filename;
-        }
-
-        $image = Image::make(public_path('uploads/all/') . $filename);
-
-        $thumbnailWidth = Config::get('constants.product_thumbnail_size.width');
-        $thumbnailHeight = Config::get('constants.product_thumbnail_size.height');
-        $suffix = Config::get('constants.product_thumbnail_suffix');
-
-        $image->resize($thumbnailWidth, $thumbnailHeight);
-        $image->save(public_path('uploads/all/') . $hash . "_" . $suffix . '.' . $extension, 80);
-
-        return $hash . "_" . $suffix . '.' . $extension;
-    }
     /**
      * Display the specified resource.
      *
