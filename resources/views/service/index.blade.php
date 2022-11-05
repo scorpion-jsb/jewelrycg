@@ -42,7 +42,7 @@
                         <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
                           <li>Seller Avatar:</li>
                           <li>
-                            <img style="width: 50px" src="{{ $service->postauthor->uploads->getImageOptimizedFullName(100) }}" alt="avatar">
+                            <img style="width: 50px" src="{{ $service->postauthor->uploads->getImageOptimizedFullName(100) }}" alt="{{ $service->postauthor->name }}">
                           </li>
                         </ul>
                         {{-- <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
