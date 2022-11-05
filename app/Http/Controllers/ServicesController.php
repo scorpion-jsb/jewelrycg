@@ -384,7 +384,7 @@ class ServicesController extends Controller
     public function get_billing($id)
     {
         $package = ServicePackage::with('service.thumb')->findOrFail($id);
-        $isIncludeShipping = true;
+        $isIncludeShipping = false;
 
         $countries = Country::all(['name', 'code']);
         if (auth()->user()) {
@@ -462,7 +462,7 @@ class ServicesController extends Controller
     {
         $package = ServicePackage::with('service.thumb')->findOrFail($id);
 
-        $isIncludeShipping = true;
+        $isIncludeShipping = false;
 
         $coupon_id = $request->session()->get('coupon_id', 0);
         $coupon_id = $coupon_id ?? 0;
