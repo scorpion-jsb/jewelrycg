@@ -35,13 +35,13 @@ class ServicesController extends Controller
     {
         // dd(ServicePost::with(['thumb', 'categories.category', 'postauthor', 'seller', 'packages'])->orderBy('id', 'DESC')->get());
         return view('service.index', [
-            'services' => ServicePost::with(['thumb', 'categories.category', 'postauthor', 'seller', 'packages'])->where('status', 1)->orderBy('id', 'DESC')->get(),
+            'services' => ServicePost::with(['thumb', 'categories.category', 'postauthor.uploads', 'seller', 'packages'])->where('status', 1)->orderBy('id', 'DESC')->get(),
         ]);
     }
 
     public function detail($id)
     {
-        $data = ServicePost::with(['thumb', 'categories.category', 'postauthor', 'seller', 'packages', 'tags.tag'])->findOrFail($id);
+        $data = ServicePost::with(['thumb', 'categories.category', 'postauthor.uploads', 'seller', 'packages', 'tags.tag'])->findOrFail($id);
         $gallery_ids = explode(',', $data->gallery);
 
         $galleries = [];
