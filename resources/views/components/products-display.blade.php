@@ -9,14 +9,8 @@
                             class="rounded w-100 lazyloaded">
                     </div>
                     <div class="text-left px-2">
-                        <div class="fw-700 fs-16 text-primary col-4">
-                            $@php
-                                if (is_numeric($product->price) && floor($product->price) != $product->price) {
-                                    echo $product->price;
-                                } else {
-                                    echo $product->price;
-                                }
-                            @endphp
+                        <div class="fw-700 fs-16 text-primary col-8">
+                            {{ $product->price }}
                         </div>
                         <!--<div class="row align-items-center opacity-70">
                     <div class="fw-700 fs-15 text-primary col-4">${{ $product->price }} </div>
