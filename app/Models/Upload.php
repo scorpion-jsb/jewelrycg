@@ -17,27 +17,31 @@ class Upload extends Model
         'file_name',
         'file_size',
         'extension',
-        'type'
+        'type',
     ];
 
     private $fileUploadPath = '';
     private $fileManagerThumbnailWidth = 100;
     private $fileManagerThumbnailSuffix = '';
 
-    public function __construct() {
+    public function __construct()
+    {
         $this->fileUploadPath = Config::get('constants.file_upload_path');
         $this->fileManagerThumbnailSuffix = Config::get('constants.file_manager_thumbnail_suffix');
     }
 
-    public function getFileFullPath() {
+    public function getFileFullPath()
+    {
         return asset($this->fileUploadPath) . '/' . $this->file_name;
     }
 
-    public function getOriginalFileFullName() {
+    public function getOriginalFileFullName()
+    {
         return $this->file_original_name . "." . $this->extension;
     }
 
-    public function  getImageOptimizedFullName ($width = 0, $height = 0) {
+    public function getImageOptimizedFullName($width = 0, $height = 0)
+    {
         $filename = str_replace("." . $this->extension, "", $this->file_name) . "-" . $width . "-" . $height . "." . $this->extension;
 
         // return asset($this->fileUploadPath . "/" . $this->file_name);
@@ -45,14 +49,15 @@ class Upload extends Model
             return asset($this->fileUploadPath . "/" . $filename);
         }
 
-        return asset('/image/' . $this->file_name . '?width=' . $width . '&height=' . $height );
+        return asset('/image/' . $this->file_name . '?width=' . $width . '&height=' . $height);
     }
 
     // public function getImageCacheFullName($width = 0) {
     //     return asset('/imagecache/image/' . $this->file_name . '?width=' . $width );
     // }
 
-    public function getFileManagerThumbnailPath() {
+    public function getFileManagerThumbnailPath()
+    {
         $filename = str_replace('.' . $this->extension, Config::get('constants.file_manager_thumbnail_suffix') . '.' . $this->extension, $this->file_name);
 
         if (!file_exists(public_path($this->fileUploadPath) . '/' . $filename) && $this->type == 'image') {
@@ -70,11 +75,13 @@ class Upload extends Model
         return asset($this->fileUploadPath) . '/' . $filename;
     }
 
-    public function scopeImage($query) {
+    public function scopeImage($query)
+    {
         return $query->whereOr('type', 'image');
     }
 
-    public function scopeAsset($query) {
+    public function scopeAsset($query)
+    {
         return $query->where('type', '!=', 'image');
     }
 }

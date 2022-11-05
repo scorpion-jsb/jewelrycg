@@ -110,7 +110,7 @@
     $(document).ready(function() {
         $("#thumbnail_dropzone").dropzone({
             method:'post',
-            url: "{{ route('seller.file.store') }}",
+            url: "{{ route('seller.file.thumb') }}",
             dictDefaultMessage: "Select photos",
             paramName: "file",
             maxFilesize: 2,
@@ -160,7 +160,7 @@
         })
         $("#gallery_dropzone").dropzone({
             method:'post',
-            url: "{{ route('seller.file.store') }}",
+            url: "{{ route('seller.file.image') }}",
             dictDefaultMessage: "Select photos",
             paramName: "file",
             maxFilesize: 2,

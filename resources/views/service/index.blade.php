@@ -22,7 +22,7 @@
                   @foreach ($services as $service)
                   <div class="col-lg-3 col-md-4 mb-4 mb-lg-0">
                     <div class="card">
-                      <img src="/uploads/all/{{ $service->thumb->file_name }}" class="card-img-top" alt="Peaks Against the Starry Sky" data-xblocker="passed" style="visibility: visible;">
+                      <img src="{{ $service->thumb->getImageOptimizedFullName(400) }}" class="card-img-top" alt="Peaks Against the Starry Sky" data-xblocker="passed" style="visibility: visible;">
                       <div class="card-body">
                         <h5 class="card-title">{{ $service->name }}</h5>
                         <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
