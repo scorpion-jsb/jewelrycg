@@ -25,9 +25,6 @@
                       <img src="/uploads/all/{{ $service->thumb->file_name }}" class="card-img-top" alt="Peaks Against the Starry Sky" data-xblocker="passed" style="visibility: visible;">
                       <div class="card-body">
                         <h5 class="card-title">{{ $service->name }}</h5>
-                        <p class="card-text">
-                          {!! $service->content !!}
-                        </p>
                         <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
                           <li>Category:</li>
                           @foreach ($service->categories as $item)
@@ -45,7 +42,7 @@
                         <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
                           <li>Seller Avatar:</li>
                           <li>
-                            <img style="width: 50px;" src="/uploads/all/{{ $service->postauthor->uploads->file_name }}" alt="avatar">
+                            <img style="width: 50px" src="/uploads/all/{{ $service->postauthor->uploads->file_name }}" alt="avatar">
                           </li>
                         </ul>
                         {{-- <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
@@ -57,7 +54,7 @@
                         <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
                           <li>Start Price:</li>
                           <li>
-                            <div class="chip ms-3">{{ count($service->packages) ? "$".number_format($service->packages[0]->price, 2) : "..." }} {{ count($service->packages) > 1 ? " - $".number_format($service->packages[count($service->packages) - 1]->price, 2) : ""}}</div>
+                            <div class="chip ms-3">{{ count($service->packages) ? "$".$service->packages[0]->price : "..." }}</div>
                           </li>
                         </ul>
                         <a href="/services/{{$service->id}}" class="btn btn-primary">Details</a>
