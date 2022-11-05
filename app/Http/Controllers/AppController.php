@@ -27,12 +27,12 @@ class AppController extends Controller
 
             if ($count) {
                 if ($min_price != $max_price) {
-                    $product->price = "$" . number_format($min_price / 100, 2) . " - $" . number_format($max_price / 100, 2);
+                    $product->price = "$" . number_format($min_price / 100, 2, ".", ',') . " - $" . number_format($max_price / 100, 2 ".", ',');
                 } else {
-                    $product->price = "$" . number_format($min_price / 100, 2);
+                    $product->price = "$" . number_format($min_price / 100, 2 ".", ',');
                 }
             } else {
-                $product->price = "$" . number_format($product->price / 100, 2);
+                $product->price = "$" . number_format($product->price / 100, 2 ".", ',');
             }
         });
         $metaInfo = SettingGeneral::select('meta_title as metaTitle', 'meta_description as metaDescription')->first() ?? ['metaTitle' => '', 'metaDescription' => ''];
