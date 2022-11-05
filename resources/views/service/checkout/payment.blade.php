@@ -171,9 +171,9 @@
       const stripe_key = '{{ config('app.stripe_key') }}';
       const payment_intent_route = '/services/checkout/intent/{{ $package->id }}';
       const _token = '{{ csrf_token() }}';
-      const place_order_route = '{{ route('checkout.store') }}';
-      const order_cancel_route = '{{ route('checkout.cancel') }}';
-      const finish_page = '{{ route('checkout.finished') }}';
+      const place_order_route = '/services/checkout/store/{{ $package->id }}';
+      const order_cancel_route = '{{ route('services.cancel') }}';
+      const finish_page = '{{ route('services.finish') }}';
       const buy_now_mode = '{{ $buy_now_mode ?? 0 }}';
   </script>
   <script src="{{ asset('js/checkout.js') }}"></script>
