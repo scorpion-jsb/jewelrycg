@@ -21,11 +21,16 @@ class AppController extends Controller
         //$products = cache()->remember('todays-deals', 60*60*24, fn() => Product::getTodaysDeals());
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(24);
         $products->each(function ($product) {
+            $count = ProductsVariant::where('product_id', $product->id)->count();
             $max_price = ProductsVariant::where('product_id', $product->id)->max('variant_price');
             $min_price = ProductsVariant::where('product_id', $product->id)->min('variant_price');
 
-            if ($min_price > 0 && $min_price < $product->price) {
-                $product->price = "$" . number_format($min_price / 100, 2) . " - $" . number_format($max_price / 100, 2);
+            if ($count) {
+                if ($min_price != $max_price) {
+                    $product->price = "$" . number_format($min_price / 100, 2) . " - $" . number_format($max_price / 100, 2);
+                } else {
+                    $product->price = "$" . number_format($min_price / 100, 2);
+                }
             } else {
                 $product->price = "$" . number_format($product->price / 100, 2);
             }
