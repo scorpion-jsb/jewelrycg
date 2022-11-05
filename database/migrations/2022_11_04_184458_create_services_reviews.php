@@ -22,10 +22,6 @@ return new class extends Migration
             $table->text('review');
             $table->timestamps();
             $table->softDeletes();
-
-            $table->foreign('service_id')->references('id')->on('services')->onDelete('cascade');
-            $table->foreign('package_id')->references('id')->on('service_packages')->onDelete('cascade');
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 
@@ -36,16 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        if (Schema::hasTable('services_reviews')) {
-            Schema::table('services_reviews', function (Blueprint $table) {
-                $table->dropForeign('services_reviews_service_id_foreign');
-                $table->dropColumn('service_id');
-                $table->dropForeign('services_reviews_package_id_foreign');
-                $table->dropColumn('package_id');
-                $table->dropForeign('services_reviews_user_id_foreign');
-                $table->dropColumn('user_id');
-            });
-            Schema::dropIfExists('services_reviews');
-        }
+        Schema::dropIfExists('services_reviews');
     }
 };
