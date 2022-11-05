@@ -33,9 +33,14 @@ class ServicesController extends Controller
 
     public function all()
     {
-        // dd(ServicePost::with(['thumb', 'categories.category', 'postauthor', 'seller', 'packages'])->orderBy('id', 'DESC')->get());
+        $services = ServicePost::with(['thumb', 'categories.category', 'postauthor.uploads', 'seller', 'packages'])->where('status', 1)->orderBy('id', 'DESC')->get();
+
+        $services->each(function ($service) {
+            $service->thumb_file_name = FFileManagerController::get_thumb_path($service->thumb->file_name);
+        });
+
         return view('service.index', [
-            'services' => ServicePost::with(['thumb', 'categories.category', 'postauthor.uploads', 'seller', 'packages'])->where('status', 1)->orderBy('id', 'DESC')->get(),
+            'services' => $services,
         ]);
     }
 
