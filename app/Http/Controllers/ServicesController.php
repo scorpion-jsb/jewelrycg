@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GalleryRequest;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\ServicePackageRequest;
+use App\Models\Country;
 use App\Models\ServiceCategorie;
 use App\Models\ServicePackage;
 use App\Models\ServicePost;
@@ -13,6 +14,7 @@ use App\Models\ServicePostCategorie;
 use App\Models\ServicePostTag;
 use App\Models\ServiceTags;
 use App\Models\Upload;
+use App\Models\UserAddress;
 use Auth;
 use Illuminate\Http\Request;
 
@@ -374,5 +376,28 @@ class ServicesController extends Controller
     {
         ServicePost::withTrashed()->find($id)->restore();
         return redirect()->route('seller.services.trash');
+    }
+
+    public function make_order($id)
+    {
+        $package = ServicePackage::with('service.thumb')->findOrFail($id);
+        $isIncludeShipping = true;
+
+        $countries = Country::all(['name', 'code']);
+        if (auth()->user()) {
+            $billing_address = auth()->user()->address_billing ? (UserAddress::find(auth()->user()->address_billing) ?? "NULL") : "NULL";
+        } else {
+            $billing_address = "NULL";
+        }
+        $user_ip = request()->ip();
+        $location = geoip()->getLocation($user_ip);
+        return view('service.checkout.billing')->with([
+            'countries' => $countries,
+            'package' => $package,
+            'locale' => 'checkout',
+            'isIncludeShipping' => $isIncludeShipping,
+            'billing' => $billing_address,
+            'location' => $location,
+        ]);
     }
 }

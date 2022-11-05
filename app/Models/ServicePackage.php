@@ -4,9 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Facades\Storage;
-use Illuminate\Database\Eloquent\SoftDeletes;
-
 
 class ServicePackage extends Model
 {
@@ -23,4 +20,8 @@ class ServicePackage extends Model
         "delivery_time",
     ];
 
+    public function service()
+    {
+        return $this->belongsTo(ServicePost::class, 'service_id', 'id');
+    }
 }
