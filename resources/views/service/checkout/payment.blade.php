@@ -1,55 +1,65 @@
 <x-guest-layout page-title="Shipping Detail">
-    <div class="checkout-container">
-        <div class="checkout-wrap">
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="col-xl-8 col-lg-10 ml-auto p-3">
-                        <div class="logo py-4 fw-800 fs-24">#JEWELRYCG</div>
-                        <nav class="pb-4" aria-label="breadcrumb">
-                            <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/cart">Cart</a></li>
-                                @if ($isIncludeShipping)
-                                    <li class="breadcrumb-item"><a href="/checkout/shipping">Shipping</a></li>
-                                @endif
-                                <li class="breadcrumb-item active" aria-current="page">Billing</li>
-                                <li class="breadcrumb-item" aria-current="page">Payment</li>
-                            </ol>
-                        </nav>
-                        <form action="/services/checkout/{{ $package->id }}" method="POST" id="frmBilling">
-                            @csrf
-                            <div class="checkout-card">
-                                <div class="checkout-card-body">
-                                    <h3 class="mb-3 fs-20">Billing Address</h3>
-                                    @include('includes.validation-form')
-                                    <x-user-info :countries="$countries" :billing="$billing" :location="$location"/>
-                                    <div class="row mb-3">
-                                        <div class="col-12">
-                                            @if (auth()->id())
-                                                <label for="isRemember">
-                                                    <input type="checkbox" name="isRemember" id="isRemember">
-                                                    @if($billing !== "NULL") 
-                                                        Update Address
-                                                    @else
-                                                        Remember Address
-                                                    @endif
-                                                </label>
-                                            @endif
-                                            <input type="hidden" value="{{ isset($orderId) ? $orderId : 0 }}" />
-                                            <button type="submit" class="btn btn-primary float-end">Continue</button>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-                <div class="col-lg-6 checkout-sidebar">
-                    <div class="col-xl-8 col-lg-10 mr-auto p-3">
-                        <div class="cart-items-card">
-                            <div class="card-body">
-                                <div class="py-4 fw-800 fs-24">Order Details</div>
-                                <div class="cart-item mb-3">
+  <div class="checkout-container">
+      <div class="checkout-wrap">
+          <form id="payment-form">
+              <div class="row">
+                  <div class="col-lg-6">
+                      <div class="col-xl-8 col-lg-10 ml-auto p-3">
+                          <div class="logo py-4 fw-800 fs-24">#JEWELRYCG</div>
+                          <nav class="pb-4" aria-label="breadcrumb">
+                              <ol class="breadcrumb">
+                                  <li class="breadcrumb-item"><a href="/cart">Cart</a></li>
+                                  @if ($isIncludeShipping)
+                                      <li class="breadcrumb-item"><a href="/checkout/shipping">Shipping</a></li>
+                                  @endif
+                                  <li class="breadcrumb-item" aria-current="page"><a
+                                          href="/checkout/billing">Billing</a>
+                                  </li>
+                                  <li class="breadcrumb-item active" aria-current="page">Payment</li>
+                              </ol>
+                          </nav>
+                          <div class="checkout-card">
+                              <div class="checkout-card-body">
+                                  <h3 class="mb-3 fs-20">Payment Information</h3>
+                                  <input type="hidden" name="" value="{{ Session::get('billing_address1') }}"
+                                      id="address1">
+                                  <input type="hidden" name="" value="{{ Session::get('billing_address2') }}"
+                                      id="address2">
+                                  <input type="hidden" name="" value="{{ Session::get('billing_city') }}"
+                                      id="city">
+                                  <input type="hidden" name="" value="{{ Session::get('billing_state') }}"
+                                      id="state">
+                                  <input type="hidden" name="" value="{{ Session::get('billing_country') }}"
+                                      id="country">
+                                  <input type="hidden" name="" value="{{ Session::get('billing_zipcode') }}"
+                                      id="zipcode">
+                                  <input type="hidden" name=""
+                                      value="{{ Session::get('billing_phonenumber') }}" id="phonenumber">
+                                  <input type="hidden" name="" value="{{ Session::get('billing_email') }}"
+                                      id="email">
+                                  <input type="hidden" name=""
+                                      value="{{ Session::get('billing_firstname') . ' ' . Session::get('billing_lastname') }}"
+                                      id="name">
+                                  <div id="payment-element">
+                                      <!--Stripe.js injects the Payment Element-->
+                                  </div>
+                                  <div class="d-grid gap-2">
+                                      <button id="submit" class="btn btn-primary mt-2">
+                                          <div class="spinner hidden" id="spinner"></div>
+                                          <span id="button-text">Pay now</span>
+                                      </button>
+                                      <div id="payment-message" class="hidden text-center text-danger"></div>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="col-lg-6 checkout-sidebar">
+                      <div class="col-xl-8 col-lg-10 mr-auto p-3">
+                          <div class="cart-items-card">
+                              <div class="card-body">
+                                  <div class="py-4 fw-800 fs-24">Order Details</div>
+                                  <div class="cart-item mb-3">
                                     <div class="row">
                                         <div class="col-3">
                                             <img src="{{ $package->service->thumb->getImageOptimizedFullName() }}" alt="thumb" class="thumbnail border rounded w-100">
@@ -147,11 +157,25 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div><!-- end row -->
-        </div><!-- end checkout-wrap -->
-    </div><!-- end container -->
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </form>
+      </div>
+  </div>
+
+  <script src="https://js.stripe.com/v3/"></script>
+  <script>
+      const stripe_key = '{{ config('app.stripe_key') }}';
+      const payment_intent_route = '/services/checkout/intent/{{ $package->id }}';
+      const _token = '{{ csrf_token() }}';
+      const place_order_route = '{{ route('checkout.store') }}';
+      const order_cancel_route = '{{ route('checkout.cancel') }}';
+      const finish_page = '{{ route('checkout.finished') }}';
+      const buy_now_mode = '{{ $buy_now_mode ?? 0 }}';
+  </script>
+  <script src="{{ asset('js/checkout.js') }}"></script>
+
 </x-guest-layout>

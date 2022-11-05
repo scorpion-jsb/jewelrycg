@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\GalleryRequest;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\ServicePackageRequest;
+use App\Http\Requests\StorePaymentIntentRequest;
 use App\Models\Country;
+use App\Models\Coupon;
 use App\Models\ServiceCategorie;
 use App\Models\ServicePackage;
 use App\Models\ServicePost;
@@ -17,6 +19,7 @@ use App\Models\Upload;
 use App\Models\UserAddress;
 use Auth;
 use Illuminate\Http\Request;
+use Stripe\Stripe;
 
 class ServicesController extends Controller
 {
@@ -378,10 +381,10 @@ class ServicesController extends Controller
         return redirect()->route('seller.services.trash');
     }
 
-    public function make_order($id)
+    public function get_billing($id)
     {
         $package = ServicePackage::with('service.thumb')->findOrFail($id);
-        $isIncludeShipping = true;
+        $isIncludeShipping = false;
 
         $countries = Country::all(['name', 'code']);
         if (auth()->user()) {
@@ -400,4 +403,172 @@ class ServicesController extends Controller
             'location' => $location,
         ]);
     }
+
+    public function post_billing($id, Request $request)
+    {
+        $request->session()->put('billing_address1', $request->address1);
+        $request->session()->put('billing_address2', $request->address2);
+        $request->session()->put('billing_city', $request->city);
+        $request->session()->put('billing_state', $request->state);
+        $request->session()->put('billing_country', $request->country);
+        $request->session()->put('billing_zipcode', $request->pin_code);
+        $request->session()->put('billing_phonenumber', $request->phone);
+        $request->session()->put('billing_firstname', $request->first_name);
+        $request->session()->put('billing_lastname', $request->last_name);
+        $request->session()->put('coupon_id', $request->coupon_id);
+        if (!auth()->user()) {
+            $request->session()->put('billing_email', $request->email);
+        }
+        if ($request->isRemember && auth()->user()) {
+            $userAddress = UserAddress::find(auth()->user()->address_billing);
+            if ($userAddress) {
+                $userAddress->first_name = $request->first_name;
+                $userAddress->last_name = $request->last_name;
+                $userAddress->address = $request->address1;
+                $userAddress->address2 = $request->address2;
+                $userAddress->city = $request->city;
+                $userAddress->state = $request->state;
+                $userAddress->country = $request->country;
+                $userAddress->postal_code = $request->pin_code;
+                $userAddress->phone = $request->phone;
+                $userAddress->update();
+                $user = User::find(auth()->id());
+                $user->address_shipping = $userAddress->id;
+                $user->save();
+            } else {
+                $userAddressInfo = UserAddress::create([
+                    'user_id' => auth()->id(),
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'address' => $request->address1,
+                    'address2' => $request->address2,
+                    'city' => $request->city,
+                    'state' => $request->state,
+                    'country' => $request->country,
+                    'postal_code' => $request->pin_code,
+                    'phone' => $request->phone,
+                ]);
+
+                $user = User::find(auth()->id());
+                $user->address_billing = $userAddressInfo->id;
+                $user->save();
+            }
+        }
+
+        return redirect()->route('services.payment.get', ['id' => $id]);
+    }
+
+    public function get_payment($id, Request $request)
+    {
+        $package = ServicePackage::with('service.thumb')->findOrFail($id);
+
+        $isIncludeShipping = false;
+
+        $coupon_id = $request->session()->get('coupon_id', 0);
+        $coupon_id = $coupon_id ?? 0;
+
+        return view('service.checkout.payment')->with([
+            'package' => $package,
+            'locale' => 'checkout',
+            'isIncludeShipping' => $isIncludeShipping,
+            'coupon_id' => $coupon_id,
+        ]);
+    }
+
+    public function create_payment_intent($id, StorePaymentIntentRequest $req)
+    {
+        Stripe::setApiKey(env('STRIPE_SECRET'));
+
+        header('Content-Type: application/json');
+
+        $package = ServicePackage::findOrFail($id);
+
+        try {
+            if (auth()->user()) {
+                $orderId = auth()->id() . strtoupper(uniqid());
+                $username = auth()->user()->first_name . " " . auth()->user()->last_name;
+            } else {
+                $orderId = '0' . strtoupper(uniqid());
+                $username = $req->session()->get('billing_firstname') . " " . $req->session()->get('billing_lastname');
+            }
+            $req->session()->put('order_id', $orderId);
+
+            $description = env('APP_NAME') . ' Order#' . $orderId;
+
+            ////////////////////////////////////////////////////////////////////////////////////////////////
+            // Calculate the total and tax
+            $coupon_code = $req->coupon_code;
+            $arrCouponInfo = Coupon::getCouponByUser($coupon_code);
+            $coupon = $arrCouponInfo['coupon'];
+
+            $sub_total = $package->price;
+            if ($coupon == null) {
+                $shipping_option_id = $req->session()->get('shipping_option_id', 0);
+
+                if ($shipping_option_id) {
+                    $sub_total += ShippingOption::find($shipping_option_id)->price;
+                }
+
+                $taxPrice = 0;
+
+                $total = $sub_total + floor($taxPrice + 0.5);
+            } else {
+                $discount = 0;
+                $shipping_price = 0;
+
+                if ($coupon->type == 0) {
+                    $discount = $coupon->amount * 100;
+                } else {
+                    $discount = floor($sub_total * $coupon->amount / 100 + 0.5);
+                }
+
+                $shipping_option_id = $req->session()->get('shipping_option_id', 0);
+                if ($shipping_option_id) {
+                    $shipping_price = ShippingOption::find($shipping_option_id)->price;
+                }
+
+                $taxPrice = 0;
+                if ($sub_total < $discount) {
+                    $total = 0;
+                } else {
+                    $taxPrice = $taxPrice * ($sub_total - $discount) / $sub_total;
+                    $total = $sub_total - $discount + $shipping_price + floor($taxPrice + 0.5);
+                }
+            }
+
+            // Create a PaymentIntent with amount and currency
+            $paymentIntent = \Stripe\PaymentIntent::create([
+                'amount' => $total,
+                'currency' => 'usd',
+                'customer' => null,
+                'description' => $description,
+                'statement_descriptor' => substr($description, 0, 22),
+                'shipping' => [
+                    'address' => [
+                        'city' => $req->session()->get('billing_city'),
+                        'state' => $req->session()->get('billing_state'),
+                        'country' => $req->session()->get('billing_country'),
+                        'postal_code' => $req->session()->get('billing_zipcode'),
+                        'line1' => $req->session()->get('billing_address1'),
+                        'line2' => $req->session()->get('billing_address2'),
+                    ],
+                    'name' => $username,
+                    'phone' => $req->session()->get('billing_phonenumber'),
+                ],
+                'automatic_payment_methods' => [
+                    'enabled' => true,
+                ],
+            ]);
+
+            $output = [
+                'clientSecret' => $paymentIntent->client_secret,
+            ];
+
+            return $output;
+        } catch (Error $e) {
+            http_response_code(500);
+            return ['error' => $e->getMessage()];
+        }
+    }
+
 }
