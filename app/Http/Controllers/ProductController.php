@@ -45,6 +45,7 @@ class ProductController extends Controller
         $categories = ProductsCategorie::whereNull('parent_id')->get();
 
         $attributes = Attribute::has('values')->select('id', 'name', 'type')->get();
+
         return view('search', [
             'products' => $products,
             'categories' => $categories,
