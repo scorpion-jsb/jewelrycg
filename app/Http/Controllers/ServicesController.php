@@ -102,7 +102,7 @@ class ServicesController extends Controller
     {
         $data = null;
         if ($post_id != -1) {
-            $data = ServicePost::with(['thumb', 'tags', 'categories', 'packages'])->where('id', $post_id)->first();
+            $data = ServicePost::with(['thumb', 'tags', 'categories', 'packages'])->findOrFail($id);
             $gallery_ids = explode(',', $data->gallery);
 
             $galleries = [];
@@ -136,7 +136,7 @@ class ServicesController extends Controller
 
     private function registerNewTag($tag)
     {
-        $last = ServiceTags::where('name', $tage)->first();
+        $last = ServiceTags::where('name', $tag)->first();
 
         if ($last) {
             return $last->id;
