@@ -143,6 +143,76 @@ class FFileManagerController extends Controller
         return $upload;
     }
 
+    public function store_origin_image(Request $request)
+    {
+        if (!$request->hasFile('file')) {
+            return false;
+        }
+
+        $upload = new Upload;
+        $extension = strtolower($request->file('file')->getClientOriginalExtension());
+
+        if (!isset($this->fileTypes[$extension]) || $this->fileTypes[$extension] != 'image') {
+            return false;
+        }
+
+        $upload->file_original_name = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
+
+        $hash = Str::random(40);
+        $size = $request->file('file')->getSize();
+        $fileName = $hash . '.' . $extension;
+
+        $request->file('file')->move(public_path($this->fileUploadPath), $fileName);
+
+        $upload->extension = $extension;
+        $upload->file_name = $hash . '.' . $extension;
+        $upload->user_id = Auth::user()->id;
+        $upload->type = $this->fileTypes[$extension];
+        $upload->file_size = $size;
+        $upload->save();
+
+        return $upload;
+    }
+
+    public function store_thumb_image(Request $request)
+    {
+        if (!$request->hasFile('file')) {
+            return false;
+        }
+
+        $upload = new Upload;
+        $extension = strtolower($request->file('file')->getClientOriginalExtension());
+
+        if (!isset($this->fileTypes[$extension]) || $this->fileTypes[$extension] != 'image') {
+            return false;
+        }
+
+        $upload->file_original_name = pathinfo($request->file('file')->getClientOriginalName(), PATHINFO_FILENAME);
+        $size = $request->file('file')->getSize();
+
+        $hash = Str::random(40);
+        $path = $request->file('file')->move(
+            public_path('uploads/all'), $hash . '.' . $extension
+        );
+
+        $image = Image::make(public_path('uploads/all/') . $hash . '.' . $extension);
+
+        $thumbnailWidth = Config::get('constants.product_thumbnail_size.width');
+        $thumbnailHeight = Config::get('constants.product_thumbnail_size.height');
+        $suffix = Config::get('constants.product_thumbnail_suffix');
+
+        $image->resize($thumbnailWidth, $thumbnailHeight);
+        $image->save(public_path('uploads/all/') . $hash . $suffix . '.' . $extension, 80);
+
+        $upload->extension = $extension;
+        $upload->file_name = $hash . $suffix . '.' . $extension;
+        $upload->user_id = Auth::user()->id;
+        $upload->type = $this->fileTypes[$extension];
+        $upload->file_size = $size;
+        $upload->save();
+
+        return $upload;
+    }
     /**
      * Display the specified resource.
      *
