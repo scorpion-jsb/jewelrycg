@@ -102,7 +102,7 @@ class ServicesController extends Controller
     {
         $data = null;
         if ($post_id != -1) {
-            $data = ServicePost::with(['thumb', 'tags', 'categories', 'packages'])->findOrFail($id);
+            $data = ServicePost::with(['thumb', 'tags', 'categories', 'packages'])->findOrFail($post_id);
             $gallery_ids = explode(',', $data->gallery);
 
             $galleries = [];
