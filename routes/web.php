@@ -393,6 +393,7 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::get('/', [ServicesController::class, 'all'])->name('all');
     Route::get('/{id}', [ServicesController::class, 'detail'])->name('detail');
     Route::get('checkout/{id}', [ServicesController::class, 'make_order'])->name('order');
+    Route::post('checkout/billing', [ServicesController::class, 'billing'])->name('billing');
 });
 
 // Seller Dashboard

@@ -400,4 +400,9 @@ class ServicesController extends Controller
             'location' => $location,
         ]);
     }
+
+    public function billing(Request $request)
+    {
+        dd($request->input());
+    }
 }

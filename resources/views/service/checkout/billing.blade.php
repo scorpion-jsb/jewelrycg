@@ -15,7 +15,7 @@
                                 <li class="breadcrumb-item" aria-current="page">Payment</li>
                             </ol>
                         </nav>
-                        <form action="{{ url('/checkout/billing') }}" method="POST" id="frmBilling">
+                        <form action="{{ url('services/checkout/billing') }}" method="POST" id="frmBilling">
                             @csrf
                             <div class="checkout-card">
                                 <div class="checkout-card-body">
@@ -58,7 +58,9 @@
                                             <div class="item-meta text-nowrap mb-2">
                                                 {{$package->service->name}} ({{ $package->name }})
                                             </div>
-                                            <div class="item-meta mb-2"><span class="fw-800">Quantity:</span> 1</div>
+                                            {{-- <div class="item-meta mb-2"><span class="fw-800">Price:</span> ${{ number_format($package->price, 2, ".", ",") }}</div> --}}
+                                            <div class="item-meta mb-2"><span class="fw-800">Delivery Time:</span> {{ $package->delivery_time }} days</div>
+                                            <div class="item-meta mb-2"><span class="fw-800">Revisions:</span> {{ $package->revisions }}</div>
                                         </div>
                                         <div class="col-1 text-right">
                                             <span class="text-primary fw-800">${{ number_format($package->price, 2, ".", ",") }}</span>
