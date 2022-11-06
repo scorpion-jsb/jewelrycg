@@ -1,10 +1,4 @@
 <x-app-layout>
-  <style>
-      .pur {
-          width: 100%;
-          margin-bottom: 8px;
-      }
-  </style>
   <x-slot name="header">
       <h2 class="font-semibold text-xl text-gray-800 leading-tight">
           {{ __('Dashboard') }}
@@ -18,9 +12,9 @@
                   <h3>Services</h3>
               </div>
               <div class="col-md-12">
-                <div class="row">
+                <div class="row row-cols-xxl-6 row-cols-xl-4 row-cols-lg-4 row-cols-md-4 row-cols-2">
                   @foreach ($services as $service)
-                  <div class="col-lg-3 col-md-4 mb-4 mb-lg-0">
+                  <div class="col mb-4 mb-lg-0">
                     <div class="card">
                       <img src="{{ $service->thumb->getImageOptimizedFullName(400,400) }}" class="card-img-top" alt="{{ $service->name }}" data-xblocker="passed" style="visibility: visible;">
                       <div class="card-body">
@@ -45,12 +39,6 @@
                             <img style="width: 50px" src="{{ $service->postauthor->uploads->getImageOptimizedFullName(100) }}" alt="{{ $service->postauthor->first_name }}">
                           </li>
                         </ul>
-                        {{-- <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
-                          <li>Seller Rate:</li>
-                          <li>
-                            <div class="chip ms-3">{{ $service->seller->sales_commission_rate }}</div>
-                          </li>
-                        </ul> --}}
                         <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
                           <li>Start Price:</li>
                           <li>
@@ -64,10 +52,7 @@
                   @endforeach
                 </div>
               </div>
-
-
           </div>
-
       </div>
   </div>
 </x-app-layout>
