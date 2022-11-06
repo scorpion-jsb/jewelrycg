@@ -205,6 +205,13 @@
 
 
     $('#add-choice-button').click(function () {
+      var options = $('#options').children();
+      for (const option of options) {
+        if ($(option).find('input').val() == '') {
+          window.alert("You have empty choice now");
+          return;
+        }
+      }
       $('#options').append(
         '<div class="select-option selected form-row-between">\
           <input class="choice-input" value="">\
