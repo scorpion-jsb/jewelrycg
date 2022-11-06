@@ -16,10 +16,11 @@ return new class extends Migration
         Schema::create('orders_services', function (Blueprint $table) {
             $table->id();
             $table->integer('status')->default(0); // 0-pending, 1-revision, 2-canceled, 3-(physical:delivered, digital:shipped)
+            $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('package_id');
             $table->string('revisions');
-            $table->dateTime('orginial_delivery_time');
+            $table->dateTime('original_delivery_time');
             $table->dateTime('extended_delivery_time');
             $table->string('payment_intent')->default('');
             $table->smallInteger('status_payment')->default(1); // 1: unpaid, 2: paid

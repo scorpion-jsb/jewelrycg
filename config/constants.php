@@ -2,7 +2,7 @@
 return [
     'product_thumbnail_size' => [
         'width' => 400,
-        'height' => 400
+        'height' => 400,
     ],
     'product_thumbnail_suffix' => '_thumbnail',
     'file_manager_thumbnail_suffix' => '_file_manager',
@@ -10,13 +10,19 @@ return [
         '',
         'Pending',
         'Shipped',
-        'Delivered'
+        'Delivered',
+    ],
+    'service_order_status' => [
+        'pending',
+        'revision',
+        'canceled',
+        'shipped',
     ],
     'oder_payment_status' => [
         '',
         'unpaid',
         'paid',
-        'reject'
+        'reject',
     ],
-    'file_upload_path' => 'uploads/all/'
+    'file_upload_path' => 'uploads/all/',
 ];

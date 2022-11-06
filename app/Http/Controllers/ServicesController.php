@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CancelCheckoutRequest;
 use App\Http\Requests\GalleryRequest;
+use App\Http\Requests\PlaceOrderRequest;
 use App\Http\Requests\PostStoreRequest;
 use App\Http\Requests\ServicePackageRequest;
 use App\Http\Requests\StorePaymentIntentRequest;
 use App\Models\Country;
 use App\Models\Coupon;
 use App\Models\ServiceCategorie;
+use App\Models\ServiceOrder;
 use App\Models\ServicePackage;
 use App\Models\ServicePost;
 use App\Models\ServicePostCategorie;
@@ -571,4 +574,60 @@ class ServicesController extends Controller
         }
     }
 
+    public function store_order($id, Request $request)
+    {
+        $this->validate($request, (new PlaceOrderRequest)->rules());
+
+        $order = new ServiceOrder();
+        $total = 0;
+
+        $package = ServicePackage::findOrFail($id);
+
+        $order->user_id = auth()->id();
+        $order->service_id = $package->service_id;
+        $order->package_id = $package->id;
+        $order->original_delivery_time = $package->delivery_time;
+        $order->payment_intent = '';
+
+        $order->save();
+
+        $request->session()->put('order_id', $order->id);
+
+        return response(['ok' => true], 200);
+    }
+
+    public function finish(Request $request)
+    {
+        $order_id = $request->session()->get('order_id');
+
+        $order = ServiceOrder::with(['service.thumb', 'package'])->findOrFail($order_id);
+
+        $order->status_payment = 2; // paid
+        $order->payment_intent = $request->get('payment_intent');
+        $order->save();
+
+        // Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
+
+        $request->session()->forget('order_id');
+        $request->session()->forget('shipping_price');
+        $request->session()->forget('shipping_option_id');
+        // redirect to order details
+        return view('service.order', ['order' => $order]);
+    }
+
+    public function cancel(CancelCheckoutRequest $req)
+    {
+        $order_id = $req->session()->get('order_id');
+        $error = $req->error;
+        $order = ServiceOrder::findOrFail($order_id);
+
+        $order->status_payment = 2;
+        $order->payment_intent = $error['payment_intent']['id'];
+        $order->status_payment_reason = $error['code'];
+        $order->save();
+
+        $req->session()->forget('order_id');
+
+        return response(null, 204);
+    }
 }
