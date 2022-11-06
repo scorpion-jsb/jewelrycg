@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('service_id');
             $table->smallInteger('type')->default(0); // 0-text, 1-attachment, 2-multiple choice
-            $table->string('questions');
+            $table->string('question');
             $table->smallInteger('required')->default(0); // 0: no, 1: yes
             $table->timestamps();
         });
