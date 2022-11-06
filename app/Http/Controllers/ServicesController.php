@@ -504,7 +504,7 @@ class ServicesController extends Controller
             $arrCouponInfo = Coupon::getCouponByUser($coupon_code);
             $coupon = $arrCouponInfo['coupon'];
 
-            $sub_total = $package->price;
+            $sub_total = $package->price * 100;
             if ($coupon == null) {
                 $shipping_option_id = $req->session()->get('shipping_option_id', 0);
 
@@ -586,7 +586,8 @@ class ServicesController extends Controller
         $order->user_id = auth()->id();
         $order->service_id = $package->service_id;
         $order->package_id = $package->id;
-        $order->original_delivery_time = $package->delivery_time;
+        $order->original_delivery_time = Date('y:m:d', strtotime('+' . $order->package->delivery_time . ' days'));
+        $order->revisions = $package->revisions;
         $order->payment_intent = '';
 
         $order->save();
