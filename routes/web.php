@@ -429,6 +429,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'seller', 'as' => 'seller.']
         Route::post('/store', [ServicesController::class, 'store'])->name('store');
         Route::post('/gallery', [ServicesController::class, 'gallery'])->name('gallery');
         Route::post('/package', [ServicesController::class, 'package'])->name('package');
+        Route::post('/requirement', [ServicesController::class, 'requirement'])->name('requirement');
         Route::post('/review', [ServicesController::class, 'review'])->name('review');
         Route::get('/delete/{id}', [ServicesController::class, 'destroy'])->name('delete');
         Route::get('/get', [ServicesController::class, 'get'])->name('get');
