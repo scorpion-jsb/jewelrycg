@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_requirement_multiselects');
+        Schema::dropIfExists('service_requirements_multiplechoice');
     }
 };
