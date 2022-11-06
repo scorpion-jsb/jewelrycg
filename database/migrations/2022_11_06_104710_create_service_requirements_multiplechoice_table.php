@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('service_requirement_multiselects', function (Blueprint $table) {
+        Schema::create('service_requirements_multiplechoice', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('requirement_id');
             $table->string('choice');
