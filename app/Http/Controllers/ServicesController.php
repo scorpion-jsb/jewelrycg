@@ -283,14 +283,14 @@ class ServicesController extends Controller
         $post_id = $data['service_id'];
         $questions = $request->input('question');
 
+        $last = ServiceRequirement::where('service_id', $post_id)->get();
+
+        $last->each(function ($item) {
+            ServiceRequirementChoice::where('requirement_id', $item->id)->delete();
+        });
+        ServiceRequirement::where('service_id', $post_id)->delete();
+
         if ($questions) {
-            $last = ServiceRequirement::where('service_id', $post_id)->get();
-
-            $last->each(function ($item) {
-                ServiceRequirementChoice::where('requirement_id', $item->id)->delete();
-            });
-            ServiceRequirement::where('service_id', $post_id)->delete();
-
             for ($i = 0; $i < count($questions); $i++) {
                 if ($questions[$i]) {
                     $requirement = new ServiceRequirement();
@@ -641,7 +641,7 @@ class ServicesController extends Controller
         $order->user_id = auth()->id();
         $order->service_id = $package->service_id;
         $order->package_id = $package->id;
-        $order->original_delivery_time = Date('y:m:d', strtotime('+' . $order->package->delivery_time . ' days'));
+        $order->original_delivery_time = Date('y-m-d H:i:s', strtotime('+' . $order->package->delivery_time . ' days'));
         $order->revisions = $package->revisions;
         $order->order_id = auth()->id() . strtoupper(uniqid());
         $order->payment_intent = '';
