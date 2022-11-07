@@ -7,10 +7,7 @@
                         <div class="logo py-4 fw-800 fs-24">#JEWELRYCG</div>
                         <nav class="pb-4" aria-label="breadcrumb">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/cart">Cart</a></li>
-                                @if ($isIncludeShipping)
-                                    <li class="breadcrumb-item"><a href="/checkout/shipping">Shipping</a></li>
-                                @endif
+                                <li class="breadcrumb-item"><a href="/services/{{ $package->id }}">Service</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Billing</li>
                                 <li class="breadcrumb-item" aria-current="page">Payment</li>
                             </ol>
@@ -105,19 +102,6 @@
                                         </div>
                                         <div class="col-auto ml-auto text-right">
                                             <span class="fw-800" id="spnDiscountPrice"></span>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="cart-item mb-3">
-                                    <div class="row">
-                                        <div class="col-6">
-                                            <span class="fw-800">Shipping</span>
-                                        </div>
-                                        <div class="col-auto ml-auto text-right">
-                                            <span class="fw-800" id="shipping_price">
-                                                {{number_format($package->price, 2, ".", ",")}}
-                                            </span>
                                         </div>
                                     </div>
                                 </div>
