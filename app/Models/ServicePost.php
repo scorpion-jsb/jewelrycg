@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 class ServicePost extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'services';
 

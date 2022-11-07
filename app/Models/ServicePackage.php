@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class ServicePackage extends Model
 {
-    use HasFactory;
+    use HasFactory, SoftDeletes;
 
     protected $table = 'service_packages';
 

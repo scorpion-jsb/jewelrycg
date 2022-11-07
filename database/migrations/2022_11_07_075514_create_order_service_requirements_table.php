@@ -19,9 +19,6 @@ return new class extends Migration
             $table->unsignedBigInteger('requirement_id');
             $table->string('answer');
             $table->timestamps();
-
-            $table->foreign('order_id')->references('id')->on('orders_services');
-            $table->foreign('requirement_id')->references('id')->on('service_requirements');
         });
     }
 
