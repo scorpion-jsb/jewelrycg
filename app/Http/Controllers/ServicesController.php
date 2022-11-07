@@ -643,6 +643,7 @@ class ServicesController extends Controller
         $order->package_id = $package->id;
         $order->revisions = $package->revisions;
         $order->order_id = auth()->id() . strtoupper(uniqid());
+        $order->original_delivery_time = Date('y-m-d H:i:s', strtotime('+' . $order->package->delivery_time . ' days'));
         $order->payment_intent = '';
 
         $order->save();
