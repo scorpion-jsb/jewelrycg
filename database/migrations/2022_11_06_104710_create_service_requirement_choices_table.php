@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('service_requirement_multichoices', function (Blueprint $table) {
+        Schema::create('service_requirement_choices', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('requirement_id');
             $table->string('choice');
@@ -28,6 +28,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_requirement_multichoices');
+        Schema::dropIfExists('service_requirement_choices');
     }
 };

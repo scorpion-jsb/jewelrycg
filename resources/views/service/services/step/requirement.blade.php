@@ -152,14 +152,6 @@
                     </div>
                     <div class="form-group" id="multichoice-setting">
                       <div class="col" id="options">
-                        <div class="select-option selected form-row-between">
-                          <input class="choice-input" value="Yes">
-                          <span class="remove-btn">&#215</span>
-                        </div>
-                        <div class="select-option form-row-between">
-                          <input class="choice-input" value="No">
-                          <span class="remove-btn">&#215</span>
-                        </div>
                       </div>
                       <button type="button" class="btn btn-primary" id="add-choice-button">+ Add New Option</button>
                     </div>
