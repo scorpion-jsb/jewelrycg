@@ -714,4 +714,18 @@ class ServicesController extends Controller
 
         return redirect()->back()->with("message", "We have sent your message to " . $author->first_name . " " . $author->last_name);
     }
+
+    public function orders(Request $request)
+    {
+        $user_id = Auth::id();
+        $orders = ServiceOrder::with('package')->where('user_id', $user_id)->get();
+
+        return view('service.orders', ['orders' => $orders]);
+    }
+
+    public function order_detail($id, Request $request)
+    {
+        $order = ServiceOrder::with(['service.thumb', 'package'])->where('order_id', $id)->first();
+        return view('service.order_detail', ['order' => $order]);
+    }
 }
