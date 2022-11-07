@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('orders_services', function (Blueprint $table) {
             $table->id();
             $table->integer('status')->default(0); // 0-pending, 1-revision, 2-canceled, 3-(physical:delivered, digital:shipped)
+            $table->string('order_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('service_id');
             $table->unsignedBigInteger('package_id');
@@ -26,6 +27,10 @@ return new class extends Migration
             $table->smallInteger('status_payment')->default(1); // 1: unpaid, 2: paid
             $table->string('status_payment_reason')->default('');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('package_id')->references('id')->on('service_packages');
         });
     }
 

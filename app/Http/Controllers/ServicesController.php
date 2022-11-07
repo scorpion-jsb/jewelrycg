@@ -22,6 +22,7 @@ use App\Models\ServiceRequirement;
 use App\Models\ServiceRequirementChoice;
 use App\Models\ServiceTags;
 use App\Models\Upload;
+use App\Models\User;
 use App\Models\UserAddress;
 use Auth;
 use Illuminate\Http\Request;
@@ -642,6 +643,7 @@ class ServicesController extends Controller
         $order->package_id = $package->id;
         $order->original_delivery_time = Date('y:m:d', strtotime('+' . $order->package->delivery_time . ' days'));
         $order->revisions = $package->revisions;
+        $order->order_id = auth()->id() . strtoupper(uniqid());
         $order->payment_intent = '';
 
         $order->save();
@@ -691,6 +693,7 @@ class ServicesController extends Controller
         $order_id = $request->order_id;
         $answers = $request->answer;
         $order = ServiceOrder::with('service.requirements')->findOrFail($order_id);
+        $author = User::findOrFail($order->service->user_id);
 
         OrderServiceRequirement::where('order_id', $order_id)->delete();
         for ($i = 0; $i < count($answers); $i++) {
@@ -706,6 +709,6 @@ class ServicesController extends Controller
             $answer->save();
         }
 
-        return redirect()->route('services.detail', ['id' => $order->service_id]);
+        return redirect()->back()->with("message", "We have sent your message to " . $author->first_name . " " . $author->last_name);
     }
 }

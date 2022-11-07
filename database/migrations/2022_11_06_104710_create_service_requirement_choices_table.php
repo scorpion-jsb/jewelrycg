@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('requirement_id');
             $table->string('choice');
             $table->timestamps();
+
+            $table->foreign('requirement_id')->references('id')->on('service_requirements');
         });
     }
 
