@@ -200,7 +200,7 @@
                     if(!galleries[i]) {
                         continue;
                     }
-                    if(galleries[i].file_original_name==file.name.split('.')[0]) {
+                    if(galleries[i].file_original_name + "." + galleries[i].extension==file.name) {
                         $.ajax({
                             url: `/seller/file/destroy/${galleries[i].id}`,
                             type: 'POST',
@@ -208,12 +208,12 @@
                                 'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
                             },
                             success: function(result) {
-                                galleries = galleries.splice(i, 1)
                                 var last = $("#gallery");
                                 var lastValue = last.val().split(',');
                                 lastValue.splice(i, 1);
                                 last.val(lastValue);
                                 $(file.previewElement).remove();
+                                galleries.splice(i, 1)
                             },
                             error: function(error) {
                                 return false;

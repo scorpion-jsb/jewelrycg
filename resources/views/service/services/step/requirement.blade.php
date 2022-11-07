@@ -274,17 +274,6 @@
 
       $('#options').empty();
 
-      $('#options').append(
-        `<div class="select-option selected form-row-between">\
-          <input class="choice-input" value="Yes">\
-          <span class="remove-btn" onclick="removeChoice(this);">&#215</span>\
-        </div>
-        <div class="select-option selected form-row-between">\
-          <input class="choice-input" value="No">\
-          <span class="remove-btn" onclick="removeChoice(this);">&#215</span>\
-        </div>`
-      );
-
       freshSelect();
       
       $('#add-question').text("Add")

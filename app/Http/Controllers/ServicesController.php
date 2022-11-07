@@ -11,6 +11,7 @@ use App\Http\Requests\ServicePackageRequest;
 use App\Http\Requests\StorePaymentIntentRequest;
 use App\Models\Country;
 use App\Models\Coupon;
+use App\Models\OrderServiceRequirement;
 use App\Models\ServiceCategorie;
 use App\Models\ServiceOrder;
 use App\Models\ServicePackage;
@@ -295,7 +296,7 @@ class ServicesController extends Controller
                     $requirement->service_id = $post_id;
                     $requirement->question = $data['question'][$i];
                     $requirement->type = $data['type'][$i];
-                    $requirement->required = $data['required'][$i] ? 1 : 0;
+                    $requirement->required = $data['required'][$i] == "true" ? 1 : 0;
                     $requirement->save();
 
                     if ($requirement->type > 1) {
@@ -660,10 +661,13 @@ class ServicesController extends Controller
         $order->payment_intent = $request->get('payment_intent');
         $order->save();
 
+        $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
+
         // Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
 
+        // $request->session()->forget('order_id');
         // redirect to order details
-        return view('service.order', ['order' => $order]);
+        return view('service.checkout.order', ['order' => $order, 'requirements' => $requirements]);
     }
 
     public function cancel(CancelCheckoutRequest $req)
@@ -680,5 +684,28 @@ class ServicesController extends Controller
         $req->session()->forget('order_id');
 
         return response(null, 204);
+    }
+
+    public function answer(Request $request)
+    {
+        $order_id = $request->order_id;
+        $answers = $request->answer;
+        $order = ServiceOrder::with('service.requirements')->findOrFail($order_id);
+
+        OrderServiceRequirement::where('order_id', $order_id)->delete();
+        for ($i = 0; $i < count($answers); $i++) {
+            if ($answers[$i] == '') {
+                continue;
+            }
+
+            $answer = new OrderServiceRequirement();
+            $answer->order_id = $order_id;
+            $answer->requirement_id = $order->service->requirements[$i]->id;
+            $answer->answer = $answers[$i];
+
+            $answer->save();
+        }
+
+        return redirect()->route('services.detail', ['id' => $order->service_id]);
     }
 }
