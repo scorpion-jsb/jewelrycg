@@ -259,7 +259,7 @@ class ServicesController extends Controller
 
         ServicePost::where('id', $post_id)->update(['thumbnail' => $thumb, 'gallery' => $gallery]);
 
-        return redirect()->route('seller.services.list');
+        return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
     }
 
     private function create_requirement_choices($requirement_id, $choices_str)
@@ -281,24 +281,26 @@ class ServicesController extends Controller
         $post_id = $data['service_id'];
         $questions = $request->input('question');
 
-        $last = ServiceRequirement::where('service_id', $post_id)->get();
+        if ($questions) {
+            $last = ServiceRequirement::where('service_id', $post_id)->get();
 
-        $last->each(function ($item) {
-            ServiceRequirementMultichoice::where('requirement_id', $item->id)->delete();
-        });
-        ServiceRequirement::where('service_id', $post_id)->delete();
+            $last->each(function ($item) {
+                ServiceRequirementMultichoice::where('requirement_id', $item->id)->delete();
+            });
+            ServiceRequirement::where('service_id', $post_id)->delete();
 
-        for ($i = 0; $i < count($questions); $i++) {
-            if ($questions[$i]) {
-                $requirement = new ServiceRequirement();
-                $requirement->service_id = $post_id;
-                $requirement->question = $data['question'][$i];
-                $requirement->type = $data['type'][$i];
-                $requirement->required = $data['required'][$i] ? 1 : 0;
-                $requirement->save();
+            for ($i = 0; $i < count($questions); $i++) {
+                if ($questions[$i]) {
+                    $requirement = new ServiceRequirement();
+                    $requirement->service_id = $post_id;
+                    $requirement->question = $data['question'][$i];
+                    $requirement->type = $data['type'][$i];
+                    $requirement->required = $data['required'][$i] ? 1 : 0;
+                    $requirement->save();
 
-                if ($requirement->type > 1) {
-                    $this->create_requirement_choices($requirement->id, $data['choices'][$i]);
+                    if ($requirement->type > 1) {
+                        $this->create_requirement_choices($requirement->id, $data['choices'][$i]);
+                    }
                 }
             }
         }
@@ -334,6 +336,11 @@ class ServicesController extends Controller
 
         return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
         // return redirect()->route('seller.services.list');
+    }
+
+    public function review()
+    {
+        return redirect()->route('seller.services.list');
     }
 
     /**

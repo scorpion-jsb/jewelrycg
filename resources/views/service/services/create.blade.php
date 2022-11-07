@@ -93,6 +93,7 @@
                         <li class="{{$step == 1 ? 'is-active': ''}}">Pricing</li>
                         <li class="{{$step == 2 ? 'is-active': ''}}">Requirement</li>
                         <li class="{{$step == 3 ? 'is-active': ''}}">Gallery</li>
+                        <li class="{{$step == 4 ? 'is-active': ''}}">Review</li>
                     </ul>
                 </div>
             </div>
@@ -105,6 +106,8 @@
                 @include('service.services.step.requirement')
             @elseif($step == 3)
                 @include('service.services.step.gallery')
+            @elseif($step == 4)
+                @include('service.services.step.review')
             @endif
 
             @section('js')
