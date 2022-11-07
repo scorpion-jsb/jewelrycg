@@ -46,113 +46,116 @@
         }
 
     </style>
-  <div class="container">
-      <div class="col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
-          <h1 class="fw-800 mb-3">Thanks for shopping with us!</h1>
-          <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation
+    <div class="container">
+        <div class="col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
+            <h1 class="fw-800 mb-3">Thanks for shopping with us!</h1>
+            <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation
               very soon!</p>
-          <div class="order-items-card border-bottom py-4 mb-5">
-              <div class="row">
-                  <div class="col-lg-3 col-6 mb-2">
-                      <div class="w-100 fs-18 fw-600">Order number</div>
-                      <div class="fs-14 text-primary">#{{ $order->order_id }}</div>
-                  </div>
-                  <div class="col-lg-3 col-6 mb-2">
-                      <div class="w-100 fs-18 fw-600">Payment status</div>
-                      <div class="fs-14 ">
-                          {{ ucwords(Config::get('constants.oder_payment_status')[$order->status_payment]) }}</div>
-                  </div>
-                  <div class="col-lg-3 col-6 mb-2">
-                      <div class="w-100 fs-18 fw-600">Date created</div>
-                      <div class="fs-14 ">{{ date('F d, Y', strtotime($order->created_at)) }}</div>
-                  </div>
-                  <div class="col-lg-3 col-6 mb-2">
-                      <div class="w-100 fs-18 fw-600">Estimate delivery time</div>
-                      <div class="fs-14 ">{{ date('F d, Y', strtotime($order->original_delivery_time)) }}</div>
-                  </div>
-              </div>
-          </div>
-
-          <div class="order-items-card pb-4">
-              <div class="row">
-                  <div class="col-lg-2 col-3">
-                      <img src="{{ $order->service->thumb->getImageOptimizedFullName(150) }}" alt=""
-                          class="thumbnail border w-100">
-                  </div>
-                  <div class="col-lg-10 col-9">
-                      <div class="order-item-title fs-24 py-2 fw-600">
-                          {{ $order->service->name }}
-                      </div>
-                      <div class="order-item-qty-price fs-16 pb-2">
-                        <span class="fw-600">Price</span>
-                        ${{ number_format($order->package->price, 2) }}
-                      </div>
-                      <div class="is_downloadable fw-600 fs-16">
-                          @php
-                              $orderStatus = Config::get('constants.service_order_status');
-                          @endphp
-                          <div class="d-flex mt-2">
-                              <span class="d-block" data-item-id="{{ $order->id }}">
-                                  @foreach ($orderStatus as $key => $status)
-                                      @if ($key != 0)
-                                          @if ($order->status == $key)
-                                              {{ 'Status: ' . $status }}
-                                          @endif
-                                      @endif
-                                  @endforeach
-                              </span>
-                          </div>
-                      </div>
-                  </div>
-              </div>
-          </div>
-
-          @if (count($requirements) > 0)
-          @if(Session::get('message') != null)
-          <div class="alert alert-success">
-            {{ Session::get('message') }}
-          </div>
-          @else
-          <form id="question-form" class="needs-validation" action="{{ route('services.answer') }}" method="post" enctype="multipart/form-data" novalidate>
-            @csrf
-            <label class="fs-3 mb-4">Questions</label> 
-            <input type="hidden" name="order_id" value="{{ $order->id }}">
-            @foreach ($requirements as $requirement)
-            <div class="row mb-3">
-                <label class="fs-4 mb-2 {{ $requirement->required ? "required" : "" }}" for="answer-{{$requirement->id}}">- {{ $requirement->question }}</label>
-                @if($requirement->type == 0)
-                <div class="form-group">
-                    <textarea type="text" class="form-control" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]" placeholder="Type question here" {{ $requirement->required ? "required" : "" }}></textarea>
+            <div class="order-items-card border-bottom py-4 mb-5">
+                <div class="row">
+                    <div class="col-lg-3 col-6 mb-2">
+                        <div class="w-100 fs-18 fw-600">Order number</div>
+                        <div class="fs-14 text-primary">#{{ $order->order_id }}</div>
+                    </div>
+                    <div class="col-lg-3 col-6 mb-2">
+                        <div class="w-100 fs-18 fw-600">Payment status</div>
+                        <div class="fs-14 ">
+                            {{ ucwords(Config::get('constants.oder_payment_status')[$order->status_payment]) }}</div>
+                    </div>
+                    <div class="col-lg-3 col-6 mb-2">
+                        <div class="w-100 fs-18 fw-600">Date created</div>
+                        <div class="fs-14 ">{{ date('F d, Y', strtotime($order->created_at)) }}</div>
+                    </div>
+                  
+                    @if (count($requirements) == 0 || Session::get('message') != null)
+                    <div class="col-lg-3 col-6 mb-2">
+                        <div class="w-100 fs-18 fw-600">Est Deliver Date</div>
+                        <div class="fs-14 ">{{ date('F d, Y', strtotime($order->original_delivery_time)) }}</div>
+                    </div>
+                    @endif
                 </div>
-                @elseif($requirement->type == 1)
-                <div class="form-group {{ $requirement->required ? "required" : "" }}">
-                    <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
-                    <div class="form-control invalid attach-dropzone dropzone attach-{{$requirement->id}}" data-id="{{$requirement->id}}"></div>
-                </div>
-                @elseif($requirement->type == 2)
-                <div class="form-group {{ $requirement->required ? "required" : "" }}">
-                    <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
-                    @foreach($requirement->choices as $key => $choice)
-                    <div class="select-option form-row-between invalid single">{{$choice->choice}}</div>
-                    @endforeach
-                </div>
-                @else
-                <div class="form-group {{ $requirement->required ? "required" : "" }}">
-                    <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
-                    @foreach($requirement->choices as $key => $choice)
-                    <div class="select-option form-row-between invalid multi">{{$choice->choice}}</div>
-                    @endforeach
-                </div>
-                @endif
             </div>
-            @endforeach
-            
-            <div class="row">
-                <button type="submit" class="btn btn-primary">Save</button> 
+
+            <div class="order-items-card pb-4">
+                <div class="row">
+                    <div class="col-lg-2 col-3">
+                        <img src="{{ $order->service->thumb->getImageOptimizedFullName(150) }}" alt=""
+                            class="thumbnail border w-100">
+                    </div>
+                    <div class="col-lg-10 col-9">
+                        <div class="order-item-title fs-24 py-2 fw-600">
+                            {{ $order->service->name }}
+                        </div>
+                        <div class="order-item-qty-price fs-16 pb-2">
+                            <span class="fw-600">Price</span>
+                            ${{ number_format($order->package->price, 2) }}
+                        </div>
+                        <div class="is_downloadable fw-600 fs-16">
+                            @php
+                                $orderStatus = Config::get('constants.service_order_status');
+                            @endphp
+                            <div class="d-flex mt-2">
+                                <span class="d-block" data-item-id="{{ $order->id }}">
+                                    @foreach ($orderStatus as $key => $status)
+                                        @if ($key != 0)
+                                            @if ($order->status == $key)
+                                                {{ 'Status: ' . $status }}
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </form>
-          @endif
-          @endif
+
+            @if (count($requirements) > 0)
+            @if(Session::get('message') != null)
+            <div class="alert alert-success">
+                {{ Session::get('message') }}
+            </div>
+            @else
+            <form id="question-form" class="needs-validation" action="{{ route('services.answer') }}" method="post" enctype="multipart/form-data" novalidate>
+                @csrf
+                <label class="fs-3 mb-4">Questions</label> 
+                <input type="hidden" name="order_id" value="{{ $order->id }}">
+                @foreach ($requirements as $requirement)
+                <div class="row mb-3">
+                    <label class="fs-4 mb-2 {{ $requirement->required ? "required" : "" }}" for="answer-{{$requirement->id}}">- {{ $requirement->question }}</label>
+                    @if($requirement->type == 0)
+                    <div class="form-group">
+                        <textarea type="text" class="form-control" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]" placeholder="Type question here" {{ $requirement->required ? "required" : "" }}></textarea>
+                    </div>
+                    @elseif($requirement->type == 1)
+                    <div class="form-group {{ $requirement->required ? "required" : "" }}">
+                        <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
+                        <div class="form-control invalid attach-dropzone dropzone attach-{{$requirement->id}}" data-id="{{$requirement->id}}"></div>
+                    </div>
+                    @elseif($requirement->type == 2)
+                    <div class="form-group {{ $requirement->required ? "required" : "" }}">
+                        <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
+                        @foreach($requirement->choices as $key => $choice)
+                        <div class="select-option form-row-between invalid single">{{$choice->choice}}</div>
+                        @endforeach
+                    </div>
+                    @else
+                    <div class="form-group {{ $requirement->required ? "required" : "" }}">
+                        <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
+                        @foreach($requirement->choices as $key => $choice)
+                        <div class="select-option form-row-between invalid multi">{{$choice->choice}}</div>
+                        @endforeach
+                    </div>
+                    @endif
+                </div>
+                @endforeach
+                
+                <div class="row">
+                    <button type="submit" class="btn btn-primary">Save</button> 
+                </div>
+            </form>
+            @endif
+            @endif
       </div>
 @section('js')
 <script src="{{ asset('dropzone/js/dropzone.js') }}"></script>
