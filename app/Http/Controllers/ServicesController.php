@@ -641,7 +641,6 @@ class ServicesController extends Controller
         $order->user_id = auth()->id();
         $order->service_id = $package->service_id;
         $order->package_id = $package->id;
-        $order->original_delivery_time = Date('y-m-d H:i:s', strtotime('+' . $order->package->delivery_time . ' days'));
         $order->revisions = $package->revisions;
         $order->order_id = auth()->id() . strtoupper(uniqid());
         $order->payment_intent = '';
@@ -708,6 +707,9 @@ class ServicesController extends Controller
 
             $answer->save();
         }
+
+        $order->original_delivery_time = Date('y-m-d H:i:s', strtotime('+' . $order->package->delivery_time . ' days'));
+        $order->update();
 
         return redirect()->back()->with("message", "We have sent your message to " . $author->first_name . " " . $author->last_name);
     }
