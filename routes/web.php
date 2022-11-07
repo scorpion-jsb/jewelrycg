@@ -391,15 +391,16 @@ Route::group(['middleware' => ['auth']], function () {
 //services
 Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::get('/', [ServicesController::class, 'all'])->name('all');
-    Route::get('/{id}', [ServicesController::class, 'detail'])->name('detail');
     Route::get('/checkout/finish', [ServicesController::class, 'finish'])->name('finish');
+    Route::post('/checkout/payment', [ServicesController::class, 'post_payment'])->name('payment.post');
+    Route::delete('/checkout/cancel', [ServicesController::class, 'cancel'])->name('cancel');
+    Route::post('/checkout/answer', [ServicesController::class, 'answer'])->name('answer');
+    Route::post('/checkout/intent/{id}', [ServicesController::class, 'create_payment_intent'])->name('intent.post');
+    Route::get('/checkout/payment/{id}', [ServicesController::class, 'get_payment'])->name('payment.get');
+    Route::post('/checkout/store/{id}', [ServicesController::class, 'store_order'])->name('store');
     Route::get('/checkout/{id}', [ServicesController::class, 'get_billing'])->name('billing.get');
     Route::post('/checkout/{id}', [ServicesController::class, 'post_billing'])->name('billing.post');
-    Route::get('/checkout/payment/{id}', [ServicesController::class, 'get_payment'])->name('payment.get');
-    Route::post('/checkout/payment', [ServicesController::class, 'post_payment'])->name('payment.post');
-    Route::post('/checkout/intent/{id}', [ServicesController::class, 'create_payment_intent'])->name('intent.post');
-    Route::post('/checkout/store/{id}', [ServicesController::class, 'store_order'])->name('store');
-    Route::delete('/checkout/cancel', [ServicesController::class, 'cancel'])->name('cancel');
+    Route::get('/{id}', [ServicesController::class, 'detail'])->name('detail');
 });
 
 // Seller Dashboard
