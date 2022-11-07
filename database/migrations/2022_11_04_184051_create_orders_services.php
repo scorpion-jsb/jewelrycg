@@ -27,10 +27,6 @@ return new class extends Migration
             $table->smallInteger('status_payment')->default(1); // 1: unpaid, 2: paid
             $table->string('status_payment_reason')->default('');
             $table->timestamps();
-
-            $table->foreign('user_id')->references('id')->on('users');
-            $table->foreign('service_id')->references('id')->on('services');
-            $table->foreign('package_id')->references('id')->on('service_packages');
         });
     }
 

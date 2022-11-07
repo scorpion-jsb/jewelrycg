@@ -20,8 +20,6 @@ return new class extends Migration
             $table->string('question');
             $table->smallInteger('required')->default(0); // 0: no, 1: yes
             $table->timestamps();
-
-            $table->foreign('service_id')->references('id')->on('services');
         });
     }
 

@@ -21,7 +21,6 @@ class CartController extends Controller
         if (Auth::check()) {
             Cart::restore(auth()->id());
             foreach (Cart::content() as $item) {
-
                 if (isset($item->options['variant_attribute_value'])) {
                     $variant = ProductsVariant::where('product_id', $item->id)->where('variant_attribute_value', $item->options['variant_attribute_value'])->first();
 

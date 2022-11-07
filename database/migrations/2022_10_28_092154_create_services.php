@@ -26,6 +26,8 @@ return new class extends Migration
             $table->text('reviewer_notes_private')->nullable();
             $table->dateTime('published_at')->nullable();
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
