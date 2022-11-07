@@ -64,4 +64,9 @@ class ServicePost extends Model
     {
         return $this->hasOne(SellersProfile::class, 'user_id', 'user_id');
     }
+
+    public function requirements()
+    {
+        return $this->hasMany(ServiceRequirement::class, 'service_id', 'id');
+    }
 }

@@ -17,6 +17,8 @@ use App\Models\ServicePackage;
 use App\Models\ServicePost;
 use App\Models\ServicePostCategorie;
 use App\Models\ServicePostTag;
+use App\Models\ServiceRequirement;
+use App\Models\ServiceRequirementMultichoice;
 use App\Models\ServiceTags;
 use App\Models\Upload;
 use App\Models\UserAddress;
@@ -115,7 +117,7 @@ class ServicesController extends Controller
     {
         $data = null;
         if ($post_id != -1) {
-            $data = ServicePost::with(['thumb', 'tags', 'categories', 'packages'])->findOrFail($post_id);
+            $data = ServicePost::with(['thumb', 'tags', 'categories', 'packages', 'requirements.choices'])->findOrFail($post_id);
             $gallery_ids = explode(',', $data->gallery);
 
             $galleries = [];
@@ -127,6 +129,14 @@ class ServicesController extends Controller
             for ($i = 0; $i < count($data->tags); $i++) {
                 array_push($tag_ids, $data->tags[$i]->id_tag);
             }
+
+            $data->requirements->each(function ($requirement) {
+                $choices = [];
+                for ($i = 0; $i < count($requirement->choices); $i++) {
+                    array_push($choices, $requirement->choices[$i]->choice);
+                }
+                $requirement->choices_str = join(",", $choices);
+            });
 
             $data->tag_ids = $tag_ids;
             $data->galleries = $galleries;
@@ -249,9 +259,52 @@ class ServicesController extends Controller
 
         ServicePost::where('id', $post_id)->update(['thumbnail' => $thumb, 'gallery' => $gallery]);
 
-        return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
+        return redirect()->route('seller.services.list');
     }
 
+    private function create_requirement_choices($requirement_id, $choices_str)
+    {
+        $choices = explode(',', $choices_str);
+
+        for ($i = 0; $i < count($choices); ++$i) {
+            $requirement_choice = new ServiceRequirementMultichoice();
+            $requirement_choice->requirement_id = $requirement_id;
+            $requirement_choice->choice = $choices[$i];
+            $requirement_choice->save();
+        }
+    }
+
+    public function requirement(Request $request)
+    {
+        $data = $request->input();
+        $step = $data['step'] + 1;
+        $post_id = $data['service_id'];
+        $questions = $request->input('question');
+
+        $last = ServiceRequirement::where('service_id', $post_id)->get();
+
+        $last->each(function ($item) {
+            ServiceRequirementMultichoice::where('requirement_id', $item->id)->delete();
+        });
+        ServiceRequirement::where('service_id', $post_id)->delete();
+
+        for ($i = 0; $i < count($questions); $i++) {
+            if ($questions[$i]) {
+                $requirement = new ServiceRequirement();
+                $requirement->service_id = $post_id;
+                $requirement->question = $data['question'][$i];
+                $requirement->type = $data['type'][$i];
+                $requirement->required = $data['required'][$i] ? 1 : 0;
+                $requirement->save();
+
+                if ($requirement->type > 1) {
+                    $this->create_requirement_choices($requirement->id, $data['choices'][$i]);
+                }
+            }
+        }
+
+        return redirect()->route('seller.services.create', ['step' => $step, 'post_id' => $post_id]);
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -283,13 +336,6 @@ class ServicesController extends Controller
         // return redirect()->route('seller.services.list');
     }
 
-    public function review(Request $request)
-    {
-        $step = $request->step + 1;
-        $post_id = $request->service_id;
-
-        return redirect()->route('seller.services.list');
-    }
     /**
      * Display the specified resource.
      *

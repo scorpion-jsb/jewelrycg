@@ -90,9 +90,9 @@
                 <div class="col-md-12">
                     <ul class="list-unstyled multi-steps">
                         <li class="{{$step == 0 ? 'is-active': ''}}">Overview</li>
-                        <li class="{{$step == 1 ? 'is-active': ''}}">Gallery</li>
-                        <li class="{{$step == 2 ? 'is-active': ''}}">Pricing</li>
-                        <li class="{{$step == 3 ? 'is-active': ''}}">Review</li>
+                        <li class="{{$step == 1 ? 'is-active': ''}}">Pricing</li>
+                        <li class="{{$step == 2 ? 'is-active': ''}}">Requirement</li>
+                        <li class="{{$step == 3 ? 'is-active': ''}}">Gallery</li>
                     </ul>
                 </div>
             </div>
@@ -100,11 +100,11 @@
             @if($step == 0)
                 @include('service.services.step.overview')
             @elseif($step == 1)
-                @include('service.services.step.gallery')
-            @elseif($step == 2)
                 @include('service.services.step.pricing')
+            @elseif($step == 2)
+                @include('service.services.step.requirement')
             @elseif($step == 3)
-                @include('service.services.step.review')
+                @include('service.services.step.gallery')
             @endif
 
             @section('js')
