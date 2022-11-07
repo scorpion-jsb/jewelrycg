@@ -18,7 +18,7 @@ use App\Models\ServicePost;
 use App\Models\ServicePostCategorie;
 use App\Models\ServicePostTag;
 use App\Models\ServiceRequirement;
-use App\Models\ServiceRequirementMultichoice;
+use App\Models\ServiceRequirementChoice;
 use App\Models\ServiceTags;
 use App\Models\Upload;
 use App\Models\UserAddress;
@@ -267,7 +267,7 @@ class ServicesController extends Controller
         $choices = explode(',', $choices_str);
 
         for ($i = 0; $i < count($choices); ++$i) {
-            $requirement_choice = new ServiceRequirementMultichoice();
+            $requirement_choice = new ServiceRequirementChoice();
             $requirement_choice->requirement_id = $requirement_id;
             $requirement_choice->choice = $choices[$i];
             $requirement_choice->save();
@@ -285,7 +285,7 @@ class ServicesController extends Controller
             $last = ServiceRequirement::where('service_id', $post_id)->get();
 
             $last->each(function ($item) {
-                ServiceRequirementMultichoice::where('requirement_id', $item->id)->delete();
+                ServiceRequirementChoice::where('requirement_id', $item->id)->delete();
             });
             ServiceRequirement::where('service_id', $post_id)->delete();
 

@@ -18,6 +18,6 @@ class ServiceRequirement extends Model
 
     public function choices()
     {
-        return $this->hasMany(ServiceRequirementMultichoice::class, 'requirement_id', 'id');
+        return $this->hasMany(ServiceRequirementChoice::class, 'requirement_id', 'id');
     }
 }
