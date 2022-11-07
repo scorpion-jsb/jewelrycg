@@ -662,9 +662,6 @@ class ServicesController extends Controller
 
         // Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
 
-        $request->session()->forget('order_id');
-        $request->session()->forget('shipping_price');
-        $request->session()->forget('shipping_option_id');
         // redirect to order details
         return view('service.order', ['order' => $order]);
     }
