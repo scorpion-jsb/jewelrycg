@@ -55,7 +55,7 @@
               <div class="row">
                   <div class="col-lg-3 col-6 mb-2">
                       <div class="w-100 fs-18 fw-600">Order number</div>
-                      <div class="fs-14 text-primary">#{{ $order->id }}</div>
+                      <div class="fs-14 text-primary">#{{ $order->order_id }}</div>
                   </div>
                   <div class="col-lg-3 col-6 mb-2">
                       <div class="w-100 fs-18 fw-600">Payment status</div>
@@ -65,6 +65,10 @@
                   <div class="col-lg-3 col-6 mb-2">
                       <div class="w-100 fs-18 fw-600">Date created</div>
                       <div class="fs-14 ">{{ date('F d, Y', strtotime($order->created_at)) }}</div>
+                  </div>
+                  <div class="col-lg-3 col-6 mb-2">
+                      <div class="w-100 fs-18 fw-600">Estimate delivery time</div>
+                      <div class="fs-14 ">{{ date('F d, Y', strtotime($order->original_delivery_time)) }}</div>
                   </div>
               </div>
           </div>
@@ -103,9 +107,15 @@
               </div>
           </div>
 
+          @if (count($requirements) > 0)
+          @if(Session::get('message') != null)
+          <div class="alert alert-success">
+            {{ Session::get('message') }}
+          </div>
+          @else
           <form id="question-form" class="needs-validation" action="{{ route('services.answer') }}" method="post" enctype="multipart/form-data" novalidate>
             @csrf
-            <label class="fs-3 mb-4">Questions</label>
+            <label class="fs-3 mb-4">Questions</label> 
             <input type="hidden" name="order_id" value="{{ $order->id }}">
             @foreach ($requirements as $requirement)
             <div class="row mb-3">
@@ -134,7 +144,6 @@
                     @endforeach
                 </div>
                 @endif
-
             </div>
             @endforeach
             
@@ -142,6 +151,8 @@
                 <button type="submit" class="btn btn-primary">Save</button> 
             </div>
           </form>
+          @endif
+          @endif
       </div>
 @section('js')
 <script src="{{ asset('dropzone/js/dropzone.js') }}"></script>
@@ -236,8 +247,8 @@
 
         $('#question-form').submit(function (event) {
             if ($(this).find('.required .invalid').length) {
-                event.preventDefault()
-                event.stopPropagation()
+                event.preventDefault();
+                event.stopPropagation();
             }
             
             $(this).addClass('was-validated');

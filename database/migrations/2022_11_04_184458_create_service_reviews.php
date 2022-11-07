@@ -22,6 +22,10 @@ return new class extends Migration
             $table->text('review');
             $table->timestamps();
             $table->softDeletes();
+
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('service_id')->references('id')->on('services');
+            $table->foreign('package_id')->references('id')->on('service_packages');
         });
     }
 
