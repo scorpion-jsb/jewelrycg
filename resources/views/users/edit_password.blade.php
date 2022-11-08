@@ -37,16 +37,20 @@
                         <br>
                         <div class="d-block">
                             <button type="submit" class="btn btn-primary">Edit Password</button>
-                            <form action="{{ route('user.delete') }}" method="post" class="d-inline">
-                                @csrf
-                                @method('delete')
-                                <button type="submit" class="btn btn-outline-danger">
-                                    Delete Account
-                                </button>
-                            </form>
                         </div>
                     </div>
                 </div>
+            </form>
+            <form action="{{ route('user.delete') }}" method="post" class="d-inline">
+                @csrf
+                @method('delete')
+                <div class="card">
+                    <div class="card-header">Delete Account</div>
+                    <div class="card-body">
+                        <button type="submit" class="btn btn-outline-danger">
+                            Delete Account
+                        </button>
+                    </div>
             </form>
         </div>
     </div>
