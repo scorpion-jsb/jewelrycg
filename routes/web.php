@@ -532,7 +532,8 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/edit', 'edit')->name('edit');
         Route::get('/edit/password', 'editPassword')->name('edit.password');
         Route::patch('/edit/password', 'updatePassword')->name('update.password');
-        Route::put('/edit', 'update')->name('update');
+        Route::put('/edit/account', 'update_account')->name('update.account');
+        Route::put('/edit/address', 'update_address')->name('update.address');
         Route::delete('/delete', 'delete')->name('delete');
         Route::get('/{id_user}', 'index')->name('index');
     });

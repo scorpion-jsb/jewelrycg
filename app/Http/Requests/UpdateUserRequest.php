@@ -18,18 +18,6 @@ class UpdateUserRequest extends FormRequest
             'last_name' => 'required|string|max:255',
             'email' => 'prohibited',
             'password' => 'prohibited',
-            'shipping_address1' => 'nullable|string|max:255',
-            'shipping_address2' => 'nullable|string|max:255',
-            'shipping_city' => 'required|string|max:255',
-            'shipping_state' => 'required|string|max:255',
-            'shipping_country' => 'required|string|max:255',
-            'shipping_pin_code' => 'required|numeric|digits_between:4,6',
-            'billing_address1' => 'nullable|string|max:255',
-            'billing_address2' => 'nullable|string|max:255',
-            'billing_city' => 'nullable|string|max:255',
-            'billing_state' => 'nullable|string|max:255',
-            'billing_country' => 'nullable|string|max:255',
-            'billing_pin_code' => 'nullable|numeric|digits_between:4,6',
         ];
     }
 }
