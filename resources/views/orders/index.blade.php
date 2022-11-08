@@ -11,6 +11,9 @@
             <li class="nav-item">
                 <a class="nav-link {{ \Route::currentRouteName() == 'services.orders' ? 'active' :'' }}" href="{{ route('services.orders') }}">Service Orders</a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link {{ \Route::currentRouteName() == 'courses.orders' ? 'active' :'' }}" href="{{ route('courses.orders') }}">Course Orders</a>
+            </li>
         </ul>
 
         <x-orders-table :orders="$orders"/>

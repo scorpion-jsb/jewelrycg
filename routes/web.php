@@ -481,6 +481,8 @@ Route::group(['controller' => CartController::class, 'prefix' => 'cart', 'as' =>
 // Course
 Route::group(['controller' => CourseController::class, 'prefix' => 'courses', 'as' => 'courses.'], function () {
     Route::get('/', 'index')->name('index');
+    Route::get('/orders', 'orders')->name('orders');
+    Route::get('/order/{id}', 'order_detail')->name('order_detail');
     Route::get('/category/{slug}', 'category')->name('category');
     Route::get('/checkout/finish', 'finish')->name('finish');
     Route::post('/checkout/payment', 'post_payment')->name('payment.post');

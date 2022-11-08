@@ -367,4 +367,18 @@ class CourseController extends Controller
 
         return response(null, 204);
     }
+
+    public function orders(Request $request)
+    {
+        $user_id = auth()->id();
+        $orders = OrderCourse::with('course')->where('user_id', $user_id)->get();
+
+        return view('courses.orders', ['orders' => $orders]);
+    }
+
+    public function order_detail($id)
+    {
+        $order = OrderCourse::with(['course.uploads'])->where('order_id', $id)->first();
+        return view('courses.order_detail', ['order' => $order]);
+    }
 }
