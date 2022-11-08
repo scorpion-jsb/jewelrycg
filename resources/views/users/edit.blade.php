@@ -32,6 +32,11 @@
                             </div>
                         </div>
                     @endif
+                    @if (session('success'))
+                        <h4 class="text-success mt-3">
+                            {{session('success')}}
+                        </h4>
+                    @endif
                     {{-- {{ dd($countries) }} --}}
                     <x-user-info-main :edit="true" :user="auth()->user()" :countries="$countries" :shipping="$shipping" :billing="$billing" :tab="$tab" />
                     <div class="d-flex justify-content-end mt-3">
