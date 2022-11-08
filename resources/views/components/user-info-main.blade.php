@@ -1,7 +1,8 @@
+@if ($tab == "account")
 <div class="card mb-4 p-0">
     <div class="card-header">User Information</div>
     <div class="card-body">
-        @if ($edit)
+        @if ($edit) 
             <div class="mb-2">
                 <label for="name">First Name:</label>
                 <input type="text" name="first_name" id="first_name" value="{{ old('first_name') ?? $user->first_name }}"
@@ -44,7 +45,7 @@
         </div>
     </div>
 </div>
-
+@elseif($tab == "address")
 <div class="card mb-4 p-0">
     <div class="card-header">Shipping Address</div>
     <div class="card-body">
@@ -127,6 +128,7 @@
         </div>
     </div>
 </div><!-- end billing-address-->
+@endif
 
 <div id="fileManagerContainer"></div>
 
