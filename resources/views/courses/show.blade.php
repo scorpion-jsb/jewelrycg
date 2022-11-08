@@ -29,6 +29,7 @@
                         </div>
                     @endforeach
                 </div>
+                <a type="button" class="btn btn-info" href="/courses/checkout/{{$course->id}}">Buy</a>
             </div>
         </div>
     </section>
