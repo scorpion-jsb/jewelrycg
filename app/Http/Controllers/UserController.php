@@ -24,6 +24,9 @@ class UserController extends Controller
         $billing_address = UserAddress::find(auth()->user()->address_billing);
         $this->authorize('seeInfo', $user);
 
+        if ($id_user == Auth::id()) {
+            return redirect()->route('user.edit', ['tab' => $tab]);
+        }
         return view('users.index', ['user' => $user, 'shipping' => $shipping_address, 'billing' => $billing_address, 'tab' => $tab]);
     }
 
@@ -56,7 +59,7 @@ class UserController extends Controller
             $user->update(['avatar' => $req->input('avatar')]);
         }
 
-        return redirect()->route('user.index', ['id_user' => auth()->user()->id, 'tab' => "account"]);
+        return redirect()->route('user.edit', ['tab' => "account"]);
     }
 
     public function update_address(UpdateAddressRequest $req)
@@ -88,11 +91,11 @@ class UserController extends Controller
                 $address2 = UserAddress::find(auth()->user()->address_billing)->delete();
                 auth()->user()->update(['address_billing' => null]);
             }
-            return redirect()->route('user.index', ['id_user' => auth()->user()->id, 'tab' => "address"]);
+            return redirect()->route('user.edit', ['tab' => "address"]);
         }
 
         if (!$req->billing_address1 || !$req->billing_city || !$req->billing_country || !$req->billing_state || !$req->billing_pin_code) {
-            return redirect()->route('user.index', ['id_user' => auth()->user()->id, 'tab' => "address"]);
+            return redirect()->route('user.edit', ['tab' => "address"]);
         }
 
         if (auth()->user()->address_billing) {
@@ -114,7 +117,7 @@ class UserController extends Controller
         }
         auth()->user()->update(['address_billing' => $address2->id]);
 
-        return redirect()->route('user.index', ['id_user' => auth()->user()->id, 'tab' => "address"]);
+        return redirect()->route('user.edit', ['tab' => "address"]);
     }
 
     public function updatePassword(UpdateUserPasswordRequest $req)
@@ -122,7 +125,7 @@ class UserController extends Controller
         auth()->user()->update([
             'password' => bcrypt($req->new_password),
         ]);
-        return redirect()->route('user.index', auth()->user()->id, ['tab' => "account"])->with('message', 'Password was Successfully Changed!');
+        return redirect()->route('user.edit', auth()->user()->id, ['tab' => "account"])->with('message', 'Password was Successfully Changed!');
     }
 
     public function delete()
