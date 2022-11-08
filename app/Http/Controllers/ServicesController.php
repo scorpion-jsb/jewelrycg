@@ -772,6 +772,7 @@ class ServicesController extends Controller
     public function order_detail($id, Request $request)
     {
         $order = ServiceOrder::with(['service.thumb'])->where('order_id', $id)->first();
-        return view('service.order_detail', ['order' => $order]);
+        $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
+        return view('service.order_detail', ['order' => $order, 'requirements' => $requirements]);
     }
 }

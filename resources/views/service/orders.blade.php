@@ -16,36 +16,36 @@
               </li>
           </ul>
   
-          @foreach ($orders as $order)
-          <div class="card">
-              <div class="card-body">
-                  <div class="row">
-                      <div class="col-lg-2 col-6 mb-2">
-                          <div class="fw-600">Order number</div>
-                          <div>#{{$order->order_id}}</div>
-                      </div>
-                      <div class="col-lg-2 col-6 mb-2">
-                          <div class="fw-600">Date placed</div>
-                          <span>{{ date('F d, Y', strtotime($order->created_at)) }}</span>
-                      </div>
-                      <div class="col-lg-2 col-6 mb-2">
-                          <div class="fw-600">Package</div>
-                          <span>{{$order->package_name}}</span>
-                      </div>
-                      <div class="col-lg-2 col-6 mb-2">
-                          <div class="fw-600">Total amount</div>
-                          <span>${{number_format($order->package_price, 2)}}</span>
-                      </div>
-                      <div class="col-lg-2 col-6 ml-auto">
-                          <a href="{{route('services.order_detail', $order->order_id)}}" class="btn btn-primary">View Order</a>
-                      </div>
-                  </div>
-              </div>
-              <div class="card-body">
+            @foreach ($orders as $order)
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-2 col-6 mb-2">
+                            <div class="fw-600">Order number</div>
+                            <div>#{{$order->order_id}}</div>
+                        </div>
+                        <div class="col-lg-2 col-6 mb-2">
+                            <div class="fw-600">Date placed</div>
+                            <span>{{ date('F d, Y', strtotime($order->created_at)) }}</span>
+                        </div>
+                        <div class="col-lg-2 col-6 mb-2">
+                            <div class="fw-600">Package</div>
+                            <span>{{$order->package_name}}</span>
+                        </div>
+                        <div class="col-lg-2 col-6 mb-2">
+                            <div class="fw-600">Total amount</div>
+                            <span>${{number_format($order->package_price, 2)}}</span>
+                        </div>
+                        <div class="col-lg-2 col-6 ml-auto">
+                            <a href="{{route('services.order_detail', $order->order_id)}}" class="btn btn-primary">View Order</a>
+                        </div>
+                    </div>
+                    </div>
+                <div class="card-body">
 
-              </div>
-          </div>
-          @endforeach
+            </div>
+        </div>
+        @endforeach
   
       </div>
   </div>

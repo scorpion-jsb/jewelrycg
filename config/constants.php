@@ -13,10 +13,11 @@ return [
         'Delivered',
     ],
     'service_order_status' => [
-        'pending',
-        'revision',
-        'canceled',
-        'shipped',
+        'Pending Requirements',
+        'In progress',
+        'Revision',
+        'Canceled',
+        'Delivered',
     ],
     'oder_payment_status' => [
         '',
