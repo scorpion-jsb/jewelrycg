@@ -144,6 +144,8 @@ class ServicesController extends Controller
             $data->galleries = $galleries;
         }
 
+        $packages = ServicePackage::withTrashed()->where('service_id', $post_id)->get();
+
         // $step = 1;
         return view('service.services.create', [
             'categories' => ServiceCategorie::all(),
@@ -151,6 +153,7 @@ class ServicesController extends Controller
             'step' => $step,
             'post_id' => $post_id,
             'data' => $data,
+            'packages' => $packages,
         ]);
     }
 
@@ -208,7 +211,7 @@ class ServicesController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
-        $slug_count = ServicePost::whereName($request->name)->count();
+        $slug_count = ServicePackage::whereName($request->name)->count();
         $step = $request->step + 1;
         $post_id = $request->service_id;
         $suffix = ($slug_count == 0) ? '' : '-' . (string) $slug_count + 1;
