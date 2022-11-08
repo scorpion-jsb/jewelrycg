@@ -324,7 +324,7 @@ class CourseController extends Controller
 
         $order->user_id = auth()->id();
         $order->course_id = $id;
-        $order->order_id = auth()->id() . strtoupper(uniqid());
+        $order->order_id = "C" . auth()->id() . strtoupper(uniqid());
         $order->price = $course->price;
         $order->payment_intent = '';
 
