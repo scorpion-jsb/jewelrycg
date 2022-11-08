@@ -45,10 +45,10 @@
                 @csrf
                 @method('delete')
                 <div class="card">
-                    <div class="card-header">Delete Account</div>
+                    <div class="card-header">Deactive Account</div>
                     <div class="card-body">
                         <button type="submit" class="btn btn-outline-danger">
-                            Delete Account
+                            Deactive Account
                         </button>
                     </div>
             </form>
