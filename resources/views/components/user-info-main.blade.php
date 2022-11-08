@@ -13,6 +13,11 @@
                 <input type="text" name="last_name" id="last_name" value="{{ old('last_name') ?? $user->last_name }}"
                     class="form-control">
             </div>
+            <div class="mb-2">
+                <label for="name">Username:</label>
+                <input type="text" name="username" id="username" value="{{ old('username') ?? $user->username }}"
+                    class="form-control">
+            </div>
         @else
             <div class="mb-2">
                 <label for="name">Name:</label>
