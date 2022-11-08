@@ -235,7 +235,7 @@ class CourseController extends Controller
             }
             $req->session()->put('order_id', $orderId);
 
-            $description = env('APP_NAME') . ' Order#' . $orderId;
+            $description = env('APP_NAME') . ' Order#C' . $orderId;
 
             ////////////////////////////////////////////////////////////////////////////////////////////////
             // Calculate the total and tax
@@ -243,7 +243,7 @@ class CourseController extends Controller
             $arrCouponInfo = Coupon::getCouponByUser($coupon_code);
             $coupon = $arrCouponInfo['coupon'];
 
-            $sub_total = $course->price * 100;
+            $sub_total = $course->price;
             if ($coupon == null) {
                 $shipping_option_id = $req->session()->get('shipping_option_id', 0);
 

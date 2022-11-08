@@ -551,7 +551,7 @@ class ServicesController extends Controller
             }
             $req->session()->put('order_id', $orderId);
 
-            $description = env('APP_NAME') . ' Order#' . $orderId;
+            $description = env('APP_NAME') . ' Order#S' . $orderId;
 
             ////////////////////////////////////////////////////////////////////////////////////////////////
             // Calculate the total and tax
