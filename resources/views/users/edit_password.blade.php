@@ -12,7 +12,7 @@
                             <a class="nav-link {{ $tab == "security" ? "active" : "" }}" href="{{route('user.update.password')}}">Security</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ $tab == "address" ? "active" : "" }}" href="/user/{{Auth::id()}}?tab=address">Account</a>
+                            <a class="nav-link {{ $tab == "address" ? "active" : "" }}" href="/user/{{Auth::id()}}?tab=address">Address</a>
                         </li>
                     </ul>
                 </div>
@@ -41,14 +41,14 @@
                     </div>
                 </div>
             </form>
-            <form action="{{ route('user.delete') }}" method="post" class="d-inline">
+            <form action="{{ route('user.disable') }}" method="post" class="d-inline">
                 @csrf
-                @method('delete')
+                @method('post')
                 <div class="card">
-                    <div class="card-header">Delete Account</div>
+                    <div class="card-header">Deactive Account</div>
                     <div class="card-body">
                         <button type="submit" class="btn btn-outline-danger">
-                            Delete Account
+                            Deactive Account
                         </button>
                     </div>
             </form>
