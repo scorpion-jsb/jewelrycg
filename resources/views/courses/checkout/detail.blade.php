@@ -36,7 +36,7 @@
                         </div>
                         <div class="order-item-qty-price fs-16 pb-2">
                             <span class="fw-600">Price</span>
-                            ${{ number_format($order->price, 2) }}
+                            ${{ number_format($order->price/100, 2) }}
                         </div>
                         <div class="is_downloadable fw-600 fs-16">
                             @php

@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('order_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('course_id');
-            $table->unsignedFloat('price');
+            $table->unsignedInteger('price');
             $table->string('payment_intent')->default('');
             $table->smallInteger('status_payment')->default(1); // 1: unpaid, 2: paid
             $table->string('status_payment_reason')->default('');
