@@ -6,13 +6,13 @@
                     <div class="container-fluid">
                         <ul class="navbar-nav">
                             <li class="nav-item">
-                                <a class="nav-link {{ $tab == "account" ? "active" : "" }}" href="/user/{{Auth::id()}}?tab=account">Account</a>
+                                <a class="nav-link {{ $tab == "account" ? "active" : "" }}" href="/user/edit?tab=account">Account</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ $tab == "security" ? "active" : "" }}" href="/user/{{Auth::id()}}?tab=security">Security</a>
+                                <a class="nav-link {{ $tab == "security" ? "active" : "" }}" href="{{route('user.update.password')}}">Security</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link {{ $tab == "address" ? "active" : "" }}" href="/user/{{Auth::id()}}?tab=address">Account</a>
+                                <a class="nav-link {{ $tab == "address" ? "active" : "" }}" href="/user/edit?tab=address">Account</a>
                             </li>
                         </ul>
                     </div>
