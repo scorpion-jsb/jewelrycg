@@ -12,7 +12,7 @@
                             <a class="nav-link {{ $tab == "security" ? "active" : "" }}" href="{{route('user.update.password')}}">Security</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link {{ $tab == "address" ? "active" : "" }}" href="/user/{{Auth::id()}}?tab=address">Account</a>
+                            <a class="nav-link {{ $tab == "address" ? "active" : "" }}" href="/user/{{Auth::id()}}?tab=address">Address</a>
                         </li>
                     </ul>
                 </div>
