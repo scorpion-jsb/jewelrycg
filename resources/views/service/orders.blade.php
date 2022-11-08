@@ -30,11 +30,11 @@
                       </div>
                       <div class="col-lg-2 col-6 mb-2">
                           <div class="fw-600">Package</div>
-                          <span>{{$order->package->name}}</span>
+                          <span>{{$order->package_name}}</span>
                       </div>
                       <div class="col-lg-2 col-6 mb-2">
                           <div class="fw-600">Total amount</div>
-                          <span>${{number_format($order->package->price, 2)}}</span>
+                          <span>${{number_format($order->package_price, 2)}}</span>
                       </div>
                       <div class="col-lg-2 col-6 ml-auto">
                           <a href="{{route('services.order_detail', $order->order_id)}}" class="btn btn-primary">View Order</a>

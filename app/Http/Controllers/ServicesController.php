@@ -317,22 +317,58 @@ class ServicesController extends Controller
      */
     public function package(ServicePackageRequest $request)
     {
-        $servicepackage = new ServicePackage();
         $data = $request->input();
         $step = $data['step'] + 1;
         $post_id = $data['service_id'];
         $names = $request->input('name');
+        $package_count = $request->input('package_count');
 
-        ServicePackage::where('service_id', $post_id)->delete();
-        for ($i = 0; $i < count($names); $i++) {
-            if ($names[$i]) {
-                $temp['name'] = $data['name'][$i];
-                $temp['service_id'] = $data['service_id'];
-                $temp['description'] = $data['description'][$i];
-                $temp['price'] = $data['price'][$i];
-                $temp['revisions'] = $data['revisions'][$i];
-                $temp['delivery_time'] = $data['delivery_time'][$i];
-                $servicepackage->create($temp);
+        ServicePackage::withTrashed()->where('service_id', $post_id)->restore();
+        $lasts = ServicePackage::where('service_id', $post_id)->get();
+        $i = 0;
+
+        if (count($lasts) > $package_count) {
+            $i = 0;
+            for (; $i < $package_count; $i++) {
+                if ($names[$i]) {
+                    $lasts[$i]['name'] = $data['name'][$i];
+                    $lasts[$i]['service_id'] = $data['service_id'];
+                    $lasts[$i]['description'] = $data['description'][$i];
+                    $lasts[$i]['price'] = $data['price'][$i];
+                    $lasts[$i]['revisions'] = $data['revisions'][$i];
+                    $lasts[$i]['delivery_time'] = $data['delivery_time'][$i];
+                    $lasts[$i]->save();
+                }
+            }
+            for (; $i < count($lasts); $i++) {
+                $lasts[$i]->delete();
+            }
+        } else {
+            $i = 0;
+            for (; $i < count($lasts); $i++) {
+                if ($names[$i]) {
+                    $lasts[$i]['name'] = $data['name'][$i];
+                    $lasts[$i]['service_id'] = $data['service_id'];
+                    $lasts[$i]['description'] = $data['description'][$i];
+                    $lasts[$i]['price'] = $data['price'][$i];
+                    $lasts[$i]['revisions'] = $data['revisions'][$i];
+                    $lasts[$i]['delivery_time'] = $data['delivery_time'][$i];
+                    $lasts[$i]->save();
+                } else {
+                    $lasts[$i]->delete();
+                }
+            }
+            for (; $i < $package_count; $i++) {
+                if ($names[$i]) {
+                    $newPackage = new ServicePackage();
+                    $newPackage['name'] = $data['name'][$i];
+                    $newPackage['service_id'] = $data['service_id'];
+                    $newPackage['description'] = $data['description'][$i];
+                    $newPackage['price'] = $data['price'][$i];
+                    $newPackage['revisions'] = $data['revisions'][$i];
+                    $newPackage['delivery_time'] = $data['delivery_time'][$i];
+                    $newPackage->save();
+                }
             }
         }
 
@@ -640,10 +676,13 @@ class ServicesController extends Controller
 
         $order->user_id = auth()->id();
         $order->service_id = $package->service_id;
-        $order->package_id = $package->id;
+        $order->package_name = $package->name;
+        $order->package_description = $package->description;
+        $order->package_price = $package->price;
+        $order->package_delivery_time = $package->delivery_time;
         $order->revisions = $package->revisions;
         $order->order_id = "S" . auth()->id() . strtoupper(uniqid());
-        $order->original_delivery_time = Date('y-m-d H:i:s', strtotime('+' . $order->package->delivery_time . ' days'));
+        $order->original_delivery_time = Date('y-m-d H:i:s', strtotime('+' . $package->delivery_time . ' days'));
         $order->payment_intent = '';
 
         $order->save();
@@ -657,7 +696,7 @@ class ServicesController extends Controller
     {
         $order_id = $request->session()->get('order_id');
 
-        $order = ServiceOrder::with(['service.thumb', 'package'])->findOrFail($order_id);
+        $order = ServiceOrder::with(['service.thumb'])->findOrFail($order_id);
 
         $order->status_payment = 2; // paid
         $order->payment_intent = $request->get('payment_intent');
@@ -709,7 +748,7 @@ class ServicesController extends Controller
             $answer->save();
         }
 
-        $order->original_delivery_time = Date('y-m-d H:i:s', strtotime('+' . $order->package->delivery_time . ' days'));
+        $order->original_delivery_time = Date('y-m-d H:i:s', strtotime('+' . $order->package_delivery_time . ' days'));
         $order->update();
 
         return redirect()->back()->with("message", "We have sent your message to " . $author->first_name . " " . $author->last_name);
@@ -718,14 +757,14 @@ class ServicesController extends Controller
     public function orders(Request $request)
     {
         $user_id = Auth::id();
-        $orders = ServiceOrder::with('package')->where('user_id', $user_id)->get();
+        $orders = ServiceOrder::where('user_id', $user_id)->get();
 
         return view('service.orders', ['orders' => $orders]);
     }
 
     public function order_detail($id, Request $request)
     {
-        $order = ServiceOrder::with(['service.thumb', 'package'])->where('order_id', $id)->first();
+        $order = ServiceOrder::with(['service.thumb'])->where('order_id', $id)->first();
         return view('service.order_detail', ['order' => $order]);
     }
 }
