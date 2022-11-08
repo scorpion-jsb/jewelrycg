@@ -117,7 +117,7 @@
                     <div class="d-flex w-100 justify-content-between">
                         <input type="hidden" name="service_id" id="service_id" value="{{$post_id}}" >
                         <input type="hidden" name="step" id="step" value="{{$step}}" >
-                        <input type="hidden" name="package_count" id="package_count" value="{{count($data->packages)}}" >
+                        <input type="hidden" name="package_count" id="package_count" value="{{count($data->packages) == 0 ? 1 : count($data->packages)}}" >
                         <div class="submission">Revision</div>
                         <div class="w-30">
                             <div class="package-title">BASIC</div>

@@ -110,12 +110,12 @@
                 </div>
             </div>
 
-            @if (count($requirements) > 0 && $order->status == 0)
             @if(Session::get('message') != null)
             <div class="alert alert-success">
                 {{ Session::get('message') }}
             </div>
-            @else
+            @endif
+            @if (count($requirements) > 0 && $order->status == 0) 
             <form id="question-form" class="needs-validation" action="{{ route('services.answer') }}" method="post" enctype="multipart/form-data" novalidate>
                 @csrf
                 <label class="fs-3 mb-4">Questions</label> 
@@ -154,7 +154,6 @@
                     <button type="submit" class="btn btn-primary">Save</button> 
                 </div>
             </form>
-            @endif
             @endif
       </div>
 @section('js')
