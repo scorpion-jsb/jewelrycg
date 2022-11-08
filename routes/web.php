@@ -535,6 +535,7 @@ Route::group(['middleware' => 'auth'], function () {
         Route::put('/edit/account', 'update_account')->name('update.account');
         Route::put('/edit/address', 'update_address')->name('update.address');
         Route::delete('/delete', 'delete')->name('delete');
+        Route::post('/disable', 'disable')->name('disable');
         Route::get('/{id_user}', 'index')->name('index');
     });
 });

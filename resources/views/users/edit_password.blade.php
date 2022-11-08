@@ -41,9 +41,9 @@
                     </div>
                 </div>
             </form>
-            <form action="{{ route('user.delete') }}" method="post" class="d-inline">
+            <form action="{{ route('user.disable') }}" method="post" class="d-inline">
                 @csrf
-                @method('delete')
+                @method('post')
                 <div class="card">
                     <div class="card-header">Deactive Account</div>
                     <div class="card-body">

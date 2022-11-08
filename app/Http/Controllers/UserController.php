@@ -133,4 +133,10 @@ class UserController extends Controller
         auth()->user()->delete();
         return redirect()->route('index');
     }
+
+    public function disable()
+    {
+        auth()->user()->update(['role' => 4]);
+        return redirect()->route('logout');
+    }
 }
