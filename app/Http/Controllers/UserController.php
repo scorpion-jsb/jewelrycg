@@ -67,7 +67,7 @@ class UserController extends Controller
             $user->update(['avatar' => $req->input('avatar')]);
         }
 
-        return redirect()->route('user.edit', ['tab' => "account"]);
+        return redirect()->route('user.edit', ['tab' => "account"])->with("success", "Account updated!");
     }
 
     public function update_address(UpdateAddressRequest $req)
@@ -99,11 +99,11 @@ class UserController extends Controller
                 $address2 = UserAddress::find(auth()->user()->address_billing)->delete();
                 auth()->user()->update(['address_billing' => null]);
             }
-            return redirect()->route('user.edit', ['tab' => "address"]);
+            return redirect()->route('user.edit', ['tab' => "address"])->with("success", "Address updated!");
         }
 
         if (!$req->billing_address1 || !$req->billing_city || !$req->billing_country || !$req->billing_state || !$req->billing_pin_code) {
-            return redirect()->route('user.edit', ['tab' => "address"]);
+            return redirect()->route('user.edit', ['tab' => "address"])->with("success", "Address updated!");
         }
 
         if (auth()->user()->address_billing) {
@@ -125,7 +125,7 @@ class UserController extends Controller
         }
         auth()->user()->update(['address_billing' => $address2->id]);
 
-        return redirect()->route('user.edit', ['tab' => "address"]);
+        return redirect()->route('user.edit', ['tab' => "address"])->with("success", "Address updated!");
     }
 
     public function updatePassword(UpdateUserPasswordRequest $req)
@@ -133,7 +133,7 @@ class UserController extends Controller
         auth()->user()->update([
             'password' => bcrypt($req->new_password),
         ]);
-        return redirect()->route('user.edit', auth()->user()->id, ['tab' => "account"])->with('message', 'Password was Successfully Changed!');
+        return redirect()->route('user.edit.password')->with('success', 'Password was Successfully Changed!');
     }
 
     public function delete()

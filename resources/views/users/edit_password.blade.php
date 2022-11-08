@@ -19,6 +19,12 @@
             </nav>
         </div>
         <div class="col-xl-4 col-lg-6 col-md-8 py-9 mx-auto">
+            
+            @if (session('success'))
+                <h4 class="text-success mt-3">
+                    {{session('success')}}
+                </h4>
+            @endif
             <form action="{{route('user.update.password')}}" method="post">
                 @csrf
                 @method('patch')
