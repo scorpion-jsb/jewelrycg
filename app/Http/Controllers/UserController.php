@@ -122,7 +122,7 @@ class UserController extends Controller
         auth()->user()->update([
             'password' => bcrypt($req->new_password),
         ]);
-        return redirect()->route('user.index', auth()->user()->id, ['tab' => "security"])->with('message', 'Password was Successfully Changed!');
+        return redirect()->route('user.index', auth()->user()->id, ['tab' => "account"])->with('message', 'Password was Successfully Changed!');
     }
 
     public function delete()
