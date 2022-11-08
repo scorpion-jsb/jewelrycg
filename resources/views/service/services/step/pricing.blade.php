@@ -110,13 +110,14 @@
                 <div class="card-header">
                     <h4 class="card-header-title mb-0">Service Package</h4>
                     <div>
-                        Offer Packages: <input data-id="" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive">
+                        Offer Packages: <input data-id="" class="toggle-class" type="checkbox" data-onstyle="success" data-offstyle="danger" data-toggle="toggle" data-on="Active" data-off="InActive" {{count($data->packages) == 3 ? "checked": ""}}>
                     </div>
                 </div>
                 <div class="card-body ps-relative">
                     <div class="d-flex w-100 justify-content-between">
                         <input type="hidden" name="service_id" id="service_id" value="{{$post_id}}" >
                         <input type="hidden" name="step" id="step" value="{{$step}}" >
+                        <input type="hidden" name="package_count" id="package_count" value="{{count($data->packages)}}" >
                         <div class="submission">Revision</div>
                         <div class="w-30">
                             <div class="package-title">BASIC</div>
@@ -339,15 +340,18 @@
         var user_id = $(this).data('id'); 
         if(status == 1) {
             $('.try-triple-packages').css('display', 'none')
+            $('#package_count').val(3)
         } else {
             $('.try-triple-packages').css('display', 'block')
+            $('#package_count').val(1)
         }
     })
 
     {!! count($data->packages) >= 3 ? "setofferpk();" : "" !!}
   })
   function setofferpk() {
-    $('.toggle-class').prop('checked', 'checked')
+    $('.toggle-class').bootstrapToggle('on')
     $('.try-triple-packages').css('display', 'none')
+    $('#package_count').val(3)
   }
 </script>

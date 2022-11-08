@@ -19,7 +19,10 @@ return new class extends Migration
             $table->string('order_id');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('service_id');
-            $table->unsignedBigInteger('package_id');
+            $table->string('package_name');
+            $table->string('package_description');
+            $table->string('package_price');
+            $table->integer('package_delivery_time');
             $table->string('revisions');
             $table->dateTime('original_delivery_time');
             $table->dateTime('extended_delivery_time');

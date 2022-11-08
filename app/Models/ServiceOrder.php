@@ -29,9 +29,4 @@ class ServiceOrder extends Model
     {
         return $this->belongsTo(ServicePost::class, 'service_id', 'id');
     }
-
-    public function package()
-    {
-        return $this->belongsTo(ServicePackage::class, 'package_id', 'id');
-    }
 }
