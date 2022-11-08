@@ -56,11 +56,11 @@
                                                 {{ $course->name }}
                                             </div>
                                             {{-- <div class="item-meta mb-2"><span class="fw-800">Price:</span> ${{ number_format($package->price, 2, ".", ",") }}</div> --}}
-                                            <div class="item-meta mb-2"><span class="fw-800">Price:</span> {{ number_format($course->price, 2) }}</div>
+                                            <div class="item-meta mb-2"><span class="fw-800">Price:</span> {{ number_format($course->price/100, 2) }}</div>
                                             <div class="item-meta mb-2"><span class="fw-800">Lessons:</span> {{ count($course->lessons) }}</div>
                                         </div>
                                         <div class="col-1 text-right">
-                                            <span class="text-primary fw-800">${{ number_format($course->price, 2, ".", ",") }}</span>
+                                            <span class="text-primary fw-800">${{ number_format($course->price/100, 2, ".", ",") }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="col-auto ml-auto text-right">
                                             <span class="fw-800" id="spnSubTotalPrice">
-                                                ${{ number_format($course->price, 2, '.', ',') }}
+                                                ${{ number_format($course->price/100, 2, '.', ',') }}
                                             </span>
                                         </div>
                                     </div>
@@ -126,7 +126,7 @@
                                         </div>
                                         <div class="col-auto ml-auto text-right">
                                             <span class="fw-800 text-primary" id="spnTotalPrice">
-                                                ${{number_format($course->price, 2, ".", ",")}}
+                                                ${{number_format($course->price/100, 2, ".", ",")}}
                                             </span>
                                         </div>
                                     </div>
