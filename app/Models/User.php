@@ -20,6 +20,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'address_shipping',
         'address_billing',
+        'username',
         'role',
         'avatar',
     ];
@@ -28,7 +29,7 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
         'remember_token',
     ];
-    
+
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
@@ -38,24 +39,26 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Order::class, 'user_id');
     }
 
-    public function address() 
+    public function address()
     {
         return $this->hasOne(UserAddress::class, 'user_id');
     }
 
-    public function seller() 
+    public function seller()
     {
         return $this->hasOne(SellersProfile::class, 'user_id');
     }
 
-    public function getAttributeName() {
+    public function getAttributeName()
+    {
         return $this->first_name . " " . $this->last_name;
     }
-    
-    public function uploads() {
+
+    public function uploads()
+    {
         return $this->belongsTo(Upload::class, 'avatar', 'id')->withDefault([
             'file_name' => "avatar.png",
-            'id' => null
+            'id' => null,
         ]);
     }
 }

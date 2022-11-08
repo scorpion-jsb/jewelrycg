@@ -50,10 +50,18 @@ class UserController extends Controller
 
     public function update_account(UpdateUserRequest $req)
     {
+        $username = $req->input('username');
+
+        if ($username != '') {
+            if (User::where('id', '<>', Auth::id())->where('username', $username)->exists()) {
+                return redirect()->back()->withErrors(['Invalid Username' => 'Username already exist!']);
+            }
+        }
+
         $first_name = $req->input('first_name');
         $last_name = $req->input('last_name');
         $user = Auth::user();
-        $user->update(['first_name' => $first_name, 'last_name' => $last_name]);
+        $user->update(['first_name' => $first_name, 'last_name' => $last_name, 'username' => $username]);
 
         if ($req->has('avatar')) {
             $user->update(['avatar' => $req->input('avatar')]);

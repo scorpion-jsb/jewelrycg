@@ -25,7 +25,7 @@
 
                     @if ($errors->any())
                         <div class="row justify-content-center mb-3">
-                            <div class="card col-6">
+                            <div class="card col-12">
                                 <div class="card-body">
                                     @include('includes.validation-form')
                                 </div>
