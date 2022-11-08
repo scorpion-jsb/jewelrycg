@@ -67,7 +67,7 @@
                         <div class="fs-14 ">{{ date('F d, Y', strtotime($order->created_at)) }}</div>
                     </div>
                   
-                    @if (Session::get('message') != null)
+                    @if ($order->original_delivery_time != '0000-00-00 00:00:00')
                     <div class="col-lg-3 col-6 mb-2">
                         <div class="w-100 fs-18 fw-600">Est Deliver Date</div>
                         <div class="fs-14 ">{{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</div>
@@ -110,7 +110,7 @@
                 </div>
             </div>
 
-            @if (count($requirements) > 0)
+            @if (count($requirements) > 0 && $order->original_delivery_time == '0000-00-00 00:00:00')
             @if(Session::get('message') != null)
             <div class="alert alert-success">
                 {{ Session::get('message') }}

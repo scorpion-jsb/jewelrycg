@@ -685,7 +685,9 @@ class ServicesController extends Controller
         $order->package_delivery_time = $package->delivery_time;
         $order->revisions = $package->revisions;
         $order->order_id = "S" . auth()->id() . strtoupper(uniqid());
-        $order->original_delivery_time = Date('y-m-d H:i:s', strtotime('+' . $package->delivery_time . ' days'));
+        if (ServiceRequirement::where('service_id', $package->service_id)->count() == 0) {
+            $order->original_delivery_time = Date('y-m-d H:i:s', strtotime('+' . $package->delivery_time . ' days'));
+        }
         $order->payment_intent = '';
 
         $order->save();
