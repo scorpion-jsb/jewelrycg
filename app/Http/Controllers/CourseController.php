@@ -235,7 +235,7 @@ class CourseController extends Controller
             }
             $req->session()->put('order_id', $orderId);
 
-            $description = env('APP_NAME') . ' Order#' . $orderId;
+            $description = env('APP_NAME') . ' Order#C' . $orderId;
 
             ////////////////////////////////////////////////////////////////////////////////////////////////
             // Calculate the total and tax
