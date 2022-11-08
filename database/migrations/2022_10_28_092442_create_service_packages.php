@@ -22,6 +22,8 @@ return new class extends Migration
             $table->string('revisions')->nullable();
             $table->integer('delivery_time');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
