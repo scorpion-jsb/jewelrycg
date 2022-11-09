@@ -6,7 +6,7 @@
                 <div class="card mb-4">
                     <div class="card-body">
                         <h4 class="fw-700">Order Started</h4>
-                        <p class="p-0">{{ $order->user->first_name . " " . $order->user->last_name }} sent all the information you need so you can start working on this order. You got this!</p>
+                        <p class="p-0"><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> sent all the information you need so you can start working on this order. You got this!</p>
                     </div>
                 </div>
 
