@@ -17,7 +17,9 @@
                 </ul>
             </div>
             <div class="row">
-                <x-dashboard-side-bar />
+                <div class="col-3">
+                    <x-dashboard-side-bar />
+                </div>
                 <div class="col-9">
                     <div class="seller-stats mb-4">
                         <div class="seller-stats-card-body">

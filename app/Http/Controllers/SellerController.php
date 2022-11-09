@@ -164,7 +164,7 @@ class SellerController extends Controller
     {
         $orders = ServiceOrder::whereHas('service',
             fn($query) => $query->where('user_id', Auth::id())
-        )->with('user')->where('status', 1)->get();
+        )->with(['user', 'service'])->where('status', 1)->get();
 
         return view('seller.service.orders', ['orders' => $orders]);
     }
