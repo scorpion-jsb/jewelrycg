@@ -391,6 +391,7 @@ Route::group(['middleware' => ['auth']], function () {
 //services
 Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::get('/', [ServicesController::class, 'all'])->name('all');
+    Route::get('/dashboard', [ServicesController::class, 'dashboard'])->name('dashboard');
     Route::get('/orders', [ServicesController::class, 'orders'])->name('orders');
     Route::get('/order/{id}', [ServicesController::class, 'order_detail'])->name('order_detail');
     Route::get('/checkout/finish', [ServicesController::class, 'finish'])->name('finish');

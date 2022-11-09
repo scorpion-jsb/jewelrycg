@@ -12,6 +12,8 @@ use App\Http\Requests\StorePaymentIntentRequest;
 use App\Models\Country;
 use App\Models\Coupon;
 use App\Models\OrderServiceRequirement;
+use App\Models\SellersProfile;
+use App\Models\SellersWalletHistory;
 use App\Models\ServiceCategorie;
 use App\Models\ServiceOrder;
 use App\Models\ServicePackage;
@@ -25,6 +27,7 @@ use App\Models\Upload;
 use App\Models\User;
 use App\Models\UserAddress;
 use Auth;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Stripe\Stripe;
 
@@ -774,5 +777,31 @@ class ServicesController extends Controller
         $order = ServiceOrder::with(['service.thumb'])->where('order_id', $id)->first();
         $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
         return view('service.order_detail', ['order' => $order, 'requirements' => $requirements]);
+    }
+
+    public function dashboard()
+    {
+        $pendingBalances = SellersWalletHistory::where('type', 'add')->where('status', 0)->get();
+        foreach ($pendingBalances as $pending) {
+            if (Carbon::now()->diffInDays($pending->created_at->startOfDay()) >= 14) {
+                $wallet = SellersProfile::where('user_id', $pending->user_id)->first();
+                if ($wallet) {
+                    $wallet->wallet += $pending->amount;
+                    $wallet->save();
+                    $pending->status = 1;
+                    $pending->save();
+                }
+            }
+        }
+        $services = ServicePost::where('user_id', auth()->id())->get();
+        $seller = SellersProfile::where('user_id', auth()->id())->first();
+        $pendingBalance = SellersWalletHistory::where('user_id', auth()->id())->where('status', 0)->select('amount')->get()->sum('amount');
+        $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->select('amount')->get()->sum('amount');
+        return view('service.dashboard')->with([
+            'services' => $services,
+            'seller' => $seller,
+            'pendingBalance' => $pendingBalance,
+            'totalEarned' => $totalEarned,
+        ]);
     }
 }
