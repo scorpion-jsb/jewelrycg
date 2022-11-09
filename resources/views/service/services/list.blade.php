@@ -20,16 +20,7 @@
                 <div class="col-md-4" style="text-align: right;">
                     <a class="btn btn-primary" type="button" href="{{route('seller.services.create')}}">Create Service</a>
                 </div>
-                <div class="col-3">
-                    <div class="card m-0">
-                        <div class="card-body">
-                            <a href="/seller/dashboard" class="w-100 d-block mb-2">Dashboard</a>
-                            <div class="fw-700 text-uppercase fs-14 opacity-70 my-2">Seller Menu</div>
-                            <a href="/seller/services" class="w-100 d-block mb-2 active">Services</a>
-                            <a href="/seller/service/orders" class="w-100 d-block mb-2">Orders</a>
-                        </div>
-                    </div>
-                </div>
+                <x-dashboard-side-bar />
                 <div class="col-md-9">
                     <div class="card rounded-0">
                         <div class="datatable-custom position-relative">
