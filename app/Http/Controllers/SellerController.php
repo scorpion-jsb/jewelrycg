@@ -160,12 +160,40 @@ class SellerController extends Controller
         return $text;
     }
 
-    public function service_orders()
+    public function service_orders(Request $request)
     {
-        $orders = ServiceOrder::whereHas('service',
-            fn($query) => $query->where('user_id', Auth::id())
-        )->with(['user', 'service'])->where('status', 1)->get();
+        $tab = $request->input("tab");
+        if (!$tab) {
+            $tab = "active";
+        }
 
-        return view('seller.service.orders', ['orders' => $orders]);
+        $query = ServiceOrder::whereHas('service',
+            fn($query) => $query->where('user_id', Auth::id())
+        )->with(['user', 'service']);
+
+        $current = Carbon::now();
+        switch ($tab) {
+            case "active":
+                $query->where('status', '<', 3);
+                break;
+            case "late":
+                $query->whereDate('original_delivery_time', '<', $current)->where('status', '<', 3);
+                break;
+            case "delivered":
+                $query->where('status', 4);
+                break;
+            case "completed":
+                $query->where('status', 5);
+                break;
+            case "canceled":
+                $query->where('status', 3);
+                break;
+            default:
+                break;
+        }
+
+        $orders = $query->get();
+
+        return view('seller.service.orders', ['orders' => $orders, 'tab' => $tab]);
     }
 }
