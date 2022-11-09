@@ -31,6 +31,7 @@
             <div class="col-3">
                 <div class="card mb-4 time-left">
                     <div class="card-body">
+                      {{ $order->original_delivery_time }}
                         @if ($order->status != 0)
                         <div class="col-md-12" id="count_title">
                           Time left to deliver
