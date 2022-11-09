@@ -9,13 +9,23 @@
                         <p class="p-0"><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> sent all the information you need so you can start working on this order. You got this!</p>
                     </div>
                 </div>
-
-
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <div class="timeline-item">
+                            <i class="bi bi-clipboard-check p-1"></i>
+                            <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> placed the order {{ date('F d, Y', strtotime($order->created_at)) }}</span>
+                        </div>
+                        <div class="timeline-item">
+                            <i class="bi bi-clipboard-check p-1"></i>
+                            <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> placed the order {{ date('F d, Y', strtotime($order->created_at)) }}</span>
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="col-3">
                 <div class="card mb-4 time-left">
                     <div class="card-body">
-                        <h4 class="fw-700">00-00-00 00:00</h4>
+                        <h4 class="fw-700">{{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</h4>
                         <a class="btn btn-primary" href="#">Deliver Now</a>
                     </div>
                 </div>
