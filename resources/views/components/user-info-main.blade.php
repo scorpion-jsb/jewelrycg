@@ -40,7 +40,7 @@
         <div class="col-md-6">
             <!-- Card -->
             <div class="imagePreview pt-2 img-thumbnail">
-                <img id="fileManagerPreview" src="{{ $user->uploads->getImageOptimizedFullName(400) }}" style="width: 100%">
+                <img id="fileManagerPreview" src="{{ $user->uploads->getImageOptimizedFullName(200,200) }}" class="rounded-circle">
             </div>
             @if ($edit)
                 <label class="btn text-primary mt-2 p-0" id="getFileManager">Select avatar image</label>
