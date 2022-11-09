@@ -20,7 +20,9 @@
                 <div class="col-md-4" style="text-align: right;">
                     <a class="btn btn-primary" type="button" href="{{route('seller.services.create')}}">Create Service</a>
                 </div>
-                <x-dashboard-side-bar />
+                <div class="col-3">
+                    <x-dashboard-side-bar />
+                </div>
                 <div class="col-md-9">
                     <div class="card rounded-0">
                         <div class="datatable-custom position-relative">
