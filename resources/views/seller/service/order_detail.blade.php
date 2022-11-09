@@ -91,7 +91,8 @@
   var countDownDate = new Date("{{ $order->original_delivery_time }}").getTime()
 
   function padLeadingZeros(num, size) {
-    if (num <= 0) return "00";
+    if (!num) return "00";
+    if (num < 0) return "00";
     var s = num+"";
     while (s.length < size) s = "0" + s;
     return s;
