@@ -4,16 +4,20 @@
         <div class="row">
             <div class="col-9">
                 <div class="card mb-4">
-                    <h1 class="fw-700">Order Started</h1>
-                    <div class="card-body">{{ $order->user->first_name . " " . $order->user->last_name }} sent all the information you need so you can start working on this order. You got this! </div>
+                    <div class="card-body">
+                        <h4 class="fw-700">Order Started</h4>
+                        <p class="p-0">{{ $order->user->first_name . " " . $order->user->last_name }} sent all the information you need so you can start working on this order. You got this!</p>
+                    </div>
                 </div>
 
 
             </div>
             <div class="col-3">
                 <div class="card mb-4 time-left">
-                    00-00-00 00:00
-                    <a class="btn btn-primary" href="#">Deliver Now</a>
+                    <div class="card-body">
+                        <h4 class="fw-700">00-00-00 00:00</h4>
+                        <a class="btn btn-primary" href="#">Deliver Now</a>
+                    </div>
                 </div>
 
             </div>
