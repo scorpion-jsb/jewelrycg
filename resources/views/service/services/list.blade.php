@@ -23,9 +23,9 @@
                 <div class="col-3">
                     <div class="card m-0">
                         <div class="card-body">
-                            <a href="" class="w-100 d-block mb-2">Dashboard</a>
-                            <a href="/seller/dashboard" class="w-100 d-block mb-2">Seller Menu</a>
-                            <div class="fw-700 text-uppercase fs-14 opacity-70 my-2">Services</div>
+                            <a href="/seller/dashboard" class="w-100 d-block mb-2">Dashboard</a>
+                            <div class="fw-700 text-uppercase fs-14 opacity-70 my-2">Seller Menu</div>
+                            <a href="/seller/list" class="w-100 d-block mb-2 active">Services</a>
                             <a href="" class="w-100 d-block mb-2">Orders</a>
                         </div>
                     </div>
