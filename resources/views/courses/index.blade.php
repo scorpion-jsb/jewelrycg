@@ -1,7 +1,7 @@
 <x-app-layout page-title="Courses">
     <section>
         <div class="container">
-            <div class="col-xl-11 py-8 mx-auto">
+            <div class="section-page-title">
                 <h1 class="fw-800">Courses</h1>
                 <p class="pb-4">All Courses</p>
             </div>
@@ -10,8 +10,8 @@
 
     <section class="bg-white pb-4">
         <div class="container">
-            <div class="col-xl-11 mx-auto">
-                <div class="row gutters-10 row-cols-lg-3 row-cols-md-2 row-cols-1">
+            <div class="section-page-content">
+                <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1">
                     @foreach ($arrCourses as $course)
                     @php
                         $course->setPriceToFloat()
