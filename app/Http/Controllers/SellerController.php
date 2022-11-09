@@ -36,7 +36,7 @@ class SellerController extends Controller
             }
         }
         $products = Product::where('vendor', auth()->id())->get();
-        $seller = SellersProfile::where('user_id', auth()->id())->first();
+        $seller = SellersProfile::findOrFail(auth()->id());
         $pendingBalance = SellersWalletHistory::where('user_id', auth()->id())->where('status', 0)->select('amount')->get()->sum('amount');
         $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->select('amount')->get()->sum('amount');
         return view('seller.dashboard')->with([
