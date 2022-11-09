@@ -409,7 +409,8 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
 // Seller Dashboard
 Route::group(['middleware' => ['auth'], 'prefix' => 'seller', 'as' => 'seller.'], function () {
     Route::get('/dashboard', [SellerController::class, 'dashboard'])->name('dashboard');
-    Route::get('/service/orders', [SellerController::class, 'service_orders'])->name('service.orders');
+    Route::get('/orders', [SellerController::class, 'service_orders'])->name('service.orders');
+    Route::get('/order_detail/{id}', [SellerController::class, 'service_order_detail'])->name('service.order.detail');
     Route::get('/transaction/history', [SellerController::class, 'transactionHistory'])->name('transaction.history');
     Route::get('/product/create', [SellerController::class, 'createProduct'])->name('product.create');
     Route::post('/product/create', [SellerController::class, 'storeProduct'])->name('product.store');

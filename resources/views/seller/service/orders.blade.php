@@ -74,7 +74,7 @@
                                         <td>{{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</td>
                                         <td>
                                             <div class="btn-group" role="group">
-                                                <a class="btn btn-dark btn-sm" href="">View</a>
+                                                <a class="btn btn-dark btn-sm" href="{{ route('seller.service.order.detail', $order->order_id) }}">View</a>
                                             </div>
                                         </td>
                                     </tr>
