@@ -1,10 +1,4 @@
 <x-app-layout>
-    <style>
-        .pur {
-            width: 100%;
-            margin-bottom: 8px;
-        }
-    </style>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -73,10 +67,10 @@
                                                 <h6>{{ $item->product_name }} - {{ $item->product_variant_name }}</h6>
                                             </a>
                                         @endif
-                                        <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
+                                        <a class="btn btn-primary" id="download" href="{{ url('/product/download/') . $item->id }}">
                                             <i class="bi bi-download"></i> Download
                                         </a>
-                                        <button class="btn btn-danger pur">
+                                        <button class="btn btn-danger">
                                             <i class="bi bi-link"></i> Create Item
                                         </button>
                                     </div>
@@ -94,7 +88,7 @@
                 <div class="card-body">
                     <div class="row">
                         @foreach ($services as $item)
-                            <div class="col-xl-2 col-lg-3">
+                            <div class="col-xl-3 col-lg-3">
                                 <div class="card">
                                     <div class="card-body">
                                         <img src="{{ $item->service->thumb->getImageOptimizedFullName(400) }}"
@@ -122,7 +116,7 @@
                 <div class="card-body">
                     <div class="row">
                         @foreach ($courses as $item)
-                            <div class="col-xl-2 col-lg-3">
+                            <div class="col-xl-3 col-lg-3">
                                 <div class="card">
                                     <div class="card-body">
                                         <img src="{{ $item->course->uploads->getImageOptimizedFullName(400) }}"
