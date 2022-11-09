@@ -117,7 +117,7 @@ button.navbar-toggler {
   font-size: 2rem;
 }
 // show medium or smaller browser
-@media only screen and (max-width: 990px) {
+@media (max-width: 990px) {
   header a.nav-link {
     padding: 15px 0 !important;
   }
