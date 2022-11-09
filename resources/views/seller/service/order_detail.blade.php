@@ -1,8 +1,24 @@
 <x-app-layout :page-title="'ORDER #' . $order->order_id">
-  <style>
-  </style>
-  <div class="container">
-      <div class="col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
+<div class="container">
+    <div class="col-lg-11 col-md-10 py-9 mx-auto checkout-wrap">
+        <div class="row">
+            <div class="col-9">
+                <div class="card mb-4">
+                    <h1 class="fw-700">Order Started</h1>
+                    <div class="card-body">{{ $order->user->first_name . " " . $order->user->last_name }} sent all the information you need so you can start working on this order. You got this! </div>
+                </div>
+
+
+            </div>
+            <div class="col-3">
+                <div class="card mb-4 time-left">
+                    00-00-00 00:00
+                    <a class="btn btn-primary" href="#">Deliver Now</a>
+                </div>
+
+            </div>
+
+            <div class="row">
           <h1 class="fw-800 mb-3">Thanks for shopping with us!</h1>
           <p>We appreciate your order, we’re currently processing it. So hang tight, and we’ll send you confirmation
             very soon!</p>
@@ -58,8 +74,10 @@
                       </div>
                   </div>
               </div>
-          </div>
+
+        </div><!-- end .row-->
     </div>
+</div>
 @section('js')
 <script>
 </script>
