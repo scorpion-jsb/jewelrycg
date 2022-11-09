@@ -47,6 +47,7 @@
                                     <th>Service Name - Package</th>
                                     <th>Price</th>
                                     <th>Status</th>
+                                    <th>Delivery Date</th>
                                     <th>Actions</th>
                                 </thead>
 
@@ -70,6 +71,7 @@
                                             Delivered
                                             @endif
                                         </td>
+                                        <td>{{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a class="btn btn-dark btn-sm" href="">View</a>
