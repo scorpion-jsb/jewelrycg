@@ -20,7 +20,10 @@
                 <div class="col-3">
                     <div class="card m-0">
                         <div class="card-body">
-                            <a href="" class="btn btn-sm btn-primary">Withdraw</a>
+                            <a href="" class="btn btn-sm btn-primary">Dashboard</a>
+                            <div class="fw-700">Seller Menu</div>
+                            <a href="" class="btn btn-sm btn-primary">Services</a>
+                            <a href="" class="btn btn-sm btn-primary">Orders</a>
                         </div>
                     </div>
                 </div>
