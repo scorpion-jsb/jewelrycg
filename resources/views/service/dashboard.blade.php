@@ -73,41 +73,33 @@
                         </div>
                     </div>
                     <div class="card">
-                        <div class="card-header"><a class="btn btn-sm btn-primary" href="{{ route('seller.product.create') }}">Add Product</a></div>
+                        <div class="card-header"><a class="btn btn-sm btn-primary" href="{{ route('seller.services.create') }}">Add Service</a></div>
                         <div class="card-body">
                             <div class="row">
-                                @foreach ($products as $product)
+                                @foreach ($services as $service)
                                     <div class="col-xl-3 col-lg-3">
                                         <div class="card mb-0">
                                             <div class="card-body">
-                                                @if ($product->product_variant == 0)
-                                                    <img src="{{ $product->uploads->getImageOptimizedFullName(400) }}"
-                                                        alt="" style="width: 100%;" class="mb-2">
-                                                    <a class="text-black" href="{{ url('products/') . '/' . $product->slug }}">
-                                                        <h6>{{ $product->name }}</h6>
-                                                    </a>
-                                                @else
-                                                    <img src="{{ $product->uploads->getImageOptimizedFullName(400) }}"
+                                                <img src="{{ $service->thumb->getImageOptimizedFullName(400) }}"
                                                     alt="" style="width: 100%;" class="mb-2">
-                                                    <a class="text-black" href="{{ url('products/') . '/' . $product->slug }}">
-                                                        <h6>{{ $product->name }} -( {{ $product->product_variant_name }} )</h6>
-                                                    </a>
-                                                @endif
-                                                @if ($product->status == 1)
+                                                <a class="text-black" href="/services/{{ $service->id }}">
+                                                    <h6>{{ $service->name }}</h6>
+                                                </a>
+                                                @if ($service->status == 1)
                                                     <div class="fw-bold mb-2">Status : Active</div>
                                                 @endif
-                                                @if ($product->status == 2)
+                                                @if ($service->status == 0)
                                                     <div class="fw-bold mb-2">Status : Pending</div>
                                                 @endif
-                                                @if ($product->status == 3)
+                                                @if ($service->status == 3)
                                                     <div class="fw-bold mb-2">Status : Draft</div>
                                                 @endif
-                                                @if ($product->status == 4)
+                                                @if ($service->status == 4)
                                                     <div class="fw-bold mb-2">Status : Denied</div>
                                                 @endif
-                                                <button class="btn btn-danger">
+                                                <a class="btn btn-primary" href="/seller/services/edit/{{$service->id}}">
                                                     <i class="bi bi-pencil"></i> Edit
-                                                </button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
