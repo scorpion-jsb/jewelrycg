@@ -105,9 +105,9 @@
                                         {{-- <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
                                             <i class="bi bi-download"></i> Download
                                         </a> --}}
-                                        <button class="btn btn-danger pur">
-                                            <i class="bi bi-link"></i> Create Item
-                                        </button>
+                                        <a class="btn btn-danger pur" href="/services/order/{{$item->order_id}}">
+                                            <i class="bi bi-link"></i> View Order
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -133,9 +133,9 @@
                                         {{-- <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
                                             <i class="bi bi-download"></i> Download
                                         </a> --}}
-                                        <button class="btn btn-danger pur">
-                                            <i class="bi bi-link"></i> Create Item
-                                        </button>
+                                        <a class="btn btn-danger pur" href="/courses/order/{{$item->order_id}}">
+                                            <i class="bi bi-link"></i> View Order
+                                        </a>
                                     </div>
                                 </div>
                             </div>
