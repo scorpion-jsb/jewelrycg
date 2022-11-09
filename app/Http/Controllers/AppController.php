@@ -65,7 +65,11 @@ class AppController extends Controller
             function ($query) {
                 return $query->where('user_id', Auth::user()->id);
             }
-        )->paginate(12);
+        )->paginate(12, '*', 'product');
+
+        $services = ServiceOrder::with('service.thumb')->where('user_id', Auth::user()->id)->paginate(12, '*', 'service');
+
+        $courses = OrderCourse::with('course.uploads')->where('user_id', Auth::user()->id)->paginate(12, '*', 'course');
 
         return view('dashboard')->with([
             'carts' => count($carts),
@@ -74,6 +78,8 @@ class AppController extends Controller
             'service_orders' => $service_orders,
             'course_orders' => $course_orders,
             'purchases' => $purchases,
+            'services' => $services,
+            'courses' => $courses,
         ]);
     }
 

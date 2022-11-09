@@ -84,7 +84,64 @@
                             </div>
                         @endforeach
                     </div>
-                    {{$purchases->links()}}
+                    {{$purchases->appends(Arr::except(Request::query(), 'product'))->links()}}
+                </div>
+            </div>
+
+            
+            <div class="card">
+                <div class="card-header">Your Service Orders</div>
+                <div class="card-body">
+                    <div class="row">
+                        @foreach ($services as $item)
+                            <div class="col-xl-2 col-lg-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="{{ $item->service->thumb->getImageOptimizedFullName(400) }}"
+                                        alt="" style="width: 100%;" class="mb-2">
+                                        <a href="/services/{{ $item->service_id }}">
+                                            <h6>{{ $item->service->name }} - {{ $item->package_name }}</h6>
+                                        </a>
+                                        {{-- <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
+                                            <i class="bi bi-download"></i> Download
+                                        </a> --}}
+                                        <button class="btn btn-danger pur">
+                                            <i class="bi bi-link"></i> Create Item
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    {{$services->appends(Arr::except(Request::query(), 'service'))->links()}}
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Your Course Orders</div>
+                <div class="card-body">
+                    <div class="row">
+                        @foreach ($courses as $item)
+                            <div class="col-xl-2 col-lg-3">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <img src="{{ $item->course->uploads->getImageOptimizedFullName(400) }}"
+                                        alt="" style="width: 100%;" class="mb-2">
+                                        <a href="/courses/course/{{ $item->course_id }}">
+                                            <h6>{{ $item->course->name }}</h6>
+                                        </a>
+                                        {{-- <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
+                                            <i class="bi bi-download"></i> Download
+                                        </a> --}}
+                                        <button class="btn btn-danger pur">
+                                            <i class="bi bi-link"></i> Create Item
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                    {{$courses->appends(Arr::except(Request::query(), 'course'))->links()}}
                 </div>
             </div>
         </div>
