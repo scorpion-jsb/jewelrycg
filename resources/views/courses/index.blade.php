@@ -1,14 +1,14 @@
 <x-app-layout page-title="Courses">
     <section>
         <div class="container">
-            <div class="section-page-title py-8">
+            <div class="section-page-title pt-8 pb-4">
                 <h1 class="fw-800">Courses</h1>
                 <p class="pb-4">All Courses</p>
             </div>
         </div>
     </section>
 
-    <section class="bg-white pb-4">
+    <section class="bg-white pb-0">
         <div class="container">
             <div class="section-page-content">
                 <div class="row row-cols-lg-4 row-cols-md-2 row-cols-1">
