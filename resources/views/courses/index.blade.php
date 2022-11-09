@@ -1,7 +1,7 @@
 <x-app-layout page-title="Courses">
     <section>
         <div class="container">
-            <div class="section-page-title">
+            <div class="section-page-title py-8">
                 <h1 class="fw-800">Courses</h1>
                 <p class="pb-4">All Courses</p>
             </div>
