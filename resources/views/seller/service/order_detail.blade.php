@@ -27,7 +27,7 @@
 
                           @if (count($answers) > 0)
                             <div class="card">
-                              <div class="card-header">Requirements from buyer</div>
+                              <div class="card-header fw-700">Requirements</div>
                               <div class="card-body">
                                 @foreach ($answers as $answer)
                                   <div class="col">
