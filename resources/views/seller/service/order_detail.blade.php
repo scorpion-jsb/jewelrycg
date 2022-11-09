@@ -24,6 +24,41 @@
                             <i class="bi bi-clipboard-check p-1"></i>
                             <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> sent the requirements {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
                         </div>
+
+                        @if (count($answers) > 0)
+                          <div class="col">
+                            <h2>Requirements from buyer</h2>
+                              @foreach ($answers as $answer)
+                                <div class="col">
+                                  <h4>{{ $answer->requirement->question }}</h4>
+
+                                  @if ($answer->requirement->type == 0)
+                                    <p>{{ $answer->answer }}</p>
+
+                                  @elseif ($answer->requirement->type == 1)
+                                    <ul>
+                                      @foreach ($answer->attaches as $attach)
+                                        <li>
+                                          <a href="/uploads/all/{{ $attach->file_name }}" download>
+                                            {{ $attach->file_original_name . "." . $attach->extension }}
+                                          </a>
+                                        </li>                    
+                                      @endforeach
+                                    </ul>    
+
+                                  @elseif ($answer->requirement->type == 2)
+                                    <p>{{$answer->answer}}</p>
+                                  @else
+                                    <ul>
+                                      @foreach ($answer->answers as $answer)
+                                        <li><p>{{ $answer }}</p></li>
+                                      @endforeach
+                                    </ul>
+                                  @endif
+                                </div>
+                              @endforeach
+                          </div>
+                        @endif
                         @endif
                     </div>
                 </div>
@@ -84,41 +119,6 @@
                 </div>
             </div>
         </div>
-
-        @if (count($answers) > 0)
-          <div class="col">
-            <h2>Requirements from buyer</h2>
-              @foreach ($answers as $answer)
-                <div class="col">
-                  <h4>{{ $answer->requirement->question }}</h4>
-
-                  @if ($answer->requirement->type == 0)
-                    <p>{{ $answer->answer }}</p>
-
-                  @elseif ($answer->requirement->type == 1)
-                    <ul>
-                      @foreach ($answer->attaches as $attach)
-                        <li>
-                          <a href="/uploads/all/{{ $attach->file_name }}" download>
-                            {{ $attach->file_original_name . "." . $attach->extension }}
-                          </a>
-                        </li>                    
-                      @endforeach
-                    </ul>    
-
-                  @elseif ($answer->requirement->type == 2)
-                    <p>{{$answer->answer}}</p>
-                  @else
-                    <ul>
-                      @foreach ($answer->answers as $answer)
-                        <li><p>{{ $answer }}</p></li>
-                      @endforeach
-                    </ul>
-                  @endif
-                </div>
-              @endforeach
-          </div>
-        @endif
     </div>
 </div>
 @section('js')
