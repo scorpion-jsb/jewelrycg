@@ -29,7 +29,7 @@
                                   <th>Buyer</th>
                                   <th>Service Name - Package</th>
                                   <th>Price</th>
-                                  <th>State</th>
+                                  <th>Status</th>
                                   <th>Actions</th>
                               </thead>
 
