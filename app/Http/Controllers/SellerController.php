@@ -196,4 +196,13 @@ class SellerController extends Controller
 
         return view('seller.service.orders', ['orders' => $orders, 'tab' => $tab]);
     }
+
+    public function service_order_detail($id)
+    {
+        $order = ServiceOrder::where('order_id', $id)->withWhereHas('service',
+            fn($query) => $query->where('user_id', Auth::id())
+        )->with('user')->firstOrFail();
+
+        return view('seller.service.order_detail', ['order' => $order]);
+    }
 }
