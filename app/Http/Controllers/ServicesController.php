@@ -764,7 +764,7 @@ class ServicesController extends Controller
     public function orders(Request $request)
     {
         $user_id = Auth::id();
-        $orders = ServiceOrder::where('user_id', $user_id)->orderBy('created_at', 'desc')->get();
+        $orders = ServiceOrder::where('user_id', $user_id)->orderBy('created_at', 'desc')->paginate(10);
 
         return view('service.orders', ['orders' => $orders]);
     }
