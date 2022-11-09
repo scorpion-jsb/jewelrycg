@@ -46,7 +46,7 @@
               </div>
           </div>
           @endforeach
-  
+          {{$orders->links()}}
       </div>
   </div>
   </x-app-layout>

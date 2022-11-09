@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Attribute;
 use App\Models\Order;
+use App\Models\OrderCourse;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductsCategorie;
 use App\Models\ProductsVariant;
+use App\Models\ServiceOrder;
 use App\Models\SettingGeneral;
 use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
@@ -47,6 +50,8 @@ class AppController extends Controller
     {
         $carts = Cart::instance('default')->content();
         $orders = Order::where('user_id', Auth::user()->id)->withCount('items')->get();
+        $service_orders = ServiceOrder::where('user_id', Auth::user()->id)->count();
+        $course_orders = OrderCourse::where('user_id', Auth::user()->id)->count();
 
         $orderCount = 0;
         foreach ($orders as $order) {
@@ -55,9 +60,21 @@ class AppController extends Controller
 
         $wishlists = Cart::instance('wishlist')->content();
 
-        $purchases = Order::where('user_id', Auth::user()->id)->where('status_payment', 2)->with('items')->get();
+        // $purchases = Order::where('user_id', Auth::user()->id)->where('status_payment', 2)->with('items')->paginate(12);
+        $purchases = OrderItem::whereHas('order',
+            function ($query) {
+                return $query->where('user_id', Auth::user()->id);
+            }
+        )->paginate(12);
 
-        return view('dashboard')->with(['carts' => count($carts), 'orders' => $orderCount, 'wishlists' => count($wishlists), 'purchases' => $purchases]);
+        return view('dashboard')->with([
+            'carts' => count($carts),
+            'orders' => $orderCount,
+            'wishlists' => count($wishlists),
+            'service_orders' => $service_orders,
+            'course_orders' => $course_orders,
+            'purchases' => $purchases,
+        ]);
     }
 
     public function image($filename)
