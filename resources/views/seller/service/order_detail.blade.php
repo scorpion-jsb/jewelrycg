@@ -29,7 +29,24 @@
                         <a class="btn btn-primary" href="#">Deliver Now</a>
                     </div>
                 </div>
-
+                <div class="card mb-4 order-details">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-3">
+                                <img src="{{ $order->service->thumb->getImageOptimizedFullName(150) }}" alt="" class="thumbnail border w-100">
+                            </div>
+                            <div class="col-9">
+                                <h4>{{ $order->service->name }}</h4>
+                                <span class="d-block rounded border" data-item-id="{{ $order->id }}">
+                                    {{ 'Status: ' . Config::get('constants.service_order_status')[$order->status] }}
+                                </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="row">
