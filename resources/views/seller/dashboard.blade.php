@@ -9,7 +9,7 @@
             <div class="seller-dash-nav mb-4">
                 <ul class="nav nav-pills">
                     <li class="nav-item">
-                        <a class="nav-link {{ count(explode('.', \Route::currentRouteName())) == 2 ? 'active' :'' }}" href="{{ route('seller.dashboard') }}">Seller Dashboard</a>
+                        <a class="nav-link {{ \Route::currentRouteName() == 'seller.dashboard' ? 'active' :'' }}" href="{{ route('seller.dashboard') }}">Seller Dashboard</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link {{ \Route::currentRouteName() == 'dashboard' ? 'active' :'' }}" href="{{ route('dashboard') }}">User Dashboard</a>
@@ -20,21 +20,10 @@
                 <div class="col-3">
                     <div class="card m-0">
                         <div class="card-body">
-                            <nav class="navbar bg-light navbar-light">
-                                <div class="container-fluid">
-                                    <ul class="navbar-nav">
-                                        <li class="nav-item">
-                                            <a class="nav-link {{ \Route::currentRouteName() == 'seller.dashboard' ? 'active' :'' }}" href="{{ route('seller.dashboard') }}">Products</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link {{ \Route::currentRouteName() == 'services.dashboard' ? 'active' :'' }}" href="{{ route('services.dashboard') }}">Services</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            {{-- <a class="nav-link {{ \Route::currentRouteName() == 'courses.dashboard' ? 'active' :'' }}" href="{{ route('courses.dashboard') }}">Courses</a> --}}
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
+                            <a href="" class="w-100 d-block mb-2">Dashboard</a>
+                            <div class="fw-700 text-uppercase fs-14 opacity-70 my-2">Seller Menu</div>
+                            <a href="/seller/services" class="w-100 d-block mb-2">Services</a>
+                            <a href="" class="w-100 d-block mb-2">Orders</a>
                         </div>
                     </div>
                 </div>
