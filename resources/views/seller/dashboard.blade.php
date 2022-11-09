@@ -18,7 +18,11 @@
             </div>
             <div class="row">
                 <div class="col-3">
-
+                    <div class="card m-0">
+                        <div class="card-body">
+                            <a href="" class="btn btn-sm btn-primary">Withdraw</a>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-9">
                     <div class="seller-stats mb-4">
