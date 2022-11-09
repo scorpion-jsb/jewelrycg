@@ -110,10 +110,10 @@
     var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     var seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    $('#count_day').text(padLeadingZeros(days));
-    $('#count_hour').text(padLeadingZeros(hours));
-    $('#count_min').text(padLeadingZeros(minutes));
-    $('#count_sec').text(padLeadingZeros(seconds));
+    $('#count_day').text(padLeadingZeros(days, 2));
+    $('#count_hour').text(padLeadingZeros(hours, 2));
+    $('#count_min').text(padLeadingZeros(minutes, 2));
+    $('#count_sec').text(padLeadingZeros(seconds, 2));
     // If the count down is finished, write some text
     if (distance < 0) {
       clearInterval(x);
