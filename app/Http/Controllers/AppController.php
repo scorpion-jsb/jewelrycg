@@ -61,9 +61,11 @@ class AppController extends Controller
         $wishlists = Cart::instance('wishlist')->content();
 
         // $purchases = Order::where('user_id', Auth::user()->id)->where('status_payment', 2)->with('items')->paginate(12);
-        $purchases = OrderItem::with(['order' => function ($query) {
-            $query->where('user_id', Auth::user()->id)->where('status_payment', 2);
-        }])->paginate(12);
+        $purchases = OrderItem::whereHas('order',
+            function ($query) {
+                return $query->where('user_id', Auth::user()->id);
+            }
+        )->paginate(12);
 
         return view('dashboard')->with([
             'carts' => count($carts),
