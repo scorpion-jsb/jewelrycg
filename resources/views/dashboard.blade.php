@@ -105,9 +105,9 @@
                                         {{-- <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
                                             <i class="bi bi-download"></i> Download
                                         </a> --}}
-                                        <button class="btn btn-danger pur">
-                                            <i class="bi bi-link"></i> Create Item
-                                        </button>
+                                        <a class="btn btn-primary pur" href="/services/order/{{$item->order_id}}">
+                                            <i class="bi bi-link"></i> View Order
+                                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -127,15 +127,15 @@
                                     <div class="card-body">
                                         <img src="{{ $item->course->uploads->getImageOptimizedFullName(400) }}"
                                         alt="" style="width: 100%;" class="mb-2">
-                                        <a href="/courses/course/{{ $item->course_id }}">
+                                        <a href="/courses/course/{{ $item->course->slug }}">
                                             <h6>{{ $item->course->name }}</h6>
                                         </a>
                                         {{-- <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
                                             <i class="bi bi-download"></i> Download
                                         </a> --}}
-                                        <button class="btn btn-danger pur">
-                                            <i class="bi bi-link"></i> Create Item
-                                        </button>
+                                        <a class="btn btn-primary pur" href="/courses/course/{{ $item->course->slug }}">
+                                            <i class="bi bi-link"></i> View Course
+                                        </a>
                                     </div>
                                 </div>
                             </div>
