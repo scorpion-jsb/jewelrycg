@@ -21,7 +21,7 @@
                     <div class="card m-0">
                         <div class="card-body">
                             <a href="" class="btn btn-sm btn-primary">Dashboard</a>
-                            <div class="fw-700 text-uppercase fs-14 opacity-60 my-2">Seller Menu</div>
+                            <div class="fw-700 text-uppercase fs-14 opacity-70 my-2">Seller Menu</div>
                             <a href="" class="btn btn-sm btn-primary">Services</a>
                             <a href="" class="btn btn-sm btn-primary">Orders</a>
                         </div>
