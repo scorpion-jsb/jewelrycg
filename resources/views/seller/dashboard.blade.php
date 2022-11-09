@@ -66,7 +66,7 @@
                         <div class="card-body">
                             <div class="row">
                                 @foreach ($products as $product)
-                                    <div class="col-xl-4 col-lg-4">
+                                    <div class="col-xl-3 col-lg-3">
                                         <div class="card mb-0">
                                             <div class="card-body">
                                                 @if ($product->product_variant == 0)
