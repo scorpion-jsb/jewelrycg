@@ -11,11 +11,11 @@
                 </div>
                 <div class="card mb-4">
                     <div class="card-body">
-                        <div class="timeline-item">
+                        <div class="timeline-item pt-2 pb-4 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
                             <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> placed the order {{ date('F d, Y', strtotime($order->created_at)) }}</span>
                         </div>
-                        <div class="timeline-item">
+                        <div class="timeline-item pt-2 pb-4 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
                             <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> placed the order {{ date('F d, Y', strtotime($order->created_at)) }}</span>
                         </div>
