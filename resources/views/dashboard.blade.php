@@ -56,13 +56,13 @@
                                     <div class="card-body">
                                         @if ($item->product_variant == 0)
                                             <img src="{{ $item->product->uploads->getImageOptimizedFullName(400) }}"
-                                                alt="" style="width: 100%;" class="mb-2">
+                                                alt="" style="width: 100%;" class="mb-3 pb-3 border-bottom">
                                             <a href="{{ url('products/') . '/' . $item->product->slug }}">
                                                 <h6>{{ $item->product_name }}</h6>
                                             </a>
                                         @else
                                             <img src="{{ $item->product->uploads->getImageOptimizedFullName(400) }}"
-                                            alt="" style="width: 100%;" class="mb-2">
+                                            alt="" style="width: 100%;" class="mb-3 pb-3 border-bottom">
                                             <a href="{{ url('products/') . '/' . $item->product->slug }}">
                                                 <h6>{{ $item->product_name }} - {{ $item->product_variant_name }}</h6>
                                             </a>
@@ -92,14 +92,14 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <img src="{{ $item->service->thumb->getImageOptimizedFullName(400) }}"
-                                        alt="" style="width: 100%;" class="mb-2">
+                                        alt="" style="width: 100%;" class="mb-3 pb-3 border-bottom">
                                         <a href="/services/{{ $item->service_id }}">
                                             <h6>{{ $item->service->name }} - {{ $item->package_name }}</h6>
                                         </a>
-                                        {{-- <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
+                                        {{-- <a class="btn btn-primary" id="download" href="{{ url('/product/download/') . $item->id }}">
                                             <i class="bi bi-download"></i> Download
                                         </a> --}}
-                                        <a class="btn btn-primary pur" href="/services/order/{{$item->order_id}}">
+                                        <a class="btn btn-primary" href="/services/order/{{$item->order_id}}">
                                             <i class="bi bi-link"></i> View Order
                                         </a>
                                     </div>
@@ -120,14 +120,14 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <img src="{{ $item->course->uploads->getImageOptimizedFullName(400) }}"
-                                        alt="" style="width: 100%;" class="mb-2">
+                                        alt="" style="width: 100%;" class="mb-3 pb-3 border-bottom">
                                         <a href="/courses/course/{{ $item->course->slug }}">
                                             <h6>{{ $item->course->name }}</h6>
                                         </a>
-                                        {{-- <a class="btn btn-primary pur" id="download" href="{{ url('/product/download/') . $item->id }}">
+                                        {{-- <a class="btn btn-primary" id="download" href="{{ url('/product/download/') . $item->id }}">
                                             <i class="bi bi-download"></i> Download
                                         </a> --}}
-                                        <a class="btn btn-primary pur" href="/courses/course/{{ $item->course->slug }}">
+                                        <a class="btn btn-primary" href="/courses/course/{{ $item->course->slug }}">
                                             <i class="bi bi-link"></i> View Course
                                         </a>
                                     </div>
