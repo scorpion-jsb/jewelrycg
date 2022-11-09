@@ -23,7 +23,7 @@
                             <a href="/seller/dashboard" class="w-100 d-block mb-2 active">Dashboard</a>
                             <div class="fw-700 text-uppercase fs-14 opacity-70 my-2">Seller Menu</div>
                             <a href="/seller/services" class="w-100 d-block mb-2">Services</a>
-                            <a href="" class="w-100 d-block mb-2">Orders</a>
+                            <a href="/seller/service/orders" class="w-100 d-block mb-2">Orders</a>
                         </div>
                     </div>
                 </div>

@@ -12,9 +12,11 @@ use App\Models\ProductTag;
 use App\Models\ProductTagsRelationship;
 use App\Models\SellersProfile;
 use App\Models\SellersWalletHistory;
+use App\Models\ServiceOrder;
 use App\Models\ServiceTags;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SellerController extends Controller
 {
@@ -156,5 +158,14 @@ class SellerController extends Controller
         }
 
         return $text;
+    }
+
+    public function service_orders()
+    {
+        $orders = ServiceOrder::whereHas('service',
+            fn($query) => $query->where('user_id', Auth::id())
+        )->with('user')->where('status', 1)->get();
+
+        return view('seller.service.orders', ['orders' => $orders]);
     }
 }
