@@ -218,8 +218,21 @@
                                   </span>
                               </div>
                           </div>
-                          <div class="row">
-                              
+                          <div class="d-flex flex-row mb-1 justify-content-between">
+                              <span>Ordered from</span>
+                              <span>{{ $buyer->first_name . " " . $buyer->last_name }}</span>
+                          </div>
+                          <div class="d-flex flex-row mb-1 justify-content-between">
+                              <span>Delivery Date</span>
+                              <span>{{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
+                          </div>
+                          <div class="d-flex flex-row mb-1 justify-content-between">
+                              <span>Total Price</span>
+                              <span>${{ number_format($order->package_price, 2) }}</span>
+                          </div>
+                          <div class="d-flex flex-row mb-1 justify-content-between">
+                              <span>Order Number</span>
+                              <span>{{ $order->order_id }}</span>
                           </div>
                       </div>
                   </div>
