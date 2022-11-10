@@ -57,11 +57,12 @@
             <div class="col-9">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h4 class="fw-700">Order Started</h4>
                         @if ($order->status == 0)
-                        <p class="p-0">Pending requirements in order to start job. Contact to <b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> and let them know to submit the requirements.</p>
+                        <h4 class="fw-700">Order Received</h4>
+                        <p class="p-0">Please submit the requirements in order to start job.</p>
                         @else
-                        <p class="p-0"><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> sent all the information you need so you can start working on this order. You got this!</p>
+                        <h4 class="fw-700">Order Started</h4>
+                        <p class="p-0">You sent all the information needed and your order has started.</p>
                         @endif
                     </div>
                 </div>
@@ -69,7 +70,7 @@
                     <div class="card-body">
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
-                            <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> placed the order {{ date('F d, Y h:i A', strtotime($order->created_at)) }}</span>
+                            <span class="">You placed the order {{ date('F d, Y h:i A', strtotime($order->created_at)) }}</span>
                         </div>
                         @if ($order->status != 0)
                         <div class="timeline-item pb-3 mb-3 border-bottom">
