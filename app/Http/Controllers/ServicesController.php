@@ -13,6 +13,7 @@ use App\Models\Country;
 use App\Models\Coupon;
 use App\Models\OrderServiceDelivery;
 use App\Models\OrderServiceRequirement;
+use App\Models\OrderServiceRevisionRequest;
 use App\Models\SellersProfile;
 use App\Models\SellersWalletHistory;
 use App\Models\ServiceCategorie;
@@ -852,5 +853,37 @@ class ServicesController extends Controller
             'pendingBalance' => $pendingBalance,
             'totalEarned' => $totalEarned,
         ]);
+    }
+
+    public function order_complete(Request $request)
+    {
+        $order_id = $request->order_id;
+
+        $order = ServiceOrder::with('service')->where('id', $order_id)->where('user_id', Auth::id())->firstOrFail();
+        $order->status = 5;
+        $order->update();
+
+        $seller = User::findOrFail($order->service->user_id);
+
+        return view('service.review', ['order' => $order, 'seller' => $seller]);
+    }
+
+    public function order_revision(Request $request)
+    {
+        $order_id = $request->order_id;
+
+        $order = ServiceOrder::with('service')->where('id', $order_id)->where('user_id', Auth::id())->firstOrFail();
+        $order->status = 2;
+        $order->update();
+
+        $seller = User::findOrFail($order->service->user_id);
+
+        $revision = new OrderServiceRevisionRequest();
+        $revision->order_id = $order_id;
+        $revision->user_id = Auth::id();
+        $revision->message = $request->message ? $request->message : "";
+        $revision->save();
+
+        return redirect()->back()->with("success", "Submit message to " . $seller->first_name . " " . $seller->last_name);
     }
 }

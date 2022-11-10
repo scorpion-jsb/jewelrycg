@@ -393,6 +393,8 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::get('/', [ServicesController::class, 'all'])->name('all');
     Route::get('/dashboard', [ServicesController::class, 'dashboard'])->name('dashboard');
     Route::get('/orders', [ServicesController::class, 'orders'])->name('orders');
+    Route::post('/order/complete', [ServicesController::class, 'order_complete'])->name('order_complete');
+    Route::post('/order/revision', [ServicesController::class, 'order_revision'])->name('order_revision');
     Route::get('/order/{id}', [ServicesController::class, 'order_detail'])->name('order_detail');
     Route::get('/checkout/finish', [ServicesController::class, 'finish'])->name('finish');
     Route::post('/checkout/payment', [ServicesController::class, 'post_payment'])->name('payment.post');
