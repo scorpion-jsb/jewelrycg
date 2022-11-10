@@ -795,8 +795,10 @@ class ServicesController extends Controller
                 $attaches = [];
 
                 for ($i = 0; $i < count($attach_ids); $i++) {
-                    $upload = Upload::findOrFail($attach_ids[$i]);
-                    array_push($attaches, $upload);
+                    $upload = Upload::find($attach_ids[$i]);
+                    if ($upload) {
+                        array_push($attaches, $upload);
+                    }
                 }
 
                 $answer->attaches = $attaches;
@@ -812,8 +814,10 @@ class ServicesController extends Controller
             $attaches = [];
 
             for ($i = 0; $i < count($attach_ids); $i++) {
-                $upload = Upload::findOrFail($attach_ids[$i]);
-                array_push($attaches, $upload);
+                $upload = Upload::find($attach_ids[$i]);
+                if ($upload) {
+                    array_push($attaches, $upload);
+                }
             }
 
             $delivery->attaches = $attaches;
