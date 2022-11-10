@@ -248,9 +248,6 @@
                         <div class="col-md-12">
                           Delivered
                         </div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deliverModal">
-                          Deliver again
-                        </button>
                         @elseif ($order->status == 5)
                         <div class="col-md-12">
                           Completed
