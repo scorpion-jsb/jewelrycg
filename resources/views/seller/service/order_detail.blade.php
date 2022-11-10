@@ -87,27 +87,33 @@
 
         @if (count($answers) > 0)
           <div class="col">
-            <h1>Order Requirements</h1>
+            <h2>Requirements from buyer</h2>
               @foreach ($answers as $answer)
                 <div class="col">
-                  <h3>{{ $answer->requirement->question }}</h3>
+                  <h4>{{ $answer->requirement->question }}</h4>
 
                   @if ($answer->requirement->type == 0)
                     <p>{{ $answer->answer }}</p>
 
                   @elseif ($answer->requirement->type == 1)
-                    @foreach ($answer->attaches as $attach)
-                    <a href="/uploads/all/{{ $attach->file_name }}" download>
-                      {{ $attach->file_original_name . "." . $attach->extension }}
-                    </a>
-                    @endforeach
+                    <ul>
+                      @foreach ($answer->attaches as $attach)
+                        <li>
+                          <a href="/uploads/all/{{ $attach->file_name }}" download>
+                            {{ $attach->file_original_name . "." . $attach->extension }}
+                          </a>
+                        </li>                    
+                      @endforeach
+                    </ul>    
 
                   @elseif ($answer->requirement->type == 2)
                     <p>{{$answer->answer}}</p>
                   @else
-                    @foreach ($answer->answers as $answer)
-                      <p>{{ $answer }}</p>
-                    @endforeach
+                    <ul>
+                      @foreach ($answer->answers as $answer)
+                        <li><p>{{ $answer }}</p></li>
+                      @endforeach
+                    </ul>
                   @endif
                 </div>
               @endforeach
