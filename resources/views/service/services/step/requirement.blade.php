@@ -112,6 +112,7 @@
                             <button type="button" class="btn btn-xs btn-danger delete-question" onClick="removeClick(this)">Delete</button>
                           </div>
                         </td>
+                        <input class="id-value" type="hidden" name="id[]" value="{{ $requirement->id }}">
                         <input class="question-value" type="hidden" name="question[]" value="{{ $requirement->question }}">
                         <input class="type-value" type="hidden" name="type[]" value="{{ $requirement->type }}">
                         <input class="required-value" type="hidden" name="required[]" value="{{ $requirement->required == 1 ? "true" : "false" }}">
@@ -243,7 +244,8 @@
                             </div>\
                           </td>`;
 
-        htmlItem += `<input class="question-value" type="hidden" name="question[]" value="${question}">\
+        htmlItem += `<input class="id-value" type="hidden" name="id[]" value="-1">\
+                    <input class="question-value" type="hidden" name="question[]" value="${question}">\
                     <input class="type-value" type="hidden" name="type[]" value="${type}">\
                     <input class="required-value" type="hidden" name="required[]" value="${required}">\
                     <input class="choices" type="hidden" name="choices[]" value="${choices.join(',')}">\
