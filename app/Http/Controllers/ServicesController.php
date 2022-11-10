@@ -728,7 +728,7 @@ class ServicesController extends Controller
         // redirect to order details
         // return view('service.checkout.order', ['order' => $order, 'requirements' => $requirements]);
 
-        return redirect()->route('service.order_detail', ['id' => $order->order_id]);
+        return redirect()->route('services.order_detail', ['id' => $order->order_id]);
     }
 
     public function cancel(CancelCheckoutRequest $req)
