@@ -122,32 +122,35 @@
                               <i class="bi bi-clipboard-check p-1"></i>
                               <span class="">Your delivery date was updated to {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
                           </div>
+
+                          @if (count($deliveries) > 0)
+                          <div class="timeline-item pb-3 mb-3 border-bottom">
+                              <i class="bi bi-clipboard-check p-1"></i>
+                              <span class="">You dellvered the order {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
+                          </div>
+                          @endif
+
+                          @foreach ($deliveries as $delivery)
+                          <div class="card">
+                            <div class="card-header">Deliver #</div>
+                            <div class="card-body">
+                              <p>{!! $delivery->message !!}</p>
+                              <ul>
+                                @foreach ($delivery->attaches as $attach)
+                                  <li>
+                                    <a href="/uploads/all/{{ $attach->file_name }}" download>
+                                      {{ $attach->file_original_name . "." . $attach->extension }}
+                                    </a>
+                                  </li>                    
+                                @endforeach
+                              </ul> 
+                            </div>
+                          </div>
+                          @endforeach
+
                       </div>
                   </div>
                   
-                  <div class="card mb-4">
-                    <div class="card-body">
-                      @foreach ($deliveries as $delivery)
-                      <div class="col">
-                        <div class="row">
-                          <div class="col-md-1">
-                            <img src="{{ auth()->user()->uploads->getImageOptimizedFullName(150) }}" alt="avatar" style="width: 100%">
-                          </div>
-                          <div class="col-md-11">{!! $delivery->message !!}</div>
-                        </div>
-                        <ul>
-                          @foreach ($delivery->attaches as $attach)
-                            <li>
-                              <a href="/uploads/all/{{ $attach->file_name }}" download>
-                                {{ $attach->file_original_name . "." . $attach->extension }}
-                              </a>
-                            </li>                    
-                          @endforeach
-                        </ul> 
-                      </div>
-                      @endforeach
-                    </div>
-                  </div>
               </div>
               <div class="col-3">
                   <div class="card mb-4 time-left">
