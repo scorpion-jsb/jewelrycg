@@ -59,10 +59,10 @@
                     <div class="card-body">
                         @if ($order->status == 0)
                         <h4 class="fw-700">Order Received</h4>
-                        <p class="p-0">Please submit the requirements in order to start job.</p>
+                        <p class="mb-0">Please submit the requirements in order to start job.</p>
                         @else
                         <h4 class="fw-700">Order Started</h4>
-                        <p class="p-0">You sent all the information needed and your order has started.</p>
+                        <p class="mb-0">You sent all the information needed and your order has started.</p>
                         @endif
                     </div>
                 </div>
@@ -151,9 +151,54 @@
                         </div>
                         @endforeach
 
+
+                        @if(Session::get('message') != null)
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                        @endif
+                        @if (count($requirements) > 0 && $order->status == 0)
+                        <form id="question-form" class="needs-validation" action="{{ route('services.answer') }}" method="post" enctype="multipart/form-data" novalidate>
+                            @csrf
+                            <label class="fs-3 mb-4">Questions</label> 
+                            <input type="hidden" name="order_id" value="{{ $order->id }}">
+                            @foreach ($requirements as $requirement)
+                            <div class="row mb-3">
+                                <label class="fs-4 mb-2 {{ $requirement->required ? "required" : "" }}" for="answer-{{$requirement->id}}">- {{ $requirement->question }}</label>
+                                @if($requirement->type == 0)
+                                <div class="form-group">
+                                    <textarea type="text" class="form-control" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]" placeholder="Type question here" {{ $requirement->required ? "required" : "" }}></textarea>
+                                </div>
+                                @elseif($requirement->type == 1)
+                                <div class="form-group {{ $requirement->required ? "required" : "" }}">
+                                    <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
+                                    <div class="form-control invalid attach-dropzone dropzone attach-{{$requirement->id}}" data-id="{{$requirement->id}}"></div>
+                                </div>
+                                @elseif($requirement->type == 2)
+                                <div class="form-group {{ $requirement->required ? "required" : "" }}">
+                                    <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
+                                    @foreach($requirement->choices as $key => $choice)
+                                    <div class="select-option form-row-between invalid single">{{$choice->choice}}</div>
+                                    @endforeach
+                                </div>
+                                @else
+                                <div class="form-group {{ $requirement->required ? "required" : "" }}">
+                                    <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
+                                    @foreach($requirement->choices as $key => $choice)
+                                    <div class="select-option form-row-between invalid multi">{{$choice->choice}}</div>
+                                    @endforeach
+                                </div>
+                                @endif
+                            </div>
+                            @endforeach
+                            
+                            <div class="row">
+                                <button type="submit" class="btn btn-primary">Submit Requirements</button> 
+                            </div>
+                        </form>
+                        @endif
                     </div>
                 </div>
-                
             </div>
             <div class="col-3">
                 <div class="card mb-4 time-left">
@@ -228,52 +273,6 @@
                 </div>
             </div>
         </div>
-
-        @if(Session::get('message') != null)
-        <div class="alert alert-success">
-            {{ Session::get('message') }}
-        </div>
-        @endif
-        @if (count($requirements) > 0 && $order->status == 0)
-        <form id="question-form" class="needs-validation" action="{{ route('services.answer') }}" method="post" enctype="multipart/form-data" novalidate>
-            @csrf
-            <label class="fs-3 mb-4">Questions</label> 
-            <input type="hidden" name="order_id" value="{{ $order->id }}">
-            @foreach ($requirements as $requirement)
-            <div class="row mb-3">
-                <label class="fs-4 mb-2 {{ $requirement->required ? "required" : "" }}" for="answer-{{$requirement->id}}">- {{ $requirement->question }}</label>
-                @if($requirement->type == 0)
-                <div class="form-group">
-                    <textarea type="text" class="form-control" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]" placeholder="Type question here" {{ $requirement->required ? "required" : "" }}></textarea>
-                </div>
-                @elseif($requirement->type == 1)
-                <div class="form-group {{ $requirement->required ? "required" : "" }}">
-                    <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
-                    <div class="form-control invalid attach-dropzone dropzone attach-{{$requirement->id}}" data-id="{{$requirement->id}}"></div>
-                </div>
-                @elseif($requirement->type == 2)
-                <div class="form-group {{ $requirement->required ? "required" : "" }}">
-                    <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
-                    @foreach($requirement->choices as $key => $choice)
-                    <div class="select-option form-row-between invalid single">{{$choice->choice}}</div>
-                    @endforeach
-                </div>
-                @else
-                <div class="form-group {{ $requirement->required ? "required" : "" }}">
-                    <input class="answer" type="hidden" id="answer-{{$requirement->id}}" data-id="{{$requirement->id}}" name="answer[]">
-                    @foreach($requirement->choices as $key => $choice)
-                    <div class="select-option form-row-between invalid multi">{{$choice->choice}}</div>
-                    @endforeach
-                </div>
-                @endif
-            </div>
-            @endforeach
-            
-            <div class="row">
-                <button type="submit" class="btn btn-primary">Save</button> 
-            </div>
-        </form>
-        @endif
     </div>
  </div>
 @section('js')
