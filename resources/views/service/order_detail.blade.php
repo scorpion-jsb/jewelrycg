@@ -233,9 +233,6 @@
                               <p class="opacity-70 mb-0">Seconds</p>
                             </div>
                           </div>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deliverModal">
-                            Deliver Now
-                          </button>
                         @elseif ($order->status == 0)
                         <div class="col-md-12">
                           Didn't receive requirement yet
