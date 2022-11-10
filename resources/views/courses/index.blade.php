@@ -1,7 +1,7 @@
 <x-app-layout page-title="Courses">
     <section>
         <div class="container">
-            <div class="section-page-title col-xl-11 mx-auto pt-8 pb-4">
+            <div class="section-page-title text-center col-xl-11 mx-auto pt-8 pb-4">
                 <h1 class="fw-800">Courses</h1>
                 <p class="pb-4">All Courses</p>
             </div>
