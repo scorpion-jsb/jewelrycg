@@ -41,7 +41,7 @@ class ServicesController extends Controller
     public function index()
     {
         $user_id = Auth::id();
-        return view('service.services.list', [
+        return view('seller.services.list', [
             'services' => ServicePost::with(['categories', 'postauthor'])->where('user_id', $user_id)->orderBy('id', 'DESC')->get(),
         ]);
     }
@@ -81,14 +81,14 @@ class ServicesController extends Controller
         $data->tag_ids = $tag_ids;
         $data->galleries = $galleries;
 
-        return view('service.detail', [
+        return view('service.checkout.detail', [
             'service' => $data,
         ]);
     }
 
     public function trash()
     {
-        return view('service.services.trash', [
+        return view('seller.services.trash', [
             'services' => ServicePost::onlyTrashed()->orderBy('id', 'DESC')->get(),
         ]);
     }
@@ -150,7 +150,7 @@ class ServicesController extends Controller
         $packages = ServicePackage::withTrashed()->where('service_id', $post_id)->get();
 
         // $step = 1;
-        return view('service.services.create', [
+        return view('seller.services.create', [
             'categories' => ServiceCategorie::all(),
             'tags' => ServiceTags::all(),
             'step' => $step,
