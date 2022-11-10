@@ -206,51 +206,36 @@
                 </div>
             </div>
             <div class="col-3">
+                @if ($order->status == 1 || $order->status == 2)
                 <div class="card mb-4 time-left">
                     <div class="card-body">
-                        @if ($order->status == 1 || $order->status == 2)
-                          <div class="col-md-12" id="count_title">
-                            Time left to deliver
-                          </div>
-                          <div class="col-md-12 d-flex justify-content-between align-items-center my-2">
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_day">00</h5>
-                              <p class="opacity-70 mb-0">Days</p>
-                            </div>
-                            <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_hour">00</h5>
-                              <p class="opacity-70 mb-0">Hours</p>
-                            </div>
-                            <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_min">00</h5>
-                              <p class="opacity-70 mb-0">Minutes</p>
-                            </div>
-                            <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_sec">00</h5>
-                              <p class="opacity-70 mb-0">Seconds</p>
-                            </div>
-                          </div>
-                        @elseif ($order->status == 0)
-                        <div class="col-md-12">
-                          Didn't receive requirement yet
+                        <div class="col-md-12" id="count_title">
+                        Time left to deliver
                         </div>
-                        @elseif ($order->status == 3)
-                        <div class="col-md-12">
-                          Order canceled
+                        <div class="col-md-12 d-flex justify-content-between align-items-center my-2">
+                        <div class="d-flex flex-column align-items-center" style="width: 23%;">
+                            <h5 id="count_day">00</h5>
+                            <p class="opacity-70 mb-0">Days</p>
                         </div>
-                        @elseif ($order->status == 4)
-                        <div class="col-md-12">
+                        <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
+                        <div class="d-flex flex-column align-items-center" style="width: 23%;">
+                            <h5 id="count_hour">00</h5>
+                            <p class="opacity-70 mb-0">Hours</p>
                         </div>
-                        @elseif ($order->status == 5)
-                        <div class="col-md-12">
-                          Completed
+                        <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
+                        <div class="d-flex flex-column align-items-center" style="width: 23%;">
+                            <h5 id="count_min">00</h5>
+                            <p class="opacity-70 mb-0">Minutes</p>
                         </div>
-                        @endif
+                        <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
+                        <div class="d-flex flex-column align-items-center" style="width: 23%;">
+                            <h5 id="count_sec">00</h5>
+                            <p class="opacity-70 mb-0">Seconds</p>
+                        </div>
+                        </div>
                     </div>
                 </div>
+                @endif
                 <div class="card mb-4 order-details">
                     <div class="card-body">
                         <div class="row">
