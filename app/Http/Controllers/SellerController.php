@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DeliverRequest;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\Attribute;
 use App\Models\OrderServiceRequirement;
@@ -224,5 +225,10 @@ class SellerController extends Controller
         });
 
         return view('seller.service.order_detail', ['order' => $order, 'answers' => $answers]);
+    }
+
+    public function service_order_deliver(DeliverRequest $request)
+    {
+        dd($request);
     }
 }
