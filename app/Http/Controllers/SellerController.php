@@ -197,7 +197,7 @@ class SellerController extends Controller
 
         $orders = $query->get();
 
-        return view('seller.service.orders', ['orders' => $orders, 'tab' => $tab]);
+        return view('seller.orders.index', ['orders' => $orders, 'tab' => $tab]);
     }
 
     public function service_order_detail($id)
@@ -224,7 +224,7 @@ class SellerController extends Controller
             }
         });
 
-        return view('seller.service.order_detail', ['order' => $order, 'answers' => $answers]);
+        return view('seller.orders.detail', ['order' => $order, 'answers' => $answers]);
     }
 
     public function service_order_deliver(DeliverRequest $request)
