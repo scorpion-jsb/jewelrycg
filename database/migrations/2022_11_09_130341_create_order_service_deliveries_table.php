@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('order_service_deliveries', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('order_id');
-            $table->string('message')->default('');
+            $table->text('message')->default('');
             $table->string('attachment')->default('');
             $table->dateTime('delivered_at');
             $table->timestamps();
