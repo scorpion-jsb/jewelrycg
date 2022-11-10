@@ -40,9 +40,7 @@
                             <a href="{{route('services.order_detail', $order->order_id)}}" class="btn btn-primary">View Order</a>
                         </div>
                     </div>
-                    </div>
-                <div class="card-body">
-
+                </div>
             </div>
         </div>
         @endforeach

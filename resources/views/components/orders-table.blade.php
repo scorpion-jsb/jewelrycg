@@ -18,6 +18,22 @@
                 <div class="fw-600">Total amount</div>
                 <span>${{$order->total_price}}</span>
             </div>
+            <div class="col-lg-2 col-6 mb-2">
+                <div class="fw-600">Status</div>
+                @if ($order->status == 0)
+                <span>Pending Requirements</span>
+                @elseif ($order->status == 1)
+                <span>Pending</span>
+                @elseif ($order->status == 2)
+                <span>Revision</span>
+                @elseif ($order->status == 3)
+                <span>Cancelled</span>
+                @elseif ($order->status == 4)
+                <span>Delivered</span>
+                @elseif ($order->status == 5)
+                <span>Completed</span>
+                @endif
+            </div>
             <div class="col-lg-2 col-6 ml-auto">
                 <a href="{{route('orders.show', $order->order_id)}}" class="btn btn-primary">View Order</a>
             </div>
