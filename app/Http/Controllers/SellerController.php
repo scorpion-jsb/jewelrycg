@@ -264,7 +264,6 @@ class SellerController extends Controller
         $delivery->order_id = $order_id;
         $delivery->message = $message;
         $delivery->attachment = $attach;
-        $delivery->direct = true;
         $delivery->save();
 
         return redirect()->back()->with("success", "Your service successfuly delivered!");

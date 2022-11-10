@@ -131,11 +131,7 @@
                       <div class="col">
                         <div class="row">
                           <div class="col-md-1">
-                            @if ($delivery->direct)
                             <img src="{{ auth()->user()->uploads->getImageOptimizedFullName(150) }}" alt="avatar" style="width: 100%">
-                            @else
-                            <img src="{{ $buyer->uploads->getImageOptimizedFullName(150) }}" alt="avatar" style="width: 100%">
-                            @endif
                           </div>
                           <div class="col-md-11">{!! $delivery->message !!}</div>
                         </div>
