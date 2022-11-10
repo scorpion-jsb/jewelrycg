@@ -151,15 +151,15 @@
                         </div>
                         @endforeach
 
+                        @if(Session::get('message') != null)
+                        <div class="alert alert-success">
+                            {{ Session::get('message') }}
+                        </div>
+                        @endif
+                        @if (count($requirements) > 0 && $order->status == 0)
                         <div class="card">
                           <div class="card-header">Submit Requirements</div> 
                           <div class="card-body">
-                            @if(Session::get('message') != null)
-                            <div class="alert alert-success">
-                                {{ Session::get('message') }}
-                            </div>
-                            @endif
-                            @if (count($requirements) > 0 && $order->status == 0)
                             <form id="question-form" class="needs-validation" action="{{ route('services.answer') }}" method="post" enctype="multipart/form-data" novalidate>
                                 @csrf
                                 <input type="hidden" name="order_id" value="{{ $order->id }}">
