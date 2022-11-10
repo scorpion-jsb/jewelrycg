@@ -17,7 +17,7 @@
                     <div class="card-body">
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
-                            <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> placed the order {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
+                            <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> placed the order {{ date('F d, Y h:i A', strtotime($order->created_at)) }}</span>
                         </div>
                         @if ($order->status != 0 && count($order->service->requirements) )
                         <div class="timeline-item pb-3 mb-3 border-bottom">
