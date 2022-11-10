@@ -129,15 +129,12 @@
                               <span class="">You dellvered the order {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
                           </div>
                           @endif
+
                           @foreach ($deliveries as $delivery)
                           <div class="card">
+                            <div class="card-header">Deliver #</div>
                             <div class="card-body">
-                              <div class="row">
-                                <div class="col-md-1">
-                                  <img src="{{ auth()->user()->uploads->getImageOptimizedFullName(150) }}" alt="avatar" style="width: 100%">
-                                </div>
-                                <div class="col-md-11">{!! $delivery->message !!}</div>
-                              </div>
+                              <p>{!! $delivery->message !!}</p>
                               <ul>
                                 @foreach ($delivery->attaches as $attach)
                                   <li>
