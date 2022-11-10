@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\DeliverRequest;
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\Attribute;
+use App\Models\OrderServiceDelivery;
 use App\Models\OrderServiceRequirement;
 use App\Models\Product;
 use App\Models\ProductsCategorie;
@@ -197,7 +198,7 @@ class SellerController extends Controller
 
         $orders = $query->get();
 
-        return view('seller.orders.index', ['orders' => $orders, 'tab' => $tab]);
+        return view('seller.services.orders.index', ['orders' => $orders, 'tab' => $tab]);
     }
 
     public function service_order_detail($id)
@@ -224,11 +225,21 @@ class SellerController extends Controller
             }
         });
 
-        return view('seller.orders.detail', ['order' => $order, 'answers' => $answers]);
+        return view('seller.services.orders.detail', ['order' => $order, 'answers' => $answers]);
     }
 
     public function service_order_deliver(DeliverRequest $request)
     {
-        dd($request);
+        $order_id = $request->order_id;
+        $message = $request->message;
+        $attach = $request->attach;
+
+        $delivery = new OrderServiceDelivery();
+        $delivery->order_id = $order_id;
+        $delivery->message = $message;
+        $delivery->attach = $attach;
+        $delivery . save();
+
+        return redirect()->back()->with("message", "Your service successfuly delivered!");
     }
 }

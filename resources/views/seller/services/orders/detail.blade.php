@@ -147,7 +147,9 @@
                               <p class="opacity-70 mb-0">Seconds</p>
                             </div>
                           </div>
-                          <a class="btn btn-primary col-md-12" href="#">Deliver Now</a>
+                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deliverModal">
+                            Deliver Now
+                          </button>
                           @else
                           <div class="col-md-12">
                             Didn't receive requirement yet
@@ -217,6 +219,26 @@
                   </div>
               </div>
             </form>
+          </div>
+
+          <div class="modal fade" id="deliverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  ...
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
   </div>
