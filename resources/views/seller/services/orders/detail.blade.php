@@ -48,6 +48,12 @@
   <div class="container">
       <div class="col-lg-11 col-md-10 py-9 mx-auto checkout-wrap">
           <div class="row">
+              @include('includes.validation-form')
+              @if (session('success'))
+                <h4 class="text-center text-primary mt-3">
+                    {{session('success')}}
+                </h4>
+              @endif
               <div class="col-9">
                   <div class="card mb-4">
                       <div class="card-body">
@@ -122,37 +128,49 @@
               <div class="col-3">
                   <div class="card mb-4 time-left">
                       <div class="card-body">
-                          @if ($order->status != 0)
-                          <div class="col-md-12" id="count_title">
-                            Time left to deliver
-                          </div>
-                          <div class="col-md-12 d-flex justify-content-between align-items-center my-2">
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_day">00</h5>
-                              <p class="opacity-70 mb-0">Days</p>
+                          @if ($order->status == 1 || $order->status == 2)
+                            <div class="col-md-12" id="count_title">
+                              Time left to deliver
                             </div>
-                            <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_hour">00</h5>
-                              <p class="opacity-70 mb-0">Hours</p>
+                            <div class="col-md-12 d-flex justify-content-between align-items-center my-2">
+                              <div class="d-flex flex-column align-items-center" style="width: 23%;">
+                                <h5 id="count_day">00</h5>
+                                <p class="opacity-70 mb-0">Days</p>
+                              </div>
+                              <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
+                              <div class="d-flex flex-column align-items-center" style="width: 23%;">
+                                <h5 id="count_hour">00</h5>
+                                <p class="opacity-70 mb-0">Hours</p>
+                              </div>
+                              <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
+                              <div class="d-flex flex-column align-items-center" style="width: 23%;">
+                                <h5 id="count_min">00</h5>
+                                <p class="opacity-70 mb-0">Minutes</p>
+                              </div>
+                              <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
+                              <div class="d-flex flex-column align-items-center" style="width: 23%;">
+                                <h5 id="count_sec">00</h5>
+                                <p class="opacity-70 mb-0">Seconds</p>
+                              </div>
                             </div>
-                            <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_min">00</h5>
-                              <p class="opacity-70 mb-0">Minutes</p>
-                            </div>
-                            <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_sec">00</h5>
-                              <p class="opacity-70 mb-0">Seconds</p>
-                            </div>
-                          </div>
-                          <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#deliverModal">
-                            Deliver Now
-                          </button>
-                          @else
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deliverModal">
+                              Deliver Now
+                            </button>
+                          @elseif ($order->status == 0)
                           <div class="col-md-12">
                             Didn't receive requirement yet
+                          </div>
+                          @elseif ($order->status == 3)
+                          <div class="col-md-12">
+                            Order canceled
+                          </div>
+                          @elseif ($order->status == 4)
+                          <div class="col-md-12">
+                            Delivered
+                          </div>
+                          @elseif ($order->status == 5)
+                          <div class="col-md-12">
+                            Completed
                           </div>
                           @endif
                       </div>
@@ -178,65 +196,55 @@
               </div>
           </div>
           <div class="col col-md-12 p-5">
-            <form id="delivery-form" class="needs-validation" action="{{ route("seller.service.order.deliver") }}" method="post" enctype="multipart/form-data" novalidate>
-              <div class="row">
-                  <div class="col-md-12">
-                      @csrf
-                      <div class="card col-md-12 mb-4">
-                          <!-- Header -->
-                          <div class="card-header">
-                              <h4 class="card-header-title mb-0">Deliver Service</h4>
-                          </div>
-                          <!-- End Header -->
-                          <div class="card-body">
-                              <input type="hidden" name="order_id" id="order_id" value="{{ $order->id }}" >
-                              @include('includes.validation-form')
-                              <div class="mb-2">
-                                  <label for="message" class="w-100 mb-2 required">Message</label>
-                                  <textarea name="message" id="message" rows="6" class="form-control" required>{{ old('message') }}</textarea>
-                              </div>
-                          </div>
-                          <div class="card mb-4">
-                            <!-- Header -->
-                            <div class="card-header card-header-content-between">
-                                <label class="card-header-title mb-0 required">Gallery</label>
-                            </div>
-                            <!-- End Header -->
-    
-                            <!-- Body -->
-                            <div class="card-body requried">
-                                <input type="hidden" class="attach" id="attach" name="attach" value="">
-                                <div id="gallery_container">
-                                    <div class="dropzone invalid" id="attach-dropzone">
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Body -->
-                          </div>
-                          <button type="submit" class="btn btn-primary">Submit Delivery</button>
-                        </div>
-                      </div>
-                  </div>
-              </div>
-            </form>
           </div>
 
-          <div class="modal fade" id="deliverModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal fade modal-lg" id="deliverModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deliverModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
               <div class="modal-content">
+                <form id="delivery-form" class="needs-validation" action="{{ route("seller.service.order.deliver") }}" method="post" enctype="multipart/form-data" novalidate>
                 <div class="modal-header">
-                  <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                  </button>
+                  <h1 class="modal-title fs-5" id="deliverModalLabel">Deliver Service</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                  ...
+                    <div class="row">
+                        <div class="col-md-12">
+                            @csrf
+                            <div class="card col-md-12 mb-4">
+                              <!-- End Header -->
+                              <div class="card-body">
+                                  <input type="hidden" name="order_id" id="order_id" value="{{ $order->id }}" >
+                                  <div class="mb-2">
+                                      <label for="message" class="w-100 mb-2 required">Message</label>
+                                      <textarea name="message" id="message" rows="6" class="form-control" required>{{ old('message') }}</textarea>
+                                  </div>
+                              </div>
+                              <div class="card mb-4">
+                                <!-- Header -->
+                                <div class="card-header card-header-content-between">
+                                    <label class="card-header-title mb-0 required">Gallery</label>
+                                </div>
+                                <!-- End Header -->
+        
+                                <!-- Body -->
+                                <div class="card-body requried">
+                                    <input type="hidden" class="attach" id="attach" name="attach" value="">
+                                    <div id="gallery_container">
+                                        <div class="dropzone invalid" id="attach-dropzone">
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Body -->
+                              </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
-                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                  <button type="button" class="btn btn-primary">Save changes</button>
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="submit" class="btn btn-primary">Submit Delivery</button>
                 </div>
+              </form>
               </div>
             </div>
           </div>
@@ -285,71 +293,78 @@
     Dropzone.autoDiscover = false;
     var uploadedFileData = [];
     $(document).ready(function() {
-        $("#attach-dropzone").dropzone({
-            method:'post',
-            url: "{{ route('seller.file.store') }}",
-            dictDefaultMessage: "Select File",
-            paramName: "file",
-            maxFilesize: 2,
-            clickable: true,
-            addRemoveLinks: true,
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-            },
-            success: function(file, response) {
-                var attachInput = $('#attach');
-                var inputDiv = $("#attach-dropzone");
-                var lastFiles = attachInput.val() ? attachInput.val().split(',') : [];
-                lastFiles.push(response.id);
+      $("#attach-dropzone").dropzone({
+          method:'post',
+          url: "{{ route('seller.file.store') }}",
+          dictDefaultMessage: "Select File",
+          paramName: "file",
+          maxFilesize: 2,
+          clickable: true,
+          addRemoveLinks: true,
+          headers: {
+              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+          },
+          success: function(file, response) {
+              var attachInput = $('#attach');
+              var inputDiv = $("#attach-dropzone");
+              var lastFiles = attachInput.val() ? attachInput.val().split(',') : [];
+              lastFiles.push(response.id);
 
-                attachInput.val(lastFiles.join(','));
-                uploadedFileData.push(response);
-                inputDiv.removeClass("invalid").removeClass("valid").addClass("valid");
-            },
-            removedfile: function(file) {
-                var answerInput = $('#attach');
-                var inputDiv = $("#attach-dropzone");
-                for(var i=0;i<uploadedFileData.length;++i){
-                    if(!uploadedFileData[i]) {
-                        continue;
-                    }
-                    if(uploadedFileData[i].file_original_name + "." + uploadedFileData[i].extension==file.name) {
-                        $.ajax({
-                            url: `/seller/file/destroy/${uploadedFileData[i].id}`,
-                            type: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
-                            },
-                            success: function(result) {
-                                var lastValue = answerInput.val().split(',');
-                                var removed = lastValue.filter((item) => item != uploadedFileData[i].id);
-                                answerInput.val(removed);
-                                $(file.previewElement).remove();
-                                uploadedFileData.splice(i, 1)
+              attachInput.val(lastFiles.join(','));
+              uploadedFileData.push(response);
+              inputDiv.removeClass("invalid").removeClass("valid").addClass("valid");
+          },
+          removedfile: function(file) {
+              var answerInput = $('#attach');
+              var inputDiv = $("#attach-dropzone");
+              for(var i=0;i<uploadedFileData.length;++i){
+                  if(!uploadedFileData[i]) {
+                      continue;
+                  }
+                  if(uploadedFileData[i].file_original_name + "." + uploadedFileData[i].extension==file.name) {
+                      $.ajax({
+                          url: `/seller/file/destroy/${uploadedFileData[i].id}`,
+                          type: 'POST',
+                          headers: {
+                              'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                          },
+                          success: function(result) {
+                              var lastValue = answerInput.val().split(',');
+                              var removed = lastValue.filter((item) => item != uploadedFileData[i].id);
+                              answerInput.val(removed);
+                              $(file.previewElement).remove();
+                              uploadedFileData.splice(i, 1)
 
-                                if (removed.length == 0) {  
-                                    inputDiv.removeClass("invalid").removeClass("valid").addClass("invalid");
-                                }
-                            },
-                            error: function(error) {
-                                return false;
-                            }
-                        });
-                        break;
-                    }
-                }
-            }
-        })
+                              if (removed.length == 0) {  
+                                  inputDiv.removeClass("invalid").removeClass("valid").addClass("invalid");
+                              }
+                          },
+                          error: function(error) {
+                              return false;
+                          }
+                      });
+                      break;
+                  }
+              }
+          }
+      })
 
-        $('#delivery-form').submit(function (event) {
-            if ($(this).find('.required .invalid').length) {
-                event.preventDefault();
-                event.stopPropagation();
-            }
-            
-            $(this).addClass('was-validated');
-        })
-      });
+      $('#delivery-form').submit(function (event) {
+          if ($(this).find('.required .invalid').length) {
+              event.preventDefault();
+              event.stopPropagation();
+          }
+          
+          $(this).addClass('was-validated');
+      })
+    });
+
+    const deliverModal = document.getElementById('deliverModal')
+    const messageInput = document.getElementById('message')
+
+    deliverModal.addEventListener('shown.bs.modal', () => {
+      messageInput.focus()
+    })
   </script>
   @endsection
 

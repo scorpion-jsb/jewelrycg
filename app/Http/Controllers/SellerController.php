@@ -234,12 +234,16 @@ class SellerController extends Controller
         $message = $request->message;
         $attach = $request->attach;
 
+        $order = ServiceOrder::findOrFail($order_id);
+        $order->status = 4;
+        $order->save();
+
         $delivery = new OrderServiceDelivery();
         $delivery->order_id = $order_id;
         $delivery->message = $message;
-        $delivery->attach = $attach;
-        $delivery . save();
+        $delivery->attachment = $attach;
+        $delivery->save();
 
-        return redirect()->back()->with("message", "Your service successfuly delivered!");
+        return redirect()->back()->with("success", "Your service successfuly delivered!");
     }
 }
