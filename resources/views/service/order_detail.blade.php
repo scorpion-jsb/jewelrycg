@@ -206,59 +206,8 @@
                 </div>
             </div>
             <div class="col-3">
-                <div class="card mb-4 time-left">
-                    <div class="card-body">
-                        @if ($order->status == 1 || $order->status == 2)
-                          <div class="col-md-12" id="count_title">
-                            Time left to deliver
-                          </div>
-                          <div class="col-md-12 d-flex justify-content-between align-items-center my-2">
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_day">00</h5>
-                              <p class="opacity-70 mb-0">Days</p>
-                            </div>
-                            <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_hour">00</h5>
-                              <p class="opacity-70 mb-0">Hours</p>
-                            </div>
-                            <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_min">00</h5>
-                              <p class="opacity-70 mb-0">Minutes</p>
-                            </div>
-                            <div class="bg-black opacity-70" style="width: 1px; height: 30px;"></div>
-                            <div class="d-flex flex-column align-items-center" style="width: 23%;">
-                              <h5 id="count_sec">00</h5>
-                              <p class="opacity-70 mb-0">Seconds</p>
-                            </div>
-                          </div>
-                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deliverModal">
-                            Deliver Now
-                          </button>
-                        @elseif ($order->status == 0)
-                        <div class="col-md-12">
-                          Didn't receive requirement yet
-                        </div>
-                        @elseif ($order->status == 3)
-                        <div class="col-md-12">
-                          Order canceled
-                        </div>
-                        @elseif ($order->status == 4)
-                        <div class="col-md-12">
-                          Delivered
-                        </div>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deliverModal">
-                          Deliver again
-                        </button>
-                        @elseif ($order->status == 5)
-                        <div class="col-md-12">
-                          Completed
-                        </div>
-                        @endif
-                    </div>
-                </div>
                 <div class="card mb-4 order-details">
+                    <div class="card-header">Order Detail</div> 
                     <div class="card-body">
                         <div class="row">
                             <div class="col-3">
@@ -271,8 +220,21 @@
                                 </span>
                             </div>
                         </div>
-                        <div class="row">
-                            
+                        <div class="d-flex flex-row mb-1 justify-content-between">
+                            <span>Ordered from</span>
+                            <span>{{ auth()->user()->first_name . " " . auth()->user()->last_name }}</span>
+                        </div>
+                        <div class="d-flex flex-row mb-1 justify-content-between">
+                            <span>Delivery Date</span>
+                            <span>{{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
+                        </div>
+                        <div class="d-flex flex-row mb-1 justify-content-between">
+                            <span>Total Price</span>
+                            <span>${{ number_format($order->package_price, 2) }}</span>
+                        </div>
+                        <div class="d-flex flex-row mb-1 justify-content-between">
+                            <span>Order Number</span>
+                            <span>{{ $order->order_id }}</span>
                         </div>
                     </div>
                 </div>
