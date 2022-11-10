@@ -130,9 +130,9 @@
                           </div>
                           @endif
 
-                          @foreach ($deliveries as $delivery)
+                          @foreach ($deliveries as $key => $delivery)
                           <div class="card">
-                            <div class="card-header">Deliver #</div>
+                            <div class="card-header">Deliver #{{$key + 1}}</div>
                             <div class="card-body">
                               <p>{!! $delivery->message !!}</p>
                               <ul>

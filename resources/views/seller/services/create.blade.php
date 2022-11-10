@@ -99,15 +99,15 @@
             </div>
 
             @if($step == 0)
-                @include('service.services.step.overview')
+                @include('seller.services.step.overview')
             @elseif($step == 1)
-                @include('service.services.step.pricing')
+                @include('seller.services.step.pricing')
             @elseif($step == 2)
-                @include('service.services.step.requirement')
+                @include('seller.services.step.requirement')
             @elseif($step == 3)
-                @include('service.services.step.gallery')
+                @include('seller.services.step.gallery')
             @elseif($step == 4)
-                @include('service.services.step.review')
+                @include('seller.services.step.review')
             @endif
 
             @section('js')
