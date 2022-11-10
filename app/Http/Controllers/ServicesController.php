@@ -11,6 +11,7 @@ use App\Http\Requests\ServicePackageRequest;
 use App\Http\Requests\StorePaymentIntentRequest;
 use App\Models\Country;
 use App\Models\Coupon;
+use App\Models\OrderServiceDelivery;
 use App\Models\OrderServiceRequirement;
 use App\Models\SellersProfile;
 use App\Models\SellersWalletHistory;
@@ -784,7 +785,41 @@ class ServicesController extends Controller
     {
         $order = ServiceOrder::with(['service.thumb'])->where('order_id', $id)->first();
         $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
-        return view('service.order_detail', ['order' => $order, 'requirements' => $requirements]);
+        $answers = OrderServiceRequirement::with('requirement')->where('order_id', $order->id)->get();
+
+        $answers->each(function ($answer) {
+            if ($answer->requirement->type == 1) {
+                $attach_ids = explode(',', $answer->answer);
+                $attaches = [];
+
+                for ($i = 0; $i < count($attach_ids); $i++) {
+                    $upload = Upload::findOrFail($attach_ids[$i]);
+                    array_push($attaches, $upload);
+                }
+
+                $answer->attaches = $attaches;
+            } else if ($answer->requirement->type == 3) {
+                $answer->answers = explode(',', $answer->answer);
+            }
+        });
+
+        $deliveries = OrderServiceDelivery::where('order_id', $order->id)->get();
+
+        $deliveries->each(function ($delivery) {
+            $attach_ids = explode(',', $delivery->attachment);
+            $attaches = [];
+
+            for ($i = 0; $i < count($attach_ids); $i++) {
+                $upload = Upload::findOrFail($attach_ids[$i]);
+                array_push($attaches, $upload);
+            }
+
+            $delivery->attaches = $attaches;
+        });
+
+        $seller = User::with('uploads')->findOrFail($order->service->user_id);
+
+        return view('service.order_detail', ['order' => $order, 'requirements' => $requirements, 'answers' => $answers, 'deliveries' => $deliveries, 'seller' => $seller]);
     }
 
     public function dashboard()
