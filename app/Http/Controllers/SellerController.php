@@ -15,6 +15,7 @@ use App\Models\SellersProfile;
 use App\Models\SellersWalletHistory;
 use App\Models\ServiceOrder;
 use App\Models\ServiceTags;
+use App\Models\Upload;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;

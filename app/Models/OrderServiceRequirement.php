@@ -17,11 +17,11 @@ class OrderServiceRequirement extends Model
 
     public function order()
     {
-        $this->hasOne(ServiceOrder::class, 'order_id', 'id');
+        return $this->belongsTo(ServiceOrder::class, 'order_id', 'id');
     }
 
     public function requirement()
     {
-        $this->hasOne(ServiceRequirement::class, 'requirement_id', 'id');
+        return $this->belongsTo(ServiceRequirement::class, 'requirement_id', 'id');
     }
 }
