@@ -275,10 +275,14 @@ class ServicesController extends Controller
         $choices = explode(',', $choices_str);
 
         for ($i = 0; $i < count($choices); ++$i) {
-            $requirement_choice = new ServiceRequirementChoice();
+            $requirement_choice = ServiceRequirementChoice::onlyTrashed()->first();
+            if (!$requirement_choice) {
+                $requirement_choice = new ServiceRequirementChoice();
+            }
             $requirement_choice->requirement_id = $requirement_id;
             $requirement_choice->choice = $choices[$i];
             $requirement_choice->save();
+            $requirement_choice->restore();
         }
     }
 
@@ -299,12 +303,16 @@ class ServicesController extends Controller
         if ($questions) {
             for ($i = 0; $i < count($questions); $i++) {
                 if ($questions[$i]) {
-                    $requirement = new ServiceRequirement();
+                    $requirement = ServiceRequirement::withTrashed()->find($data['id'][$i]);
+                    if (!$requirement) {
+                        $requirement = new ServiceRequirement();
+                    }
                     $requirement->service_id = $post_id;
                     $requirement->question = $data['question'][$i];
                     $requirement->type = $data['type'][$i];
                     $requirement->required = $data['required'][$i] == "true" ? 1 : 0;
                     $requirement->save();
+                    $requirement->restore();
 
                     if ($requirement->type > 1) {
                         $this->create_requirement_choices($requirement->id, $data['choices'][$i]);
