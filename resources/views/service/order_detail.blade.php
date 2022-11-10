@@ -75,7 +75,7 @@
                         @if ($order->status != 0)
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
-                            <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> sent the requirements {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
+                            <span class="">You sent the requirements {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
                         </div>
 
                           @if (count($answers) > 0)
