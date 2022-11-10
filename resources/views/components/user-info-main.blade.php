@@ -40,10 +40,10 @@
         <div class="col-md-6">
             <!-- Card -->
             <div class="imagePreview pt-2 img-thumbnail">
-                <img id="fileManagerPreview" src="{{ $user->uploads->getImageOptimizedFullName(200,200) }}" class="rounded-circle">
+                <img id="fileManagerPreview" src="{{ $user->uploads->getImageOptimizedFullName(200,200) }}" class="rounded-circle w-100">
             </div>
             @if ($edit)
-                <label class="btn text-primary mt-2 p-0" id="getFileManager">Select avatar image</label>
+                <label class="btn btn-primary p-2 my-2" id="getFileManager">Select Avatar Image</label>
                 <input type="hidden" value="{{ $user->uploads->id}}" id="fileManagerId" name="avatar">
             @endif
             <!-- End Card -->
