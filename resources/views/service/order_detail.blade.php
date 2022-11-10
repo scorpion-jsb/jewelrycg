@@ -57,11 +57,12 @@
             <div class="col-9">
                 <div class="card mb-4">
                     <div class="card-body">
-                        <h4 class="fw-700">Order Started</h4>
                         @if ($order->status == 0)
-                        <p class="p-0">Pending requirements in order to start job. Please submite your requirement.</p>
+                        <h4 class="fw-700">Order Received</h4>
+                        <p class="p-0">Please submit the requirements in order to start job.</p>
                         @else
-                        <p class="p-0">Your order is in progress now. Please contact to <b>{{ $order->user->first_name . " " . $order->user->last_name }} if you have any question</b> </p>
+                        <h4 class="fw-700">Order Started</h4>
+                        <p class="p-0">You sent all the information needed and your order has started.</p>
                         @endif
                     </div>
                 </div>
