@@ -56,7 +56,7 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card mb-3 mb-4">
+                    <div class="card mb-4">
                         <!-- Header -->
                         <div class="card-header card-header-content-between">
                             <h4 class="card-header-title mb-0">Gallery</h4>
