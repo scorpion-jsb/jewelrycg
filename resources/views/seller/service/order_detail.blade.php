@@ -84,6 +84,33 @@
                 </div>
             </div>
         </div>
+
+        @if (count($answers) > 0)
+        <div class="col">
+          <h1>Order Requirements</h1>
+          @foreach ($answers as $answer)
+          <div class="col">
+            <h3>{{ $answer->requirement->question }}</h3>
+
+            @if ($answer->requirement->type == 0)
+            <p>{{ $answer->answer }}</p>
+
+            @elseif ($answer->requirement->type == 1)
+            @foreach ($answer->attaches as $attach)
+            <a href="/uploads/all/{{ $attach->file_name }}" download>
+              {{ $attach->original_file_name . "." . $attach->extension }}
+            </a>
+            @endforeach
+
+            @elseif ($answer->requirement->type == 2)
+            <p>{{$answer->answer}}</p>
+            @else
+            @foreach ($answer->answers as $answer)
+            <p>{{ $answer }}</p>
+            @endforeach
+          </div>
+          @endforeach
+        </div>
     </div>
 </div>
 @section('js')

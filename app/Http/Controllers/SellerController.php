@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ProductStoreRequest;
 use App\Models\Attribute;
+use App\Models\OrderServiceRequirement;
 use App\Models\Product;
 use App\Models\ProductsCategorie;
 use App\Models\ProductsTaxOption;
@@ -203,6 +204,24 @@ class SellerController extends Controller
             fn($query) => $query->where('user_id', Auth::id())
         )->with('user')->firstOrFail();
 
-        return view('seller.service.order_detail', ['order' => $order]);
+        $answers = OrderServiceRequirement::with('requirement')->where('order_id', $order->id)->get();
+
+        $answers->each(function ($answer) {
+            if ($answer->requirement->type == 1) {
+                $attach_ids = explode(',', $answer->answer);
+                $attaches = [];
+
+                for ($i = 0; $i < count($attach_ids); $i++) {
+                    $upload = Upload::findOrFail($attach_ids[$i]);
+                    array_push($attaches, $upload);
+                }
+
+                $answer->attaches = $attaches;
+            } else if ($answer->requirement->type == 3) {
+                $answer->answers = explode(',', $answer->answer);
+            }
+        });
+
+        return view('seller.service.order_detail', ['order' => $order, 'answers' => $answers]);
     }
 }
