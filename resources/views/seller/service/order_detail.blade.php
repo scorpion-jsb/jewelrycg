@@ -61,7 +61,7 @@
                             </div>
                             </div>
                           @endif
-                        @endif
+
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
                             <span class="">The order started {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
@@ -70,6 +70,8 @@
                             <i class="bi bi-clipboard-check p-1"></i>
                             <span class="">Your delivery date was updated to {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
                         </div>
+                        @endif
+                        
                     </div>
                 </div>
             </div>
