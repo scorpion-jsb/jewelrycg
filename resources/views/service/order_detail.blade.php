@@ -151,9 +151,8 @@
                             </ul> 
                           </div>
                         </div>
-                        @endforeach
 
-                        @if ($order->status == 4)
+                        @if (!$delivery->revision)
                         <div class="card">
                             <div class="card-header">
                                 You received delivery from {{$seller->first_name . " " . $seller->last_name}}<br>
@@ -187,6 +186,7 @@
                                     <!-- End Header -->
                                     <div class="card-body">
                                         <input type="hidden" name="order_id" id="order_id" value="{{ $order->id }}" >
+                                        <input type="hidden" name="delivery_id" id="delivery_id" value="{{ $delivery->id }}" >
                                         <div class="mb-2">
                                             <label for="message" class="w-100 mb-2">Message</label>
                                             <textarea name="message" id="message" rows="6" class="form-control">{{ old('message') }}</textarea>
@@ -198,6 +198,7 @@
                             </form>
                         </div>
                         @endif
+                        @endforeach
                         
                         @if ($order->status == 5)
                         <div class="timeline-item pb-3 mb-3 border-bottom">
