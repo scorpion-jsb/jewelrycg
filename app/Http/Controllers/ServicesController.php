@@ -82,7 +82,7 @@ class ServicesController extends Controller
         $data->tag_ids = $tag_ids;
         $data->galleries = $galleries;
 
-        return view('service.checkout.detail', [
+        return view('service.detail', [
             'service' => $data,
         ]);
     }
