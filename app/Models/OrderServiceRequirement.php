@@ -22,6 +22,6 @@ class OrderServiceRequirement extends Model
 
     public function requirement()
     {
-        return $this->belongsTo(ServiceRequirement::class, 'requirement_id', 'id');
+        return $this->belongsTo(ServiceRequirement::class, 'requirement_id', 'id')->withTrashed();
     }
 }
