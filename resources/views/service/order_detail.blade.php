@@ -164,7 +164,7 @@
                                 @csrf
                                 <input type="hidden" name="order_id" value="{{ $order->id }}">
                                 @foreach ($requirements as $requirement)
-                                <div class="row mb-3">
+                                <div class="mb-3">
                                     <label class="fs-4 mb-2 {{ $requirement->required ? "required" : "" }}" for="answer-{{$requirement->id}}">- {{ $requirement->question }}</label>
                                     @if($requirement->type == 0)
                                     <div class="form-group">
@@ -193,7 +193,7 @@
                                 </div>
                                 @endforeach
                                 
-                                <div class="row">
+                                <div class="mb-0">
                                     <button type="submit" class="btn btn-primary">Submit Requirements</button> 
                                 </div>
                             </form>
