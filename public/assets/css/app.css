@@ -116,6 +116,13 @@ button.navbar-toggler {
   color: #000000 !important;
   font-size: 2rem;
 }
+// show medium or smaller browser
+@media only screen and (max-width: 990px) {
+  header a.nav-link {
+    padding: 15px 0 !important;
+  }
+}
+
 .navbar-collapse.collapse.show {
   padding-top: 15px;
   border-top: 1px solid #eee;
