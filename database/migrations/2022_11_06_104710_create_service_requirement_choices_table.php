@@ -18,6 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('requirement_id');
             $table->string('choice');
             $table->timestamps();
+
+            $table->softDeletes();
         });
     }
 
