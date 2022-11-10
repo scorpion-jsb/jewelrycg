@@ -720,15 +720,13 @@ class ServicesController extends Controller
         $order->payment_intent = $request->get('payment_intent');
         $order->save();
 
-        // $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
+        $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
 
-        // // Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
+        // Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
 
-        $request->session()->forget('order_id');
-        // // redirect to order details
-        // return view('service.checkout.order', ['order' => $order, 'requirements' => $requirements]);
-
-        return redirect()->route('services.order_detail', ['id' => $order->order_id]);
+        // $request->session()->forget('order_id');
+        // redirect to order details
+        return view('service.checkout.order', ['order' => $order, 'requirements' => $requirements]);
     }
 
     public function cancel(CancelCheckoutRequest $req)
