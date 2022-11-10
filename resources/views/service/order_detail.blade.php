@@ -243,7 +243,6 @@
                         </div>
                         @elseif ($order->status == 4)
                         <div class="col-md-12">
-                          Delivered
                         </div>
                         @elseif ($order->status == 5)
                         <div class="col-md-12">
