@@ -170,47 +170,32 @@
                                     </form>
                                     <div style="width: 10px"></div>
                                     @if ($order->revisions)
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageModal">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="collapse" data-bs-target="#messageModal">
                                         I'm not ready yet
                                     </button>
-                                    <div class="modal fade modal-lg" id="messageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-                                        <div class="modal-dialog">
-                                            <form action="{{ route('services.order_revision') }}" method="POST">
-                                                @csrf
-                                                <input type="hidden" name="order_id" value="{{$order->id}}">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h1 class="modal-title fs-5" id="messageModalLabel">Ask Revision</h1>
-                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                @csrf
-                                                                <div class="card col-md-12 mb-4">
-                                                                  <!-- End Header -->
-                                                                  <div class="card-body">
-                                                                      <input type="hidden" name="order_id" id="order_id" value="{{ $order->id }}" >
-                                                                      <div class="mb-2">
-                                                                          <label for="message" class="w-100 mb-2">Message</label>
-                                                                          <textarea name="message" id="message" rows="6" class="form-control">{{ old('message') }}</textarea>
-                                                                      </div>
-                                                                  </div>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                    <button type="submit" class="btn btn-primary">Submit Message</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-                                        </div>
-                                      </div>
                                     @endif
                                 </div>
                             </div>
+                        </div>
+                        <div class="collapse" id="messageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+                            <form action="{{ route('services.order_revision') }}" method="POST">
+                                @csrf
+                                <div class="card col-md-12 mb-4">
+                                    <div class="card-header">
+                                        What revisions would you like {{$seller->first_name . " " . $seller->last_name}} to make?
+                                    </div>
+                                    <!-- End Header -->
+                                    <div class="card-body">
+                                        <input type="hidden" name="order_id" id="order_id" value="{{ $order->id }}" >
+                                        <div class="mb-2">
+                                            <label for="message" class="w-100 mb-2">Message</label>
+                                            <textarea name="message" id="message" rows="6" class="form-control">{{ old('message') }}</textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Submit Message</button>
+                            </form>
                         </div>
                         @endif
                         
