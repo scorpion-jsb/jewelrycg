@@ -197,9 +197,9 @@
                                     <button type="submit" class="btn btn-primary">Submit Requirements</button> 
                                 </div>
                             </form>
-                            @endif
                           </div>
                         </div>
+                        @endif
                     </div>
                 </div>
             </div>
