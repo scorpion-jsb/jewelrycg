@@ -18,6 +18,7 @@ use App\Models\SellersWalletHistory;
 use App\Models\ServiceOrder;
 use App\Models\ServiceTags;
 use App\Models\Upload;
+use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -225,7 +226,28 @@ class SellerController extends Controller
             }
         });
 
-        return view('seller.services.orders.detail', ['order' => $order, 'answers' => $answers]);
+        $deliveries = OrderServiceDelivery::where('order_id', $order->id)->get();
+
+        $deliveries->each(function ($delivery) {
+            $attach_ids = explode(',', $delivery->attachment);
+            $attaches = [];
+
+            for ($i = 0; $i < count($attach_ids); $i++) {
+                $upload = Upload::findOrFail($attach_ids[$i]);
+                array_push($attaches, $upload);
+            }
+
+            $delivery->attaches = $attaches;
+        });
+
+        $buyer = User::with('uploads')->findOrFail($order->user_id);
+
+        return view('seller.services.orders.detail', [
+            'order' => $order,
+            'answers' => $answers,
+            'deliveries' => $deliveries,
+            'buyer' => $buyer,
+        ]);
     }
 
     public function service_order_deliver(DeliverRequest $request)
@@ -242,6 +264,7 @@ class SellerController extends Controller
         $delivery->order_id = $order_id;
         $delivery->message = $message;
         $delivery->attachment = $attach;
+        $delivery->direct = true;
         $delivery->save();
 
         return redirect()->back()->with("success", "Your service successfuly delivered!");

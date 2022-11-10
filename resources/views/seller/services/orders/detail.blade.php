@@ -124,6 +124,34 @@
                           </div>
                       </div>
                   </div>
+                  
+                  <div class="card mb-4">
+                    <div class="card-body">
+                      @foreach ($deliveries as $delivery)
+                      <div class="col">
+                        <div class="row">
+                          <div class="col-md-1">
+                            @if ($delivery->direct)
+                            <img src="{{ auth()->user()->uploads->getImageOptimizedFullName(150) }}" alt="avatar" style="width: 100%">
+                            @else
+                            <img src="{{ $buyer->uploads->getImageOptimizedFullName(150) }}" alt="avatar" style="width: 100%">
+                            @endif
+                          </div>
+                          <div class="col-md-11">{!! $delivery->message !!}</div>
+                        </div>
+                        <ul>
+                          @foreach ($delivery->attaches as $attach)
+                            <li>
+                              <a href="/uploads/all/{{ $attach->file_name }}" download>
+                                {{ $attach->file_original_name . "." . $attach->extension }}
+                              </a>
+                            </li>                    
+                          @endforeach
+                        </ul> 
+                      </div>
+                      @endforeach
+                    </div>
+                  </div>
               </div>
               <div class="col-3">
                   <div class="card mb-4 time-left">
@@ -168,6 +196,9 @@
                           <div class="col-md-12">
                             Delivered
                           </div>
+                          <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#deliverModal">
+                            Deliver again
+                          </button>
                           @elseif ($order->status == 5)
                           <div class="col-md-12">
                             Completed
@@ -194,8 +225,6 @@
                       </div>
                   </div>
               </div>
-          </div>
-          <div class="col col-md-12 p-5">
           </div>
 
           <div class="modal fade modal-lg" id="deliverModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="deliverModalLabel" aria-hidden="true">

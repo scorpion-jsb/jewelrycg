@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('message')->default('');
             $table->string('attachment')->default('');
             $table->dateTime('delivered_at');
+            $table->boolean('direct'); // true: deliver, false: return
             $table->timestamps();
         });
     }
