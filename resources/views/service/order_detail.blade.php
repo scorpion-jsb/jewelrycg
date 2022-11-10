@@ -59,9 +59,9 @@
                     <div class="card-body">
                         <h4 class="fw-700">Order Started</h4>
                         @if ($order->status == 0)
-                        <p class="p-0">Pending requirements in order to start job. Contact to <b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> and let them know to submit the requirements.</p>
+                        <p class="p-0">Pending requirements in order to start job. Please submite your requirement.</p>
                         @else
-                        <p class="p-0"><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> sent all the information you need so you can start working on this order. You got this!</p>
+                        <p class="p-0">Your order is in progress now. Please contact to <b>{{ $order->user->first_name . " " . $order->user->last_name }} if you have any question</b> </p>
                         @endif
                     </div>
                 </div>
@@ -69,12 +69,12 @@
                     <div class="card-body">
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
-                            <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> placed the order {{ date('F d, Y h:i A', strtotime($order->created_at)) }}</span>
+                            <span class="">You placed the order {{ date('F d, Y h:i A', strtotime($order->created_at)) }}</span>
                         </div>
                         @if ($order->status != 0)
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
-                            <span class=""><b>{{ $order->user->first_name . " " . $order->user->last_name }}</b> sent the requirements {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
+                            <span class="">You sent the requirements {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
                         </div>
 
                           @if (count($answers) > 0)
