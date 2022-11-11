@@ -226,7 +226,7 @@ class SellerController extends Controller
             }
         });
 
-        $deliveries = OrderServiceDelivery::where('order_id', $order->id)->get();
+        $deliveries = OrderServiceDelivery::with('revision')->where('order_id', $order->id)->get();
 
         $deliveries->each(function ($delivery) {
             $attach_ids = explode(',', $delivery->attachment);

@@ -826,15 +826,12 @@ class ServicesController extends Controller
 
         $seller = User::with('uploads')->findOrFail($order->service->user_id);
 
-        $revisions = OrderServiceRevisionRequest::where('order_id', $order->id)->get();
-
         return view('service.order_detail', [
             'order' => $order,
             'requirements' => $requirements,
             'answers' => $answers,
             'deliveries' => $deliveries,
             'seller' => $seller,
-            'revisions' => $revisions,
         ]);
     }
 
