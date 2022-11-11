@@ -112,7 +112,9 @@ class CourseController extends Controller
 
     public function update(Course $course, Request $request)
     {
-        $course->update($request->input());
+        $data = $request->input();
+        $data['price'] = $data['price'] * 100;
+        $course->update($data);
 
         return redirect()->back()->with("success", "Successfully changed!");
     }
