@@ -48,6 +48,10 @@ class CourseController extends Controller
         $courses = Course::with(['category', 'author'])
             ->orderBy('id', 'DESC')->get();
 
+        $courses->each(function ($course) {
+            $course->setPriceToFloat();
+        });
+
         return view('backend.course.courses.list', compact(
             'courses'
         ));

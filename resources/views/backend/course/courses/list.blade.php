@@ -56,7 +56,7 @@
                                 </td>
                                 <td>{{ $course->id }}</td>
                                 <td>{{ $course->name }}</td>
-                                <td>{{ $course->price }}</td>
+                                <td>${{ $course->price }}</td>
                                 <td>{{ $course->category_name }}</td>
                                 <td>{{ $course->author_name }}</td>
                                 <td>
