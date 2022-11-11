@@ -19,7 +19,7 @@
                             <div class="product-details-title px-2">
                                 <div class="fs-20 fw-600">{{ $product->name }}</div>
                                 <div class="link">
-                                    <span>farizzakky</span> <span> • Follow • Hire Us</span>
+                                    <span>{{ $product->user->username }}</span> <span> • Follow • Hire Us</span>
                                 </div>
                             </div>
                         </div>
