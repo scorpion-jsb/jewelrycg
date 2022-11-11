@@ -202,7 +202,12 @@
                             <i class="bi bi-clipboard-check p-1"></i>
                             <span class="">Your requested new revision on this delivery {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
                         </div>
-                        <div>{!! $delivery->revision->message !!}</div>
+                        <div class="card">
+                            <div class="card-header">Revision #{{$key + 1}}</div>
+                            <div class="card-body">
+                              <p>{!! $delivery->revision->message !!}</p>
+                            </div>
+                          </div>
                         @endif
                         @endforeach
                         
