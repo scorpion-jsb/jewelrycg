@@ -874,6 +874,7 @@ class ServicesController extends Controller
 
         $order = ServiceOrder::with('service')->where('id', $order_id)->where('user_id', Auth::id())->firstOrFail();
         $order->status = 2;
+        $order->revisions = $order->revisions - 1;
         $order->update();
 
         $seller = User::findOrFail($order->service->user_id);
