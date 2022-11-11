@@ -18,8 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->string('name');
             $table->string('slug');
-            $table->text('description');
-            $table->string('video_url');
+            $table->text('description')->nullable();
+            $table->string('video_url')->nullable();
             $table->integer('price');
             $table->integer('category_id');
             $table->integer('thumbnail')->nullable();
