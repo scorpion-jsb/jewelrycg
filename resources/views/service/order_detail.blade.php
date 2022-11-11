@@ -200,7 +200,11 @@
                         @else
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
-                            <span class="">Your requested new revision on this delivery {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
+                            <span class="">You requested a revision on this delivery {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Revision #</div>
+                            <div class="card-body">{!! $delivery->revision->message !!}</div>
                         </div>
                         <div class="card">
                             <div class="card-header">Revision #{{$key + 1}}</div>
