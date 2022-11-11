@@ -5,30 +5,26 @@ namespace App\Http\Controllers;
 use App\Http\Requests\CancelCheckoutRequest;
 use App\Http\Requests\PlaceOrderRequest;
 use App\Http\Requests\StorePaymentIntentRequest;
+use App\Mail\OrderPlacedMail;
 use App\Models\Country;
+use App\Models\Coupon;
+use App\Models\CouponUsageHistory;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\ProductsVariant;
+use App\Models\SellersWalletHistory;
+use App\Models\SettingGeneral;
 use App\Models\ShippingOption;
-use App\Models\ProductsTaxOption;
 use App\Models\User;
 use App\Models\UserAddress;
-use App\Models\SellersWalletHistory;
 use Auth;
 use Error;
 use Exception;
+use GeoIP;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
-use Stripe\Stripe;
-use App\Mail\OrderPlacedMail;
-use App\Models\Coupon;
-use App\Models\CouponUsageHistory;
-use GeoIP;
-
-use App\Models\SettingGeneral;
-use Illuminate\Support\Facades\Route;
-use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Route;
+use Stripe\Stripe;
 
 class CheckoutController extends Controller
 {
@@ -36,7 +32,7 @@ class CheckoutController extends Controller
     public function __construct()
     {
         $setting = SettingGeneral::first();
-        if($setting->guest_checkout != 1){
+        if ($setting->guest_checkout != 1) {
             $this->middleware(['checkout', 'verified']);
         }
     }
@@ -93,12 +89,12 @@ class CheckoutController extends Controller
                     $orderItem->product_variant = 0;
 
                     $total = $orderItem->price * $orderItem->quantity;
-                    
+
                     if (isset($item->options['id'])) {
                         $orderItem->product_variant = $item->options['id'];
 
                         // $productVariant = ProductsVariant::find($item->options['id']);
-                        $orderItem->product_variant_name = $item->options['name'];;
+                        $orderItem->product_variant_name = $item->options['name'];
                     }
 
                     $orderItem->save();
@@ -136,7 +132,7 @@ class CheckoutController extends Controller
                     if ($sub_total < $discount) {
                         $sub_total = 0;
                         $taxPrice = 0;
-                        $total =  $shipping_price;
+                        $total = $shipping_price;
                     } else {
                         $taxPrice = $taxPrice * ($sub_total - $discount) / $sub_total;
                         $total = $sub_total - $discount + $shipping_price + floor($taxPrice + 0.5);
@@ -149,7 +145,7 @@ class CheckoutController extends Controller
                 // Save order subtotal
                 $order->total = $sub_total;
 
-                // Save tax 
+                // Save tax
                 $order->tax_total = $taxPrice;
 
                 // Save grand total
@@ -158,12 +154,12 @@ class CheckoutController extends Controller
 
             $order->order_id = $orderId;
             $order->status_payment = 1;
-            if(auth()->user()){
+            if (auth()->user()) {
                 $order->user_id = auth()->id();
                 // $order->first_name = auth()->user()->first_name;
                 // $order->last_name = auth()->user()->last_name;
                 $order->email = auth()->user()->email;
-            }else{
+            } else {
                 $order->user_id = 0;
                 $order->email = $request->session()->get('billing_email');
             }
@@ -193,9 +189,9 @@ class CheckoutController extends Controller
                 CouponUsageHistory::createCouponUsageHistory($order);
             }
 
-            if(auth()->user()){
+            if (auth()->user()) {
                 Cart::erase(auth()->id());
-            }else{
+            } else {
                 Cart::erase($request->session()->get('order_id'));
             }
 
@@ -220,10 +216,10 @@ class CheckoutController extends Controller
         }
 
         try {
-            if(auth()->user()){
+            if (auth()->user()) {
                 $orderId = auth()->id() . strtoupper(uniqid());
                 $username = auth()->user()->first_name . " " . auth()->user()->last_name;
-            }else{
+            } else {
                 $orderId = '0' . strtoupper(uniqid());
                 $username = $req->session()->get('billing_firstname') . " " . $req->session()->get('billing_lastname');
             }
@@ -318,7 +314,7 @@ class CheckoutController extends Controller
         $orderId = $req->session()->get('order_id');
         $error = $req->error;
 
-        $order = Order::where('order_id',  $orderId)->first();
+        $order = Order::where('order_id', $orderId)->first();
 
         if ($req->buy_now_mode) {
             Cart::instance('buy_now');
@@ -327,9 +323,9 @@ class CheckoutController extends Controller
         }
 
         $order->restoreCartItems();
-        if(auth()->user()){
+        if (auth()->user()) {
             Cart::store(auth()->id());
-        }else{
+        } else {
             Cart::store($req->session()->get('order_id'));
         }
 
@@ -339,7 +335,6 @@ class CheckoutController extends Controller
 
             return response(null, 204);
         }
-
 
         $order->status_payment = 3;
         $order->payment_intent = $error['payment_intent']['id'];
@@ -367,23 +362,26 @@ class CheckoutController extends Controller
         $amount = 0;
         foreach ($order->items as $orderItem) {
             $seller = $orderItem->product->user->seller;
-            if($seller){
-                if($seller->sales_commission_rate){
-                    $amount = $orderItem->price * $orderItem->quantity * $seller->sales_commission_rate/100;
-                }else{
-                    $amount = $orderItem->price * $orderItem->quantity * SettingGeneral::value('default_sales_commission_rate')/100;
+            if ($seller) {
+                if ($seller->sales_commission_rate) {
+                    $amount = $orderItem->price * $orderItem->quantity * $seller->sales_commission_rate / 100;
+                } else {
+                    $amount = $orderItem->price * $orderItem->quantity * SettingGeneral::value('default_sales_commission_rate') / 100;
                 }
                 SellersWalletHistory::create([
-                    'user_id'   =>  $seller->user_id,
-                    'amount'    =>  $amount,
-                    'type'      =>  'add',
+                    'user_id' => $seller->user_id,
+                    'amount' => $amount,
+                    'type' => 'add',
                 ]);
+
+                $seller->wallet = $seller->wallet + $amount;
+                $seller->save();
             }
         }
         // Send order placed email to customer
-        if(auth()->user()){
+        if (auth()->user()) {
             Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
-        }else{
+        } else {
             Mail::to($request->session()->get('billing_email'))->send(new OrderPlacedMail($order));
         }
 
@@ -397,14 +395,14 @@ class CheckoutController extends Controller
         $countries = Country::all(['name', 'code']);
         $shippings = ShippingOption::all();
         $products = Cart::instance('default')->content();
-        if(auth()->user()){
-            $shipping_address = auth()->user()->address_shipping ?  (UserAddress::find(auth()->user()->address_shipping) ?? "NULL") : "NULL";
-        }else{
+        if (auth()->user()) {
+            $shipping_address = auth()->user()->address_shipping ? (UserAddress::find(auth()->user()->address_shipping) ?? "NULL") : "NULL";
+        } else {
             $shipping_address = "NULL";
         }
         $user_ip = request()->ip();
         $location = geoip()->getLocation($user_ip);
-        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout', 'shipping'=> $shipping_address, 'location'=> $location ]);
+        return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout', 'shipping' => $shipping_address, 'location' => $location]);
     }
 
     public function postShipping(Request $request)
@@ -425,7 +423,7 @@ class CheckoutController extends Controller
             $userAddress = UserAddress::find(auth()->user()->address_shipping);
             if ($userAddress) {
                 $userAddress->first_name = $request->first_name;
-                $userAddress->last_name = $request->last_name;         
+                $userAddress->last_name = $request->last_name;
                 $userAddress->address = $request->address1;
                 $userAddress->address2 = $request->address2;
                 $userAddress->city = $request->city;
@@ -435,8 +433,8 @@ class CheckoutController extends Controller
                 $userAddress->phone = $request->phone;
                 $userAddress->update();
                 $user = User::find(auth()->id());
-                $user->address_shipping =  $userAddress->id;
-                $user->save();                
+                $user->address_shipping = $userAddress->id;
+                $user->save();
             } else {
                 $userAddressInfo = UserAddress::create([
                     'user_id' => auth()->id(),
@@ -447,16 +445,16 @@ class CheckoutController extends Controller
                     'city' => $request->city,
                     'state' => $request->state,
                     'country' => $request->country,
-                    'postal_code' =>  $request->pin_code,
+                    'postal_code' => $request->pin_code,
                     'phone' => $request->phone,
                 ]);
-    
+
                 $user = User::find(auth()->id());
-                $user->address_shipping =  $userAddressInfo->id;
+                $user->address_shipping = $userAddressInfo->id;
                 $user->save();
             }
         }
-        
+
         return redirect()->route('checkout.billing.get');
     }
 
@@ -475,8 +473,8 @@ class CheckoutController extends Controller
         $countries = Country::all(['name', 'code']);
         $products = Cart::instance('default')->content();
         if (auth()->user()) {
-            $billing_address = auth()->user()->address_billing ?  (UserAddress::find(auth()->user()->address_billing) ?? "NULL" )  : "NULL";
-        }else{
+            $billing_address = auth()->user()->address_billing ? (UserAddress::find(auth()->user()->address_billing) ?? "NULL") : "NULL";
+        } else {
             $billing_address = "NULL";
         }
         $user_ip = request()->ip();
@@ -486,8 +484,8 @@ class CheckoutController extends Controller
             'products' => $products,
             'locale' => 'checkout',
             'isIncludeShipping' => $isIncludeShipping,
-            'billing'=> $billing_address,
-            'location'=> $location
+            'billing' => $billing_address,
+            'location' => $location,
         ]);
     }
 
@@ -503,14 +501,14 @@ class CheckoutController extends Controller
         $request->session()->put('billing_firstname', $request->first_name);
         $request->session()->put('billing_lastname', $request->last_name);
         $request->session()->put('coupon_id', $request->coupon_id);
-        if (! auth()->user()) {
+        if (!auth()->user()) {
             $request->session()->put('billing_email', $request->email);
         }
         if ($request->isRemember && auth()->user()) {
             $userAddress = UserAddress::find(auth()->user()->address_billing);
             if ($userAddress) {
                 $userAddress->first_name = $request->first_name;
-                $userAddress->last_name = $request->last_name;         
+                $userAddress->last_name = $request->last_name;
                 $userAddress->address = $request->address1;
                 $userAddress->address2 = $request->address2;
                 $userAddress->city = $request->city;
@@ -520,8 +518,8 @@ class CheckoutController extends Controller
                 $userAddress->phone = $request->phone;
                 $userAddress->update();
                 $user = User::find(auth()->id());
-                $user->address_shipping =  $userAddress->id;
-                $user->save();                      
+                $user->address_shipping = $userAddress->id;
+                $user->save();
             } else {
                 $userAddressInfo = UserAddress::create([
                     'user_id' => auth()->id(),
@@ -532,12 +530,12 @@ class CheckoutController extends Controller
                     'city' => $request->city,
                     'state' => $request->state,
                     'country' => $request->country,
-                    'postal_code' =>  $request->pin_code,
+                    'postal_code' => $request->pin_code,
                     'phone' => $request->phone,
                 ]);
-    
+
                 $user = User::find(auth()->id());
-                $user->address_billing =  $userAddressInfo->id;
+                $user->address_billing = $userAddressInfo->id;
                 $user->save();
             }
         }
@@ -564,14 +562,15 @@ class CheckoutController extends Controller
 
         $products = Cart::instance($instance)->content();
         return view('checkout.payment')->with([
-            'products'          => $products,
-            'locale'            => 'checkout',
+            'products' => $products,
+            'locale' => 'checkout',
             'isIncludeShipping' => $isIncludeShipping,
-            'coupon_id'         => $coupon_id
+            'coupon_id' => $coupon_id,
         ]);
     }
 
-    public function checkCoupon(Request $request) {
+    public function checkCoupon(Request $request)
+    {
         $coupon_code = $request->coupon_code;
         $arrCouponInfo = Coupon::getCouponByUser($coupon_code);
         $coupon = $arrCouponInfo['coupon'];
@@ -579,8 +578,8 @@ class CheckoutController extends Controller
 
         if ($coupon == null) {
             $result = array(
-                'result'    => false,
-                'message'   => $message
+                'result' => false,
+                'message' => $message,
             );
 
             return $result;
@@ -588,7 +587,7 @@ class CheckoutController extends Controller
 
         $result = array(
             'coupon' => $coupon,
-            'result' => true
+            'result' => true,
         );
 
         return $result;
