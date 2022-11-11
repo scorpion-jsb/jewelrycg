@@ -343,6 +343,8 @@
 @section('js')
 <script src="{{ asset('dropzone/js/dropzone.js') }}"></script>
 <script>
+    $('#message').trumbowyg();
+
     var countDownDate = new Date("{{ $order->original_delivery_time }}").getTime()
 
     function padLeadingZeros(num, size) {
