@@ -173,7 +173,7 @@
                                     <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageModal">
                                         I'm not ready yet
                                     </button>
-                                    <div class="modal fade" id="messageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+                                    <div class="modal fade modal-lg" id="messageModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
                                             <form action="{{ route('services.order_revision') }}" method="POST">
                                                 @csrf
