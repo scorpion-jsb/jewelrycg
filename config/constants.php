@@ -18,6 +18,7 @@ return [
         'Revision',
         'Canceled',
         'Delivered',
+        'Completed',
     ],
     'oder_payment_status' => [
         '',
