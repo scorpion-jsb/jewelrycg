@@ -130,24 +130,45 @@
                           </div>
                           @endif
 
-                          @foreach ($deliveries as $key => $delivery)
-                          <div class="card">
-                            <div class="card-header">Deliver #{{$key + 1}}</div>
+                          
+                        @foreach ($deliveries as $key => $delivery)
+                        <div class="card">
+                          <div class="card-header">Deliver #{{$key + 1}}</div>
+                          <div class="card-body">
+                            <p>{!! $delivery->message !!}</p>
+                            <ul>
+                              @foreach ($delivery->attaches as $attach)
+                                <li>
+                                  <a href="/uploads/all/{{ $attach->file_name }}" download>
+                                    {{ $attach->file_original_name . "." . $attach->extension }}
+                                  </a>
+                                </li>                    
+                              @endforeach
+                            </ul> 
+                          </div>
+                        </div>
+
+                        @if ($delivery->revision)
+                        <div class="timeline-item pb-3 mb-3 border-bottom">
+                            <i class="bi bi-clipboard-check p-1"></i>
+                            <span class="">{{$buyer->first_name . " " . $buyer->last_name}} requested a revision on this delivery {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">Revision #{{$key + 1}}</div>
                             <div class="card-body">
-                              <p>{!! $delivery->message !!}</p>
-                              <ul>
-                                @foreach ($delivery->attaches as $attach)
-                                  <li>
-                                    <a href="/uploads/all/{{ $attach->file_name }}" download>
-                                      {{ $attach->file_original_name . "." . $attach->extension }}
-                                    </a>
-                                  </li>                    
-                                @endforeach
-                              </ul> 
+                              <p>{!! $delivery->revision->message !!}</p>
                             </div>
                           </div>
-                          @endforeach
-
+                        @endif
+                        @endforeach
+                        
+                        @if ($order->status == 5)
+                        <div class="timeline-item pb-3 mb-3 border-bottom">
+                            <i class="bi bi-clipboard-check p-1"></i>
+                            <span class="">Your approved delivery at {{ date('F d, Y h:i A', strtotime($order->updated_at)) }}. Order completed</span>
+                        </div>
+                        <a href="/service/review/{{$order->order_id}}">Leave a review</a>
+                        @endif
                       </div>
                   </div>
                   
