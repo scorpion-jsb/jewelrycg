@@ -20,4 +20,9 @@ class OrderServiceDelivery extends Model
     {
         return $this->belongsTo(ServiceOrder::class, 'order_id', 'id');
     }
+
+    public function revision()
+    {
+        return $this->hasOne(OrderServiceRevisionRequest::class, 'delivery_id', 'id');
+    }
 }

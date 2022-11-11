@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedInteger("order_id");
             $table->unsignedInteger("user_id");
+            $table->unsignedInteger("delivery_id");
             $table->text("message");
             $table->timestamps();
         });

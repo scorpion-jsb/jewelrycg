@@ -808,7 +808,7 @@ class ServicesController extends Controller
             }
         });
 
-        $deliveries = OrderServiceDelivery::where('order_id', $order->id)->get();
+        $deliveries = OrderServiceDelivery::with('revision')->where('order_id', $order->id)->get();
 
         $deliveries->each(function ($delivery) {
             $attach_ids = explode(',', $delivery->attachment);
@@ -826,7 +826,16 @@ class ServicesController extends Controller
 
         $seller = User::with('uploads')->findOrFail($order->service->user_id);
 
-        return view('service.order_detail', ['order' => $order, 'requirements' => $requirements, 'answers' => $answers, 'deliveries' => $deliveries, 'seller' => $seller]);
+        $revisions = OrderServiceRevisionRequest::where('order_id', $order->id)->get();
+
+        return view('service.order_detail', [
+            'order' => $order,
+            'requirements' => $requirements,
+            'answers' => $answers,
+            'deliveries' => $deliveries,
+            'seller' => $seller,
+            'revisions' => $revisions,
+        ]);
     }
 
     public function dashboard()
@@ -871,6 +880,7 @@ class ServicesController extends Controller
     public function order_revision(Request $request)
     {
         $order_id = $request->order_id;
+        $delivery_id = $request->delivery_id;
 
         $order = ServiceOrder::with('service')->where('id', $order_id)->where('user_id', Auth::id())->firstOrFail();
         $order->status = 2;
@@ -882,6 +892,7 @@ class ServicesController extends Controller
         $revision = new OrderServiceRevisionRequest();
         $revision->order_id = $order_id;
         $revision->user_id = Auth::id();
+        $revision->delivery_id = $delivery_id;
         $revision->message = $request->message ? $request->message : "";
         $revision->save();
 
