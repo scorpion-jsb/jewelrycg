@@ -203,10 +203,6 @@
                             <span class="">You requested a revision on this delivery {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
                         </div>
                         <div class="card">
-                            <div class="card-header">Revision #</div>
-                            <div class="card-body">{!! $delivery->revision->message !!}</div>
-                        </div>
-                        <div class="card">
                             <div class="card-header">Revision #{{$key + 1}}</div>
                             <div class="card-body">
                               <p>{!! $delivery->revision->message !!}</p>
