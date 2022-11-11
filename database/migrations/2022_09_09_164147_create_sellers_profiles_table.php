@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('sellers_profile', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id');
-            $table->integer('wallet')->nullable();
+            $table->integer('wallet')->default(0);
             $table->integer('sales_commission_rate')->nullable();
             $table->text('slogan')->nullable();
             $table->text('about');
