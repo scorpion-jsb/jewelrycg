@@ -8,7 +8,7 @@
                           <div class="logo py-4 fw-800 fs-24">#JEWELRYCG</div>
                           <nav class="pb-4" aria-label="breadcrumb">
                               <ol class="breadcrumb">
-                                  <li class="breadcrumb-item"><a href="/services/{{ $package->service->id }}">Services</a></li>
+                                  <li class="breadcrumb-item"><a href="/services/{{ $package->service->slug }}">Services</a></li>
                                   <li class="breadcrumb-item" aria-current="page"><a href="services/checkout/{{$package->id}}/">Billing</a></li>
                                   <li class="breadcrumb-item active" aria-current="page">Payment</li>
                               </ol>

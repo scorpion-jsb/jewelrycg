@@ -61,9 +61,9 @@ class ServicesController extends Controller
         ]);
     }
 
-    public function detail($id)
+    public function detail($slug)
     {
-        $data = ServicePost::with(['thumb', 'categories.category', 'postauthor.uploads', 'seller', 'packages', 'tags.tag'])->findOrFail($id);
+        $data = ServicePost::with(['thumb', 'categories.category', 'postauthor.uploads', 'seller', 'packages', 'tags.tag'])->where('slug', $slug)->firstOrFail();
         $gallery_ids = explode(',', $data->gallery);
 
         $galleries = [];

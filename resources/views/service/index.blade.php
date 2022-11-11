@@ -45,7 +45,7 @@
                             <div class="chip ms-3">{{ count($service->packages) ? "$".$service->packages[0]->price : "..." }}</div>
                           </li>
                         </ul>
-                        <a href="/services/{{$service->id}}" class="btn btn-primary">Details</a>
+                        <a href="/services/{{$service->slug}}" class="btn btn-primary">Details</a>
                       </div>
                     </div>
                   </div>

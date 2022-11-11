@@ -38,6 +38,16 @@
                             @endforeach
                         </select>
                     </div>
+                    
+                    <div class="mb-2">
+                        <label for="txtDescription" class="w-100 mb-2">Description:</label>
+                        <textarea type="text" name="description" id="txtDescription" class="form-control">{{ old('description') }}</textarea>
+                    </div>
+                    
+                    <div class="mb-2">
+                        <label for="videoUrl" class="w-100 mb-2">Video Url:</label>
+                        <input type="text" name="video_url" id="videoUrl" value="{{ old('video_url') }}" class="form-control">
+                    </div>
                 </div>
             </div>
         </div>
@@ -92,6 +102,8 @@
 @section('js_content')
 <script>
 $(document).ready(function() {
+    $('#txtDescription').trumbowyg();
+
     $(".imgAdd").click(function() {
         $(this).closest(".row").find('.imgAdd').before(
             '<div class="col-sm-2 imgUp"><div class="imagePreview"></div><label class="btn btn-primary">Upload<input type="file" class="uploadFile img" value="Upload Photo" style="width:0px;height:0px;overflow:hidden;"></label><i class="fa fa-times del"></i></div>'
