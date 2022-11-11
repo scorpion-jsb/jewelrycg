@@ -55,7 +55,6 @@
                                             <div class="item-meta text-nowrap mb-2">
                                                 {{ $course->name }}
                                             </div>
-                                            {{-- <div class="item-meta mb-2"><span class="fw-800">Price:</span> ${{ number_format($package->price, 2, ".", ",") }}</div> --}}
                                             <div class="item-meta mb-2"><span class="fw-800">Price:</span> {{ number_format($course->price/100, 2) }}</div>
                                             <div class="item-meta mb-2"><span class="fw-800">Lessons:</span> {{ count($course->lessons) }}</div>
                                         </div>
