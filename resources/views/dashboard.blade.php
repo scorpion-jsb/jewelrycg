@@ -93,7 +93,7 @@
                                     <div class="card-body">
                                         <img src="{{ $item->service->thumb->getImageOptimizedFullName(400) }}"
                                         alt="" style="width: 100%;" class="mb-3 pb-3 border-bottom">
-                                        <a href="/services/{{ $item->service_id }}">
+                                        <a href="/services/{{ $item->slug }}">
                                             <h6>{{ $item->service->name }} - {{ $item->package_name }}</h6>
                                         </a>
                                         {{-- <a class="btn btn-primary" id="download" href="{{ url('/product/download/') . $item->id }}">

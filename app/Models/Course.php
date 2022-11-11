@@ -10,12 +10,12 @@ class Course extends Model
 {
     use HasFactory, FormatPrices;
 
-    protected $fillable= [
-        'user_id', 'name', 'slug', 'price', 'category_id', 'thumbnail'
+    protected $fillable = [
+        'user_id', 'name', 'slug', 'price', 'description', 'video_url', 'category_id', 'thumbnail',
     ];
 
     protected $appends = [
-        'category_name', 'author_name'
+        'category_name', 'author_name',
     ];
 
     /**
@@ -23,7 +23,7 @@ class Course extends Model
      */
     public function getCategoryNameAttribute()
     {
-        return $this->category?->category_name; 
+        return $this->category?->category_name;
     }
 
     /**
@@ -37,35 +37,38 @@ class Course extends Model
             return '';
         }
 
-        return $author->first_name . ' ' . $author->last_name; 
+        return $author->first_name . ' ' . $author->last_name;
     }
 
     /**
      * Get category with course
      */
-    public function category(){
+    public function category()
+    {
         return $this->belongsTo(CourseCategory::class);
     }
 
     /**
      * Get category with course
      */
-    public function author(){
+    public function author()
+    {
         return $this->belongsTo(User::class, 'user_id');
     }
 
     /**
      * Get lesson associate with course
      */
-    public function lessons(){
+    public function lessons()
+    {
         return $this->hasMany(CourseLesson::class, 'course_id');
     }
 
     public function uploads()
     {
-        return $this->belongsTo(Upload::class, 'thumbnail' , 'id')->withDefault([
+        return $this->belongsTo(Upload::class, 'thumbnail', 'id')->withDefault([
             'file_name' => "none.png",
-            'id' => null
+            'id' => null,
         ]);
     }
 }

@@ -16,6 +16,11 @@
     <div class="row">
         <div class="col-md-8">
             <div class="card col-md-12 mb-4">
+                @if (session('success'))
+                  <h4 class="text-center text-primary mt-3">
+                      {{session('success')}}
+                  </h4>
+                @endif
                 <!-- Header -->
                 <div class="card-header">
                     <h4 class="card-header-title mb-0">Course information</h4>
@@ -47,6 +52,16 @@
                                 >{{$category->category_name}}</option>
                             @endforeach
                         </select>
+                    </div>   
+
+                    <div class="mb-2">
+                        <label for="txtDescription" class="w-100 mb-2">Description:</label>
+                        <textarea type="text" name="description" id="txtDescription" class="form-control">{{ $course->description }}</textarea>
+                    </div>
+                    
+                    <div class="mb-2">
+                        <label for="videoUrl" class="w-100 mb-2">Video Url:</label>
+                        <input type="text" name="video_url" id="videoUrl" value="{{ $course->video_url }}" class="form-control">
                     </div>
                 </div>
             </div>
@@ -105,6 +120,8 @@
 @section('js_content')
 <script>
 $(document).ready(function() {
+    $('#txtDescription').trumbowyg();
+
     $(".imgAdd").click(function() {
         $(this).closest(".row").find('.imgAdd').before(
             '<div class="col-sm-2 imgUp">'
