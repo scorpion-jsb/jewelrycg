@@ -16,7 +16,6 @@
         "laravel/sanctum": "^2.14.1",
         "laravel/tinker": "^2.7",
         "laravel/ui": "^3.4",
-        "mckenziearts/laravel-notify": "^2.3",
         "spatie/laravel-image-optimizer": "^1.7",
         "stripe/stripe-php": "^8.6",
         "torann/geoip": "^3.0",

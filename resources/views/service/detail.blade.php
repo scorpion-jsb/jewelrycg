@@ -80,12 +80,12 @@
               </div>
               @foreach ($service->packages as $package)
               <div class="col-span-5 col-md-3">
-                <h3>${{number_format($package->price / 100, 2)}}</h3>
+                <h3>${{number_format($package->price, 2)}}</h3>
                 <h4>{{$package->name}}</h4>
                 <p>{{$package->description}}</p>
                 <p>{{$package->delivery_time}}</p>
                 <p>{{$package->revisions}}</p>
-                <a href="/services/checkout/{{$package->id}}" type="button" class="btn btn-info">Continue(${{number_format($package->price / 100, 2)}})</a>
+                <a href="/services/checkout/{{$package->id}}" type="button" class="btn btn-info">Continue(${{number_format($package->price, 2)}})</a>
               </div>
               @endforeach
             </div>

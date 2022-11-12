@@ -85,7 +85,7 @@
         $(function() {
             var totalPrice = parseFloat($('#total_price').text().split('$')[1].trim().replaceAll(',', '')) * 1 - parseFloat($('#shipping_price').text().split('$')[
                 1].trim().replaceAll(',', '')) * 1;
-            $('input.shipping_option').change(function() {
+            $('.shipping_option').click(function() {
                 var shippingPrice = $(this).attr('data-price');
 
                 $('#shipping_price').text(`$${shippingPrice}`);
@@ -94,12 +94,7 @@
                     `$${parseFloat((Math.round((totalPrice + shippingPrice * 1) * 100) / 100).toFixed(2)).toLocaleString()}`);
             })
 
-            var shippingPrice = $('#option0').attr('data-price');
-
-            $('#shipping_price').text(`$${shippingPrice}`);
-
-            $('#total_price').text(
-                `$${parseFloat((Math.round((totalPrice + shippingPrice * 1) * 100) / 100).toFixed(2)).toLocaleString()}`);
+            $('#option0').click();
         })
     </script>
 </x-guest-layout>

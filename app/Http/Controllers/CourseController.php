@@ -345,24 +345,6 @@ class CourseController extends Controller
         $order->payment_intent = $request->get('payment_intent');
         $order->save();
 
-        $amount = 0;
-        $seller = $order->user->seller;
-        if ($seller) {
-            if ($seller->sales_commission_rate) {
-                $amount = $order->price * $seller->sales_commission_rate / 100;
-            } else {
-                $amount = $order->price * SettingGeneral::value('default_sales_commission_rate') / 100;
-            }
-            SellersWalletHistory::create([
-                'user_id' => $seller->user_id,
-                'amount' => $amount,
-                'type' => 'add',
-            ]);
-
-            $seller->wallet = $seller->wallet + $amount;
-            $seller->save();
-        }
-
         // Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
 
         // $request->session()->forget('order_id');

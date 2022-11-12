@@ -350,7 +350,7 @@ class ServicesController extends Controller
                     $lasts[$i]['name'] = $data['name'][$i];
                     $lasts[$i]['service_id'] = $data['service_id'];
                     $lasts[$i]['description'] = $data['description'][$i];
-                    $lasts[$i]['price'] = $data['price'][$i] * 100;
+                    $lasts[$i]['price'] = $data['price'][$i];
                     $lasts[$i]['revisions'] = $data['revisions'][$i];
                     $lasts[$i]['delivery_time'] = $data['delivery_time'][$i];
                     $lasts[$i]->save();
@@ -366,7 +366,7 @@ class ServicesController extends Controller
                     $lasts[$i]['name'] = $data['name'][$i];
                     $lasts[$i]['service_id'] = $data['service_id'];
                     $lasts[$i]['description'] = $data['description'][$i];
-                    $lasts[$i]['price'] = $data['price'][$i] * 100;
+                    $lasts[$i]['price'] = $data['price'][$i];
                     $lasts[$i]['revisions'] = $data['revisions'][$i];
                     $lasts[$i]['delivery_time'] = $data['delivery_time'][$i];
                     $lasts[$i]->save();
@@ -380,7 +380,7 @@ class ServicesController extends Controller
                     $newPackage['name'] = $data['name'][$i];
                     $newPackage['service_id'] = $data['service_id'];
                     $newPackage['description'] = $data['description'][$i];
-                    $newPackage['price'] = $data['price'][$i] * 100;
+                    $newPackage['price'] = $data['price'][$i];
                     $newPackage['revisions'] = $data['revisions'][$i];
                     $newPackage['delivery_time'] = $data['delivery_time'][$i];
                     $newPackage->save();
@@ -611,7 +611,7 @@ class ServicesController extends Controller
             $arrCouponInfo = Coupon::getCouponByUser($coupon_code);
             $coupon = $arrCouponInfo['coupon'];
 
-            $sub_total = $package->price;
+            $sub_total = $package->price * 100;
             if ($coupon == null) {
                 $shipping_option_id = $req->session()->get('shipping_option_id', 0);
 
@@ -720,24 +720,6 @@ class ServicesController extends Controller
         $order->status_payment = 2; // paid
         $order->payment_intent = $request->get('payment_intent');
         $order->save();
-
-        $amount = 0;
-        $seller = $order->user->seller;
-        if ($seller) {
-            if ($seller->sales_commission_rate) {
-                $amount = $order->package_price * $seller->sales_commission_rate / 100;
-            } else {
-                $amount = $order->package_price * SettingGeneral::value('default_sales_commission_rate') / 100;
-            }
-            SellersWalletHistory::create([
-                'user_id' => $seller->user_id,
-                'amount' => $amount,
-                'type' => 'add',
-            ]);
-
-            $seller->wallet = $seller->wallet + $amount;
-            $seller->save();
-        }
 
         // $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
 

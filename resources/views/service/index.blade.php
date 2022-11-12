@@ -42,7 +42,7 @@
                         <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-2">
                           <li>Start Price:</li>
                           <li>
-                            <div class="chip ms-3">{{ count($service->packages) ? "$".($service->packages[0]->price / 100) : "..." }}</div>
+                            <div class="chip ms-3">{{ count($service->packages) ? "$".$service->packages[0]->price : "..." }}</div>
                           </li>
                         </ul>
                         <a href="/services/{{$service->slug}}" class="btn btn-primary">Details</a>
