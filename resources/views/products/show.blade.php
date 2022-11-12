@@ -243,19 +243,25 @@
 
                                 <input type="hidden" name="id_product" value="{{ $product->id }}">
 
-                                <button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"
-                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1 && $product->buyable) || count($variants) > 0 ? 'disabled' : null }}  id="add_to_cart_btn">
-                                    <div class="loader-container">
-                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                        Adding ...
-                                    </div>
-                                    <div class="orginal-name">Add to Cart</div>
-                                </button>
+                                <div id="btn-group">
+                                    @if (count($variants) > 0 || $product->buyable)
+                                    <button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"
+                                        {{ ($product->is_trackingquantity == 1 && $product->quantity < 1 && $product->buyable) || count($variants) > 0 ? 'disabled' : null }}  id="add_to_cart_btn">
+                                        <div class="loader-container">
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                            Adding ...
+                                        </div>
+                                        <div class="orginal-name">Add to Cart</div>
+                                    </button>
 
-                                <button type="submit" formaction="{{ route('cart.buy.now') }}"
-                                    class="btn btn-success shadow-md mt-4"
-                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1 && $product->buyable) || count($variants) > 0 ? 'disabled' : null }}
-                                    id="buy_now_btn">Buy Now</button>
+                                    <button type="submit" formaction="{{ route('cart.buy.now') }}"
+                                        class="btn btn-success shadow-md mt-4"
+                                        {{ ($product->is_trackingquantity == 1 && $product->quantity < 1 && $product->buyable) || count($variants) > 0 ? 'disabled' : null }}
+                                        id="buy_now_btn">Buy Now</button>
+                                    @else
+                                    <a type="button" class="btn btn-primary" download>Download</a>
+                                    @endif
+                                </div>
                             </form>
                         </div>
 
@@ -420,18 +426,29 @@
                     selectedAttributeValue.push(value)
             })
 
-            console.log(selectedAttributeValue, selectedAttributeCount);
-
             if (selectedAttributeValue.length == selectedAttributeCount) {
                 $('#buy_now_btn, #add_to_cart_btn').removeAttr('disabled');
             }
             variants.forEach(function(variant) {
                 if (variant.id == selectedAttributeValue.sort().join(',')) {
-                    console.log(variant);
                     if (variant.buyable) {
+                        $('#btn-group').html('<button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"  id="add_to_cart_btn">\
+                                        <div class="loader-container">\
+                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\
+                                            Adding ...\
+                                        </div>\
+                                        <div class="orginal-name">Add to Cart</div>\
+                                    </button>\
+                                    <button type="submit" formaction="{{ route('cart.buy.now') }}"\
+                                        class="btn btn-success shadow-md mt-4" id="buy_now_btn">Buy Now</button>');
+                        
+                        $('.loader-container').hide();
+
                         $('#variant_attribute_value').val(variant.id)
                         $('.product_price').text('$' + parseFloat((variant.price / 100).toFixed(2)).toLocaleString())
                     } else {
+                        console.log($('#btn-group'));
+                        $('#btn-group').html('<a type="button" class="btn btn-primary" download>Download</a>');
                         $('#buy_now_btn, #add_to_cart_btn').attr('disabled', true);
                     }
                 }
