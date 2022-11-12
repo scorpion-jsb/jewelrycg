@@ -73,7 +73,7 @@
                                                 <i class="bi bi-download mr-10px"></i> Download</a>
                                         @endif
                                     @else
-                                        @if ($item->product->digital_download_assets == null)
+                                        @if (!$item->product->digital_download_assets)
                                             File unavailable. Please contact support.
                                         @else
                                             <a href="javascript:;" class="product_download btn btn-sm btn-primary"

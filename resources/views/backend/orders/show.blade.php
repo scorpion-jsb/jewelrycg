@@ -74,7 +74,7 @@
                                 data-product-digital-assets="{{ $item->product->digital_download_assets }}">
                                 @if ($item->product->is_digital)
                                     @if ($item->productVariant)
-                                        @if ($item->productVariant->asset == null || $item->productVariant->asset->file_name == 'none')
+                                        @if (!$item->productVariant->asset || $item->productVariant->asset->file_name == 'none')
                                             <span class="fs-14 badge bg-danger">No digital asset attached</span>
                                         @else
                                             <span class="fs-14 badge bg-success">Digital asset attached</span>
@@ -90,7 +90,7 @@
                                                 value="{{ $item->productVariant->digital_download_assets }}">
                                         </div>
                                     @else
-                                        @if ($item->product->digital_download_assets == null)
+                                        @if (!$item->product->digital_download_assets)
                                             <span class="fs-14 badge bg-danger">No digital asset attached</span>
                                         @else
                                             <span class="fs-14 badge bg-success">Digital asset attached</span>
