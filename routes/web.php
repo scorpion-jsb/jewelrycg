@@ -45,12 +45,15 @@ use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\FFileManagerController;
 use App\Http\Controllers\MembershipController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\UriController;
 use App\Http\Controllers\UserController;
+
+// notification
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -386,6 +389,8 @@ Route::get('/', [AppController::class, 'index'])->name('index');
 Route::group(['middleware' => ['auth']], function () {
     // User Dashboard
     Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
+
+    Route::resource('notifications', NotificationController::class);
 });
 
 //services
