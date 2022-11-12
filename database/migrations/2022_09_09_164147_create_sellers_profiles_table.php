@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('wallet')->default(0);
             $table->integer('sales_commission_rate')->nullable();
             $table->text('slogan')->nullable();
-            $table->text('about');
+            $table->text('about')->nullable();
             $table->timestamps();
         });
     }
