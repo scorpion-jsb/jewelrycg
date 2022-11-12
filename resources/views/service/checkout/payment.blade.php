@@ -63,12 +63,11 @@
                                             <div class="item-meta text-nowrap mb-2">
                                                 {{$package->service->name}} ({{ $package->name }})
                                             </div>
-                                            {{-- <div class="item-meta mb-2"><span class="fw-800">Price:</span> ${{ number_format($package->price, 2, ".", ",") }}</div> --}}
                                             <div class="item-meta mb-2"><span class="fw-800">Delivery Time:</span> {{ $package->delivery_time }} days</div>
                                             <div class="item-meta mb-2"><span class="fw-800">Revisions:</span> {{ $package->revisions }}</div>
                                         </div>
                                         <div class="col-1 text-right">
-                                            <span class="text-primary fw-800">${{ number_format($package->price, 2, ".", ",") }}</span>
+                                            <span class="text-primary fw-800">${{ number_format($package->price / 100, 2, ".", ",") }}</span>
                                         </div>
                                     </div>
                                 </div>
@@ -80,7 +79,7 @@
                                         </div>
                                         <div class="col-auto ml-auto text-right">
                                             <span class="fw-800" id="spnSubTotalPrice">
-                                                ${{ number_format($package->price, 2, '.', ',') }}
+                                                ${{ number_format($package->price / 100, 2, '.', ',') }}
                                             </span>
                                         </div>
                                     </div>
@@ -134,7 +133,7 @@
                                         </div>
                                         <div class="col-auto ml-auto text-right">
                                             <span class="fw-800 text-primary" id="spnTotalPrice">
-                                                ${{number_format($package->price, 2, ".", ",")}}
+                                                ${{number_format($package->price / 100, 2, ".", ",")}}
                                             </span>
                                         </div>
                                     </div>

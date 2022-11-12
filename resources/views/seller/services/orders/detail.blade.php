@@ -249,7 +249,7 @@
                           </div>
                           <div class="d-flex flex-row mb-1 justify-content-between">
                               <span>Total Price</span>
-                              <span>${{ number_format($order->package_price, 2) }}</span>
+                              <span>${{ number_format($order->package_price / 100, 2) }}</span>
                           </div>
                           <div class="d-flex flex-row mb-1 justify-content-between">
                               <span>Order Number</span>

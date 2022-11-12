@@ -21,6 +21,7 @@ class AppController extends Controller
 {
     public function index()
     {
+        notify()->success('Welcome to our site ⚡️');
         //$products = cache()->remember('todays-deals', 60*60*24, fn() => Product::getTodaysDeals());
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->paginate(24);
         $products->each(function ($product) {
