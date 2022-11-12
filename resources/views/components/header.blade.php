@@ -102,11 +102,8 @@
                     <a class="auth-btn auth-primary" href="{{ route('signup') }}">Sign Up</a>
                 </li>
                 @endauth
-                <x:notify-messages />
-                @notifyJs
             </ul>
             <!--end right nav-->
-
         </div>
     </nav>
 </header>
