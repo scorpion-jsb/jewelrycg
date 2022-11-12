@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\SearchProductRequest;
 use App\Models\Attribute;
 use App\Models\Order;
+use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\ProductMaterial;
 use App\Models\ProductsCategorie;
@@ -141,6 +142,28 @@ class ProductController extends Controller
         $variants = ProductsVariant::where('product_id', $product->id)->get();
         $maxPrice = ProductsVariant::where('product_id', $product->id)->max('variant_price') / 100;
         $minPrice = ProductsVariant::where('product_id', $product->id)->min('variant_price') / 100;
+
+        if ($product->is_digital) {
+            $order_item_count = OrderItem::whereHas('order', fn($query) => $query->where('user_id', Auth::id()))->where('product_id', $product->id)->where('product_variant_name', '')->count();
+
+            if ($order_item_count > 0) {
+                $product->buyable = false;
+            } else {
+                $product->buyable = true;
+            }
+
+            $variants->each(function ($variant) {
+                $order_item_count = OrderItem::whereHas('order', fn($query) => $query->where('user_id', Auth::id()))->where('product_id', $variant->product_id)->where('product_variant', $variant->id)->count();
+
+                if ($order_item_count > 0) {
+                    $variant->buyable = false;
+                } else {
+                    $variant->buyable = true;
+                }
+            });
+        } else {
+            $product->buyable = true;
+        }
 
         ////////////////////////////////////////////////////////////////////////////////////////////////
         // Product Review Info
