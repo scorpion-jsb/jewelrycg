@@ -259,7 +259,13 @@
                                         {{ ($product->is_trackingquantity == 1 && $product->quantity < 1 && $product->buyable) || count($variants) > 0 ? 'disabled' : null }}
                                         id="buy_now_btn">Buy Now</button>
                                     @else
-                                    <a type="button" class="btn btn-primary" download>Download</a>
+                                        @if (!$product->digital_download_assets)
+                                            Your already bought this product, but file unavailable. Please contact support.
+                                        @else
+                                            <a href="javascript:;" class="product_download btn btn-sm btn-primary"
+                                                data-product-id="{{ $product->id }}">
+                                                <i class="bi bi-download mr-10px"></i> Download</a>
+                                        @endif
                                     @endif
                                 </div>
                             </form>
@@ -398,21 +404,17 @@
                 });
                 e.preventDefault();
             });
+            
+            $(".product_download").click(function() {
+                document.location.replace("{{ url('product/download') }}" + "?product_id=" + $(this).attr(
+                    'data-product-id'));
+            });
         });
 
-        var variants = [];
         $('.loader-container').hide();
 
-        @foreach ($variants as $variant)
-            var ids = '{{ $variant->variant_attribute_value }}';
-            ids = ids.split(',');
+        var variants = {!! json_encode($variants) !!};;
 
-            variants.push({
-                id: ids.sort().join(','),
-                price: '{{ $variant->variant_price }}',
-                buyable: {!! $variant->buyable ? "true" : "false" !!}
-            })
-        @endforeach
         $('.attribute-radio').click(function() {
             var selectedAttributeValue = [];
             var selectedAttributeCount = 0;
@@ -447,8 +449,18 @@
                         $('#variant_attribute_value').val(variant.id)
                         $('.product_price').text('$' + parseFloat((variant.price / 100).toFixed(2)).toLocaleString())
                     } else {
-                        console.log($('#btn-group'));
-                        $('#btn-group').html('<a type="button" class="btn btn-primary" download>Download</a>');
+                        if (!variant?.asset || !variant?.asset?.file_name) {
+                            $('#btn-group').html('Your already bought this product, but file unavailable. Please contact support.')
+                        } else {
+                            $('#btn-group').html(`<a href="javascript:;" class="variant_download btn btn-sm btn-primary"
+                                                data-variant-id="${variant.id}">
+                                                <i class="bi bi-download mr-10px"></i> Download</a>`);
+                                                
+                            $(".variant_download").click(function() {
+                                document.location.replace("{{ url('product/download') }}" + "?variant_id=" + $(this).attr(
+                                    'data-variant-id'));
+                            });
+                        }
                         $('#buy_now_btn, #add_to_cart_btn').attr('disabled', true);
                     }
                 }
