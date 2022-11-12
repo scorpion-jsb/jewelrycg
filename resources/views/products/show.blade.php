@@ -205,8 +205,7 @@
                                 name="cart_star_form" id="cart_star_form">
                                 @csrf
 
-                                <input type="hidden" name="variant_attribute_value" id="variant_attribute_value"
-                                    value="0">
+                                <input type="hidden" name="variant_attribute_value" id="variant_attribute_value" value="0">
                                 @if (count($variants) > 0)
                                     <div class="variant-group mb-2">
                                         @foreach ($product->attribute() as $attribute)
@@ -431,8 +430,9 @@
             if (selectedAttributeValue.length == selectedAttributeCount) {
                 $('#buy_now_btn, #add_to_cart_btn').removeAttr('disabled');
             }
-            variants.forEach(function(variant) {
-                if (variant.id == selectedAttributeValue.sort().join(',')) {
+
+            variants.forEach(function(variant, index) {
+                if (variant.variant_attribute_value == selectedAttributeValue.sort().join(',')) {
                     if (variant.buyable) {
                         $('#btn-group').html('<button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"  id="add_to_cart_btn">\
                                         <div class="loader-container">\
@@ -446,10 +446,11 @@
                         
                         $('.loader-container').hide();
 
-                        $('#variant_attribute_value').val(variant.id)
-                        $('.product_price').text('$' + parseFloat((variant.price / 100).toFixed(2)).toLocaleString())
+                        $('#variant_attribute_value').val(variant.variant_attribute_value)
+                        $('.product_price').text('$' + parseFloat((variant.variant_price / 100).toFixed(2)).toLocaleString())
                     } else {
-                        if (!variant?.asset || !variant?.asset?.file_name) {
+                        console.log(variant);
+                        if (!variant.is_digital || !variant.digital_download_assets) {
                             $('#btn-group').html('Your already bought this product, but file unavailable. Please contact support.')
                         } else {
                             $('#btn-group').html(`<a href="javascript:;" class="variant_download btn btn-sm btn-primary"
