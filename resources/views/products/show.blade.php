@@ -244,7 +244,7 @@
                                 <input type="hidden" name="id_product" value="{{ $product->id }}">
 
                                 <button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"
-                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}  id="add_to_cart_btn">
+                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1 && $product->buyable) || count($variants) > 0 ? 'disabled' : null }}  id="add_to_cart_btn">
                                     <div class="loader-container">
                                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
                                         Adding ...
@@ -254,7 +254,7 @@
 
                                 <button type="submit" formaction="{{ route('cart.buy.now') }}"
                                     class="btn btn-success shadow-md mt-4"
-                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
+                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1 && $product->buyable) || count($variants) > 0 ? 'disabled' : null }}
                                     id="buy_now_btn">Buy Now</button>
                             </form>
                         </div>
@@ -403,7 +403,8 @@
 
             variants.push({
                 id: ids.sort().join(','),
-                price: '{{ $variant->variant_price }}'
+                price: '{{ $variant->variant_price }}',
+                buyable: {!! $variant->buyable ? "true" : "false" !!}
             })
         @endforeach
         $('.attribute-radio').click(function() {
@@ -419,13 +420,20 @@
                     selectedAttributeValue.push(value)
             })
 
+            console.log(selectedAttributeValue, selectedAttributeCount);
+
             if (selectedAttributeValue.length == selectedAttributeCount) {
                 $('#buy_now_btn, #add_to_cart_btn').removeAttr('disabled');
             }
             variants.forEach(function(variant) {
                 if (variant.id == selectedAttributeValue.sort().join(',')) {
-                    $('#variant_attribute_value').val(variant.id)
-                    $('.product_price').text('$' + parseFloat((variant.price / 100).toFixed(2)).toLocaleString())
+                    console.log(variant);
+                    if (variant.buyable) {
+                        $('#variant_attribute_value').val(variant.id)
+                        $('.product_price').text('$' + parseFloat((variant.price / 100).toFixed(2)).toLocaleString())
+                    } else {
+                        $('#buy_now_btn, #add_to_cart_btn').attr('disabled', true);
+                    }
                 }
             })
         })
