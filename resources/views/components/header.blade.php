@@ -78,6 +78,8 @@
                         @endif
                     </a>
                 </li>
+                <x:notify-messages />
+                @notifyJs   
                 @auth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">{{ Auth::user()->first_name }}</a>
