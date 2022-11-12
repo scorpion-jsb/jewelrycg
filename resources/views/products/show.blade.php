@@ -258,7 +258,7 @@
                                         {{ ($product->is_trackingquantity == 1 && $product->quantity < 1 && $product->buyable) || count($variants) > 0 ? 'disabled' : null }}
                                         id="buy_now_btn">Buy Now</button>
                                     @else
-                                        @if ($product->digital_download_assets == null)
+                                        @if (!$product->digital_download_assets)
                                             Your already bought this product, but file unavailable. Please contact support.
                                         @else
                                             <a href="javascript:;" class="product_download btn btn-sm btn-primary"
@@ -405,7 +405,7 @@
             });
             
             $(".product_download").click(function() {
-                document.location.replace("{{ route('download') }}" + "?product_id=" + $(this).attr(
+                document.location.replace("{{ url('product/download') }}" + "?product_id=" + $(this).attr(
                     'data-product-id'));
             });
         });
@@ -449,7 +449,8 @@
                         $('#variant_attribute_value').val(variant.variant_attribute_value)
                         $('.product_price').text('$' + parseFloat((variant.variant_price / 100).toFixed(2)).toLocaleString())
                     } else {
-                        if (!variant.is_digital || variant.digital_download_assets == null) {
+                        console.log(variant);
+                        if (!variant.is_digital || !variant.digital_download_assets) {
                             $('#btn-group').html('Your already bought this product, but file unavailable. Please contact support.')
                         } else {
                             $('#btn-group').html(`<a href="javascript:;" class="variant_download btn btn-sm btn-primary"
@@ -457,7 +458,7 @@
                                                 <i class="bi bi-download mr-10px"></i> Download</a>`);
                                                 
                             $(".variant_download").click(function() {
-                                document.location.replace("{{ route('download') }}" + "?variant_id=" + $(this).attr(
+                                document.location.replace("{{ url('product/download') }}" + "?variant_id=" + $(this).attr(
                                     'data-variant-id'));
                             });
                         }
