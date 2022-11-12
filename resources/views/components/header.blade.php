@@ -26,7 +26,7 @@
             display: flex;
             flex-direction: row;
             gap: 10px;
-            width: 200px;
+            width: 300px;
             padding: 5px;
         }
 
