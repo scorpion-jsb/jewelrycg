@@ -746,7 +746,6 @@ class ServicesController extends Controller
         // $request->session()->forget('order_id');
         // redirect to order details
         // return view('service.checkout.order', ['order' => $order, 'requirements' => $requirements]);
-        notify()->success('You bought new service');
 
         return redirect()->route('services.order_detail', ['id' => $order->order_id]);
     }
