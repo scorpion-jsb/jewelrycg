@@ -74,23 +74,23 @@
                                 data-product-digital-assets="{{ $item->product->digital_download_assets }}">
                                 @if ($item->product->is_digital)
                                     @if ($item->productVariant)
-                                        @if (!$item->productVariant->asset || $item->productVariant->asset->file_name == 'none')
+                                        @if ($item->productVariant->asset == null || $item->productVariant->asset->file_name == 'none')
                                             <span class="fs-14 badge bg-danger">No digital asset attached</span>
                                         @else
                                             <span class="fs-14 badge bg-success">Digital asset attached</span>
                                             <span class="fs-14 mt-2 d-block" class=""
                                                 data-product-id="{{ $item->id }}">{{ $item->productVariant->asset->file_original_name . '.' . $item->productVariant->asset->extension }}</span>
-
-                                            <div class="card-body">
-                                                <label class="btn btn-primary btn-sm mt-2 getFileManagerModel cursor-pointer"
-                                                    onclick="openFileMangerModalVariant(event)"><i class="bi bi-upload mr-10px"></i> Select
-                                                    asset</label>
-                                                <input type="hidden" class="variant_assets" name="variant_assets"
-                                                    value="{{ $item->productVariant->digital_download_assets }}">
-                                            </div>
                                         @endif
+
+                                        <div class="card-body">
+                                            <label class="btn btn-primary btn-sm mt-2 getFileManagerModel cursor-pointer"
+                                                onclick="openFileMangerModalVariant(event)"><i class="bi bi-upload mr-10px"></i> Select
+                                                asset</label>
+                                            <input type="hidden" class="variant_assets" name="variant_assets"
+                                                value="{{ $item->productVariant->digital_download_assets }}">
+                                        </div>
                                     @else
-                                        @if (!$item->product->digital_download_assets)
+                                        @if ($item->product->digital_download_assets == null)
                                             <span class="fs-14 badge bg-danger">No digital asset attached</span>
                                         @else
                                             <span class="fs-14 badge bg-success">Digital asset attached</span>

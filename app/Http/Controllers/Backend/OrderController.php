@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Auth;
+use App\Mail\OrderStatusChangedMail;
 use App\Models\Order;
 use App\Models\OrderItem;
-use Mail;
-use App\Mail\OrderStatusChangedMail;
+use Auth;
 use Exception;
+use Illuminate\Http\Request;
+use Mail;
 
 class OrderController extends Controller
 {
@@ -33,13 +33,13 @@ class OrderController extends Controller
     public function pending()
     {
         $orders = OrderItem::select('orders.*', 'users.email')
-                        ->join('orders', 'orders.order_id', '=', 'order_items.order_id')
-                        ->join('users', 'users.id', '=', 'orders.user_id')
-                        ->where('order_items.status_fulfillment', '=', 1)
-                        ->groupBy('order_items.order_id')
-                        ->get();
-                        // ->toArray();
-                        // var_dump($orders);die;
+            ->join('orders', 'orders.order_id', '=', 'order_items.order_id')
+            ->join('users', 'users.id', '=', 'orders.user_id')
+            ->where('order_items.status_fulfillment', '=', 1)
+            ->groupBy('order_items.order_id')
+            ->get();
+        // ->toArray();
+        // var_dump($orders);die;
         // $orders->transform(fn($i) => $i->formatPrice());
         return view('backend.orders.pending', compact('orders'));
     }
@@ -49,18 +49,20 @@ class OrderController extends Controller
      *
      * @return int count
      */
-    public function pending_badge() {
+    public function pending_badge()
+    {
         $count = OrderItem::select('order_items.order_id')
-                        ->join('orders', 'orders.order_id', '=', 'order_items.order_id')
-                        ->where('order_items.status_fulfillment', '=', 1)
-                        ->groupBy('order_items.order_id')
-                        ->get()
-                        ->toArray();
+            ->join('orders', 'orders.order_id', '=', 'order_items.order_id')
+            ->where('order_items.status_fulfillment', '=', 1)
+            ->groupBy('order_items.order_id')
+            ->get()
+            ->toArray();
 
         return count($count);
     }
 
-    public function status_tracking_set(Request $request, $id) {
+    public function status_tracking_set(Request $request, $id)
+    {
         $rst = OrderItem::where('id', $id)->update(['status_tracking' => $request->status]);
         $order_id = OrderItem::where('id', $id)->first()->order_id;
         $order = Order::where('order_id', $order_id)->first();
@@ -126,7 +128,7 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // 
+        //
         return OrderItem::where('id', $id)->update(['status_fulfillment' => $request->status]);
     }
 
