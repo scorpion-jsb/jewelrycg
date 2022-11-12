@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->smallInteger("status")->default(0);
             $table->unsignedInteger("user_id");
+            $table->unsignedInteger("thumb");
             $table->string("message");
             $table->string("link");
             $table->timestamps();
