@@ -139,7 +139,7 @@ class ProductController extends Controller
 
         $product->setPriceToFloat();
         $uploads = Upload::whereIn('id', explode(',', $product->product_images))->get();
-        $variants = ProductsVariant::where('product_id', $product->id)->get();
+        $variants = ProductsVariant::with('product')->where('product_id', $product->id)->get();
         $maxPrice = ProductsVariant::where('product_id', $product->id)->max('variant_price') / 100;
         $minPrice = ProductsVariant::where('product_id', $product->id)->min('variant_price') / 100;
 
