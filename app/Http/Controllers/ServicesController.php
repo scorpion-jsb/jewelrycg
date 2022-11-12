@@ -50,7 +50,7 @@ class ServicesController extends Controller
 
     public function all()
     {
-        $services = ServicePost::with(['thumb', 'categories.category', 'postauthor.uploads', 'seller', 'packages'])->where('status', 1)->orderBy('id', 'DESC')->get();
+        $services = ServicePost::with(['uploads', 'categories.category', 'postauthor.uploads', 'seller', 'packages'])->where('status', 1)->orderBy('id', 'DESC')->get();
 
         // $services->each(function ($service) {
         //     $service->thumb_file_name = FFileManagerController::get_thumb_path($service->thumb->file_name);
@@ -63,7 +63,7 @@ class ServicesController extends Controller
 
     public function detail($slug)
     {
-        $data = ServicePost::with(['thumb', 'categories.category', 'postauthor.uploads', 'seller', 'packages', 'tags.tag'])->where('slug', $slug)->firstOrFail();
+        $data = ServicePost::with(['uploads', 'categories.category', 'postauthor.uploads', 'seller', 'packages', 'tags.tag'])->where('slug', $slug)->firstOrFail();
         $gallery_ids = explode(',', $data->gallery);
 
         $galleries = [];
@@ -124,7 +124,7 @@ class ServicesController extends Controller
     {
         $data = null;
         if ($post_id != -1) {
-            $data = ServicePost::with(['thumb', 'tags', 'categories', 'packages', 'requirements.choices'])->findOrFail($post_id);
+            $data = ServicePost::with(['uploads', 'tags', 'categories', 'packages', 'requirements.choices'])->findOrFail($post_id);
             $gallery_ids = explode(',', $data->gallery);
 
             $galleries = [];
@@ -493,7 +493,7 @@ class ServicesController extends Controller
 
     public function get_billing($id)
     {
-        $package = ServicePackage::with('service.thumb')->findOrFail($id);
+        $package = ServicePackage::with('service.uploads')->findOrFail($id);
         $isIncludeShipping = false;
 
         $countries = Country::all(['name', 'code']);
@@ -570,7 +570,7 @@ class ServicesController extends Controller
 
     public function get_payment($id, Request $request)
     {
-        $package = ServicePackage::with('service.thumb')->findOrFail($id);
+        $package = ServicePackage::with('service.uploads')->findOrFail($id);
 
         $isIncludeShipping = false;
 
@@ -715,7 +715,7 @@ class ServicesController extends Controller
     {
         $order_id = $request->session()->get('order_id');
 
-        $order = ServiceOrder::with(['service.thumb'])->findOrFail($order_id);
+        $order = ServiceOrder::with(['service.uploads'])->findOrFail($order_id);
 
         $order->status_payment = 2; // paid
         $order->payment_intent = $request->get('payment_intent');
@@ -804,7 +804,7 @@ class ServicesController extends Controller
 
     public function order_detail($id, Request $request)
     {
-        $order = ServiceOrder::with(['service.thumb'])->where('order_id', $id)->first();
+        $order = ServiceOrder::with(['service.uploads'])->where('order_id', $id)->first();
         $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
         $answers = OrderServiceRequirement::with('requirement')->where('order_id', $order->id)->get();
 

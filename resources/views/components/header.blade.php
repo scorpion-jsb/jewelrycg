@@ -1,4 +1,63 @@
 <header class="navbar navbar-expand-lg">
+    <style>
+        .notification-badge-container i {
+            position: relative;
+            font-size: 24px;
+        }
+
+        .notification-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            font-size: 10px;
+            font-style: normal;
+            width: 15px;
+            height: 15px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            border-radius: 100px;
+            color: white;
+            background-color: red;
+            transform: translate(50%, -50%);
+        }
+
+        .notification-container {
+            display: flex;
+            flex-direction: row;
+            gap: 10px;
+            width: 200px;
+            padding: 5px;
+        }
+
+        .notification-thumb {
+            width: 50px;
+            height: 50px;
+            border-radius: 1000px;
+            border: 1px solid gray;
+        }
+
+        .notification-body {
+            flex: 1 1 0%;
+            display: flex;
+            flex-direction: column;
+            height: 50px;
+            gap: 5px;
+        }
+
+        .notification-message {
+            flex: 1 1 0%;
+            overflow: hidden;
+            padding: 0;
+            margin: 0;
+        }
+
+        .notification-time {
+            padding: 0;
+            margin: 0;
+            font-size: 10px;
+        }
+    </style>
     <nav class="container">
         <a class="col-auto navbar-brand fw-800" href="{{ route('index') }}">
                 <!--
@@ -80,6 +139,31 @@
                 </li>
 
                 @auth
+                @php
+                    $notifications = Auth::user()->notifications()->with('uploads')->where('status', 0)->get();
+                @endphp
+                <li class="nav-item dropdown">
+                    <a class="nav-link notification-badge-container" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                        <i class="bi bi-bell">
+                            @if (count($notifications))
+                            <div class="notification-badge">{{ count($notifications) }}</div>
+                            @endif
+                        </i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        @foreach ($notifications as $notification)
+                        <a href="/notifications/check/{{$notification->id}}">
+                            <div class="notification-container">
+                                <img class="notification-thumb" src="/uploads/all/{{$notification->uploads->getImageOptimizedFullName(50)}}">
+                                <div class="notification-body">
+                                    <p class="notification-message">{{ $notification->message }}</p>
+                                    <p class="notification-time">{{ get_period($notification->created_at) }}</p>
+                                </div>
+                            </div>
+                        </a>
+                        @endforeach
+                    </ul>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">{{ Auth::user()->first_name }}</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">

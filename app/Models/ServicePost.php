@@ -46,7 +46,7 @@ class ServicePost extends Model
         return $this->hasMany(ServicePackage::class, 'service_id', 'id');
     }
 
-    public function thumb()
+    public function uploads()
     {
         return $this->belongsTo(Upload::class, 'thumbnail', 'id')->withDefault([
             'file_name' => "none.png",

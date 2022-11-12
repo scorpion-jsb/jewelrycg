@@ -390,7 +390,9 @@ Route::group(['middleware' => ['auth']], function () {
     // User Dashboard
     Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
 
-    Route::resource('notifications', NotificationController::class);
+    Route::group(['controller' => NotificationController::class, 'prefix' => 'notifications', 'as' => 'notifications.'], function () {
+        Route::get('/check/{id}', 'check')->name('check');
+    });
 });
 
 //services

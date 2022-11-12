@@ -67,7 +67,7 @@ class AppController extends Controller
             }
         )->paginate(12, '*', 'product');
 
-        $services = ServiceOrder::with('service.thumb')->where('user_id', Auth::user()->id)->paginate(12, '*', 'service');
+        $services = ServiceOrder::with('service.uploads')->where('user_id', Auth::user()->id)->paginate(12, '*', 'service');
 
         $courses = OrderCourse::with('course.uploads')->where('user_id', Auth::user()->id)->paginate(12, '*', 'course');
 

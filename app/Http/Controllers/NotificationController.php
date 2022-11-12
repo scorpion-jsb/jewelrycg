@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Redirect;
 
 class NotificationController extends Controller
 {
@@ -80,5 +82,14 @@ class NotificationController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function check($id)
+    {
+        $notification = Notification::findOrFail($id);
+        $notification->status = 1;
+        $notification->save();
+
+        return Redirect::to($notification->link);
     }
 }

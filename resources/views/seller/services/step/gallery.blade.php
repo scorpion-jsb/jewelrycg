@@ -103,7 +103,7 @@
 <script src="{{ asset('dropzone/js/dropzone.js') }}"></script>
 <script>
     var galleries = {!! json_encode($data->galleries) !!}
-    var thumbnail = {!! json_encode($data->thumb) !!}
+    var thumbnail = {!! json_encode($data->uploads) !!}
     var currentFile = null;
     Dropzone.autoDiscover = false;
     var thumbnailDropzone, galleryDropzone;

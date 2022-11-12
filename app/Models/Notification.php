@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Notification extends Model
 {
     use HasFactory;
+
+    public function uploads()
+    {
+        return $this->belongsTo(Upload::class, 'thumb', 'id');
+    }
 }

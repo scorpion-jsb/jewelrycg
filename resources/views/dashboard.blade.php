@@ -91,7 +91,7 @@
                           <div class="col-xl-3 col-lg-3">
                               <div class="card">
                                   <div class="card-body">
-                                      <img src="{{ $item->service->thumb->getImageOptimizedFullName(400) }}"
+                                      <img src="{{ $item->service->uploads->getImageOptimizedFullName(400) }}"
                                       alt="" style="width: 100%;" class="mb-3 pb-3 border-bottom">
                                       <a href="/services/{{ $item->slug }}">
                                           <h6>{{ $item->service->name }} - {{ $item->package_name }}</h6>

@@ -49,7 +49,7 @@
                                 <div class="cart-item mb-3">
                                     <div class="row">
                                         <div class="col-3">
-                                            <img src="{{ $package->service->thumb->getImageOptimizedFullName() }}" alt="thumb" class="thumbnail border rounded w-100">
+                                            <img src="{{ $package->service->uploads->getImageOptimizedFullName() }}" alt="thumb" class="thumbnail border rounded w-100">
                                         </div>
                                         <div class="col-8">
                                             <div class="item-meta text-nowrap mb-2">
