@@ -19,7 +19,7 @@
                             <div class="product-details-title px-2">
                                 <div class="fs-20 fw-600">{{ $product->name }}</div>
                                 <div class="link">
-                                    <span>{{ $product->user->username }}</span> <span> • Follow • Hire Us</span>
+                                    <span>farizzakky</span> <span> • Follow • Hire Us</span>
                                 </div>
                             </div>
                         </div>
@@ -205,7 +205,8 @@
                                 name="cart_star_form" id="cart_star_form">
                                 @csrf
 
-                                <input type="hidden" name="variant_attribute_value" id="variant_attribute_value" value="0">
+                                <input type="hidden" name="variant_attribute_value" id="variant_attribute_value"
+                                    value="0">
                                 @if (count($variants) > 0)
                                     <div class="variant-group mb-2">
                                         @foreach ($product->attribute() as $attribute)
@@ -242,31 +243,19 @@
 
                                 <input type="hidden" name="id_product" value="{{ $product->id }}">
 
-                                <div id="btn-group">
-                                    @if (count($variants) > 0 || $product->buyable)
-                                    <button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"
-                                        {{ ($product->is_trackingquantity == 1 && $product->quantity < 1 && $product->buyable) || count($variants) > 0 ? 'disabled' : null }}  id="add_to_cart_btn">
-                                        <div class="loader-container">
-                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-                                            Adding ...
-                                        </div>
-                                        <div class="orginal-name">Add to Cart</div>
-                                    </button>
+                                <button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"
+                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}  id="add_to_cart_btn">
+                                    <div class="loader-container">
+                                        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                        Adding ...
+                                    </div>
+                                    <div class="orginal-name">Add to Cart</div>
+                                </button>
 
-                                    <button type="submit" formaction="{{ route('cart.buy.now') }}"
-                                        class="btn btn-success shadow-md mt-4"
-                                        {{ ($product->is_trackingquantity == 1 && $product->quantity < 1 && $product->buyable) || count($variants) > 0 ? 'disabled' : null }}
-                                        id="buy_now_btn">Buy Now</button>
-                                    @else
-                                        @if ($product->digital_download_assets == null)
-                                            Your already bought this product, but file unavailable. Please contact support.
-                                        @else
-                                            <a href="javascript:;" class="product_download btn btn-sm btn-primary"
-                                                data-product-id="{{ $product->id }}">
-                                                <i class="bi bi-download mr-10px"></i> Download</a>
-                                        @endif
-                                    @endif
-                                </div>
+                                <button type="submit" formaction="{{ route('cart.buy.now') }}"
+                                    class="btn btn-success shadow-md mt-4"
+                                    {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
+                                    id="buy_now_btn">Buy Now</button>
                             </form>
                         </div>
 
@@ -403,17 +392,20 @@
                 });
                 e.preventDefault();
             });
-            
-            $(".product_download").click(function() {
-                document.location.replace("{{ route('download') }}" + "?product_id=" + $(this).attr(
-                    'data-product-id'));
-            });
         });
 
+        var variants = [];
         $('.loader-container').hide();
 
-        var variants = {!! json_encode($variants) !!};;
+        @foreach ($variants as $variant)
+            var ids = '{{ $variant->variant_attribute_value }}';
+            ids = ids.split(',');
 
+            variants.push({
+                id: ids.sort().join(','),
+                price: '{{ $variant->variant_price }}'
+            })
+        @endforeach
         $('.attribute-radio').click(function() {
             var selectedAttributeValue = [];
             var selectedAttributeCount = 0;
@@ -430,39 +422,10 @@
             if (selectedAttributeValue.length == selectedAttributeCount) {
                 $('#buy_now_btn, #add_to_cart_btn').removeAttr('disabled');
             }
-
-            variants.forEach(function(variant, index) {
-                if (variant.variant_attribute_value == selectedAttributeValue.sort().join(',')) {
-                    if (variant.buyable) {
-                        $('#btn-group').html('<button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"  id="add_to_cart_btn">\
-                                        <div class="loader-container">\
-                                            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>\
-                                            Adding ...\
-                                        </div>\
-                                        <div class="orginal-name">Add to Cart</div>\
-                                    </button>\
-                                    <button type="submit" formaction="{{ route('cart.buy.now') }}"\
-                                        class="btn btn-success shadow-md mt-4" id="buy_now_btn">Buy Now</button>');
-                        
-                        $('.loader-container').hide();
-
-                        $('#variant_attribute_value').val(variant.variant_attribute_value)
-                        $('.product_price').text('$' + parseFloat((variant.variant_price / 100).toFixed(2)).toLocaleString())
-                    } else {
-                        if (!variant.is_digital || variant.digital_download_assets == null) {
-                            $('#btn-group').html('Your already bought this product, but file unavailable. Please contact support.')
-                        } else {
-                            $('#btn-group').html(`<a href="javascript:;" class="variant_download btn btn-sm btn-primary"
-                                                data-variant-id="${variant.id}">
-                                                <i class="bi bi-download mr-10px"></i> Download</a>`);
-                                                
-                            $(".variant_download").click(function() {
-                                document.location.replace("{{ route('download') }}" + "?variant_id=" + $(this).attr(
-                                    'data-variant-id'));
-                            });
-                        }
-                        $('#buy_now_btn, #add_to_cart_btn').attr('disabled', true);
-                    }
+            variants.forEach(function(variant) {
+                if (variant.id == selectedAttributeValue.sort().join(',')) {
+                    $('#variant_attribute_value').val(variant.id)
+                    $('.product_price').text('$' + parseFloat((variant.price / 100).toFixed(2)).toLocaleString())
                 }
             })
         })

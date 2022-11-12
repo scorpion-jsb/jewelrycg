@@ -115,7 +115,7 @@ $total = $subTotal + $shippingPrice / 100 + $taxPrice / 100 / 100;
             <span class="fw-800">Total</span>
         </div>
         <div class="col-auto ml-auto text-right">
-            <span class="fw-800 text-primary" id="total_price">
+            <span class="fw-800 text-primary" id="spnTotalPrice">
                 ${{number_format($total, 2, ".", ",")}}
             </span>
         </div>

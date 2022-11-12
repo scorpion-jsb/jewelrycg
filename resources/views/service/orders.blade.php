@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-lg-2 col-6 mb-2">
                         <div class="fw-600">Total amount</div>
-                        <span>${{number_format($order->package_price / 100, 2)}}</span>
+                        <span>${{number_format($order->package_price, 2)}}</span>
                     </div>
                     <div class="col-lg-2 col-6 mb-2">
                         <div class="fw-600">Status</div>

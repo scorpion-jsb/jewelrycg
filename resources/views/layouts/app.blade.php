@@ -37,7 +37,6 @@
         @yield('css')
         <link rel="stylesheet" href="{{ asset('assets/css/core.css') }}">
         <link rel="stylesheet" href="{{ asset('assets/css/app.css') }}">
-        @notifyCss
 
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.5/js/select2.full.min.js"></script>

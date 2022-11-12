@@ -78,7 +78,6 @@
                         @endif
                     </a>
                 </li>
-
                 @auth
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">{{ Auth::user()->first_name }}</a>
@@ -102,8 +101,6 @@
                     <a class="auth-btn auth-primary" href="{{ route('signup') }}">Sign Up</a>
                 </li>
                 @endauth
-                <x:notify-messages />
-                @notifyJs
             </ul>
             <!--end right nav-->
 
