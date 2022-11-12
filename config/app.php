@@ -184,7 +184,7 @@ return [
         Yajra\Datatables\DatatablesServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
         \Torann\GeoIP\GeoIPServiceProvider::class,
-        Mckenziearts\Notify\LaravelNotifyServiceProvider::class, // for notify
+        // Mckenziearts\Notify\LaravelNotifyServiceProvider::class, // for notify
         // Biscolab\ReCaptcha\ReCaptchaServiceProvider::class,
 
         /*
