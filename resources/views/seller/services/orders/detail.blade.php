@@ -230,7 +230,7 @@
                       <div class="card-body">
                           <div class="row">
                               <div class="col-3">
-                                  <img src="{{ $order->service->thumb->getImageOptimizedFullName(150) }}" alt="" class="thumbnail border w-100">
+                                  <img src="{{ $order->service->uploads->getImageOptimizedFullName(150) }}" alt="" class="thumbnail border w-100">
                               </div>
                               <div class="col-9">
                                   <h4>{{ $order->service->name }}</h4>

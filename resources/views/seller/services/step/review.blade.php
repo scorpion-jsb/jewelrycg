@@ -37,7 +37,7 @@
                         <div class="mb-4 col-12">
                             <label for="category" class="w-100 mb-2">Thumb</label>
                             <div class="col-3">
-                                <img class="w-100 shadow-1-strong rounded mb-4" src="/uploads/all/{{$data->thumb->file_name}}" alt="thumb" />
+                                <img class="w-100 shadow-1-strong rounded mb-4" src="/uploads/all/{{$data->uploads->file_name}}" alt="thumb" />
                             </div>
                         </div>
                         <div class="mb-4">
