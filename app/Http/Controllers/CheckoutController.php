@@ -389,7 +389,7 @@ class CheckoutController extends Controller
         return redirect()->route('orders.show', $orderId);
     }
 
-    public function getShipping()
+    public function getShipping(Request $request)
     {
 
         $countries = Country::all(['name', 'code']);
@@ -402,6 +402,9 @@ class CheckoutController extends Controller
         }
         $user_ip = request()->ip();
         $location = geoip()->getLocation($user_ip);
+
+        $request->session()->put('shipping_price', 0);
+
         return view('checkout.shipping')->with(['countries' => $countries, 'shippings' => $shippings, 'products' => $products, 'locale' => 'checkout', 'shipping' => $shipping_address, 'location' => $location]);
     }
 
@@ -458,7 +461,7 @@ class CheckoutController extends Controller
         return redirect()->route('checkout.billing.get');
     }
 
-    public function getBilling()
+    public function getBilling(Request $request)
     {
         $products = Cart::instance('default')->content();
 
@@ -479,6 +482,8 @@ class CheckoutController extends Controller
         }
         $user_ip = request()->ip();
         $location = geoip()->getLocation($user_ip);
+
+        $request->session()->put('shipping_price', 0);
         return view('checkout.billing')->with([
             'countries' => $countries,
             'products' => $products,
