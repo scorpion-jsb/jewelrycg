@@ -391,7 +391,6 @@ class CheckoutController extends Controller
 
     public function getShipping(Request $request)
     {
-
         $countries = Country::all(['name', 'code']);
         $shippings = ShippingOption::all();
         $products = Cart::instance('default')->content();
@@ -473,6 +472,10 @@ class CheckoutController extends Controller
             }
         }
 
+        if (!$isIncludeShipping) {
+            $request->session()->put('shipping_price', 0);
+        }
+
         $countries = Country::all(['name', 'code']);
         $products = Cart::instance('default')->content();
         if (auth()->user()) {
@@ -483,7 +486,6 @@ class CheckoutController extends Controller
         $user_ip = request()->ip();
         $location = geoip()->getLocation($user_ip);
 
-        $request->session()->put('shipping_price', 0);
         return view('checkout.billing')->with([
             'countries' => $countries,
             'products' => $products,
