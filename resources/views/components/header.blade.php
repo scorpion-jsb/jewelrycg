@@ -140,13 +140,14 @@
 
                 @auth
                 @php
-                    $notifications = Auth::user()->notifications()->with('uploads')->where('status', 0)->get();
+                    $new_count =Auth::user()->notifications()->where('status', 0)->count();
+                    $notifications = Auth::user()->notifications()->whereIn('status', [0, 1])->get();
                 @endphp
                 <li class="nav-item dropdown">
                     <a class="nav-link notification-badge-container" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
                         <i class="bi bi-bell">
-                            @if (count($notifications))
-                            <div class="notification-badge">{{ count($notifications) }}</div>
+                            @if ($new_count)
+                            <div class="notification-badge">{{ $new_count }}</div>
                             @endif
                         </i>
                     </a>
@@ -154,7 +155,7 @@
                         @foreach ($notifications as $notification)
                         <a href="/notifications/check/{{$notification->id}}">
                             <div class="notification-container">
-                                <img class="notification-thumb" src="/uploads/all/{{$notification->uploads->getImageOptimizedFullName(50)}}">
+                                <img class="notification-thumb" src="{{$notification->thumb ? $notification->thumb : "/assets/img/jewelrycg_default_logo.png"}}">
                                 <div class="notification-body">
                                     <p class="notification-message">{{ $notification->message }}</p>
                                     <p class="notification-time">{{ get_period($notification->created_at) }}</p>
@@ -193,9 +194,10 @@
 </header>
 
 <script>
-    $(document).ready(fucntion () {
-        $('.notification-badge-container').click(fucntion () {
-
+    $(document).ready(function() {
+        console.log("loaded");
+        $('.notification-badge-container').click(function () {
+            console.log("clicked");
             $.ajax({
                 url: '{{ route("notifications.overview") }}',
                 type: 'POST',
