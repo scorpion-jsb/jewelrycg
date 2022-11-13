@@ -216,25 +216,29 @@ class ServicesController extends Controller
      */
     public function store(PostStoreRequest $request)
     {
-        $slug_count = ServicePackage::whereName($request->name)->count();
         $step = $request->step + 1;
         $post_id = $request->service_id;
-        $suffix = ($slug_count == 0) ? '' : '-' . (string) $slug_count + 1;
         $tags = (array) $request->input('tags');
         $categories = (array) $request->input('categories');
 
         $data = $request->input();
         $data['user_id'] = Auth::id();
 
-        if (ServicePost::where('slug', $this->slugify($request->name))->count()) {
-            $data['slug'] = $this->slugify($request->name) . "-1";
-        } else {
-            $data['slug'] = $this->slugify($request->name);
-        }
-
         $service = ServicePost::firstOrNew(['id' => $post_id]);
         $service->save();
         $service->update($data);
+
+        if (!$service->slug) {
+            $count = ServicePost::where('slug', $this->slugify($request->name))->count();
+            $slug = '';
+            if ($count) {
+                $slug = $this->slugify($request->name) . $count;
+            } else {
+                $slug = $this->slugify($request->name);
+            }
+
+            $service->update(['slug' => $slug]);
+        }
 
         $post_id = $service->id;
 
