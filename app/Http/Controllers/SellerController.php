@@ -33,8 +33,8 @@ class SellerController extends Controller
             if (Carbon::now()->diffInDays($pending->updated_at->startOfDay()) >= 14) {
                 $wallet = SellersProfile::where('user_id', $pending->user_id)->first();
                 if ($wallet) {
-                    $wallet->wallet += $pending->amount;
-                    $wallet->save();
+                    // $wallet->wallet += $pending->amount;
+                    // $wallet->save();
                     $pending->status = 1;
                     $pending->save();
                 }
