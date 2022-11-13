@@ -9,6 +9,7 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules\Password;
 
@@ -49,13 +50,13 @@ class RegisteredUserController extends Controller
             'password' => Hash::make($request->password),
         ]);
 
-        event(new Registered($user));
-
         $notification = new Notification();
-        $notification->message = "Please confirm your email";
+        $notification->message = Config::get('constants.strings.ask_verify');
         $notification->user_id = $user->id;
         $notification->link = "/verify-email";
         $notification->save();
+
+        event(new Registered($user));
 
         Auth::login($user);
 

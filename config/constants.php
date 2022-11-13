@@ -27,4 +27,7 @@ return [
         'reject',
     ],
     'file_upload_path' => 'uploads/all/',
+    'strings' => [
+        'ask_verify' => 'Please verify your email address',
+    ],
 ];
