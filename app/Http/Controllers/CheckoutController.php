@@ -373,12 +373,9 @@ class CheckoutController extends Controller
                     'user_id' => $seller->user_id,
                     'amount' => $amount,
                     'order_id' => $order->id,
-                    'method' => 0,
+                    'sale_type' => 0,
                     'type' => 'add',
                 ]);
-
-                $seller->wallet = $seller->wallet + $amount;
-                $seller->save();
             }
         }
         // Send order placed email to customer

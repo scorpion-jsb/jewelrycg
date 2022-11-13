@@ -359,12 +359,9 @@ class CourseController extends Controller
                 'user_id' => $seller->user_id,
                 'amount' => $amount,
                 'order_id' => $order->id,
-                'method' => 2,
+                'sale_type' => 2,
                 'type' => 'add',
             ]);
-
-            $seller->wallet = $seller->wallet + $amount;
-            $seller->save();
         }
 
         // Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
