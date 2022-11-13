@@ -38,6 +38,10 @@ class SellerController extends Controller
             ->whereDate('updated_at', '<', date('Y-m-d', strtotime(Carbon::today()->toDateString() . " -14 days")))
             ->select('amount')
             ->get()
+            ->sum('amount') - SellersWalletHistory::where('user_id', auth()->id())
+            ->where('type', 'withdraw')
+            ->select('amount')
+            ->get()
             ->sum('amount');
         $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->where('type', 'add')->select('amount')->get()->sum('amount');
         return view('seller.dashboard')->with([
@@ -272,6 +276,10 @@ class SellerController extends Controller
             ->where('type', 'add')
             ->where('status', 1)
             ->whereDate('updated_at', '<', date('Y-m-d', strtotime(Carbon::today()->toDateString() . " -14 days")))
+            ->select('amount')
+            ->get()
+            ->sum('amount') - SellersWalletHistory::where('user_id', auth()->id())
+            ->where('type', 'withdraw')
             ->select('amount')
             ->get()
             ->sum('amount');
