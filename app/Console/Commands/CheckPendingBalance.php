@@ -2,11 +2,11 @@
 
 namespace App\Console\Commands;
 
-use Illuminate\Console\Command;
-use App\Models\SellersWalletHistory;
 use App\Models\SellersProfile;
-use App\Models\User;
+use App\Models\SellersWalletHistory;
 use Carbon\Carbon;
+use Illuminate\Console\Command;
+
 class CheckPendingBalance extends Command
 {
     /**
@@ -32,17 +32,17 @@ class CheckPendingBalance extends Command
     {
         $pendingBalances = SellersWalletHistory::where('type', 'add')->where('status', 0)->get();
         foreach ($pendingBalances as $pending) {
-            if(Carbon::now()->diffInDays($pending->created_at->startOfDay()) == 14){
+            if (Carbon::now()->diffInDays($pending->updated_at->startOfDay()) == 14) {
                 $wallet = SellersProfile::where('user_id', $pending->user_id)->first();
-                if($wallet){
-                    $wallet->wallet +=  $pending->amount;
+                if ($wallet) {
+                    $wallet->wallet += $pending->amount;
                     $wallet->save();
                     $pending->status = 1;
                     $pending->save();
                 }
             }
         }
-        $this->info( "Success");
+        $this->info("Success");
         return Command::SUCCESS;
     }
 }

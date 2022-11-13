@@ -141,7 +141,7 @@
                 @auth
                 @php
                     $new_count =Auth::user()->notifications()->where('status', 0)->count();
-                    $notifications = Auth::user()->notifications()->whereIn('status', [0, 1])->get();
+                    $notifications = Auth::user()->notifications()->where('status', 0)->get();
                 @endphp
                 <li class="nav-item dropdown">
                     <a class="nav-link notification-badge-container" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
