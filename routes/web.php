@@ -392,6 +392,7 @@ Route::group(['middleware' => ['auth']], function () {
 
     Route::group(['controller' => NotificationController::class, 'prefix' => 'notifications', 'as' => 'notifications.'], function () {
         Route::get('/check/{id}', 'check')->name('check');
+        Route::post('/overview', 'overview')->name('overview');
     });
 });
 

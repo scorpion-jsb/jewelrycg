@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Notification;
+use Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 
@@ -87,9 +88,16 @@ class NotificationController extends Controller
     public function check($id)
     {
         $notification = Notification::findOrFail($id);
-        $notification->status = 1;
+        $notification->status = 2;
         $notification->save();
 
         return Redirect::to($notification->link);
+    }
+
+    public function overview()
+    {
+        Notification::where('user_id', Auth::id())->where('status', 0)->update(['status' => 1]);
+
+        return response()->json(["result" => "success"]);
     }
 }
