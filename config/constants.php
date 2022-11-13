@@ -30,4 +30,5 @@ return [
     'strings' => [
         'ask_verify' => 'Please verify your email address',
     ],
+    'default_sales_commission_rate' => 80,
 ];

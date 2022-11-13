@@ -31,6 +31,7 @@ use App\Models\UserAddress;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Stripe\Stripe;
 
 class ServicesController extends Controller
@@ -731,7 +732,7 @@ class ServicesController extends Controller
             if ($seller->sales_commission_rate) {
                 $amount = $order->package_price * $seller->sales_commission_rate / 100;
             } else {
-                $amount = $order->package_price * SettingGeneral::value('default_sales_commission_rate') / 100;
+                $amount = $order->package_price * Config::get('constants.default_sales_commission_rate') / 100;
             }
             SellersWalletHistory::create([
                 'user_id' => $seller->user_id,

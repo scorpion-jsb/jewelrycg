@@ -11,6 +11,7 @@ use App\Models\CourseCategory;
 use App\Models\OrderCourse;
 use App\Models\UserAddress;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Stripe\Stripe;
 
 class CourseController extends Controller
@@ -351,7 +352,7 @@ class CourseController extends Controller
             if ($seller->sales_commission_rate) {
                 $amount = $order->price * $seller->sales_commission_rate / 100;
             } else {
-                $amount = $order->price * SettingGeneral::value('default_sales_commission_rate') / 100;
+                $amount = $order->price * Config::get('constants.default_sales_commission_rate') / 100;
             }
             SellersWalletHistory::create([
                 'user_id' => $seller->user_id,
