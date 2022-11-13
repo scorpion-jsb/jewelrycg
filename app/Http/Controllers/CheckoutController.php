@@ -22,6 +22,7 @@ use Exception;
 use GeoIP;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Stripe\Stripe;
@@ -366,7 +367,7 @@ class CheckoutController extends Controller
                 if ($seller->sales_commission_rate) {
                     $amount = $orderItem->price * $orderItem->quantity * $seller->sales_commission_rate / 100;
                 } else {
-                    $amount = $orderItem->price * $orderItem->quantity * SettingGeneral::value('default_sales_commission_rate') / 100;
+                    $amount = $orderItem->price * $orderItem->quantity * Config::get('constants.default_sales_commission_rate') / 100;
                 }
                 SellersWalletHistory::create([
                     'user_id' => $seller->user_id,
