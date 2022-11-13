@@ -39,7 +39,7 @@ class SellerController extends Controller
             ->select('amount')
             ->get()
             ->sum('amount');
-        $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->select('amount')->get()->sum('amount');
+        $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->where('type', 'add')->select('amount')->get()->sum('amount');
         return view('seller.dashboard')->with([
             'products' => $products,
             'seller' => $seller,
@@ -275,7 +275,7 @@ class SellerController extends Controller
             ->select('amount')
             ->get()
             ->sum('amount');
-        $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->select('amount')->get()->sum('amount');
+        $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->where('type', 'add')->select('amount')->get()->sum('amount');
         $payment_methods = SellerPaymentMethod::all();
 
         return view('seller.withdraw', compact('seller', 'withdrawable', 'totalEarned', 'payment_methods'));
@@ -285,7 +285,7 @@ class SellerController extends Controller
     {
         $question_ids = $request->question;
         $answers = $request->answer;
-        $amount = $request->amount;
+        $amount = $request->amount * 100;
 
         $seller_profile = SellersProfile::where('user_id', Auth::id())->firstOrFail();
 
@@ -299,7 +299,7 @@ class SellerController extends Controller
         $withdraw_history = new SellerWalletWithdrawal();
         $withdraw_history->user_id = Auth::id();
         $withdraw_history->amount = $amount;
-        $withdraw_history->payment_method_id = $request->amount;
+        $withdraw_history->payment_method_id = $request->method - 1;
 
         for ($i = 0; $i < count($question_ids); $i++) {
             $withdraw_history['q' . ($question_ids[$i] + 1)] = $answers[$i];
