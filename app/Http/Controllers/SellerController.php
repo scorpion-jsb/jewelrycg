@@ -287,7 +287,6 @@ class SellerController extends Controller
         $answers = $request->answer;
         $amount = $request->amount * 100;
 
-        dd($request->method);
         $seller_profile = SellersProfile::where('user_id', Auth::id())->firstOrFail();
 
         if ($seller_profile->wallet < $amount || $amount <= 0) {
