@@ -335,6 +335,7 @@
 </div>
 <script>
   $(function() {
+    {!!isset($packages) ? (count($packages) >= 3 ? "$('.try-triple-packages').css('display', 'none')" : "") : "" !!}
     $('.toggle-class').change(function() {
         var status = $(this).prop('checked') == true ? 1 : 0; 
         var user_id = $(this).data('id'); 
