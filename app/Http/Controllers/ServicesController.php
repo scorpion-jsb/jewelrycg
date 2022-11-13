@@ -31,7 +31,6 @@ use App\Models\UserAddress;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Config;
 use Stripe\Stripe;
 
 class ServicesController extends Controller
@@ -726,23 +725,6 @@ class ServicesController extends Controller
         $order->payment_intent = $request->get('payment_intent');
         $order->save();
 
-        $amount = 0;
-        $seller = $order->service->seller;
-        if ($seller) {
-            if ($seller->sales_commission_rate) {
-                $amount = $order->package_price * $seller->sales_commission_rate / 100;
-            } else {
-                $amount = $order->package_price * Config::get('constants.default_sales_commission_rate') / 100;
-            }
-            SellersWalletHistory::create([
-                'user_id' => $seller->user_id,
-                'amount' => $amount,
-                'order_id' => $order->id,
-                'sale_type' => 1,
-                'type' => 'add',
-            ]);
-        }
-
         // $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
 
         // Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
@@ -891,14 +873,24 @@ class ServicesController extends Controller
         $order->status = 5;
         $order->update();
 
-        $history = SellersWalletHistory::where('order_id', $order->id)->where('sale_type', 1)->firstOrFail();
-        $history->status = 1;
-        $history->save();
+        $amount = 0;
+        $seller = $order->service->seller;
+        if ($seller) {
+            if ($seller->sales_commission_rate) {
+                $amount = $order->package_price * $seller->sales_commission_rate / 100;
+            } else {
+                $amount = $order->package_price * Config::get('constants.default_sales_commission_rate') / 100;
+            }
+            SellersWalletHistory::create([
+                'user_id' => $seller->user_id,
+                'amount' => $amount,
+                'order_id' => $order->id,
+                'sale_type' => 1,
+                'type' => 'add',
+            ]);
+        }
 
         $seller = User::findOrFail($order->service->user_id);
-        $seller_profile = $order->service->seller;
-        $seller_profile->wallet = $seller_profile->wallet + $history->amount;
-        $seller_profile->save();
 
         return view('service.review', ['order' => $order, 'seller' => $seller]);
     }
