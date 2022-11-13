@@ -54,7 +54,7 @@ class RegisteredUserController extends Controller
         $notification = new Notification();
         $notification->message = "Please confirm your email";
         $notification->user_id = $user->id;
-        $notification->thumb = 1;
+        $notification->thumb = '/assets/img/jewelrycg_default_logo.png';
         $notification->link = "/verify-email";
         $notification->save();
 

@@ -191,3 +191,22 @@
         </div>
     </nav>
 </header>
+
+<script>
+    $(document).ready(fucntion () {
+        $('.notification-badge-container').click(fucntion () {
+
+            $.ajax({
+                url: '{{ route("notifications.overview") }}',
+                type: 'POST',
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                },
+                success: function (response) {
+                    $('.notification-badge').hide();
+                    console.log(response);
+                }
+            })
+        })
+    })
+</script>

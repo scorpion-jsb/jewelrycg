@@ -92,4 +92,11 @@ class NotificationController extends Controller
 
         return Redirect::to($notification->link);
     }
+
+    public function overview()
+    {
+        Notification::where('user_id', Auth::id())->where('status', 0)->update('status', 1);
+
+        return response()->json(["result" => "success"]);
+    }
 }
