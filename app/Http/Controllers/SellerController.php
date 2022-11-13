@@ -16,6 +16,7 @@ use App\Models\ProductTagsRelationship;
 use App\Models\SellerPaymentMethod;
 use App\Models\SellersProfile;
 use App\Models\SellersWalletHistory;
+use App\Models\SellerWalletWithdrawal;
 use App\Models\ServiceOrder;
 use App\Models\ServiceTags;
 use App\Models\Upload;
@@ -282,6 +283,36 @@ class SellerController extends Controller
 
     public function withdraw_post(Request $request)
     {
+        $question_ids = $request->question;
+        $answers = $request->answer;
+        $amount = $request->amount;
 
+        $seller_profile = SellersProfile::where('user_id', Auth::id())->firstOrFail();
+
+        if ($seller_profile->wallet < $amount || $amount <= 0) {
+            return redirect()->back()->with('error', 'Insuficient funds');
+        }
+
+        $seller_profile->wallet = $seller_profile->wallet - $amount;
+        $seller_profile->save();
+
+        $withdraw_history = new SellerWalletWithdrawal();
+        $withdraw_history->user_id = Auth::id();
+        $withdraw_history->amount = $amount;
+        $withdraw_history->payment_method_id = $request->amount;
+
+        for ($i = 0; $i < count($question_ids); $i++) {
+            $withdraw_history['q' . ($question_ids[$i] + 1)] = $answers[$i];
+        }
+
+        $withdraw_history->save();
+
+        $wallet_history = new SellersWalletHistory();
+        $wallet_history->user_id = Auth::id();
+        $wallet_history->amount = $amount;
+        $wallet_history->type = "withdraw";
+        $wallet_history->save();
+
+        return redirect()->back()->with('success', 'Withdraw is in progress');
     }
 }

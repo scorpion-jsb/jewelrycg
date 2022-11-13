@@ -21,6 +21,16 @@
                   <x-dashboard-side-bar />
               </div>
               <div class="col-9">
+                  @if (session('success'))
+                    <h4 class="text-center text-primary mt-3">
+                        {{session('success')}}
+                    </h4>
+                  @endif
+                  @if (session('error'))
+                    <h4 class="text-center text-danger mt-3">
+                        {{session('error')}}
+                    </h4>
+                  @endif
                   <div class="seller-stats mb-4">
                       <div class="seller-stats-card-body">
                           <div class="row">
