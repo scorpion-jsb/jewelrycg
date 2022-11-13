@@ -39,7 +39,7 @@ class SellerController extends Controller
             ->select('amount')
             ->get()
             ->sum('amount');
-        $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->select('amount')->get()->sum('amount');
+        $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->where('type', 'add')->select('amount')->get()->sum('amount');
         return view('seller.dashboard')->with([
             'products' => $products,
             'seller' => $seller,
@@ -275,7 +275,7 @@ class SellerController extends Controller
             ->select('amount')
             ->get()
             ->sum('amount');
-        $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->select('amount')->get()->sum('amount');
+        $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->where('type', 'add')->select('amount')->get()->sum('amount');
         $payment_methods = SellerPaymentMethod::all();
 
         return view('seller.withdraw', compact('seller', 'withdrawable', 'totalEarned', 'payment_methods'));
