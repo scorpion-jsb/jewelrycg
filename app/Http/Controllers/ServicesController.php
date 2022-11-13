@@ -740,7 +740,7 @@ class ServicesController extends Controller
                 'order_id' => $order->id,
                 'sale_type' => 1,
                 'type' => 'add',
-                'status' => 2,
+                'status' => 0,
             ]);
 
             $seller->wallet = $seller->wallet + $amount;
