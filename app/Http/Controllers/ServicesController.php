@@ -738,12 +738,9 @@ class ServicesController extends Controller
                 'user_id' => $seller->user_id,
                 'amount' => $amount,
                 'order_id' => $order->id,
-                'method' => 1,
+                'sale_type' => 1,
                 'type' => 'add',
             ]);
-
-            $seller->wallet = $seller->wallet + $amount;
-            $seller->save();
         }
 
         // $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
@@ -894,11 +891,14 @@ class ServicesController extends Controller
         $order->status = 5;
         $order->update();
 
-        $history = SellersWalletHistory::where('order_id', $order->id)->where('method', 1)->firstOrFail();
+        $history = SellersWalletHistory::where('order_id', $order->id)->where('sale_type', 1)->firstOrFail();
         $history->status = 1;
         $history->save();
 
         $seller = User::findOrFail($order->service->user_id);
+        $seller_profile = $order->service->seller;
+        $seller_profile->wallet = $seller_profile->wallet + $history->amount;
+        $seller_profile->save();
 
         return view('service.review', ['order' => $order, 'seller' => $seller]);
     }

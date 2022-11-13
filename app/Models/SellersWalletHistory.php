@@ -13,7 +13,12 @@ class SellersWalletHistory extends Model
         'user_id',
         'amount',
         'order_id',
-        'method',
+        'sale_type',
         'type',
     ];
+
+    public function order()
+    {
+        return $this->belongsTo(ServiceOrder::class, 'order_id', 'id');
+    }
 }
