@@ -29,7 +29,7 @@
                                         <div class="card-header blance-title">Available To Withdraw</div>
                                         <div class="card-body">
                                             <p class="fw-bold">$ {{ number_format($withdrawable/100, 2, ".", ",") }}</p>
-                                            <a href="" class="btn btn-sm btn-primary">Withdraw</a>
+                                            <a href="{{ route('seller.withdraw.get') }}" class="btn btn-sm btn-primary">Withdraw</a>
                                         </div>
                                     </div>
                                 </div>
