@@ -262,4 +262,19 @@ class SellerController extends Controller
 
         return redirect()->back()->with("success", "Your service successfuly delivered!");
     }
+
+    public function withdraw()
+    {
+        $seller = SellersProfile::where('user_id', auth()->id())->firstOrFail();
+        $withdrawable = SellersWalletHistory::where('user_id', auth()->id())
+            ->where('type', 'add')
+            ->where('status', 1)
+            ->whereDate('updated_at', '<', date('Y-m-d', strtotime(Carbon::today()->toDateString() . " -14 days")))
+            ->select('amount')
+            ->get()
+            ->sum('amount');
+        $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->select('amount')->get()->sum('amount');
+
+        return view('seller.withdraw', compact('seller', 'withdrawable', 'totalEarned'));
+    }
 }

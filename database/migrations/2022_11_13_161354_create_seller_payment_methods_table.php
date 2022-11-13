@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sellers_profile', function (Blueprint $table) {
+        Schema::create('seller_payment_methods', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('user_id');
-            $table->integer('wallet')->default(0);
-            $table->integer('sales_commission_rate')->nullable();
-            $table->text('slogan')->nullable();
-            $table->text('about')->nullable();
-            $table->unsignedInteger('default_payment_method')->nullable();
+            $table->string('name');
+            $table->string('question_1')->nullable();
+            $table->string('question_2')->nullable();
+            $table->string('question_3')->nullable();
+            $table->string('question_4')->nullable();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sellers_profile');
+        Schema::dropIfExists('seller_payment_methods');
     }
 };

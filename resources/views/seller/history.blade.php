@@ -39,7 +39,7 @@
                                 <tr>
                                     <th>{{ $key+1 }}</th>
                                     <th>$ {{ number_format($transaction->amount/100, 2, ".", ",") }}</th>
-                                    <th>{{ $transaction->type == 'add' ? ( $transaction->method == 0 ? "Product Sale" : ($transaction->method == 1 ? "Service Sale" : "Course Sale")) : 'Withdrawn' }}</th>
+                                    <th>{{ $transaction->type == 'add' ? ( $transaction->sale_type == 0 ? "Product Sale" : ($transaction->sale_type == 1 ? "Service Sale" : "Course Sale")) : 'Withdrawn' }}</th>
                                     <th>{{ $transaction->created_at->format('M d, Y') }}</th>
                                 </tr>                                
                             @endforeach

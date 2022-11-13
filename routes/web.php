@@ -425,6 +425,7 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'seller', 'as' => 'seller.']
     Route::get('/transaction/history', [SellerController::class, 'transactionHistory'])->name('transaction.history');
     Route::get('/product/create', [SellerController::class, 'createProduct'])->name('product.create');
     Route::post('/product/create', [SellerController::class, 'storeProduct'])->name('product.store');
+    Route::get('/withdraw', [SellerController::class, 'withdraw'])->name('withdraw.get');
 
     Route::group(['prefix' => 'file', 'as' => 'file.'], function () {
         Route::get('/', [FFileManagerController::class, 'index'])->name('index');
