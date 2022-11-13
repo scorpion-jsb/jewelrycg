@@ -13,6 +13,7 @@ use App\Models\ProductsTaxOption;
 use App\Models\ProductsVariant;
 use App\Models\ProductTag;
 use App\Models\ProductTagsRelationship;
+use App\Models\SellerPaymentMethod;
 use App\Models\SellersProfile;
 use App\Models\SellersWalletHistory;
 use App\Models\ServiceOrder;
@@ -274,7 +275,13 @@ class SellerController extends Controller
             ->get()
             ->sum('amount');
         $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->select('amount')->get()->sum('amount');
+        $payment_methods = SellerPaymentMethod::all();
 
-        return view('seller.withdraw', compact('seller', 'withdrawable', 'totalEarned'));
+        return view('seller.withdraw', compact('seller', 'withdrawable', 'totalEarned', 'payment_methods'));
+    }
+
+    public function withdraw_post(Request $request)
+    {
+
     }
 }

@@ -50,10 +50,73 @@
                               </div>
                               <div class="col-md-3"></div>
                           </div>
+                          <form action="{{ route('seller.withdraw.post') }}" method="post" enctype="multipart/form-data">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    @csrf
+                                    <div class="card col-md-12 mb-4">
+                                        <!-- Header -->
+                                        <div class="card-header">
+                                            <h4 class="card-header-title mb-0">Withdraw Money</h4>
+                                        </div>
+                                        <!-- End Header -->
+                                        <div class="card-body">
+                                            @include('includes.validation-form')
+                                            <div class="mb-4">
+                                                <label for="amount" class="w-100 mb-2">Amount:</label>
+                                                <input type="number" name="amount" id="amount" max="{{$withdrawable}}" value="{{ old('amount') }}" class="form-control" required>
+                                            </div>
+                                 
+                                            <div class="mb-4 col-12">
+                                                <label for="method" class="w-100 mb-2">Payment Method</label>
+                                                <div class="col-4">
+                                                    <select class="form-control" id="method" name="method" data-live-search="true" data-container="body">
+                                                        @foreach ($payment_methods as $method)
+                                                            <option value="{{$method->id}}" data-id="{{$method->id}}">{{$method->name}}</option>
+                                                        @endforeach
+                                                    </select>
+                                                </div>
+                                            </div>
+
+                                            <div class="col mb-5" id="questions">
+                                            </div>
+
+                                            <button type="submit" class="btn btn-primary">Withdraw</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                          </form>
                       </div>
                   </div>
               </div> <!-- end .col-9 -->
           </div> <!-- .row -->
       </div>
   </div>
+
+  <script>
+    var paymentMethod = {!! $payment_methods !!};
+    $(function () {
+      $('#method').change(function () {
+        var selected = $(this).val() - 1;
+        
+        selectedMethod(selected);
+      })
+
+      selectedMethod(0);
+    })
+
+    function selectedMethod(id) {
+        $('#questions').empty();
+        for(var i = 0; i < 4; i++) {
+          if (paymentMethod[id][`question_${i+1}`]) {
+            $('#questions').append(`<div class="mb-2">
+                                      <input type="hidden" name="question[]" value="${i}">
+                                      <label for="answer" class="w-100 mb-2">${paymentMethod[id][`question_${i+1}`]}</label>
+                                      <input type="string" name="answer[]" class="form-control">
+                                    </div>`);
+          }
+        }
+    }
+  </script>
 </x-app-layout>
