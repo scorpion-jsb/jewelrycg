@@ -285,8 +285,9 @@ class SellerController extends Controller
     {
         $question_ids = $request->question;
         $answers = $request->answer;
-        $amount = $request->amount;
+        $amount = $request->amount * 100;
 
+        dd($request->method);
         $seller_profile = SellersProfile::where('user_id', Auth::id())->firstOrFail();
 
         if ($seller_profile->wallet < $amount || $amount <= 0) {
@@ -299,7 +300,7 @@ class SellerController extends Controller
         $withdraw_history = new SellerWalletWithdrawal();
         $withdraw_history->user_id = Auth::id();
         $withdraw_history->amount = $amount;
-        $withdraw_history->payment_method_id = $request->amount;
+        $withdraw_history->payment_method_id = $request->method - 1;
 
         for ($i = 0; $i < count($question_ids); $i++) {
             $withdraw_history['q' . ($question_ids[$i] + 1)] = $answers[$i];
