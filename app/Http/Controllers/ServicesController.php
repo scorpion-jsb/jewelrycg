@@ -727,7 +727,7 @@ class ServicesController extends Controller
         $order->save();
 
         $amount = 0;
-        $seller = $order->user->seller;
+        $seller = $order->service->seller;
         if ($seller) {
             if ($seller->sales_commission_rate) {
                 $amount = $order->package_price * $seller->sales_commission_rate / 100;

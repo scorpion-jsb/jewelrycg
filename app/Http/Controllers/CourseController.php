@@ -347,7 +347,8 @@ class CourseController extends Controller
         $order->save();
 
         $amount = 0;
-        $seller = $order->user->seller;
+        // $seller = $order->course->seller;
+        $seller = null;
         if ($seller) {
             if ($seller->sales_commission_rate) {
                 $amount = $order->price * $seller->sales_commission_rate / 100;
