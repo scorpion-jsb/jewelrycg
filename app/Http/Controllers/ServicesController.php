@@ -736,6 +736,8 @@ class ServicesController extends Controller
             SellersWalletHistory::create([
                 'user_id' => $seller->user_id,
                 'amount' => $amount,
+                'order_id' => $order->id,
+                'method' => 1,
                 'type' => 'add',
             ]);
 
@@ -808,7 +810,7 @@ class ServicesController extends Controller
 
     public function order_detail($id, Request $request)
     {
-        $order = ServiceOrder::with(['service.uploads'])->where('order_id', $id)->first();
+        $order = ServiceOrder::with(['service.uploads'])->where('order_id', $id)->firstOrFail();
         $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
         $answers = OrderServiceRequirement::with('requirement')->where('order_id', $order->id)->get();
 
@@ -890,6 +892,10 @@ class ServicesController extends Controller
         $order = ServiceOrder::with('service')->where('id', $order_id)->where('user_id', Auth::id())->firstOrFail();
         $order->status = 5;
         $order->update();
+
+        $history = SellersWalletHistory::where('order_id', $order->id)->where('method', 1)->firstOrFail();
+        $history->status = 1;
+        $history->save();
 
         $seller = User::findOrFail($order->service->user_id);
 

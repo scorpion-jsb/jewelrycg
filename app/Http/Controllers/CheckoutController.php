@@ -371,6 +371,8 @@ class CheckoutController extends Controller
                 SellersWalletHistory::create([
                     'user_id' => $seller->user_id,
                     'amount' => $amount,
+                    'order_id' => $order->id,
+                    'method' => 0,
                     'type' => 'add',
                 ]);
 

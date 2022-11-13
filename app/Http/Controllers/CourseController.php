@@ -356,6 +356,8 @@ class CourseController extends Controller
             SellersWalletHistory::create([
                 'user_id' => $seller->user_id,
                 'amount' => $amount,
+                'order_id' => $order->id,
+                'method' => 2,
                 'type' => 'add',
             ]);
 

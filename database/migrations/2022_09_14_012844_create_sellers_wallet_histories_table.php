@@ -17,6 +17,8 @@ return new class extends Migration
             $table->id();
             $table->bigInteger('user_id');
             $table->integer('amount');
+            $table->unsignedInteger('order_id')->nullable();
+            $table->tinyInteger('method')->nullable()->comment('0: product sale, 1: service sale, 2: course sale');
             $table->string('type', 10)->default('add')->comment('add, withdraw');
             $table->tinyInteger('status')->default(0)->comment('0: pending, 1: balanced');
             $table->timestamps();
