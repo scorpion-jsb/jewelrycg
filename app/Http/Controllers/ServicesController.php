@@ -31,6 +31,7 @@ use App\Models\UserAddress;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Config;
 use Stripe\Stripe;
 
 class ServicesController extends Controller
@@ -725,6 +726,24 @@ class ServicesController extends Controller
         $order->payment_intent = $request->get('payment_intent');
         $order->save();
 
+        $amount = 0;
+        $seller = $order->service->seller;
+        if ($seller) {
+            if ($seller->sales_commission_rate) {
+                $amount = $order->package_price * $seller->sales_commission_rate / 100;
+            } else {
+                $amount = $order->package_price * Config::get('constants.default_sales_commission_rate') / 100;
+            }
+            SellersWalletHistory::create([
+                'user_id' => $seller->user_id,
+                'amount' => $amount,
+                'order_id' => $order->id,
+                'sale_type' => 1,
+                'type' => 'add',
+                'status' => 2,
+            ]);
+        }
+
         // $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
 
         // Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
@@ -843,7 +862,7 @@ class ServicesController extends Controller
     {
         $pendingBalances = SellersWalletHistory::where('type', 'add')->where('status', 0)->get();
         foreach ($pendingBalances as $pending) {
-            if (Carbon::now()->diffInDays($pending->created_at->startOfDay()) >= 14) {
+            if (Carbon::now()->diffInDays($pending->updated_at->startOfDay()) >= 14) {
                 $wallet = SellersProfile::where('user_id', $pending->user_id)->first();
                 if ($wallet) {
                     $wallet->wallet += $pending->amount;
@@ -855,7 +874,7 @@ class ServicesController extends Controller
         }
         $services = ServicePost::where('user_id', auth()->id())->get();
         $seller = SellersProfile::where('user_id', auth()->id())->first();
-        $pendingBalance = SellersWalletHistory::where('user_id', auth()->id())->where('status', 0)->select('amount')->get()->sum('amount');
+        $pendingBalance = SellersWalletHistory::where('user_id', auth()->id())->whereIn('status', [0, 2])->select('amount')->get()->sum('amount');
         $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->select('amount')->get()->sum('amount');
         return view('service.dashboard')->with([
             'services' => $services,
@@ -873,22 +892,9 @@ class ServicesController extends Controller
         $order->status = 5;
         $order->update();
 
-        $amount = 0;
-        $seller = $order->service->seller;
-        if ($seller) {
-            if ($seller->sales_commission_rate) {
-                $amount = $order->package_price * $seller->sales_commission_rate / 100;
-            } else {
-                $amount = $order->package_price * Config::get('constants.default_sales_commission_rate') / 100;
-            }
-            SellersWalletHistory::create([
-                'user_id' => $seller->user_id,
-                'amount' => $amount,
-                'order_id' => $order->id,
-                'sale_type' => 1,
-                'type' => 'add',
-            ]);
-        }
+        $history = SellersWalletHistory::where('order_id', $order->id)->where('sale_type', 1)->firstOrFail();
+        $history->status = 0;
+        $history->save();
 
         $seller = User::findOrFail($order->service->user_id);
 

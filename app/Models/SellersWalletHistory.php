@@ -15,6 +15,7 @@ class SellersWalletHistory extends Model
         'order_id',
         'sale_type',
         'type',
+        'status',
     ];
 
     public function order()
