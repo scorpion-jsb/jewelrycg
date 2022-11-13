@@ -35,9 +35,9 @@
                                 </div>
                                 <div class="col-md-3">
                                     <div class="card m-0 h-100">
-                                        <div class="card-header blance-title">Pending Balance</div>
+                                        <div class="card-header blance-title">Wallet</div>
                                         <div class="card-body">
-                                            <p class="fw-bold">$ {{ number_format($pendingBalance/100, 2, ".", ",") }}</p>
+                                            <p class="fw-bold">$ {{ number_format($seller->wallet/100, 2, ".", ",") }}</p>
                                         </div>
                                     </div>
                                 </div>
