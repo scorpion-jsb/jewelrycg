@@ -28,7 +28,7 @@
                                     <div class="card m-0">
                                         <div class="card-header blance-title">Available To Withdraw</div>
                                         <div class="card-body">
-                                            <p class="fw-bold">$ {{ number_format($seller->wallet/100, 2, ".", ",") }}</p>
+                                            <p class="fw-bold">$ {{ number_format($withdrawable/100, 2, ".", ",") }}</p>
                                             <a href="" class="btn btn-sm btn-primary">Withdraw</a>
                                         </div>
                                     </div>
