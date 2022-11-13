@@ -28,26 +28,20 @@ class SellerController extends Controller
     //
     public function dashboard()
     {
-        $pendingBalances = SellersWalletHistory::where('type', 'add')->where('status', 0)->get();
-        foreach ($pendingBalances as $pending) {
-            if (Carbon::now()->diffInDays($pending->updated_at->startOfDay()) >= 14) {
-                $wallet = SellersProfile::where('user_id', $pending->user_id)->first();
-                if ($wallet) {
-                    // $wallet->wallet += $pending->amount;
-                    // $wallet->save();
-                    $pending->status = 1;
-                    $pending->save();
-                }
-            }
-        }
         $products = Product::where('vendor', auth()->id())->get();
         $seller = SellersProfile::where('user_id', auth()->id())->firstOrFail();
-        $pendingBalance = SellersWalletHistory::where('user_id', auth()->id())->whereIn('status', [0, 2])->select('amount')->get()->sum('amount');
+        $withdrawable = SellersWalletHistory::where('user_id', auth()->id())
+            ->where('type', 'add')
+            ->where('status', 1)
+            ->whereDate('updated_at', '<', date('Y-m-d', strtotime(Carbon::today()->toDateString() . " -14 days")))
+            ->select('amount')
+            ->get()
+            ->sum('amount');
         $totalEarned = SellersWalletHistory::where('user_id', auth()->id())->select('amount')->get()->sum('amount');
         return view('seller.dashboard')->with([
             'products' => $products,
             'seller' => $seller,
-            'pendingBalance' => $pendingBalance,
+            'withdrawable' => $withdrawable,
             'totalEarned' => $totalEarned,
         ]);
     }
