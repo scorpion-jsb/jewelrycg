@@ -22,11 +22,11 @@ class OrderController extends Controller
             $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
                 ->where('order_id', $orderId)
                 ->where('user_id', auth()->id())
-                ->first();
+                ->firstOrFail();
         } else {
             $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
                 ->where('order_id', $orderId)
-                ->first();
+                ->firstOrFail();
         }
 
         return view('orders.show', compact('order'));
@@ -50,7 +50,7 @@ class OrderController extends Controller
             $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
                 ->where('order_id', $request->query('orderId'))
                 ->where('email', $request->query('email'))
-                ->first();
+                ->firstOrFail();
             return view('orders.show', compact('order'));
         } else {
             return view('trackorder');

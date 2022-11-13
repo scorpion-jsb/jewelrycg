@@ -12,6 +12,8 @@ class SellersWalletHistory extends Model
     protected $fillable = [
         'user_id',
         'amount',
+        'order_id',
+        'method',
         'type',
     ];
 }
