@@ -73,7 +73,7 @@
                 <div class="text-left">
                     <h4 class="mb-3 fs-13 text-uppercase fw-700">
                             Be A Seller
-                        </h4> <a href="/users/signup/seller" class="shadow-md btn btn-primary btn-sm">
+                        </h4> <a href="/seller/signup" class="shadow-md btn btn-primary btn-sm">
                             Apply Now
                         </a> </div>
             </div>

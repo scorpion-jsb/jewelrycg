@@ -292,17 +292,17 @@
                         <div class="submission">Price ($)</div>
                         <div class="w-30">
                             <div class="d-flex sub-content">
-                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($packages) ? (count($packages) >= 1 ? $packages[0]->price : 0) : 0 }}">
+                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($packages) ? (count($packages) >= 1 ? $packages[0]->price / 100 : 0) : 0 }}">
                             </div>
                         </div>
                         <div class="w-30">
                             <div class="d-flex sub-content">
-                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($packages) ? (count($packages) >= 2 ? $packages[1]->price : 0) : 0 }}">
+                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($packages) ? (count($packages) >= 2 ? $packages[1]->price / 100 : 0) : 0 }}">
                             </div>
                         </div>
                         <div class="w-30">
                             <div class="d-flex sub-content">
-                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($packages) ? (count($packages) >= 3 ? $packages[2]->price : 0) : 0 }}">
+                                <input type="number" name="price[]" class="w-100 text-input-package" placeholder="Price of your package" value="{{isset($packages) ? (count($packages) >= 3 ? $packages[2]->price / 100 : 0) : 0 }}">
                             </div>
                         </div>
                     </div>
