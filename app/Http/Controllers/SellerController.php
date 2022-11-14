@@ -307,7 +307,7 @@ class SellerController extends Controller
         $withdraw_history = new SellerWalletWithdrawal();
         $withdraw_history->user_id = Auth::id();
         $withdraw_history->amount = $amount;
-        $withdraw_history->payment_method_id = $request->method - 1;
+        $withdraw_history->payment_method_id = $request->method;
 
         for ($i = 0; $i < count($question_ids); $i++) {
             $withdraw_history['q' . ($question_ids[$i] + 1)] = $answers[$i];
