@@ -123,7 +123,7 @@
             $('#questions').append(`<div class="mb-2">
                                       <input type="hidden" name="question[]" value="${i}">
                                       <label for="answer" class="w-100 mb-2">${paymentMethod[id][`question_${i+1}`]}</label>
-                                      <input type="string" name="answer[]" class="form-control">
+                                      <input type="string" name="answer[]" class="form-control" required>
                                     </div>`);
           }
         }
