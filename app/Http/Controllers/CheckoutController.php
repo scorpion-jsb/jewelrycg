@@ -96,6 +96,10 @@ class CheckoutController extends Controller
 
                         // $productVariant = ProductsVariant::find($item->options['id']);
                         $orderItem->product_variant_name = $item->options['name'];
+
+                        if (!$orderItem->product_variant_name) {
+                            $orderItem->product_variant_name = ProductVariant::findOrFail($item->options['id'])->variant_name;
+                        }
                     }
 
                     $orderItem->save();
