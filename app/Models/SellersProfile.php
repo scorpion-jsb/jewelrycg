@@ -12,16 +12,17 @@ class SellersProfile extends Model
      * The table associated with the model.
      *
      * @var string
-     */    
+     */
     protected $table = 'sellers_profile';
 
     protected $fillable = [
         'user_id',
         'slogan',
-        'about'
+        'about',
     ];
 
-    public function user(){
-        $this->belongsTo(User::class, 'user_id');
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
     }
 }

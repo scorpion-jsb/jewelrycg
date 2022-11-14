@@ -18,6 +18,7 @@ use App\Models\SellersProfile;
 use App\Models\SellersWalletHistory;
 use App\Models\SellerWalletWithdrawal;
 use App\Models\ServiceOrder;
+use App\Models\ServicePost;
 use App\Models\ServiceTags;
 use App\Models\Upload;
 use App\Models\User;
@@ -329,5 +330,14 @@ class SellerController extends Controller
         $histories = SellerWalletWithdrawal::with('method')->where('user_id', Auth::id())->get();
 
         return view('seller.withdraw_history', compact('histories'));
+    }
+
+    public function seller_profile($username)
+    {
+        $seller = SellersProfile::withWhereHas('user', fn($query) => $query->where('username', $username))->with('user.uploads')->firstOrFail();
+        $products = Product::with(['uploads', 'product_category'])->where('vendor', $seller->user_id)->paginate(6, '*', 'product');
+        $services = ServicePost::with(['uploads', 'categories.category'])->where('user_id', $seller->user_id)->paginate(6, '*', 'service');
+
+        return view('seller.profile', compact('seller', 'products', 'services'));
     }
 }
