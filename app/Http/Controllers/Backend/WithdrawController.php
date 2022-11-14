@@ -13,14 +13,14 @@ class WithdrawController extends Controller
     public function index()
     {
         SellerWalletWithdrawal::where('status', 0)->update(['status' => 1]);
-        $withdraws = SellerWalletWithdrawal::with('user')->get();
+        $withdraws = SellerWalletWithdrawal::with('user')->orderBy('created_at', 'desc')->get();
 
         return view('backend.withdraws.list', compact('withdraws'));
     }
 
     public function methods()
     {
-        $methods = SellerPaymentMethod::all();
+        $methods = SellerPaymentMethod::orderBy('created_at', 'desc')->get();
 
         return view('backend.withdraws.method.index', compact('methods'));
     }
