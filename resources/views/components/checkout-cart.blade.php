@@ -5,6 +5,9 @@ $subTotal = 0;
 @foreach ($products as $key => $product)
     @php
         $subTotal += $product->qty * $product->price;
+        if (count($product->options)) {
+          $variant_name = \App\Models\ProductsVariant::find($product->options->id)->variant_name;
+        }
     @endphp
     <div class="cart-item mb-3">
         <div class="row">
@@ -15,7 +18,7 @@ $subTotal = 0;
             <div class="col-8">
                 <div class="item-meta text-nowrap mb-2">
                     @if(count($product->options))
-                        {{$product->name}} ( {{$product->options->name}} )
+                        {{$product->name}} ( {{$variant_name}} )
                     @else
                         {{$product->name}}
                     @endif

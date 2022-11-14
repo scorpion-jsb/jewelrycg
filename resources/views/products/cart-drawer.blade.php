@@ -1,6 +1,9 @@
 @foreach ($items as $item)
     @php
         $product = $item->model;
+        if (count($item->options)) {
+          $variant_name = \App\Models\ProductsVariant::find($item->options->id)->variant_name;
+        }
     @endphp
     <div class="row cart-drawer-item pb-3 mb-3" id="item{{ $item->rowId }}">
         <div class="col-4">
@@ -10,7 +13,7 @@
             <div class="cart-drawer-item-meta mb-2">
                 <div class="product-title">
                   @if (count($item->options))
-                    {{$product->name}} ( {{$item->options->name}} )
+                    {{$product->name}} ( {{$variant_name}} )
                   @else
                       {{ $product->name }}
                   @endif
