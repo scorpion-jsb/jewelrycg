@@ -323,4 +323,11 @@ class SellerController extends Controller
 
         return redirect()->back()->with('success', 'Withdraw is in progress');
     }
+
+    public function withdraw_history()
+    {
+        $histories = SellerWalletWithdrawal::with('method')->where('user_id', Auth::id())->get();
+
+        return view('seller.withdraw_history', compact('histories'));
+    }
 }
