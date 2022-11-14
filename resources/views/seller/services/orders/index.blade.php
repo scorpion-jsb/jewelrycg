@@ -56,8 +56,8 @@
                                     <tr>
                                     {{-- <td>#{{ $order->order_id }}</td> --}}
                                         <td>{{ $order->user->first_name }} {{ $order->user->last_name }}</td>
-                                        <td>{{ $order->service->name . " - " . ($order->package_price / 100) }}</td>
-                                        <td>${{ $order->package_price / 100 }}</td>
+                                        <td>{{ $order->service->name . " - " . ($order->package_name) }}</td>
+                                        <td>${{ number_format($order->package_price / 100, 2) }}</td>
                                         <td>
                                             @if ($order->status == 0)
                                             Pending
