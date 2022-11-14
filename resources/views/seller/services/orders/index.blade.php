@@ -56,8 +56,8 @@
                                     <tr>
                                     {{-- <td>#{{ $order->order_id }}</td> --}}
                                         <td>{{ $order->user->first_name }} {{ $order->user->last_name }}</td>
-                                        <td>{{ $order->service->name . " - " . ($order->package_price / 100) }}</td>
-                                        <td>${{ $order->package_price / 100 }}</td>
+                                        <td>{{ $order->service->name . " - " . ($order->package_name) }}</td>
+                                        <td>${{ number_format($order->package_price / 100, 2) }}</td>
                                         <td>
                                             @if ($order->status == 0)
                                             Pending
@@ -71,7 +71,7 @@
                                             Delivered
                                             @endif
                                         </td>
-                                        <td>{{ $order->original_delivery_time == '0000-00-00 00:00:00' ? "-" : date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</td>
+                                        <td>{{ $order->status == 0 ? "-" : date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a class="btn btn-dark btn-sm" href="{{ route('seller.service.order.detail', $order->order_id) }}">View</a>

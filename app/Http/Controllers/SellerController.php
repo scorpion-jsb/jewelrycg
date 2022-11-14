@@ -197,7 +197,7 @@ class SellerController extends Controller
                 break;
         }
 
-        $orders = $query->get();
+        $orders = $query->orderBy('created_at', 'desc')->get();
 
         return view('seller.services.orders.index', ['orders' => $orders, 'tab' => $tab]);
     }
