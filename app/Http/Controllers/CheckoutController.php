@@ -11,7 +11,7 @@ use App\Models\Coupon;
 use App\Models\CouponUsageHistory;
 use App\Models\Order;
 use App\Models\OrderItem;
-use App\Models\ProductVariant;
+use App\Models\ProductsVariant;
 use App\Models\SellersWalletHistory;
 use App\Models\SettingGeneral;
 use App\Models\ShippingOption;
@@ -95,12 +95,8 @@ class CheckoutController extends Controller
                     if (isset($item->options['id'])) {
                         $orderItem->product_variant = $item->options['id'];
 
-                        // $productVariant = ProductsVariant::find($item->options['id']);
-                        $orderItem->product_variant_name = $item->options['name'];
-
-                        if (!$orderItem->product_variant_name) {
-                            $orderItem->product_variant_name = ProductVariant::findOrFail($item->options['id'])->variant_name;
-                        }
+                        $productVariant = ProductsVariant::find($item->options['id']);
+                        $orderItem->product_variant_name = $productVariant->variant_name;
                     }
 
                     $orderItem->save();
