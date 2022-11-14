@@ -71,7 +71,7 @@
                                             Delivered
                                             @endif
                                         </td>
-                                        <td>{{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</td>
+                                        <td>{{ $order->original_delivery_time == '0000-00-00 00:00:00' ? "-" : date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</td>
                                         <td>
                                             <div class="btn-group" role="group">
                                                 <a class="btn btn-dark btn-sm" href="{{ route('seller.service.order.detail', $order->order_id) }}">View</a>
