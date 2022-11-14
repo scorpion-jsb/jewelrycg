@@ -9,7 +9,7 @@
                     <div class="item-meta mb-3 fw-800 fs-18">
                         @php
                             if (count($product->options)) {
-                                echo $product->name . ' ( ' . $product->options->name.' )';
+                                echo $product->name . ' ( ' . \App\Models\ProductsVariant::find($product->options->id)->variant_name.' )';
                                 // echo $product->name;
                             } else {
                                 echo $product->name;
