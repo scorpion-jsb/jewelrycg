@@ -378,10 +378,12 @@ class CheckoutController extends Controller
             }
         }
         // Send order placed email to customer
-        if (auth()->user()) {
-            Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
-        } else {
-            Mail::to($request->session()->get('billing_email'))->send(new OrderPlacedMail($order));
+        if (false) {
+            if (auth()->user()) {
+                Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
+            } else {
+                Mail::to($request->session()->get('billing_email'))->send(new OrderPlacedMail($order));
+            }
         }
 
         $request->session()->forget('order_id');
