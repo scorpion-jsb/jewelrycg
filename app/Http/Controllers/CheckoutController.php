@@ -96,6 +96,10 @@ class CheckoutController extends Controller
 
                         // $productVariant = ProductsVariant::find($item->options['id']);
                         $orderItem->product_variant_name = $item->options['name'];
+
+                        if (!$orderItem->product_variant_name) {
+                            $orderItem->product_variant_name = ProductVariant::findOrFail($item->options['id'])->variant_name;
+                        }
                     }
 
                     $orderItem->save();
@@ -349,11 +353,7 @@ class CheckoutController extends Controller
     {
         $orderId = $request->session()->get('order_id');
 
-        $request->session()->forget('order_id');
-        $request->session()->forget('shipping_price');
-        $request->session()->forget('shipping_option_id');
-
-        $order = Order::where('order_id', $orderId)->first();
+        $order = Order::where('order_id', $orderId)->firstOrFail();
 
         $order->status_payment = 2; // paid
         $order->payment_intent = $request->get('payment_intent');
@@ -376,14 +376,23 @@ class CheckoutController extends Controller
                     'sale_type' => 0,
                     'type' => 'add',
                 ]);
+
+                $seller->wallet = $seller->wallet + $amount;
+                $seller->save();
             }
         }
         // Send order placed email to customer
-        if (auth()->user()) {
-            Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
-        } else {
-            Mail::to($request->session()->get('billing_email'))->send(new OrderPlacedMail($order));
+        if (false) {
+            if (auth()->user()) {
+                Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
+            } else {
+                Mail::to($request->session()->get('billing_email'))->send(new OrderPlacedMail($order));
+            }
         }
+
+        $request->session()->forget('order_id');
+        $request->session()->forget('shipping_price');
+        $request->session()->forget('shipping_option_id');
 
         // redirect to order details
         return redirect()->route('orders.show', $orderId);

@@ -74,7 +74,7 @@
                                             @include('includes.validation-form')
                                             <div class="mb-4">
                                                 <label for="amount" class="w-100 mb-2">Amount:</label>
-                                                <input type="number" name="amount" id="amount" max="{{$withdrawable}}" value="{{ old('amount') }}" class="form-control" required>
+                                                <input type="number" name="amount" id="amount" max="{{$withdrawable}}" step="0.01" min="0.01" value="{{ old('amount') }}" class="form-control" required>
                                             </div>
                                  
                                             <div class="mb-4 col-12">
