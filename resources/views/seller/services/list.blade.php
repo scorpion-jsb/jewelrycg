@@ -95,39 +95,6 @@
 @section('js')
     <script>
         $(function() {
-
-            $('.table').DataTable({
-                processing: true,
-                serverSide: true,
-                bAutoWidth: false,
-
-                ajax: '{{ route("seller.services.get") }}',
-                columns: [{
-                        data: 'id',
-                        name: 'id'
-                    },
-                   
-                    {
-                        data: 'name',
-                        name: 'name'
-                    },
-                    {
-                        data: 'slug',
-                        name: 'slug'
-                    },
-                    {
-                        data: 'categorie_id',
-                        name: 'categorie_id'
-                    },
-                    {
-                        data: 'action',
-                        name: 'action',
-                        orderable: false,
-                        searchable: false
-                    },
-                ]
-            });
-
             $('.select2').select2({
                 tags: true,
                 maximumSelectionLength: 10,
