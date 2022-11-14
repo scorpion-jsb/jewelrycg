@@ -11,6 +11,7 @@ use App\Models\Coupon;
 use App\Models\CouponUsageHistory;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\ProductVariant;
 use App\Models\SellersWalletHistory;
 use App\Models\SettingGeneral;
 use App\Models\ShippingOption;
@@ -382,12 +383,10 @@ class CheckoutController extends Controller
             }
         }
         // Send order placed email to customer
-        if (false) {
-            if (auth()->user()) {
-                Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
-            } else {
-                Mail::to($request->session()->get('billing_email'))->send(new OrderPlacedMail($order));
-            }
+        if (auth()->user()) {
+            Mail::to(auth()->user()->email)->send(new OrderPlacedMail($order));
+        } else {
+            Mail::to($request->session()->get('billing_email'))->send(new OrderPlacedMail($order));
         }
 
         $request->session()->forget('order_id');
