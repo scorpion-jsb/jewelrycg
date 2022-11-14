@@ -39,7 +39,7 @@
                                   <tr>
                                   <td>${{ number_format($history->amount, 2) }}</td>
                                   <td>{{ $history->status ? "Finished" : "Pending" }}</td>
-                                  <td>{{ $history->method->name }}</td>
+                                  <td>{{ $history->payment_method_name }}</td>
                                   <td>{{ $history->q1 }}</td>
                                   <td>{{ $history->q2 }}</td>
                                   <td>{{ $history->q3 }}</td>

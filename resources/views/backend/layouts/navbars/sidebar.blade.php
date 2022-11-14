@@ -203,6 +203,26 @@
                   <a class="nav-link @if($navName == 'addcoupon') active @endif" href="{{ route('backend.coupons.create') }}">{{ __("Create coupon") }}</a>
                 </div>
               </div>
+              
+              <!-- Collapse -->
+              <div class="nav-item">
+                <a class="nav-link nav-link-main dropdown-toggle " href="#navbarVerticalMenuAllWithdrawMenu" role="button" data-bs-toggle="collapse" data-bs-target="#navbarVerticalMenuAllWithdrawMenu" aria-expanded="false" aria-controls="navbarVerticalMenuAllWithdrawMenu">
+                  <i class="bi-wallet nav-icon"></i>
+                  <span class="nav-link-title">{{ __("Withdraw") }}</span>
+                </a>
+
+                <div id="navbarVerticalMenuAllWithdrawMenu" class="nav-collapse collapse @if($activePage == 'withdraws') show @endif" data-bs-parent="#navbarVerticalMenuPagesMenu">
+                  <a class="nav-link @if($navName == 'withdrawmethods') active @endif" href="{{ route('backend.withdraws.method') }}">{{ __("Withdraw Methods") }}</a>
+                  <a class="nav-link @if($navName == 'withdraws') active @endif" href="{{ route('backend.withdraws.list') }}">
+                    <span class="nav-link-title">{{ __("Withdraws") }} 
+                      @if (new_withdraw_count())
+                        <span class="badge bg-primary rounded-pill ms-1">{{ new_withdraw_count() }}</span>
+                      @endif
+                    </span>
+                  </a>
+                </div>
+              </div>
+              <!-- End Collapse -->
 
               <div class="nav-item">
                 <a class="nav-link nav-link-main " href="#" data-placement="left">

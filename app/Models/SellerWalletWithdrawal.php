@@ -9,8 +9,14 @@ class SellerWalletWithdrawal extends Model
 {
     use HasFactory;
 
-    public function method()
+    protected $fillable = [
+        'user_id',
+        'payment_method_name',
+        'status',
+    ];
+
+    public function user()
     {
-        return $this->belongsTo(SellerPaymentMethod::class, 'payment_method_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

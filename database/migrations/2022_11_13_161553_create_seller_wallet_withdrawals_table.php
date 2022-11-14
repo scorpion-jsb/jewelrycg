@@ -18,7 +18,7 @@ return new class extends Migration
             $table->unsignedInteger('user_id');
             $table->unsignedInteger('amount');
             $table->tinyInteger('status')->default(0);
-            $table->unsignedInteger('payment_method_id');
+            $table->string('payment_method_name');
             $table->string('q1')->nullable();
             $table->string('q2')->nullable();
             $table->string('q3')->nullable();

@@ -105,24 +105,26 @@
   </div>
 
   <script>
-    var paymentMethod = {!! $payment_methods !!};
+    var paymentMethods = {!! $payment_methods !!};
     $(function () {
       $('#method').change(function () {
-        var selected = $(this).val() - 1;
+        var selected = $(this).val();
         
         selectedMethod(selected);
       })
 
-      selectedMethod(0);
+      selectedMethod(paymentMethods[0].id);
     })
 
     function selectedMethod(id) {
         $('#questions').empty();
+        
+        const payment = paymentMethods.filter((item) => item.id == id)[0];
         for(var i = 0; i < 4; i++) {
-          if (paymentMethod[id][`question_${i+1}`]) {
+          if (payment[`question_${i+1}`]) {
             $('#questions').append(`<div class="mb-2">
                                       <input type="hidden" name="question[]" value="${i}">
-                                      <label for="answer" class="w-100 mb-2">${paymentMethod[id][`question_${i+1}`]}</label>
+                                      <label for="answer" class="w-100 mb-2">${payment[`question_${i+1}`]}</label>
                                       <input type="string" name="answer[]" class="form-control" required>
                                     </div>`);
           }

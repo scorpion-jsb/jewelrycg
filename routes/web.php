@@ -38,6 +38,7 @@ use App\Http\Controllers\Backend\TaxOptionController;
 use App\Http\Controllers\Backend\UploadController;
 use App\Http\Controllers\Backend\UsersController;
 use App\Http\Controllers\Backend\VendorsController;
+use App\Http\Controllers\Backend\WithdrawController;
 use App\Http\Controllers\BlogController;
 // seller register
 use App\Http\Controllers\CartController;
@@ -378,8 +379,21 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
         Route::get('/pending', [BackendOrderController::class, 'pending'])->name('pending');
     });
 
-    Route::get('/', [DashboardController::class, 'index'])->name('login');
+    Route::group(['prefix' => 'withdraws', 'as' => 'withdraws.'], function () {
+        Route::get('/', [WithdrawController::class, 'index'])->name('list');
+        Route::get('/method', [WithdrawController::class, 'methods'])->name('method');
+        Route::get('/method/edit/{id}', [WithdrawController::class, 'methods_edit_get'])->name('method.edit');
+        Route::post('/method/edit/{id}', [WithdrawController::class, 'methods_edit_post'])->name('method.edit_post');
+        Route::get('/method/add', [WithdrawController::class, 'methods_add_get'])->name('method.add');
+        Route::post('/method/add', [WithdrawController::class, 'methods_add_post'])->name('method.add_post');
+        Route::get('/method/{id}', [WithdrawController::class, 'methods_delete'])->name('method.delete');
 
+        Route::get('/status/pending/{id}', [WithdrawController::class, 'set_pending'])->name('status.pending');
+        Route::get('/status/finished/{id}', [WithdrawController::class, 'set_finished'])->name('status.finished');
+        Route::get('/status/rejected/{id}', [WithdrawController::class, 'set_rejected'])->name('status.rejected');
+    });
+
+    Route::get('/', [DashboardController::class, 'index'])->name('login');
 });
 // End Backend
 

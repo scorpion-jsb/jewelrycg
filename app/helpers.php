@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Product;
+use App\Models\SellerWalletWithdrawal;
 use App\Models\SettingGeneral;
 
 if (!function_exists('guest_checkout')) {
@@ -14,6 +15,13 @@ if (!function_exists('pending_count')) {
     function pending_count()
     {
         return Product::where('status', 2)->count() ? Product::where('status', 2)->count() : 0;
+    }
+}
+
+if (!function_exists('new_withdraw_count')) {
+    function new_withdraw_count()
+    {
+        return SellerWalletWithdrawal::where('status', 0)->count() ? SellerWalletWithdrawal::where('status', 0)->count() : 0;
     }
 }
 
