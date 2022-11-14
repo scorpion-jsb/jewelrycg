@@ -11,6 +11,7 @@ use App\Models\Coupon;
 use App\Models\CouponUsageHistory;
 use App\Models\Order;
 use App\Models\OrderItem;
+use App\Models\ProductVariant;
 use App\Models\SellersWalletHistory;
 use App\Models\SettingGeneral;
 use App\Models\ShippingOption;
