@@ -338,6 +338,32 @@ class SellerController extends Controller
         $products = Product::with(['uploads', 'product_category'])->where('vendor', $seller->user_id)->paginate(6, '*', 'product');
         $services = ServicePost::with(['uploads', 'categories.category'])->where('user_id', $seller->user_id)->paginate(6, '*', 'service');
 
-        return view('seller.profile', compact('seller', 'products', 'services'));
+        return view('seller_profile', compact('seller', 'products', 'services'));
+    }
+
+    public function profile()
+    {
+        $seller = SellersProfile::withWhereHas('user', fn($query) => $query->where('id', Auth::id()))->with('user.uploads')->firstOrFail();
+        $payment_methods = SellerPaymentMethod::all();
+
+        return view('seller.profile', compact('seller', 'payment_methods'));
+    }
+
+    public function save_profile(Request $request)
+    {
+        $seller = SellersProfile::withWhereHas('user', fn($query) => $query->where('id', Auth::id()))->firstOrFail();
+
+        $seller->slogan = $request->slogan;
+        $seller->about = $request->about;
+        $seller->default_payment_method = $request->method;
+        $seller->save();
+
+        if ($request->avatar) {
+            $user = $seller->user;
+            $user->avatar = $request->avatar;
+            $user->save();
+        }
+
+        return redirect()->back()->with("success", "Saved data");
     }
 }

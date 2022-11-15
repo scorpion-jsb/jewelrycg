@@ -19,6 +19,7 @@ class SellersProfile extends Model
         'user_id',
         'slogan',
         'about',
+        'default_payment_method',
     ];
 
     public function user()
