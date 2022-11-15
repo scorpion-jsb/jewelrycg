@@ -205,9 +205,9 @@ class SellerController extends Controller
 
     public function service_order_detail($id)
     {
-        $order = ServiceOrder::where('order_id', $id)->withWhereHas('service',
+        $order = ServiceOrder::where('order_id', $id)->whereHas('service',
             fn($query) => $query->where('user_id', Auth::id())
-        )->with('user')->firstOrFail();
+        )->with(['user', 'review'])->firstOrFail();
 
         $answers = OrderServiceRequirement::with('requirement')->where('order_id', $order->id)->get();
 

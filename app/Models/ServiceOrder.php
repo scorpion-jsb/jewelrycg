@@ -32,6 +32,6 @@ class ServiceOrder extends Model
 
     public function review()
     {
-        return $this->hasOne(ServiceReview::class, 'order_id', 'id');
+        return $this->hasMany(ServiceReview::class, 'order_id', 'id');
     }
 }

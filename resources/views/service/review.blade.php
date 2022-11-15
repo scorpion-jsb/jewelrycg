@@ -18,20 +18,23 @@
                   <div class="card col-md-12 mb-4">
                       <!-- Header -->
                       <div class="card-header">
-                          <h4 class="card-header-title mb-0">Leave review to {{$order->user->first_name . " " . $order->user->last_name}}</h4>
+                          <h4 class="card-header-title mb-0">Leave review to Order #{{$order->order_id}}</h4>
                           <input type="hidden" name="order_id" value="{{ $order->id }}">
                       </div>
                       <!-- End Header -->
                       <div class="card-body">
                           @include('includes.validation-form')
-                          <div class="mb-4">
-                              <label for="rating" class="w-100 mb-2">Rating:</label>
-                              <input type="number" name="rating" id="rating" max="5" step="0.01" min="0" value="{{ $order->review ? $order->review->rating/100 : 0 }}" class="form-control" required>
+                          <div class="rate pb-3">
+                            @for ($i = 5; $i > 0; $i--)
+                                <input
+                                    type="radio" id="star{!! $i !!}" class="rate" name="rating" value="{!! $i !!}"/>
+                                <label for="star{!! $i !!}">{{ $i }}</label>
+                            @endfor
                           </div>
                
                           <div class="mb-4 col-12">
-                              <label for="method" class="w-100 mb-2">About Service</label>
-                              <textarea name="review" class="form-control">{{ $order->review ? $order->review->review : ""}}</textarea>
+                              <label for="method" class="w-100 mb-2">Review comment</label>
+                              <textarea name="review" class="form-control"></textarea>
                           </div>
 
                           <button type="submit" class="btn btn-primary">Save Review</button>
