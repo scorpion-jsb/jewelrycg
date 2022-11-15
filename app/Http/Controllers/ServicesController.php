@@ -932,9 +932,9 @@ class ServicesController extends Controller
         $order = ServiceOrder::with(['review', 'service'])->where('order_id', $id)->firstOrFail();
 
         if ($order->user_id == Auth::id() && count($order->review)) {
-            return redirect()->back()->with('error', 'You already leaved review!');
+            return redirect()->back()->with('error', 'You already left review!');
         } else if ($order->service->user_id == Auth::id() && count($order->review) != 1) {
-            return redirect()->back()->with('error', "You can't leave review now");
+            return redirect()->back()->with('error', "You can't leave left now");
         } else if ($order->user_id != Auth::id() && $order->service->user_id != Auth::id()) {
             return redirect()->back()->with('error', "You can't access to this page");
         }
@@ -950,9 +950,9 @@ class ServicesController extends Controller
         $order = ServiceOrder::findOrFail($order_id);
 
         if ($order->user_id == Auth::id() && count($order->review)) {
-            return redirect()->back()->with('error', 'You already leaved review!');
+            return redirect()->back()->with('error', 'You already left review!');
         } else if ($order->service->user_id == Auth::id() && count($order->review) != 1) {
-            return redirect()->back()->with('error', "You can't leave review now");
+            return redirect()->back()->with('error', "You can't leave left now");
         } else if ($order->user_id != Auth::id() && $order->service->user_id != Auth::id()) {
             return redirect()->back()->with('error', "You can't access to this page");
         }
