@@ -71,6 +71,11 @@
     width: 100%;
     border: 0;
   }
+
+  .select-option.invalid {
+    border-color: #c22c12
+  }
+
 </style>
 
 <form action="{{ route('seller.services.requirement') }}" method="post" enctype="multipart/form-data">
@@ -219,12 +224,23 @@
       var type = parseInt($('#type-select').val());
       var typeStr = type == 0 ? "Text" : type == 1 ? "Attachment" : "Multiple choice";
 
-      if (type == 2) {
-        type += $('#enable-multi-check').is(":checked") ? 1 : 0;
-      }
-
       var choices = [];
       var choiceInputs = $('.choice-input');
+      if (type == 2) {
+        type += $('#enable-multi-check').is(":checked") ? 1 : 0;
+
+        for (var i=0; i < choiceInputs.length; i++) {
+          for (var j = i + 1; j < choiceInputs.length; j++) {
+            if ($(choiceInputs[i]).val().length > 0 && $(choiceInputs[i]).val() == $(choiceInputs[j]).val()) {
+              $(choiceInputs[i]).parent().addClass("invalid");
+              $(choiceInputs[j]).parent().addClass("invalid");
+
+              return;
+            };
+          }
+      }
+      }
+
       for (var i=0; i < choiceInputs.length; i++) {
         if ($(choiceInputs[i]).val().length > 0) {
           choices.push($(choiceInputs[i]).val());
