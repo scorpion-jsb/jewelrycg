@@ -813,7 +813,7 @@ class ServicesController extends Controller
 
     public function order_detail($id, Request $request)
     {
-        $order = ServiceOrder::with(['service.uploads', 'review'])->where('order_id', $id)->firstOrFail();
+        $order = ServiceOrder::with(['service.uploads', 'service.postauthor', 'review'])->where('order_id', $id)->firstOrFail();
         $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
         $answers = OrderServiceRequirement::with('requirement')->where('order_id', $order->id)->get();
 
@@ -929,7 +929,15 @@ class ServicesController extends Controller
 
     public function service_review_get($id)
     {
-        $order = ServiceOrder::with('review')->where('order_id', $id)->firstOrFail();
+        $order = ServiceOrder::with(['review', 'service'])->where('order_id', $id)->firstOrFail();
+
+        if ($order->user_id == Auth::id() && count($order->review)) {
+            return redirect()->back()->with('error', 'You already leaved review!');
+        } else if ($order->service->user_id == Auth::id() && count($order->review) != 1) {
+            return redirect()->back()->with('error', "You can't leave review now");
+        } else if ($order->user_id != Auth::id() && $order->service->user_id != Auth::id()) {
+            return redirect()->back()->with('error', "You can't access to this page");
+        }
 
         return view('service.review', compact('order'));
     }
@@ -941,21 +949,20 @@ class ServicesController extends Controller
 
         $order = ServiceOrder::findOrFail($order_id);
 
-        if ($order->user_id != Auth::id()) {
-            return redirect()->back()->with('error', 'You are not allowed to review this order!');
+        if ($order->user_id == Auth::id() && count($order->review)) {
+            return redirect()->back()->with('error', 'You already leaved review!');
+        } else if ($order->service->user_id == Auth::id() && count($order->review) != 1) {
+            return redirect()->back()->with('error', "You can't leave review now");
+        } else if ($order->user_id != Auth::id() && $order->service->user_id != Auth::id()) {
+            return redirect()->back()->with('error', "You can't access to this page");
         }
 
-        $review = ServiceReview::where('order_id', $order_id)->first();
+        ServiceReview::create(['order_id' => $order_id, 'rating' => $rating, 'review' => $request->review]);
 
-        if ($review) {
-            $review->rating = $rating * 100;
-            $review->review = $request->review;
-            $review->save();
+        if ($order->user_id == Auth::id()) {
+            return redirect()->route('services.order_detail', $order->order_id)->with('success', 'Your review successfully saved');
         } else {
-            $review = ServiceReview::create(['order_id' => $order_id, 'rating' => $rating * 100, 'review' => $request->review]);
-            $review->rating = $rating * 100;
+            return redirect()->route('seller.service.order.detail', $order->order_id)->with('success', 'Your review successfully saved');
         }
-
-        return redirect()->back()->with('success', 'Your review successfully saved');
     }
 }

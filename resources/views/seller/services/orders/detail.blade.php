@@ -167,7 +167,54 @@
                             <i class="bi bi-clipboard-check p-1"></i>
                             <span class="">Your approved delivery at {{ date('F d, Y h:i A', strtotime($order->updated_at)) }}. Order completed</span>
                         </div>
-                        <a href="/service/review/{{$order->order_id}}">Leave a review</a>
+                        @if (count($order->review))                        
+                        <div class="timeline-item pb-3 mb-3 border-bottom">
+                          <i class="bi bi-clipboard-check p-1"></i>
+                          <span class="">{{$order->user->first_name . "" . $order->user->last_name }} leaved a review to your service at {{ date('F d, Y h:i A', strtotime($order->review[0]->created_at)) }}</span>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="rate pb-3">
+                                    @for ($i = 5; $i > 0; $i--)
+                                        <input
+                                            type="radio" id="star{!! $i !!}" class="rate" name="rating1" value="{!! $i !!}"
+                                            {{ $order->review[0]->rating == $i ? "checked" : "" }}
+                                            disabled
+                                        />
+                                        <label for="star{!! $i !!}">{{ $i }}</label>
+                                    @endfor
+                                  </div>
+                            </div>
+                            <div class="card-body">
+                                {{ $order->review[0]->review }}
+                            </div>
+                        </div>
+                        @if (count($order->review) == 2)                        
+                        <div class="timeline-item pb-3 mb-3 border-bottom">
+                          <i class="bi bi-clipboard-check p-1"></i>
+                          <span class="">You sent a review to {{$order->user->first_name . " " . $order->user->last_name}} at {{ date('F d, Y h:i A', strtotime($order->review[1]->created_at)) }}</span>
+                        </div>
+                        <div class="card">
+                            <div class="card-header">
+                                <div class="rate pb-3">
+                                    @for ($i = 5; $i > 0; $i--)
+                                        <input
+                                            type="radio" id="star{!! $i !!}" class="rate" name="rating2" value="{!! $i !!}"
+                                            {{ $order->review[1]->rating == $i ? "checked" : "" }}
+                                            disabled
+                                        />
+                                        <label for="star{!! $i !!}">{{ $i }}</label>
+                                    @endfor
+                                  </div>
+                            </div>
+                            <div class="card-body">
+                                {{ $order->review[1]->review }}
+                            </div>
+                        </div>
+                        @else
+                        <a href="{{ route('services.review', $order->order_id) }}">Leave a review</a>
+                        @endif
+                        @endif
                         @endif
                       </div>
                   </div>
