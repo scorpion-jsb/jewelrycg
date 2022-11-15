@@ -284,14 +284,14 @@
                               <div class="card mb-4">
                                 <!-- Header -->
                                 <div class="card-header card-header-content-between">
-                                    <label class="card-header-title mb-0 required">Gallery</label>
+                                    <label class="card-header-title mb-0 required">Attach</label>
                                 </div>
                                 <!-- End Header -->
         
                                 <!-- Body -->
                                 <div class="card-body requried">
                                     <input type="hidden" class="attach" id="attach" name="attach" value="">
-                                    <div id="gallery_container">
+                                    <div id="attach_container">
                                         <div class="dropzone invalid" id="attach-dropzone">
                                         </div>
                                     </div>
@@ -349,8 +349,6 @@
         $('#count_title').text("Delivery time has already passed");
       }
     }, 1000);
-
-    $('#message').trumbowyg();
 
     Dropzone.autoDiscover = false;
     var uploadedFileData = [];
