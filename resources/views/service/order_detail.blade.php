@@ -224,7 +224,7 @@
                         @if (count($order->review))
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
-                            <span class="">Your reviewed to service at {{ date('F d, Y h:i A', strtotime($order->review[0]->created_at)) }}</span>
+                            <span class="">Your left a review to service at {{ date('F d, Y h:i A', strtotime($order->review[0]->created_at)) }}</span>
                         </div>
                         <div class="card">
                             <div class="card-header">

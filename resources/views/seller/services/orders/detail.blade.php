@@ -170,7 +170,7 @@
                         @if (count($order->review))                        
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                           <i class="bi bi-clipboard-check p-1"></i>
-                          <span class="">{{$order->user->first_name . "" . $order->user->last_name }} leaved a review to your service at {{ date('F d, Y h:i A', strtotime($order->review[0]->created_at)) }}</span>
+                          <span class="">{{$order->user->first_name . "" . $order->user->last_name }} left a review to your service at {{ date('F d, Y h:i A', strtotime($order->review[0]->created_at)) }}</span>
                         </div>
                         <div class="card">
                             <div class="card-header">
