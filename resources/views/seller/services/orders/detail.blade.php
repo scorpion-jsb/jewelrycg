@@ -174,19 +174,22 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <div class="rate pb-3">
-                                    @for ($i = 5; $i > 0; $i--)
-                                        <input
-                                            type="radio" id="star{!! $i !!}" class="rate" name="rating1" value="{!! $i !!}"
-                                            {{ $order->review[0]->rating == $i ? "checked" : "" }}
-                                            disabled
-                                        />
-                                        <label for="star{!! $i !!}">{{ $i }}</label>
-                                    @endfor
-                                  </div>
+                              <h5>{{$order->user->first_name . "" . $order->user->last_name }}'s Review</h5>
                             </div>
                             <div class="card-body">
+                              <div class="rate pb-3">
+                                @for ($i = 5; $i > 0; $i--)
+                                    <input
+                                        type="radio" id="star{!! $i !!}" class="rate" name="rating1" value="{!! $i !!}"
+                                        {{ $order->review[0]->rating == $i ? "checked" : "" }}
+                                        disabled
+                                    />
+                                    <label for="star{!! $i !!}">{{ $i }}</label>
+                                @endfor
+                              </div>
+                              <div style="clear: left">
                                 {{ $order->review[0]->review }}
+                              </div>
                             </div>
                         </div>
                         @if (count($order->review) == 2)                        
@@ -196,19 +199,22 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
-                                <div class="rate pb-3">
-                                    @for ($i = 5; $i > 0; $i--)
-                                        <input
-                                            type="radio" id="star{!! $i !!}" class="rate" name="rating2" value="{!! $i !!}"
-                                            {{ $order->review[1]->rating == $i ? "checked" : "" }}
-                                            disabled
-                                        />
-                                        <label for="star{!! $i !!}">{{ $i }}</label>
-                                    @endfor
-                                  </div>
+                              <h5>Your Review</h5>
                             </div>
                             <div class="card-body">
+                              <div class="rate pb-3">
+                                  @for ($i = 5; $i > 0; $i--)
+                                      <input
+                                          type="radio" id="star{!! $i !!}" class="rate" name="rating2" value="{!! $i !!}"
+                                          {{ $order->review[1]->rating == $i ? "checked" : "" }}
+                                          disabled
+                                      />
+                                      <label for="star{!! $i !!}">{{ $i }}</label>
+                                  @endfor
+                                </div>
+                                <div style="clear: left">
                                 {{ $order->review[1]->review }}
+                              </div>
                             </div>
                         </div>
                         @else
