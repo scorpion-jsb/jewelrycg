@@ -1,4 +1,23 @@
 <x-app-layout page-title="My Informations">
+    <meta name="_token" content="{{csrf_token()}}" />
+    <link rel="stylesheet" href="{{ asset('dropzone/css/dropzone.css') }}">
+    <style>
+        .dropzone {
+            border-radius: 25px;
+            width: 132px;
+            overflow: hidden;
+            padding: 4px;
+            background: transparent;
+        }
+        .dropzone .dz-preview{
+            margin: 0;
+        }
+        
+        .dz-image img{
+            width: 100%;
+            height: 100%;
+        }
+    </style>
     <div class="container">
         <div class="row">
             <div class="w-20 py-9">
@@ -50,4 +69,62 @@
             </div>
         </div>
     </div>
+      
+<script src="{{ asset('dropzone/js/dropzone.js') }}"></script>
+<script>
+Dropzone.autoDiscover = false;
+var avatar = {!! json_encode(auth()->user()->uploads) !!}
+var avatarDropzone;
+$(document).ready(function() {
+    $("#avatar_dropzone").dropzone({
+            method:'post',
+            url: "{{ route('seller.file.thumb') }}",
+            dictDefaultMessage: "Select photos",
+            paramName: "file",
+            maxFilesize: 2,
+            maxFiles: 1,
+            clickable: true,
+            addRemoveLinks: true,
+            acceptedFiles: "image/*",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            init: function () {
+                avatarDropzone = this;
+
+                if(avatar.id) {
+                    var mockFile = { name: avatar.file_original_name + "." + avatar.extension, size: avatar.file_size };
+
+                    avatarDropzone.emit("addedfile", mockFile);
+                    avatarDropzone.emit("thumbnail", mockFile, `{{asset("/uploads/all")}}/${avatar.file_name}`);
+                    avatarDropzone.emit("complete", mockFile);
+                }
+            },
+            success: (file, response) => {
+                var last = $("#avatar");
+
+                last.val(response.id)
+                avatar = response;
+                // ONLY DO THIS IF YOU KNOW WHAT YOU'RE DOING!
+            },
+            removedfile: function(file) {
+                $.ajax({
+                    url: `/seller/file/destroy/${avatar.id}`,
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    success: function(result) {
+                        var last = $("#avatar");
+                        last.val("")
+                        $(file.previewElement).remove();
+                    },
+                    error: function(error) {
+                        return false;
+                    }
+                });
+            }
+        })
+});
+</script>
 </x-app-layout>

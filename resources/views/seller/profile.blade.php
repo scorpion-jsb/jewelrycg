@@ -4,6 +4,25 @@
         {{ __('Dashboard') }}
     </h2>
 </x-slot>
+<meta name="_token" content="{{csrf_token()}}" />
+<link rel="stylesheet" href="{{ asset('dropzone/css/dropzone.css') }}">
+<style>
+    .dropzone {
+        border-radius: 25px;
+        width: 132px;
+        overflow: hidden;
+        padding: 4px;
+        background: transparent;
+    }
+    .dropzone .dz-preview{
+        margin: 0;
+    }
+    
+    .dz-image img{
+        width: 100%;
+        height: 100%;
+    }
+</style>
 <div class="py-9">
     <div class="container">
         <div class="seller-dash-nav mb-4">
@@ -62,15 +81,10 @@
                         <div class="card mb-4 p-0">
                             <div class="card-header">Avatar</div>
                             <div class="card-body">
-                                <div class="col-md-4">
-                                    <!-- Card -->
-                                    <div class="imagePreview pt-2 img-thumbnail">
-                                        <img id="fileManagerPreview" src="{{ $seller->user->uploads->getImageOptimizedFullName(200,200) }}" class="rounded-circle w-100">
-                                    </div>
-                                      <label class="btn btn-primary p-2 my-2" id="getFileManager">Select Avatar Image</label>
-                                      <input type="hidden" value="{{ $seller->user->uploads->id}}" id="fileManagerId" name="avatar">
-                                    <!-- End Card -->
-                                </div>
+                              <input type="hidden" name="avatar" class="avatar" id="avatar" value="{{ $seller->user->avatar }}">
+                              <div>
+                                <div class="dropzone" id="avatar_dropzone"></div>
+                              </div>
                             </div>
                         </div>
 
@@ -78,7 +92,6 @@
                       </div>
                     </div>
                   </form>
-                  <div id="fileManagerContainer"></div>
                 </div>
               </div>
             </div>
@@ -87,28 +100,61 @@
 </div>
   
 @section('js')
+<script src="{{ asset('dropzone/js/dropzone.js') }}"></script>
 <script>
+Dropzone.autoDiscover = false;
+var avatar = {!! json_encode($seller->user->uploads) !!}
+var avatarDropzone;
 $(document).ready(function() {
-    $('#getFileManager').click(function () {
-      console.log("clicked");
-        $.ajax({
-            url: "{{ route('backend.file.show') }}",
-            success: function (data) {
-                if (!$.trim($('#fileManagerContainer').html()))
-                    $('#fileManagerContainer').html(data);
+    $("#avatar_dropzone").dropzone({
+            method:'post',
+            url: "{{ route('seller.file.thumb') }}",
+            dictDefaultMessage: "Select photos",
+            paramName: "file",
+            maxFilesize: 2,
+            maxFiles: 1,
+            clickable: true,
+            addRemoveLinks: true,
+            acceptedFiles: "image/*",
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+            },
+            init: function () {
+                avatarDropzone = this;
 
-                $('#fileManagerModal').modal('show');
+                if(avatar.id) {
+                    var mockFile = { name: avatar.file_original_name + "." + avatar.extension, size: avatar.file_size };
 
-                const getSelectedItem = function (selectedId, filePath) {
-
-                    $('#fileManagerId').val(selectedId);
-                    $('#fileManagerPreview').attr('src', filePath);
+                    avatarDropzone.emit("addedfile", mockFile);
+                    avatarDropzone.emit("thumbnail", mockFile, `{{asset("/uploads/all")}}/${avatar.file_name}`);
+                    avatarDropzone.emit("complete", mockFile);
                 }
+            },
+            success: (file, response) => {
+                var last = $("#avatar");
 
-                setSelectedItemsCB(getSelectedItem, $('#fileManagerId').val() == '' ? [] : [$('#fileManagerId').val()], false);
+                last.val(response.id)
+                avatar = response;
+                // ONLY DO THIS IF YOU KNOW WHAT YOU'RE DOING!
+            },
+            removedfile: function(file) {
+                $.ajax({
+                    url: `/seller/file/destroy/${avatar.id}`,
+                    type: 'POST',
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="_token"]').attr('content')
+                    },
+                    success: function(result) {
+                        var last = $("#avatar");
+                        last.val("")
+                        $(file.previewElement).remove();
+                    },
+                    error: function(error) {
+                        return false;
+                    }
+                });
             }
         })
-    });
 });
 </script>
 @endsection
