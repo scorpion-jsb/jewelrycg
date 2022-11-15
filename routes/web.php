@@ -445,6 +445,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'seller', 'as' => 'seller.']
     Route::get('/withdraw', [SellerController::class, 'withdraw'])->name('withdraw.get');
     Route::post('/withdraw', [SellerController::class, 'withdraw_post'])->name('withdraw.post');
     Route::get('/withdraw/history', [SellerController::class, 'withdraw_history'])->name('withdraw.history');
+    Route::get('/profile', [SellerController::class, 'profile'])->name('profile');
+    Route::post('/profile', [SellerController::class, 'save_profile'])->name('profile.post');
 
     Route::group(['prefix' => 'file', 'as' => 'file.'], function () {
         Route::get('/', [FFileManagerController::class, 'index'])->name('index');
