@@ -400,6 +400,9 @@ Route::group(['prefix' => 'backend', 'as' => 'backend.', 'middleware' => ['auth'
 // Homepage
 Route::get('/', [AppController::class, 'index'])->name('index');
 
+// Seller Profile
+Route::get('/u/{username}', [SellerController::class, 'seller_profile'])->name('seller.profile');
+
 Route::group(['middleware' => ['auth']], function () {
     // User Dashboard
     Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
