@@ -960,8 +960,20 @@ class ServicesController extends Controller
         ServiceReview::create(['order_id' => $order_id, 'rating' => $rating, 'review' => $request->review]);
 
         if ($order->user_id == Auth::id()) {
+            $notification = new Notification();
+            $notification->message = Config::get('constants.strings.receive_review');
+            $notification->user_id = $order->service->user_id;
+            $notification->link = "/seller/order_detail/" . $order->order_id;
+            $notification->save();
+
             return redirect()->route('services.order_detail', $order->order_id)->with('success', 'Your review successfully saved');
         } else {
+            $notification = new Notification();
+            $notification->message = Config::get('constants.strings.receive_review');
+            $notification->user_id = $order->user_id;
+            $notification->link = "/services/order/" . $order->order_id;
+            $notification->save();
+
             return redirect()->route('seller.service.order.detail', $order->order_id)->with('success', 'Your review successfully saved');
         }
     }

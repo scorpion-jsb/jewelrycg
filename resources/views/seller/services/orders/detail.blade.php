@@ -218,7 +218,7 @@
                             </div>
                         </div>
                         @else
-                        <a href="{{ route('services.review', $order->order_id) }}">Leave a review</a>
+                        <a href="{{ route('services.review', $order->order_id) }}">Rate the buyer</a>
                         @endif
                         @endif
                         @endif

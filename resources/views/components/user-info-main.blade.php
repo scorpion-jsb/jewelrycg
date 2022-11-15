@@ -39,12 +39,15 @@
     <div class="card-body">
         <div class="col-md-6">
             <!-- Card -->
+            @if ($edit)
+            <input type="hidden" name="avatar" class="avatar" id="avatar" value="{{ $user->avatar }}">
+            <div>
+                <div class="dropzone" id="avatar_dropzone"></div>
+            </div>
+            @else
             <div class="imagePreview pt-2 img-thumbnail">
                 <img id="fileManagerPreview" src="{{ $user->uploads->getImageOptimizedFullName(200,200) }}" class="rounded-circle w-100">
             </div>
-            @if ($edit)
-                <label class="btn btn-primary p-2 my-2" id="getFileManager">Select Avatar Image</label>
-                <input type="hidden" value="{{ $user->uploads->id}}" id="fileManagerId" name="avatar">
             @endif
             <!-- End Card -->
         </div>
@@ -134,8 +137,6 @@
     </div>
 </div><!-- end billing-address-->
 @endif
-
-<div id="fileManagerContainer"></div>
 
 <div id='ajaxCalls'></div>
 
