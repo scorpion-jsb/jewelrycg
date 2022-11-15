@@ -430,6 +430,8 @@ Route::group(['prefix' => 'services', 'as' => 'services.'], function () {
     Route::post('/checkout/store/{id}', [ServicesController::class, 'store_order'])->name('store');
     Route::get('/checkout/{id}', [ServicesController::class, 'get_billing'])->name('billing.get');
     Route::post('/checkout/{id}', [ServicesController::class, 'post_billing'])->name('billing.post');
+    Route::get('/review/{id}', [ServicesController::class, 'service_review_get'])->name('review');
+    Route::post('/review', [ServicesController::class, 'service_review_post'])->name('review.post');
     Route::get('/{slug}', [ServicesController::class, 'detail'])->name('detail');
 });
 

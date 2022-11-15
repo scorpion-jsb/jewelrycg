@@ -24,6 +24,7 @@ use App\Models\ServicePostCategorie;
 use App\Models\ServicePostTag;
 use App\Models\ServiceRequirement;
 use App\Models\ServiceRequirementChoice;
+use App\Models\ServiceReview;
 use App\Models\ServiceTags;
 use App\Models\Upload;
 use App\Models\User;
@@ -812,7 +813,7 @@ class ServicesController extends Controller
 
     public function order_detail($id, Request $request)
     {
-        $order = ServiceOrder::with(['service.uploads'])->where('order_id', $id)->firstOrFail();
+        $order = ServiceOrder::with(['service.uploads', 'review'])->where('order_id', $id)->firstOrFail();
         $requirements = ServiceRequirement::with('choices')->where('service_id', $order->service_id)->get();
         $answers = OrderServiceRequirement::with('requirement')->where('order_id', $order->id)->get();
 
@@ -901,7 +902,7 @@ class ServicesController extends Controller
 
         $seller = User::findOrFail($order->service->user_id);
 
-        return view('service.review', ['order' => $order, 'seller' => $seller]);
+        return redirect()->route('services.review', $order->order_id);
     }
 
     public function order_revision(Request $request)
@@ -924,5 +925,37 @@ class ServicesController extends Controller
         $revision->save();
 
         return redirect()->back()->with("success", "Submit message to " . $seller->first_name . " " . $seller->last_name);
+    }
+
+    public function service_review_get($id)
+    {
+        $order = ServiceOrder::with('review')->where('order_id', $id)->firstOrFail();
+
+        return view('service.review', compact('order'));
+    }
+
+    public function service_review_post(Request $request)
+    {
+        $order_id = $request->order_id;
+        $rating = $request->rating;
+
+        $order = ServiceOrder::findOrFail($order_id);
+
+        if ($order->user_id != Auth::id()) {
+            return redirect()->back()->with('error', 'You are not allowed to review this order!');
+        }
+
+        $review = ServiceReview::where('order_id', $order_id)->first();
+
+        if ($review) {
+            $review->rating = $rating * 100;
+            $review->review = $request->review;
+            $review->save();
+        } else {
+            $review = ServiceReview::create(['order_id' => $order_id, 'rating' => $rating * 100, 'review' => $request->review]);
+            $review->rating = $rating * 100;
+        }
+
+        return redirect()->back()->with('success', 'Your review successfully saved');
     }
 }

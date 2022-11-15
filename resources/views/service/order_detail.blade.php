@@ -1,4 +1,4 @@
-<x-app-layout :page-title="'Order #' . $order->id">
+<x-app-layout :page-title="'Order #' . $order->order_id">
   <meta name="_token" content="{{csrf_token()}}" />
   <link rel="stylesheet" href="{{ asset('dropzone/css/dropzone.css') }}">
   <style>
@@ -152,7 +152,7 @@
                           </div>
                         </div>
 
-                        @if (!$delivery->revision)
+                        @if (!$delivery->revision && $order->status == 4)
                         <div class="card">
                             <div class="card-header">
                                 You received delivery from {{$seller->first_name . " " . $seller->last_name}}<br>
@@ -197,7 +197,7 @@
                                 <button type="submit" class="btn btn-primary">Submit Message</button>
                             </form>
                         </div>
-                        @else
+                        @elseif ($order->status != 5)
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
                             <span class="">You requested a revision on this delivery {{ date('F d, Y h:i A', strtotime($order->original_delivery_time)) }}</span>
@@ -216,7 +216,14 @@
                             <i class="bi bi-clipboard-check p-1"></i>
                             <span class="">Your approved delivery at {{ date('F d, Y h:i A', strtotime($order->updated_at)) }}. Order completed</span>
                         </div>
-                        <a href="/service/review/{{$order->order_id}}">Leave a review</a>
+                        @if ($order->review)
+                        <div class="timeline-item pb-3 mb-3 border-bottom">
+                            <i class="bi bi-clipboard-check p-1"></i>
+                            <span class="">Your reviewed to service at {{ date('F d, Y h:i A', strtotime($order->review->created_at)) }} with {{ number_format($order->review->rating / 100, 2) }}</span>
+                        </div>
+                        @else
+                        <a href="{{ route('services.review', $order->order_id) }}">Leave a review</a>
+                        @endif
                         @endif
 
                         @if(Session::get('message') != null)
