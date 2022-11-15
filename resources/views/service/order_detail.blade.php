@@ -219,15 +219,18 @@
                         @if ($order->status == 5)
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
-                            <span class="">Your approved delivery at {{ date('F d, Y h:i A', strtotime($order->updated_at)) }}. Order completed</span>
+                            <span class="">You approved delivery at {{ date('F d, Y h:i A', strtotime($order->updated_at)) }}. Order completed</span>
                         </div>
                         @if (count($order->review))
                         <div class="timeline-item pb-3 mb-3 border-bottom">
                             <i class="bi bi-clipboard-check p-1"></i>
-                            <span class="">Your left a review to service at {{ date('F d, Y h:i A', strtotime($order->review[0]->created_at)) }}</span>
+                            <span class="">You left a review to service at {{ date('F d, Y h:i A', strtotime($order->review[0]->created_at)) }}</span>
                         </div>
                         <div class="card">
                             <div class="card-header">
+                                <h5>Your Review</h5>
+                            </div>
+                            <div class="card-body">
                                 <div class="rate pb-3">
                                     @for ($i = 5; $i > 0; $i--)
                                         <input
@@ -237,10 +240,10 @@
                                         />
                                         <label for="star{!! $i !!}">{{ $i }}</label>
                                     @endfor
-                                  </div>
-                            </div>
-                            <div class="card-body">
-                                {{ $order->review[0]->review }}
+                                </div>
+                                <div style="clear: left;">
+                                    {{ $order->review[0]->review }}
+                                </div>
                             </div>
                         </div>
                         @if (count($order->review) == 2)
@@ -250,6 +253,9 @@
                         </div>
                         <div class="card">
                             <div class="card-header">
+                                <h5>{{$order->service->postauthor->first_name . " " . $order->service->postauthor->last_name}}'s Review</h5>
+                            </div>
+                            <div class="card-body">
                                 <div class="rate pb-3">
                                     @for ($i = 5; $i > 0; $i--)
                                         <input
@@ -259,10 +265,10 @@
                                         />
                                         <label for="star{!! $i !!}">{{ $i }}</label>
                                     @endfor
-                                  </div>
-                            </div>
-                            <div class="card-body">
+                                </div>
+                                <div style="clear: left;"  >
                                 {{ $order->review[1]->review }}
+                                </div>
                             </div>
                         </div>
                         @endif
