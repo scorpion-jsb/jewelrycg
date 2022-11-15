@@ -15,9 +15,7 @@ return new class extends Migration
     {
         Schema::create('service_reviews', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('service_id');
-            $table->unsignedBigInteger('package_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('order_id');
             $table->integer('rating')->default(0);
             $table->text('review');
             $table->timestamps();
