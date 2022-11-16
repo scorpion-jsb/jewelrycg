@@ -22,6 +22,7 @@ use App\Models\ServicePost;
 use App\Models\ServiceTags;
 use App\Models\Upload;
 use App\Models\User;
+use App\Models\UserChat;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -338,7 +339,26 @@ class SellerController extends Controller
         $products = Product::with(['uploads', 'product_category'])->where('vendor', $seller->user_id)->paginate(6, '*', 'product');
         $services = ServicePost::with(['uploads', 'categories.category'])->where('user_id', $seller->user_id)->paginate(6, '*', 'service');
 
-        return view('seller_profile', compact('seller', 'products', 'services'));
+        $userchat = UserChat::where('user_id', $seller->user_id)->first();
+        if (!$userchat) {
+            $userchat = new UserChat();
+            $userchat->token = md5(uniqid());
+            $userchat->user_id = $seller->user_id;
+            $userchat->name = $seller->user->first_name . " " . $seller->user->last_name;
+            $userchat->user_image = $seller->user->uploads->file_name;
+            $userchat->save();
+        }
+
+        if (!UserChat::where('user_id', Auth::id())->count()) {
+            $mychat = new UserChat();
+            $mychat->token = md5(uniqid());
+            $mychat->user_id = Auth::id();
+            $mychat->name = Auth::user()->first_name . " " . Auth::user()->last_name;
+            $mychat->user_image = Auth::user()->uploads->file_name;
+            $mychat->save();
+        }
+
+        return view('seller_profile', compact('seller', 'products', 'services', 'userchat'));
     }
 
     public function profile()

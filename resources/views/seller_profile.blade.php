@@ -10,10 +10,28 @@
               <h5 class="my-3">{{ $seller->user->first_name . " " . $seller->user->last_name }}</h5>
               <p class="text-muted mb-1">{{ $seller->user->username }}</p>
               <p class="text-muted mb-4">{{ $seller->slogan }}</p>
-              {{-- <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary">Follow</button>
-                <button type="button" class="btn btn-outline-primary ms-1">Message</button>
-              </div> --}}
+              <div class="d-flex justify-content-center mb-2">
+                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageModal">Contact</button>
+              </div>
+  
+              <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                  <div class="modal-content">
+                    <div class="modal-header">
+                      <h1 class="modal-title fs-5" id="messageModalLabel">Send message to seller</h1>
+                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                      <label for="message" class="form-label">Input message here</label>
+                      <textarea id="message" class="form-control"></textarea>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="send-message">Send</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -93,4 +111,19 @@
       </div>
     </div>
   </section>
+
+  
+  <script>
+    (function() {
+      $('#send-message').click(async function (){
+        var message = $('#message').val();
+
+        if (message.length > 0) {
+          await window.send_message_to(message, {{$userchat->id}});
+
+          $('#message').val();
+        }
+      })
+    })();
+  </script>
 </x-app-layout>

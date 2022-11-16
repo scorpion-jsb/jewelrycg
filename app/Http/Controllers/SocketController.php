@@ -327,6 +327,8 @@ class SocketController extends Controller implements MessageComponentInterface
             if ($data->type == 'request_send_message') {
                 //save chat message in mysql
 
+                echo $data->from_user_id . "->" . $data->to_user_id . "\r\n";
+
                 $chat = new Chat;
 
                 $chat->from_user_id = $data->from_user_id;
@@ -343,10 +345,10 @@ class SocketController extends Controller implements MessageComponentInterface
 
                 $receiver_connection_id = UserChat::select('connection_id')->where('id', $data->to_user_id)->get();
 
-                $sender_connection_id = UserChat::select('connection_id')->where('id', $data->from_user_id)->get();
+                $sender = UserChat::select('connection_id')->where('id', $data->from_user_id)->get();
 
                 foreach ($this->clients as $client) {
-                    if ($client->resourceId == $receiver_connection_id[0]->connection_id || $client->resourceId == $sender_connection_id[0]->connection_id) {
+                    if ($client->resourceId == $receiver_connection_id[0]->connection_id || $client->resourceId == $sender[0]->connection_id) {
                         $send_data['chat_message_id'] = $chat_message_id;
 
                         $send_data['message'] = $data->message;
