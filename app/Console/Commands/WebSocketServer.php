@@ -38,7 +38,7 @@ class WebSocketServer extends Command
                     new SocketController()
                 )
             ),
-            8090
+            8091
         );
 
         $server->run();
