@@ -11,7 +11,7 @@
         <div class="container">
             <div class="product-container col-lg-8 col-md-10 py-9 mx-auto checkout-wrap">
                 <div class="product-details-meta-block align-items-center mb-4 col-lg-10 mx-auto row">
-                    <div class="col-lg-8 col-12 px-0 py-3">
+                    <div class="col-lg-6 col-12 px-0 py-3">
                         <div class="d-flex align-items-center">
                             <a href="/u/{{$product->user->username}}">
                                 <img id="fileManagerPreview" src="{{ $product->user->uploads->getImageOptimizedFullName(100,100) }}" class="product-seller rounded-circle h-60px mr-5px">
@@ -62,6 +62,28 @@
                                             </button>
                                         </form>
                                     @endif
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageModal">
+                                        Contact
+                                    </button>
+                          
+                                      <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                          <div class="modal-content">
+                                            <div class="modal-header">
+                                              <h1 class="modal-title fs-5" id="messageModalLabel">Send message to seller</h1>
+                                              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                              <label for="message" class="form-label">Input message here</label>
+                                              <textarea id="message" class="form-control"></textarea>
+                                            </div>
+                                            <div class="modal-footer">
+                                              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                              <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="send-message">Send</button>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
                                 @endauth
                             </div>
                         </div>
@@ -469,4 +491,17 @@
             return false;
         }
     </script>
+  <script>
+    (function() {
+      $('#send-message').click(async function (){
+        var message = $('#message').val();
+
+        if (message.length > 0) {
+          await window.send_message_to(message, {{$userchat->id}});
+
+          $('#message').val();
+        }
+      })
+    })();
+  </script>
 </x-app-layout>

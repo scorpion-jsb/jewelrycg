@@ -12,6 +12,7 @@ use App\Models\ProductsCategorie;
 use App\Models\ProductsReview;
 use App\Models\ProductsVariant;
 use App\Models\Upload;
+use App\Models\UserChat;
 use App\Models\UserSearch;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
@@ -131,9 +132,9 @@ class ProductController extends Controller
     public function show($slug, Request $request)
     {
         try {
-            $product = Product::with(['modelpreview'])->whereSlug($slug)->firstOrFail();
+            $product = Product::with(['user', 'modelpreview'])->whereSlug($slug)->firstOrFail();
         } catch (ModelNotFoundException $e) {
-            $product = Product::with(['modelpreview'])->whereId($slug)->firstOrFail();
+            $product = Product::with(['user', 'modelpreview'])->whereId($slug)->firstOrFail();
         }
         abort_if(!$product, 404);
 
@@ -207,10 +208,29 @@ class ProductController extends Controller
 
         $arrProductDiamonds = ProductMaterial::getDiamondsByProduct($product->id);
 
+        $userchat = UserChat::where('user_id', $product->vendor)->first();
+        if (!$userchat) {
+            $userchat = new UserChat();
+            $userchat->token = md5(uniqid());
+            $userchat->user_id = $product->vendor;
+            $userchat->name = $product->user->first_name . " " . $product->user->last_name;
+            $userchat->user_image = $product->user->uploads->file_name;
+            $userchat->save();
+        }
+
+        if (!UserChat::where('user_id', Auth::id())->count()) {
+            $mychat = new UserChat();
+            $mychat->token = md5(uniqid());
+            $mychat->user_id = Auth::id();
+            $mychat->name = Auth::user()->first_name . " " . Auth::user()->last_name;
+            $mychat->user_image = Auth::user()->uploads->file_name;
+            $mychat->save();
+        }
+
         return view('products.show', compact(
             'product', 'uploads', 'variants', 'maxPrice', 'minPrice',
             'product_reviewable', 'user_product_review', 'review_count',
-            'average_rating', 'arrReviewListing', 'arrProductMaterials', 'arrProductDiamonds'
+            'average_rating', 'arrReviewListing', 'arrProductMaterials', 'arrProductDiamonds', 'userchat'
         ));
     }
 

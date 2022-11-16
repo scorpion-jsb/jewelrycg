@@ -89,7 +89,45 @@
               </div>
               @endforeach
             </div>
+            <div class="col">
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageModal">
+                Contact to Seller
+              </button>
+            </div>
+
+            <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="messageModalLabel">Send message to seller</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                  </div>
+                  <div class="modal-body">
+                    <label for="message" class="form-label">Input message here</label>
+                    <textarea id="message" class="form-control"></textarea>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="send-message">Send</button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
       </div>
   </div>
+
+  <script>
+    (function() {
+      $('#send-message').click(async function (){
+        var message = $('#message').val();
+
+        if (message.length > 0) {
+          await window.send_message_to(message, {{$userchat->id}});
+
+          $('#message').val();
+        }
+      })
+    })();
+  </script>
 </x-app-layout>

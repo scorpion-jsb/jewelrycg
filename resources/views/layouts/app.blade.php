@@ -46,8 +46,18 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
         {{ $scripts ?? null }}
         <!--<script src="{{asset('js/func_util.js')}}" defer></script>-->
+        
+        <!-- for chat -->
 
+        <script>
+            var hostname = "{{request()->getHttpHost()}}";
+            window.conn = new WebSocket(`ws://${hostname.split(':')[0]}:8090/?token={{ auth()->user()->chat->token }}`);
 
+            var from_user_id = "{{ auth()->user()->chat->id }}";
+
+            var to_user_id = "";
+        </script>
+        <script src="/assets/js/chat.js"></script>
     </head>
     <body>
 
@@ -59,6 +69,7 @@
 
         <!-- Page Footer -->
         <x-footer/>
+        {{-- <x-chat-view/> --}}
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
         @yield('js')
         
