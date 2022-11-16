@@ -11,6 +11,7 @@ use App\Models\ProductsCategorie;
 use App\Models\ProductsVariant;
 use App\Models\ServiceOrder;
 use App\Models\SettingGeneral;
+use App\Models\UserChat;
 use Auth;
 use Gloudemans\Shoppingcart\Facades\Cart;
 use Illuminate\Support\Facades\Config;
@@ -109,5 +110,20 @@ class AppController extends Controller
         $image->save(public_path(Config::get('constants.file_upload_path') . "/" . $filename));
 
         return $image->response();
+    }
+
+    public function chat()
+    {
+        $userchat = UserChat::where('user_id', Auth::id())->first();
+        if (!$userchat) {
+            $userchat = new UserChat();
+            $userchat->token = md5(uniqid());
+        }
+        $userchat->user_id = Auth::id();
+        $userchat->name = Auth::user()->first_name . " " . Auth::user()->last_name;
+        $userchat->user_image = Auth::user()->uploads->file_name;
+        $userchat->save();
+
+        return view('chat', compact('userchat'));
     }
 }

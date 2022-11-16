@@ -11,6 +11,7 @@
         "php": "^8.0.2",
         "biscolab/laravel-recaptcha": "^5.4",
         "bumbummen99/shoppingcart": "^4.2",
+        "cboden/ratchet": "^0.4.4",
         "doctrine/dbal": "^3.5",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
