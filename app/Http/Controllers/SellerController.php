@@ -349,13 +349,15 @@ class SellerController extends Controller
             $userchat->save();
         }
 
-        if (!UserChat::where('user_id', Auth::id())->count()) {
-            $mychat = new UserChat();
-            $mychat->token = md5(uniqid());
-            $mychat->user_id = Auth::id();
-            $mychat->name = Auth::user()->first_name . " " . Auth::user()->last_name;
-            $mychat->user_image = Auth::user()->uploads->file_name;
-            $mychat->save();
+        if (Auth::check()) {
+            if (!UserChat::where('user_id', Auth::id())->count()) {
+                $mychat = new UserChat();
+                $mychat->token = md5(uniqid());
+                $mychat->user_id = Auth::id();
+                $mychat->name = Auth::user()->first_name . " " . Auth::user()->last_name;
+                $mychat->user_image = Auth::user()->uploads->file_name;
+                $mychat->save();
+            }
         }
 
         return view('seller_profile', compact('seller', 'products', 'services', 'userchat'));
