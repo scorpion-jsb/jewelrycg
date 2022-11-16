@@ -49,7 +49,7 @@
         
         <!-- for chat -->
 
-        @auth
+        {{-- @auth
         <script>
             var hostname = "{{request()->getHttpHost()}}";
             window.conn = new WebSocket(`wss://${hostname.split(':')[0]}:8091/?token={{ auth()->user()->chat->token }}`);
@@ -59,7 +59,7 @@
             var to_user_id = "";
         </script>
         <script src="/assets/js/chat.js"></script>
-        @endauth
+        @endauth --}}
     </head>
     <body>
 

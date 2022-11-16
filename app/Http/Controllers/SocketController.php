@@ -15,6 +15,8 @@ class SocketController extends Controller implements MessageComponentInterface
     public function __construct()
     {
         $this->clients = new \SplObjectStorage;
+
+        echo "socket inited\r\n";
     }
 
     public function onOpen(ConnectionInterface $conn)
