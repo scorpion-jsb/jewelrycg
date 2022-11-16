@@ -44,6 +44,16 @@ class AppController extends Controller
 
         $attrs = Attribute::has('values')->select('id', 'name', 'type')->get();
 
+        $userchat = UserChat::where('user_id', Auth::id())->first();
+        if (!$userchat) {
+            $userchat = new UserChat();
+            $userchat->token = md5(uniqid());
+            $userchat->user_id = Auth::id();
+            $userchat->name = Auth::user()->first_name . " " . Auth::user()->last_name;
+            $userchat->user_image = Auth::user()->uploads->file_name;
+            $userchat->save();
+        }
+
         return view('index', compact('products', 'metaInfo', 'categories', 'attrs'));
     }
 
