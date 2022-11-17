@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Http\Controllers\SocketController;
 use Illuminate\Console\Command;
+use Ratchet\Http\HttpServer;
 use Ratchet\Server\IoServer;
 use Ratchet\WebSocket\WsServer;
 use React\EventLoop\Factory;
@@ -32,7 +33,7 @@ class WebSocketServer extends Command
     public function handle()
     {
         $server = IoServer::factory(
-            new HttpsServer(
+            new HttpServer(
                 new WsServer(
                     new SocketController()
                 )
