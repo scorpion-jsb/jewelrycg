@@ -48,18 +48,6 @@
         <!--<script src="{{asset('js/func_util.js')}}" defer></script>-->
         
         <!-- for chat -->
-
-        @auth
-        <script>
-            var hostname = "{{request()->getHttpHost()}}";
-            window.conn = new WebSocket(`wss://${hostname.split(':')[0]}/websocket?token={{ auth()->user()->chat->token }}`);
-
-            var from_user_id = "{{ auth()->user()->chat->id }}";
-
-            var to_user_id = "";
-        </script>
-        <script src="/assets/js/chat.js"></script>
-        @endauth
     </head>
     <body>
 

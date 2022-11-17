@@ -406,7 +406,6 @@ Route::get('/u/{username}', [SellerController::class, 'seller_profile'])->name('
 Route::group(['middleware' => ['auth']], function () {
     // User Dashboard
     Route::get('/dashboard', [AppController::class, 'dashboard'])->name('dashboard');
-    Route::get('/chat', [AppController::class, 'chat'])->name('chat');
 
     Route::group(['controller' => NotificationController::class, 'prefix' => 'notifications', 'as' => 'notifications.'], function () {
         Route::get('/check/{id}', 'check')->name('check');

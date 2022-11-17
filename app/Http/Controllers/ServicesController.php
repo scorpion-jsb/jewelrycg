@@ -29,7 +29,6 @@ use App\Models\ServiceTags;
 use App\Models\Upload;
 use App\Models\User;
 use App\Models\UserAddress;
-use App\Models\UserChat;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -86,30 +85,8 @@ class ServicesController extends Controller
         $data->tag_ids = $tag_ids;
         $data->galleries = $galleries;
 
-        $userchat = UserChat::where('user_id', $data->user_id)->first();
-        if (!$userchat) {
-            $userchat = new UserChat();
-            $userchat->token = md5(uniqid());
-            $userchat->user_id = $data->user_id;
-            $userchat->name = $data->postauthor->first_name . " " . $data->postauthor->last_name;
-            $userchat->user_image = $data->postauthor->uploads->file_name;
-            $userchat->save();
-        }
-
-        if (Auth::check()) {
-            if (!UserChat::where('user_id', Auth::id())->count()) {
-                $mychat = new mychat();
-                $mychat->token = md5(uniqid());
-                $mychat->user_id = Auth::id();
-                $mychat->name = Auth::user()->first_name . " " . Auth::user()->last_name;
-                $mychat->user_image = Auth::user()->uploads->file_name;
-                $mychat->save();
-            }
-        }
-
         return view('service.detail', [
             'service' => $data,
-            'userchat' => $userchat,
         ]);
     }
 
