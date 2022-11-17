@@ -491,17 +491,4 @@
             return false;
         }
     </script>
-  <script>
-    (function() {
-      $('#send-message').click(async function (){
-        var message = $('#message').val();
-
-        if (message.length > 0) {
-        //   await window.send_message_to(message, {{$userchat->id}});
-
-          $('#message').val();
-        }
-      })
-    })();
-  </script>
 </x-app-layout>
