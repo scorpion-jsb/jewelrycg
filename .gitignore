@@ -14,3 +14,4 @@ yarn-error.log
 /.vscode
 /public/uploads/all
 /public/uploads
+/nginx.conf
