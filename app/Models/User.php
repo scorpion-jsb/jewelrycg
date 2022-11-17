@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Message;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
@@ -65,5 +66,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function notifications()
     {
         return $this->hasMany(Notification::class, 'user_id', 'id');
+    }
+
+    public function message_notifications()
+    {
+        return $this->hasMany(Message::class, 'user_id', 'id');
     }
 }

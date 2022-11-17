@@ -13,6 +13,8 @@
         "bumbummen99/shoppingcart": "^4.2",
         "cboden/ratchet": "^0.4.4",
         "doctrine/dbal": "^3.5",
+        "fideloper/proxy": "^4.4",
+        "fruitcake/laravel-cors": "^3.0",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "intervention/imagecache": "^2.5",

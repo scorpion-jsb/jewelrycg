@@ -1,5 +1,8 @@
 <header class="navbar navbar-expand-lg">
     <style>
+        header{
+            z-index:100000;
+        }
         .notification-badge-container i {
             position: relative;
             font-size: 24px;
@@ -142,6 +145,22 @@
                 @php
                     $new_count =Auth::user()->notifications()->where('status', 0)->count();
                     $notifications = Auth::user()->notifications()->where('status', 0)->get();
+                    
+                    $message_notifications = App\Models\Message::where('dest_id',Auth::id())->groupBy('user_id')->get();
+                    
+                    $user_id = Auth::id();
+                    function user_name ($id) {
+                        return App\Models\User::where('id',$id)->get();
+                    }
+                    $seller_id = App\Models\Product::groupBy('vendor')->get('vendor');
+                    $role = false;
+                    foreach($seller_id as $t){
+                        if($user_id == $t->vendor){
+                            $role = true;
+                        }
+                    }
+                    $new_message_count = Auth::user()->message_notifications()->where('status',0)->groupBy('dest_id')->get();
+                   
                 @endphp
                 <li class="nav-item dropdown">
                     <a class="nav-link notification-badge-container" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
@@ -165,6 +184,43 @@
                         @endforeach
                     </ul>
                 </li>
+                @if($role)
+                <li class="nav-item dropdown">
+                    <a class="nav-link notification-badge-container" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
+                        <i class="bi bi-envelope">
+                            @if ($new_message_count)
+                            <div class="notification-badge">{{ $new_message_count }}</div>
+                            @endif
+                        </i>
+                    </a>
+                  
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width:250px;">
+                        @foreach ($message_notifications as $message_notification)
+                        <a href="https://localhost/jewelrycg-main/public/chat?seller={{$message_notification->user_id}}" class="filterDiscussions all unread single active"  data-toggle="list" role="tab" style="
+                                border-bottom: solid;
+                                border-bottom: solid 2px #1111;
+                                display: flex;
+                                justify-content: justify-between;
+                                margin-bottom: 20px;
+                                padding-bottom:5px;
+                            " >
+                                        <img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Janette" alt="avatar" style="width: 30%;
+                                            border-radius: 100%;">
+                                        
+                                        <!-- <div class="new bg-yellow">
+                                            <span>+7</span>
+                                        </div> -->
+                                        <div class="data" style="margin-left: 10px;">
+                                            
+                                            <h5>{{user_name($message_notification->user_id)[0]->first_name}} {{user_name($message_notification->user_id)[0]->last_name}}</h5>
+                                            <!-- <span>Mon</span> -->
+                                            <p>{{$message_notification->message}}</p>
+                                        </div>
+                        </a>
+                        @endforeach
+                    </ul>
+                </li>
+                @endif
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">{{ Auth::user()->first_name }}</a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
