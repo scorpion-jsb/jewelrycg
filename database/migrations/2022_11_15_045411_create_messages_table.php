@@ -19,6 +19,7 @@ class CreateMessagesTable extends Migration
             $table->integer('dest_id')->nullable();
             $table->string('name', 100)->nullable();
             $table->text('message')->nullable();
+            $table->integer('status')->nullable();
             $table->timestamps();
         });
     }
