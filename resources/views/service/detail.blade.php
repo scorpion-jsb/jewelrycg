@@ -123,7 +123,6 @@
         var message = $('#message').val();
 
         if (message.length > 0) {
-          // await window.send_message_to(message, {{$userchat->id}});
 
           $('#message').val();
         }

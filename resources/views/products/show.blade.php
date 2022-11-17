@@ -491,4 +491,16 @@
             return false;
         }
     </script>
+  <script>
+    (function() {
+      $('#send-message').click(async function (){
+        var message = $('#message').val();
+
+        if (message.length > 0) {
+
+          $('#message').val();
+        }
+      })
+    })();
+  </script>
 </x-app-layout>
