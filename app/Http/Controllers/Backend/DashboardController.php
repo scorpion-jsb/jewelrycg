@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Models\UserChat;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
@@ -21,16 +20,6 @@ class DashboardController extends Controller
      */
     public function index()
     {
-        $userchat = UserChat::where('user_id', Auth::id())->first();
-        if (!$userchat) {
-            $userchat = new UserChat();
-            $userchat->token = md5(uniqid());
-            $userchat->user_id = Auth::id();
-            $userchat->name = Auth::user()->first_name . " " . Auth::user()->last_name;
-            $userchat->user_image = Auth::user()->uploads->file_name;
-            $userchat->save();
-        }
-
         return view('backend.dashboard', [
             'title' => $this->pageTitle,
             'activePage' => "dashboard",
