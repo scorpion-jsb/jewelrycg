@@ -53,6 +53,8 @@ use App\Http\Controllers\SellerController;
 use App\Http\Controllers\ServicesController;
 use App\Http\Controllers\UriController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ChatController;
+
 
 // notification
 use Illuminate\Support\Facades\Route;
@@ -542,6 +544,11 @@ Route::group(['controller' => CartController::class], function () {
             Route::put('/', 'wishlistToCart');
             Route::delete('/', 'removeFromWishlist');
         });
+             //chat routes
+     Route::get('/chat', [ChatController::class, 'create'])->name('chat');
+     Route::get('/chat/getChatContent', [ChatController::class, 'contentFetchByClientId'])->name('chat.clientId');
+     Route::get('/chat/filter', [ChatController::class, 'filter'])->name('chat.filter');
+  
     });
 });
 

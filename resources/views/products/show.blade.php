@@ -279,6 +279,8 @@
                                     class="btn btn-success shadow-md mt-4"
                                     {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
                                     id="buy_now_btn">Buy Now</button>
+                                <a class="btn btn-info shadow-md mt-4" href="{{route('chat',['seller'=>$product->vendor])}}">Chatting</a>
+                                
                             </form>
                         </div>
 

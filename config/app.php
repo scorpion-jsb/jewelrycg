@@ -216,6 +216,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Datatables' => 'Yajra\Datatables\Facades\Datatables',
         'Image' => 'Intervention\Image\Facades\Image',
+        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'ReCaptcha' => Biscolab\ReCaptcha\Facades\ReCaptcha::class,
         'GeoIP' => \Torann\GeoIP\Facades\GeoIP::class,
     ])->toArray(),
