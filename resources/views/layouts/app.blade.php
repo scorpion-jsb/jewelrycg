@@ -52,7 +52,7 @@
         @auth
         <script>
             var hostname = "{{request()->getHttpHost()}}";
-            window.conn = new WebSocket(`wss://${hostname.split(':')[0]}/websocket/?token={{ auth()->user()->chat->token }}`);
+            window.conn = new WebSocket(`wss://${hostname.split(':')[0]}/websocket?token={{ auth()->user()->chat->token }}`);
 
             var from_user_id = "{{ auth()->user()->chat->id }}";
 
