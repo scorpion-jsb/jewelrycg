@@ -344,7 +344,7 @@
                 @endif
 
                 <div class="section-header">
-                    <div class="section-header-title mb-3 text-uppercase fw-700 border p-3">Reviews</div>
+                    <div class="section-header-title mb-3 text-uppercase fw-700 border p-3 card rounded">Reviews</div>
                 </div>
                 @if ($review_count > 0)
                 <div class="card">
