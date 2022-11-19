@@ -169,9 +169,9 @@
                         </i>
                     </a>
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <div class="messages-dropdown pb-2 border-bottom">
+                        <div class="dropdown-header pb-2 border-bottom">
                             <i class="bi bi-envelope"></i>
-                            <span class="messages-title">Notifications (0)</span>
+                            <span class="dropdown-title">Notifications (0)</span>
                         </div>
                         @foreach ($notifications as $notification)
                         <a href="/notifications/check/{{$notification->id}}">
@@ -198,31 +198,21 @@
                     </a>
                   
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width:250px;">
-                        <div class="messages-dropdown pb-2 border-bottom">
+                        <div class="dropdown-header pb-2 mb-3 border-bottom">
                             <i class="bi bi-envelope"></i>
-                            <span class="messages-title">Messages (0)</span>
+                            <span class="dropdown-title fw-700">Messages (0)</span>
                         </div>
                         @foreach ($message_notifications as $message_notification)
-                        <a href="{{ env('APP_URL')}}/chat/{{$message_notification->user_id }}" class="filterDiscussions all unread single active"  data-toggle="list" role="tab" style="
-                                border-bottom: solid;
-                                border-bottom: solid 2px #1111;
-                                display: flex;
-                                justify-content: justify-between;
-                                margin-bottom: 20px;
-                                padding-bottom:5px;
-                            " >
-                                        <img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Janette" alt="avatar" style="width: 30%;
-                                            border-radius: 100%;">
-                                        
-                                        <!-- <div class="new bg-yellow">
-                                            <span>+7</span>
-                                        </div> -->
-                                        <div class="data" style="margin-left: 10px;">
-                                            
-                                            <h5>{{user_name($message_notification->user_id)[0]->first_name}} {{user_name($message_notification->user_id)[0]->last_name}}</h5>
-                                            <!-- <span>Mon</span> -->
-                                            <p>{{$message_notification->message}}</p>
-                                        </div>
+                        <a href="{{ env('APP_URL')}}/chat/{{$message_notification->user_id }}" class="filterDiscussions all unread single active"  data-toggle="list" role="tab">
+                            <div class="row">
+                                <div class="col-lg-3">
+                                    <img class="avatar-md w-100 rounded-circle" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Janette" alt="{{user_name($message_notification->user_id)[0]->first_name}} avatar">
+                                </div>
+                                <div class="data col-lg-9">
+                                    <p class="fw-700">{{user_name($message_notification->user_id)[0]->first_name}} {{user_name($message_notification->user_id)[0]->last_name}}</p>
+                                    <p>{{$message_notification->message}}</p>
+                                </div>
+                            </div>
                         </a>
                         @endforeach
                     </ul>
