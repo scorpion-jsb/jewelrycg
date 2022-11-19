@@ -170,7 +170,6 @@
                     </a>
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <div class="dropdown-header pb-2 border-bottom">
-                            <i class="bi bi-envelope"></i>
                             <span class="dropdown-title">Notifications (0)</span>
                         </div>
                         @foreach ($notifications as $notification)
@@ -197,7 +196,6 @@
                   
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width:250px;">
                         <div class="dropdown-header pb-2 border-bottom">
-                            <i class="bi bi-envelope"></i>
                             <span class="dropdown-title fw-700">Messages (0)</span>
                         </div>
                         @foreach ($message_notifications as $message_notification)
