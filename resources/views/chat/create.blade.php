@@ -16,7 +16,7 @@ i{
 }
 </style>
 @endsection 
-<section class="messages bg-white pb-4">
+<section class="messages bg-white py-8">
     <div class="container">
 
     <div class="layout chat-container">
