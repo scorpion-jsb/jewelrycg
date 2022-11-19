@@ -168,7 +168,11 @@
                             @endif
                         </i>
                     </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                        <div class="messages-dropdown">
+                            <i class="bi bi-envelope"></i>
+                            <span class="messages-header">Messages (0)</span>
+                        </div>
                         @foreach ($notifications as $notification)
                         <a href="/notifications/check/{{$notification->id}}">
                             <div class="notification-container">
