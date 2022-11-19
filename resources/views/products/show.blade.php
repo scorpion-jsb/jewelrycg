@@ -28,6 +28,10 @@
                     <div class="col-lg-auto col-12 ml-auto p-0">
                         <div class="product-details-price">
                             <div class="w-100">
+                                
+                                @if(Auth::id() != $product->vendor)
+                                <a class="btn btn-primary" href="{{route('create_chat_room',['conversation_id'=>$product->vendor])}}">Message</a>
+                                @endif     
                                 <a class="btn btn-primary product_price" href="#">
                                     <i class="bi bi-cart-plus p-1"></i>
                                     @if (count($variants))
@@ -62,9 +66,9 @@
                                             </button>
                                         </form>
                                     @endif
-                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageModal">
-                                        Contact
-                                    </button>
+                                    
+                                
+                               
                           
                                       <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
                                         <div class="modal-dialog">
@@ -279,10 +283,6 @@
                                     class="btn btn-success shadow-md mt-4"
                                     {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
                                     id="buy_now_btn">Buy Now</button>
-                                @if(Auth::id() != $product->vendor)
-                                <a class="btn btn-info shadow-md mt-4" href="{{route('create_chat_room',['conversation_id'=>$product->vendor])}}">Contact</a>
-                                @endif    
-                                
                             </form>
                         </div>
 
