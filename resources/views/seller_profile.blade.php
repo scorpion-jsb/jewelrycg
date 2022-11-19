@@ -25,7 +25,7 @@
             <div class="card-body">
               <div class="row">
                   @foreach ($products as $product)
-                  <div class="mb-4 col-lg-4 col-md-6 col-sm-12 p-2">
+                  <div class="mb-4 col-lg-4 col-md-6 col-sm-12">
                     <div class="card">
                       <div class="card-body text-center">
                         <img src="{{ $product->uploads->getImageOptimizedFullName(400) }}" alt="avatar"
@@ -47,7 +47,7 @@
             <div class="card-body">
               <div class="row">
                 @foreach ($services as $service)
-                <div class="mb-4 col-lg-4 col-md-6 col-sm-12 p-2">
+                <div class="mb-4 col-lg-4 col-md-6 col-sm-12">
                   <div class="card">
                     <div class="card-body text-center">
                       <img src="{{ $service->uploads->getImageOptimizedFullName(400) }}" alt="avatar"
