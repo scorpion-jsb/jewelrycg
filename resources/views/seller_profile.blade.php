@@ -27,7 +27,7 @@
                   @foreach ($products as $product)
                   <div class="mb-4 col-lg-4 col-md-6 col-sm-12">
                     <div class="card">
-                      <div class="card-body text-center">
+                      <div class="card-body">
                         <img src="{{ $product->uploads->getImageOptimizedFullName(400,400) }}" alt="{{ $product->name }}" class="w-100 img-fluid">
                         <h5 class="my-3">{{ $product->name }}</h5>
                         <p class="text-muted mb-1">{{ $product->description }}</p>
@@ -48,7 +48,7 @@
                 @foreach ($services as $service)
                 <div class="mb-4 col-lg-4 col-md-6 col-sm-12">
                   <div class="card">
-                    <div class="card-body text-center">
+                    <div class="card-body">
                       <img src="{{ $service->uploads->getImageOptimizedFullName(400,400) }}" alt="{{ $service->name }}" class="w-100 img-fluid">
                       <h5 class="my-3">{{ $service->name }}</h5>
                       <p class="text-muted mb-1">{{ $service->description }}</p>
