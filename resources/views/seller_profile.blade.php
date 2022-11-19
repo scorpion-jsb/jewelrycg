@@ -21,7 +21,7 @@
         <div class="col-lg-9">
           
           <div class="seller-products-card">
-            <div class="seller-products-card-header fs-20 fw-700 mb-">Products</div>
+            <div class="seller-products-card-header fs-20 fw-700 mb-3">Products</div>
             <div class="seller-products-card-body">
               <div class="row">
                   @foreach ($products as $product)
@@ -42,7 +42,7 @@
           </div>
              
           <div class="seller-services-card">
-            <div class="seller-services-card-header fs-20 fw-700 mb-">Services</div>
+            <div class="seller-services-card-header fs-20 fw-700 mb-3">Services</div>
             <div class="seller-services-card-body">
               <div class="row">
                 @foreach ($services as $service)
