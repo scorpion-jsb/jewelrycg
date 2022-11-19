@@ -11,7 +11,7 @@
               <p class="text-muted mb-1">{{ $seller->user->username }}</p>
               <p class="text-muted mb-4">{{ $seller->slogan }}</p>
               <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageModal">Contact</button>
+                <a class="btn btn-primary" href="{{route('create_chat_room',['conversation_id'=>$product->vendor])}}">Message</a>
               </div>
 
             </div>
