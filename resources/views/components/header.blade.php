@@ -169,9 +169,9 @@
                         </i>
                     </a>
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                        <div class="messages-dropdown">
+                        <div class="messages-dropdown pb-2 border-bottom">
                             <i class="bi bi-envelope"></i>
-                            <span class="messages-header">Messages (0)</span>
+                            <span class="messages-title">Notifications (0)</span>
                         </div>
                         @foreach ($notifications as $notification)
                         <a href="/notifications/check/{{$notification->id}}">
@@ -197,7 +197,11 @@
                         </i>
                     </a>
                   
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width:250px;">
+                    <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width:250px;">
+                        <div class="messages-dropdown pb-2 border-bottom">
+                            <i class="bi bi-envelope"></i>
+                            <span class="messages-title">Messages (0)</span>
+                        </div>
                         @foreach ($message_notifications as $message_notification)
                         <a href="{{ env('APP_URL')}}/chat/{{$message_notification->user_id }}" class="filterDiscussions all unread single active"  data-toggle="list" role="tab" style="
                                 border-bottom: solid;
