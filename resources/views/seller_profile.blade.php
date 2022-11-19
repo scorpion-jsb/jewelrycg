@@ -21,7 +21,7 @@
         <div class="col-lg-9">
           
           <div class="card">
-            <div class="card-header">Your Products</div>
+            <div class="card-header">Products</div>
             <div class="card-body">
               <div class="row">
                   @foreach ($products as $product)
@@ -43,7 +43,7 @@
           </div>
              
           <div class="card">
-            <div class="card-header">Your Products</div>
+            <div class="card-header">Services</div>
             <div class="card-body">
               <div class="row">
                 @foreach ($services as $service)
