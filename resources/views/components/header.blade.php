@@ -170,7 +170,7 @@
                     </a>
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <div class="dropdown-header pb-2 border-bottom">
-                            <i class="bi bi-envelope fs-18"></i>
+                            <i class="bi bi-envelope"></i>
                             <span class="dropdown-title">Notifications (0)</span>
                         </div>
                         @foreach ($notifications as $notification)
@@ -190,10 +190,8 @@
                 
                 <li class="nav-item dropdown">
                     <a class="nav-link notification-badge-container" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                        <i class="bi bi-envelope">
-                           
+                        <i class="bi bi-envelope fs-18">
                             <div class="notification-badge"></div>
-                            
                         </i>
                     </a>
                   
