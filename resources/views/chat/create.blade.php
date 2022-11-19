@@ -38,8 +38,9 @@ i{
                            @endphp
                            
                             <div class="list-group" id="chats" role="tablist">
+                               
                                 @foreach($side_info as $info)
-                                    <a  class="filterDiscussions all unread single active"  data-toggle="list" role="tab" data-id="{{$info->id}}">
+                                    <a  class="filterDiscussions all unread single active"  data-toggle="list" role="tab" data-id="{{$info->conversation_id}}">
                                         <img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Janette" alt="avatar">
                                         <input type="hidden" name="client_id" id="client_id" value="{{$info->id}}"/>
                                         @if($info->cnt > 0)
@@ -50,7 +51,7 @@ i{
                                         <div class="data">
                                             <h5>{{users_name($info->conversation_id)[0]->first_name}} {{users_name($info->conversation_id)[0]->last_name}}</h5>
                                             <!-- <span>Mon</span> -->
-                                            <p>{{$info->message}}</p>
+                                            <p id="shortmsg_{{$info->conversation_id}}">{{$info->message}}</p>
                                         </div>
                                     </a>
                                 @endforeach
@@ -146,6 +147,7 @@ i{
     <script type="text/javascript">
 
         const ably = new Ably.Realtime.Promise("{{env('ABLY_KEY')}}");
+        var client_id = document.getElementById('seller').value;
         // const ably = new Ably.Realtime.Promise('n-4_Uw.JXK4Fg:Q68j6Dp4ZoeVLbo--o3Mane1kNfcpVckpO-xp-CAGZ4');
         let ablyConnected = false;
         let channel;
@@ -159,48 +161,49 @@ i{
             })
         })
 
-        var client_id = document.getElementById('seller').value;
         $('document').ready(function () {
             
             $("#content").animate({scrollTop: $('#content').prop("scrollHeight")}, 10); // Scroll the chat output div
 
-            // $('.filterDiscussions').click(function(){
+            $('.filterDiscussions').click(function(){
                
-            //     client_id = $(this).attr('data-id');
-            //     $.ajax({
-            //         type: 'GET',
-            //         url: "{{ route('chat.clientId') }}",
-            //         data: {
-            //             "client_id": $(this).attr('data-id')
-            //         },
-            //         dataType: "json",
-            //         success: (result) => {
-            //              const contentTab = $("div#content #chat-content");
-            //              contentTab.html("");
-            //             $.each(result.chat_content, function(key, value){
-            //                  if(value.message !=null){
-            //                     if($('#user_name').val() == value.name){
-            //                         var message = '';
-            //                         message += '<div class="message me" <img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">'+ '<div class="text-main">' + '<div class="text-group me">' + '<div class="text me">' + '<p>' + value.message + '</p></div></div>' + '<span>' + value.updated_at + '</span></div></div>';
-            //                         contentTab.append(message);
-            //                     }else{
-            //                         var message = '';
-            //                         message +='<div class="message"> <img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">'+ '<div class="text-main">' + '<div class="text-group">' + '<div class="text">' + '<p>' + value.message + '</p></div></div>' + '<span>' + value.updated_at + '</span></div></div>';
-            //                         contentTab.append(message);
-            //                     }
-            //                  }
-            //             });
+                client_id = $(this).attr('data-id');
+                $(location).attr('href',`{{env('APP_URL')}}/chat/${client_id}`);
+                // windows.location.href(`http://localhost/jewelrycg/public/chat/${client_id}`);
+                // $.ajax({
+                //     type: 'GET',
+                //     url: "{{ route('chat.clientId') }}",
+                //     data: {
+                //         "client_id": $(this).attr('data-id')
+                //     },
+                //     dataType: "json",
+                //     success: (result) => {
+                //          const contentTab = $("div#content #chat-content");
+                //          contentTab.html("");
+                //         $.each(result.chat_content, function(key, value){
+                //              if(value.message !=null){
+                //                 if($('#user_name').val() == value.name){
+                //                     var message = '';
+                //                     message += '<div class="message me" <img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">'+ '<div class="text-main">' + '<div class="text-group me">' + '<div class="text me">' + '<p>' + value.message + '</p></div></div>' + '<span>' + value.updated_at + '</span></div></div>';
+                //                     contentTab.append(message);
+                //                 }else{
+                //                     var message = '';
+                //                     message +='<div class="message"> <img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">'+ '<div class="text-main">' + '<div class="text-group">' + '<div class="text">' + '<p>' + value.message + '</p></div></div>' + '<span>' + value.updated_at + '</span></div></div>';
+                //                     contentTab.append(message);
+                //                 }
+                //              }
+                //         });
        
-            //         },
-            //         error: (resp) => {
-            //             var result = resp.responseJSON;
-            //             if (result.errors && result.message) {
-            //                 alert(result.message);
-            //                 return;
-            //             }
-            //         }
-            //     });
-            // })
+                //     },
+                //     error: (resp) => {
+                //         var result = resp.responseJSON;
+                //         if (result.errors && result.message) {
+                //             alert(result.message);
+                //             return;
+                //         }
+                //     }
+                // });
+            })
         });
 
         function getDateFormat() {
@@ -229,6 +232,7 @@ i{
                 let content = `<div class='message me'><div class='text-main'><div class='text-group me'><div class='text me'><p>${chat_msg}</p></div></div><span>${getDateFormat()}</span></div></div>`;
                 $('#chat-content').append(content);
                 $(this).val('');
+                $(`#shortmsg_${client_id}`).text(chat_msg);
                 // $("#content").animate({ scrollTop: $("#content").height()+20  }, 1000);
                 $("#content").animate({scrollTop: $('#content').prop("scrollHeight")}, 10); // Scroll the chat output div
             }
