@@ -25,7 +25,9 @@
     overflow-y: auto;
   }
   </style>
-  
+<section class="bg-white pb-4">
+<div class="container">
+
 <div class="row">
 	<div class="col-md-12" style="height: 80px"></div>
 	<div class="col-sm-4 col-lg-3">
@@ -51,7 +53,8 @@
 	</div>
 </div>
 
-
+</section>
+</div>
 
 <script>
 
