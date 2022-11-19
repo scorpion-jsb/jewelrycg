@@ -198,12 +198,12 @@
                     </a>
                   
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width:250px;">
-                        <div class="dropdown-header pb-2 mb-3 border-bottom">
+                        <div class="dropdown-header pb-2 border-bottom">
                             <i class="bi bi-envelope"></i>
                             <span class="dropdown-title fw-700">Messages (0)</span>
                         </div>
                         @foreach ($message_notifications as $message_notification)
-                        <a href="{{ env('APP_URL')}}/chat/{{$message_notification->user_id }}" class="filterDiscussions all unread single active"  data-toggle="list" role="tab">
+                        <a href="{{ env('APP_URL')}}/chat/{{$message_notification->user_id }}" class="filterDiscussions all unread single active py-2 border-bottom"  data-toggle="list" role="tab">
                             <div class="row">
                                 <div class="col-lg-3">
                                     <img class="avatar-md w-100 rounded-circle" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Janette" alt="{{user_name($message_notification->user_id)[0]->first_name}} avatar">
