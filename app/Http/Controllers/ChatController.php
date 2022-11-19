@@ -38,10 +38,10 @@ class ChatController extends Controller
     public function contentFetchByClientId(Request $request){
         $client_id = $request->client_id;
         $user_id = Auth::user()->id;
-        $chat_content = Message::where(['user_id'=>$user_id,'dest_id'=>$client_id])
-                                    ->orWhere(['user_id'=>$client_id,'dest_id'=>$user_id])
+        $chat_content = Message::where(['user_id'=>$user_id,'conversation_id'=>$client_id])
+                                    ->orWhere(['user_id'=>$client_id,'conversation_id'=>$user_id])
                                     ->get();
-        $chat_content = DB::select(DB::raw('SELECT * FROM `messages` WHERE (user_id='.$user_id.' AND dest_id='.$client_id.') OR (user_id='.$client_id.' AND dest_id='.$user_id.');'));                            
+        $chat_content = DB::select(DB::raw('SELECT * FROM `messages` WHERE (user_id='.$user_id.' AND conversation_id='.$client_id.') OR (user_id='.$client_id.' AND conversation_id='.$user_id.');'));                            
         return response()->json([
             'result'        => true,
             'chat_content'  => $chat_content,
@@ -67,6 +67,7 @@ class ChatController extends Controller
 
 
     public function create_chat_room(Request $request,$conversation_id) {
+        
 
         $user_id = Auth::user()->id;
         $is_created_chat_room = Message::where(['user_id' => $user_id, 'conversation_id' => $conversation_id])
@@ -79,7 +80,7 @@ class ChatController extends Controller
             $message->save();
         } 
 
-        $query = 'SELECT id, user_id, messages.conversation_id, message, messages.updated_at, recent_update.cnt FROM messages JOIN (SELECT COUNT(*) AS cnt, MAX(updated_at) updated_at, conversation_id FROM messages WHERE user_id ='.$user_id.' AND conversation_id='.$conversation_id.' GROUP BY conversation_id) AS recent_update ON recent_update.conversation_id = messages.`conversation_id` AND recent_update.updated_at = messages.`updated_at` LIMIT 1';
+        $query = 'SELECT id, user_id, messages.conversation_id, message, messages.updated_at, recent_update.cnt FROM messages JOIN (SELECT COUNT(*) AS cnt, MAX(updated_at) updated_at, conversation_id FROM messages WHERE user_id ='.$user_id.'  GROUP BY conversation_id) AS recent_update ON recent_update.conversation_id = messages.`conversation_id` AND recent_update.updated_at = messages.`updated_at` ';
 
 
         $side_info = DB::select(DB::raw($query));

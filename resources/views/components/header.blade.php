@@ -183,7 +183,7 @@
                     </ul>
                 </li>
 
-                @if($role)
+                
                 <li class="nav-item dropdown">
                     <a class="nav-link notification-badge-container" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
                         <i class="bi bi-envelope">
@@ -219,7 +219,7 @@
                         @endforeach
                     </ul>
                 </li>
-                @endif
+               
                 
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">{{ Auth::user()->first_name }}</a>
