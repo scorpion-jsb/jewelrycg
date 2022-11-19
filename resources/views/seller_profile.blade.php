@@ -1,6 +1,6 @@
 <x-app-layout>
-  <section style="background-color: #eee; padding-top: 80px;">
-    <div class="container py-5">
+  <section class="py-9">
+    <div class="container">
       <div class="row">
         <div class="col-lg-3">
           <div class="card mb-4">
@@ -13,54 +13,10 @@
               <div class="d-flex justify-content-center mb-2">
                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#messageModal">Contact</button>
               </div>
-  
-              <div class="modal fade" id="messageModal" tabindex="-1" aria-labelledby="messageModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                  <div class="modal-content">
-                    <div class="modal-header">
-                      <h1 class="modal-title fs-5" id="messageModalLabel">Send message to seller</h1>
-                      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                      <label for="message" class="form-label">Input message here</label>
-                      <textarea id="message" class="form-control"></textarea>
-                    </div>
-                    <div class="modal-footer">
-                      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                      <button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="send-message">Send</button>
-                    </div>
-                  </div>
-                </div>
-              </div>
+
             </div>
           </div>
 
-          {{-- <div class="card mb-4 mb-lg-0">
-            <div class="card-body p-0">
-              <ul class="list-group list-group-flush rounded-3">
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fas fa-globe fa-lg text-warning"></i>
-                  <p class="mb-0">https://mdbootstrap.com</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-github fa-lg" style="color: #333333;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-twitter fa-lg" style="color: #55acee;"></i>
-                  <p class="mb-0">@mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-instagram fa-lg" style="color: #ac2bac;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-                <li class="list-group-item d-flex justify-content-between align-items-center p-3">
-                  <i class="fab fa-facebook-f fa-lg" style="color: #3b5998;"></i>
-                  <p class="mb-0">mdbootstrap</p>
-                </li>
-              </ul>
-            </div>
-          </div> --}}
         </div>
         <div class="col-lg-9">
           
@@ -112,17 +68,4 @@
     </div>
   </section>
 
-  
-  <script>
-    (function() {
-      $('#send-message').click(async function (){
-        var message = $('#message').val();
-
-        if (message.length > 0) {
-
-          $('#message').val();
-        }
-      })
-    })();
-  </script>
 </x-app-layout>
