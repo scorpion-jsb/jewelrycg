@@ -279,10 +279,11 @@
                                     <div class="orginal-name">Add to Cart</div>
                                 </button>
 
-                                <button type="submit" formaction="{{ route('cart.buy.now') }}"
+                                <!--<button type="submit" formaction="{{ route('cart.buy.now') }}"
                                     class="btn btn-success shadow-md mt-4"
                                     {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
                                     id="buy_now_btn">Buy Now</button>
+                                    -->
                             </form>
                         </div>
 
