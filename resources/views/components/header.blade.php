@@ -162,7 +162,7 @@
                 @endphp
                 <li class="nav-item dropdown">
                     <a class="nav-link notification-badge-container" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                        <i class="bi bi-bell">
+                        <i class="bi bi-bell fs-18">
                             @if ($new_count)
                             <div class="notification-badge">{{ $new_count }}</div>
                             @endif
@@ -170,7 +170,7 @@
                     </a>
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <div class="dropdown-header pb-2 border-bottom">
-                            <i class="bi bi-envelope"></i>
+                            <i class="bi bi-envelope fs-18"></i>
                             <span class="dropdown-title">Notifications (0)</span>
                         </div>
                         @foreach ($notifications as $notification)
