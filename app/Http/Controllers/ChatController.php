@@ -64,4 +64,42 @@ class ChatController extends Controller
     public function getNameById($user_id){
        return  $user_name = User::where('id',$user_id)->get('first_name');
     }    
+
+
+    public function create_chat_room(Request $request,$conversation_id) {
+
+        $user_id = Auth::user()->id;
+        $is_created_chat_room = Message::where(['user_id' => $user_id, 'conversation_id' => $conversation_id])
+                                        ->groupBy('user_id')
+                                        ->count();
+        if($is_created_chat_room == 0){
+            $message = new Message;
+            $message->user_id = $user_id;
+            $message->conversation_id = $conversation_id;
+            $message->save();
+        } 
+
+        $query = 'SELECT id, user_id, messages.conversation_id, message, messages.updated_at, recent_update.cnt FROM messages JOIN (SELECT COUNT(*) AS cnt, MAX(updated_at) updated_at, conversation_id FROM messages WHERE user_id ='.$user_id.' AND conversation_id='.$conversation_id.' GROUP BY conversation_id) AS recent_update ON recent_update.conversation_id = messages.`conversation_id` AND recent_update.updated_at = messages.`updated_at` LIMIT 1';
+
+
+        $side_info = DB::select(DB::raw($query));
+        $chat_content = DB::select(DB::raw('SELECT * FROM `messages` WHERE (user_id='.$user_id.' AND conversation_id='.$conversation_id.') OR (user_id='.$conversation_id.' AND conversation_id='.$user_id.');'));                              
+       
+       
+        return view('chat.create', compact('side_info','chat_content','conversation_id','user_id'));
+    }
+
+    public function message_log(Request $request){
+        $data = $request->data;
+        $message_log = new Message;
+        $message_log->user_id = $data['user_id'];
+        $message_log->conversation_id = $data['conversation_id'];
+        $message_log->message = $data['chat_msg'];
+        $message_log->save();
+
+        return response()->json([
+            'result'        => true,
+            'message_log'  => $message_log,
+        ]);
+    }
 }

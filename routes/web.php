@@ -548,6 +548,9 @@ Route::group(['controller' => CartController::class], function () {
      Route::get('/chat', [ChatController::class, 'create'])->name('chat');
      Route::get('/chat/getChatContent', [ChatController::class, 'contentFetchByClientId'])->name('chat.clientId');
      Route::get('/chat/filter', [ChatController::class, 'filter'])->name('chat.filter');
+
+     Route::get('/chat/{conversation_id}',[ChatController::class, 'create_chat_room'])->name('create_chat_room');
+     Route::post('/chat/message_log',[ChatController::class, 'message_log'])->name('chat.message_log');
   
     });
 });
