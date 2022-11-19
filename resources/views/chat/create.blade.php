@@ -74,9 +74,6 @@ i{
                                 <div class="col-md-12">
                                     <div class="inside">
                                         <a href="#"><img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar"></a>
-                                        <div class="status">
-                                            <i class="material-icons online">fiber_manual_record</i>
-                                        </div>
                                         <div class="data">
                                             <h5><a href="#">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a></h5>
                                             <span>Active now</span>
