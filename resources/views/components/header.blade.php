@@ -196,7 +196,7 @@
                   
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width:250px;">
                         <div class="dropdown-header pb-2 border-bottom">
-                            <span class="dropdown-title fw-700">Messages (0)</span>
+                            <span class="dropdown-title">Messages (0)</span>
                         </div>
                         @foreach ($message_notifications as $message_notification)
                         <a href="{{ env('APP_URL')}}/chat/{{$message_notification->user_id }}" class="filterDiscussions all unread single active d-block py-2 border-bottom"  data-toggle="list" role="tab">
