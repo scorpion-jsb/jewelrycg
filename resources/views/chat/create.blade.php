@@ -1,11 +1,9 @@
-<x-app-layout page-title="chat">
+<x-app-layout page-title="Messages">
 @section('css')
 <link rel="stylesheet" href="{{ asset('assets/css/swipe.min.css') }}" data-hs-appearance="default" as="style" type="text/css">
 <link rel="stylesheet" href="//use.fontawesome.com/releases/v5.0.7/css/all.css">
 <style>
-.chat-container {
-    padding-top:80px;
-} 
+
 .list-group>a:hover {
     background:#f0f2f5
 }
