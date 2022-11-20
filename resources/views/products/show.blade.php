@@ -270,6 +270,7 @@
 
                                 <input type="hidden" name="id_product" value="{{ $product->id }}">
 
+                                @if ($isBoughtProduct == 0)
                                 <button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"
                                     {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}  id="add_to_cart_btn">
                                     <div class="loader-container">
@@ -278,6 +279,7 @@
                                     </div>
                                     <div class="orginal-name">Add to Cart</div>
                                 </button>
+                                @endif
 
                                 <!--<button type="submit" formaction="{{ route('cart.buy.now') }}"
                                     class="btn btn-success shadow-md mt-4"
