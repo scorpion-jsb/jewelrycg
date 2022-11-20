@@ -269,9 +269,7 @@
                                 @endif
 
                                 <input type="hidden" name="id_product" value="{{ $product->id }}">
-
-                                @if ($isBoughtProduct == 0)
-                                <button class="btn btn-primary shadow-md add-to-cart mt-4" type="submit"
+                                <button id="btnAddCart" class="btn btn-primary shadow-md add-to-cart mt-4 d-none" type="submit"
                                     {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}  id="add_to_cart_btn">
                                     <div class="loader-container">
                                         <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
@@ -279,11 +277,9 @@
                                     </div>
                                     <div class="orginal-name">Add to Cart</div>
                                 </button>
-                                @else
-                                <a class="btn btn-primary shadow-md add-to-cart mt-4" href="{{ route('orders.index') }}">
+                                <a id="btnViewOrder" class="btn btn-primary shadow-md add-to-cart mt-4 d-none" href="{{ route('orders.index') }}">
                                     <div class="orginal-name">View Order</div>
                                 </a>
-                                @endif
 
                                 <!--<button type="submit" formaction="{{ route('cart.buy.now') }}"
                                     class="btn btn-success shadow-md mt-4"
@@ -426,7 +422,23 @@
                 });
                 e.preventDefault();
             });
+            initSelection();
         });
+        
+        var purchaseInfo = {!!$purchaseInfo!!};
+        var initSelection = function() {
+            if (purchaseInfo.length > 1) {
+                $(".attribute-radio:first").click();
+            } else {
+                if(purchaseInfo[0] && purchaseInfo[0].count > 0) {
+                    $("#btnViewOrder").removeClass("d-none");
+                    $("#btnAddCart").addClass("d-none");
+                } else {
+                    $("#btnAddCart").removeClass("d-none");
+                    $("#btnViewOrder").addClass("d-none");
+                }
+            }
+        }
 
         var variants = [];
         $('.loader-container').hide();
@@ -441,6 +453,18 @@
             })
         @endforeach
         $('.attribute-radio').click(function() {
+            for(var i in purchaseInfo) {    // init selection
+                if(purchaseInfo[i].variant_attribute_value == $(this).val()) {
+                    if(purchaseInfo[i].count > 0) {
+                        $("#btnViewOrder").removeClass("d-none");
+                        $("#btnAddCart").addClass("d-none");
+                    } else {
+                        $("#btnAddCart").removeClass("d-none");
+                        $("#btnViewOrder").addClass("d-none");
+                    }
+                }
+            }
+
             var selectedAttributeValue = [];
             var selectedAttributeCount = 0;
 

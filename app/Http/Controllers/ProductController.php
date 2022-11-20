@@ -206,17 +206,19 @@ class ProductController extends Controller
             ->get();
 
         $arrProductDiamonds = ProductMaterial::getDiamondsByProduct($product->id);
-        $isBoughtProduct = OrderItem::leftjoin('orders', 'order_items.order_id', '=', 'orders.order_id')
+        $purchaseInfo = OrderItem::leftjoin('orders', 'order_items.order_id', '=', 'orders.order_id')
+            ->leftjoin('products_variants', 'order_items.product_id', '=', 'products_variants.product_id')
             ->where('order_items.product_id', $product->id)
             ->where('orders.status_payment', 2)
             ->where('orders.user_id', $user_id)
-            ->select(DB::raw('COUNT(*) count'))
-            ->first()->count;
+            ->groupBy('products_variants.variant_attribute_value')
+            ->select(DB::raw('COUNT(*) count, products_variants.variant_attribute_value'))
+            ->get();
         
         return view('products.show', compact(
             'product', 'uploads', 'variants', 'maxPrice', 'minPrice',
             'product_reviewable', 'user_product_review', 'review_count',
-            'average_rating', 'arrReviewListing', 'arrProductMaterials', 'arrProductDiamonds', 'isBoughtProduct'
+            'average_rating', 'arrReviewListing', 'arrProductMaterials', 'arrProductDiamonds', 'purchaseInfo'
         ));
     }
 
