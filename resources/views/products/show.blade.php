@@ -279,10 +279,11 @@
                                     <div class="orginal-name">Add to Cart</div>
                                 </button>
 
-                                <button type="submit" formaction="{{ route('cart.buy.now') }}"
+                                <!--<button type="submit" formaction="{{ route('cart.buy.now') }}"
                                     class="btn btn-success shadow-md mt-4"
                                     {{ ($product->is_trackingquantity == 1 && $product->quantity < 1) || count($variants) > 0 ? 'disabled' : null }}
                                     id="buy_now_btn">Buy Now</button>
+                                    -->
                             </form>
                         </div>
 
@@ -344,7 +345,7 @@
                 @endif
 
                 <div class="section-header">
-                    <div class="section-header-title mb-3 text-uppercase fw-700 border p-3">Reviews</div>
+                    <div class="section-header-title mb-3 text-uppercase fw-700 border p-3 card rounded">Reviews</div>
                 </div>
                 @if ($review_count > 0)
                 <div class="card">

@@ -162,7 +162,7 @@
                 @endphp
                 <li class="nav-item dropdown">
                     <a class="nav-link notification-badge-container" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                        <i class="bi bi-bell">
+                        <i class="bi bi-bell fs-18">
                             @if ($new_count)
                             <div class="notification-badge">{{ $new_count }}</div>
                             @endif
@@ -170,7 +170,6 @@
                     </a>
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <div class="dropdown-header pb-2 border-bottom">
-                            <i class="bi bi-envelope"></i>
                             <span class="dropdown-title">Notifications (0)</span>
                         </div>
                         @foreach ($notifications as $notification)
@@ -190,17 +189,14 @@
                 
                 <li class="nav-item dropdown">
                     <a class="nav-link notification-badge-container" aria-current="page" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" href="#">
-                        <i class="bi bi-envelope">
-                           
+                        <i class="bi bi-envelope fs-18">
                             <div class="notification-badge"></div>
-                            
                         </i>
                     </a>
                   
                     <ul class="dropdown-menu half-menu dropdown-menu-end" aria-labelledby="navbarDropdown" style="width:250px;">
                         <div class="dropdown-header pb-2 border-bottom">
-                            <i class="bi bi-envelope"></i>
-                            <span class="dropdown-title fw-700">Messages (0)</span>
+                            <span class="dropdown-title">Messages (0)</span>
                         </div>
                         @foreach ($message_notifications as $message_notification)
                         <a href="{{ env('APP_URL')}}/chat/{{$message_notification->user_id }}" class="filterDiscussions all unread single active d-block py-2 border-bottom"  data-toggle="list" role="tab">
