@@ -3,13 +3,13 @@ use App\Models\Step;
 use App\Models\StepGroup;
 
 $strStepId = '';
-if ($product->step_type == 0) {
+if ($product->step_type == 1) {
     $step_group = $product->step_group;
     $stepGroup = StepGroup::find($step_group);
     if ($stepGroup) {
         $strStepId = $stepGroup->steps;
     }
-} else {
+} else if ($product->step_type == 2) {
     $strStepId = $product->steps;
 }
 
@@ -23,6 +23,7 @@ if (trim($strStepId) != '') {
         $arrSteps[$step->id] = $step;
     }
 }
+
 @endphp
 
 @if (count($arrSteps))

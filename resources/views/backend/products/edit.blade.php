@@ -200,17 +200,17 @@ $arrSelected = explode(',', $product->steps);
                         <div class="mb-2">
                             <label for="selStepType">Step Type</label>
                             <select name="step_type" id="selStepType" class="form-control">
-                                <option class="text-secondary" selected>Select Type</option>
+                                <option value="0" selected>Select Type</option>
                                 @foreach ($arrStepTypes as $id => $name)
                                     <option
-                                        value="{{ $id }}"
-                                        {{-- {{ $id == $product->step_type ? "selected" : "" }} --}}
+                                        value="{{ $id + 1 }}"
+                                        {{ $id + 1 == $product->step_type ? "selected" : "" }}
                                     >{{ $name }}</option>
                                 @endforeach
                             </select>
                         </div>
 
-                        <div id="divStepGroups" class="{{ $product->step_type == 0 ? "" : "d-none" }}">
+                        <div id="divStepGroups" class="{{ $product->step_type == 1 ? "" : "d-none" }}">
                             <div class="mb-2">
                                 <label for="selStepGroup">Step Group</label>
                                 <select name="step_group" id="selStepGroup" class="form-control">
@@ -224,7 +224,7 @@ $arrSelected = explode(',', $product->steps);
                             </div>
                         </div>
 
-                        <div id="divSteps" class="{{ $product->step_type == 0 ? "d-none" : "" }}">
+                        <div id="divSteps" class="{{ $product->step_type == 2 ? "" : "d-none" }}">
                             <div class="row mb-2">
                                 <label>Steps</label>
                                 <div class="col-6">
@@ -547,9 +547,11 @@ $arrSelected = explode(',', $product->steps);
 
         $('body').on('change', '#selStepType', function() {
             var step_type = $(this).val();
-            debugger;
-
+            // debugger;
             if (step_type == 0) {
+                $('#divStepGroups').addClass('d-none');
+                $('#divSteps').addClass('d-none');
+            } else if (step_type == 1) {
                 $('#divStepGroups').removeClass('d-none');
                 $('#divSteps').addClass('d-none');
             } else {
