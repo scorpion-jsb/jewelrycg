@@ -44,6 +44,6 @@
     $(".product_diamond_tcw").map(function(idx, ele){
         total_tcw += Number($(ele).html())
     })
-    $(".total_tcw").html(total_tcw)
+    $(".total_tcw").html(total_tcw.toFixed(2))
 
 </script>
