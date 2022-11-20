@@ -25,6 +25,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class SellerController extends Controller
 {
@@ -338,8 +339,14 @@ class SellerController extends Controller
         $seller = SellersProfile::withWhereHas('user', fn($query) => $query->where('username', $username))->with('user.uploads')->firstOrFail();
         $products = Product::with(['uploads', 'product_category'])->where('vendor', $seller->user_id)->paginate(6, '*', 'product');
         $services = ServicePost::with(['uploads', 'categories.category'])->where('user_id', $seller->user_id)->paginate(6, '*', 'service');
+        $rating = SellersProfile::withWhereHas('user', fn($query) => $query->where('username', $username))
+            ->leftJoin('services', 'services.user_id', 'sellers_profile.user_id')
+            ->leftJoin('orders_services', 'services.id', 'orders_services.service_id')
+            ->leftJoin('service_reviews', 'service_reviews.order_id', 'orders_services.id')
+            ->select(DB::raw('FORMAT( AVG( service_reviews.rating), 1 ) rating, COUNT( service_reviews.id ) count'))
+            ->firstOrFail();
 
-        return view('seller_profile', compact('seller', 'products', 'services'));
+        return view('seller_profile', compact('seller', 'products', 'services', 'rating'));
     }
 
     public function profile()
