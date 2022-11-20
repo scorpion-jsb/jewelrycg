@@ -41,7 +41,7 @@ i{
                                 
                                     @foreach($side_info as $info)
                                         <a  class="filterDiscussions all unread single active"  data-toggle="list" role="tab" data-id="{{$info->conversation_id}}">
-                                            <img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Janette" alt="avatar">
+                                            <img class="avatar-md" src="{{users_name($info->conversation_id)[0]->uploads->getImageOptimizedFullName(100,100)}}" data-toggle="tooltip" data-placement="top" title="Janette" alt="avatar">
                                             <input type="hidden" name="client_id" id="client_id" value="{{$info->id}}"/>
                                             @if($info->cnt > 0)
                                             <div class="new bg-yellow">
@@ -73,7 +73,7 @@ i{
                             <div class="container">
                                 <div class="col-md-12">
                                     <div class="inside">
-                                        <a href="#"><img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar"></a>
+                                        <a href="#"><img class="avatar-md" src="{{Auth::user()->uploads->getImageOptimizedFullName(100,100)}}" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar"></a>
                                         <div class="data">
                                             <h5><a href="#">{{ Auth::user()->first_name }} {{ Auth::user()->last_name }}</a></h5>
                                             <span>Active now</span>
@@ -102,7 +102,7 @@ i{
                                                 </div>
                                             @else    
                                                 <div class="message">
-                                                    <img class="avatar-md" src="{{asset('assets/img/avatar.png')}}" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">
+                                                    <img class="avatar-md" src="{{users_name($info->conversation_id)[0]->uploads->getImageOptimizedFullName(100,100)}}" data-toggle="tooltip" data-placement="top" title="Keith" alt="avatar">
                                                     <div class="text-main">
                                                         <div class="text-group">
                                                             <div class="text">
