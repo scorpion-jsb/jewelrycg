@@ -343,7 +343,7 @@ class SellerController extends Controller
             ->leftJoin('services', 'services.user_id', 'sellers_profile.user_id')
             ->leftJoin('orders_services', 'services.id', 'orders_services.service_id')
             ->leftJoin('service_reviews', 'service_reviews.order_id', 'orders_services.id')
-            ->select(DB::raw('FORMAT( AVG( service_reviews.rating), 1 ) rating, COUNT( service_reviews.id ) count'))
+            ->select(DB::raw('FORMAT(AVG(service_reviews.rating), 1) rating, COUNT(service_reviews.id) count'))
             ->firstOrFail();
 
         return view('seller_profile', compact('seller', 'products', 'services', 'rating'));
