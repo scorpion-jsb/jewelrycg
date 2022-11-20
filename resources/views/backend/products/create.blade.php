@@ -159,10 +159,11 @@ $arrSelected = explode(',', old('steps'));
                         <div class="mb-2">
                             <label for="selStepType">Step Type</label>
                             <select name="step_type" id="selStepType" class="form-control">
+                                <option selected>Select Type</option>
                                 @foreach ($arrStepTypes as $id => $name)
                                     <option
                                         value="{{ $id }}"
-                                        {{ $id == old('step_type') ? "selected" : "" }}
+                                        {{-- {{ $id == old('step_type') ? "selected" : "" }} --}}
                                     >{{ $name }}</option>
                                 @endforeach
                             </select>
