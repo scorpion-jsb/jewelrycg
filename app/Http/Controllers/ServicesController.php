@@ -33,6 +33,7 @@ use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Config;
+use Illuminate\Support\Facades\DB;
 use Stripe\Stripe;
 
 class ServicesController extends Controller
@@ -52,7 +53,14 @@ class ServicesController extends Controller
 
     public function all()
     {
-        $services = ServicePost::with(['uploads', 'categories.category', 'postauthor.uploads', 'seller', 'packages'])->where('status', 1)->orderBy('id', 'DESC')->get();
+        $services = ServicePost::with(['uploads', 'categories.category', 'postauthor.uploads', 'seller', 'packages'])
+            ->leftJoin('orders_services', 'services.id', 'orders_services.service_id')
+            ->leftJoin('service_reviews', 'service_reviews.order_id', 'orders_services.id')
+            ->select('services.*', DB::raw('FORMAT(AVG(service_reviews.rating), 1) rating, COUNT(service_reviews.id) count'))
+            ->where('services.status', 1)
+            ->groupBy('services.id')
+            ->orderBy('services.id', 'DESC')
+            ->get();
 
         // $services->each(function ($service) {
         //     $service->thumb_file_name = FFileManagerController::get_thumb_path($service->thumb->file_name);

@@ -45,6 +45,12 @@
                             <div class="chip ms-3">{{ count($service->packages) ? "$".($service->packages[0]->price / 100) : "..." }}</div>
                           </li>
                         </ul>
+                        <ul class="list-unstyled d-flex justify-content-start align-items-center fs-6 mb-3">
+                          <li>
+                            <span><i class="bi bi-star-fill fs-20 text-warning"></i> {{ $service->rating ?: "---" }}</span>
+                            <span class="text-secondary">({{$service->count}})</span>
+                          </li>
+                        </ul>
                         <a href="/services/{{$service->slug}}" class="btn btn-primary">Details</a>
                       </div>
                     </div>
