@@ -74,7 +74,16 @@ class ServicesController extends Controller
 
     public function detail($slug)
     {
-        $data = ServicePost::with(['uploads', 'categories.category', 'postauthor.uploads', 'seller', 'packages', 'tags.tag'])->where('slug', $slug)->firstOrFail();
+        $data = ServicePost::with(['uploads', 'categories.category', 'postauthor.uploads', 'seller', 'packages', 'tags.tag'])
+            ->leftJoin('orders_services', 'services.id', 'orders_services.service_id')
+            ->leftJoin('service_reviews', 'service_reviews.order_id', 'orders_services.id')
+            ->leftJoin('users', 'users.id', 'orders_services.user_id')
+            ->select('services.*', DB::raw('FORMAT(AVG(case users.role when 0 then service_reviews.rating else null end), 1) rating, COUNT(case users.role when 0 then service_reviews.id else null end) count'))
+            ->where('services.status', 1)
+            ->where('slug', $slug)
+            ->groupBy('services.id')
+            ->orderBy('services.id', 'DESC')
+            ->firstOrFail();
         $gallery_ids = explode(',', $data->gallery);
 
         $galleries = [];

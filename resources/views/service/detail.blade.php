@@ -68,6 +68,12 @@
             </div>
             <div class="col-md-8 mb-3">
               <h4>{{$service->name}}</h4>
+              @if ($service->count > 0)
+              <div>
+                <span><i class="bi bi-star-fill fs-20 text-warning"></i> {{ $service->rating ?: "0.0" }}</span>
+                <span class="text-secondary">({{$service->count}})</span>
+              </div>
+              @endif
             </div>
             <div class="col-md-8">
               <h4>Content</h4>
