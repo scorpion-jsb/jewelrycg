@@ -425,7 +425,6 @@
             initSelection();
         });
         
-        var purchaseInfo = {!!$purchaseInfo!!};
         var initSelection = function() {
             if (purchaseInfo.length > 1) {
                 $(".attribute-radio:first").click();
@@ -440,6 +439,7 @@
             }
         }
 
+        var purchaseInfo = JSON.parse('{!!$purchaseInfo!!}');
         var variants = [];
         $('.loader-container').hide();
 
@@ -452,6 +452,7 @@
                 price: '{{ $variant->variant_price }}'
             })
         @endforeach
+        
         $('.attribute-radio').click(function() {
             for(var i in purchaseInfo) {    // init selection
                 if(purchaseInfo[i].variant_attribute_value == $(this).val()) {
@@ -480,6 +481,7 @@
             if (selectedAttributeValue.length == selectedAttributeCount) {
                 $('#buy_now_btn, #add_to_cart_btn').removeAttr('disabled');
             }
+            
             variants.forEach(function(variant) {
                 if (variant.id == selectedAttributeValue.sort().join(',')) {
                     $('#variant_attribute_value').val(variant.id)
