@@ -85,14 +85,14 @@ class CheckoutController extends Controller
 
                     $orderItem->order_id = $orderId;
                     $orderItem->product_id = $item->id;
-                    $orderItem->product_isdigital = $item->product_isdigital;
-                    $orderItem->product_isvirtual = $item->product_isvirtual;
+                    $orderItem->product_isdigital = $item->model->is_digital;
+                    $orderItem->product_isvirtual = $item->model->is_virtual;
                     $orderItem->product_name = $item->model->name;
-                    $orderItem->product_thumbnail = $item->product_thumbnail;
+                    $orderItem->product_thumbnail = $item->model->product_thumbnail;
                     $orderItem->price = $item->price * 100;
                     $orderItem->quantity = $item->qty;
                     $orderItem->product_variant = 0;
-                    $orderItem->product_digital_download_assets = $item->digital_download_assets;
+                    $orderItem->product_digital_download_assets = $item->model->digital_download_assets;
 
                     $total += $orderItem->price * $orderItem->quantity;
 
