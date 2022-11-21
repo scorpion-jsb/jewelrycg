@@ -85,10 +85,14 @@ class CheckoutController extends Controller
 
                     $orderItem->order_id = $orderId;
                     $orderItem->product_id = $item->id;
+                    $orderItem->product_isdigital = $item->product_isdigital;
+                    $orderItem->product_isvirtual = $item->product_isvirtual;
                     $orderItem->product_name = $item->model->name;
+                    $orderItem->product_thumbnail = $item->product_thumbnail;
                     $orderItem->price = $item->price * 100;
                     $orderItem->quantity = $item->qty;
                     $orderItem->product_variant = 0;
+                    $orderItem->product_digital_download_assets = $item->digital_download_assets;
 
                     $total += $orderItem->price * $orderItem->quantity;
 
@@ -97,6 +101,7 @@ class CheckoutController extends Controller
 
                         $productVariant = ProductsVariant::find($item->options['id']);
                         $orderItem->product_variant_name = $productVariant->variant_name;
+                        $orderItem->product_digital_download_assets = $productVariant->digital_download_assets;
                     }
 
                     $orderItem->save();
