@@ -439,7 +439,7 @@
             }
         }
 
-        var purchaseInfo = JSON.parse('{!!$purchaseInfo!!}');
+        var purchaseInfo = {!!$purchaseInfo!!};
         var variants = [];
         $('.loader-container').hide();
 
