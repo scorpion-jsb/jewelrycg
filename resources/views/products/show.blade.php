@@ -279,10 +279,6 @@
                                     </div>
                                     <div class="orginal-name">Add to Cart</div>
                                 </button>
-                                @else
-                                <a class="btn btn-primary shadow-md add-to-cart mt-4" href="{{ route('orders.index') }}">
-                                    <div class="orginal-name">View Order</div>
-                                </a>
                                 @endif
 
                                 <!--<button type="submit" formaction="{{ route('cart.buy.now') }}"
