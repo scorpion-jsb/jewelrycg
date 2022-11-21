@@ -39,4 +39,9 @@ class OrderItem extends Model
     {
         return $this->belongsTo(ProductsVariant::class, 'product_variant');
     }
+
+    public function uploads()
+    {
+        return $this->hasOne(Upload::class, 'id', 'product_thumbnail');
+    }
 }

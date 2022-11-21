@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('product_variant');
             $table->string('product_variant_name');
             $table->string('product_digital_download_assets');
+            $table->string('product_thumbnail')->nullable();
             $table->tinyInteger('quantity')->unsigned();
             $table->integer('price')->unsigned();
             $table->smallInteger('status_fulfillment')->default(1); // 1: pending (Physical products - 2: shipped), (Digital products - 3: delivered)
