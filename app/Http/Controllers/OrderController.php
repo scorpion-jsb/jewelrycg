@@ -19,12 +19,12 @@ class OrderController extends Controller
     public function show($orderId)
     {
         if (auth()->user()) {
-            $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
+            $order = Order::with('items')
                 ->where('order_id', $orderId)
                 ->where('user_id', auth()->id())
                 ->firstOrFail();
         } else {
-            $order = Order::with('items', 'items.product:id,name,slug,product_thumbnail,is_digital,digital_download_assets')
+            $order = Order::with('items')
                 ->where('order_id', $orderId)
                 ->firstOrFail();
         }

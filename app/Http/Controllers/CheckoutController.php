@@ -89,6 +89,11 @@ class CheckoutController extends Controller
                     $orderItem->price = $item->price * 100;
                     $orderItem->quantity = $item->qty;
                     $orderItem->product_variant = 0;
+                    // get product values and set here
+                    $orderItem->product_isdigital = 0;
+                    $orderItem->product_isvirtual = 0;
+                    $orderItem->product_digital_download_assets = 0;
+                    $orderItem->product_thumbnail = 0;
 
                     $total += $orderItem->price * $orderItem->quantity;
 
