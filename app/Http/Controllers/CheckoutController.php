@@ -85,8 +85,8 @@ class CheckoutController extends Controller
 
                     $orderItem->order_id = $orderId;
                     $orderItem->product_id = $item->id;
-                    $orderItem->product_isdigital = $item->product_isdigital;
-                    $orderItem->product_isvirtual = $item->product_isvirtual;
+                    $orderItem->product_isdigital = $item->is_digital;
+                    $orderItem->product_isvirtual = $item->is_virtual;
                     $orderItem->product_name = $item->model->name;
                     $orderItem->product_thumbnail = $item->product_thumbnail;
                     $orderItem->price = $item->price * 100;
