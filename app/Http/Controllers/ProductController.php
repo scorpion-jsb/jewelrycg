@@ -208,12 +208,15 @@ class ProductController extends Controller
         $arrProductDiamonds = ProductMaterial::getDiamondsByProduct($product->id);
         $purchaseInfo = OrderItem::leftjoin('orders', 'order_items.order_id', '=', 'orders.order_id')
             ->leftjoin('products_variants', 'order_items.product_variant', '=', 'products_variants.id')
-            ->leftjoin('products', 'products.id', '=', 'products_variants.product_id')
+            ->leftjoin('products', 'products.id', '=', 'order_items.product_id')
             ->where('order_items.product_id', $product->id)
             ->where('orders.status_payment', 2)
             ->where('orders.user_id', $user_id)
-            ->where('products.is_virtual', 1)
-            ->where('products.is_digital', 1)
+            ->where(function ($query) {
+                $query->select(DB::raw(1))
+                    ->where('products.is_virtual', 1)
+                    ->orWhere('products.is_digital', 1);
+            })
             ->groupBy('products_variants.variant_attribute_value')
             ->select(DB::raw('COUNT(*) count, IF(products_variants.variant_attribute_value is NULL, 0, products_variants.variant_attribute_value) variant_attribute'))
             ->get();
