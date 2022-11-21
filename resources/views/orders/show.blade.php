@@ -45,7 +45,7 @@
                                 <img src="{{ $item->productVariant->uploads->getImageOptimizedFullName(150) }}" alt=""
                                     class="thumbnail border w-100">
                             @else
-                                <img src="{{ $item && $item->uploads->getImageOptimizedFullName(150) }}" alt=""
+                                <img src="{{ $item->uploads->getImageOptimizedFullName(150) }}" alt=""
                                     class="thumbnail border w-100">
                             @endif
                         </div>
